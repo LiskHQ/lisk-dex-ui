@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General layout opens and closes correctly on clicking the drawer and taping escape key 1`] = `
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-0::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-0.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-0 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-0:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-0:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-0.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-1 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div>
+  <button
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium makeStyles-icon-15 emotion-0"
+    data-testid="small-screen-nav-button"
+    tabindex="0"
+    type="button"
+  >
+    <svg
+      class="MuiSvgIcon-root"
+      fill="none"
+      height="75px"
+      viewBox="0 0 35 42"
+      width="35px"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M13.8501 6.09553L17.3679 0.090978C17.4286 -0.030326 17.5802 -0.030326 17.6105 0.090978L34.9873 29.8105C35.0177 29.8711 34.9873 29.9318 34.957 29.9924L24.9494 41.2434C24.9191 41.2737 24.8584 41.304 24.8281 41.304H16.7008C16.5491 41.304 16.4885 41.1524 16.5794 41.0614L22.0078 34.9356L27.1026 29.2343C27.1632 29.1736 27.1632 29.113 27.1329 29.0523L17.4892 12.4943L13.8501 6.24716C13.8198 6.21683 13.8198 6.15618 13.8501 6.09553ZM19.0675 35.2084L13.6694 41.2736C13.6543 41.2888 13.6315 41.3039 13.6088 41.3191C13.5861 41.3343 13.5633 41.3494 13.5481 41.3646H10.1516C10.091 41.3646 10.0607 41.3343 10.0303 41.3039L0.0227445 30.053C-0.0075815 29.9923 -0.0075815 29.9317 0.0227445 29.871L12.4867 8.46087C12.5474 8.36989 12.699 8.36989 12.7597 8.46087L16.2472 14.4654C16.2775 14.4957 16.2775 14.5564 16.2472 14.6171L7.81653 29.0826C7.7862 29.1432 7.81653 29.2039 7.84685 29.2645L12.881 34.9051C12.9113 34.9355 12.972 34.9658 13.0023 34.9658H18.9462C19.0978 34.9658 19.1585 35.1174 19.0675 35.2084Z"
+        fill="#6953F4"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <span
+      class="MuiTouchRipple-root emotion-1"
+    />
+  </button>
+</div>
+`;
+
+exports[`General layout triggers correctly on clicking icon button 1`] = `
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-0::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-0.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-0 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-0:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-0:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-0.Mui-disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-1 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<button
+  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium makeStyles-icon-1 emotion-0"
+  data-testid="small-screen-nav-button"
+  tabindex="0"
+  type="button"
+>
+  <svg
+    class="MuiSvgIcon-root"
+    fill="none"
+    height="75px"
+    viewBox="0 0 35 42"
+    width="35px"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      clip-rule="evenodd"
+      d="M13.8501 6.09553L17.3679 0.090978C17.4286 -0.030326 17.5802 -0.030326 17.6105 0.090978L34.9873 29.8105C35.0177 29.8711 34.9873 29.9318 34.957 29.9924L24.9494 41.2434C24.9191 41.2737 24.8584 41.304 24.8281 41.304H16.7008C16.5491 41.304 16.4885 41.1524 16.5794 41.0614L22.0078 34.9356L27.1026 29.2343C27.1632 29.1736 27.1632 29.113 27.1329 29.0523L17.4892 12.4943L13.8501 6.24716C13.8198 6.21683 13.8198 6.15618 13.8501 6.09553ZM19.0675 35.2084L13.6694 41.2736C13.6543 41.2888 13.6315 41.3039 13.6088 41.3191C13.5861 41.3343 13.5633 41.3494 13.5481 41.3646H10.1516C10.091 41.3646 10.0607 41.3343 10.0303 41.3039L0.0227445 30.053C-0.0075815 29.9923 -0.0075815 29.9317 0.0227445 29.871L12.4867 8.46087C12.5474 8.36989 12.699 8.36989 12.7597 8.46087L16.2472 14.4654C16.2775 14.4957 16.2775 14.5564 16.2472 14.6171L7.81653 29.0826C7.7862 29.1432 7.81653 29.2039 7.84685 29.2645L12.881 34.9051C12.9113 34.9355 12.972 34.9658 13.0023 34.9658H18.9462C19.0978 34.9658 19.1585 35.1174 19.0675 35.2084Z"
+      fill="#6953F4"
+      fill-rule="evenodd"
+    />
+  </svg>
+  <span
+    class="MuiTouchRipple-root emotion-1"
+  />
+</button>
+`;
