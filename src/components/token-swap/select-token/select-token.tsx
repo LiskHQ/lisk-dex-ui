@@ -15,17 +15,21 @@ const useStyles = makeStyles({
   },
   tokenList: {
     position: "absolute",
-    top: "30vh",
+    top: "20vh",
     width: "451px",
-
     zIndex: "2",
     textAlign: "left",
     backgroundColor: "#fff",
   },
   cryptoListArray: {
-    height: "50vh",
+    height: "40vh",
     overflow: "hidden",
     overflowY: "scroll",
+
+  },
+  cryptoListArrayItem: {
+    width: "100%",
+    justifyContent: "left"
   },
   searchBar: {
     border: "none",
@@ -90,6 +94,7 @@ export default function SelectToken(props: any) {
 
   const handleTokenName = (tokenName: string) => {
     props.handleTokenName(tokenName);
+    props.handleSelectOpen(false);
   };
 
   const handleSearchInput = (input: string) => {
@@ -143,8 +148,8 @@ export default function SelectToken(props: any) {
                 if (searchInput.length === 0) {
                   return (
                     <ListItem key={item.label}>
-                      <Button
-                   
+                      <Button 
+                        className={classes.cryptoListArrayItem}                 
                         onClick={() => {
                           handleTokenName(item.label);
                         }}
@@ -165,6 +170,7 @@ export default function SelectToken(props: any) {
                         onClick={() => {
                           handleTokenName(item.label);
                         }}
+                        data-testid={"token-name-"+item.label}
                       >
                         {item.label}
                       </Button>

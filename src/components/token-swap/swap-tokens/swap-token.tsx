@@ -162,9 +162,7 @@ export default function SwapTokens() {
         <button 
         className={classes.swapButton}          
           type="submit"
-          value="Submit"
-          variant="contained"
-          size="medium">
+          value="Submit">
           Swap
         </button>
       </form>
@@ -174,6 +172,7 @@ export default function SwapTokens() {
             <ConfirmSwap
               handleTokenSwapForm={tokenSwapForm}
               handleConfirmSwapClick={handleConfirmSwapClick}
+              open={true}
             />
           </Card>
         )}

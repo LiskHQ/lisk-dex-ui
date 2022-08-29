@@ -7,9 +7,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { useRef } from "react";
-import { MdOutlineSettings } from "react-icons/md";
-import { MdClose } from "react-icons/md";
-import { MdHelpOutline } from "react-icons/md";
+import { MdHelpOutline, MdClose, MdOutlineSettings } from "react-icons/md";
 import useOutsideClick from "../../../lib/utility/click-functions/outside-click";
 import { theme, variables } from "../../../theme";
 
@@ -130,7 +128,7 @@ const useStyles = makeStyles({
 const SettingsPopup = (props: any) => {
   const classes = useStyles();
   // create state `open` with default as false
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
   const checkClick = useRef(null);
   useOutsideClick(checkClick, setOpen);
   const [transactionDeadline, setTransactionDeadline] = React.useState("");
