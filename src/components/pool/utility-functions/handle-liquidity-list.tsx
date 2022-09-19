@@ -13,13 +13,13 @@ const useStyles = makeStyles({
     }
 })
 
-export function handleLiquidityList () {
+export default function handleLiquidityList () {
     const classes = useStyles();
     if (LiquidityList.length == 0) {      
         return (
             <div className={classes.liquidityList}>
               <p className={classes.liquidityListTitle}>Your active V1 liquidity positions will appear here</p>
-              <p>Don't see a pool you joined</p>
+              <p>Do not see a pool you joined</p>
               <a href="">Explore existing pools</a>
              
             </div>

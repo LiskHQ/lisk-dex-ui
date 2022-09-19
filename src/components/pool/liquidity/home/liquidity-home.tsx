@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import { Container, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { handleLiquidityList } from "../../utility-functions/handle-liquidity-list";
+import handleLiquidityList from "../../utility-functions/handle-liquidity-list";
 import theme from "../../../../theme/theme";
 import PoolHomeButton from "./home-button";
 import { MdHelpOutline } from "react-icons/md";
