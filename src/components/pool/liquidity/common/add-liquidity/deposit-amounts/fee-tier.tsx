@@ -13,13 +13,17 @@ const useStyles = makeStyles({
         flexDirection: "row",
         justifyContent: "space-between",
         flexWrap: "nowrap",
-        gap: "15px",
     },
     button: {
         textAlign: "left",
         border: "1px solid #e0e2f1",
-        borderRadius: "4px",
+        borderRadius: "8px",
         backgroundColor: "transparent",
+        width: "22%",
+        '&:focus': {
+            border: "1px solid #6953F4",            
+        },
+        cursor: "pointer"
     }
 })
 

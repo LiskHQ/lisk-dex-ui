@@ -13,9 +13,13 @@ const useStyles = makeStyles({
     button: {
         width: "45%",
         border: "1px solid #e0e2f1",
-        borderRadius: "4px",
+        borderRadius: "6px",
         height: "100px",
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        '&:focus': {
+            border: "1px solid #6953F4",            
+        },
+        cursor: "pointer"
     },
     buttonFont: {
         margin: "0px 0px 0px 0px",
