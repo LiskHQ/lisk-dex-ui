@@ -72,7 +72,7 @@ export default function TokenAmount(props: any) {
   };
 
   const checkTokenNameValue = () => {
-    if (props.token == "") {
+    if (props.token == null || props.token == "") {
       return "Select Token";
     } else {
       return props.token;
