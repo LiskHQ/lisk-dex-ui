@@ -1,6 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { theme, variables } from "../../../../../../theme";
 
+
 const useStyles = makeStyles({
     feeTier: {
         textAlign: "left",
@@ -45,7 +46,7 @@ const feeTierlist = [
         description: "best for exotic pairs"
     }
 ]
-export default function FeeTier(){
+export default function FeeTier(props:Iprops){
     const classes = useStyles();
     return(
         <section >
@@ -56,7 +57,7 @@ export default function FeeTier(){
             {feeTierlist.map((feeListItem)=>{
              const {value,description} = feeListItem;
              return(
-                <button className={classes.button}key={value}>
+                <button className={classes.button}key={value} onClick={()=>{props.handleFeeTier(value)}}>
                     <h3>
                     {value}
                     </h3>

@@ -34,6 +34,8 @@ export default function DepositAmounts() {
   const [amount1, setAmount1] = React.useState("");
   const [amount2, setAmount2] = React.useState("");
 
+  const [feetier, setFeeTier] = React.useState("");
+
   const handlePopularPairing = (token1: string, token2: string) => {
     setToken2(token2);
     setToken1(token1);
@@ -46,6 +48,9 @@ export default function DepositAmounts() {
     setToken1(token2);
   };
 
+  const handleFeeTier  = (value:string) =>{
+    setFeeTier(value);
+  }
 
   return (
     <section>
@@ -80,7 +85,7 @@ export default function DepositAmounts() {
         </div>
       </div>
       <div className={classes.feeTier}>
-        <FeeTier />
+        <FeeTier handleFeeTier={handleFeeTier}/>
       </div>
     </section>
   );
