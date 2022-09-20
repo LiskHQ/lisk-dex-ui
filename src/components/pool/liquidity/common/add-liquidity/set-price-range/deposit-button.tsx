@@ -1,6 +1,10 @@
 import { makeStyles } from "@mui/styles"
 import { variables } from "../../../../../../theme"
 
+interface Iprops {
+    buttonTitle: string
+}
+
 const useStyles = makeStyles({
     button: {
         width: "100%",
@@ -10,12 +14,12 @@ const useStyles = makeStyles({
         backgroundColor: variables.primary.superPurple
     }
 })
-export default function DepositButton(){
+export default function DepositButton(props:Iprops){
     const classes = useStyles();
     return(
         <button className={classes.button}>
             <h1>
-                Set Price Range
+                {props.buttonTitle}
             </h1>
         </button>
     )

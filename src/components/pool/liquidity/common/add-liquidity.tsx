@@ -5,16 +5,25 @@ import { Container, Grid, } from "@mui/material";
 import TopBanner from "./add-liquidity/top-banner";
 import DepositAmounts from "./add-liquidity/deposit-amounts/deposit-amounts";
 import SetPriceRange from "./add-liquidity/set-price-range/set-price-range";
+import { makeStyles } from "@mui/styles";
 
-
+const useStyles = makeStyles ({
+  container: {
+    padding: "5%"
+  },
+  card: {
+    width: "95%"
+  }
+})
 
 export default function AddLiquidity() {
+  const classes = useStyles();
   return (
-    <Container>
-      <Card>
+    <Container className={classes.container}>
+      <Card className={classes.card}>
         <CardContent>
           <TopBanner />
-          <Grid container spacing={2} direction="row">
+          <Grid container spacing={6} direction="row">
             <Grid item lg={6}>
               <DepositAmounts />
             </Grid>
