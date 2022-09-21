@@ -1,7 +1,5 @@
-import { styled } from "@mui/material/styles";
-import { theme, variables } from "../../../../theme";
-import {TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { variables } from "../../../../theme";
 
 
 
@@ -25,25 +23,24 @@ const useStyles = makeStyles({
         lineHeight: "24px",
         color: variables.primary.darkSilver,
         textAlign: "left"
-      }
+      },
+      input: {
+        padding: "0px 0px 0px 5px",
+        width: "25%",
+        fontSize: "20px",
+        lineHeight: "24px",
+        borderRadius: "4px",
+        textAlign: "left",
+        height: "50px",
+        border: "0px solid black",
+        outline: "none",
+      },
+
 })
 
 interface Iprops {
     defaultText:string
 }
-const CssTextField = styled(TextField)({
-    ".MuiOutlinedInput-input": {
-      fontSize: theme.typography.h3.fontSize,
-      width: "100%",
-      color: variables.primary.dark,
-      
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        border: "0px",
-      },
-    },
-  });
 
 
 
@@ -58,7 +55,8 @@ export default function PriceInputBox(props:Iprops){
         <>
             <div className={classes.amountTextTokenField}>
             {handleInputValue()}
-            <CssTextField/>
+            <input data-testid="amount-input" className={classes.input} >            
+            </input>            
             </div>
         </>
         

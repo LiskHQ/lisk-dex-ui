@@ -2,13 +2,6 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 import {MdAdd , MdRemove} from "react-icons/md";
 
-interface Iprops {
-  buttonTitle: string;
-  amount: string;
-  tokenTitle: string;
-
-}
-
 const useStyles = makeStyles({
     button: {
         width: "45%",
@@ -49,8 +42,10 @@ export default function PriceBanner(props: Iprops) {
         }
         if (amountVal>0 ){
             setCalculatedAmount(amountVal.toString());
+            props.setPrice(amountVal.toString());
         }else{
             setCalculatedAmount("0");
+            props.setPrice(amountVal.toString());
         }        
     };
 
