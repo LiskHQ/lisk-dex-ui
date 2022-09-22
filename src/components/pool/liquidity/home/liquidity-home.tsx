@@ -9,7 +9,6 @@ import theme from "../../../../theme/theme";
 import PoolHomeButton from "./home-button";
 import { MdHelpOutline } from "react-icons/md";
 import { variables } from "../../../../theme";
-import LiquidityList from "../../utility-functions/liquidity-list";
 const useStyles = makeStyles({
   grid: {
     display: "flex",
@@ -110,15 +109,12 @@ export default function LiquidityHome() {
               <MdHelpOutline className={classes.mdHelpOutlineIcon} />              
               </i>              
              </div>
-             <div>
-              {}
-             <button className={classes.liquidityButton}>
-                <a>Active Liquidity ({LiquidityList.length})</a> 
+              <button className={classes.liquidityButton}>
+                <a>Active Liquidity</a> 
                 <i>
                 <MdKeyboardArrowDown />
                 </i>                
               </button>
-             </div>              
             </div>
             <div>{handleLiquidityList()}</div>
           </CardContent>

@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import { variables } from "../../../../theme";
 
 interface IProps{
     buttonTitle:string
@@ -11,17 +10,10 @@ const useStyles = makeStyles({
         marginBottom: "16px",
         border: "0px",
         borderRadius: "4px",
-        backgroundColor: variables.primary.superPurple,
+        backgroundColor: "#6953F4",
         color: "white",
         fontSize: "16px",
-        cursor: "pointer",
-        '&:focus': {
-            background: "transparent",
-            color: variables.primary.superPurple,
-            border: "1px solid",
-            borderColor: variables.primary.superPurple,
-        }
-
+        cursor: "pointer"
       }
 })
 
@@ -29,7 +21,7 @@ export default function PoolHomeButton(props:IProps){
     const classes = useStyles();
     const buttonTitle = props.buttonTitle;
     return(
-        <button autoFocus={true} className={classes.poolHomeButton} >
+        <button className={classes.poolHomeButton}>
             {buttonTitle+` +`}
         </button>
     )
