@@ -9,19 +9,17 @@ import theme from "../../../../theme/theme";
 import PoolHomeButton from "./home-button";
 import { MdHelpOutline } from "react-icons/md";
 import { variables } from "../../../../theme";
-import LiquidityList from "../../utility-functions/liquidity-list";
-import Link from "next/link";
-
 const useStyles = makeStyles({
   grid: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    
   },
   card: {
     width: "700px",
     marginTop: "10%",
-    padding: "0px 32px 0px 32px",
+    padding: "0px 32px 0px 32px"
   },
   bottomBanner: {
     display: "flex",
@@ -29,14 +27,14 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     flexWrap: "nowrap",
     margin: "4% 0% 0% 0%",
-    alignItems: "center",
+    alignItems: "center", 
     borderTop: "1px solid #D9D8F8",
-    padding: "38px 0px 0px 0px",
+    padding: "38px 0px 0px 0px"
   },
   cardTitle: {
     fontSize: theme.typography.h3.fontSize,
     fontWeight: "600",
-    margin: "15px 0px 0px 0px",
+    margin: "15px 0px 0px 0px"
   },
   cardTitleCaption: {
     fontSize: theme.typography.h5.fontSize,
@@ -75,11 +73,13 @@ const useStyles = makeStyles({
     flexDirection: "row",
     width: "25%",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
+    
   },
   bottomBannerInfoIcon: {
-    padding: "5px 0px 0px 0px",
-  },
+    padding: "5px 0px 0px 0px"
+  }
+
 });
 
 export default function LiquidityHome() {
@@ -96,29 +96,25 @@ export default function LiquidityHome() {
             <Typography className={classes.cardTitleCaption}>
               Add Liquidity to earn LP tokens
             </Typography>
-            <div>
+            <div> 
               <PoolHomeButton buttonTitle="Add Position" />
             </div>
-            <Link href="/add-liquidity">
-              <a>
+            <div >
               <PoolHomeButton buttonTitle="Create a Pool" />
-              </a>              
-            </Link>
+            </div>
             <div className={classes.bottomBanner}>
-              <div className={classes.bottomBannerTextAndIcon}>
-                <h3>Your Liquidity</h3>
-                <i className={classes.bottomBannerInfoIcon}>
-                  <MdHelpOutline className={classes.mdHelpOutlineIcon} />
-                </i>
-              </div>
-              <div>
-                <button className={classes.liquidityButton}>
-                  <a>Active Liquidity ({LiquidityList.length})</a>
-                  <i>
-                    <MdKeyboardArrowDown />
-                  </i>
-                </button>
-              </div>
+             <div className={classes.bottomBannerTextAndIcon}>
+             <h3>Your Liquidity</h3>
+              <i className={classes.bottomBannerInfoIcon}>
+              <MdHelpOutline className={classes.mdHelpOutlineIcon} />              
+              </i>              
+             </div>
+              <button className={classes.liquidityButton}>
+                <a>Active Liquidity</a> 
+                <i>
+                <MdKeyboardArrowDown />
+                </i>                
+              </button>
             </div>
             <div>{handleLiquidityList()}</div>
           </CardContent>
