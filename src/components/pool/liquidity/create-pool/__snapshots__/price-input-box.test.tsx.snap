@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceInputBox component checks if the component matches the snapshot 1`] = `
+<div>
+  <div
+    class="makeStyles-amountTextTokenField-1"
+  >
+    <p
+      class="makeStyles-inputFieldText-2"
+    >
+      Current LSK per ETH price
+    </p>
+    <input
+      class="makeStyles-input-3"
+      data-testid="amount-input"
+    />
+  </div>
+</div>
+`;

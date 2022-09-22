@@ -1,11 +1,9 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import DepositButton from "./deposit-button";
+import CreatePool from "../../../create-pool/create-pool";
 import PriceBanner from "./price-banner";
 
-interface Iprops {
-  componentName: string;
-}
+
 
 const useStyles = makeStyles({
   setPriceRange: {
@@ -29,23 +27,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SetPriceRange(props: Iprops) {
-  const componentName: string = props.componentName;
-  const [buttonTitle, setButtonTile] = React.useState("Enter an Amount");
-  const [userInputAmount, setUserInputAmount] = React.useState("");
-  const [currentLSKperTokenAmount, setCurrentLSKperTokenAmount] = React.useState("");
-  const [minAmount, setminAmount] = React.useState("");
-  const [maxAmount, setmaxAmount] = React.useState("");
-  
-  const classes = useStyles();
+export default function SetPriceRange(props:any) {
 
-  const handelButtonTitle = () =>{
-    if (userInputAmount==null || userInputAmount.toLowerCase() == "0"){
-      return("Enter an Amount");
-    }else if (minAmount==null || minAmount.toLowerCase() == "0" || maxAmount==null || maxAmount.toLowerCase() == "0"){
-      return("Set price Range");
-    }
-  }
+  const classes = useStyles();
 
   return (
     <section className={classes.setPriceRange}>
@@ -58,6 +42,7 @@ export default function SetPriceRange(props: Iprops) {
         }
       }}
        */}
+      <CreatePool />
       <div className={classes.priceBanner}>
         <div className={classes.priceBannerTitle}>Set price range</div>
         <div className={classes.priceBannerButton}>
@@ -65,18 +50,18 @@ export default function SetPriceRange(props: Iprops) {
             buttonTitle={"Min Price"}
             amount={"0"}
             tokenTitle={"Eth per DAI"}
+            setPrice = {props.setMinPrice}
           />
           <PriceBanner
             buttonTitle={"Max Price"}
             amount={"0"}
             tokenTitle={"Eth per DAI"}
+            setPrice = {props.setMaxPrice}
           />
         </div>
       </div>
 
-      <div>
-        <DepositButton buttonTitle={buttonTitle}/>
-      </div>
+      
     </section>
   );
 }
