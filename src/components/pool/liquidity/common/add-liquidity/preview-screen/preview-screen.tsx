@@ -14,8 +14,8 @@ const useStyles = makeStyles({
   confirmSwapCard: {
     position: "absolute",
     top: "20vh",
-    left: "40%",
-    width: "451px",
+    left: "32.5%",
+    width: "35%",
     zIndex: "2",
     textAlign: "left",
     backgroundColor: "#fff",
@@ -51,7 +51,6 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "7%",
     flexWrap: "wrap"
   },
   tokenSection: {
@@ -74,19 +73,29 @@ const useStyles = makeStyles({
   poolTokenText: {
     fontSize: "16px",
     fontWeight: "600",
-
   },
   poolArea: {
    
     fontWeight: "600",
-    
+    backgroundColor: "#FAFBFC",
+     borderRadius: "8px", 
+     padding: "1% 3% 1% 3%",
+     border: "1px solid #E7E9F9",
   },
   poolAreaToken: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    fontSize: "24px",
+    fontSize: "20px",
+  },
+  poolAreaTokenFeeTier: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: "20px",
+    marginTop: "2%",
   },
   selectedRange: {
     display: "flex",
@@ -98,14 +107,17 @@ const useStyles = makeStyles({
   selectedRangeButtons: {
     backgroundColor: "#E7E9F9",
     alignItems: "center", 
-    borderRadius: "8px", 
-    padding: "2px 1px 2px 1px" 
+    borderRadius: "4px", 
+    padding: "1px 1px 2px 1px" 
   },
   selectedRangeButton: {
     border: "0px",
-    borderRadius: "8px",
-    backgroundColor: variables.white,
-    padding: "4px 10px 4px 10px" 
+    borderRadius: "4px",
+    backgroundColor: "#E7E9F9",
+    padding: "4px 10px 4px 10px",
+    "&:focus": {
+      backgroundColor: variables.white,
+    } 
   },
   priceButtons: {
     display: "flex",
@@ -120,6 +132,7 @@ const useStyles = makeStyles({
     backgroundColor: "#FAFBFC",
     borderRadius: "8px",
     border: "1px solid #E7E9F9",
+    padding: "0%",
   },
   currentPrice: {
     width: "100%",
@@ -137,14 +150,13 @@ export default function PreviewScreen(props: any) {
   const checkClick = React.useRef(null);
   useOutsideClick(checkClick, props.handlePreviewOpen);
   return (
-    <Card ref={checkClick} className={classes.confirmSwapCard}>
+    <Card  className={classes.confirmSwapCard}>
       {
-        <CardContent>
-          <>
+        <CardContent ref={checkClick}>          
             <div className={classes.topBanner}>
-              <Typography className={classes.confirmSwap}>
+              <h1 className={classes.confirmSwap}>
                 Add Liquidity
-              </Typography>
+              </h1>
               <MdClose
                 className={classes.mdClose}
                 onClick={() => {
@@ -174,7 +186,7 @@ export default function PreviewScreen(props: any) {
                 <div>{props.depositAmount.token2}</div>
                 <div>{props.depositAmount.amount2}</div>
               </div>
-              <div className={classes.poolAreaToken}>
+              <div className={classes.poolAreaTokenFeeTier}>
                 <div>Fee Tier</div>
                 <div>{props.depositAmount.feeTier}</div>
               </div>
@@ -188,16 +200,16 @@ export default function PreviewScreen(props: any) {
             </div>
             <div className={classes.priceButtons}>
               <div className={classes.priceButton}>
-                <p>Min Price</p>
-                <p>{props.priceRange.minPrice}</p>
-                <p>{props.depositAmount.token1} per {props.depositAmount.token2}</p>
-                <p>Your position will be 100% composed of {props.depositAmount.token1} at this price.</p>
+                <p style={{margin: '6% 0% 0% 0%'}}>Min Price</p>
+                <p style={{margin: '0px', fontWeight: '500'}} >{props.priceRange.minPrice}</p>
+                <p style={{margin: '0px'}}>{props.depositAmount.token1} per {props.depositAmount.token2}</p>
+                <p style={{color: '#6B7280'}}>Your position will be 100% composed of {props.depositAmount.token1} at this price.</p>
               </div>
               <div className={classes.priceButton}>
-                <p>Max Price</p>
-                <p>{props.priceRange.maxPrice}</p>
-                <p>{props.depositAmount.token1} per {props.depositAmount.token2}</p>
-                <p>Your position will be 100% composed of {props.depositAmount.token2} at this price.</p>
+                <p style={{margin: '6% 0% 0% 0%'}}>Max Price</p>
+                <p style={{margin: '0px', fontWeight:'500'}}>{props.priceRange.maxPrice}</p>
+                <p style={{margin: '0px'}}>{props.depositAmount.token1} per {props.depositAmount.token2}</p>
+                <p  style={{color: '#6B7280'}}>Your position will be 100% composed of {props.depositAmount.token2} at this price.</p>
               </div>              
             </div>
             <div className={classes.currentPrice}>
@@ -213,12 +225,17 @@ export default function PreviewScreen(props: any) {
               value="Submit"
               onClick={() => {                
                 props.handlePreviewOpen(false);
-                           
+                if (props.setOpenDropDown!=null){
+                  props.setOpenDropDown(false);
+                }
+                if (props.setIncreaseLiquidity!=null){
+                  props.setIncreaseLiquidity(false);
+                }
               }}
             >
               Add Liquidity
             </button>
-          </>
+          
         </CardContent>
       }
     </Card>

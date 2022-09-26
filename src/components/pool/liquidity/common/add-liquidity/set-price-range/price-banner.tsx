@@ -53,9 +53,9 @@ export default function PriceBanner(props: Iprops) {
     <button className={classes.button}>
       <h5 className={classes.buttonFont}>{buttonTitle}</h5>
       <div className={classes.amountAndIcons}>
-      <i onClick={()=>{incrementOrDcrementAmount(true)}}><MdAdd /></i>
+      <i onClick={()=>{incrementOrDcrementAmount(false)}}><MdRemove /></i>        
       <h2>{calculatedAmount}</h2>
-      <i onClick={()=>{incrementOrDcrementAmount(false)}}><MdRemove /></i>      
+      <i onClick={()=>{incrementOrDcrementAmount(true)}}><MdAdd /></i>    
       </div>
       <h5 className={classes.buttonFont}>{tokenTitle}</h5>
     </button>
