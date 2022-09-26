@@ -8,7 +8,7 @@ import { Card, CardContent, Grid, Input, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { variables } from "../../../../theme";
 import DepositButton from "../common/add-liquidity/set-price-range/deposit-button";
-import { MdOutlineClose } from "react-icons/md";
+import { MdOutlineClose,MdArrowDownward } from "react-icons/md";
 
 const useStyles = makeStyles({
   cardTitle: {
@@ -56,9 +56,9 @@ const useStyles = makeStyles({
   numbersButton: {
     fontSize: "14px",
     padding: "2% 5% 2% 5%",
-    border: "0px",
-
     color: variables.primary.superPurple,
+    backgroundColor: "transparent",
+    border: "1px solid #E6E6E6",
     borderRadius: "8px",
     "&:focus": {
       backgroundColor: "#EEF0F8",
@@ -74,9 +74,8 @@ const useStyles = makeStyles({
   customerNumberButton: {
     width: "50%",
     fontSize: "14px",
-    padding: "6% 5% 6% 5%",
+    padding: "6% 2% 6% 5%",
     border: "0px",
-
     color: variables.primary.superPurple,
     borderRadius: "4px",
     "&:focus": {
@@ -145,7 +144,14 @@ const useStyles = makeStyles({
         height: 12
       }
       
-  }
+  },
+  downIcon: {
+    fontSize: "20px",
+    textAlign: "center",
+    width: "100%",
+    margin: "5% 0% 0% 0%",
+    color: "#4738A6"
+  },
   
 });
 
@@ -168,7 +174,7 @@ function valuetext(value: number) {
   return `${value}`;
 }
 
-export default function RemoveLiquidity(props: any) {
+export default function RemoveLiquidity() {
   const classes = useStyles();
   const [value, setValue] = React.useState<
     number | string | Array<number | string>
@@ -198,7 +204,7 @@ export default function RemoveLiquidity(props: any) {
           <Box sx={{ width: 400 }}>
             <div className={classes.cardTitle}>
               <h2>Remove Liquidity</h2>
-              <i><MdOutlineClose/></i>
+              <i onClick={()=>{}}><MdOutlineClose/></i>
             </div>
             <div className={classes.topBanner}>
               <h4>Amount</h4>
@@ -232,7 +238,7 @@ export default function RemoveLiquidity(props: any) {
                       key={item.value}
                       onClick={() => setValue(item.value)}
                     >
-                      {item.value}
+                      {item.value+"%"}
                     </button>
                   );
                 })}
@@ -244,11 +250,14 @@ export default function RemoveLiquidity(props: any) {
                     onChange={handleInputChange}
                     onBlur={handleBlur}
                     placeholder="+"
-                    value={value}
+                    
                     type="number"
                   ></input>
                 </button>
               </Grid>
+              <i className={classes.downIcon}>
+                <MdArrowDownward />
+              </i>
             </Grid>
             <Grid container>
               <Grid item width="100%">
@@ -265,10 +274,10 @@ export default function RemoveLiquidity(props: any) {
                 </div>
               </Grid>
               <Grid item width="100%">
-              <p>Price:</p>
-              <div className={classes.poolAreaPrice}>
-                    <div>{"1 LSK = 0.013ETH"}</div>
-                    <div>{"1 ETH = 1754.234LSK"}</div>
+              
+              <div className={classes.poolAreaPrice}>                    
+                    <div style={{display: "flex", justifyContent: "space-between", alignItems: "center",flexDirection: "row",lineHeight: "0px"}}><p>Price:</p> <p>{"1 LSK = 0.013ETH"}</p></div>
+                    {"1 ETH = 1754.234LSK"}
                   </div>
               </Grid>
               <Grid item className={classes.submitButton} width="100%"> 
