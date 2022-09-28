@@ -11,6 +11,7 @@ import { MdHelpOutline } from "react-icons/md";
 import { variables } from "../../../../theme";
 import Link from "next/link";
 import LiquidityList from "../../utility-functions/liquidity-list";
+import RemoveLiquidity from "../remove-liquidity/remove-liquidity";
 
 const useStyles = makeStyles({
   grid: {
@@ -87,7 +88,6 @@ const useStyles = makeStyles({
 
 export default function LiquidityHome() {
   const classes = useStyles();
-
   return (
     <Container maxWidth={"lg"}>
       <Grid container className={classes.grid}>
@@ -120,6 +120,7 @@ export default function LiquidityHome() {
               </button>
             </div>
             <div>{handleLiquidityList()}</div>
+            <RemoveLiquidity />
           </CardContent>
         </Card>
       </Grid>
