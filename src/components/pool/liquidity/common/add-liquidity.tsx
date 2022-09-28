@@ -6,9 +6,9 @@ import TopBanner from "./add-liquidity/top-banner";
 import DepositAmounts from "./add-liquidity/deposit-amounts/deposit-amounts";
 import SetPriceRange from "./add-liquidity/set-price-range/set-price-range";
 import { makeStyles } from "@mui/styles";
-import { IdepositAmounts, IpriceRange } from "./models/liquidity-models";
 import PreviewScreen from "./add-liquidity/preview-screen/preview-screen";
 import DepositButton from "./add-liquidity/set-price-range/deposit-button";
+import { IdepositAmounts, IpriceRange } from "../../../../lib/types/pool/pool";
 
 const useStyles = makeStyles({
   container: {
@@ -78,7 +78,7 @@ export default function AddLiquidity() {
         <CardContent>
           <TopBanner />
           <Grid container spacing={6} direction="row">
-            <Grid item lg={6}>
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
               <DepositAmounts
                 token1={token1}
                 token2={token2}
@@ -91,7 +91,7 @@ export default function AddLiquidity() {
                 setFeeTier={setFeeTier}
               />
             </Grid>
-            <Grid item lg={6}>
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
               <SetPriceRange
                 setMinPrice={setMinPrice}
                 setMaxPrice={setMaxPrice}

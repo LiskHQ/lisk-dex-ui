@@ -92,7 +92,7 @@ exports[`General layout opens and closes correctly on clicking the drawer and ta
 
 <div>
   <button
-    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium makeStyles-icon-15 emotion-0"
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium makeStyles-icon-16 emotion-0"
     data-testid="small-screen-nav-button"
     tabindex="0"
     type="button"

@@ -1,12 +1,9 @@
-import { Card } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import { IdepositAmounts, IpriceRange } from "../../../../lib/types/pool/pool";
 import { variables } from "../../../../theme";
-import ConfirmSwap from "../../../token-swap/confirm-swap/confirm-swap";
 import TokenAmount from "../../../token-swap/swap-tokens/card/token-amount";
 import PreviewScreen from "../common/add-liquidity/preview-screen/preview-screen";
-import DepositButton from "../common/add-liquidity/set-price-range/deposit-button";
-import { IdepositAmounts } from "../common/models/liquidity-models";
 
 const useStyles = makeStyles({
   tokenAmount: {
@@ -33,8 +30,6 @@ const useStyles = makeStyles({
 
 export default function IncreaseLiquidity(props: any) {
   const classes = useStyles();
-  const [token1, setToken1] = React.useState("");
-  const [token2, setToken2] = React.useState("");
   const [amount1, setAmount1] = React.useState("");
   const [amount2, setAmount2] = React.useState("");
   const [feeTier, setFeeTier] = React.useState("0.3%");
@@ -80,10 +75,10 @@ export default function IncreaseLiquidity(props: any) {
       <div className={classes.tokenAmount}>
         <h3>Increase Liquidity</h3>
         <div>
-          <TokenAmount token={props.item.token1Id} handleAmount={setAmount1} />
+          <TokenAmount token={props.item.token1Id} amount={amount1} handleAmount={setAmount1} tokenSectionDisable={true}/>
         </div>
         <div>
-          <TokenAmount token={props.item.token2Id} handleAmount={setAmount2} />
+          <TokenAmount token={props.item.token2Id} amount={amount2} handleAmount={setAmount2} tokenSectionDisable={true}/>
         </div>
         <div>
           <button

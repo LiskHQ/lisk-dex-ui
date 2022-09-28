@@ -12,6 +12,9 @@ interface IProps {
 }
 
 const useStyles = makeStyles({
+  list: {
+    padding: 0,
+  },
   vertical: {
     display: "flex",
     flexDirection: "column",

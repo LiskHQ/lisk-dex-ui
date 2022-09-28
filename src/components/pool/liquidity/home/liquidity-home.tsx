@@ -11,7 +11,6 @@ import { MdHelpOutline } from "react-icons/md";
 import { variables } from "../../../../theme";
 import Link from "next/link";
 import LiquidityList from "../../utility-functions/liquidity-list";
-import RemoveLiquidity from "../remove-liquidity/remove-liquidity";
 
 const useStyles = makeStyles({
   grid: {
@@ -102,9 +101,11 @@ export default function LiquidityHome() {
             <div> 
               <PoolHomeButton buttonTitle="Add Position" />
             </div>
+            <Link href="/add-liquidity-create-pool">
             <div>
               <PoolHomeButton buttonTitle="Create a Pool" />
             </div>
+            </Link>
             <div className={classes.bottomBanner}>
              <div className={classes.bottomBannerTextAndIcon}>
              <h3>Your Liquidity</h3>
@@ -120,7 +121,7 @@ export default function LiquidityHome() {
               </button>
             </div>
             <div>{handleLiquidityList()}</div>
-            <RemoveLiquidity />
+            
           </CardContent>
         </Card>
       </Grid>

@@ -11,6 +11,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { theme, variables } from "../../../../theme";
 import convertTokenToEuro from "../../../../lib/utility/token/token";
 import useOutsideClick from "../../../../lib/utility/click-functions/outside-click";
+import { checkTokenNameValue } from "../../../../lib/utility/swap-pool-functions/swap-pool-functions";
 
 const useStyles = makeStyles({
   amountTextTokenSymbolField: {
@@ -23,14 +24,16 @@ const useStyles = makeStyles({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    
   },
   amountTokenField: {
     color: variables.primary.dark,
     backgroundColor: variables.opacities.tokenBackground,
-    height: "36px",
     fontSize: "16px",
     fontFamily: "Gilroy",
     marginRight: "6px",
+    padding: "2px",
+    borderRadius: "4px"
   },
   mdEuroSymbol: {
     fontSize: theme.typography.h4.fontSize,
@@ -43,11 +46,11 @@ const useStyles = makeStyles({
 const CssTextField = styled(TextField)({
   ".MuiOutlinedInput-input": {
     fontSize: theme.typography.h3.fontSize,
-    width: "229px",
+    width: "500px",
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      border: "0px",
+      border: "1px",
     },
   },
 });
@@ -71,13 +74,7 @@ export default function TokenAmount(props: any) {
     }
   };
 
-  const checkTokenNameValue = () => {
-    if (props.token == null || props.token == "") {
-      return "Select Token";
-    } else {
-      return props.token;
-    }
-  };
+
   const handlePopularPairing  =(token1:string,token2:string)=>{
     props.handlePopularPairing(token1,token2);
     setSelectOpen(false);
@@ -93,16 +90,17 @@ export default function TokenAmount(props: any) {
               setSelectOpen(!selectOpen);
             }}
             className={classes.amountTokenField}
+            disabled={props.tokenSectionDisable!=null?props.tokenSectionDisable:false}
           >
-            {checkTokenNameValue()}
+            {checkTokenNameValue(props.token)}
             <MdKeyboardArrowDown />
           </Button>
         </div>
-        <div className={classes.mdEuroSymbol}>
+      </div>
+      <div className={classes.mdEuroSymbol}>
           <MdEuroSymbol />
           <a>{convertTokenToEuro(props.amount)}</a>
         </div>
-      </div>
 
       <div ref={clickRef}>
         {selectOpen && (

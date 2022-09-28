@@ -9,13 +9,13 @@ const NavMenuItems = [
   {
     name: "Swap",
     matcher: "/swap",
-    routeCallback: (params: string[] = []) => generateRoute("/about", params),
+    routeCallback: (params: string[] = []) => generateRoute("/swap-tokens", params),
   },
   {
     name: "Pool",
     matcher: "/pool",
     routeCallback: (params: string[] = []) =>
-      generateRoute("/pool", params),
+      generateRoute("/liquidity-home", params),
   },
   {
     name: "Vote",

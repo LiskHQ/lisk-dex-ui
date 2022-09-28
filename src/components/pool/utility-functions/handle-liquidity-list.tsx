@@ -3,10 +3,10 @@ import { makeStyles } from "@mui/styles";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import React from "react";
 import { variables } from "../../../theme";
-import { ILiquidityList } from "../../../lib/types/add-liquidity";
-import { LiuidityListInterface } from "../../../lib/types/pool/liquidity-list";
+import { LiquidityListInterface } from "../../../lib/types/pool/pool";
 
 import IncreaseLiquidity from "../liquidity/increase-liquidity/increase-liquidity";
+import RemoveLiquidity from "../liquidity/remove-liquidity/remove-liquidity";
 const useStyles = makeStyles({
   liquidityList: {
     textAlign: "center",
@@ -25,7 +25,6 @@ const useStyles = makeStyles({
     borderRadius: "8px 8px 0px 0px ",
     borderColor: variables.lineColor,
     padding: "0% 2% 0% 2%",
-
   },
   liquidityListPoolDetails: {
     display: "flex",
@@ -45,7 +44,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     width: "100%",
     fontWeight: "500",
-    lineHeight: "7px"
+    lineHeight: "7px",
   },
   liquiditybuttons: {
     display: "flex",
@@ -54,8 +53,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: "30px",
     padding: "2%",
-    width: "100%"
-
+    width: "100%",
   },
   liquiditybutton: {
     fontSize: "16px",
@@ -68,28 +66,47 @@ const useStyles = makeStyles({
     padding: "2%",
     color: variables.primary.superPurple,
     cursor: "pointer",
-    '&:focus': {
+    "&:focus": {
       background: variables.primary.superPurple,
       color: variables.white,
       border: "1px solid",
       borderColor: variables.primary.superPurple,
-  }
+    },
   },
   increaseLiquidity: {
     borderColor: variables.lineColor,
     padding: "2% 2% 2% 2%",
     border: "1px solid",
-  }
+  },
+  removeLiquidity: {
+    borderColor: variables.lineColor,
+    padding: "2% 2% 2% 2%",
+    border: "1px solid",
+  },
 });
 
 export default function HandleLiquidityList() {
   const classes = useStyles();
-  const [openDropDown, setOpenDropDown] = React.useState(false);
-  const [clickedToken, setClickedToken] = React.useState<LiuidityListInterface>();
-  const [increaseLiquidity, setIncreaseLiquidity] = React.useState<boolean>(false)
-  const [downArrow,setDownArrow] = React.useState<boolean>(true);
-  const [upArrow,setUpArrow] = React.useState<boolean>(false);
-  
+  const [openDropDown, setOpenDropDown] = React.useState<boolean>(false);
+  const [clickedToken, setClickedToken] =
+    React.useState<LiquidityListInterface>({
+      token1Id: "0",
+      token2Id: "0",
+      feeTier: "0",
+      pooledtoken1: "0",
+      pooledtoken2: "0",
+      poolTokens: "0",
+      poolShare: "0",
+      accumulatedFeesToken1: "0",
+      accumulatedFeesToken2: "0",
+      totalFees: "0"
+    });
+  const [increaseLiquidity, setIncreaseLiquidity] =
+    React.useState<boolean>(false);
+  const [downArrow, setDownArrow] = React.useState<boolean>(true);
+  const [upArrow, setUpArrow] = React.useState<boolean>(false);
+  const [removeLiquidity, setRemoveLiquidity] = React.useState<boolean>(false);
+
   const handleLiquidityListDropDown = () => {
     setOpenDropDown(!openDropDown);
   };
@@ -107,39 +124,45 @@ export default function HandleLiquidityList() {
     return LiquidityList.map((item) => {
       return (
         <>
-          <div className={classes.liquidityListPool} key={item.token1Id} onClick={()=>{handleLiquidityListDropDown();
-                    setClickedToken(item);
-                    setUpArrow(!upArrow);
-                    setDownArrow(!downArrow);}}>
+          <div
+            className={classes.liquidityListPool}
+            key={item.token1Id}
+            onClick={() => {
+              handleLiquidityListDropDown();
+              setClickedToken(item);
+              setUpArrow(!upArrow);
+              setDownArrow(!downArrow);
+            }}
+          >
             <div>
               <p>{item.token1Id + "/" + item.token2Id}</p>
             </div>
             <div>
               {downArrow && (
-                <i data-testid="arrow-down-button"                   onClick={() => {                    
-                  handleLiquidityListDropDown();
-                  setClickedToken(item);
-                  setUpArrow(!upArrow);
-                  setDownArrow(!downArrow);
-                }}>
-                <MdKeyboardArrowDown
-
-                />
-              </i>
-              )}     
-              {upArrow && (
-                <i>
-                <MdKeyboardArrowUp
-                  onClick={() => {                    
+                <i
+                  data-testid="arrow-down-button"
+                  onClick={() => {
                     handleLiquidityListDropDown();
                     setClickedToken(item);
                     setUpArrow(!upArrow);
                     setDownArrow(!downArrow);
                   }}
-
-                />
-              </i>
-              )}              
+                >
+                  <MdKeyboardArrowDown />
+                </i>
+              )}
+              {upArrow && (
+                <i>
+                  <MdKeyboardArrowUp
+                    onClick={() => {
+                      handleLiquidityListDropDown();
+                      setClickedToken(item);
+                      setUpArrow(!upArrow);
+                      setDownArrow(!downArrow);
+                    }}
+                  />
+                </i>
+              )}
             </div>
           </div>
           <div>
@@ -174,34 +197,49 @@ export default function HandleLiquidityList() {
                     <p>Total Fees</p>
                     <p>{item.totalFees}</p>
                   </div>
-                 
+
                   <div className={classes.liquiditybuttons}>
-                    <button  autoFocus={true} className={classes.liquiditybutton} onClick={()=>{
-                      setIncreaseLiquidity(!increaseLiquidity)
-                    }}
-                    data-testid="increase-liquidity-button"
+                    <button
+                      autoFocus={true}
+                      className={classes.liquiditybutton}
+                      onClick={() => {
+                        setIncreaseLiquidity(!increaseLiquidity);
+                      }}
+                      data-testid="increase-liquidity-button"
                     >
                       Add Liquidity +
                     </button>
-                    <button className={classes.liquiditybutton}>
+                    <button
+                      className={classes.liquiditybutton}
+                      onClick={() => {
+                        setRemoveLiquidity(!removeLiquidity);
+                      }}
+                    >
                       Remove Liquidity -
                     </button>
                   </div>
-                
                 </div>
-
               </>
             )}
           </div>
-          {increaseLiquidity && (
+          {openDropDown && increaseLiquidity && (
             <div className={classes.increaseLiquidity}>
-            <IncreaseLiquidity item= {clickedToken} setOpenDropDown={setOpenDropDown} setIncreaseLiquidity={setIncreaseLiquidity}/>
-            </div>            
+              <IncreaseLiquidity
+                item={clickedToken}
+                setOpenDropDown={setOpenDropDown}
+                setIncreaseLiquidity={setIncreaseLiquidity}
+              />
+            </div>
+          )}
+          {openDropDown && removeLiquidity && (
+            <div>
+              <RemoveLiquidity amount1={clickedToken.pooledtoken1} amount2={clickedToken.pooledtoken2} setOpenDropDown={setOpenDropDown} setRemoveLiquidity={setRemoveLiquidity}/>
+            </div>
           )}
           <div className={classes.liquidityList}>
-          <p>Do not see a pool you joined</p>
-          <a>Explore existing pools</a>
-          </div>     
+            <p>Do not see a pool you joined</p>
+            <a>Explore existing pools</a>
+          </div>
         </>
       );
     });

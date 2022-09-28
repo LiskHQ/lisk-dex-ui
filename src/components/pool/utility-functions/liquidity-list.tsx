@@ -1,4 +1,4 @@
-import { LiquidityListInterface } from "../../../lib/types/pool/liquidity-list";
+import { LiquidityListInterface } from "../../../lib/types/pool/pool";
 
 const LiquidityList: LiquidityListInterface[] = [
   {

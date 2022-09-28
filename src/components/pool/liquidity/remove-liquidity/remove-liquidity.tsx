@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     top: "20vh",
     left: "40%",
     alignItems: "center",
-    zIndex: "2",
+    zIndex: "",
     textAlign: "left",
     backgroundColor: "#fff",
   },
@@ -115,7 +115,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
     fontSize: "24px",
-    padding: "2% 4% 2% 8%"
+    padding: "0% 4% 0% 8%"
   },
   poolAreaPrice: {
     textAlign: "right",
@@ -176,7 +176,7 @@ function valuetext(value: number) {
   return `${value}`;
 }
 
-export default function RemoveLiquidity() {
+export default function RemoveLiquidity(props:any) {
   const classes = useStyles();
   const [value, setValue] = React.useState<
     number | string | Array<number | string>
@@ -206,7 +206,8 @@ export default function RemoveLiquidity() {
           <Box sx={{ width: 400 }}>
             <div className={classes.cardTitle}>
               <h2>Remove Liquidity</h2>
-              <i onClick={()=>{}}><MdOutlineClose/></i>
+              <i style={{cursor: "pointer"}} onClick={()=>{props.setOpenDropDown(false);
+                props.setRemoveLiquidity(false);}}><MdOutlineClose/></i>
             </div>
             <div className={classes.topBanner}>
               <h4>Amount</h4>
@@ -267,11 +268,11 @@ export default function RemoveLiquidity() {
                 <div className={classes.poolArea}>
                   <div className={classes.poolAreaToken}>
                     <div>{"ETH"}</div>
-                    <div>{"125"}</div>
+                    <div>{(parseFloat(props.amount1)*(value/100)).toFixed(4)}</div>
                   </div>
                   <div className={classes.poolAreaToken}>
                     <div>{"LSK"}</div>
-                    <div>{"252"}</div>
+                    <div>{(parseFloat(props.amount2)*(value/100)).toFixed(4)}</div>
                   </div>
                 </div>
               </Grid>
@@ -283,7 +284,13 @@ export default function RemoveLiquidity() {
                   </div>
               </Grid>
               <Grid item className={classes.submitButton} width="100%"> 
-              <DepositButton buttonTitle={"Remove"}/>
+              <div onClick={()=>{
+                props.setOpenDropDown(false);
+                props.setRemoveLiquidity(false);
+               
+              }}>
+                <DepositButton buttonTitle={"Remove"} />
+              </div>             
               </Grid>
               <Grid item></Grid>
             </Grid>

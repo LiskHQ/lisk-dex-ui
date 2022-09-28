@@ -1,21 +1,11 @@
 import { Link } from "@mui/material";
-import { useRouter } from "next/router";
 import variables from "../../../../../../theme/variables";
-import { startsWith } from "lodash-es";
 import { makeStyles } from "@mui/styles";
 import { theme } from "../../../../../../theme";
 import { alpha } from "@material-ui/core";
 import cn from "classnames";
-
-export interface IProps {
-  name: string;
-  route: string | Function;
-  matcher?: string;
-  isVerticalMenu?: boolean;
-  signedUser?: boolean;
-  persistLocation?: boolean;
-  annotation?: string;
-}
+import { useRouter } from 'next/router';
+import { startsWith } from 'lodash-es';
 
 const useStyles = makeStyles({
   link: {
@@ -59,34 +49,23 @@ const useStyles = makeStyles({
   },
 });
 
-const NavItem: FC<IProps> = ({
-  children,
-  name,
-  route,
-  matcher,
-  isVerticalMenu,
-  signedUser,
-}) => {
+const NavItem = ({ children, name, isVerticalMenu, route, matcher}) => {
   const classes = useStyles();
   const router = useRouter();
-  const { pathName } = router || { pathname: "" };
-  const isActive = startsWith(pathName, matcher);
-  const isLink = typeof route === "string";
+  const { pathname } = router || { pathname: '' };
+  const isActive = startsWith(pathname, matcher);
+  const isLink = typeof route === 'string';
 
   const handleClick = () => {
-    if (route && typeof route === "function") {
-      //console.log(route("www.google.com"));
-      route("www.google.com");
+    if (route && typeof route === 'function') {
+      route();
     }
   };
 
-  if (signedUser && !persistLocation) {
-    return null;
-  }
   return (
-    <Link className={classes.link}>
+    <Link passHref href={isLink ? (route as string) : '#'} className={classes.link}>
       <a
-        onClick={handleClick}
+       onClick={handleClick}
         className={cn({
           [classes.link]: true,
           [classes.activeLink]: isActive && !isVerticalMenu,
@@ -94,7 +73,7 @@ const NavItem: FC<IProps> = ({
           [classes.verticalMenuActive]: isVerticalMenu && isActive,
         })}
       >
-        {<>{children || name}</>}
+        {( children || name)}
       </a>
     </Link>
   );
