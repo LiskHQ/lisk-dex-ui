@@ -103,11 +103,7 @@ export default function LiquidityHome() {
               <PoolHomeButton buttonTitle="Add Position" />
             </div>
             <div>
-            <Link href="/add-liquidity">
-              <a>
               <PoolHomeButton buttonTitle="Create a Pool" />
-              </a>              
-            </Link>
             </div>
             <div className={classes.bottomBanner}>
              <div className={classes.bottomBannerTextAndIcon}>

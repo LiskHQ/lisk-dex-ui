@@ -6,6 +6,7 @@ import { variables } from "../../../theme";
 import { ILiquidityList } from "../../../lib/types/add-liquidity";
 import { LiuidityListInterface } from "../../../lib/types/pool/liquidity-list";
 
+import IncreaseLiquidity from "../liquidity/increase-liquidity/increase-liquidity";
 const useStyles = makeStyles({
   liquidityList: {
     textAlign: "center",
@@ -24,7 +25,6 @@ const useStyles = makeStyles({
     borderRadius: "8px 8px 0px 0px ",
     borderColor: variables.lineColor,
     padding: "0% 2% 0% 2%",
-
 
   },
   liquidityListPoolDetails: {

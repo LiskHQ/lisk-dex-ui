@@ -1,6 +1,6 @@
-import { LiuqidityListInterface } from "../../../lib/types/pool/liquidity-list";
+import { LiquidityListInterface } from "../../../lib/types/pool/liquidity-list";
 
-const LiquidityList: LiuqidityListInterface[] = [
+const LiquidityList: LiquidityListInterface[] = [
   {
     token1Id: "ETH",
     token2Id: "LSK",
