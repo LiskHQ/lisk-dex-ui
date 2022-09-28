@@ -10,6 +10,8 @@ import PoolHomeButton from "./home-button";
 import { MdHelpOutline } from "react-icons/md";
 import { variables } from "../../../../theme";
 import Link from "next/link";
+import LiquidityList from "../../utility-functions/liquidity-list";
+
 const useStyles = makeStyles({
   grid: {
     display: "flex",
@@ -101,11 +103,7 @@ export default function LiquidityHome() {
               <PoolHomeButton buttonTitle="Add Position" />
             </div>
             <div>
-            <Link href="/add-liquidity">
-              <a>
               <PoolHomeButton buttonTitle="Create a Pool" />
-              </a>              
-            </Link>
             </div>
             <div className={classes.bottomBanner}>
              <div className={classes.bottomBannerTextAndIcon}>
@@ -115,7 +113,7 @@ export default function LiquidityHome() {
               </i>              
              </div>
               <button className={classes.liquidityButton}>
-                <a>Active Liquidity</a> 
+                <a>Active Liquidity ({LiquidityList.length})</a> 
                 <i>
                 <MdKeyboardArrowDown />
                 </i>                
