@@ -1,4 +1,4 @@
-export interface LiuidityListInterface {
+export interface LiquidityListInterface {
   token1Id: string;
   token2Id: string;
   feeTier: string;
