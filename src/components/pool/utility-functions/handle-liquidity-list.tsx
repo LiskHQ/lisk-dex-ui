@@ -1,10 +1,11 @@
 import LiquidityList from "./liquidity-list";
 import { makeStyles } from "@mui/styles";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import React from "react";
 import { variables } from "../../../theme";
 import { ILiquidityList } from "../../../lib/types/add-liquidity";
-
+import { LiuidityListInterface } from "../../../lib/types/pool/liquidity-list";
+import IncreaseLiquidity from "../liquidity/increase-liquidity/increase-liquidity";
 const useStyles = makeStyles({
   liquidityList: {
     textAlign: "center",
@@ -19,6 +20,12 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    border: "1px solid",
+    borderRadius: "8px 8px 0px 0px ",
+    borderColor: variables.lineColor,
+    padding: "0% 2% 0% 2%",
+
+
   },
   liquidityListPoolDetails: {
     display: "flex",
@@ -27,7 +34,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     borderTop: "1px solid",
     borderColor: variables.lineColor,
-    padding: "2% 0% 0% 0%",
+    padding: "2% 2% 2% 2%",
+    border: "1px solid",
+    borderRadius: "0px 0px 4px 4px ",
   },
   liquidityListPoolDetail: {
     display: "flex",
@@ -35,6 +44,8 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
+    fontWeight: "500",
+    lineHeight: "7px"
   },
   liquiditybuttons: {
     display: "flex",
@@ -43,6 +54,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     gap: "30px",
     padding: "2%",
+    width: "100%"
 
   },
   liquiditybutton: {
@@ -63,12 +75,21 @@ const useStyles = makeStyles({
       borderColor: variables.primary.superPurple,
   }
   },
+  increaseLiquidity: {
+    borderColor: variables.lineColor,
+    padding: "2% 2% 2% 2%",
+    border: "1px solid",
+  }
 });
 
-export default function handleLiquidityList() {
+export default function HandleLiquidityList() {
   const classes = useStyles();
   const [openDropDown, setOpenDropDown] = React.useState(false);
-  const [clickedToken, setClickedToken] = React.useState<ILiquidityList>(false);
+  const [clickedToken, setClickedToken] = React.useState<LiuidityListInterface>();
+  const [increaseLiquidity, setIncreaseLiquidity] = React.useState<boolean>(false)
+  const [downArrow,setDownArrow] = React.useState<boolean>(true);
+  const [upArrow,setUpArrow] = React.useState<boolean>(false);
+  
   const handleLiquidityListDropDown = () => {
     setOpenDropDown(!openDropDown);
   };
@@ -86,20 +107,39 @@ export default function handleLiquidityList() {
     return LiquidityList.map((item) => {
       return (
         <>
-          <div className={classes.liquidityListPool} key={item.token1Id}>
+          <div className={classes.liquidityListPool} key={item.token1Id} onClick={()=>{handleLiquidityListDropDown();
+                    setClickedToken(item);
+                    setUpArrow(!upArrow);
+                    setDownArrow(!downArrow);}}>
             <div>
               <p>{item.token1Id + "/" + item.token2Id}</p>
             </div>
             <div>
-              <i>
+              {downArrow && (
+                <i data-testid="arrow-down-button"                   onClick={() => {                    
+                  handleLiquidityListDropDown();
+                  setClickedToken(item);
+                  setUpArrow(!upArrow);
+                  setDownArrow(!downArrow);
+                }}>
                 <MdKeyboardArrowDown
+
+                />
+              </i>
+              )}     
+              {upArrow && (
+                <i>
+                <MdKeyboardArrowUp
                   onClick={() => {                    
                     handleLiquidityListDropDown();
                     setClickedToken(item);
-                    console.log(clickedToken);
+                    setUpArrow(!upArrow);
+                    setDownArrow(!downArrow);
                   }}
+
                 />
               </i>
+              )}              
             </div>
           </div>
           <div>
@@ -134,24 +174,34 @@ export default function handleLiquidityList() {
                     <p>Total Fees</p>
                     <p>{item.totalFees}</p>
                   </div>
-                </div>
-                <div>
+                 
                   <div className={classes.liquiditybuttons}>
-                    <button  autoFocus={true} className={classes.liquiditybutton}>
+                    <button  autoFocus={true} className={classes.liquiditybutton} onClick={()=>{
+                      setIncreaseLiquidity(!increaseLiquidity)
+                    }}
+                    data-testid="increase-liquidity-button"
+                    >
                       Add Liquidity +
                     </button>
                     <button className={classes.liquiditybutton}>
                       Remove Liquidity -
                     </button>
                   </div>
+                
                 </div>
+
               </>
             )}
           </div>
+          {increaseLiquidity && (
+            <div className={classes.increaseLiquidity}>
+            <IncreaseLiquidity item= {clickedToken} setOpenDropDown={setOpenDropDown} setIncreaseLiquidity={setIncreaseLiquidity}/>
+            </div>            
+          )}
           <div className={classes.liquidityList}>
           <p>Do not see a pool you joined</p>
           <a>Explore existing pools</a>
-          </div>
+          </div>     
         </>
       );
     });
