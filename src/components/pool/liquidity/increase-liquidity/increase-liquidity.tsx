@@ -1,8 +1,11 @@
+import { Card } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { variables } from "../../../../theme";
+import ConfirmSwap from "../../../token-swap/confirm-swap/confirm-swap";
 import TokenAmount from "../../../token-swap/swap-tokens/card/token-amount";
 import PreviewScreen from "../common/add-liquidity/preview-screen/preview-screen";
+import DepositButton from "../common/add-liquidity/set-price-range/deposit-button";
 import { IdepositAmounts } from "../common/models/liquidity-models";
 
 const useStyles = makeStyles({

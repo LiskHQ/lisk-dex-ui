@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   Card,
   CardContent,
+  Typography,
 } from "@mui/material";
 
 import { variables } from "../../../../../../theme";
@@ -206,7 +207,7 @@ export default function PreviewScreen(props: any) {
               </div>
               <div className={classes.priceButton}>
                 <p style={{margin: '6% 0% 0% 0%'}}>Max Price</p>
-                <p style={{margin: '0px', fontWeight: '500'}}>{props.priceRange.maxPrice}</p>
+                <p style={{margin: '0px', fontWeight:'500'}}>{props.priceRange.maxPrice}</p>
                 <p style={{margin: '0px'}}>{props.depositAmount.token1} per {props.depositAmount.token2}</p>
                 <p  style={{color: '#6B7280'}}>Your position will be 100% composed of {props.depositAmount.token2} at this price.</p>
               </div>              
@@ -224,12 +225,8 @@ export default function PreviewScreen(props: any) {
               value="Submit"
               onClick={() => {                
                 props.handlePreviewOpen(false);
-                if (props.setOpenDropDown!=null){
-                  props.setOpenDropDown(false);
-                }
-                if (props.setIncreaseLiquidity!=null){
-                  props.setIncreaseLiquidity(false);
-                }
+                props.setOpenDropDown(false);
+                props.setIncreaseLiquidity(false);                  
               }}
             >
               Add Liquidity
