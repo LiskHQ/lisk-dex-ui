@@ -42,20 +42,20 @@ export default function SetPriceRange(props:any) {
         }
       }}
        */}
-      <CreatePool />
+      <CreatePool token1={props.token1} token2={props.token2} priceRange={props.priceRange}/>
       <div className={classes.priceBanner}>
         <div className={classes.priceBannerTitle}>Set price range</div>
         <div className={classes.priceBannerButton}>
           <PriceBanner
             buttonTitle={"Min Price"}
             amount={"0"}
-            tokenTitle={"Eth per DAI"}
+            tokenTitle={ props.token1+" per "+props.token2}
             setPrice = {props.setMinPrice}
           />
           <PriceBanner
             buttonTitle={"Max Price"}
             amount={"0"}
-            tokenTitle={"Eth per DAI"}
+            tokenTitle={ props.token1+" per "+props.token2}
             setPrice = {props.setMaxPrice}
           />
         </div>

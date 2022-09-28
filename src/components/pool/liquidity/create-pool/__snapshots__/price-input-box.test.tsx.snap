@@ -8,7 +8,9 @@ exports[`PriceInputBox component checks if the component matches the snapshot 1`
     <p
       class="makeStyles-inputFieldText-2"
     >
-      Current LSK per ETH price
+      Current 
+       per 
+       price
     </p>
     <input
       class="makeStyles-input-3"

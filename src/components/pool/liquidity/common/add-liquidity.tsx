@@ -64,6 +64,8 @@ export default function AddLiquidity() {
       currentPrice: currentPrice,
     });
 
+    
+
   };
 
   const handlePreviewOpen = (clickEvent: boolean) => {
@@ -94,6 +96,11 @@ export default function AddLiquidity() {
                 setMinPrice={setMinPrice}
                 setMaxPrice={setMaxPrice}
                 setCurrentPrice={setCurrentPrice}
+                depositAmount={depositAmount}
+                priceRange={priceRange}
+                token1={token1}
+                token2={token2}
+
               />
             </Grid>
           </Grid>

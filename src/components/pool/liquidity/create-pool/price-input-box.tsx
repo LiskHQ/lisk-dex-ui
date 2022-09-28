@@ -38,17 +38,12 @@ const useStyles = makeStyles({
 
 })
 
-interface Iprops {
-    defaultText:string
-}
 
-
-
-export default function PriceInputBox(props:Iprops){
+export default function PriceInputBox(props:any){
     const classes = useStyles();
     const handleInputValue=()=>{
         if (props.defaultText!= null){
-            return (<p className={classes.inputFieldText}>Current LSK per ETH price</p>)
+            return (<p className={classes.inputFieldText}>Current {props.token1} per {props.token2} price</p>)
         }
     }
     return (
