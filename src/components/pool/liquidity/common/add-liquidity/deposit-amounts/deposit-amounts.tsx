@@ -4,6 +4,7 @@ import TokenAmount from "../../../../../token-swap/swap-tokens/card/token-amount
 import FeeTier from "./fee-tier";
 import { MdOutlineSwapVerticalCircle } from "react-icons/md";
 
+
 const useStyles = makeStyles({
   depositAmounts: {
     width: "100%",
@@ -25,31 +26,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DepositAmounts() {
+export default function DepositAmounts(props:any) {
   const classes = useStyles();
   const [selectOpen, setSelectOpen] = React.useState(false);
-  const [token1, setToken1] = React.useState("");
-  const [token2, setToken2] = React.useState("");
-
-  const [amount1, setAmount1] = React.useState("");
-  const [amount2, setAmount2] = React.useState("");
-
-  const [feetier, setFeeTier] = React.useState("");
 
   const handlePopularPairing = (token1: string, token2: string) => {
-    setToken2(token2);
-    setToken1(token1);
+    props.setToken2(token2);
+    props.setToken1(token1);
   };
 
   const handleTokenRotateButtonClick = () => {
-    setAmount1(amount2);
-    setAmount2(amount1);
-    setToken2(token1);
-    setToken1(token2);
+    props.setAmount1(props.amount2);
+    props.setAmount2(props.amount1);
+    props.setToken2(props.token1);
+    props.setToken1(props.token2);
   };
 
   const handleFeeTier  = (value:string) =>{
-    setFeeTier(value);
+    props.setFeeTier(value);
   }
 
   return (
@@ -57,12 +51,13 @@ export default function DepositAmounts() {
       <div className={classes.tokenAmounts}>
         <div>
           <TokenAmount
-            handleAmount={setAmount1}
-            amount={amount1}
-            handleToken={setToken1}
-            token={token1}
+            handleAmount={props.setAmount1}
+            amount={props.amount1}
+            handleToken={props.setToken1}
+            token={props.token1}
             click={selectOpen}
             handlePopularPairing = {handlePopularPairing}
+            
           />
         </div>
         <div
@@ -75,10 +70,10 @@ export default function DepositAmounts() {
         </div>
         <div>
           <TokenAmount
-            handleAmount={setAmount2}
-            amount={amount2}
-            handleToken={setToken2}
-            token={token2}
+            handleAmount={props.setAmount2}
+            amount={props.amount2}
+            handleToken={props.setToken2}
+            token={props.token2}
             click={selectOpen}
             handlePopularPairing={handlePopularPairing}
           />
@@ -86,7 +81,7 @@ export default function DepositAmounts() {
       </div>
       <div className={classes.feeTier}>
         <FeeTier handleFeeTier={handleFeeTier}/>
-      </div>
+      </div>      
     </section>
   );
 }

@@ -9,18 +9,21 @@ const useStyles = makeStyles({
     button: {
         width: "100%",
         border: "0px",
-        borderRadius: "4px",
+        borderRadius: "8px",
         color: variables.white,
-        backgroundColor: variables.primary.superPurple
+        backgroundColor: variables.primary.superPurple,
+        fontSize: "20px",
+        margin: "2% 0% 0% 0%",
+        cursor: "pointer"
     }
 })
 export default function DepositButton(props:Iprops){
     const classes = useStyles();
     return(
         <button className={classes.button}>
-            <h1>
+            <p>
                 {props.buttonTitle}
-            </h1>
+            </p>
         </button>
     )
 }
