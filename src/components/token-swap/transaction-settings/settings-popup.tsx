@@ -171,8 +171,8 @@ const SettingsPopup = (props: any) => {
               </Typography>
               <div>
               {toleranceArray.map((item) => {
-                return (
-                  <div>
+                return (                  
+                  <div key = {item.value}>
                     <Button
                       className={classes.slippeageTolearanceButton}
                       onClick={() => {
