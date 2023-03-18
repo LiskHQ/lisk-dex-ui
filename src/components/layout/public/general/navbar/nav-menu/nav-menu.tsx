@@ -1,4 +1,4 @@
-import { Button, Grid, List, ListItem } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import NavMenuItems from "../nav-menu/nav-item-list";
 import NavItem from "./nav-item";
 import cn from "classnames";
@@ -51,7 +51,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavMenu: FC<IProps> = ({ isVerticalMenu, onCloseNav }) => {
+const NavMenu: FC<IProps> = ({ isVerticalMenu }) => {
   const classes = useStyles();
   const router = useRouter();
   const { query } = router || { query: { params: [] } };

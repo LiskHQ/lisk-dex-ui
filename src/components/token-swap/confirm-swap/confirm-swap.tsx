@@ -1,19 +1,15 @@
 import * as React from "react";
 import {
-  Button,
-  ButtonProps,
   Card,
   CardContent,
   List,
   ListItem,
-  styled,
   Typography,
 } from "@mui/material";
 
 import { variables } from "../../../theme";
 import { makeStyles } from "@mui/styles";
 import { MdClose, MdArrowDownward, MdHelpOutline } from "react-icons/md";
-import useOutsideClick from "../../../lib/utility/click-functions/outside-click";
 
 const useStyles = makeStyles({
   confirmSwapCard: {

@@ -134,7 +134,7 @@ const SettingsPopup = (props: any) => {
   const [transactionDeadline, setTransactionDeadline] = React.useState("");
 
   return (
-    <>
+    <div>
       <div ref={checkClick} className={classes.settingsBox}>
         <Typography className={classes.cardContentTypography} data-testid="swap-tokens">
           Swap Tokens
@@ -218,7 +218,7 @@ const SettingsPopup = (props: any) => {
           </Card>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

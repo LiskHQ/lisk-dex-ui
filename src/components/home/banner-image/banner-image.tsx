@@ -1,8 +1,7 @@
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import myPic from "../../../imgs/Group7.png";
 
-const BannerImage = (props) => {
+const BannerImage = () => {
   return (
     <Image
       src={myPic}
