@@ -129,7 +129,7 @@ export default function SelectToken(props: any) {
           
             {PopularPairings.map((item) => {
               return (
-                <div>
+                <div key = {item.token1}>
                   <button 
                   className={classes.popularPairingArrayItem}
                   onClick={ ()=>{props.handlePopularPairing (item.token1,item.token2)}}
