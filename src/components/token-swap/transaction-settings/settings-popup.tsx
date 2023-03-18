@@ -172,7 +172,7 @@ const SettingsPopup = (props: any) => {
               <div>
               {toleranceArray.map((item) => {
                 return (
-                  <>
+                  <div>
                     <Button
                       className={classes.slippeageTolearanceButton}
                       onClick={() => {
@@ -182,7 +182,7 @@ const SettingsPopup = (props: any) => {
                     >
                       {item.value}
                     </Button>
-                  </>
+                  </div>
                 );
               })}
               </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import AddLiquidity from './add-liquidity';
 import HandleLiquidityList from './handle-liquidity-list';
 import { fireEvent, render } from "@testing-library/react";
 

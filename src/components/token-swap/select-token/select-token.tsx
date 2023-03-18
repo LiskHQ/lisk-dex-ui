@@ -129,7 +129,7 @@ export default function SelectToken(props: any) {
           
             {PopularPairings.map((item) => {
               return (
-                <>
+                <div>
                   <button 
                   className={classes.popularPairingArrayItem}
                   onClick={ ()=>{props.handlePopularPairing (item.token1,item.token2)}}
@@ -138,7 +138,7 @@ export default function SelectToken(props: any) {
                     <MdOutlineArrowForward className={classes.popularPairingIcon}/>
                     {item.token2}
                   </button>
-                </>
+                </div>
               );
             })}
           </div>
