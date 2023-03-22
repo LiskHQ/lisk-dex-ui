@@ -218,156 +218,168 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
         <div
           class="makeStyles-popularPairingArray-9"
         >
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-BTC,ETH"
-          >
-            BTC
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-BTC,ETH"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            ETH
-          </button>
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-LSK,BNB"
-          >
-            LSK
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              BTC
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              ETH
+            </button>
+          </div>
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-LSK,BNB"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            BNB
-          </button>
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-LUN,ETH"
-          >
-            LUN
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              LSK
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              BNB
+            </button>
+          </div>
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-LUN,ETH"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            ETH
-          </button>
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-ETH,BNB"
-          >
-            ETH
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              LUN
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              ETH
+            </button>
+          </div>
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-ETH,BNB"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            BNB
-          </button>
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-LSK,ETH"
-          >
-            LSK
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              ETH
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              BNB
+            </button>
+          </div>
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-LSK,ETH"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            ETH
-          </button>
-          <button
-            class="makeStyles-popularPairingArrayItem-11"
-            data-testid="popular-pairing-BTC,LSK"
-          >
-            BTC
-            <svg
-              class="makeStyles-popularPairingIcon-10"
-              fill="currentColor"
-              height="1em"
-              stroke="currentColor"
-              stroke-width="0"
-              viewBox="0 0 24 24"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              LSK
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              ETH
+            </button>
+          </div>
+          <div>
+            <button
+              class="makeStyles-popularPairingArrayItem-11"
+              data-testid="popular-pairing-BTC,LSK"
             >
-              <path
-                d="M0 0h24v24H0V0z"
-                fill="none"
-              />
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
-              />
-            </svg>
-            LSK
-          </button>
+              BTC
+              <svg
+                class="makeStyles-popularPairingIcon-10"
+                fill="currentColor"
+                height="1em"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0V0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                />
+              </svg>
+              LSK
+            </button>
+          </div>
         </div>
         <div>
           <ul
