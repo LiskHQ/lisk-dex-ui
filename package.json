@@ -34,7 +34,7 @@
     "lightweight-charts": "^3.8.0",
     "lodash-es": "^4.17.21",
     "luxon": "^3.0.1",
-    "next": "^12.2.3",
+    "next": "^12.2.4",
     "next-auth": "^4.10.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
