@@ -1,11 +1,11 @@
-import { Link } from "@mui/material";
 import variables from "../../../../../../theme/variables";
 import { makeStyles } from "@mui/styles";
 import { theme } from "../../../../../../theme";
-import { alpha } from "@material-ui/core";
 import cn from "classnames";
 import { useRouter } from 'next/router';
 import { startsWith } from 'lodash-es';
+import Link from "next/link";
+import { alpha } from "@mui/material";
 
 const useStyles = makeStyles({
   link: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavItem = ({ children, name, isVerticalMenu, route, matcher}) => {
+const NavItem = ({ children, name, isVerticalMenu, route, matcher }) => {
   const classes = useStyles();
   const router = useRouter();
   const { pathname } = router || { pathname: '' };
@@ -63,9 +63,9 @@ const NavItem = ({ children, name, isVerticalMenu, route, matcher}) => {
   };
 
   return (
-    <Link passHref href={isLink ? (route as string) : '#'} className={classes.link}>
+    <Link href={isLink ? (route as string) : '#'} className={classes.link}>
       <a
-       onClick={handleClick}
+        onClick={handleClick}
         className={cn({
           [classes.link]: true,
           [classes.activeLink]: isActive && !isVerticalMenu,
@@ -73,7 +73,7 @@ const NavItem = ({ children, name, isVerticalMenu, route, matcher}) => {
           [classes.verticalMenuActive]: isVerticalMenu && isActive,
         })}
       >
-        {( children || name)}
+        {(children || name)}
       </a>
     </Link>
   );

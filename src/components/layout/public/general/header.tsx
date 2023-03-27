@@ -1,10 +1,9 @@
 import { AppBar, Container, Grid, Link, useMediaQuery } from "@mui/material";
-import { createStyles } from "@material-ui/core/styles";
 import NavMenu from "../general/navbar/nav-menu/nav-menu";
 // ./navbar/nav-menu/nav-menu
 import NavActionButton from "./navbar/nav-menu/nav-action-button";
 // ../../../../logos/Lisk/logo
-import { makeStyles } from "@mui/styles";
+import { createStyles, makeStyles } from "@mui/styles";
 import { theme, variables } from "../../../../theme";
 import SmallScreenNav from "./navbar/small-screen-nav";
 import Logo from "../../../../logos/Lisk/logo";
