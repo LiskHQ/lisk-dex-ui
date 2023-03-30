@@ -5,7 +5,7 @@ import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import { darkTheme, lightTheme } from '../styles/theme';
+import { lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }

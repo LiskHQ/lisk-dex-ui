@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Grid, Typography } from '@mui/material';
-import { Container } from '@mui/system';
 
 import { MENU_ITEMS } from 'consts';
 import { FooterStyle } from './index.style';

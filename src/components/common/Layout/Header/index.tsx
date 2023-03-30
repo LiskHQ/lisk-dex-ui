@@ -7,7 +7,7 @@ import { Container } from '@mui/system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
-import { MENU_ITEMS, PATHS } from 'consts';
+import { MENU_ITEMS } from 'consts';
 import { LightcurveIcon, LiskIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
 import Dropdown from 'components/common/Dropdown';
