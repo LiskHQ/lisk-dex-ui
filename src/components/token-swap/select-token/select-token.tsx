@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     color: variables.primary.darkSilver
   },
   searchDiv: {
-    
+
     display: "flex",
     lineHeight: "52px",
     fontSize: "20px",
@@ -59,7 +59,7 @@ const useStyles = makeStyles({
     fontSize: theme.typography.h5.fontSize,
     fontWeight: theme.typography.h5.fontWeight,
     pointerEvents: "none",
-    
+
   },
   popularPairingArray: {
     display: "flex",
@@ -105,37 +105,37 @@ export default function SelectToken(props: any) {
     <Card className={classes.tokenList}>
       <Typography className={classes.selectToken}>Select Token</Typography>
       <CardContent>
-        <div  className={classes.searchDiv}>
-        <MdSearch className={classes.searchBarIcon}/>
-        
-        <input
-          className={classes.searchBar}
-          type="text"
-          onChange={(event) => {
-            handleSearchInput(event.target.value);
-          }}
-          data-testid="search-input"
-          placeholder={"Search name or paste address"}
-        />
-      
+        <div className={classes.searchDiv}>
+          <MdSearch className={classes.searchBarIcon} />
+
+          <input
+            className={classes.searchBar}
+            type="text"
+            onChange={(event) => {
+              handleSearchInput(event.target.value);
+            }}
+            data-testid="search-input"
+            placeholder={"Search name or paste address"}
+          />
+
         </div>
         <section>
           <p className={classes.popularPairing}>Popular Pairing</p>
-          <div  
-          className={classes.popularPairingArray}
-          onClick={() => {
-            props.handleSelectOpen(false);
-          }}>
-          
-            {PopularPairings.map((item) => {
+          <div
+            className={classes.popularPairingArray}
+            onClick={() => {
+              props.handleSelectOpen(false);
+            }}>
+
+            {PopularPairings.map((item, index) => {
               return (
-                <div key = {item.token1}>
-                  <button 
-                  className={classes.popularPairingArrayItem}
-                  onClick={ ()=>{props.handlePopularPairing (item.token1,item.token2)}}
-                  data-testid={"popular-pairing-"+item.token1+","+item.token2}>
+                <div key={index}>
+                  <button
+                    className={classes.popularPairingArrayItem}
+                    onClick={() => { props.handlePopularPairing(item.token1, item.token2) }}
+                    data-testid={"popular-pairing-" + item.token1 + "," + item.token2}>
                     {item.token1}
-                    <MdOutlineArrowForward className={classes.popularPairingIcon}/>
+                    <MdOutlineArrowForward className={classes.popularPairingIcon} />
                     {item.token2}
                   </button>
                 </div>
@@ -144,18 +144,18 @@ export default function SelectToken(props: any) {
           </div>
           <div>
             <List className={classes.cryptoListArray}>
-              {CryptoList.map((item) => {
+              {CryptoList.map((item, index) => {
                 if (searchInput.length === 0) {
                   return (
-                    <ListItem key={item.label}>
-                      <Button 
-                        className={classes.cryptoListArrayItem}                 
+                    <ListItem key={index}>
+                      <Button
+                        className={classes.cryptoListArrayItem}
                         onClick={() => {
                           handleTokenName(item.label);
                         }}
-                        data-testid={"token-name-"+item.label}
+                        data-testid={"token-name-" + item.label}
                       >
-                        {item.label}                        
+                        {item.label}
                       </Button>
                     </ListItem>
                   );
@@ -165,12 +165,12 @@ export default function SelectToken(props: any) {
                     .includes(searchInput.toLocaleLowerCase(), 0)
                 ) {
                   return (
-                    <ListItem key={item.label}>
+                    <ListItem key={index}>
                       <Button
                         onClick={() => {
                           handleTokenName(item.label);
                         }}
-                        data-testid={"token-name-"+item.label}
+                        data-testid={"token-name-" + item.label}
                       >
                         {item.label}
                       </Button>

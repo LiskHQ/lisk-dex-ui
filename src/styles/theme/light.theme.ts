@@ -1,15 +1,45 @@
-import { createTheme } from '@mui/material/styles'
+import { createTheme } from '@mui/material/styles';
+import { baseTheme } from './baseTheme';
 
 const themeColors = {
   text: {
-    primary: '#9A9A9A',
-    secondary: '#818181',
+    primary: '#282828',
+    secondary: '#515661',
     paragraph: '#6B7280',
+    body: '#6B7280',
     heading: '#4738A6',
   },
+  lightcurve: {
+    0: '#6953F4',
+    10: '#5845CC',
+    20: '#4738A6',
+    40: '#362B7F',
+    60: '#261E59',
+    80: '#161133',
+  },
+  primary: {
+    85: '#7E6CF4',
+    60: '#A196F6',
+    40: '#BDB6F7',
+    20: '#D9D8F8',
+    10: '#E7E9F9',
+    5: '#EEF0F8',
+    2.5: '#F2F5F9',
+    1: '#F4F8F9',
+    0: '#6953F4'
+  },
+  opacities: {
+    5: '#333333',
+    10: '#3D3D3D',
+    20: '#535353',
+    40: '#7E7E7E',
+    80: '#D4D4D4',
+  },
   bg: {
-    primary: '#F5F5F5',
-    secondary: '#C2C2EF',
+    primary: '#FFFFFF',
+    helper: '#FFFFFF',
+    banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
+    walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
   },
   success: {
     primary: '#E3F2E0',
@@ -27,13 +57,14 @@ const themeColors = {
     primary: '#F6E4E6',
     second: '#FB8B96',
   },
-} as const
+} as const;
 
 const lightTheme = createTheme({
   ...themeColors,
+  ...baseTheme,
   palette: {
     mode: 'light'
-  }
+  },
 })
 
 export default lightTheme

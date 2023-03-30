@@ -1,24 +1,13 @@
 import { NextPage } from "next";
 import { withLayout } from "@moxy/next-layout";
-import { Box, Container, Typography } from "@mui/material";
 
-import General from "../../components/layout/public/general";
-import BankIcon from "imgs/icons/BankIcon";
-import { GovernanceStyle } from "styles/pages";
+import Governance from "components/_page/Governance";
+import Layout from "components/common/Layout";
 
-const Governanace = () => {
+const GovernanacePage: NextPage = () => {
   return (
-    <GovernanceStyle>
-      <Container maxWidth="lg">
-        <Box className="governance-title">
-          <Typography variant="h2">
-            Governance
-          </Typography>
-          <BankIcon />
-        </Box>
-      </Container>
-    </GovernanceStyle>
+    <Governance />
   );
 };
 
-export default withLayout(<General />)(Governanace);
+export default withLayout(<Layout />)(GovernanacePage);

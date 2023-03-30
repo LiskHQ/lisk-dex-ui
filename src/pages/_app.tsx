@@ -1,14 +1,11 @@
 import type { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
 import { LayoutTree } from "@moxy/next-layout";
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-
-import { store } from '../store';
-import { lightTheme } from '../styles/theme';
+import { darkTheme, lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }

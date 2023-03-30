@@ -121,127 +121,124 @@ export default function HandleLiquidityList() {
       </div>
     );
   } else {
-    return LiquidityList.map((item) => {
-      return (
-        <>
-          <div
-            className={classes.liquidityListPool}
-            key={item.token1Id}
-            onClick={() => {
-              handleLiquidityListDropDown();
-              setClickedToken(item);
-              setUpArrow(!upArrow);
-              setDownArrow(!downArrow);
-            }}
-          >
-            <div>
-              <p>{item.token1Id + "/" + item.token2Id}</p>
-            </div>
-            <div>
-              {downArrow && (
-                <i
-                  data-testid="arrow-down-button"
+    return LiquidityList.map((item, index) => (
+      <div key={index}>
+        <div
+          className={classes.liquidityListPool}
+          onClick={() => {
+            handleLiquidityListDropDown();
+            setClickedToken(item);
+            setUpArrow(!upArrow);
+            setDownArrow(!downArrow);
+          }}
+        >
+          <div>
+            <p>{item.token1Id + "/" + item.token2Id}</p>
+          </div>
+          <div>
+            {downArrow && (
+              <i
+                data-testid="arrow-down-button"
+                onClick={() => {
+                  handleLiquidityListDropDown();
+                  setClickedToken(item);
+                  setUpArrow(!upArrow);
+                  setDownArrow(!downArrow);
+                }}
+              >
+                <MdKeyboardArrowDown />
+              </i>
+            )}
+            {upArrow && (
+              <i>
+                <MdKeyboardArrowUp
                   onClick={() => {
                     handleLiquidityListDropDown();
                     setClickedToken(item);
                     setUpArrow(!upArrow);
                     setDownArrow(!downArrow);
                   }}
-                >
-                  <MdKeyboardArrowDown />
-                </i>
-              )}
-              {upArrow && (
-                <i>
-                  <MdKeyboardArrowUp
-                    onClick={() => {
-                      handleLiquidityListDropDown();
-                      setClickedToken(item);
-                      setUpArrow(!upArrow);
-                      setDownArrow(!downArrow);
-                    }}
-                  />
-                </i>
-              )}
-            </div>
-          </div>
-          <div>
-            {openDropDown && (
-              <>
-                <div className={classes.liquidityListPoolDetails}>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Pooled {item.token1Id}</p>
-                    <p>{item.pooledtoken1}</p>
-                  </div>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Pooled {item.token2Id}</p>
-                    <p>{item.pooledtoken2}</p>
-                  </div>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Your pool tokens</p>
-                    <p>{item.poolTokens}</p>
-                  </div>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Pool share</p>
-                    <p>{item.poolShare}</p>
-                  </div>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Accumulated Fees</p>
-                    <p>
-                      {item.accumulatedFeesToken1 +
-                        "  " +
-                        item.accumulatedFeesToken2}
-                    </p>
-                  </div>
-                  <div className={classes.liquidityListPoolDetail}>
-                    <p>Total Fees</p>
-                    <p>{item.totalFees}</p>
-                  </div>
-
-                  <div className={classes.liquiditybuttons}>
-                    <button
-                      autoFocus={true}
-                      className={classes.liquiditybutton}
-                      onClick={() => {
-                        setIncreaseLiquidity(!increaseLiquidity);
-                      }}
-                      data-testid="increase-liquidity-button"
-                    >
-                      Add Liquidity +
-                    </button>
-                    <button
-                      className={classes.liquiditybutton}
-                      onClick={() => {
-                        setRemoveLiquidity(!removeLiquidity);
-                      }}
-                    >
-                      Remove Liquidity -
-                    </button>
-                  </div>
-                </div>
-              </>
+                />
+              </i>
             )}
           </div>
-          {openDropDown && increaseLiquidity && (
-            <div className={classes.increaseLiquidity}>
-              <IncreaseLiquidity
-                item={clickedToken}
-                setOpenDropDown={setOpenDropDown}
-                setIncreaseLiquidity={setIncreaseLiquidity}
-              />
-            </div>
+        </div>
+        <div>
+          {openDropDown && (
+            <>
+              <div className={classes.liquidityListPoolDetails}>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Pooled {item.token1Id}</p>
+                  <p>{item.pooledtoken1}</p>
+                </div>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Pooled {item.token2Id}</p>
+                  <p>{item.pooledtoken2}</p>
+                </div>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Your pool tokens</p>
+                  <p>{item.poolTokens}</p>
+                </div>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Pool share</p>
+                  <p>{item.poolShare}</p>
+                </div>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Accumulated Fees</p>
+                  <p>
+                    {item.accumulatedFeesToken1 +
+                      "  " +
+                      item.accumulatedFeesToken2}
+                  </p>
+                </div>
+                <div className={classes.liquidityListPoolDetail}>
+                  <p>Total Fees</p>
+                  <p>{item.totalFees}</p>
+                </div>
+
+                <div className={classes.liquiditybuttons}>
+                  <button
+                    autoFocus={true}
+                    className={classes.liquiditybutton}
+                    onClick={() => {
+                      setIncreaseLiquidity(!increaseLiquidity);
+                    }}
+                    data-testid="increase-liquidity-button"
+                  >
+                    Add Liquidity +
+                  </button>
+                  <button
+                    className={classes.liquiditybutton}
+                    onClick={() => {
+                      setRemoveLiquidity(!removeLiquidity);
+                    }}
+                  >
+                    Remove Liquidity -
+                  </button>
+                </div>
+              </div>
+            </>
           )}
-          {openDropDown && removeLiquidity && (
-            <div>
-              <RemoveLiquidity amount1={clickedToken.pooledtoken1} amount2={clickedToken.pooledtoken2} setOpenDropDown={setOpenDropDown} setRemoveLiquidity={setRemoveLiquidity}/>
-            </div>
-          )}
-          <div className={classes.liquidityList}>
-            <p>Do not see a pool you joined</p>
-            <a>Explore existing pools</a>
+        </div>
+        {openDropDown && increaseLiquidity && (
+          <div className={classes.increaseLiquidity}>
+            <IncreaseLiquidity
+              item={clickedToken}
+              setOpenDropDown={setOpenDropDown}
+              setIncreaseLiquidity={setIncreaseLiquidity}
+            />
           </div>
-        </>
-      );
-    });
+        )}
+        {openDropDown && removeLiquidity && (
+          <div>
+            <RemoveLiquidity amount1={clickedToken.pooledtoken1} amount2={clickedToken.pooledtoken2} setOpenDropDown={setOpenDropDown} setRemoveLiquidity={setRemoveLiquidity} />
+          </div>
+        )}
+        <div className={classes.liquidityList}>
+          <p>Do not see a pool you joined</p>
+          <a>Explore existing pools</a>
+        </div>
+      </div>
+    ));
   }
 }
