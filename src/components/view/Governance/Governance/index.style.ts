@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-export const GovernanceStyle = styled('main')(({ theme }: any) => {
+export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
   return {
     marginTop: '4.25rem',
     padding: '3rem',

@@ -1,20 +1,18 @@
 import { ThemeProvider } from "@mui/material";
 import { fireEvent, render } from "@testing-library/react";
+import { GovernanceView } from "./index";
 import React from "react";
 import { lightTheme } from "styles/theme";
-import Governance from ".";
-
-lightTheme.shadows[0]
 
 function renderComponent() {
   return render(
     <ThemeProvider theme={lightTheme}>
-      <Governance />
+      <GovernanceView />
     </ThemeProvider>
   );
 }
 
-describe("Governance", () => {
+describe("GovernanceView", () => {
   it("checks if the component matches the snapshot", () => {
     const { container } = renderComponent();
     expect(container).toMatchSnapshot();

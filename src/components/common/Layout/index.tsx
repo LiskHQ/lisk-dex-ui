@@ -2,14 +2,14 @@ import { Container, useMediaQuery } from "@mui/material";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { darkTheme } from "styles/theme";
-import Footer from "./Footer";
-import Header from "./Header";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 interface IProps {
   children?: ReactNode,
 }
 
-const Layout: React.FC<IProps> = ({ children }) => {
+export const Layout: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.md));
   return (
     <Container maxWidth="xl" style={{ padding: 0 }}>
@@ -24,5 +24,3 @@ const Layout: React.FC<IProps> = ({ children }) => {
     </Container>
   );
 };
-
-export default Layout;

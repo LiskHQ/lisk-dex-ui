@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { Select } from '@mui/material'
 
-export const DropdownStyle = styled(Select)(({ theme }: any) => {
+export const DropdownComponentStyle = styled(Select)(({ theme }: any) => {
   return {
     '.dropdown-arrow': {
       display: 'inline-block',

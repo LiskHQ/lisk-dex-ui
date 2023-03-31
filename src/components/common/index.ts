@@ -1,9 +1,4 @@
-import Dropdown from "./Dropdown";
-import Empty from "./Empty";
-import Layout from "./Layout";
-
-export {
-  Dropdown,
-  Empty,
-  Layout,
-}
+export * from './Dropdown';
+export * from './Empty';
+export * from './Input';
+export * from './Layout';

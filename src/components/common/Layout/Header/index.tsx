@@ -7,19 +7,19 @@ import { Container } from '@mui/system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
-import { MENU_ITEMS } from 'consts';
+import { MENU_ITEMS, PATHS } from 'consts';
 import { LightcurveIcon, LiskIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
-import Dropdown from 'components/common/Dropdown';
 import AvatarImg from 'imgs/avatar.png';
 import { useEffect } from 'react';
+import { DropdownComponent } from 'components';
 
 const compareUrl = (a: string, b: string) => {
   if (a.indexOf(b) === 0) return true;
   return false;
 }
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const router = useRouter();
   const { pathname } = router || { pathname: '' };
 
@@ -46,12 +46,12 @@ const Header: React.FC = () => {
             ))
           }
 
-          <Dropdown
+          <DropdownComponent
             className="header-menu-chain"
             value={10}
           >
             <MenuItem value={10}><LiskIcon /><Typography variant="h5">Lisk-testnet</Typography></MenuItem>
-          </Dropdown>
+          </DropdownComponent>
 
           <Box className="header-menu-wallet">
             <Typography variant="h5">2921LSK</Typography>
@@ -69,5 +69,3 @@ const Header: React.FC = () => {
     </HeaderStyle>
   )
 }
-
-export default Header;

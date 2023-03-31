@@ -11,7 +11,7 @@ const compareUrl = (a: string, b: string) => {
   return false;
 }
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   const router = useRouter();
   const { pathname } = router || { pathname: '' };
 
@@ -39,5 +39,3 @@ const Footer: React.FC = () => {
     </FooterStyle>
   )
 }
-
-export default Footer;

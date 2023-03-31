@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Governance checks if the component matches the snapshot 1`] = `
+exports[`GovernanceView checks if the component matches the snapshot 1`] = `
 .emotion-0 {
   margin-top: 4.25rem;
   padding: 3rem;

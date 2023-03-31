@@ -2,7 +2,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactNode, useState } from 'react';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { DropdownStyle } from './index.style';
+import { DropdownComponentStyle } from './index.style';
 
 interface IProps {
   className?: string,
@@ -11,12 +11,12 @@ interface IProps {
   value?: any,
 }
 
-const Dropdown: React.FC<IProps> = (props) => {
+export const DropdownComponent: React.FC<IProps> = (props) => {
   const { className, children, value, onChange } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
-    <DropdownStyle
+    <DropdownComponentStyle
       className={className}
       value={value}
       IconComponent={() => (<FontAwesomeIcon className="dropdown-arrow" icon={isOpen ? faChevronUp : faChevronDown} />)}
@@ -25,8 +25,6 @@ const Dropdown: React.FC<IProps> = (props) => {
       onClose={() => { setOpen(false); }}
     >
       {children}
-    </DropdownStyle>
+    </DropdownComponentStyle>
   )
 }
-
-export default Dropdown;

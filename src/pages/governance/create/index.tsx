@@ -1,12 +1,11 @@
 import { NextPage } from "next";
 import { withLayout } from "@moxy/next-layout";
-
-import { Box } from "@mui/material";
-import { Layout } from "components/common";
+import { CreateProposalContainer } from "containers";
+import { Layout } from "components";
 
 const CreateProposalPage: NextPage = () => {
   return (
-    <Box>Hello!</Box>
+    <CreateProposalContainer />
   );
 };
 

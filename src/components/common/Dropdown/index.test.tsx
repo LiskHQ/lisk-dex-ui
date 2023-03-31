@@ -2,12 +2,12 @@ import { ThemeProvider } from "@mui/material";
 import { render } from "@testing-library/react";
 import React from "react";
 import { lightTheme } from "styles/theme";
-import Dropdown from ".";
+import { DropdownComponent } from ".";
 
 function renderComponent() {
   return render(
     <ThemeProvider theme={lightTheme}>
-      <Dropdown />
+      <DropdownComponent />
     </ThemeProvider>
   );
 }

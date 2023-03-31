@@ -3,16 +3,16 @@ import {
   MenuItem,
   Typography
 } from '@mui/material';
-import { GovernanceStyle } from './index.style';
-import Empty from 'components/common/Empty';
 import { BankIcon, VoteIcon } from 'imgs/icons';
-import Dropdown from 'components/common/Dropdown';
 import { PATHS } from 'consts';
 import Link from 'next/link';
+import { GovernanceViewStyle } from './index.style';
+import { DropdownComponent } from 'components/common/Dropdown';
+import { EmptyComponent } from 'components/common/Empty';
 
-const Governance: React.FC = () => {
+export const GovernanceView: React.FC = () => {
   return (
-    <GovernanceStyle className="governance-page">
+    <GovernanceViewStyle className="governance-page">
       <Box className="governance-banner">
         <Box>
           <Box className="governance-title">
@@ -36,25 +36,23 @@ const Governance: React.FC = () => {
           Participate in voting regarding the future of Lisk DEX platform. Use the voting power of the native Lisk DEX Tokens across our ecosystem.
         </Typography>
         <Box className="governance-proposals-actions">
-          <Dropdown
+          <DropdownComponent
             className="governance-proposals-select"
             value={10}
           >
             <MenuItem value={10}><Typography variant="h6">All proposals</Typography></MenuItem>
-          </Dropdown>
+          </DropdownComponent>
           <Link href={PATHS.CREATE_PROPOSAL} passHref legacyBehavior>
             <Typography variant="h5" className="governance-proposals-create" data-testid="create-proposal">+ Create a proposal</Typography>
           </Link>
         </Box>
         <Box className="governance-proposals-items">
-          <Empty
+          <EmptyComponent
             subject="No proposals found."
             description="When proposals are created, they will appear here."
           />
         </Box>
       </Box>
-    </GovernanceStyle>
+    </GovernanceViewStyle>
   )
 }
-
-export default Governance;

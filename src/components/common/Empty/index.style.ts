@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const EmptyStyle = styled('div')(({ theme }: any) => {
+export const EmptyComponentStyle = styled('div')(({ theme }: any) => {
   return {
     width: '100%',
     display: 'flex',
