@@ -20,6 +20,10 @@ const compareUrl = (a: string, b: string) => {
   return false;
 }
 
+const ellipsisAddress = (address: string) => {
+  return `${address.slice(0, 6)}...${address.slice(address.length - 4, address.length)}`;
+}
+
 export const Header: React.FC = () => {
   const router = useRouter();
   const { pathname } = router || { pathname: '' };
@@ -57,7 +61,7 @@ export const Header: React.FC = () => {
           <Box className="header-menu-wallet">
             <Typography variant="h5">2921LSK</Typography>
             <Box className="header-menu-wallet-address">
-              <Typography variant="h5">0x45d5...9915</Typography>
+              <Typography variant="h5">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
               <Image src={AvatarImg} alt="avatar" />
             </Box>
           </Box>
