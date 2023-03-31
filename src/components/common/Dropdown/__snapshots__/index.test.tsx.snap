@@ -53,6 +53,7 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
 
 .emotion-0 .dropdown-arrow {
   display: inline-block;
+  width: 0.5rem;
   margin-right: 1rem;
   border: 0.75 solid #E7E9F9;
   -webkit-user-select: none;

@@ -35,8 +35,12 @@ const themeColors = {
     40: '#7E7E7E',
     80: '#D4D4D4',
   },
+  border: {
+    primary: '#E6E6E6',
+  },
   bg: {
-    primary: '#FFFFFF',
+    primary: '#FBFBFB',
+    secondary: '#FFFFFF',
     helper: '#FFFFFF',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',

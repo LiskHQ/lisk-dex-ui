@@ -5,6 +5,7 @@ export const DropdownStyle = styled(Select)(({ theme }: any) => {
   return {
     '.dropdown-arrow': {
       display: 'inline-block',
+      width: '0.5rem',
       marginRight: '1rem',
       border: `0.75 solid ${theme.primary[10]}`,
       userSelect: 'none',

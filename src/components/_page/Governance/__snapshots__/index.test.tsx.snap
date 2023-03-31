@@ -2,10 +2,6 @@
 
 exports[`Governance checks if the component matches the snapshot 1`] = `
 .emotion-0 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  background: #FFFFFF;
   margin-top: 4.25rem;
   padding: 3rem;
 }
@@ -16,11 +12,7 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   }
 }
 
-.emotion-0 .governance-container {
-  padding: 0;
-}
-
-.emotion-0 .governance-container .governance-banner {
+.emotion-0 .governance-banner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -39,12 +31,12 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
 }
 
 @media (max-width:767.95px) {
-  .emotion-0 .governance-container .governance-banner {
+  .emotion-0 .governance-banner {
     padding-bottom: 1.5rem;
   }
 }
 
-.emotion-0 .governance-container .governance-banner .governance-title {
+.emotion-0 .governance-banner .governance-title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -57,47 +49,47 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   margin-bottom: 1rem;
 }
 
-.emotion-0 .governance-container .governance-banner .governance-title .governance-bank-icon {
+.emotion-0 .governance-banner .governance-title .governance-bank-icon {
   fill: #282828;
   margin-left: 0.75rem;
 }
 
 @media (max-width:767.95px) {
-  .emotion-0 .governance-container .governance-banner .governance-title {
+  .emotion-0 .governance-banner .governance-title {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     justify-content: space-between;
   }
 }
 
-.emotion-0 .governance-container .governance-banner .governanace-description {
+.emotion-0 .governance-banner .governanace-description {
   color: #6B7280;
 }
 
-.emotion-0 .governance-container .governance-banner .governance-vote-image {
+.emotion-0 .governance-banner .governance-vote-image {
   margin-right: 9.5rem!important;
 }
 
 @media (max-width:767.95px) {
-  .emotion-0 .governance-container .governance-banner .governance-vote-image {
+  .emotion-0 .governance-banner .governance-vote-image {
     display: none;
   }
 }
 
-.emotion-0 .governance-container .governance-proposals {
+.emotion-0 .governance-proposals {
   margin-top: 3rem;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-title {
+.emotion-0 .governance-proposals .governance-proposals-title {
   color: #282828;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-description {
+.emotion-0 .governance-proposals .governance-proposals-description {
   margin-top: 0.5rem;
   color: #6B7280;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-actions {
+.emotion-0 .governance-proposals .governance-proposals-actions {
   margin-top: 0.75rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -112,23 +104,30 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   justify-content: space-between;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-actions .governance-proposals-select {
+.emotion-0 .governance-proposals .governance-proposals-actions .governance-proposals-select {
   width: 11.25rem;
   height: 2rem;
   color: #6B7280;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-actions .governance-proposals-select div {
-  padding: 0;
-  padding-left: 0.75rem;
+.emotion-0 .governance-proposals .governance-proposals-actions .governance-proposals-select .MuiSelect-select {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 0 0 0.75rem;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-actions .governance-proposals-create {
+.emotion-0 .governance-proposals .governance-proposals-actions .governance-proposals-create {
   color: #6953F4;
   cursor: pointer;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-items {
+.emotion-0 .governance-proposals .governance-proposals-items {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -141,34 +140,11 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   margin-top: 4rem;
 }
 
-.emotion-0 .governance-container .governance-proposals .governance-proposals-items .governance-empty-img {
+.emotion-0 .governance-proposals .governance-proposals-items .governance-empty-img {
   margin-top: 4rem;
 }
 
-.emotion-1 {
-  width: 100%;
-  margin-left: auto;
-  box-sizing: border-box;
-  margin-right: auto;
-  display: block;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-@media (min-width:576px) {
-  .emotion-1 {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
-
-@media (min-width:1440px) {
-  .emotion-1 {
-    max-width: 1440px;
-  }
-}
-
-.emotion-5 {
+.emotion-4 {
   margin: 0;
   font-size: 2.5rem;
   font-weight: 600;
@@ -177,25 +153,25 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   letter-spacing: -0.01562em;
 }
 
-.emotion-6 {
+.emotion-5 {
   margin: 0;
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.375rem;
   font-weight: 500;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0.00938em;
 }
 
-.emotion-9 {
+.emotion-8 {
   margin: 0;
   font-size: 1.75rem;
   line-height: 2rem;
   font-weight: 500;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  letter-spacing: 0.00938em;
+  letter-spacing: 0em;
 }
 
-.emotion-12 {
+.emotion-11 {
   font-size: 1rem;
   line-height: 1.4375em;
   font-weight: 500;
@@ -217,36 +193,37 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   border-radius: 4px;
 }
 
-.emotion-12.Mui-disabled {
+.emotion-11.Mui-disabled {
   color: rgba(0, 0, 0, 0.38);
   cursor: default;
 }
 
-.emotion-12:hover .MuiOutlinedInput-notchedOutline {
+.emotion-11:hover .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.87);
 }
 
 @media (hover: none) {
-  .emotion-12:hover .MuiOutlinedInput-notchedOutline {
+  .emotion-11:hover .MuiOutlinedInput-notchedOutline {
     border-color: rgba(0, 0, 0, 0.23);
   }
 }
 
-.emotion-12.Mui-focused .MuiOutlinedInput-notchedOutline {
+.emotion-11.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: #1976d2;
   border-width: 2px;
 }
 
-.emotion-12.Mui-error .MuiOutlinedInput-notchedOutline {
+.emotion-11.Mui-error .MuiOutlinedInput-notchedOutline {
   border-color: #d32f2f;
 }
 
-.emotion-12.Mui-disabled .MuiOutlinedInput-notchedOutline {
+.emotion-11.Mui-disabled .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.26);
 }
 
-.emotion-12 .dropdown-arrow {
+.emotion-11 .dropdown-arrow {
   display: inline-block;
+  width: 0.5rem;
   margin-right: 1rem;
   border: 0.75 solid #E7E9F9;
   -webkit-user-select: none;
@@ -264,7 +241,7 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   pointer-events: none;
 }
 
-.emotion-13 {
+.emotion-12 {
   -moz-appearance: none;
   -webkit-appearance: none;
   -webkit-user-select: none;
@@ -293,32 +270,32 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   padding: 16.5px 14px;
 }
 
-.emotion-13:focus {
+.emotion-12:focus {
   border-radius: 4px;
 }
 
-.emotion-13::-ms-expand {
+.emotion-12::-ms-expand {
   display: none;
 }
 
-.emotion-13.Mui-disabled {
+.emotion-12.Mui-disabled {
   cursor: default;
 }
 
-.emotion-13[multiple] {
+.emotion-12[multiple] {
   height: auto;
 }
 
-.emotion-13:not([multiple]) option,
-.emotion-13:not([multiple]) optgroup {
+.emotion-12:not([multiple]) option,
+.emotion-12:not([multiple]) optgroup {
   background-color: #fff;
 }
 
-.emotion-13.emotion-13.emotion-13 {
+.emotion-12.emotion-12.emotion-12 {
   padding-right: 32px;
 }
 
-.emotion-13.MuiSelect-select {
+.emotion-12.MuiSelect-select {
   height: auto;
   min-height: 1.4375em;
   text-overflow: ellipsis;
@@ -326,104 +303,104 @@ exports[`Governance checks if the component matches the snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-13::-webkit-input-placeholder {
+.emotion-12::-webkit-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-13::-moz-placeholder {
+.emotion-12::-moz-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-13:-ms-input-placeholder {
+.emotion-12:-ms-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-13::-ms-input-placeholder {
+.emotion-12::-ms-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-13:focus {
+.emotion-12:focus {
   outline: 0;
 }
 
-.emotion-13:invalid {
+.emotion-12:invalid {
   box-shadow: none;
 }
 
-.emotion-13::-webkit-search-decoration {
+.emotion-12::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13::-webkit-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12::-webkit-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13::-moz-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12::-moz-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12:-ms-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13::-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12::-ms-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-webkit-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12:focus::-webkit-input-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-moz-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12:focus::-moz-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus:-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12:focus:-ms-input-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-12:focus::-ms-input-placeholder {
   opacity: 0.42;
 }
 
-.emotion-13.Mui-disabled {
+.emotion-12.Mui-disabled {
   opacity: 1;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
 }
 
-.emotion-13:-webkit-autofill {
+.emotion-12:-webkit-autofill {
   -webkit-animation-duration: 5000s;
   animation-duration: 5000s;
   -webkit-animation-name: mui-auto-fill;
   animation-name: mui-auto-fill;
 }
 
-.emotion-13:-webkit-autofill {
+.emotion-12:-webkit-autofill {
   border-radius: inherit;
 }
 
-.emotion-14 {
+.emotion-13 {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 500;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  letter-spacing: 0.03333em;
+  letter-spacing: 0.0075em;
 }
 
-.emotion-15 {
+.emotion-14 {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -433,7 +410,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   box-sizing: border-box;
 }
 
-.emotion-16 {
+.emotion-15 {
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -451,7 +428,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   border-color: rgba(0, 0, 0, 0.23);
 }
 
-.emotion-17 {
+.emotion-16 {
   float: unset;
   overflow: hidden;
   padding: 0;
@@ -460,16 +437,16 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
 }
 
-.emotion-18 {
+.emotion-17 {
   margin: 0;
   font-size: 1rem;
-  font-weight: 600;
+  line-height: 1.25rem;
+  font-weight: 500;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  line-height: 1.334;
   letter-spacing: 0em;
 }
 
-.emotion-20 {
+.emotion-19 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -488,17 +465,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   justify-content: center;
 }
 
-.emotion-20 .empty-subject {
+.emotion-19 .empty-subject {
   margin-top: 2rem;
   color: #515661;
 }
 
-.emotion-20 .empty-description {
+.emotion-19 .empty-description {
   margin-top: 0.5rem;
   color: #6B7280;
 }
 
-.emotion-21 {
+.emotion-20 {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5rem;
@@ -507,7 +484,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   letter-spacing: 0.00714em;
 }
 
-.emotion-22 {
+.emotion-21 {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.125rem;
@@ -518,215 +495,211 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 
 <div>
   <main
-    class="emotion-0"
+    class="governance-page emotion-0"
   >
     <div
-      class="MuiContainer-root MuiContainer-maxWidthXl governance-container emotion-1"
+      class="governance-banner MuiBox-root emotion-1"
     >
       <div
-        class="governance-banner MuiBox-root emotion-2"
+        class="MuiBox-root emotion-1"
       >
         <div
-          class="MuiBox-root emotion-2"
+          class="governance-title MuiBox-root emotion-1"
         >
-          <div
-            class="governance-title MuiBox-root emotion-2"
+          <h1
+            class="MuiTypography-root MuiTypography-h1 emotion-4"
           >
-            <h1
-              class="MuiTypography-root MuiTypography-h1 emotion-5"
-            >
-              Governance
-            </h1>
-            <svg
-              class="governance-bank-icon"
-              fill="#322573"
-              height="48"
-              viewBox="0 0 56 48"
-              width="56"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M14.8934 17.9351H18.1538L18.6555 36.2651H14.4542L14.8934 17.934V17.9351ZM11.8196 36.925H44.1804V39.2833H46.1194V41.6417H48V44H8V41.6417H9.88057V39.2833H11.8196V36.925ZM45.8681 12.817L28 4L10.1309 12.817V14.2591H45.8681V12.817ZM13.576 14.9179H42.424V17.2762H13.576V14.9179ZM37.7825 17.9351H41.0441L41.5458 36.2662H37.3445L37.7825 17.9362V17.9351ZM30.1528 17.9351H33.4143L33.916 36.2651L29.7147 36.2662L30.1528 17.934V17.9351ZM22.5231 17.9351H25.7846L26.2863 36.2662H22.084L22.5231 17.9362V17.9351Z"
-              />
-            </svg>
-          </div>
-          <p
-            class="MuiTypography-root MuiTypography-body1 governanace-description emotion-6"
-          >
-            Vote on proposals and make decisions for the future of Lisk DEX ecosystem.
-          </p>
-        </div>
-        <div
-          class="governance-vote-image MuiBox-root emotion-2"
-        >
+            Governance
+          </h1>
           <svg
-            fill="none"
-            height="96"
-            viewBox="0 0 83 96"
-            width="83"
+            class="governance-bank-icon"
+            fill="#322573"
+            height="48"
+            viewBox="0 0 56 48"
+            width="56"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M81.8208 39.5273V94.2689H0.894531V39.5273L14.8733 25.5237H39.5662C35.3019 24.6335 32.0994 20.8566 32.0994 16.3313C32.0994 11.1421 36.309 6.9375 41.5031 6.9375C46.6973 6.9375 50.9069 11.1421 50.9069 16.3313C50.9069 20.8566 47.7043 24.6335 43.4401 25.5237H67.8445L81.8208 39.5273Z"
-              fill="#D4CFEF"
-            />
-            <path
-              d="M53.2111 61.2338H43.4195C42.7929 61.2338 42.2857 61.741 42.2857 62.3626C42.2857 62.9867 42.7929 63.4915 43.4195 63.4915H47.184V73.84C47.184 74.4617 47.6912 74.9664 48.3153 74.9664C48.9369 74.9664 49.4441 74.4617 49.4441 73.84V63.4915H53.2111C53.8352 63.4915 54.3424 62.9867 54.3424 62.3626C54.3424 61.741 53.8352 61.2338 53.2111 61.2338ZM66.8418 72.7112H58.179V69.2302H64.4399C65.064 69.2302 65.5712 68.7229 65.5712 68.1013C65.5712 67.4772 65.064 66.9725 64.4399 66.9725H58.179V63.4915H66.8418C67.4659 63.4915 67.9706 62.9867 67.9706 62.3626C67.9706 61.741 67.4659 61.2338 66.8418 61.2338H57.0477C56.4236 61.2338 55.9188 61.741 55.9188 62.3626V73.84C55.9188 74.4617 56.4236 74.9664 57.0477 74.9664H66.8418C67.4659 74.9664 67.9706 74.4617 67.9706 73.84C67.9706 73.2135 67.4659 72.7112 66.8418 72.7112ZM38.4491 64.3617C38.4491 63.8818 38.0612 63.4915 37.5813 63.4915H31.7879C31.308 63.4915 30.9152 63.8818 30.9152 64.3617V71.841C30.9152 72.3183 31.308 72.7112 31.7879 72.7112H37.5813C38.0612 72.7112 38.4491 72.3183 38.4491 71.841V64.3617ZM40.7093 64.3617V71.841C40.7093 73.5641 39.3069 74.9664 37.5813 74.9664H31.7879C30.0623 74.9664 28.6575 73.5641 28.6575 71.841V64.3617C28.6575 62.6386 30.0623 61.2338 31.7879 61.2338H37.5813C39.3069 61.2338 40.7093 62.6386 40.7093 64.3617ZM49.372 16.3311C49.372 11.9848 45.8487 8.46396 41.4999 8.46396C37.1512 8.46396 33.6254 11.9848 33.6254 16.3311C33.6254 20.6724 37.1512 24.1957 41.4999 24.1957C45.8487 24.1957 49.372 20.6724 49.372 16.3311ZM56.3763 31.5332H26.6211V1.12646H56.3763V31.5332ZM26.9891 62.8052L22.0932 74.2826C21.9167 74.6979 21.5064 74.9664 21.0539 74.9664C20.6014 74.9664 20.1911 74.6979 20.0146 74.2826L15.1188 62.8052C14.8726 62.2308 15.1411 61.5694 15.713 61.3233C16.2874 61.0796 16.9513 61.3457 17.1974 61.92L21.0539 70.9583L24.9129 61.92C25.1541 61.3457 25.8204 61.0796 26.3923 61.3233C26.9667 61.5694 27.2352 62.2308 26.9891 62.8052Z"
-              fill="#322573"
-            />
-            <path
-              d="M36.6402 18.4345C36.2001 17.9919 36.2001 17.2783 36.6402 16.8382C37.0828 16.3956 37.7964 16.3956 38.239 16.8382L39.982 18.5787L44.761 13.8047C45.2036 13.3622 45.9172 13.3622 46.3598 13.8047C46.8023 14.2448 46.8023 14.9584 46.3598 15.401L40.7827 20.9732C40.5589 21.1944 40.2705 21.3039 39.982 21.3039C39.6936 21.3039 39.4027 21.1944 39.1839 20.9732L36.6402 18.4345ZM80.7398 93.2218H2.26018V40.636H80.7398V93.2218ZM14.8689 26.5254H25.491V30.4042H19.7473C19.1232 30.4042 18.6185 30.9115 18.6185 31.5331C18.6185 32.1572 19.1232 32.6619 19.7473 32.6619H63.2527C63.8743 32.6619 64.3815 32.1572 64.3815 31.5331C64.3815 30.9115 63.8743 30.4042 63.2527 30.4042H57.5065V26.5254H68.1286L79.2604 38.3758H3.73961L14.8689 26.5254ZM27.7537 2.2552H55.2488V30.4042H27.7537V2.2552ZM83 39.4922C82.9975 39.4251 82.9925 39.3604 82.9776 39.2933C82.9751 39.2759 82.9677 39.2585 82.9652 39.2411C82.9528 39.1938 82.9403 39.1466 82.9204 39.1018C82.913 39.0794 82.9055 39.0596 82.8956 39.0397C82.8757 38.9924 82.8483 38.9452 82.821 38.8979C82.8135 38.8905 82.8085 38.8805 82.8036 38.8681C82.7712 38.8209 82.7339 38.7761 82.6942 38.7338L69.4439 24.6233C69.2301 24.3945 68.9317 24.2677 68.6184 24.2677H57.5065V1.12636C57.5065 0.504748 57.0017 0 56.3776 0H26.6224C25.9983 0 25.491 0.504748 25.491 1.12636V24.2677H14.3791C14.0683 24.2677 13.7699 24.3945 13.5561 24.6233L0.305833 38.7338C0.26605 38.7761 0.228753 38.8209 0.196429 38.8681C0.18897 38.8805 0.186483 38.8905 0.179024 38.8979C0.149186 38.9452 0.124322 38.9924 0.101944 39.0397C0.0919984 39.0596 0.0845393 39.0794 0.0770798 39.0993C0.0596751 39.1466 0.044756 39.1938 0.0348102 39.2411C0.029837 39.2585 0.0248643 39.2759 0.022378 39.2933C0.00745902 39.3604 0.00248629 39.4251 0 39.4922C0 39.4972 0 39.4997 0 39.5071V94.3506C0 94.9722 0.504748 95.4795 1.12885 95.4795H81.8687C82.4952 95.4795 83 94.9722 83 94.3506V39.4922Z"
-              fill="#2D2166"
-            />
-            <path
-              d="M54.9491 16.1645C54.9491 16.6021 54.9267 17.0372 54.8844 17.4748C54.8422 17.91 54.7775 18.3426 54.693 18.7703C54.606 19.2004 54.5015 19.6256 54.3747 20.0433C54.2454 20.4635 54.0987 20.8738 53.9321 21.2791C53.7631 21.6844 53.5766 22.0797 53.3702 22.4651C53.1638 22.8505 52.94 23.226 52.6964 23.589C52.4527 23.9545 52.1916 24.3051 51.9156 24.6433C51.6371 24.9814 51.3437 25.3047 51.0329 25.6155C50.7246 25.9238 50.4014 26.2197 50.0632 26.4957C49.7226 26.7741 49.372 27.0352 49.009 27.2789C48.6435 27.5201 48.2705 27.7463 47.8826 27.9527C47.4972 28.1591 47.1019 28.3456 46.6966 28.5122C46.2938 28.6812 45.881 28.8279 45.4633 28.9548C45.0431 29.0816 44.6204 29.1885 44.1902 29.273C43.7601 29.36 43.3275 29.4222 42.8923 29.467C42.4572 29.5092 42.0196 29.5316 41.582 29.5316C41.1444 29.5316 40.7067 29.5092 40.2716 29.467C39.8365 29.4222 39.4038 29.36 38.9737 29.273C38.546 29.1885 38.1208 29.0816 37.7006 28.9548C37.2829 28.8279 36.8702 28.6812 36.4674 28.5122C36.0621 28.3456 35.6667 28.1591 35.2813 27.9527C34.8934 27.7463 34.5205 27.5201 34.155 27.2789C33.7919 27.0352 33.4413 26.7741 33.1032 26.4957C32.7626 26.2197 32.4393 25.9238 32.131 25.6155C31.8202 25.3047 31.5268 24.9814 31.2483 24.6433C30.9723 24.3051 30.7112 23.9545 30.4676 23.589C30.2239 23.226 30.0001 22.8505 29.7937 22.4651C29.5874 22.0797 29.4009 21.6844 29.2318 21.2791C29.0652 20.8738 28.9185 20.4635 28.7892 20.0433C28.6624 19.6256 28.558 19.2004 28.4709 18.7703C28.3864 18.3426 28.3218 17.91 28.2795 17.4748C28.2372 17.0372 28.2148 16.6021 28.2148 16.1645C28.2148 15.7244 28.2372 15.2893 28.2795 14.8541C28.3218 14.4165 28.3864 13.9839 28.4709 13.5562C28.558 13.1261 28.6624 12.7009 28.7892 12.2831C28.9185 11.8654 29.0652 11.4527 29.2318 11.0474C29.4009 10.6446 29.5874 10.2492 29.7937 9.86135C30.0001 9.47595 30.2239 9.1005 30.4676 8.73748C30.7112 8.37197 30.9723 8.02138 31.2483 7.68323C31.5268 7.34507 31.8202 7.02183 32.131 6.71103C32.4393 6.40271 32.7626 6.10931 33.1032 5.83083C33.4413 5.55234 33.7919 5.29127 34.155 5.05008C34.5205 4.80641 34.8934 4.58014 35.2813 4.37377C35.6667 4.16739 36.0621 3.98091 36.4674 3.81432C36.8702 3.64524 37.2829 3.49854 37.7006 3.37173C38.1208 3.24492 38.546 3.13801 38.9737 3.05347C39.4038 2.96893 39.8365 2.90428 40.2716 2.85952C40.7067 2.81725 41.1444 2.79736 41.582 2.79736C42.0196 2.79736 42.4572 2.81725 42.8923 2.85952C43.3275 2.90428 43.7601 2.96893 44.1902 3.05347C44.6204 3.13801 45.0431 3.24492 45.4633 3.37173C45.881 3.49854 46.2938 3.64524 46.6966 3.81432C47.1019 3.98091 47.4972 4.16739 47.8826 4.37377C48.2705 4.58014 48.6435 4.80641 49.009 5.05008C49.372 5.29127 49.7226 5.55234 50.0632 5.83083C50.4014 6.10931 50.7246 6.40271 51.0329 6.71103C51.3437 7.02183 51.6371 7.34507 51.9156 7.68323C52.1916 8.02138 52.4527 8.37197 52.6964 8.73748C52.94 9.1005 53.1638 9.47595 53.3702 9.86135C53.5766 10.2492 53.7631 10.6446 53.9321 11.0474C54.0987 11.4527 54.2454 11.8654 54.3747 12.2831C54.5015 12.7009 54.606 13.1261 54.693 13.5562C54.7775 13.9839 54.8422 14.4165 54.8844 14.8541C54.9267 15.2893 54.9491 15.7244 54.9491 16.1645Z"
-              fill="#322573"
-            />
-            <path
-              d="M39.914 23.9045L41.9578 21.5871C41.9927 21.5523 41.9703 21.4951 41.9131 21.4951H39.6629C39.6504 21.4951 39.6281 21.4827 39.6156 21.4727L37.711 19.317C37.7011 19.2946 37.6886 19.2697 37.7011 19.2474L40.8912 13.7225C40.9011 13.7001 40.9011 13.6777 40.8912 13.6653L39.5709 11.3728C39.5485 11.338 39.4913 11.338 39.4664 11.3728L34.7496 19.5482C34.7397 19.5731 34.7397 19.5955 34.7496 19.6178L38.539 23.9144C38.5489 23.9268 38.5614 23.9393 38.5837 23.9393H39.8692C39.8817 23.9268 39.904 23.9144 39.914 23.9045Z"
-              fill="white"
-            />
-            <path
-              d="M41.3161 8.17566L39.9859 10.4706C39.9735 10.493 39.9735 10.5154 39.9859 10.5278L41.3634 12.9123L45.011 19.2378C45.0234 19.2602 45.0234 19.2826 45.001 19.3075L43.0716 21.4831L41.0178 23.8229C40.983 23.8577 41.0078 23.9173 41.065 23.9173H44.1407C44.1507 23.9173 44.1731 23.9049 44.1855 23.8925L47.9723 19.5959C47.9848 19.5735 47.9947 19.5487 47.9848 19.5263L41.4081 8.17566C41.3957 8.1309 41.3385 8.1309 41.3161 8.17566Z"
-              fill="white"
+              d="M14.8934 17.9351H18.1538L18.6555 36.2651H14.4542L14.8934 17.934V17.9351ZM11.8196 36.925H44.1804V39.2833H46.1194V41.6417H48V44H8V41.6417H9.88057V39.2833H11.8196V36.925ZM45.8681 12.817L28 4L10.1309 12.817V14.2591H45.8681V12.817ZM13.576 14.9179H42.424V17.2762H13.576V14.9179ZM37.7825 17.9351H41.0441L41.5458 36.2662H37.3445L37.7825 17.9362V17.9351ZM30.1528 17.9351H33.4143L33.916 36.2651L29.7147 36.2662L30.1528 17.934V17.9351ZM22.5231 17.9351H25.7846L26.2863 36.2662H22.084L22.5231 17.9362V17.9351Z"
             />
           </svg>
         </div>
+        <p
+          class="MuiTypography-root MuiTypography-body1 governanace-description emotion-5"
+        >
+          Vote on proposals and make decisions for the future of Lisk DEX ecosystem.
+        </p>
       </div>
       <div
-        class="governance-proposals MuiBox-root emotion-2"
+        class="governance-vote-image MuiBox-root emotion-1"
       >
-        <h6
-          class="MuiTypography-root MuiTypography-subtitle1 governance-proposals-title emotion-9"
+        <svg
+          fill="none"
+          height="96"
+          viewBox="0 0 83 96"
+          width="83"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          Proposals
-        </h6>
-        <p
-          class="MuiTypography-root MuiTypography-body1 governance-proposals-description emotion-6"
-        >
-          Participate in voting regarding the future of Lisk DEX platform. Use the voting power of the native Lisk DEX Tokens across our ecosystem.
-        </p>
+          <path
+            d="M81.8208 39.5273V94.2689H0.894531V39.5273L14.8733 25.5237H39.5662C35.3019 24.6335 32.0994 20.8566 32.0994 16.3313C32.0994 11.1421 36.309 6.9375 41.5031 6.9375C46.6973 6.9375 50.9069 11.1421 50.9069 16.3313C50.9069 20.8566 47.7043 24.6335 43.4401 25.5237H67.8445L81.8208 39.5273Z"
+            fill="#D4CFEF"
+          />
+          <path
+            d="M53.2111 61.2338H43.4195C42.7929 61.2338 42.2857 61.741 42.2857 62.3626C42.2857 62.9867 42.7929 63.4915 43.4195 63.4915H47.184V73.84C47.184 74.4617 47.6912 74.9664 48.3153 74.9664C48.9369 74.9664 49.4441 74.4617 49.4441 73.84V63.4915H53.2111C53.8352 63.4915 54.3424 62.9867 54.3424 62.3626C54.3424 61.741 53.8352 61.2338 53.2111 61.2338ZM66.8418 72.7112H58.179V69.2302H64.4399C65.064 69.2302 65.5712 68.7229 65.5712 68.1013C65.5712 67.4772 65.064 66.9725 64.4399 66.9725H58.179V63.4915H66.8418C67.4659 63.4915 67.9706 62.9867 67.9706 62.3626C67.9706 61.741 67.4659 61.2338 66.8418 61.2338H57.0477C56.4236 61.2338 55.9188 61.741 55.9188 62.3626V73.84C55.9188 74.4617 56.4236 74.9664 57.0477 74.9664H66.8418C67.4659 74.9664 67.9706 74.4617 67.9706 73.84C67.9706 73.2135 67.4659 72.7112 66.8418 72.7112ZM38.4491 64.3617C38.4491 63.8818 38.0612 63.4915 37.5813 63.4915H31.7879C31.308 63.4915 30.9152 63.8818 30.9152 64.3617V71.841C30.9152 72.3183 31.308 72.7112 31.7879 72.7112H37.5813C38.0612 72.7112 38.4491 72.3183 38.4491 71.841V64.3617ZM40.7093 64.3617V71.841C40.7093 73.5641 39.3069 74.9664 37.5813 74.9664H31.7879C30.0623 74.9664 28.6575 73.5641 28.6575 71.841V64.3617C28.6575 62.6386 30.0623 61.2338 31.7879 61.2338H37.5813C39.3069 61.2338 40.7093 62.6386 40.7093 64.3617ZM49.372 16.3311C49.372 11.9848 45.8487 8.46396 41.4999 8.46396C37.1512 8.46396 33.6254 11.9848 33.6254 16.3311C33.6254 20.6724 37.1512 24.1957 41.4999 24.1957C45.8487 24.1957 49.372 20.6724 49.372 16.3311ZM56.3763 31.5332H26.6211V1.12646H56.3763V31.5332ZM26.9891 62.8052L22.0932 74.2826C21.9167 74.6979 21.5064 74.9664 21.0539 74.9664C20.6014 74.9664 20.1911 74.6979 20.0146 74.2826L15.1188 62.8052C14.8726 62.2308 15.1411 61.5694 15.713 61.3233C16.2874 61.0796 16.9513 61.3457 17.1974 61.92L21.0539 70.9583L24.9129 61.92C25.1541 61.3457 25.8204 61.0796 26.3923 61.3233C26.9667 61.5694 27.2352 62.2308 26.9891 62.8052Z"
+            fill="#322573"
+          />
+          <path
+            d="M36.6402 18.4345C36.2001 17.9919 36.2001 17.2783 36.6402 16.8382C37.0828 16.3956 37.7964 16.3956 38.239 16.8382L39.982 18.5787L44.761 13.8047C45.2036 13.3622 45.9172 13.3622 46.3598 13.8047C46.8023 14.2448 46.8023 14.9584 46.3598 15.401L40.7827 20.9732C40.5589 21.1944 40.2705 21.3039 39.982 21.3039C39.6936 21.3039 39.4027 21.1944 39.1839 20.9732L36.6402 18.4345ZM80.7398 93.2218H2.26018V40.636H80.7398V93.2218ZM14.8689 26.5254H25.491V30.4042H19.7473C19.1232 30.4042 18.6185 30.9115 18.6185 31.5331C18.6185 32.1572 19.1232 32.6619 19.7473 32.6619H63.2527C63.8743 32.6619 64.3815 32.1572 64.3815 31.5331C64.3815 30.9115 63.8743 30.4042 63.2527 30.4042H57.5065V26.5254H68.1286L79.2604 38.3758H3.73961L14.8689 26.5254ZM27.7537 2.2552H55.2488V30.4042H27.7537V2.2552ZM83 39.4922C82.9975 39.4251 82.9925 39.3604 82.9776 39.2933C82.9751 39.2759 82.9677 39.2585 82.9652 39.2411C82.9528 39.1938 82.9403 39.1466 82.9204 39.1018C82.913 39.0794 82.9055 39.0596 82.8956 39.0397C82.8757 38.9924 82.8483 38.9452 82.821 38.8979C82.8135 38.8905 82.8085 38.8805 82.8036 38.8681C82.7712 38.8209 82.7339 38.7761 82.6942 38.7338L69.4439 24.6233C69.2301 24.3945 68.9317 24.2677 68.6184 24.2677H57.5065V1.12636C57.5065 0.504748 57.0017 0 56.3776 0H26.6224C25.9983 0 25.491 0.504748 25.491 1.12636V24.2677H14.3791C14.0683 24.2677 13.7699 24.3945 13.5561 24.6233L0.305833 38.7338C0.26605 38.7761 0.228753 38.8209 0.196429 38.8681C0.18897 38.8805 0.186483 38.8905 0.179024 38.8979C0.149186 38.9452 0.124322 38.9924 0.101944 39.0397C0.0919984 39.0596 0.0845393 39.0794 0.0770798 39.0993C0.0596751 39.1466 0.044756 39.1938 0.0348102 39.2411C0.029837 39.2585 0.0248643 39.2759 0.022378 39.2933C0.00745902 39.3604 0.00248629 39.4251 0 39.4922C0 39.4972 0 39.4997 0 39.5071V94.3506C0 94.9722 0.504748 95.4795 1.12885 95.4795H81.8687C82.4952 95.4795 83 94.9722 83 94.3506V39.4922Z"
+            fill="#2D2166"
+          />
+          <path
+            d="M54.9491 16.1645C54.9491 16.6021 54.9267 17.0372 54.8844 17.4748C54.8422 17.91 54.7775 18.3426 54.693 18.7703C54.606 19.2004 54.5015 19.6256 54.3747 20.0433C54.2454 20.4635 54.0987 20.8738 53.9321 21.2791C53.7631 21.6844 53.5766 22.0797 53.3702 22.4651C53.1638 22.8505 52.94 23.226 52.6964 23.589C52.4527 23.9545 52.1916 24.3051 51.9156 24.6433C51.6371 24.9814 51.3437 25.3047 51.0329 25.6155C50.7246 25.9238 50.4014 26.2197 50.0632 26.4957C49.7226 26.7741 49.372 27.0352 49.009 27.2789C48.6435 27.5201 48.2705 27.7463 47.8826 27.9527C47.4972 28.1591 47.1019 28.3456 46.6966 28.5122C46.2938 28.6812 45.881 28.8279 45.4633 28.9548C45.0431 29.0816 44.6204 29.1885 44.1902 29.273C43.7601 29.36 43.3275 29.4222 42.8923 29.467C42.4572 29.5092 42.0196 29.5316 41.582 29.5316C41.1444 29.5316 40.7067 29.5092 40.2716 29.467C39.8365 29.4222 39.4038 29.36 38.9737 29.273C38.546 29.1885 38.1208 29.0816 37.7006 28.9548C37.2829 28.8279 36.8702 28.6812 36.4674 28.5122C36.0621 28.3456 35.6667 28.1591 35.2813 27.9527C34.8934 27.7463 34.5205 27.5201 34.155 27.2789C33.7919 27.0352 33.4413 26.7741 33.1032 26.4957C32.7626 26.2197 32.4393 25.9238 32.131 25.6155C31.8202 25.3047 31.5268 24.9814 31.2483 24.6433C30.9723 24.3051 30.7112 23.9545 30.4676 23.589C30.2239 23.226 30.0001 22.8505 29.7937 22.4651C29.5874 22.0797 29.4009 21.6844 29.2318 21.2791C29.0652 20.8738 28.9185 20.4635 28.7892 20.0433C28.6624 19.6256 28.558 19.2004 28.4709 18.7703C28.3864 18.3426 28.3218 17.91 28.2795 17.4748C28.2372 17.0372 28.2148 16.6021 28.2148 16.1645C28.2148 15.7244 28.2372 15.2893 28.2795 14.8541C28.3218 14.4165 28.3864 13.9839 28.4709 13.5562C28.558 13.1261 28.6624 12.7009 28.7892 12.2831C28.9185 11.8654 29.0652 11.4527 29.2318 11.0474C29.4009 10.6446 29.5874 10.2492 29.7937 9.86135C30.0001 9.47595 30.2239 9.1005 30.4676 8.73748C30.7112 8.37197 30.9723 8.02138 31.2483 7.68323C31.5268 7.34507 31.8202 7.02183 32.131 6.71103C32.4393 6.40271 32.7626 6.10931 33.1032 5.83083C33.4413 5.55234 33.7919 5.29127 34.155 5.05008C34.5205 4.80641 34.8934 4.58014 35.2813 4.37377C35.6667 4.16739 36.0621 3.98091 36.4674 3.81432C36.8702 3.64524 37.2829 3.49854 37.7006 3.37173C38.1208 3.24492 38.546 3.13801 38.9737 3.05347C39.4038 2.96893 39.8365 2.90428 40.2716 2.85952C40.7067 2.81725 41.1444 2.79736 41.582 2.79736C42.0196 2.79736 42.4572 2.81725 42.8923 2.85952C43.3275 2.90428 43.7601 2.96893 44.1902 3.05347C44.6204 3.13801 45.0431 3.24492 45.4633 3.37173C45.881 3.49854 46.2938 3.64524 46.6966 3.81432C47.1019 3.98091 47.4972 4.16739 47.8826 4.37377C48.2705 4.58014 48.6435 4.80641 49.009 5.05008C49.372 5.29127 49.7226 5.55234 50.0632 5.83083C50.4014 6.10931 50.7246 6.40271 51.0329 6.71103C51.3437 7.02183 51.6371 7.34507 51.9156 7.68323C52.1916 8.02138 52.4527 8.37197 52.6964 8.73748C52.94 9.1005 53.1638 9.47595 53.3702 9.86135C53.5766 10.2492 53.7631 10.6446 53.9321 11.0474C54.0987 11.4527 54.2454 11.8654 54.3747 12.2831C54.5015 12.7009 54.606 13.1261 54.693 13.5562C54.7775 13.9839 54.8422 14.4165 54.8844 14.8541C54.9267 15.2893 54.9491 15.7244 54.9491 16.1645Z"
+            fill="#322573"
+          />
+          <path
+            d="M39.914 23.9045L41.9578 21.5871C41.9927 21.5523 41.9703 21.4951 41.9131 21.4951H39.6629C39.6504 21.4951 39.6281 21.4827 39.6156 21.4727L37.711 19.317C37.7011 19.2946 37.6886 19.2697 37.7011 19.2474L40.8912 13.7225C40.9011 13.7001 40.9011 13.6777 40.8912 13.6653L39.5709 11.3728C39.5485 11.338 39.4913 11.338 39.4664 11.3728L34.7496 19.5482C34.7397 19.5731 34.7397 19.5955 34.7496 19.6178L38.539 23.9144C38.5489 23.9268 38.5614 23.9393 38.5837 23.9393H39.8692C39.8817 23.9268 39.904 23.9144 39.914 23.9045Z"
+            fill="white"
+          />
+          <path
+            d="M41.3161 8.17566L39.9859 10.4706C39.9735 10.493 39.9735 10.5154 39.9859 10.5278L41.3634 12.9123L45.011 19.2378C45.0234 19.2602 45.0234 19.2826 45.001 19.3075L43.0716 21.4831L41.0178 23.8229C40.983 23.8577 41.0078 23.9173 41.065 23.9173H44.1407C44.1507 23.9173 44.1731 23.9049 44.1855 23.8925L47.9723 19.5959C47.9848 19.5735 47.9947 19.5487 47.9848 19.5263L41.4081 8.17566C41.3957 8.1309 41.3385 8.1309 41.3161 8.17566Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="governance-proposals MuiBox-root emotion-1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 governance-proposals-title emotion-8"
+      >
+        Proposals
+      </h3>
+      <p
+        class="MuiTypography-root MuiTypography-body1 governance-proposals-description emotion-5"
+      >
+        Participate in voting regarding the future of Lisk DEX platform. Use the voting power of the native Lisk DEX Tokens across our ecosystem.
+      </p>
+      <div
+        class="governance-proposals-actions MuiBox-root emotion-1"
+      >
         <div
-          class="governance-proposals-actions MuiBox-root emotion-2"
+          class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary governance-proposals-select emotion-11"
         >
           <div
-            class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary governance-proposals-select emotion-12"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-12"
+            role="button"
+            tabindex="0"
           >
-            <div
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-13"
-              role="button"
-              tabindex="0"
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-13"
+            >
+              All proposals
+            </h6>
+          </div>
+          <input
+            aria-hidden="true"
+            class="MuiSelect-nativeInput emotion-14"
+            tabindex="-1"
+            value="10"
+          />
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-chevron-down dropdown-arrow"
+            data-icon="chevron-down"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
+              fill="currentColor"
+            />
+          </svg>
+          <fieldset
+            aria-hidden="true"
+            class="MuiOutlinedInput-notchedOutline emotion-15"
+          >
+            <legend
+              class="emotion-16"
             >
               <span
-                class="MuiTypography-root MuiTypography-caption emotion-14"
+                class="notranslate"
               >
-                All proposals
+                ​
               </span>
-            </div>
-            <input
-              aria-hidden="true"
-              class="MuiSelect-nativeInput emotion-15"
-              tabindex="-1"
-              value="10"
-            />
-            <svg
-              aria-hidden="true"
-              class="svg-inline--fa fa-chevron-down dropdown-arrow"
-              data-icon="chevron-down"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
-              viewBox="0 0 448 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
-                fill="currentColor"
-              />
-            </svg>
-            <fieldset
-              aria-hidden="true"
-              class="MuiOutlinedInput-notchedOutline emotion-16"
-            >
-              <legend
-                class="emotion-17"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </legend>
-            </fieldset>
-          </div>
-          <h5
-            class="MuiTypography-root MuiTypography-h5 governance-proposals-create emotion-18"
-            data-testid="create-proposal"
-            href="/governance/create"
-          >
-            + Create a proposal
-          </h5>
+            </legend>
+          </fieldset>
         </div>
-        <div
-          class="governance-proposals-items MuiBox-root emotion-2"
+        <h5
+          class="MuiTypography-root MuiTypography-h5 governance-proposals-create emotion-17"
+          data-testid="create-proposal"
+          href="/governance/create"
         >
-          <div
-            class="emotion-20"
+          + Create a proposal
+        </h5>
+      </div>
+      <div
+        class="governance-proposals-items MuiBox-root emotion-1"
+      >
+        <div
+          class="emotion-19"
+        >
+          <svg
+            fill="none"
+            height="128"
+            viewBox="0 0 211 128"
+            width="211"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              fill="none"
-              height="128"
-              viewBox="0 0 211 128"
-              width="211"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M57.9228 105.032C55.5851 105.032 53.3431 104.103 51.6901 102.45C50.0371 100.797 49.1084 98.5549 49.1084 96.2172C49.1084 93.8795 50.0371 91.6375 51.6901 89.9845C53.3431 88.3315 55.5851 87.4029 57.9228 87.4029H8.81434C6.47663 87.4029 4.23467 86.4742 2.58166 84.8212C0.92865 83.1682 0 80.9262 0 78.5885C0 76.2508 0.92865 74.0089 2.58166 72.3559C4.23467 70.7029 6.47663 69.7742 8.81434 69.7742H59.182C61.5197 69.7742 63.7616 68.8456 65.4146 67.1925C67.0677 65.5395 67.9963 63.2976 67.9963 60.9599C67.9963 58.6222 67.0677 56.3802 65.4146 54.7272C63.7616 53.0742 61.5197 52.1455 59.182 52.1455H27.7022C25.3645 52.1455 23.1225 51.2169 21.4695 49.5639C19.8165 47.9109 18.8879 45.6689 18.8879 43.3312C18.8879 40.9935 19.8165 38.7515 21.4695 37.0985C23.1225 35.4455 25.3645 34.5169 27.7022 34.5169H78.0698C75.7321 34.5169 73.4902 33.5882 71.8372 31.9352C70.1841 30.2822 69.2555 28.0402 69.2555 25.7025C69.2555 23.3648 70.1841 21.1229 71.8372 19.4698C73.4902 17.8168 75.7321 16.8882 78.0698 16.8882H201.471C203.808 16.8882 206.05 17.8168 207.703 19.4698C209.356 21.1229 210.285 23.3648 210.285 25.7025C210.285 28.0402 209.356 30.2822 207.703 31.9352C206.05 33.5882 203.808 34.5169 201.471 34.5169H151.103C153.441 34.5169 155.683 35.4455 157.336 37.0985C158.989 38.7515 159.917 40.9935 159.917 43.3312C159.917 45.6689 158.989 47.9109 157.336 49.5639C155.683 51.2169 153.441 52.1455 151.103 52.1455H178.805C181.143 52.1455 183.385 53.0742 185.038 54.7272C186.691 56.3802 187.619 58.6222 187.619 60.9599C187.619 63.2976 186.691 65.5395 185.038 67.1925C183.385 68.8456 181.143 69.7742 178.805 69.7742H165.994C159.856 69.7742 154.88 73.7205 154.88 78.5885C154.88 83.4566 162.436 87.4029 162.436 87.4029C164.773 87.4029 167.015 88.3315 168.668 89.9845C170.321 91.6375 171.25 93.8795 171.25 96.2172C171.25 98.5549 170.321 100.797 168.668 102.45C167.015 104.103 164.773 105.032 162.436 105.032H57.9228ZM192.656 60.9599C192.656 59.2166 193.173 57.5124 194.142 56.0629C195.11 54.6134 196.487 53.4836 198.097 52.8165C199.708 52.1493 201.48 51.9748 203.19 52.3149C204.9 52.655 206.471 53.4945 207.703 54.7272C208.936 55.9599 209.775 57.5305 210.115 59.2403C210.456 60.9501 210.281 62.7224 209.614 64.333C208.947 65.9436 207.817 67.3202 206.368 68.2887C204.918 69.2572 203.214 69.7742 201.471 69.7742C199.133 69.7742 196.891 68.8456 195.238 67.1925C193.585 65.5395 192.656 63.2976 192.656 60.9599Z"
-                fill="#F2F5F9"
-              />
-              <path
-                d="M143.699 117.239L69.96 126.293C68.6342 126.456 67.2979 126.086 66.2453 125.263C65.1926 124.441 64.5098 123.234 64.347 121.908L52.9944 29.4486C52.913 28.7856 53.0983 28.1175 53.5095 27.5912C53.9207 27.0649 54.5242 26.7235 55.1871 26.6421L55.2134 26.6388L61.3302 25.9525L66.2768 25.3959L69.8285 24.9991L135.32 17.6289L147.032 103.056L148.084 111.626C148.247 112.952 147.876 114.288 147.054 115.341C146.231 116.394 145.024 117.077 143.699 117.239Z"
-                fill="white"
-                stroke="#A196F6"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="2.5"
-              />
-              <path
-                d="M132.131 23.0049L142.733 100.424L143.687 108.192C143.763 108.783 143.723 109.383 143.567 109.958C143.412 110.534 143.144 111.073 142.78 111.545C142.416 112.017 141.962 112.412 141.445 112.708C140.928 113.005 140.357 113.196 139.766 113.272L73.7314 121.38C73.1395 121.449 72.5396 121.402 71.9661 121.239C71.3926 121.077 70.8568 120.803 70.3893 120.433C69.9218 120.063 69.5318 119.605 69.2416 119.084C68.9515 118.564 68.7669 117.991 68.6983 117.399L58.4359 33.8182C58.3545 33.1553 58.5398 32.4871 58.951 31.9608C59.3622 31.4345 59.9657 31.0931 60.6286 31.0117L68.7974 30.0087"
-                fill="#F2F5F9"
-              />
-              <path
-                d="M155.466 104.198H81.1737C79.2643 104.198 77.7109 102.645 77.7109 100.735V5.03699C77.7109 3.12762 79.2643 1.57422 81.1737 1.57422H138.538C139.463 1.57422 140.332 1.93414 140.986 2.58769L157.914 19.5048C158.568 20.1589 158.929 21.0288 158.929 21.9541V100.735C158.929 102.645 157.375 104.198 155.466 104.198Z"
-                fill="white"
-              />
-              <path
-                d="M81.1735 2.64798C79.8559 2.64798 78.7847 3.71914 78.7847 5.03676V100.735C78.7847 102.053 79.8559 103.124 81.1735 103.124H155.466C156.783 103.124 157.855 102.053 157.855 100.735V21.9539C157.855 21.3165 157.605 20.7148 157.154 20.2642L140.227 3.34712L139.873 3.70078L140.227 3.34712C139.776 2.89694 139.175 2.64798 138.538 2.64798H81.1735ZM81.1735 0.5H138.538C139.741 0.5 140.894 0.977586 141.745 1.8278L158.673 18.7449C159.524 19.5958 160.003 20.7502 160.003 21.9539V100.735C160.003 103.241 157.971 105.272 155.466 105.272H81.1735C78.6679 105.272 76.6367 103.241 76.6367 100.735V5.03676C76.6367 2.53118 78.6679 0.5 81.1735 0.5Z"
-                fill="#A196F6"
-                stroke="#A196F6"
-              />
-              <path
-                d="M139.098 3.02588V17.6325C139.098 18.6344 139.496 19.5952 140.204 20.3036C140.913 21.0121 141.873 21.4101 142.875 21.4101H152.866"
-                stroke="#A196F6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-miterlimit="10"
-                stroke-width="2.5"
-              />
-            </svg>
-            <h6
-              class="MuiTypography-root MuiTypography-subtitle2 empty-subject emotion-21"
-            >
-              No proposals found.
-            </h6>
-            <p
-              class="MuiTypography-root MuiTypography-body2 empty-description emotion-22"
-            >
-              When proposals are created, they will appear here.
-            </p>
-          </div>
+            <path
+              d="M57.9228 105.032C55.5851 105.032 53.3431 104.103 51.6901 102.45C50.0371 100.797 49.1084 98.5549 49.1084 96.2172C49.1084 93.8795 50.0371 91.6375 51.6901 89.9845C53.3431 88.3315 55.5851 87.4029 57.9228 87.4029H8.81434C6.47663 87.4029 4.23467 86.4742 2.58166 84.8212C0.92865 83.1682 0 80.9262 0 78.5885C0 76.2508 0.92865 74.0089 2.58166 72.3559C4.23467 70.7029 6.47663 69.7742 8.81434 69.7742H59.182C61.5197 69.7742 63.7616 68.8456 65.4146 67.1925C67.0677 65.5395 67.9963 63.2976 67.9963 60.9599C67.9963 58.6222 67.0677 56.3802 65.4146 54.7272C63.7616 53.0742 61.5197 52.1455 59.182 52.1455H27.7022C25.3645 52.1455 23.1225 51.2169 21.4695 49.5639C19.8165 47.9109 18.8879 45.6689 18.8879 43.3312C18.8879 40.9935 19.8165 38.7515 21.4695 37.0985C23.1225 35.4455 25.3645 34.5169 27.7022 34.5169H78.0698C75.7321 34.5169 73.4902 33.5882 71.8372 31.9352C70.1841 30.2822 69.2555 28.0402 69.2555 25.7025C69.2555 23.3648 70.1841 21.1229 71.8372 19.4698C73.4902 17.8168 75.7321 16.8882 78.0698 16.8882H201.471C203.808 16.8882 206.05 17.8168 207.703 19.4698C209.356 21.1229 210.285 23.3648 210.285 25.7025C210.285 28.0402 209.356 30.2822 207.703 31.9352C206.05 33.5882 203.808 34.5169 201.471 34.5169H151.103C153.441 34.5169 155.683 35.4455 157.336 37.0985C158.989 38.7515 159.917 40.9935 159.917 43.3312C159.917 45.6689 158.989 47.9109 157.336 49.5639C155.683 51.2169 153.441 52.1455 151.103 52.1455H178.805C181.143 52.1455 183.385 53.0742 185.038 54.7272C186.691 56.3802 187.619 58.6222 187.619 60.9599C187.619 63.2976 186.691 65.5395 185.038 67.1925C183.385 68.8456 181.143 69.7742 178.805 69.7742H165.994C159.856 69.7742 154.88 73.7205 154.88 78.5885C154.88 83.4566 162.436 87.4029 162.436 87.4029C164.773 87.4029 167.015 88.3315 168.668 89.9845C170.321 91.6375 171.25 93.8795 171.25 96.2172C171.25 98.5549 170.321 100.797 168.668 102.45C167.015 104.103 164.773 105.032 162.436 105.032H57.9228ZM192.656 60.9599C192.656 59.2166 193.173 57.5124 194.142 56.0629C195.11 54.6134 196.487 53.4836 198.097 52.8165C199.708 52.1493 201.48 51.9748 203.19 52.3149C204.9 52.655 206.471 53.4945 207.703 54.7272C208.936 55.9599 209.775 57.5305 210.115 59.2403C210.456 60.9501 210.281 62.7224 209.614 64.333C208.947 65.9436 207.817 67.3202 206.368 68.2887C204.918 69.2572 203.214 69.7742 201.471 69.7742C199.133 69.7742 196.891 68.8456 195.238 67.1925C193.585 65.5395 192.656 63.2976 192.656 60.9599Z"
+              fill="#F2F5F9"
+            />
+            <path
+              d="M143.699 117.239L69.96 126.293C68.6342 126.456 67.2979 126.086 66.2453 125.263C65.1926 124.441 64.5098 123.234 64.347 121.908L52.9944 29.4486C52.913 28.7856 53.0983 28.1175 53.5095 27.5912C53.9207 27.0649 54.5242 26.7235 55.1871 26.6421L55.2134 26.6388L61.3302 25.9525L66.2768 25.3959L69.8285 24.9991L135.32 17.6289L147.032 103.056L148.084 111.626C148.247 112.952 147.876 114.288 147.054 115.341C146.231 116.394 145.024 117.077 143.699 117.239Z"
+              fill="white"
+              stroke="#A196F6"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="2.5"
+            />
+            <path
+              d="M132.131 23.0049L142.733 100.424L143.687 108.192C143.763 108.783 143.723 109.383 143.567 109.958C143.412 110.534 143.144 111.073 142.78 111.545C142.416 112.017 141.962 112.412 141.445 112.708C140.928 113.005 140.357 113.196 139.766 113.272L73.7314 121.38C73.1395 121.449 72.5396 121.402 71.9661 121.239C71.3926 121.077 70.8568 120.803 70.3893 120.433C69.9218 120.063 69.5318 119.605 69.2416 119.084C68.9515 118.564 68.7669 117.991 68.6983 117.399L58.4359 33.8182C58.3545 33.1553 58.5398 32.4871 58.951 31.9608C59.3622 31.4345 59.9657 31.0931 60.6286 31.0117L68.7974 30.0087"
+              fill="#F2F5F9"
+            />
+            <path
+              d="M155.466 104.198H81.1737C79.2643 104.198 77.7109 102.645 77.7109 100.735V5.03699C77.7109 3.12762 79.2643 1.57422 81.1737 1.57422H138.538C139.463 1.57422 140.332 1.93414 140.986 2.58769L157.914 19.5048C158.568 20.1589 158.929 21.0288 158.929 21.9541V100.735C158.929 102.645 157.375 104.198 155.466 104.198Z"
+              fill="white"
+            />
+            <path
+              d="M81.1735 2.64798C79.8559 2.64798 78.7847 3.71914 78.7847 5.03676V100.735C78.7847 102.053 79.8559 103.124 81.1735 103.124H155.466C156.783 103.124 157.855 102.053 157.855 100.735V21.9539C157.855 21.3165 157.605 20.7148 157.154 20.2642L140.227 3.34712L139.873 3.70078L140.227 3.34712C139.776 2.89694 139.175 2.64798 138.538 2.64798H81.1735ZM81.1735 0.5H138.538C139.741 0.5 140.894 0.977586 141.745 1.8278L158.673 18.7449C159.524 19.5958 160.003 20.7502 160.003 21.9539V100.735C160.003 103.241 157.971 105.272 155.466 105.272H81.1735C78.6679 105.272 76.6367 103.241 76.6367 100.735V5.03676C76.6367 2.53118 78.6679 0.5 81.1735 0.5Z"
+              fill="#A196F6"
+              stroke="#A196F6"
+            />
+            <path
+              d="M139.098 3.02588V17.6325C139.098 18.6344 139.496 19.5952 140.204 20.3036C140.913 21.0121 141.873 21.4101 142.875 21.4101H152.866"
+              stroke="#A196F6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              stroke-width="2.5"
+            />
+          </svg>
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 empty-subject emotion-20"
+          >
+            No proposals found.
+          </h6>
+          <p
+            class="MuiTypography-root MuiTypography-body2 empty-description emotion-21"
+          >
+            When proposals are created, they will appear here.
+          </p>
         </div>
       </div>
     </div>

@@ -28,8 +28,19 @@ const themeColors = {
     1: '#F4F8F9',
     0: '#FFFFFF',
   },
+  opacities: {
+    5: '#333333',
+    10: '#3D3D3D',
+    20: '#E6E6E6',
+    40: '#7E7E7E',
+    80: '#D4D4D4',
+  },
+  border: {
+    primary: '#322573',
+  },
   bg: {
     primary: 'linear-gradient(90deg, #140C42 0%, #211953 52.88%, #110A3A 101.53%, #140C42 101.53%)',
+    secondary: '#22184C',
     helper: '#FFFFFF',
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #372589 0%, rgba(27, 19, 68, 0.8) 100%)',

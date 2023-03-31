@@ -7,7 +7,6 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
     right: 0,
     bottom: 0,
     zIndex: 100,
-    background: theme.bg.primary,
     borderTop: `1px solid ${theme.primary[20]}`,
     display: 'flex',
     justifyContent: 'space-between',
@@ -39,8 +38,8 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
         '&.active': {
           borderTop: `2.5px solid ${theme.lightcurve[0]}`,
           color: theme.lightcurve[0],
-          p: {
-            fontWeight: '600 !important',
+          h5: {
+            fontWeight: '600',
           }
         }
       }

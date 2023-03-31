@@ -40,7 +40,7 @@ const Header: React.FC = () => {
                     "active": compareUrl(pathname, item.href),
                   })}
                 >
-                  <Typography variant="body1">{item.title}</Typography>
+                  <Typography variant="h5">{item.title}</Typography>
                 </Box>
               </Link>
             ))
@@ -50,13 +50,13 @@ const Header: React.FC = () => {
             className="header-menu-chain"
             value={10}
           >
-            <MenuItem value={10}><LiskIcon /><Typography variant="body1">Lisk-testnet</Typography></MenuItem>
+            <MenuItem value={10}><LiskIcon /><Typography variant="h5">Lisk-testnet</Typography></MenuItem>
           </Dropdown>
 
           <Box className="header-menu-wallet">
-            <Typography variant="body1">2921LSK</Typography>
+            <Typography variant="h5">2921LSK</Typography>
             <Box className="header-menu-wallet-address">
-              <Typography variant="body1">0x45d5...9915</Typography>
+              <Typography variant="h5">0x45d5...9915</Typography>
               <Image src={AvatarImg} alt="avatar" />
             </Box>
           </Box>

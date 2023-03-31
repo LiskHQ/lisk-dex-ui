@@ -10,7 +10,8 @@ export const baseTheme = {
     },
     h3: {
       fontSize: "1.75rem",
-      fontWeight: 600,
+      lineHeight: "2rem",
+      fontWeight: 500,
     },
     h4: {
       fontSize: "1.25rem",
@@ -18,15 +19,17 @@ export const baseTheme = {
     },
     h5: {
       fontSize: "1rem",
-      fontWeight: 600,
+      lineHeight: "1.25rem",
+      fontWeight: 500,
     },
     h6: {
-      fontSize: "0.75rem",
-      fontWeight: 600,
+      fontSize: "0.875rem",
+      lineHeight: "1rem",
+      fontWeight: 500,
     },
     body1: {
       fontSize: "1rem",
-      lineHeight: "1.5rem",
+      lineHeight: "1.375rem",
       fontWeight: 500,
     },
     body2: {
@@ -63,5 +66,8 @@ export const baseTheme = {
       lg: 1024,
       xl: 1440,
     },
+  },
+  shadows: {
+    sm: "0px 1px 3px rgba(0, 0, 0, 0.1)"
   }
 }

@@ -4,6 +4,8 @@ import React from "react";
 import { lightTheme } from "styles/theme";
 import Governance from ".";
 
+lightTheme.shadows[0]
+
 function renderComponent() {
   return render(
     <ThemeProvider theme={lightTheme}>

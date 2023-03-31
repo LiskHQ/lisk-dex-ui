@@ -3,9 +3,10 @@ import { LayoutTree } from "@moxy/next-layout";
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline, Container } from '@mui/material';
 
-import { lightTheme } from '../styles/theme';
+import '../styles/globals.css';
+import { darkTheme, lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }

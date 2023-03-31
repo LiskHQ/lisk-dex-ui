@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { darkTheme } from "styles/theme";
@@ -12,7 +12,7 @@ interface IProps {
 const Layout: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.md));
   return (
-    <>
+    <Container maxWidth="xl" style={{ padding: 0 }}>
       <Head>
         <title>Lisk Dex</title>
       </Head>
@@ -21,7 +21,7 @@ const Layout: React.FC<IProps> = ({ children }) => {
       {
         isUpMd ? <></> : <Footer />
       }
-    </>
+    </Container>
   );
 };
 

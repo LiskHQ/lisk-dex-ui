@@ -6,7 +6,6 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
     left: 0,
     right: 0,
     zIndex: 100,
-    background: theme.bg.primary,
     borderBottom: `1px solid ${theme.primary[20]}`,
 
     '.header-logo': {
@@ -18,6 +17,8 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
       justifyContent: 'space-between',
       alignItems: 'center',
       height: '4.25rem',
+      paddingLeft: '3rem',
+      paddingRight: '3rem',
 
       '.header-menu': {
         display: 'flex',
@@ -43,8 +44,8 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
           '&.active': {
             borderBottom: `2.5px solid ${theme.lightcurve[0]}`,
             color: theme.lightcurve[0],
-            p: {
-              fontWeight: '600 !important',
+            h5: {
+              fontWeight: '600',
             }
           },
 
