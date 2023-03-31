@@ -15,7 +15,8 @@ import { useEffect } from 'react';
 import { DropdownComponent } from 'components';
 
 const compareUrl = (a: string, b: string) => {
-  if (a.indexOf(b) === 0) return true;
+  if (`/${a.split('/')[1]}` === b)
+    return true;
   return false;
 }
 
