@@ -5,8 +5,8 @@ export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
     marginTop: '4.25rem',
     padding: '3rem',
 
-    [theme.breakpoints.down('md')]: {
-      padding: '3rem 1rem 0rem 1rem',
+    [theme.breakpoints.down('sm')]: {
+      padding: '3rem 1rem 6rem 1rem',
     },
 
     '.governance-banner': {
@@ -73,11 +73,17 @@ export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
           width: '11.25rem',
           height: '2rem',
           color: theme.text.paragraph,
-          '.MuiSelect-select': {
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0 0 0 0.75rem',
-          },
+          lineHeight: '1rem',
+
+          '.MuiOutlinedInput-root': {
+            height: '2rem',
+
+            '.MuiSelect-select': {
+              display: 'flex',
+              alignItems: 'center',
+              padding: '0.5rem 0 0.5rem 0.75rem !important',
+            }
+          }
         },
 
         '.governance-proposals-create': {

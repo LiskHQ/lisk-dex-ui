@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const Layout: React.FC<IProps> = ({ children }) => {
-  const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.md));
+  const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.lg));
   return (
     <Container maxWidth="xl" style={{ padding: 0 }}>
       <Head>

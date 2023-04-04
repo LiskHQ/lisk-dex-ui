@@ -7,7 +7,7 @@ import { Container } from '@mui/system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
-import { MENU_ITEMS } from 'consts';
+import { menuItems } from 'consts';
 import { LightcurveIcon, LiskIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
 import AvatarImg from 'imgs/avatar.png';
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
         <LightcurveIcon className="header-logo" />
         <Box className="header-menu">
           {
-            MENU_ITEMS.map(item => (
+            menuItems.map(item => (
               <Link href={item.href} passHref legacyBehavior key={item.href}>
                 <Box
                   className={cn({

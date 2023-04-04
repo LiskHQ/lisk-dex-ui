@@ -1,6 +1,6 @@
 import { PATHS } from "./paths";
 
-export const MENU_ITEMS = [
+export const menuItems = [
   {
     title: "Swap",
     href: PATHS.SWAP,

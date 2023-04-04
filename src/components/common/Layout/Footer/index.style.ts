@@ -12,6 +12,7 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '4rem',
+    background: theme.bg.primary,
 
     '.footer-menu': {
       display: 'flex',

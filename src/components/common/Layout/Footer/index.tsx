@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Grid, Typography } from '@mui/material';
 
-import { MENU_ITEMS } from 'consts';
+import { menuItems } from 'consts';
 import { FooterStyle } from './index.style';
 
 const compareUrl = (a: string, b: string) => {
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
     <FooterStyle className="footer-container" maxWidth="xl" data-testid="footer">
       <Grid className="footer-menu" container spacing={1}>
         {
-          MENU_ITEMS.map((item, index) => (
+          menuItems.map((item, index) => (
             <Link href={item.href} passHref legacyBehavior key={item.href}>
               <Grid
                 key={index}

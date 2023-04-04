@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { blueGrey } from "@mui/material/colors"
 
 export const HeaderStyle = styled('div')(({ theme }: any) => {
   return {
@@ -7,6 +8,7 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
     right: 0,
     zIndex: 100,
     borderBottom: `1px solid ${theme.primary[20]}`,
+    background: theme.bg.primary,
 
     '.header-logo': {
       fill: theme.primary[0],
@@ -17,8 +19,11 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
       justifyContent: 'space-between',
       alignItems: 'center',
       height: '4.25rem',
-      paddingLeft: '3rem',
-      paddingRight: '3rem',
+      padding: '0 3rem',
+
+      [theme.breakpoints.down('sm')]: {
+        padding: '0 1rem',
+      },
 
       '.header-menu': {
         display: 'flex',
@@ -49,40 +54,42 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
             }
           },
 
-          [theme.breakpoints.down('md')]: {
+          [theme.breakpoints.down('lg')]: {
             display: 'none'
           },
         },
 
         '.header-menu-chain': {
-          width: '10rem',
-          background: theme.primary[2.5],
-          border: `0.5px solid ${theme.primary[5]}`,
-          borderRadius: '0.75rem',
-          marginLeft: '2rem',
+          '&>.MuiOutlinedInput-root': {
+            width: '10rem',
+            background: theme.primary[2.5],
+            border: `0.5px solid ${theme.primary[5]}`,
+            borderRadius: '0.75rem',
+            marginLeft: '2rem',
 
-          '.MuiSelect-select': {
-            display: 'flex',
-            padding: '0.75rem 0.75rem 0.75rem 0.5rem',
-          },
+            '&>.MuiSelect-select': {
+              display: 'flex',
+              padding: '0.75rem 0.75rem 0.75rem 0.5rem !important',
+            },
 
-          p: {
-            color: theme.text.primary,
-          },
+            p: {
+              color: theme.text.primary,
+            },
 
-          svg: {
-            color: theme.text.primary,
-            fill: theme.text.primary,
-            marginRight: '0.25rem',
-          },
+            svg: {
+              color: theme.text.primary,
+              fill: theme.text.primary,
+              marginRight: '0.25rem',
+            },
 
-          fieldset: {
-            border: 'none',
-          },
+            fieldset: {
+              border: 'none',
+            },
 
-          [theme.breakpoints.down('md')]: {
-            display: 'none'
-          },
+            [theme.breakpoints.down('lg')]: {
+              display: 'none'
+            },
+          }
         },
 
         '.header-menu-wallet': {

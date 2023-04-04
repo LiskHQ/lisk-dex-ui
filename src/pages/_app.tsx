@@ -31,7 +31,6 @@ const AppStyle = styled('div')(({ theme }: any) => {
   return {
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
     minHeight: '100vh',
     background: theme.bg.primary
   }
