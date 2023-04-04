@@ -5,8 +5,12 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
     marginTop: '4.25rem',
     padding: '3rem 17.1875rem',
 
+    [theme.breakpoints.down('lg')]: {
+      padding: '3rem 8rem 6rem 8rem',
+    },
+
     [theme.breakpoints.down('md')]: {
-      padding: '3rem 1rem 0rem 1rem',
+      padding: '3rem 1rem 6rem 1rem',
     },
 
     '.create-proposal-path': {
@@ -17,6 +21,10 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
         width: '1rem',
         margin: '0 0.5rem',
       }
+    },
+
+    '.MuiFormControl-root': {
+      width: '100%',
     },
 
     '.create-proposal': {
@@ -32,6 +40,10 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
         alignItems: 'center',
         padding: '1.5rem 7rem 2rem 7rem',
 
+        [theme.breakpoints.down('md')]: {
+          padding: '1.5rem 1rem 2rem 1rem',
+        },
+
         '.create-proposal-title': {
           textAlign: 'center',
         },
@@ -43,6 +55,25 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
           width: '100%',
           span: {
             color: theme.lightcurve[0],
+          }
+        }
+      },
+
+      '.create-proposal-body': {
+        '.proposal-author-box': {
+          borderTop: `0.5px solid ${theme.border.primary}`,
+          borderBottom: `0.5px solid ${theme.border.primary}`,
+          padding: '1rem 1.5rem 1.5rem 1.5rem',
+
+          '.input-component-container': {
+            width: '100%',
+          }
+        },
+        '.proposal-info-box': {
+          padding: '1.5rem 1.5rem 2rem 1.5rem',
+
+          '.proposal-incentivization': {
+            marginTop: '0',
           }
         }
       }

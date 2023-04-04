@@ -15,12 +15,12 @@ const themeColors = {
     20: '#4738A6',
     40: '#362B7F',
     60: '#261E59',
-    80: '#161133',
+    80: '#E6E6E6',
   },
   primary: {
     85: '#7E6CF4',
     70: '#4F39B2',
-    40: '#BDB6F7',
+    40: '#2D2166',
     20: '#322573',
     10: '#4F39B2',
     5: '#322573',
@@ -36,7 +36,7 @@ const themeColors = {
     80: '#D4D4D4',
   },
   border: {
-    primary: '#322573',
+    primary: '#433199',
   },
   bg: {
     primary: 'linear-gradient(90deg, #140C42 0%, #211953 52.88%, #110A3A 101.53%, #140C42 101.53%)',
@@ -67,7 +67,7 @@ const lightTheme = createTheme({
   ...themeColors,
   ...baseTheme,
   palette: {
-    mode: 'dark'
+    mode: 'dark',
   },
 })
 

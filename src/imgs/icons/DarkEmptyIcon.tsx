@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const DarkEmptyIcon: React.FC<IProps> = (props) => {
+export const DarkEmptyIcon: React.FC<IProps> = (props) => {
   return (
     <svg
       width="211"
@@ -25,5 +25,3 @@ const DarkEmptyIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default DarkEmptyIcon;

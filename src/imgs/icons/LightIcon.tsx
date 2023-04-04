@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const LightIcon: React.FC<IProps> = (props) => {
+export const LightIcon: React.FC<IProps> = (props) => {
   const { className, width = 24, height = 24, fill = "#C2C2EF", onClick } = props;
   return (
     <svg
@@ -22,5 +22,3 @@ const LightIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default LightIcon;

@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const VoteIcon: React.FC<IProps> = (props) => {
+export const VoteIcon: React.FC<IProps> = (props) => {
   return (
     <svg
       width="83"
@@ -25,5 +25,3 @@ const VoteIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default VoteIcon;

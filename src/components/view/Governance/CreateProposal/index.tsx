@@ -1,10 +1,20 @@
+import { useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Typography } from "@mui/material";
-import { InputComponent } from "components";
+import { Box, Grid, MenuItem, Typography } from "@mui/material";
+import { DropdownComponent, InputComponent } from "components";
+import { ProposalType } from "consts";
 import { CreateProposalViewStyle } from "./index.style";
+import { SelectProposalTypeComponent } from "./SelectProposalType";
+import { IncentivizationProposal } from "./IncentivizationProposal";
 
 export const CreateProposalView: React.FC = () => {
+  const [proposalType, setProposalType] = useState<ProposalType>();
+
+  const onChangeProposalType = (value: ProposalType) => {
+    setProposalType(value);
+  }
+
   return (
     <CreateProposalViewStyle>
       <Box className="create-proposal-path">
@@ -23,7 +33,21 @@ export const CreateProposalView: React.FC = () => {
           </Typography>
         </Box>
         <Box className="create-proposal-body">
-          <InputComponent />
+          <Box className="proposal-author-box">
+            <InputComponent
+              label="Author"
+              placeholder="author name, organization or foundation name"
+            />
+          </Box>
+          <Box className="proposal-info-box">
+            <SelectProposalTypeComponent
+              label="Select a proposal type"
+              onChange={onChangeProposalType}
+            />
+            {
+              <IncentivizationProposal className="proposal-incentivization" />
+            }
+          </Box>
         </Box>
       </Box>
     </CreateProposalViewStyle>

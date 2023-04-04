@@ -20,7 +20,7 @@ const themeColors = {
   primary: {
     85: '#7E6CF4',
     60: '#A196F6',
-    40: '#BDB6F7',
+    40: '#E4EBF9',
     20: '#D9D8F8',
     10: '#E7E9F9',
     5: '#EEF0F8',
