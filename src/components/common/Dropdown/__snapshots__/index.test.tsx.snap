@@ -2,6 +2,83 @@
 
 exports[`Dropdown component checks if the component matches the snapshot 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+}
+
+.emotion-0 .MuiFormLabel-root {
+  position: unset;
+  color: #282828!important;
+  font-size: 0.875rem;
+  line-height: 1.124rem;
+  font-weight: 400;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  margin-bottom: 0.5rem;
+}
+
+.emotion-0 .MuiOutlinedInput-root {
+  border-radius: 0.25rem;
+  color: #282828;
+  border: 0.5px solid #E6E6E6;
+  background: unset;
+  -webkit-animation-duration: 0.5s!important;
+  animation-duration: 0.5s!important;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.emotion-0 .MuiOutlinedInput-root .MuiSelect-select {
+  padding: 0.75rem 4rem 0.75rem 1rem!important;
+}
+
+.emotion-0 .MuiOutlinedInput-root fieldset {
+  border: none;
+}
+
+.emotion-0 .MuiOutlinedInput-root:hover {
+  border: 1px solid #5845CC;
+}
+
+.emotion-0 .MuiOutlinedInput-root:focus-within {
+  border: 1px solid #6953F4;
+}
+
+.emotion-0 .dropdown-arrow {
+  display: inline-block;
+  width: 0.5rem;
+  margin-right: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  position: absolute;
+  right: 0.5rem;
+  top: calc(50% - 0.5em);
+  pointer-events: none;
+}
+
+.emotion-1 {
   font-size: 1rem;
   line-height: 1.4375em;
   font-weight: 500;
@@ -23,55 +100,35 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   border-radius: 4px;
 }
 
-.emotion-0.Mui-disabled {
+.emotion-1.Mui-disabled {
   color: rgba(0, 0, 0, 0.38);
   cursor: default;
 }
 
-.emotion-0:hover .MuiOutlinedInput-notchedOutline {
+.emotion-1:hover .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.87);
 }
 
 @media (hover: none) {
-  .emotion-0:hover .MuiOutlinedInput-notchedOutline {
+  .emotion-1:hover .MuiOutlinedInput-notchedOutline {
     border-color: rgba(0, 0, 0, 0.23);
   }
 }
 
-.emotion-0.Mui-focused .MuiOutlinedInput-notchedOutline {
+.emotion-1.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: #1976d2;
   border-width: 2px;
 }
 
-.emotion-0.Mui-error .MuiOutlinedInput-notchedOutline {
+.emotion-1.Mui-error .MuiOutlinedInput-notchedOutline {
   border-color: #d32f2f;
 }
 
-.emotion-0.Mui-disabled .MuiOutlinedInput-notchedOutline {
+.emotion-1.Mui-disabled .MuiOutlinedInput-notchedOutline {
   border-color: rgba(0, 0, 0, 0.26);
 }
 
-.emotion-0 .dropdown-arrow {
-  display: inline-block;
-  width: 0.5rem;
-  margin-right: 1rem;
-  border: 0.75 solid #E7E9F9;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  position: absolute;
-  right: 0.5rem;
-  top: calc(50% - 0.5em);
-  pointer-events: none;
-}
-
-.emotion-1 {
+.emotion-2 {
   -moz-appearance: none;
   -webkit-appearance: none;
   -webkit-user-select: none;
@@ -100,32 +157,32 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   padding: 16.5px 14px;
 }
 
-.emotion-1:focus {
+.emotion-2:focus {
   border-radius: 4px;
 }
 
-.emotion-1::-ms-expand {
+.emotion-2::-ms-expand {
   display: none;
 }
 
-.emotion-1.Mui-disabled {
+.emotion-2.Mui-disabled {
   cursor: default;
 }
 
-.emotion-1[multiple] {
+.emotion-2[multiple] {
   height: auto;
 }
 
-.emotion-1:not([multiple]) option,
-.emotion-1:not([multiple]) optgroup {
+.emotion-2:not([multiple]) option,
+.emotion-2:not([multiple]) optgroup {
   background-color: #fff;
 }
 
-.emotion-1.emotion-1.emotion-1 {
+.emotion-2.emotion-2.emotion-2 {
   padding-right: 32px;
 }
 
-.emotion-1.MuiSelect-select {
+.emotion-2.MuiSelect-select {
   height: auto;
   min-height: 1.4375em;
   text-overflow: ellipsis;
@@ -133,95 +190,95 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-1::-webkit-input-placeholder {
+.emotion-2::-webkit-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-1::-moz-placeholder {
+.emotion-2::-moz-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-1:-ms-input-placeholder {
+.emotion-2:-ms-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-1::-ms-input-placeholder {
+.emotion-2::-ms-input-placeholder {
   color: currentColor;
   opacity: 0.42;
   -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-1:focus {
+.emotion-2:focus {
   outline: 0;
 }
 
-.emotion-1:invalid {
+.emotion-2:invalid {
   box-shadow: none;
 }
 
-.emotion-1::-webkit-search-decoration {
+.emotion-2::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1::-webkit-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2::-webkit-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1::-moz-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2::-moz-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2:-ms-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1::-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2::-ms-input-placeholder {
   opacity: 0!important;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-webkit-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2:focus::-webkit-input-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-moz-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2:focus::-moz-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus:-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2:focus:-ms-input-placeholder {
   opacity: 0.42;
 }
 
-label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-ms-input-placeholder {
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-2:focus::-ms-input-placeholder {
   opacity: 0.42;
 }
 
-.emotion-1.Mui-disabled {
+.emotion-2.Mui-disabled {
   opacity: 1;
   -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
 }
 
-.emotion-1:-webkit-autofill {
+.emotion-2:-webkit-autofill {
   -webkit-animation-duration: 5000s;
   animation-duration: 5000s;
   -webkit-animation-name: mui-auto-fill;
   animation-name: mui-auto-fill;
 }
 
-.emotion-1:-webkit-autofill {
+.emotion-2:-webkit-autofill {
   border-radius: inherit;
 }
 
-.emotion-2 {
+.emotion-3 {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -231,7 +288,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-ms-input-p
   box-sizing: border-box;
 }
 
-.emotion-3 {
+.emotion-4 {
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -249,7 +306,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-ms-input-p
   border-color: rgba(0, 0, 0, 0.23);
 }
 
-.emotion-4 {
+.emotion-5 {
   float: unset;
   overflow: hidden;
   padding: 0;
@@ -260,56 +317,60 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-1:focus::-ms-input-p
 
 <div>
   <div
-    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary emotion-0"
+    class="MuiFormControl-root emotion-0"
   >
     <div
-      aria-expanded="false"
-      aria-haspopup="listbox"
-      class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-1"
-      role="button"
-      tabindex="0"
+      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-1"
     >
-      <span
-        class="notranslate"
-      >
-        ​
-      </span>
-    </div>
-    <input
-      aria-hidden="true"
-      class="MuiSelect-nativeInput emotion-2"
-      tabindex="-1"
-      value=""
-    />
-    <svg
-      aria-hidden="true"
-      class="svg-inline--fa fa-chevron-down dropdown-arrow"
-      data-icon="chevron-down"
-      data-prefix="fas"
-      focusable="false"
-      role="img"
-      viewBox="0 0 448 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
-        fill="currentColor"
-      />
-    </svg>
-    <fieldset
-      aria-hidden="true"
-      class="MuiOutlinedInput-notchedOutline emotion-3"
-    >
-      <legend
-        class="emotion-4"
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-2"
+        role="button"
+        tabindex="0"
       >
         <span
           class="notranslate"
         >
           ​
         </span>
-      </legend>
-    </fieldset>
+      </div>
+      <input
+        aria-hidden="true"
+        class="MuiSelect-nativeInput emotion-3"
+        tabindex="-1"
+        value=""
+      />
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-chevron-down dropdown-arrow"
+        data-icon="chevron-down"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 448 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
+          fill="currentColor"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="MuiOutlinedInput-notchedOutline emotion-4"
+      >
+        <legend
+          class="emotion-5"
+        >
+          <span
+            class="notranslate"
+          >
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
   </div>
 </div>
 `;

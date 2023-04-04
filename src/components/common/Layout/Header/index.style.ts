@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import { blueGrey } from "@mui/material/colors"
 
 export const HeaderStyle = styled('div')(({ theme }: any) => {
   return {
