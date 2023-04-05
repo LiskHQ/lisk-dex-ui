@@ -23,7 +23,7 @@ const schema = Yup.object().shape({
 
 export const CreateProposalView: React.FC = () => {
   const [proposalType, setProposalType] = useState<ProposalType>();
-  const { register, handleSubmit, formState: { errors, isValid }, watch } = useForm<IProposal>({
+  const { register, handleSubmit, formState: { isValid }, watch } = useForm<IProposal>({
     resolver: yupResolver(schema),
   });
 

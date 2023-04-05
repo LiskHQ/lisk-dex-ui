@@ -1,5 +1,5 @@
 import { MenuItem, ThemeProvider } from "@mui/material";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { lightTheme } from "styles/theme";
 import { DropdownComponent } from ".";
