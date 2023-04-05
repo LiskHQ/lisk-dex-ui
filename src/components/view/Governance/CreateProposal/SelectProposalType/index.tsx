@@ -34,6 +34,7 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
       >
         <Grid item md={6}>
           <Box
+            data-testid="pool-incentivization-proposal-test"
             className={
               cn({
                 "proposal-box": true,
@@ -57,6 +58,7 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
         </Grid>
         <Grid item md={6}>
           <Box
+            data-testid="universal-proposal-test"
             className={
               cn({
                 "proposal-box": true,

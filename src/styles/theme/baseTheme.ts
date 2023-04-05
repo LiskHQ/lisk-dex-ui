@@ -67,7 +67,7 @@ export const baseTheme = {
       xl: 1440,
     },
   },
-  shadows: {
+  shadow: {
     sm: "0px 1px 3px rgba(0, 0, 0, 0.1)"
   }
 }

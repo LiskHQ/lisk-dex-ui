@@ -1,36 +1,71 @@
-import { FormHelperText, FormLabel, Input } from "@mui/material"
 import { InputComponentStyle } from "./index.style"
-import cn from 'classnames';
+import { useTheme } from "@mui/styles";
+import { Box, TextField, Typography } from "@mui/material";
+import { ReactNode } from "react";
+import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
+  name?: string,
   className?: string,
-  label?: string,
+  label?: ReactNode,
   placeholder?: string,
   error?: string,
+  type?: string,
+  multiline?: boolean,
+  minRows?: number,
+  maxRows?: number,
+  maxLength?: number,
+  min?: number,
+  max?: number,
+  onChange?: (value: string) => void,
+  register?: UseFormRegister<any>,
+  watch?: UseFormWatch<any>,
+  onKeyDown?: (e: any) => void,
+  options?: RegisterOptions,
 }
 
 export const InputComponent: React.FC<IProps> = (props) => {
-  const {
-    className,
-    label,
-    placeholder,
-    error,
-  } = props;
+  const theme = useTheme();
+  const { maxLength, onChange, register, watch, options, className, name: fieldName, type, min, max, ...inputProps } = props;
+  const value = watch && fieldName && watch(fieldName);
+
 
   return (
-    <InputComponentStyle className={
-      cn({
-        "input-component-container": true,
-        className: !!className,
-      })
-    }>
+    <InputComponentStyle
+      className={className}
+    >
+      <TextField
+        type={type}
+        InputLabelProps={{ shrink: true }}
+        inputProps={{
+          sx: {
+            "&::placeholder": {
+              opacity: 1,
+              color: theme.text.placeholder,
+            },
+            "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+              "-webkit-appearance": "none",
+              display: "none"
+            }
+          },
+          maxLength,
+        }}
+        {...(register && register(fieldName!, options))}
+        {...inputProps}
+      />
       {
-        !!label && <FormLabel>{label}</FormLabel>
-      }
-      <Input placeholder={placeholder} />
-      {
-        error ??
-        <FormHelperText>{error}</FormHelperText>
+        !!value && maxLength &&
+        <Box sx={{
+          position: 'absolute',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'end',
+          color: theme.text.paragraph,
+          marginTop: '0.25rem',
+          marginBottom: '0.25rem',
+        }}>
+          <Typography variant="caption">{value.length}/{maxLength}</Typography>
+        </Box>
       }
     </InputComponentStyle>
   )

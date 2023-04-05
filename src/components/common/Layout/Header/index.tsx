@@ -62,7 +62,7 @@ export const Header: React.FC = () => {
             <Typography variant="h5">2921LSK</Typography>
             <Box className="header-menu-wallet-address">
               <Typography variant="h5">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
-              <Image src={AvatarImg} alt="avatar" />
+              <Image src={AvatarImg} />
             </Box>
           </Box>
 

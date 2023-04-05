@@ -7,3 +7,4 @@ export * from './LiskIcon';
 export * from './PoolIncentivizationIcon';
 export * from './UniversalIcon';
 export * from './VoteIcon';
+export * from './HelpIcon';

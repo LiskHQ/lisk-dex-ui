@@ -8,6 +8,8 @@ const themeColors = {
     paragraph: '#6B7280',
     body: '#6B7280',
     heading: '#4738A6',
+    button: '#FFFFFF',
+    placeholder: '#6B7280',
   },
   lightcurve: {
     0: '#6953F4',
@@ -41,7 +43,7 @@ const themeColors = {
   bg: {
     primary: '#FBFBFB',
     secondary: '#FFFFFF',
-    helper: '#FFFFFF',
+    helper: '#22184D',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
   },

@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import { Box } from '@mui/material'
 
-export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
+export const InputComponentStyle = styled(Box)(({ theme }: any) => {
   return {
-    '.MuiFormLabel-root': {
+    position: 'relative',
+    '.MuiInputLabel-root': {
+      display: 'flex',
       position: 'unset',
       color: `${theme.text.primary} !important`,
       fontSize: '0.875rem',
@@ -12,9 +14,17 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       transform: 'none',
       WebkitTransform: 'none',
       msTransform: 'none',
+
+      svg: {
+        cursor: 'pointer',
+        marginLeft: '0.25rem',
+        path: {
+          stroke: `${theme.text.paragraph} !important`,
+        }
+      }
     },
 
-    '.MuiInput-root': {
+    '.MuiInputBase-root': {
       padding: '0.75rem 1rem',
       borderRadius: '0.25rem',
       color: theme.text.primary,
@@ -27,6 +37,10 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
 
       input: {
         padding: 0,
+      },
+
+      fieldset: {
+        border: 'none',
       },
 
       '&:before': {

@@ -7,7 +7,7 @@ import { useTheme } from '@mui/styles';
 
 interface IProps {
   className?: string,
-  label?: string,
+  label?: ReactNode,
   children?: React.ReactNode,
   onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
   renderValue?: (value: number) => ReactNode;
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export const DropdownComponent: React.FC<IProps> = (props) => {
-  const { className, label, children, value, renderValue, onChange } = props;
+  const { className, label, children, ...selectProps } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const theme = useTheme();
@@ -27,12 +27,10 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
         !!label && <FormLabel>{label}</FormLabel>
       }
       <Select
-        value={value}
+        displayEmpty
         IconComponent={() => (<FontAwesomeIcon className="dropdown-arrow" icon={isOpen ? faChevronUp : faChevronDown} />)}
-        onChange={onChange}
         onOpen={() => { setOpen(true); }}
         onClose={() => { setOpen(false); }}
-        renderValue={renderValue}
         MenuProps={{
           PaperProps: {
             style: {
@@ -40,6 +38,8 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
             }
           }
         }}
+        {...selectProps}
+        data-testid="dropdown-select"
       >
         {children}
       </Select>

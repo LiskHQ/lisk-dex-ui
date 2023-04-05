@@ -1,7 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown component checks if the component matches the snapshot 1`] = `
+exports[`Input component checks if the component matches the snapshot 1`] = `
 .emotion-0 {
+  position: relative;
+}
+
+.emotion-0 .MuiInputLabel-root {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: unset;
+  color: #282828!important;
+  font-size: 0.875rem;
+  line-height: 1.124rem;
+  font-weight: 400;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+}
+
+.emotion-0 .MuiInputLabel-root svg {
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+
+.emotion-0 .MuiInputLabel-root svg path {
+  stroke: #6B7280!important;
+}
+
+.emotion-0 .MuiInputBase-root {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  color: #282828;
+  border: 0.5px solid #E6E6E6;
+  background: unset;
+  -webkit-animation-duration: 0.5s!important;
+  animation-duration: 0.5s!important;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.625rem;
+}
+
+.emotion-0 .MuiInputBase-root input {
+  padding: 0;
+}
+
+.emotion-0 .MuiInputBase-root fieldset {
+  border: none;
+}
+
+.emotion-0 .MuiInputBase-root:before {
+  content: none;
+}
+
+.emotion-0 .MuiInputBase-root:after {
+  content: none;
+}
+
+.emotion-0 .MuiInputBase-root:hover {
+  border: 1px solid #5845CC;
+}
+
+.emotion-0 .MuiInputBase-root:focus-within {
+  border: 1px solid #6953F4;
+}
+
+.emotion-0 .MuiFormHelperText-root {
+  color: #FB8B96;
+  margin: 0.5rem 0 0 0;
+}
+
+.emotion-1 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -15,103 +88,6 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   margin: 0;
   border: 0;
   vertical-align: top;
-}
-
-.emotion-0 .MuiFormLabel-root {
-  position: unset;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  color: #282828!important;
-  font-size: 0.875rem;
-  line-height: 1.124rem;
-  font-weight: 400;
-  -webkit-transform: none;
-  -moz-transform: none;
-  -ms-transform: none;
-  transform: none;
-  -webkit-transform: none;
-  -ms-transform: none;
-  margin-bottom: 0.5rem;
-}
-
-.emotion-0 .MuiFormLabel-root svg {
-  cursor: pointer;
-  margin-left: 0.25rem;
-}
-
-.emotion-0 .MuiFormLabel-root svg path {
-  stroke: #6B7280!important;
-}
-
-.emotion-0 .MuiOutlinedInput-root {
-  border-radius: 0.25rem;
-  color: #282828;
-  border: 0.5px solid #E6E6E6;
-  background: unset;
-  -webkit-animation-duration: 0.5s!important;
-  animation-duration: 0.5s!important;
-  font-size: 1rem;
-  line-height: 2rem;
-}
-
-.emotion-0 .MuiOutlinedInput-root .MuiSelect-select {
-  padding: 0.75rem 4rem 0.75rem 1rem!important;
-}
-
-.emotion-0 .MuiOutlinedInput-root fieldset {
-  border: none;
-}
-
-.emotion-0 .MuiOutlinedInput-root:hover {
-  border: 1px solid #5845CC;
-}
-
-.emotion-0 .MuiOutlinedInput-root:focus-within {
-  border: 1px solid #6953F4;
-}
-
-.emotion-0 .dropdown-arrow {
-  display: inline-block;
-  width: 0.5rem;
-  margin-right: 1rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  position: absolute;
-  right: 0.5rem;
-  top: calc(50% - 0.5em);
-  pointer-events: none;
-}
-
-.emotion-1 {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 1rem;
-  line-height: 1.4375em;
-  font-weight: 500;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  letter-spacing: 0.00938em;
-  padding: 0;
-  position: relative;
-}
-
-.emotion-1.Mui-focused {
-  color: #1976d2;
-}
-
-.emotion-1.Mui-disabled {
-  color: rgba(0, 0, 0, 0.38);
-}
-
-.emotion-1.Mui-error {
-  color: #d32f2f;
 }
 
 .emotion-2 {
@@ -165,14 +141,6 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-3 {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border-radius: 4px;
-  cursor: pointer;
   font: inherit;
   letter-spacing: inherit;
   color: currentColor;
@@ -191,39 +159,6 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   -webkit-animation-duration: 10ms;
   animation-duration: 10ms;
   padding: 16.5px 14px;
-}
-
-.emotion-3:focus {
-  border-radius: 4px;
-}
-
-.emotion-3::-ms-expand {
-  display: none;
-}
-
-.emotion-3.Mui-disabled {
-  cursor: default;
-}
-
-.emotion-3[multiple] {
-  height: auto;
-}
-
-.emotion-3:not([multiple]) option,
-.emotion-3:not([multiple]) optgroup {
-  background-color: #fff;
-}
-
-.emotion-3.emotion-3.emotion-3 {
-  padding-right: 32px;
-}
-
-.emotion-3.MuiSelect-select {
-  height: auto;
-  min-height: 1.4375em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .emotion-3::-webkit-input-placeholder {
@@ -310,21 +245,63 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-3:focus::-ms-input-p
   animation-name: mui-auto-fill;
 }
 
+.emotion-3::-webkit-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3::-moz-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3:-ms-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3::placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3::-webkit-outer-spin-button,
+.emotion-3::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
 .emotion-3:-webkit-autofill {
   border-radius: inherit;
 }
 
-.emotion-4 {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  width: 100%;
-  box-sizing: border-box;
+.emotion-3::-webkit-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
 }
 
-.emotion-5 {
+.emotion-3::-moz-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3:-ms-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3::placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-3::-webkit-outer-spin-button,
+.emotion-3::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.emotion-4 {
   text-align: left;
   position: absolute;
   bottom: 0;
@@ -342,7 +319,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-3:focus::-ms-input-p
   border-color: rgba(0, 0, 0, 0.23);
 }
 
-.emotion-6 {
+.emotion-5 {
   float: unset;
   overflow: hidden;
   padding: 0;
@@ -353,61 +330,36 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-3:focus::-ms-input-p
 
 <div>
   <div
-    class="MuiFormControl-root emotion-0"
+    class="MuiBox-root emotion-0"
   >
-    <label
-      class="MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-1"
-    >
-      Test Label
-    </label>
     <div
-      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-2"
-      data-testid="dropdown-select"
+      class="MuiFormControl-root MuiTextField-root emotion-1"
     >
       <div
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-3"
-        role="button"
-        tabindex="0"
+        class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-2"
       >
-        Option 2
-      </div>
-      <input
-        aria-hidden="true"
-        class="MuiSelect-nativeInput emotion-4"
-        tabindex="-1"
-        value="2"
-      />
-      <svg
-        aria-hidden="true"
-        class="svg-inline--fa fa-chevron-down dropdown-arrow"
-        data-icon="chevron-down"
-        data-prefix="fas"
-        focusable="false"
-        role="img"
-        viewBox="0 0 448 512"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
-          fill="currentColor"
+        <input
+          aria-invalid="false"
+          class="MuiOutlinedInput-input MuiInputBase-input emotion-3"
+          id=":r0:"
+          type="text"
+          value=""
         />
-      </svg>
-      <fieldset
-        aria-hidden="true"
-        class="MuiOutlinedInput-notchedOutline emotion-5"
-      >
-        <legend
-          class="emotion-6"
+        <fieldset
+          aria-hidden="true"
+          class="MuiOutlinedInput-notchedOutline emotion-4"
         >
-          <span
-            class="notranslate"
+          <legend
+            class="emotion-5"
           >
-            ​
-          </span>
-        </legend>
-      </fieldset>
+            <span
+              class="notranslate"
+            >
+              ​
+            </span>
+          </legend>
+        </fieldset>
+      </div>
     </div>
   </div>
 </div>

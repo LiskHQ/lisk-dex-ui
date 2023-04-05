@@ -20,6 +20,7 @@ exports[`Footer component checks if the component matches the snapshot 1`] = `
   -ms-flex-align: center;
   align-items: center;
   height: 4rem;
+  background: #FBFBFB;
 }
 
 .emotion-0 .footer-menu {

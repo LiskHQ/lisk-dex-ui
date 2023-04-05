@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import '../styles/globals.css';
-import { darkTheme } from '../styles/theme';
+import { lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
@@ -16,7 +16,7 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
   return (
     // <Provider store={store}>
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <AppStyle className="layout-app">
           <LayoutTree Component={Component} pageProps={pageProps} />
