@@ -6,7 +6,7 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 100,
+    zIndex: 10,
     borderTop: `1px solid ${theme.primary[20]}`,
     display: 'flex',
     justifyContent: 'space-between',
@@ -30,7 +30,7 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
         color: theme.text.body,
         fontWeight: 500,
         cursor: 'pointer',
-        animationDuration: '0.2s',
+        animationDuration: '0.5s',
 
         '&:hover': {
           opacity: '0.85',

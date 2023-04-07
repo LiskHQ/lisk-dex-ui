@@ -1,9 +1,11 @@
+import { MouseEventHandler } from "react";
+
 interface IProps {
   className?: string;
   width?: number;
   height?: number;
   fill?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: MouseEventHandler<SVGSVGElement>;
 }
 
 export const HelpIcon: React.FC<IProps> = (props) => {

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { FormControl } from '@mui/material'
 
-export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
+export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
     position: 'relative',
     '.MuiInputLabel-root': {
@@ -21,11 +21,16 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
         path: {
           stroke: `${theme.text.paragraph} !important`,
         }
+      },
+
+      span: {
+        color: theme.text.paragraph,
+        marginLeft: '0.25rem'
       }
     },
 
     '.MuiInputBase-root': {
-      padding: '0.75rem 1rem',
+      padding: '0.75rem 1rem 0.75rem 2.5rem',
       borderRadius: '0.25rem',
       color: theme.text.primary,
       border: `0.5px solid ${theme.border.primary}`,
@@ -74,6 +79,26 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       color: theme.text.paragraph,
       marginTop: '0.25rem',
       marginBottom: '0.25rem',
+    },
+
+    '.link-icon': {
+      position: 'absolute',
+      left: '1rem',
+      top: '2.625rem',
+
+      '&:hover': {
+        cursor: 'pointer',
+      },
+
+      path: {
+        stroke: theme.text.placeholder,
+      },
+
+      '&.active': {
+        path: {
+          stroke: theme.lightcurve[0],
+        }
+      }
     }
   }
 })

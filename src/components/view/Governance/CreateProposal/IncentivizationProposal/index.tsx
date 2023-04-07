@@ -1,11 +1,12 @@
+import { useState } from "react"
 import { Box, Grid, MenuItem, Typography } from "@mui/material"
 import { useTheme } from "@mui/styles"
 import { DropdownComponent, InputComponent, PoolItem, PopoverComponent } from "components"
 import { HelpIcon } from "imgs/icons"
 import { IPoolItem } from "models"
-import { useState } from "react"
 import { allowDigitOnly } from "utils"
 import { IncentivizationProposalStyle } from "./index.style"
+import { UseFormRegister, UseFormWatch } from "react-hook-form"
 
 export const poolItems: IPoolItem[] = [
   {
@@ -40,19 +41,16 @@ export const poolItems: IPoolItem[] = [
 
 interface IProps {
   className?: string,
+  register?: UseFormRegister<any>,
+  watch?: UseFormWatch<any>,
 }
 
 export const IncentivizationProposal: React.FC<IProps> = (props) => {
-  const { className } = props;
+  const { className, register, watch } = props;
   const theme = useTheme();
-  const [poolID, setPoolID] = useState<string>('');
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoolIdHelp, setOpenPoolIdHelp] = useState<boolean>(false);
   const [openMultiplierHelp, setOpenMultiplierHelp] = useState<boolean>(false);
-
-  const onChangePoolID = (value: string | number) => {
-    setPoolID(value as string);
-  }
 
   const onClickPoolIDHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -69,6 +67,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
       <Grid container spacing={3} className="proposal-incentivization">
         <Grid item lg={6}>
           <DropdownComponent
+            name="poolID"
             className="proposal-pool-id"
             label={
               <>
@@ -77,8 +76,6 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
                 />
               </>
             }
-            onChange={(e) => { onChangePoolID(e.target.value); }}
-            value={poolID}
             renderValue={(value) => {
               const item = poolItems.find(el => el.id == value);
               if (item)
@@ -95,6 +92,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
                 </Box>
                 );
             }}
+            register={register}
           >
             <MenuItem value="10" disabled>
               <Box sx={{
@@ -136,6 +134,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
         </Grid>
         <Grid item lg={6}>
           <InputComponent
+            name="multiplier"
             label={
               <>
                 Add a multiplier  <HelpIcon
@@ -147,6 +146,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
             min={0}
             placeholder="Add multiplier"
             onKeyDown={allowDigitOnly}
+            register={register}
           />
         </Grid>
       </Grid>

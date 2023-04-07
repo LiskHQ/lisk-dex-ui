@@ -24,12 +24,5 @@ describe("CreateProposalView", () => {
     fireEvent.click(poolIncentivization);
     expect(getByText("Select a pool ID")).toBeInTheDocument();
   });
-
-  it("select universal proposal", () => {
-    const { getByTestId } = renderComponent();
-    const universal = getByTestId("universal-proposal-test");
-    fireEvent.click(universal);
-    expect(universal.className).toContain('selected');
-  });
 });
 

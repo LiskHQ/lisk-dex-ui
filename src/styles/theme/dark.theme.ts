@@ -46,6 +46,7 @@ const themeColors = {
     helper: '#6953F4',
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #372589 0%, rgba(27, 19, 68, 0.8) 100%)',
+    slider: '#322573',
   },
   success: {
     primary: '#E3F2E0',

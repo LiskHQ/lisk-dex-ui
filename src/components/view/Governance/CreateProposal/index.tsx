@@ -6,23 +6,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from 'yup';
 import { Box, Typography } from "@mui/material";
 
-import { InputComponent } from "components";
+import { InputComponent, UrlInputComponent } from "components";
 import { ProposalType } from "consts";
 import { CreateProposalViewStyle } from "./index.style";
 import { SelectProposalTypeComponent } from "./SelectProposalType";
 import { IncentivizationProposal } from "./IncentivizationProposal";
 import { ButtonComponent } from "components/common/Button";
 import { IProposal } from "models";
-
-const schema = Yup.object().shape({
-  title: Yup.string().required(),
-  summary: Yup.string().required(),
-  description: Yup.string().required(),
-  link: Yup.string(),
-});
+import { ConfirmCreateProposalModal } from "./ConfirmCreateProposalModal";
 
 export const CreateProposalView: React.FC = () => {
   const [proposalType, setProposalType] = useState<ProposalType>();
+  const [open, setOpen] = useState<boolean>(false);
+  const [proposal, setProposal] = useState<IProposal>();
+
+  const schema = Yup.object().shape({
+    author: Yup.string().required(),
+    title: Yup.string().required(),
+    poolID: proposalType === ProposalType.PoolIncentivization ? Yup.string().required() : Yup.string(),
+    multiplier: proposalType === ProposalType.PoolIncentivization ? Yup.number().required() : Yup.number(),
+    summary: Yup.string().required(),
+    description: Yup.string().required(),
+    link: Yup.string().url(),
+  });
+
   const { register, handleSubmit, formState: { isValid }, watch } = useForm<IProposal>({
     resolver: yupResolver(schema),
   });
@@ -33,6 +40,11 @@ export const CreateProposalView: React.FC = () => {
 
   const onSubmitHandler = (data: IProposal) => {
     console.log(data);
+    setOpen(true);
+    setProposal({
+      ...data,
+      proposalType,
+    })
   }
 
   return (
@@ -56,8 +68,10 @@ export const CreateProposalView: React.FC = () => {
           <Box component={'form'} onSubmit={handleSubmit(onSubmitHandler)}>
             <Box className="proposal-author-box">
               <InputComponent
+                name="author"
                 label="Author"
                 placeholder="author name, organization or foundation name"
+                register={register}
               />
             </Box>
             <Box className="proposal-info-box">
@@ -67,7 +81,10 @@ export const CreateProposalView: React.FC = () => {
               />
               {
                 proposalType === ProposalType.PoolIncentivization &&
-                <IncentivizationProposal className="proposal-incentivization" />
+                <IncentivizationProposal
+                  className="proposal-incentivization"
+                  register={register}
+                />
               }
               <InputComponent
                 name="title"
@@ -102,17 +119,19 @@ export const CreateProposalView: React.FC = () => {
                 register={register}
                 watch={watch}
               />
-              <InputComponent
+              <UrlInputComponent
                 name="link"
                 className="proposal-link"
-                label="Discussions to"
+                label={<>Discussions to <Typography variant="caption">(optional)</Typography></>}
                 placeholder="Link"
+                maxLength={200}
                 register={register}
                 watch={watch}
               />
               <ButtonComponent
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || !proposalType}
+                loading={open}
               >
                 <Typography variant="body1">
                   Create Proposal (5000 LSK)
@@ -122,6 +141,13 @@ export const CreateProposalView: React.FC = () => {
           </Box>
         </Box>
       </Box>
+      {
+        proposal && open &&
+        <ConfirmCreateProposalModal
+          onClose={() => { setOpen(false); }}
+          proposal={proposal}
+        />
+      }
     </CreateProposalViewStyle>
   );
 }

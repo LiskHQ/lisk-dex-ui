@@ -7,6 +7,7 @@ export const ButtonComponentStyle = styled(Button)(({ theme }: any) => {
     background: theme.lightcurve[0],
     color: theme.text.button,
     padding: '0.75rem',
+    textTransform: 'capitalize',
 
     '&:hover': {
       background: theme.lightcurve[10],

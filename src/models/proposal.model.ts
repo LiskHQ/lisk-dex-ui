@@ -1,7 +1,8 @@
 import { ProposalType } from "consts";
 
 export interface IProposal {
-  proposalType?: ProposalType,
+  author: string,
+  proposalType: ProposalType,
   poolID?: string,
   multiplier?: number,
   title: string,

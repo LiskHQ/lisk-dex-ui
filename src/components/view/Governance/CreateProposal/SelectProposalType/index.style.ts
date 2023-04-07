@@ -23,7 +23,7 @@ export const SelectProposalTypeStyle = styled(FormControl)(({ theme }: any) => {
         padding: '1.5rem 1rem 1rem 1rem',
         borderRadius: '0.375rem',
         border: `0.5px solid ${theme.border.primary}`,
-        animationDuration: '0.5s',
+        animationDuration: '1s',
         cursor: 'pointer',
 
         ':hover': {
@@ -31,6 +31,7 @@ export const SelectProposalTypeStyle = styled(FormControl)(({ theme }: any) => {
         },
 
         '&.selected': {
+          background: theme.primary[1],
           border: `1px solid ${theme.lightcurve[0]}`,
         },
 

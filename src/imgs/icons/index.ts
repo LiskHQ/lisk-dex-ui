@@ -8,3 +8,6 @@ export * from './PoolIncentivizationIcon';
 export * from './UniversalIcon';
 export * from './VoteIcon';
 export * from './HelpIcon';
+export * from './LinkIcon';
+export * from './CancelIcon';
+export * from './LoaderIcon';

@@ -2,6 +2,7 @@ import styled from "@emotion/styled"
 
 export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
   return {
+    position: 'relative',
     marginTop: '4.25rem',
     padding: '3rem 17.1875rem',
 

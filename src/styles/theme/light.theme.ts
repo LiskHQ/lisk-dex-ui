@@ -13,7 +13,7 @@ const themeColors = {
   },
   lightcurve: {
     0: '#6953F4',
-    10: '#5845CC',
+    10: '#A196F6',
     20: '#4738A6',
     40: '#362B7F',
     60: '#261E59',
@@ -46,6 +46,7 @@ const themeColors = {
     helper: '#22184D',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
+    slider: '#F2F2F2',
   },
   success: {
     primary: '#E3F2E0',

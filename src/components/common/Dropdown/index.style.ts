@@ -29,7 +29,7 @@ export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
       color: theme.text.primary,
       border: `0.5px solid ${theme.border.primary}`,
       background: 'unset',
-      animationDuration: '0.5s !important',
+      animationDuration: '1s !important',
       fontSize: '1rem',
       lineHeight: '2rem',
 

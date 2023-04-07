@@ -4,18 +4,22 @@ import { ReactNode, useState } from 'react';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { DropdownComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
+import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 interface IProps {
+  name?: string,
   className?: string,
   label?: ReactNode,
+  value?: number | string,
   children?: React.ReactNode,
   onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
   renderValue?: (value: number) => ReactNode;
-  value?: number | string,
+  register?: UseFormRegister<any>,
+  options?: RegisterOptions,
 }
 
 export const DropdownComponent: React.FC<IProps> = (props) => {
-  const { className, label, children, ...selectProps } = props;
+  const { className, label, children, register, name: fieldName, options, ...selectProps } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const theme = useTheme();
@@ -27,6 +31,7 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
         !!label && <FormLabel>{label}</FormLabel>
       }
       <Select
+        data-testid="dropdown-select"
         displayEmpty
         IconComponent={() => (<FontAwesomeIcon className="dropdown-arrow" icon={isOpen ? faChevronUp : faChevronDown} />)}
         onOpen={() => { setOpen(true); }}
@@ -39,7 +44,7 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
           }
         }}
         {...selectProps}
-        data-testid="dropdown-select"
+        {...(register && register(fieldName!, options))}
       >
         {children}
       </Select>
