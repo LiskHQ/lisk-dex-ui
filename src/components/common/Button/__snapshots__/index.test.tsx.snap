@@ -50,6 +50,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
   background: #6953F4;
   color: #FFFFFF;
   padding: 0.75rem;
+  text-transform: capitalize;
 }
 
 .emotion-0::-moz-focus-inner {
@@ -85,7 +86,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-0:hover {
-  background: #5845CC;
+  background: #A196F6;
 }
 
 .emotion-0.Mui-disabled {

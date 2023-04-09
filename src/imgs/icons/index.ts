@@ -11,3 +11,4 @@ export * from './HelpIcon';
 export * from './LinkIcon';
 export * from './CancelIcon';
 export * from './LoaderIcon';
+export * from './SuccessIcon';

@@ -1,4 +1,4 @@
 export enum ProposalType {
-  PoolIncentivization = "POOL_INCENTIviZATION",
+  PoolIncentivization = "POOL_INCENTIVIZATION",
   Universal = "UNIVERSAL",
 }

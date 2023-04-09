@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from 'react-hook-form';
@@ -14,23 +14,48 @@ import { IncentivizationProposal } from "./IncentivizationProposal";
 import { ButtonComponent } from "components/common/Button";
 import { IProposal } from "models";
 import { ConfirmCreateProposalModal } from "./ConfirmCreateProposalModal";
+import { ProposalSubmittedModal } from "./ProposalSubmittedModal";
 
-export const CreateProposalView: React.FC = () => {
+export interface ICreateProposalViewProps {
+  openTransactionApproval: boolean,
+  approvedTransaction: boolean,
+  onSubmit: (proposal: IProposal) => void,
+  onCloseProposalSubmitted: () => void,
+}
+
+export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
+  const { openTransactionApproval, approvedTransaction, onSubmit, onCloseProposalSubmitted } = props;
+
   const [proposalType, setProposalType] = useState<ProposalType>();
-  const [open, setOpen] = useState<boolean>(false);
+  const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
   const [proposal, setProposal] = useState<IProposal>();
 
-  const schema = Yup.object().shape({
-    author: Yup.string().required(),
-    title: Yup.string().required(),
-    poolID: proposalType === ProposalType.PoolIncentivization ? Yup.string().required() : Yup.string(),
-    multiplier: proposalType === ProposalType.PoolIncentivization ? Yup.number().required() : Yup.number(),
-    summary: Yup.string().required(),
-    description: Yup.string().required(),
-    link: Yup.string().url(),
-  });
+  const schema = useMemo(() => {
+    const schemaObject: {
+      author: Yup.StringSchema,
+      title: Yup.StringSchema,
+      summary: Yup.StringSchema,
+      description: Yup.StringSchema,
+      link: Yup.StringSchema,
+      poolID?: Yup.StringSchema,
+      multiplier?: Yup.NumberSchema,
+    }
+      = {
+      author: Yup.string().required(),
+      title: Yup.string().required(),
+      summary: Yup.string().required(),
+      description: Yup.string().required(),
+      link: Yup.string().url(),
+    }
+    if (proposalType === ProposalType.PoolIncentivization) {
+      schemaObject.multiplier = Yup.number().required();
+      schemaObject.poolID = Yup.string().required();
+    }
+    return Yup.object().shape(schemaObject);
+  }, [proposalType]);
 
-  const { register, handleSubmit, formState: { isValid }, watch } = useForm<IProposal>({
+  const { register, trigger, handleSubmit, formState: { isValid }, watch } = useForm<IProposal>({
+    mode: 'onChange',
     resolver: yupResolver(schema),
   });
 
@@ -39,13 +64,21 @@ export const CreateProposalView: React.FC = () => {
   }
 
   const onSubmitHandler = (data: IProposal) => {
-    console.log(data);
-    setOpen(true);
+    setOpenCreateProposalModal(true);
     setProposal({
       ...data,
       proposalType,
     })
   }
+
+  const onCloseProposalSubmittedModal = () => {
+    setOpenCreateProposalModal(false);
+    onCloseProposalSubmitted();
+  }
+
+  useEffect(() => {
+    trigger();
+  }, [proposalType]);
 
   return (
     <CreateProposalViewStyle>
@@ -72,6 +105,7 @@ export const CreateProposalView: React.FC = () => {
                 label="Author"
                 placeholder="author name, organization or foundation name"
                 register={register}
+                watch={watch}
               />
             </Box>
             <Box className="proposal-info-box">
@@ -129,9 +163,10 @@ export const CreateProposalView: React.FC = () => {
                 watch={watch}
               />
               <ButtonComponent
+                data-testid="create-proposal-sumbit"
                 type="submit"
                 disabled={!isValid || !proposalType}
-                loading={open}
+                loading={openCreateProposalModal}
               >
                 <Typography variant="body1">
                   Create Proposal (5000 LSK)
@@ -142,11 +177,17 @@ export const CreateProposalView: React.FC = () => {
         </Box>
       </Box>
       {
-        proposal && open &&
+        proposal && openCreateProposalModal &&
         <ConfirmCreateProposalModal
-          onClose={() => { setOpen(false); }}
+          openTransactionApproval={openTransactionApproval}
           proposal={proposal}
+          onConfirm={() => { onSubmit(proposal); }}
+          onClose={() => { setOpenCreateProposalModal(false); }}
         />
+      }
+      {
+        approvedTransaction &&
+        <ProposalSubmittedModal onClose={onCloseProposalSubmittedModal} />
       }
     </CreateProposalViewStyle>
   );

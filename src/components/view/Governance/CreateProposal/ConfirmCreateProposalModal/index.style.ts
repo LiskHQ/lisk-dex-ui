@@ -2,11 +2,9 @@ import styled from '@emotion/styled'
 
 export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) => {
   return {
-    position: 'absolute',
-    left: 0,
-    top: 0,
     width: '100%',
     height: '100%',
+
     '.confirm-proposal-background': {
       position: 'fixed',
       left: 0,
@@ -14,7 +12,7 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
       width: '100%',
       height: '100%',
       background: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 100,
+      zIndex: 10,
     },
 
     '.confirm-proposal-modal-container': {
@@ -26,7 +24,8 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
       width: '42.375rem',
       borderRadius: '0.5rem',
       background: `${theme.bg.secondary} !important`,
-      zIndex: 101,
+      boxShadow: theme.shadow.sm,
+      zIndex: 10,
 
       '.confirm-proposal-modal-header': {
         display: 'flex',
@@ -55,6 +54,22 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
         '.MuiFormControl-root': {
           width: '100%',
           marginBottom: '1.5rem',
+        },
+
+        '&::-webkit-scrollbar': {
+          width: '0.75rem',
+        },
+
+        '&::-webkit-scrollbar-track': {
+          background: 'none',
+        },
+
+        '&::-webkit-scrollbar-thumb': {
+          background: theme.bg.slider,
+        },
+
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: theme.bg.slider,
         },
 
         '.confirm-proposal-type': {

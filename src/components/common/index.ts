@@ -8,3 +8,4 @@ export * from './PoolItem';
 export * from './Button';
 export * from './Popover';
 export * from './Loader';
+export * from './ApproveTransaction';

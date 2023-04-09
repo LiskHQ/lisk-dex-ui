@@ -6,51 +6,21 @@ import { HelpIcon } from "imgs/icons"
 import { IPoolItem } from "models"
 import { allowDigitOnly } from "utils"
 import { IncentivizationProposalStyle } from "./index.style"
-import { UseFormRegister, UseFormWatch } from "react-hook-form"
-
-export const poolItems: IPoolItem[] = [
-  {
-    id: '1',
-    chain1: 'LSK',
-    chain2: 'DEU',
-    rate: 0.3,
-    amount: 12.2,
-  },
-  {
-    id: '2',
-    chain1: 'KLP',
-    chain2: 'RGB',
-    rate: 0.1,
-    amount: 11.4,
-  },
-  {
-    id: '3',
-    chain1: 'DEU',
-    chain2: 'FAE',
-    rate: 0.3,
-    amount: 17.6,
-  },
-  {
-    id: '4',
-    chain1: 'RGB',
-    chain2: 'FAE',
-    rate: 0.1,
-    amount: 11.4,
-  }
-]
+import { UseFormRegister } from "react-hook-form"
+import { mockPoolItems } from "__mock__"
 
 interface IProps {
   className?: string,
   register?: UseFormRegister<any>,
-  watch?: UseFormWatch<any>,
 }
 
 export const IncentivizationProposal: React.FC<IProps> = (props) => {
-  const { className, register, watch } = props;
+  const { className, register } = props;
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoolIdHelp, setOpenPoolIdHelp] = useState<boolean>(false);
   const [openMultiplierHelp, setOpenMultiplierHelp] = useState<boolean>(false);
+  const [poolItems, setPoolItems] = useState<IPoolItem[]>(mockPoolItems);
 
   const onClickPoolIDHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -69,6 +39,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
           <DropdownComponent
             name="poolID"
             className="proposal-pool-id"
+            defaultValue=""
             label={
               <>
                 Select a pool ID <HelpIcon
@@ -94,7 +65,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
             }}
             register={register}
           >
-            <MenuItem value="10" disabled>
+            <MenuItem value="" disabled>
               <Box sx={{
                 display: 'flex',
                 alignItems: 'center',

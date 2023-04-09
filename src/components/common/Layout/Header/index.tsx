@@ -13,19 +13,16 @@ import { HeaderStyle } from './index.style';
 import AvatarImg from 'imgs/avatar.png';
 import { useEffect } from 'react';
 import { DropdownComponent } from 'components';
+import { compareUrl, ellipsisAddress } from 'utils';
 
-const compareUrl = (a: string, b: string) => {
-  if (`/${a.split('/')[1]}` === b)
-    return true;
-  return false;
+interface IProps {
+  openTransactionApproval: boolean,
+  setOpenTransactionApproval: (state: boolean) => void,
 }
 
-const ellipsisAddress = (address: string) => {
-  return `${address.slice(0, 6)}...${address.slice(address.length - 4, address.length)}`;
-}
-
-export const Header: React.FC = () => {
+export const Header: React.FC<IProps> = (props) => {
   const router = useRouter();
+
   const { pathname } = router || { pathname: '' };
 
   useEffect(() => {

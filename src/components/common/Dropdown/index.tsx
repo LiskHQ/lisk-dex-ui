@@ -10,8 +10,8 @@ interface IProps {
   name?: string,
   className?: string,
   label?: ReactNode,
-  value?: number | string,
   children?: React.ReactNode,
+  defaultValue?: string | number,
   onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
   renderValue?: (value: number) => ReactNode;
   register?: UseFormRegister<any>,

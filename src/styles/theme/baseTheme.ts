@@ -43,13 +43,13 @@ export const baseTheme = {
       fontWeight: 500,
     },
     subtitle1: {
-      fontSize: "1.75rem",
-      lineHeight: "2rem",
-      fontWeight: 500,
-    },
-    subtitle2: {
       fontSize: "1.25rem",
       lineHeight: "1.5rem",
+      fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: "1.15rem",
+      lineHeight: "1.25rem",
       fontWeight: 400,
     }
   },

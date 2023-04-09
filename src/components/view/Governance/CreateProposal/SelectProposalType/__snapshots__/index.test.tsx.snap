@@ -41,16 +41,17 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   padding: 1.5rem 1rem 1rem 1rem;
   border-radius: 0.375rem;
   border: 0.5px solid #E6E6E6;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
   cursor: pointer;
 }
 
 .emotion-0 .proposals-grid .proposal-box:hover {
-  border: 1px solid #5845CC;
+  border: 1px solid #A196F6;
 }
 
 .emotion-0 .proposals-grid .proposal-box.selected {
+  background: #F4F8F9;
   border: 1px solid #6953F4;
 }
 
@@ -570,7 +571,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
                 class="PrivateSwitchBase-input emotion-7"
                 name="radio-buttons"
                 type="radio"
-                value="POOL_INCENTIviZATION"
+                value="POOL_INCENTIVIZATION"
               />
               <span
                 class="emotion-8"

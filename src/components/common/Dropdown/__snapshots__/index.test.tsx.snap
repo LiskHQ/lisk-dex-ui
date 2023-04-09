@@ -50,8 +50,8 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
   color: #282828;
   border: 0.5px solid #E6E6E6;
   background: unset;
-  -webkit-animation-duration: 0.5s!important;
-  animation-duration: 0.5s!important;
+  -webkit-animation-duration: 1s!important;
+  animation-duration: 1s!important;
   font-size: 1rem;
   line-height: 2rem;
 }
@@ -65,7 +65,7 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-0 .MuiOutlinedInput-root:hover {
-  border: 1px solid #5845CC;
+  border: 1px solid #A196F6;
 }
 
 .emotion-0 .MuiOutlinedInput-root:focus-within {

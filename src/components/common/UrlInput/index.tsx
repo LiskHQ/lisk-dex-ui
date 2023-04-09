@@ -67,10 +67,6 @@ export const UrlInputComponent: React.FC<IProps> = (props) => {
               opacity: 1,
               color: theme.text.placeholder,
             },
-            "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-              "-webkit-appearance": "none",
-              display: "none"
-            },
             color: theme.lightcurve[0],
             textDecoration: value ? 'underline' : 'unset',
           },

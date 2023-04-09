@@ -32,7 +32,7 @@ const themeColors = {
   },
   opacities: {
     5: '#333333',
-    10: '#3D3D3D',
+    10: '#E1E1E1',
     20: '#535353',
     40: '#7E7E7E',
     80: '#D4D4D4',
@@ -61,7 +61,7 @@ const themeColors = {
     second: '#C0ECE8',
   },
   error: {
-    primary: '#F6E4E6',
+    primary: '#FF4557',
     second: '#FB8B96',
   },
 } as const;

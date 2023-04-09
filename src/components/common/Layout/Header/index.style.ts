@@ -14,6 +14,7 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
     },
 
     '.header-container': {
+      position: 'relative',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',

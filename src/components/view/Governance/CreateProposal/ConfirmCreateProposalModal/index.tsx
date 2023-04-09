@@ -5,14 +5,15 @@ import { ButtonComponent, InputComponent, UrlInputComponent } from "components/c
 import { ProposalType } from "consts";
 import { CancelIcon, PoolIncentivizationIcon, UniversalIcon } from "imgs/icons";
 
-
-interface IProps {
+export interface IConfirmCreateProposalModalProps {
+  openTransactionApproval: boolean,
+  proposal: IProposal,
+  onConfirm?: () => void,
   onClose?: () => void,
-  proposal: IProposal
 }
 
-export const ConfirmCreateProposalModal: React.FC<IProps> = (props) => {
-  const { onClose, proposal } = props;
+export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalProps> = (props) => {
+  const { openTransactionApproval, onConfirm, onClose, proposal } = props;
 
   return (
     <ComfirmCreateProposalModalStyle>
@@ -22,7 +23,10 @@ export const ConfirmCreateProposalModal: React.FC<IProps> = (props) => {
           <Typography variant="h1">Confirm creating proposal</Typography>
           <Typography variant="body2">Please double check all the information
             before submitting your proposal.</Typography>
-          <CancelIcon onClick={() => { onClose && onClose(); }}></CancelIcon>
+          <CancelIcon
+            data-testid="confirm-proposal-modal-cancel"
+            onClick={() => { onClose && onClose(); }}
+          />
         </Box>
         <Box className="confirm-proposal-modal-body">
           <InputComponent
@@ -67,6 +71,7 @@ export const ConfirmCreateProposalModal: React.FC<IProps> = (props) => {
           <InputComponent
             label="Description"
             value={proposal.description}
+            multiline
             readOnly
           />
           {
@@ -85,19 +90,24 @@ export const ConfirmCreateProposalModal: React.FC<IProps> = (props) => {
           <InputComponent
             label="Summary"
             value={proposal.summary}
+            multiline
             readOnly
           />
-          <Box className="confirm-prpoposal-modal-transaction-fee">
+          <Box className="confirm-proposal-modal-transaction-fee">
             <Typography variant="body1" className="transaction-fee-title">Transaction Fee</Typography>
             <Typography variant="body1">5000 LSKDEX (~$4878.23)</Typography>
           </Box>
         </Box>
         <Box className="confirm-proposal-modal-footer">
-          <ButtonComponent>
+          <ButtonComponent
+            data-testid="confirm-proposal-modal-confirm"
+            loading={openTransactionApproval}
+            onClick={() => { onConfirm && onConfirm(); }}
+          >
             <Typography variant="body1">Confirm</Typography>
           </ButtonComponent>
         </Box>
       </Box>
-    </ComfirmCreateProposalModalStyle>
+    </ComfirmCreateProposalModalStyle >
   )
 }

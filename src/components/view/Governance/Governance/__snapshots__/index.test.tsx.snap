@@ -225,8 +225,8 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
   color: #282828;
   border: 0.5px solid #E6E6E6;
   background: unset;
-  -webkit-animation-duration: 0.5s!important;
-  animation-duration: 0.5s!important;
+  -webkit-animation-duration: 1s!important;
+  animation-duration: 1s!important;
   font-size: 1rem;
   line-height: 2rem;
 }
@@ -240,7 +240,7 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-11 .MuiOutlinedInput-root:hover {
-  border: 1px solid #5845CC;
+  border: 1px solid #A196F6;
 }
 
 .emotion-11 .MuiOutlinedInput-root:focus-within {
@@ -552,8 +552,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 
 .emotion-21 {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.25rem;
   font-weight: 400;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0.00714em;

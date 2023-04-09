@@ -46,10 +46,10 @@ export const InputComponent: React.FC<IProps> = (props) => {
               opacity: 1,
               color: theme.text.placeholder,
             },
-            "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-              "-webkit-appearance": "none",
+            "&::-webkit-outer-spin-button. &::-webkit-inner-spin-button": {
+              WebkitAppearance: "none",
               display: "none"
-            }
+            },
           },
           maxLength,
         }}

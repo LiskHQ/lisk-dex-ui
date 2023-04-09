@@ -3,10 +3,13 @@ import { ReactNode } from "react"
 import { ButtonComponentStyle } from "./index.style"
 
 interface IProps {
+  className?: string,
   children?: ReactNode,
   disabled?: boolean,
   loading?: boolean,
+  variant?: string,
   type?: string,
+  "data-testid"?: string,
   onClick?: () => void,
 }
 export const ButtonComponent: React.FC<IProps> = (props) => {

@@ -18,7 +18,7 @@ export const CancelIcon: React.FC<IProps> = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_625_48983)">
+      <g clipPath="url(#clip0_625_48983)">
         <path d="M15 5L5 15" stroke="#282828" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M5 5L15 15" stroke="#282828" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
       </g>
