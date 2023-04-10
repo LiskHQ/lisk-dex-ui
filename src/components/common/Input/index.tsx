@@ -59,7 +59,7 @@ export const InputComponent: React.FC<IProps> = (props) => {
       {
         !!value && maxLength &&
         <Box className="input-length-counter">
-          <Typography variant="caption">{value.length}/{maxLength && maxLength}</Typography>
+          <Typography variant="caption">{value.length}/{maxLength}</Typography>
         </Box>
       }
     </InputComponentStyle >

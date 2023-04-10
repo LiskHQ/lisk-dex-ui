@@ -1,4 +1,3 @@
-import { useTheme } from '@mui/styles';
 import { LoaderIcon } from 'imgs/icons';
 
 import { LoaderComponentStyle } from './index.style';

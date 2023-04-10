@@ -1,4 +1,4 @@
-import { Container, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { ApproveTransactionModal } from "components";
 import Head from "next/head";
 import { ReactNode } from "react";
