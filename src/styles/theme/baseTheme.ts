@@ -68,6 +68,7 @@ export const baseTheme = {
     },
   },
   shadow: {
-    sm: "0px 1px 3px rgba(0, 0, 0, 0.1)"
+    sm: "0px 1px 3px rgba(0, 0, 0, 0.1)",
+    md: "0px 1px 7px rgba(0, 0, 0, 0.1);"
   }
 }

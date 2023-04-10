@@ -571,7 +571,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
                 class="PrivateSwitchBase-input emotion-7"
                 name="radio-buttons"
                 type="radio"
-                value="POOL_INCENTIVIZATION"
+                value="Pool Incentivization proposal"
               />
               <span
                 class="emotion-8"
@@ -663,7 +663,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
                 class="PrivateSwitchBase-input emotion-7"
                 name="radio-buttons"
                 type="radio"
-                value="UNIVERSAL"
+                value="Universal proposal"
               />
               <span
                 class="emotion-8"

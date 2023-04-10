@@ -9,3 +9,4 @@ export * from './Button';
 export * from './Popover';
 export * from './Loader';
 export * from './ApproveTransaction';
+export * from './ProposalItem';

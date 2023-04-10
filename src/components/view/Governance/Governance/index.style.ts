@@ -96,7 +96,7 @@ export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        marginTop: '4rem',
+        marginTop: '1.5rem',
 
         '.governance-empty-img': {
           marginTop: '4rem',

@@ -1,6 +1,7 @@
-import { ProposalType } from "consts";
+import { ProposalStatus, ProposalType } from "consts";
 
 export interface IProposal {
+  id: string,
   author: string,
   proposalType: ProposalType,
   poolID?: string,
@@ -8,5 +9,6 @@ export interface IProposal {
   title: string,
   summary: string,
   description: string,
-  link?: string
+  link?: string,
+  status: ProposalStatus,
 }

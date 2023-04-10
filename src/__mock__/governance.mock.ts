@@ -1,16 +1,34 @@
-import { ProposalType } from "consts";
+import { ProposalStatus, ProposalType } from "consts";
 import { IPoolItem, IProposal } from "models";
 
-export const mockProposal: IProposal = {
+export const mockProposal: Pick<
+  IProposal,
+  'author' | 'proposalType' | 'poolID' | 'multiplier' | 'title' | 'summary' | 'description' | 'link'
+> = {
   author: "Author",
   proposalType: ProposalType.PoolIncentivization,
-  poolID: "1",
+  poolID: "pool1",
   multiplier: 8,
-  title: "title",
+  title: "Deploy Lisk DEX to Bridges on V2",
   summary: "summary",
   description: "description",
   link: "description"
 }
+
+export const mockProposals: IProposal[] = [
+  {
+    id: "proposal1",
+    author: "Author",
+    proposalType: ProposalType.PoolIncentivization,
+    poolID: "pool1",
+    multiplier: 8,
+    title: "Deploy Lisk DEX to Bridges on V2",
+    summary: "summary",
+    description: "description",
+    link: "description",
+    status: ProposalStatus.Active,
+  }
+]
 
 export const mockPoolItems: IPoolItem[] = [
   {

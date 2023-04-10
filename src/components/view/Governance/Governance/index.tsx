@@ -1,16 +1,39 @@
 import {
   Box,
   MenuItem,
+  SelectChangeEvent,
   Typography
 } from '@mui/material';
 import { BankIcon, VoteIcon } from 'imgs/icons';
-import { PATHS } from 'consts';
+import { PATHS, ProposalStatus } from 'consts';
 import Link from 'next/link';
 import { GovernanceViewStyle } from './index.style';
 import { DropdownComponent } from 'components/common/Dropdown';
 import { EmptyComponent } from 'components/common/Empty';
+import { ProposalItemComponent } from 'components';
+import { useMemo, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { useTheme } from '@mui/styles';
+import { IProposal } from 'models';
 
-export const GovernanceView: React.FC = () => {
+export interface IGovernanceViewProposal {
+  proposals: IProposal[],
+}
+
+export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
+  const theme = useTheme();
+  const { proposals } = props;
+  const [proposalStatus, setProposalStatus] = useState<ProposalStatus>(ProposalStatus.All_Proposals);
+
+  const onChangeProposalStatus = (event: SelectChangeEvent<number>) => {
+    setProposalStatus(event.target.value);
+  }
+
+  const filteredProposals = useMemo(() => {
+    return proposals.filter(el => el.status === proposalStatus || proposalStatus === ProposalStatus.All_Proposals);
+  }, [proposals, proposalStatus]);
+
   return (
     <GovernanceViewStyle className="governance-page">
       <Box className="governance-banner">
@@ -37,20 +60,53 @@ export const GovernanceView: React.FC = () => {
         </Typography>
         <Box className="governance-proposals-actions">
           <DropdownComponent
+            data-testid="filter-dropdown-test"
             className="governance-proposals-select"
-            value={10}
+            value={proposalStatus}
+            onChange={onChangeProposalStatus}
+            renderValue={(value) => (
+              <Typography variant="h6">{value}</Typography>
+            )}
           >
-            <MenuItem value={10}><Typography variant="h6">All proposals</Typography></MenuItem>
+            {
+              Object.entries(ProposalStatus).map(([key, value]) => (
+                <MenuItem
+                  key={key}
+                  value={value}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography variant="h6">{value}</Typography>
+                  {
+                    proposalStatus === value &&
+                    <FontAwesomeIcon icon={faCheck} fill={theme.text.paragraph} />
+                  }
+                </MenuItem>
+              ))
+            }
           </DropdownComponent>
           <Link href={PATHS.CREATE_PROPOSAL} passHref legacyBehavior>
             <Typography variant="h5" className="governance-proposals-create" data-testid="create-proposal">+ Create a proposal</Typography>
           </Link>
         </Box>
         <Box className="governance-proposals-items">
-          <EmptyComponent
-            subject="No proposals found."
-            description="When proposals are created, they will appear here."
-          />
+          {
+            filteredProposals.length ?
+              <>
+                {
+                  filteredProposals.map(proposal => (
+                    <ProposalItemComponent key={proposal.id} proposal={proposal} />
+                  ))
+                }
+              </> :
+              <EmptyComponent
+                className="governance-empty-img"
+                subject="No proposals found."
+                description="When proposals are created, they will appear here."
+              />
+          }
         </Box>
       </Box>
     </GovernanceViewStyle>

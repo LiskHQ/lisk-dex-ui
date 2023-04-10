@@ -1371,7 +1371,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
               class="MuiInputBase-input emotion-10"
               readonly=""
               type="text"
-              value="title"
+              value="Deploy Lisk DEX to Bridges on V2"
             />
           </div>
         </div>

@@ -4,4 +4,5 @@ export const PATHS = {
   INFO: '/info',
   GOVERNANCE: '/governance',
   CREATE_PROPOSAL: '/governance/create',
+  PROPOSAL: '/governance/proposal',
 }

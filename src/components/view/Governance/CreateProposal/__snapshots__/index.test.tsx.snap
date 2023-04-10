@@ -1618,7 +1618,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-59:focus::-ms-input-
                           class="PrivateSwitchBase-input emotion-23"
                           name="radio-buttons"
                           type="radio"
-                          value="POOL_INCENTIVIZATION"
+                          value="Pool Incentivization proposal"
                         />
                         <span
                           class="emotion-24"
@@ -1710,7 +1710,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-59:focus::-ms-input-
                           class="PrivateSwitchBase-input emotion-23"
                           name="radio-buttons"
                           type="radio"
-                          value="UNIVERSAL"
+                          value="Universal proposal"
                         />
                         <span
                           class="emotion-24"
