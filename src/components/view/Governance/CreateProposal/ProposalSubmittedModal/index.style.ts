@@ -32,6 +32,10 @@ export const ProposalSubmittedStyle = styled('div')(({ theme }: any) => {
       boxShadow: theme.shadow.sm,
       zIndex: 10,
 
+      [theme.breakpoints.down('md')]: {
+        position: 'fixed',
+      },
+
       svg: {
         marginTop: '2rem',
       },

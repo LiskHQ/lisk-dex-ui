@@ -32,6 +32,18 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   z-index: 10;
 }
 
+@media (max-width:767.95px) {
+  .emotion-0 .confirm-proposal-modal-container {
+    left: 1rem;
+    top: 0;
+    width: calc(100% - 2rem);
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -46,6 +58,12 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   align-items: center;
   justify-conent: center;
   padding: 1.5rem;
+}
+
+@media (max-width:767.95px) {
+  .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-header h3 {
+    font-size: 1.25rem;
+  }
 }
 
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-header p {
@@ -63,7 +81,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
 
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-body {
   padding: 1.5rem;
-  max-height: 43.75rem;
+  max-height: 35.375rem;
   overflow-y: scroll;
 }
 
@@ -143,11 +161,11 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
 
 .emotion-4 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
+  line-height: 2rem;
   font-weight: 600;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  line-height: 1.167;
-  letter-spacing: -0.01562em;
+  letter-spacing: 0em;
 }
 
 .emotion-5 {
@@ -1036,11 +1054,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
       <div
         class="confirm-proposal-modal-header MuiBox-root emotion-1"
       >
-        <h1
-          class="MuiTypography-root MuiTypography-h1 emotion-4"
+        <h3
+          class="MuiTypography-root MuiTypography-h3 emotion-4"
         >
           Confirm creating proposal
-        </h1>
+        </h3>
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-5"
         >

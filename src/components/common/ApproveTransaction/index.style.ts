@@ -30,13 +30,22 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
       boxShadow: theme.shadow.sm,
       zIndex: 201,
 
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+        top: '5.5rem',
+      },
+
       '.approve-transaction-modal-header': {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1.5rem 1rem 1.5rem 1.5rem',
+        padding: '1.5rem 1rem 1.5rem 1rem',
         color: theme.text.primary,
         borderBottom: `0.5px solid ${theme.border.primary}`,
+
+        [theme.breakpoints.down('md')]: {
+          padding: '1rem',
+        },
 
         svg: {
           cursor: 'pointer',
@@ -68,13 +77,20 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
       },
 
       '.approve-transaction-modal-body': {
-        padding: '1.5rem',
-        maxHeight: '43.75rem',
+        padding: '1.5rem 1.5rem 1rem 1.5rem',
+
+        [theme.breakpoints.down('md')]: {
+          padding: '1.5rem 1rem 1rem 1rem',
+        },
 
         '.approve-transaction-wallet-info': {
           display: 'flex',
           justifyContent: 'space-between',
           marginTop: '2rem',
+
+          [theme.breakpoints.down('md')]: {
+            marginTop: '1.5rem',
+          },
 
           '.MuiFormLabel-root': {
             color: theme.text.primary,
@@ -111,9 +127,15 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
 
         '.approve-transaction-estimated-balance-change': {
           marginTop: '2rem',
+
+          [theme.breakpoints.down('md')]: {
+            display: 'none',
+          },
+
           '.approve-transaction-estimated-balance': {
             marginTop: '0.75rem',
             display: 'flex',
+
             '.estimated-balance': {
               marginLeft: '1rem',
               color: theme.error.primary,
@@ -153,7 +175,6 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
         '.approve-transaction-proposal-transaction-total': {
           display: 'flex',
           justifyContent: 'space-between',
-          marginTop: '1rem',
           borderTop: `0.5px solid ${theme.border.primary}`,
           padding: '1rem 0 0 0',
         }
@@ -161,7 +182,7 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
 
       '.approve-transaction-modal-footer': {
         display: 'flex',
-        padding: '1.5rem 1.5rem 2.25rem 1.5rem',
+        padding: '1.5rem 2.5rem 2.5rem 1.5rem',
 
         '.approve-transaction-modal-cancel': {
           width: '10rem',

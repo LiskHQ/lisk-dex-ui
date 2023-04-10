@@ -94,9 +94,21 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
   width: 100%;
 }
 
+@media (max-width:767.95px) {
+  .emotion-0 .create-proposal .create-proposal-body .proposal-author-box {
+    padding: 1rem 1rem 1.5rem 1rem;
+  }
+}
+
 .emotion-0 .create-proposal .create-proposal-body .proposal-info-box {
   position: relative;
   padding: 1.5rem 1.5rem 2rem 1.5rem;
+}
+
+@media (max-width:767.95px) {
+  .emotion-0 .create-proposal .create-proposal-body .proposal-info-box {
+    padding: 1rem;
+  }
 }
 
 .emotion-0 .create-proposal .create-proposal-body .proposal-info-box .proposal-incentivization {
@@ -133,7 +145,7 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
   margin: 0;
   font-size: 1.75rem;
   line-height: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0em;
 }

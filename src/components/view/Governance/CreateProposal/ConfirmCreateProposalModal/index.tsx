@@ -20,7 +20,7 @@ export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalPro
       <Box className="confirm-proposal-background" />
       <Box className="confirm-proposal-modal-container">
         <Box className="confirm-proposal-modal-header">
-          <Typography variant="h1">Confirm creating proposal</Typography>
+          <Typography variant="h3">Confirm creating proposal</Typography>
           <Typography variant="body2">Please double check all the information
             before submitting your proposal.</Typography>
           <CancelIcon

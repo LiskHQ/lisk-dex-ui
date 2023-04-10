@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { ApproveTransactionModalStyle } from "./index.style";
 import { Box, FormLabel, Typography } from "@mui/material";
 import { ButtonComponent } from "components/common";
 import { CancelIcon, LightcurveIcon } from "imgs/icons";
 import AvatarImg from "imgs/avatar.png";
 import { ellipsisAddress } from "utils";
+import { ApproveTransactionModalStyle } from "./index.style";
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,

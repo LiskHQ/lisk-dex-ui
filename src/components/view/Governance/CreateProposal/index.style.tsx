@@ -68,12 +68,20 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
 
           '.input-component-container': {
             width: '100%',
-          }
+          },
+
+          [theme.breakpoints.down('md')]: {
+            padding: '1rem 1rem 1.5rem 1rem',
+          },
         },
 
         '.proposal-info-box': {
           position: 'relative',
           padding: '1.5rem 1.5rem 2rem 1.5rem',
+
+          [theme.breakpoints.down('md')]: {
+            padding: '1rem',
+          },
 
           '.proposal-incentivization': {
             marginTop: '0',

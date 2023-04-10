@@ -11,7 +11,7 @@ export const baseTheme = {
     h3: {
       fontSize: "1.75rem",
       lineHeight: "2rem",
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h4: {
       fontSize: "1.25rem",

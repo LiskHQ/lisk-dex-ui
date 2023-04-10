@@ -27,17 +27,32 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
       boxShadow: theme.shadow.sm,
       zIndex: 10,
 
+      [theme.breakpoints.down('md')]: {
+        left: '1rem',
+        top: 0,
+        width: 'calc(100% - 2rem)',
+        transform: 'none',
+      },
+
       '.confirm-proposal-modal-header': {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyConent: 'center',
         padding: '1.5rem',
+
+        [theme.breakpoints.down('md')]: {
+          h3: {
+            fontSize: '1.25rem',
+          }
+        },
+
         p: {
           textAlign: 'center',
           marginTop: '0.5rem',
           width: '16rem',
         },
+
         svg: {
           cursor: 'pointer',
           position: 'absolute',
@@ -48,7 +63,7 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
 
       '.confirm-proposal-modal-body': {
         padding: '1.5rem',
-        maxHeight: '43.75rem',
+        maxHeight: '35.375rem',
         overflowY: 'scroll',
 
         '.MuiFormControl-root': {
