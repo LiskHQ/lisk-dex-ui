@@ -26,14 +26,19 @@ const proposalSlice = createSlice({
      * proposal
      */
     //approve a proposal modal
-    setOpenProposalApproval(state: any, action: PayloadAction<any>) {
-      state.openProposalApproval = action.payload;
-    },
-    getVotesByProposal(state: any, action: PayloadAction<any>) {
+    getVotesByProposal(state: any, action: PayloadAction<number>) {
       const newVotes = mockVotes.slice(0, (action.payload + 1) * state.votesLimit);
       state.votesTotal = mockVotes.length;
       state.votesTotalPages = ~~mockVotes.length / state.votesLimit;
       state.votes = [...newVotes];
+    },
+
+    vote(state: any, action: PayloadAction<IVote>) {
+      const index = state.votes.findIndex(el => el.user === action.payload.user);
+      if (index >= 0)
+        state.votes[index] = action.payload;
+      else
+        state.votes = [...state.votes, action.payload]
     }
   },
 });

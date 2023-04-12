@@ -3,19 +3,21 @@ import {
   ButtonComponent,
   RadioComponent
 } from "components"
+import { VoteType } from "consts"
 import { LiskIcon } from "imgs/icons"
 import { ChangeEvent, useState } from "react"
 import { VoteModalStyle } from "./index.style"
 
 export interface IVoteModalProps {
   openTransactionApproval?: boolean,
+  type?: VoteType,
   onClose: () => void,
-  onVote: () => void,
+  onVote: (value: VoteType) => void,
 }
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
-  const { openTransactionApproval, onClose, onVote } = props;
-  const [value, setValue] = useState();
+  const { openTransactionApproval, type, onClose, onVote } = props;
+  const [value, setValue] = useState<VoteType | null>(type || null);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
     setValue(value);
@@ -26,7 +28,9 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
       <Box className="vote-modal-background" />
       <Box className="vote-modal-container">
         <Box className="vote-modal-header">
-          <Typography variant="h4">Cast your vote</Typography>
+          <Typography variant="h4">
+            {`${!type ? "Cast your vote" : "Recast your vote"}`}
+          </Typography>
         </Box>
         <Box className="vote-modal-body">
           <Box className="vote-modal-voting-power">
@@ -43,14 +47,15 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
               value={value}
               onChange={onChange}
             >
-              <FormControlLabel data-testid="vote-modal-radio" value="yes" control={<RadioComponent />} label="Yes" />
-              <FormControlLabel value="no" control={<RadioComponent />} label="No" />
-              <FormControlLabel value="pass" control={<RadioComponent />} label="Pass" />
+              <FormControlLabel data-testid="vote-modal-radio" value={VoteType.Yes} control={<RadioComponent />} label="Yes" />
+              <FormControlLabel value={VoteType.No} control={<RadioComponent />} label="No" />
+              <FormControlLabel value={VoteType.Pass} control={<RadioComponent />} label="Pass" />
             </RadioGroup>
           </FormControl>
         </Box>
         <Box className="vote-modal-footer">
           <ButtonComponent
+            data-testid="vote-modal-close-button-test"
             className="vote-modal-cancel"
             variant="text"
             onClick={() => { onClose(); }}
@@ -58,13 +63,13 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
             <Typography variant="body1">Cancel</Typography>
           </ButtonComponent>
           <ButtonComponent
-            data-testid={value && "vote-modal-button-test"}
+            data-testid="vote-modal-button-test"
             className="vote-modal-confirm"
             loading={openTransactionApproval}
-            onClick={() => { onVote(); }}
-            disabled={!value}
+            onClick={() => { onVote(value as VoteType); }}
+            disabled={!value || value === type}
           >
-            <Typography variant="body1">Vote</Typography>
+            <Typography variant="body1">{`${!type ? "Vote" : "Revote"}`}</Typography>
           </ButtonComponent>
         </Box>
       </Box>

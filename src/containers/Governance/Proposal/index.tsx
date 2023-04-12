@@ -2,9 +2,10 @@ import { useRouter } from "next/router";
 import { ProposalView } from "components"
 import { IProposal } from "models";
 import { useEffect, useMemo, useState } from "react";
-import { mockProposals } from "__mock__";
+import { mockProposals, mockUser } from "__mock__";
 import { useDispatch, useSelector } from "react-redux";
 import { AppActions, RootState } from "store";
+import { VoteType } from "consts";
 
 export const ProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,17 @@ export const ProposalContainer: React.FC = () => {
   const { votes, votesTotal, votesTotalPages } = useSelector((state: RootState) => state.proposal);
   const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
 
+  const [vote, setVote] = useState<boolean>();
   const [votesPage, setVotesPage] = useState<number>(0);
 
   const proposal: IProposal = useMemo(() => {
     return mockProposals.find(el => el.id === router.query.id) as IProposal
   }, [router.query.id]);
+
+  const voteType: VoteType = useMemo(() => {
+    const vote = votes && votes.find(el => el.user === mockUser.id);
+    return vote && (vote.agreed ? VoteType.Yes : VoteType.No);
+  }, [votes]);
 
   const onViewMore = () => {
     setVotesPage((prevState) => prevState + 1);
@@ -27,7 +34,9 @@ export const ProposalContainer: React.FC = () => {
     dispatch(AppActions.proposal.getVotesByProposal(votesPage));
   }, [votesPage]);
 
-  const onVote = () => {
+  const onVote = (vote: boolean) => {
+    setVote(vote);
+
     dispatch(AppActions.transaction.setExpenses([
       {
         title: 'Transaction fee',
@@ -38,6 +47,11 @@ export const ProposalContainer: React.FC = () => {
   }
 
   const onCloseVoteSuccessModal = () => {
+    dispatch(AppActions.proposal.vote({
+      user: mockUser.id,
+      amount: mockUser.voteAmount,
+      agreed: vote as boolean,
+    }));
     dispatch(AppActions.transaction.resetApproveTransactionState());
   }
 
@@ -50,6 +64,7 @@ export const ProposalContainer: React.FC = () => {
       proposal={proposal}
       openTransactionApproval={openTransactionApproval}
       approvedTransaction={approvedTransaction}
+      voteType={voteType}
       onViewMore={onViewMore}
       onVote={onVote}
       onCloseVoteSuccessModal={onCloseVoteSuccessModal}

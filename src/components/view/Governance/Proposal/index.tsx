@@ -17,6 +17,7 @@ import { darkTheme } from "styles/theme";
 import { VoteModal } from "./VoteModal";
 import { useEffect, useState } from "react";
 import { VoteSuccessModal } from "./VoteSuccessModal";
+import { VoteType } from "consts";
 
 export interface IProposalViewProps {
   votes: IVote[],
@@ -26,8 +27,9 @@ export interface IProposalViewProps {
   proposal: IProposal,
   openTransactionApproval: boolean,
   approvedTransaction: boolean,
+  voteType?: VoteType,
   onViewMore: () => void,
-  onVote: () => void,
+  onVote: (vote: boolean) => void,
   onCloseVoteSuccessModal: () => void,
 }
 
@@ -40,6 +42,7 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
     proposal,
     openTransactionApproval,
     approvedTransaction,
+    voteType,
     onViewMore,
     onVote,
     onCloseVoteSuccessModal,
@@ -81,7 +84,9 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
                   className="proposal-header-vote-button"
                   onClick={() => { setOpenVoteModal(true); }}
                 >
-                  <Typography variant="body1">Vote</Typography>
+                  <Typography variant="body1">
+                    {`${voteType ? "Revote" : "Vote"}`}
+                  </Typography>
                 </ButtonComponent>
                 <IconButton className="proposal-header-header-menu-list-button">
                   <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -132,13 +137,20 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
         <VoteModal
           openTransactionApproval={openTransactionApproval}
           onClose={() => { setOpenVoteModal(false); }}
-          onVote={onVote}
+          type={voteType}
+          onVote={(value: VoteType) => {
+            value === VoteType.Pass ? setOpenVoteModal(false) : onVote(value === VoteType.Yes);
+          }}
         />
       }
       {
-        approvedTransaction && <VoteSuccessModal onClose={() => {
-          onCloseVoteSuccessModal();
-        }} />
+        approvedTransaction &&
+        <VoteSuccessModal
+          revote={!!voteType}
+          onClose={() => {
+            onCloseVoteSuccessModal();
+          }}
+        />
       }
     </ProposalViewStyle>
   );
