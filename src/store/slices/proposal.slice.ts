@@ -30,10 +30,10 @@ const proposalSlice = createSlice({
       state.openProposalApproval = action.payload;
     },
     getVotesByProposal(state: any, action: PayloadAction<any>) {
-      const newVotes = mockVotes.slice(action.payload * state.votesLimit, (action.payload + 1) * state.votesLimit - 1);
+      const newVotes = mockVotes.slice(0, (action.payload + 1) * state.votesLimit);
       state.votesTotal = mockVotes.length;
-      state.votesTotalPages = mockVotes.length / state.votesLimit;
-      state.votes = [...state.votes, ...newVotes];
+      state.votesTotalPages = ~~mockVotes.length / state.votesLimit;
+      state.votes = [...newVotes];
     }
   },
 });

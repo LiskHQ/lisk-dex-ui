@@ -55,8 +55,8 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
                   <ProposalStatusBadge status={proposal.status} />
                   <ProposalTypeBadge type={proposal.proposalType} />
                 </Box>
-                <Typography className="proposal-header-title" variant="h2">Deploy Lisk DEX to Bridges on V2</Typography>
-                <Typography className="proposal-header-short" variant="body2">by liskUserDexter24   •   Proposed on: Dec 14th, 2022   •   Ends in 12 days</Typography>
+                <Typography className="proposal-header-title" variant="h2">{proposal.title}</Typography>
+                <Typography className="proposal-header-short" variant="body2">by {proposal.author}   •   Proposed on: Dec 14th, 2022   •   Ends in 12 days</Typography>
               </Box>
               <Box className="proposal-header-actions">
                 <ButtonComponent className="proposal-header-vote-button">

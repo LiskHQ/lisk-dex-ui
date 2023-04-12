@@ -23,7 +23,6 @@ export const ProposalContainer: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log(votesPage);
     dispatch(AppActions.proposal.getVotesByProposal(votesPage));
   }, [votesPage]);
 
