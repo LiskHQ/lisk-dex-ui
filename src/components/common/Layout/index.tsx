@@ -18,7 +18,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
 
   const dispatch = useDispatch();
 
-  const { openTransactionApproval, approvingTransaction } = useSelector((state: RootState) => state.transaction);
+  const { openTransactionApproval, approvingTransaction, expenses } = useSelector((state: RootState) => state.transaction);
 
   const setOpenTransactionApproval = (value: boolean) => {
     dispatch(AppActions.transaction.setOpenTransactionApproval(value));
@@ -48,6 +48,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
       {
         openTransactionApproval &&
         <ApproveTransactionModal
+          expenses={expenses}
           approvingTransaction={approvingTransaction}
           onConfirm={() => { onConfirm() }}
           onClose={() => { setOpenTransactionApproval(false); }}

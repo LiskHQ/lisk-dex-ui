@@ -9,6 +9,12 @@ export const CreateProposalContainer: React.FC = () => {
   const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
 
   const onSubmit = (proposal: IProposal) => {
+    dispatch(AppActions.transaction.setExpenses([
+      {
+        title: "Proposal creation fee",
+        amount: 5000,
+      }
+    ]))
     dispatch(AppActions.transaction.setOpenTransactionApproval(true));
   }
 

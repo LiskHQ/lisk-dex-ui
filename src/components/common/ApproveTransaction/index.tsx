@@ -4,15 +4,28 @@ import { ButtonComponent } from "components/common";
 import { CancelIcon, LightcurveIcon } from "imgs/icons";
 import { ellipsisAddress } from "utils";
 import { ApproveTransactionModalStyle } from "./index.style";
+import { IExpense } from "models";
+import { useMemo } from "react";
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,
+  expenses: IExpense[],
   onClose?: () => void,
   onConfirm?: () => void,
 }
 
+const conversionRate = 0.75892;
+
 export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = (props) => {
-  const { approvingTransaction, onConfirm, onClose } = props;
+  const { approvingTransaction, expenses, onConfirm, onClose } = props;
+
+  const totalAmount = useMemo(() => {
+    return expenses.length ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
+  }, [expenses]);
+
+  const isSendWalletRequest = useMemo(() => {
+    return expenses.length ? !!expenses.find(el => el.title === "Proposal creation fee") : false;
+  }, [expenses]);
 
   return (
     <ApproveTransactionModalStyle>
@@ -50,13 +63,16 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             </Box>
           </Box>
 
-          <Box className="approve-transaction-estimated-balance-change">
-            <Typography variant="h5">Estimated balance change</Typography>
-            <Box className="approve-transaction-estimated-balance">
-              <Typography variant="h5">LSK:</Typography>
-              <Typography className="estimated-balance" variant="h5">-5000 LSK</Typography>
+          {
+            isSendWalletRequest &&
+            <Box className="approve-transaction-estimated-balance-change">
+              <Typography variant="h5">Estimated balance change</Typography>
+              <Box className="approve-transaction-estimated-balance">
+                <Typography variant="h5">LSK:</Typography>
+                <Typography className="estimated-balance" variant="h5">-5000 LSK</Typography>
+              </Box>
             </Box>
-          </Box>
+          }
 
           <Box className="approve-transaction-request">
             <LightcurveIcon />
@@ -67,13 +83,19 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
           <Typography variant="subtitle1">Transaction Summary</Typography>
 
           <Box className="approve-transaction-proposal-creation-fee">
-            <Typography variant="body1">Proposal creation fee:</Typography>
-            <Typography variant="body1">5000 LSKDEX (~$4952.42)</Typography>
+            {
+              expenses.length && expenses.map(expense => (
+                <>
+                  <Typography variant="body1">{expense.title}:</Typography>
+                  <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * conversionRate).toFixed(2)})</Typography>
+                </>
+              ))
+            }
           </Box>
 
           <Box className="approve-transaction-proposal-transaction-total">
             <Typography variant="subtitle2">Transaction total:</Typography>
-            <Typography variant="subtitle2">5000 LSKDEX (~$4952.42)</Typography>
+            <Typography variant="subtitle2">{totalAmount} LSKDEX (~${(totalAmount * conversionRate).toFixed(2)})</Typography>
           </Box>
         </Box>
 
@@ -90,7 +112,11 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             loading={approvingTransaction}
             onClick={() => { onConfirm && onConfirm(); }}
           >
-            <Typography variant="body1">Send wallet request</Typography>
+            <Typography variant="body1">
+              {
+                `${isSendWalletRequest ? "Send wallet request" : "Approve"}`
+              }
+            </Typography>
           </ButtonComponent>
         </Box>
       </Box>
