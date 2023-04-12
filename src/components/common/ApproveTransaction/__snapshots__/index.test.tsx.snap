@@ -347,7 +347,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
   letter-spacing: 0.00938em;
 }
 
-.emotion-26 {
+.emotion-25 {
   margin: 0;
   font-size: 1.15rem;
   line-height: 1.25rem;
@@ -356,7 +356,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
   letter-spacing: 0.00714em;
 }
 
-.emotion-29 {
+.emotion-28 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -408,48 +408,48 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
   text-transform: capitalize;
 }
 
-.emotion-29::-moz-focus-inner {
+.emotion-28::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-29.Mui-disabled {
+.emotion-28.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-29 {
+  .emotion-28 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-29:hover {
+.emotion-28:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: rgba(25, 118, 210, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-29:hover {
+  .emotion-28:hover {
     background-color: transparent;
   }
 }
 
-.emotion-29.Mui-disabled {
+.emotion-28.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
 }
 
-.emotion-29:hover {
+.emotion-28:hover {
   background: #A196F6;
 }
 
-.emotion-29.Mui-disabled {
+.emotion-28.Mui-disabled {
   color: #FFFFFF;
   opacity: 0.7;
 }
 
-.emotion-31 {
+.emotion-30 {
   overflow: hidden;
   pointer-events: none;
   position: absolute;
@@ -648,18 +648,15 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
           Transaction Summary
         </h6>
         <div
-          class="approve-transaction-proposal-creation-fee MuiBox-root emotion-1"
-        />
-        <div
           class="approve-transaction-proposal-transaction-total MuiBox-root emotion-1"
         >
           <h6
-            class="MuiTypography-root MuiTypography-subtitle2 emotion-26"
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-25"
           >
             Transaction total:
           </h6>
           <h6
-            class="MuiTypography-root MuiTypography-subtitle2 emotion-26"
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-25"
           >
             0
              LSKDEX (~$
@@ -672,7 +669,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
         class="approve-transaction-modal-footer MuiBox-root emotion-1"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-cancel emotion-29"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-cancel emotion-28"
           tabindex="0"
           type="button"
         >
@@ -682,11 +679,11 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
             Cancel
           </p>
           <span
-            class="MuiTouchRipple-root emotion-31"
+            class="MuiTouchRipple-root emotion-30"
           />
         </button>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-confirm emotion-29"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-confirm emotion-28"
           tabindex="0"
           type="button"
         >
@@ -696,7 +693,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
             Approve
           </p>
           <span
-            class="MuiTouchRipple-root emotion-31"
+            class="MuiTouchRipple-root emotion-30"
           />
         </button>
       </div>

@@ -24,6 +24,12 @@ export const VoteSuccessModalStyle = styled('div')(({ theme }: any) => {
       boxShadow: theme.shadow.md,
       zIndex: 10,
 
+      [theme.breakpoints.down('sm')]: {
+        width: 'calc(100% - 2rem)',
+        left: '1rem',
+        transform: 'translateY(-50%)',
+      },
+
       '.vote-success-modal-header': {
         display: 'flex',
         justifyContent: 'center',

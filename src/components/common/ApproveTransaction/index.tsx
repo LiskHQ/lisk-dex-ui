@@ -82,16 +82,14 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
 
           <Typography variant="subtitle1">Transaction Summary</Typography>
 
-          <Box className="approve-transaction-proposal-creation-fee">
-            {
-              !!expenses && expenses.map(expense => (
-                <>
-                  <Typography variant="body1">{expense.title}:</Typography>
-                  <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * conversionRate).toFixed(2)})</Typography>
-                </>
-              ))
-            }
-          </Box>
+          {
+            !!expenses && expenses.map(expense => (
+              <Box key={expense.title} className="approve-transaction-proposal-creation-fee">
+                <Typography variant="body1">{expense.title}:</Typography>
+                <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * conversionRate).toFixed(2)})</Typography>
+              </Box>
+            ))
+          }
 
           <Box className="approve-transaction-proposal-transaction-total">
             <Typography variant="subtitle2">Transaction total:</Typography>
