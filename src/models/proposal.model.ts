@@ -12,3 +12,9 @@ export interface IProposal {
   link?: string,
   status: ProposalStatus,
 }
+
+export interface IVote {
+  user: string,
+  agreed: boolean,
+  amount: number,
+}

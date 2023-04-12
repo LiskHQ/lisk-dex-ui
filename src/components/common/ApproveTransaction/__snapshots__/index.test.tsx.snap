@@ -703,7 +703,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
         class="approve-transaction-modal-footer MuiBox-root emotion-1"
       >
         <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root approve-transaction-modal-cancel emotion-36"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-cancel emotion-36"
           tabindex="0"
           type="button"
         >
@@ -717,7 +717,7 @@ exports[`Button component checks if the component matches the snapshot 1`] = `
           />
         </button>
         <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root approve-transaction-modal-confirm emotion-36"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium approve-transaction-modal-confirm emotion-36"
           tabindex="0"
           type="button"
         >

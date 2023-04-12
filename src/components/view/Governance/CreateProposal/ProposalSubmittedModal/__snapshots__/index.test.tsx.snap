@@ -94,6 +94,11 @@ exports[`ProposalSubmittedModal checks if the component matches the snapshot 1`]
 
 .emotion-5 {
   margin: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
   color: #1976d2;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -261,7 +266,7 @@ exports[`ProposalSubmittedModal checks if the component matches the snapshot 1`]
         </p>
       </a>
       <button
-        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root emotion-7"
+        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium emotion-7"
         data-testid="proposal-submitted-modal-close"
         tabindex="0"
         type="button"

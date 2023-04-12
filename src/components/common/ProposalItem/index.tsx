@@ -1,8 +1,9 @@
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Box, Grid, Typography } from "@mui/material"
+import { ProposalTypeBadge } from "components"
 import { PATHS } from "consts"
-import { CalendarIcon, PoolIncentivizationIcon } from "imgs/icons"
+import { CalendarIcon } from "imgs/icons"
 import { IProposal } from "models"
 import Link from "next/link"
 import { ProposalItemStyle } from "./index.style"
@@ -27,10 +28,7 @@ export const ProposalItemComponent: React.FC<IProposalItemComponentProps> = (pro
           >
             <Grid item className="proposal-item-no">
               <Typography variant="h4">#1</Typography>
-              <Box className="proposal-item-type">
-                <PoolIncentivizationIcon />
-                <Typography variant="h6">{proposal.proposalType}</Typography>
-              </Box>
+              <ProposalTypeBadge type={proposal.proposalType} />
             </Grid>
             <Grid item className="proposal-item-status">
               <Box className="proposal-item-status-mark"></Box>
