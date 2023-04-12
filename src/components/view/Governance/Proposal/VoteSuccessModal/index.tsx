@@ -13,7 +13,7 @@ export interface IVoteSuccessModalProps {
 export const VoteSuccessModal: React.FC<IVoteSuccessModalProps> = (props) => {
   const { openTransactionApproval, onClose } = props;
   return (
-    <VoteSuccessModalStyle>
+    <VoteSuccessModalStyle data-testid="vote-success-modal-test">
       <Box className="vote-success-modal-background" />
       <Box className="vote-success-modal-container">
         <Box className="vote-success-modal-header">
@@ -30,6 +30,7 @@ export const VoteSuccessModal: React.FC<IVoteSuccessModalProps> = (props) => {
         </Box>
         <Box className="vote-success-modal-footer">
           <ButtonComponent
+            data-testid="vote-success-modal-close-test"
             className="vote-success-modal-confirm"
             loading={openTransactionApproval}
             onClick={() => { onClose(); }}

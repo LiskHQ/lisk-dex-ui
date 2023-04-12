@@ -77,6 +77,7 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
               </Box>
               <Box className="proposal-header-actions">
                 <ButtonComponent
+                  data-testid="vote-button-test"
                   className="proposal-header-vote-button"
                   onClick={() => { setOpenVoteModal(true); }}
                 >

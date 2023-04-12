@@ -20,11 +20,11 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
   const { approvingTransaction, expenses, onConfirm, onClose } = props;
 
   const totalAmount = useMemo(() => {
-    return expenses.length ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
+    return expenses ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
   }, [expenses]);
 
   const isSendWalletRequest = useMemo(() => {
-    return expenses.length ? !!expenses.find(el => el.title === "Proposal creation fee") : false;
+    return expenses ? !!expenses.find(el => el.title === "Proposal creation fee") : false;
   }, [expenses]);
 
   return (
@@ -84,7 +84,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
 
           <Box className="approve-transaction-proposal-creation-fee">
             {
-              expenses.length && expenses.map(expense => (
+              !!expenses && expenses.map(expense => (
                 <>
                   <Typography variant="body1">{expense.title}:</Typography>
                   <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * conversionRate).toFixed(2)})</Typography>

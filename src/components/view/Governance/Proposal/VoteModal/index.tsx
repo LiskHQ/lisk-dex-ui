@@ -22,7 +22,7 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
   }
 
   return (
-    <VoteModalStyle>
+    <VoteModalStyle data-testid="vote-modal-test">
       <Box className="vote-modal-background" />
       <Box className="vote-modal-container">
         <Box className="vote-modal-header">
@@ -43,7 +43,7 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
               value={value}
               onChange={onChange}
             >
-              <FormControlLabel value="yes" control={<RadioComponent />} label="Yes" />
+              <FormControlLabel data-testid="vote-modal-radio" value="yes" control={<RadioComponent />} label="Yes" />
               <FormControlLabel value="no" control={<RadioComponent />} label="No" />
               <FormControlLabel value="pass" control={<RadioComponent />} label="Pass" />
             </RadioGroup>
@@ -58,6 +58,7 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
             <Typography variant="body1">Cancel</Typography>
           </ButtonComponent>
           <ButtonComponent
+            data-testid={value && "vote-modal-button-test"}
             className="vote-modal-confirm"
             loading={openTransactionApproval}
             onClick={() => { onVote(); }}
