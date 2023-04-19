@@ -23,7 +23,7 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus, fetchPrices } = props;
+  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus } = props;
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
@@ -134,15 +134,15 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
           </Box>
           {
-            !!toToken && !!fromBalance &&
+            !!toToken && fromBalance &&
             <Box className="swap-to-price">
               <Typography variant="body2">Price:</Typography>
               <Box onClick={() => { setReverseRate(!reverseRate) }}>
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {toToken?.shortName} = {mockEthtoLsk} LSK</> :
-                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken?.shortName}</>
+                      <>1 {toToken.shortName} = {mockEthtoLsk} LSK</> :
+                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken.shortName}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -152,7 +152,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         </Box>
 
         {
-          !!toToken && !!fromBalance &&
+          !!toToken && fromBalance &&
           <Box className="swap-summary">
             <Box className="swap-summary-property slippage-tolerance">
               <Typography className="swap-summary-property-title" variant="body2">Slippage Tolerance <HelpIcon /></Typography>
