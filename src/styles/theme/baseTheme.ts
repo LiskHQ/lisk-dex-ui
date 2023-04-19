@@ -15,6 +15,7 @@ export const baseTheme = {
     },
     h4: {
       fontSize: "1.25rem",
+      lineHeight: "1.5rem",
       fontWeight: 600,
     },
     h5: {

@@ -24,7 +24,7 @@ const themeColors = {
   },
   primary: {
     85: '#7E6CF4',
-    60: '#A196F6',
+    60: '#FAFAFC',
     40: '#E4EBF9',
     20: '#D9D8F8',
     10: '#E7E9F9',
@@ -55,6 +55,7 @@ const themeColors = {
   success: {
     primary: '#BD5359',
     second: '#8DC881',
+    light: '#459A33',
   },
   warning: {
     primary: '#F8F3D8',

@@ -14,6 +14,7 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       transform: 'none',
       WebkitTransform: 'none',
       msTransform: 'none',
+      marginBottom: '0.5rem',
 
       svg: {
         cursor: 'pointer',
@@ -31,7 +32,6 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       border: `0.5px solid ${theme.border.primary}`,
       background: 'unset',
       animationDuration: '1s !important',
-      marginTop: '0.5rem',
       fontSize: '1rem',
       lineHeight: '1.625rem',
 

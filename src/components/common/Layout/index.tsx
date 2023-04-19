@@ -1,7 +1,8 @@
-import { useMediaQuery } from "@mui/material";
-import { ApproveTransactionModal } from "components";
+import { Box, IconButton, Snackbar, Typography, useMediaQuery } from "@mui/material";
+import { AlertComponent, ApproveTransactionModal } from "components";
+import { CancelIcon, InfoIcon } from "imgs/icons";
 import Head from "next/head";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppActions, RootState } from "store";
 import { darkTheme } from "styles/theme";
@@ -18,7 +19,11 @@ export const Layout: React.FC<IProps> = ({ children }) => {
 
   const dispatch = useDispatch();
 
-  const { openTransactionApproval, approvingTransaction, expenses } = useSelector((state: RootState) => state.transaction);
+  const { openTransactionApproval, approvingTransaction, sentTransaction, approvedTransaction, expenses } = useSelector((state: RootState) => state.transaction);
+
+  const onCloseAlert = () => {
+    dispatch(AppActions.transaction.resetSendTransactionState());
+  }
 
   const setOpenTransactionApproval = (value: boolean) => {
     dispatch(AppActions.transaction.setOpenTransactionApproval(value));
@@ -31,6 +36,14 @@ export const Layout: React.FC<IProps> = ({ children }) => {
       dispatch(AppActions.transaction.approveTransactionSuccess({}));
     }, 1000);
   }
+
+  useEffect(() => {
+    if (approvedTransaction) {
+      setTimeout(() => {
+        dispatch(AppActions.transaction.sendTransactionSuccess());
+      }, 3000);
+    }
+  }, [approvedTransaction])
 
   return (
     <LayoutStyle maxWidth="xl" style={{ padding: 0 }}>
@@ -53,6 +66,17 @@ export const Layout: React.FC<IProps> = ({ children }) => {
           onConfirm={() => { onConfirm() }}
           onClose={() => { setOpenTransactionApproval(false); }}
         />
+      }
+      {
+        <Snackbar open={sentTransaction} autoHideDuration={5000} onClose={onCloseAlert}>
+          <Box>
+            <AlertComponent
+              subject="Transaction has been sent successfully"
+              description="Confirmation is in progress, once confirmed you will receive another notification."
+              onClose={onCloseAlert}
+            />
+          </Box>
+        </Snackbar>
       }
     </LayoutStyle>
   );

@@ -14,12 +14,12 @@ export const PoolItemStyle = styled('div')(({ theme }: any) => {
       color: theme.primary[0],
       lineHeight: '2rem',
 
-      '.pool-item-chain1': {
+      '.pool-item-token1': {
         width: '2rem',
         height: '2rem',
       },
 
-      '.pool-item-chain2': {
+      '.pool-item-token2': {
         width: '2rem',
         height: '2rem',
         marginLeft: '-1rem !important',

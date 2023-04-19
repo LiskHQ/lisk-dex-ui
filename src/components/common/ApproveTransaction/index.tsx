@@ -6,6 +6,7 @@ import { ellipsisAddress } from "utils";
 import { ApproveTransactionModalStyle } from "./index.style";
 import { IExpense } from "models";
 import { useMemo } from "react";
+import { mockConversionRate } from "__mock__";
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,
@@ -13,8 +14,6 @@ export interface IApproveTransactionModalProps {
   onClose?: () => void,
   onConfirm?: () => void,
 }
-
-const conversionRate = 0.75892;
 
 export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = (props) => {
   const { approvingTransaction, expenses, onConfirm, onClose } = props;
@@ -86,14 +85,14 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             !!expenses && expenses.map(expense => (
               <Box key={expense.title} className="approve-transaction-proposal-creation-fee">
                 <Typography variant="body1">{expense.title}:</Typography>
-                <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * conversionRate).toFixed(2)})</Typography>
+                <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * mockConversionRate).toFixed(2)})</Typography>
               </Box>
             ))
           }
 
           <Box className="approve-transaction-proposal-transaction-total">
             <Typography variant="subtitle2">Transaction total:</Typography>
-            <Typography variant="subtitle2">{totalAmount} LSKDEX (~${(totalAmount * conversionRate).toFixed(2)})</Typography>
+            <Typography variant="subtitle2">{totalAmount} LSKDEX (~${(totalAmount * mockConversionRate).toFixed(2)})</Typography>
           </Box>
         </Box>
 

@@ -16,3 +16,6 @@ export * from './Votes';
 export * from './YourVotingInfo';
 export * from './ProposalTypeBadge';
 export * from './ProposalStatusBadge';
+export * from './SearchInput';
+export * from './TransactionStatusModal';
+export * from './Alert';

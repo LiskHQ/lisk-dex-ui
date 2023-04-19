@@ -1,7 +1,7 @@
 import { InputComponentStyle } from "./index.style"
 import { useTheme } from "@mui/styles";
 import { Box, InputBase, InputLabel, Typography } from "@mui/material";
-import { KeyboardEventHandler, ReactNode } from "react";
+import { ChangeEventHandler, KeyboardEventHandler, ReactNode } from "react";
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
@@ -19,7 +19,9 @@ interface IProps {
   max?: number,
   value?: string | number,
   readOnly?: boolean,
-  onChange?: (value: string) => void,
+  disabled?: boolean,
+  defaultValue?: string | number,
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
   onKeyDown?: KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>,
@@ -35,9 +37,12 @@ export const InputComponent: React.FC<IProps> = (props) => {
     <InputComponentStyle
       className={className}
     >
-      <InputLabel shrink>
-        {label}
-      </InputLabel>
+      {
+        label &&
+        <InputLabel shrink>
+          {label}
+        </InputLabel>
+      }
       <InputBase
         type={type}
         inputProps={{

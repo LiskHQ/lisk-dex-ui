@@ -110,29 +110,29 @@ export const mockVotes: IVote[] = [
 export const mockPoolItems: IPoolItem[] = [
   {
     id: '1',
-    chain1: 'LSK',
-    chain2: 'DEU',
+    token1: 'LSK',
+    token2: 'DEU',
     rate: 0.3,
     amount: 12.2,
   },
   {
     id: '2',
-    chain1: 'KLP',
-    chain2: 'RGB',
+    token1: 'KLP',
+    token2: 'RGB',
     rate: 0.1,
     amount: 11.4,
   },
   {
     id: '3',
-    chain1: 'DEU',
-    chain2: 'FAE',
+    token1: 'DEU',
+    token2: 'FAE',
     rate: 0.3,
     amount: 17.6,
   },
   {
     id: '4',
-    chain1: 'RGB',
-    chain2: 'FAE',
+    token1: 'RGB',
+    token2: 'FAE',
     rate: 0.1,
     amount: 11.4,
   }
