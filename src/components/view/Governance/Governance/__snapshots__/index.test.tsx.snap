@@ -505,6 +505,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 
 .emotion-17 {
   float: unset;
+  width: auto;
   overflow: hidden;
   padding: 0;
   line-height: 11px;
@@ -522,6 +523,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 }
 
 .emotion-20 {
+  position: relative;
   padding: 1.5rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -541,11 +543,18 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   cursor: pointer;
 }
 
+@media (max-width:767.95px) {
+  .emotion-20 {
+    padding: 1.5rem 0.75rem 1.5rem 1.5rem;
+  }
+}
+
 .emotion-20 .proposal-item-main {
   width: 100%;
 }
 
 .emotion-20 .proposal-item-main .proposal-item-header {
+  position: relative;
   width: 100%;
   margin-bottom: 0.5rem;
 }
@@ -585,6 +594,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 .emotion-20 .proposal-item-main .proposal-item-header .proposal-item-no .proposal-item-type h6 {
   margin-left: 0.375rem;
   font-size: 0.75rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .emotion-20 .proposal-item-main .proposal-item-header .proposal-item-status {
@@ -641,6 +652,13 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 .emotion-20 .proposal-item-arrow {
   margin-left: 4rem;
   margin-right: 0.75rem;
+}
+
+@media (max-width:767.95px) {
+  .emotion-20 .proposal-item-arrow {
+    position: absolute;
+    right: 0.75rem;
+  }
 }
 
 .emotion-22 {
@@ -786,13 +804,13 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
           class="MuiFormControl-root governance-proposals-select emotion-11"
         >
           <div
-            class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-12"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-12"
             data-testid="filter-dropdown-test"
           >
             <div
               aria-expanded="false"
               aria-haspopup="listbox"
-              class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-13"
+              class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input emotion-13"
               role="button"
               tabindex="0"
             >
@@ -804,6 +822,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
             </div>
             <input
               aria-hidden="true"
+              aria-invalid="false"
               class="MuiSelect-nativeInput emotion-15"
               tabindex="-1"
               value="All Proposals"

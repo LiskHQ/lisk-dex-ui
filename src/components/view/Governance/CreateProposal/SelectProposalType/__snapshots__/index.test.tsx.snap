@@ -565,7 +565,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
               />
             </svg>
             <span
-              class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root emotion-6"
+              class="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary emotion-6"
             >
               <input
                 class="PrivateSwitchBase-input emotion-7"
@@ -657,7 +657,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
               </defs>
             </svg>
             <span
-              class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root emotion-6"
+              class="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary emotion-6"
             >
               <input
                 class="PrivateSwitchBase-input emotion-7"

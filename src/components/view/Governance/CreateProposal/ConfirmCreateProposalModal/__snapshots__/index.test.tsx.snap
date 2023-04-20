@@ -294,7 +294,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(133% - 24px);
+  max-width: calc(133% - 32px);
   position: absolute;
   left: 0;
   top: 0;
@@ -1110,17 +1110,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Author
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-9"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly emotion-9"
           >
             <input
               aria-invalid="false"
-              class="MuiInputBase-input emotion-10"
+              class="MuiInputBase-input Mui-readOnly MuiInputBase-readOnly emotion-10"
               readonly=""
               type="text"
               value="Author"
@@ -1337,17 +1337,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Multiplier
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-9"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly emotion-9"
           >
             <input
               aria-invalid="false"
-              class="MuiInputBase-input emotion-10"
+              class="MuiInputBase-input Mui-readOnly MuiInputBase-readOnly emotion-10"
               readonly=""
               type="text"
               value="8"
@@ -1358,17 +1358,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Proposal Title
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-9"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly emotion-9"
           >
             <input
               aria-invalid="false"
-              class="MuiInputBase-input emotion-10"
+              class="MuiInputBase-input Mui-readOnly MuiInputBase-readOnly emotion-10"
               readonly=""
               type="text"
               value="Deploy Lisk DEX to Bridges on V2"
@@ -1379,17 +1379,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Description
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline emotion-25"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline Mui-readOnly MuiInputBase-readOnly emotion-25"
           >
             <textarea
               aria-invalid="false"
-              class="MuiInputBase-input MuiInputBase-inputMultiline emotion-26"
+              class="MuiInputBase-input MuiInputBase-inputMultiline Mui-readOnly MuiInputBase-readOnly emotion-26"
               readonly=""
               style="height: 0px; overflow: hidden;"
             >
@@ -1397,7 +1397,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
             </textarea>
             <textarea
               aria-hidden="true"
-              class="MuiInputBase-input MuiInputBase-inputMultiline emotion-26"
+              class="MuiInputBase-input MuiInputBase-inputMultiline Mui-readOnly MuiInputBase-readOnly emotion-26"
               readonly=""
               style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
               tabindex="-1"
@@ -1408,17 +1408,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-28"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Discussions link
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-9"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly emotion-9"
           >
             <input
               aria-invalid="false"
-              class="MuiInputBase-input emotion-31"
+              class="MuiInputBase-input Mui-readOnly MuiInputBase-readOnly emotion-31"
               readonly=""
               type="text"
               value="description"
@@ -1452,17 +1452,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Voting schedule
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-9"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly emotion-9"
           >
             <input
               aria-invalid="false"
-              class="MuiInputBase-input emotion-10"
+              class="MuiInputBase-input Mui-readOnly MuiInputBase-readOnly emotion-10"
               readonly=""
               type="text"
               value="January 05/2022 12:00 CET - February 05/2023 12:00 CET"
@@ -1473,17 +1473,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
           class="MuiFormControl-root emotion-7"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-8"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-8"
             data-shrink="true"
           >
             Summary
           </label>
           <div
-            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline emotion-25"
+            class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline Mui-readOnly MuiInputBase-readOnly emotion-25"
           >
             <textarea
               aria-invalid="false"
-              class="MuiInputBase-input MuiInputBase-inputMultiline emotion-26"
+              class="MuiInputBase-input MuiInputBase-inputMultiline Mui-readOnly MuiInputBase-readOnly emotion-26"
               readonly=""
               style="height: 0px; overflow: hidden;"
             >
@@ -1491,7 +1491,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
             </textarea>
             <textarea
               aria-hidden="true"
-              class="MuiInputBase-input MuiInputBase-inputMultiline emotion-26"
+              class="MuiInputBase-input MuiInputBase-inputMultiline Mui-readOnly MuiInputBase-readOnly emotion-26"
               readonly=""
               style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
               tabindex="-1"
@@ -1517,7 +1517,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-31:focus::-ms-input-
         class="confirm-proposal-modal-footer MuiBox-root emotion-1"
       >
         <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root emotion-45"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium emotion-45"
           data-testid="confirm-proposal-modal-confirm"
           tabindex="0"
           type="button"
