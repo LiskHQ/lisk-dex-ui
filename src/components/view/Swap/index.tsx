@@ -31,7 +31,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const [openSwapConfirmModal, setOpenSwapConfirmModal] = useState<boolean>(false);
 
   const [tokenShortName, setTokenShortName] = useState<string>('');
-  const [fromBalance, setFromBalance] = useState<number>(0);
+  const [fromBalance, setFromBalance] = useState<number>();
   const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
   const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
   const [reverseRate, setReverseRate] = useState<boolean>(false);
@@ -92,11 +92,11 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               <Typography variant="subtitle2">LSK</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
-            <Typography variant="subtitle2">{fromBalance.toFixed(2)}</Typography>
+            <Typography variant="subtitle2">{(fromBalance || 0).toFixed(2)}</Typography>
           </Box>
           <Box className="swap-from-bottom-box">
             <Typography variant="body2">Balance: {balance}</Typography>
-            <Typography variant="body2">${(fromBalance * mockConversionRate).toFixed(2)}</Typography>
+            <Typography variant="body2">${((fromBalance || 0) * mockConversionRate).toFixed(2)}</Typography>
           </Box>
         </Box>
 
@@ -126,7 +126,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle2">{(fromBalance / mockEthtoLsk).toFixed(2)}</Typography>
+              <Typography variant="subtitle2">{((fromBalance || 0) / mockEthtoLsk).toFixed(2)}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -134,7 +134,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
           </Box>
           {
-            !!toToken && fromBalance &&
+            !!toToken && !!fromBalance &&
             <Box className="swap-to-price">
               <Typography variant="body2">Price:</Typography>
               <Box onClick={() => { setReverseRate(!reverseRate) }}>
@@ -152,7 +152,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         </Box>
 
         {
-          !!toToken && fromBalance &&
+          !!toToken && !!fromBalance &&
           <Box className="swap-summary">
             <Box className="swap-summary-property slippage-tolerance">
               <Typography className="swap-summary-property-title" variant="body2">Slippage Tolerance <HelpIcon /></Typography>
@@ -207,7 +207,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             toFiatRate={mockConversionRate}
             toTokenRate={mockEthtoLsk}
             toToken={toToken as IToken}
-            fromAmount={fromBalance}
+            fromAmount={(fromBalance || 0)}
             splipageTolerance={splipageTolerance}
             onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
             onClose={() => { setOpenSwapConfirmModal(false); }}
