@@ -1,7 +1,8 @@
-import { Box, Snackbar, useMediaQuery } from "@mui/material";
+import { Box, IconButton, Snackbar, Typography, useMediaQuery } from "@mui/material";
 import { AlertComponent, ApproveTransactionModal } from "components";
+import { CancelIcon, InfoIcon } from "imgs/icons";
 import Head from "next/head";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppActions, RootState } from "store";
 import { darkTheme } from "styles/theme";

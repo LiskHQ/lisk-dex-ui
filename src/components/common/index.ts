@@ -19,3 +19,5 @@ export * from './ProposalStatusBadge';
 export * from './SearchInput';
 export * from './TransactionStatusModal';
 export * from './Alert';
+export * from './SelectTokenModal';
+export * from './Chart';

@@ -6,11 +6,11 @@ import { SwapViewStyle } from './index.style';
 import { ButtonComponent, TransactionStatusModal } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { SelectTokenModal } from "./SelectTokenModal";
+import { SelectTokenModal } from "../../common/SelectTokenModal";
 import { IToken } from "models";
 import { mockConversionRate, mockEthtoLsk } from "__mock__";
-import { TransactionSettings } from "./TransactionSettings";
 import { SwapConfirmModal } from "./SwapConfirmModal";
+import { TransactionSettings } from "./TransactionSettings";
 
 export interface ISwapViewProps {
   balance: number,
@@ -23,22 +23,19 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus } = props;
+  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus, fetchPrices } = props;
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
   const [openTransactionSettings, setOpenTransactionSettings] = useState<boolean>(false);
   const [openSwapConfirmModal, setOpenSwapConfirmModal] = useState<boolean>(false);
 
-  const [tokenShortName, setTokenShortName] = useState<string>('');
-  const [fromBalance, setFromBalance] = useState<number>();
+  const [fromBalance, setFromBalance] = useState<number>(0);
   const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
   const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
   const [reverseRate, setReverseRate] = useState<boolean>(false);
 
-  const toToken = useMemo(() => {
-    return tokens.find(el => el.shortName === tokenShortName);
-  }, [tokenShortName]);
+  const [toToken, setToToken] = useState<IToken | null>();
 
   const onSaveTransactionSettings = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
     setSplipageTolerance(splipageTolerance);
@@ -52,7 +49,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   const onCloseTransactionConfirm = () => {
     onCloseTransactionStatus();
-    setTokenShortName('');
+    setToToken(null);
     setFromBalance(0);
     setSplipageTolerance(0.5);
     setTransactionDeadline(20);
@@ -92,11 +89,11 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               <Typography variant="subtitle2">LSK</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
-            <Typography variant="subtitle2">{(fromBalance || 0).toFixed(2)}</Typography>
+            <Typography variant="subtitle2">{fromBalance.toFixed(2)}</Typography>
           </Box>
           <Box className="swap-from-bottom-box">
             <Typography variant="body2">Balance: {balance}</Typography>
-            <Typography variant="body2">${((fromBalance || 0) * mockConversionRate).toFixed(2)}</Typography>
+            <Typography variant="body2">${(fromBalance * mockConversionRate).toFixed(2)}</Typography>
           </Box>
         </Box>
 
@@ -126,7 +123,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle2">{((fromBalance || 0) / mockEthtoLsk).toFixed(2)}</Typography>
+              <Typography variant="subtitle2">{(fromBalance / mockEthtoLsk).toFixed(2)}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -141,8 +138,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {toToken.shortName} = {mockEthtoLsk} LSK</> :
-                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken.shortName}</>
+                      <>1 {toToken?.shortName} = {mockEthtoLsk} LSK</> :
+                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken?.shortName}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -188,7 +185,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           openSelectTokenModal &&
           <SelectTokenModal
             tokens={tokens}
-            onSelect={(value: string) => { setTokenShortName(value); }}
+            onSelect={(value: IToken) => { setToToken(value); }}
             onClose={() => { setOpenSelectTokenModal(false); }}
           />
         }
@@ -207,7 +204,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             toFiatRate={mockConversionRate}
             toTokenRate={mockEthtoLsk}
             toToken={toToken as IToken}
-            fromAmount={(fromBalance || 0)}
+            fromAmount={fromBalance}
             splipageTolerance={splipageTolerance}
             onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
             onClose={() => { setOpenSwapConfirmModal(false); }}
