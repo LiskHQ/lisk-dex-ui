@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Typography } from "@mui/material";
 
 import { ProposalViewStyle } from "./index.style";
-import { IProposal } from "models";
 
 export interface IProposalViewProps {
 }
