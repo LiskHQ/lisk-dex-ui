@@ -16,6 +16,7 @@ interface IProps {
   renderValue?: (value: number) => ReactNode;
   register?: UseFormRegister<any>,
   options?: RegisterOptions,
+  "data-testid"?: string,
 }
 
 export const DropdownComponent: React.FC<IProps> = (props) => {
