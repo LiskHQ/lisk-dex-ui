@@ -45,9 +45,9 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         <Box className="token-balance-details">
           <Typography variant="body2">Balance: {balance}</Typography>
           <Box className="token-balance-percent token">
-            <Typography data-testid="token-balance-percent-25" variant="body2" onClick={() => { setAmount(balance / 4) }}>25%</Typography>
-            <Typography data-testid="token-balance-percent-50" variant="body2" onClick={() => { setAmount(balance / 2) }}>50%</Typography>
-            <Typography data-testid="token-balance-percent-max" variant="body2" onClick={() => { setAmount(balance) }}>MAX</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(balance / 4) }}>25%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(balance / 2) }}>50%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance) }}>MAX</Typography>
           </Box>
         </Box>
       }

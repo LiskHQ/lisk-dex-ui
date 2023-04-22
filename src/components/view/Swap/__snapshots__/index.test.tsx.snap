@@ -344,7 +344,7 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-0 .swap-container .swap-summary .swap-summary-property.price-impact .swap-summary-property-value {
-  color: #459A33;
+  color: #BD5359;
 }
 
 .emotion-0 .swap-container .swap-summary .swap-summary-property.network-fee .swap-summary-property-value {
@@ -524,14 +524,15 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   min-width: 64px;
-  padding: 6px 8px;
+  padding: 6px 16px;
   border-radius: 4px;
   -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #1976d2;
+  color: #fff;
+  background-color: #1976d2;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
   width: 100%;
-  background: #6953F4;
-  color: #FFFFFF;
+  color: #FF4557;
   padding: 0.75rem;
   text-transform: capitalize;
 }
@@ -555,25 +556,40 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
 .emotion-34:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
-  background-color: rgba(25, 118, 210, 0.04);
+  background-color: #1565c0;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
 }
 
 @media (hover: none) {
   .emotion-34:hover {
-    background-color: transparent;
+    background-color: #1976d2;
   }
+}
+
+.emotion-34:active {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+.emotion-34.Mui-focusVisible {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
 .emotion-34.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-34:hover {
-  background: #A196F6;
+.emotion-34.MuiButton-outlined {
+  border-color: #FF4557;
+}
+
+.emotion-34.MuiButton-contained {
+  background: #6953F4;
+  color: #FFFFFF;
 }
 
 .emotion-34.Mui-disabled {
-  color: #FFFFFF;
   opacity: 0.7;
 }
 
@@ -729,11 +745,11 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
               data-prefix="fas"
               focusable="false"
               role="img"
-              viewBox="0 0 512 512"
+              viewBox="0 0 448 512"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
                 fill="currentColor"
               />
             </svg>
@@ -814,11 +830,11 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
                 data-prefix="fas"
                 focusable="false"
                 role="img"
-                viewBox="0 0 512 512"
+                viewBox="0 0 448 512"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                  d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
                   fill="currentColor"
                 />
               </svg>
@@ -846,7 +862,7 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
         </div>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium Mui-disabled MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium emotion-34"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-34"
         data-testid="swap-button"
         disabled=""
         tabindex="-1"

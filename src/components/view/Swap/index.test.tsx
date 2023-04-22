@@ -15,12 +15,10 @@ function renderComponent(props: ISwapViewProps) {
 
 describe("Swap", () => {
   const mockProps: ISwapViewProps = {
-    openTransactionApproval: false,
-    approvedTransaction: false,
     balance: mockBalance,
     tokens: mockTokens,
+    closeTransactionModal: false,
     onConfirmSwap: jest.fn(),
-    onCloseTransactionStatus: jest.fn(),
     fetchPrices: jest.fn(),
   }
 

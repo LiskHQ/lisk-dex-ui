@@ -5,14 +5,10 @@ import { mockBalance, mockTokens } from "__mock__";
 
 export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
+  const { closeTransactionModal } = useSelector((state: RootState) => state.transaction);
 
   const onConfirmSwap = () => {
-    dispatch(AppActions.transaction.setOpenTransactionApproval(true));
-  }
-
-  const onCloseTransactionStatus = () => {
-    dispatch(AppActions.transaction.resetApproveTransactionState());
+    dispatch(AppActions.transaction.sendTransaction());
   }
 
   const fetchPrices = () => {
@@ -22,10 +18,8 @@ export const SwapContainer: React.FC = () => {
     <SwapView
       balance={mockBalance}
       tokens={mockTokens}
-      openTransactionApproval={openTransactionApproval}
-      approvedTransaction={approvedTransaction}
+      closeTransactionModal={closeTransactionModal}
       onConfirmSwap={onConfirmSwap}
-      onCloseTransactionStatus={onCloseTransactionStatus}
       fetchPrices={fetchPrices}
     />
   )

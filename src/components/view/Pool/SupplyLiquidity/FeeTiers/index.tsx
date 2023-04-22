@@ -11,19 +11,19 @@ export interface IFeeTiersProps {
 
 const tiers = [
   {
-    percent: 0.01,
+    value: 0.01,
     description: 'Best for very stable pairs.'
   },
   {
-    percent: 0.05,
+    value: 0.05,
     description: 'Best for very stable pairs.'
   },
   {
-    percent: 0.3,
+    value: 0.3,
     description: 'Best for very stable pairs.'
   },
   {
-    percent: 1,
+    value: 1,
     description: 'Best for exotic pairs.'
   }
 ]
@@ -45,17 +45,18 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
       <Grid container spacing={1}>
         {
           tiers.map(tier => (
-            <Grid key={tier.percent} item xs={3}>
+            <Grid key={tier.value} item xs={3}>
               <Box
+                data-testid={`fee-tier-${tier.value}`}
                 className={
                   cn({
                     "fee-tier": true,
-                    "selected": tier.percent === value
+                    "selected": tier.value === value
                   })}
-                onClick={() => { setValue(tier.percent); }}
+                onClick={() => { setValue(tier.value); }}
               >
-                <Typography variant="body2">{tier.percent}%</Typography>
-                <RadioComponent checked={tier.percent === value} />
+                <Typography variant="body2">{tier.value}%</Typography>
+                <RadioComponent checked={tier.value === value} />
                 <Typography className="fee-tier-description" variant="body2">{tier.description}</Typography>
               </Box>
             </Grid>

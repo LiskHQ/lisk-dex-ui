@@ -15,15 +15,13 @@ import { TransactionSettings } from "./TransactionSettings";
 export interface ISwapViewProps {
   balance: number,
   tokens: IToken[],
-  openTransactionApproval: boolean,
-  approvedTransaction: boolean,
+  closeTransactionModal: boolean,
   onConfirmSwap: () => void,
-  onCloseTransactionStatus: () => void,
   fetchPrices: () => void,
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, onConfirmSwap, fetchPrices } = props;
+  const { balance, tokens, closeTransactionModal, onConfirmSwap, fetchPrices } = props;
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
@@ -51,7 +49,17 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     if (fromBalance) {
       //      fetchPrices();
     }
-  }, [fromBalance])
+  }, [fromBalance]);
+
+  useEffect(() => {
+    if (closeTransactionModal) {
+      setFromBalance(0);
+      setSplipageTolerance(0.5);
+      setTransactionDeadline(20);
+      setReverseRate(false);
+      setToToken(null);
+    }
+  }, [closeTransactionModal]);
 
   return (
     <SwapViewStyle>

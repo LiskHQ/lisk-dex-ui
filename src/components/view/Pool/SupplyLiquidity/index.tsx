@@ -116,6 +116,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         <Typography variant="body2">Select a pair</Typography>
         <Box className="supply-liquidity-token-selection">
           <Box
+            data-testid="select-token1-test"
             className={
               cn({
                 "select-token": true,
@@ -140,6 +141,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
           </Box>
 
           <Box
+            data-testid="select-token2-test"
             className={
               cn({
                 "select-token": true,
@@ -165,6 +167,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         !!token1 && !!token2 &&
         <InputComponent
           className="supply-liquidity-initial-price"
+          data-testid="initial-price-input-test"
           type="number"
           label="Set Initial Price"
           onChange={(e) => { setInitialPrice(parseFloat(e.target.value)) }}
@@ -219,6 +222,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       </Box>
 
       <ButtonComponent
+        data-testid="preview-button-test"
         onClick={() => { setOpenSupplyModal(true) }}
         disabled={!isValid}
       >

@@ -186,7 +186,7 @@ exports[`Footer component checks if the component matches the snapshot 1`] = `
     >
       <div
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 footer-menu-item emotion-2"
-        href="/swap-tokens"
+        href="/swap"
       >
         <h5
           class="MuiTypography-root MuiTypography-h5 emotion-3"

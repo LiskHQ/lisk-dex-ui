@@ -3,12 +3,12 @@ import { Box, CircularProgress, Link, Typography } from "@mui/material";
 import { SuccessIcon } from "imgs/icons";
 import { ButtonComponent } from "components/common";
 
-interface IProps {
+export interface ITransactionStatusModalProps {
   success?: boolean,
   onClose?: () => void
 }
 
-export const TransactionStatusModal: React.FC<IProps> = (props) => {
+export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (props) => {
   const { success, onClose } = props;
 
   return (

@@ -277,14 +277,15 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
   letter-spacing: 0.02857em;
   text-transform: uppercase;
   min-width: 64px;
-  padding: 6px 8px;
+  padding: 6px 16px;
   border-radius: 4px;
   -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #1976d2;
+  color: #fff;
+  background-color: #1976d2;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
   width: 100%;
-  background: #6953F4;
-  color: #FFFFFF;
+  color: #FF4557;
   padding: 0.75rem;
   text-transform: capitalize;
 }
@@ -308,25 +309,40 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
 .emotion-16:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
-  background-color: rgba(25, 118, 210, 0.04);
+  background-color: #1565c0;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
 }
 
 @media (hover: none) {
   .emotion-16:hover {
-    background-color: transparent;
+    background-color: #1976d2;
   }
+}
+
+.emotion-16:active {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+.emotion-16.Mui-focusVisible {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
 .emotion-16.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-16:hover {
-  background: #A196F6;
+.emotion-16.MuiButton-outlined {
+  border-color: #FF4557;
+}
+
+.emotion-16.MuiButton-contained {
+  background: #6953F4;
+  color: #FFFFFF;
 }
 
 .emotion-16.Mui-disabled {
-  color: #FFFFFF;
   opacity: 0.7;
 }
 
@@ -518,9 +534,9 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
 .emotion-24 {
   margin: 0;
   font-size: 1.25rem;
+  line-height: 1.5rem;
   font-weight: 600;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  line-height: 1.235;
   letter-spacing: 0.00735em;
 }
 
@@ -1024,7 +1040,7 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
 
 .emotion-82 {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -1622,7 +1638,7 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
           class="proposal-header-actions MuiBox-root emotion-1"
         >
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium proposal-header-vote-button emotion-16"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium proposal-header-vote-button emotion-16"
             data-testid="vote-button-test"
             tabindex="0"
             type="button"

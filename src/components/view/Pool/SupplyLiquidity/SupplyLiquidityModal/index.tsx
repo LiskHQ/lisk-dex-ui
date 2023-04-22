@@ -46,7 +46,7 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
 
           <Box className="supply-liquidity-modal-title">
             <Typography variant="h4">Supplying Liquidity</Typography>
-            <IconButton onClick={onClose}>
+            <IconButton data-testid="supply-liquidity-modal-cancel-test" onClick={onClose}>
               <CancelIcon />
             </IconButton>
           </Box>

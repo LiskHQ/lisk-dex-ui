@@ -9,6 +9,7 @@ exports[`SelectTokenModal checks if the component matches the snapshot 1`] = `
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  z-index: 20;
   width: 28.25rem;
   border-radius: 0.5rem;
   background: #FFFFFF;
@@ -612,11 +613,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
             data-prefix="fas"
             focusable="false"
             role="img"
-            viewBox="0 0 512 512"
+            viewBox="0 0 448 512"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+              d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"
               fill="currentColor"
             />
           </svg>
@@ -728,7 +729,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-11"
               >
-                DEU
+                LSK
               </p>
             </div>
           </div>
@@ -763,6 +764,40 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
                 class="MuiTypography-root MuiTypography-body2 emotion-11"
               >
                 ETH
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-13"
+          >
+            <div
+              class="select-token-chain-box MuiBox-root emotion-1"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </span>
+              <p
+                class="MuiTypography-root MuiTypography-body2 emotion-11"
+              >
+                DEU
               </p>
             </div>
           </div>
@@ -864,40 +899,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-11"
               >
-                LSK
-              </p>
-            </div>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-item emotion-13"
-          >
-            <div
-              class="select-token-chain-box MuiBox-root emotion-1"
-            >
-              <span
-                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-              >
-                <span
-                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                >
-                  <img
-                    alt=""
-                    aria-hidden="true"
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                  />
-                </span>
-                <img
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </span>
-              <p
-                class="MuiTypography-root MuiTypography-body2 emotion-11"
-              >
                 RGB
               </p>
             </div>
@@ -910,7 +911,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
     >
       <div
         class="select-token-balance-item MuiBox-root emotion-1"
-        data-testid="token-item-DEU"
+        data-testid="token-item-LSK"
       >
         <div
           class="token-wrapper MuiBox-root emotion-1"
@@ -942,12 +943,12 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
             <p
               class="MuiTypography-root MuiTypography-body1 token-short-name emotion-35"
             >
-              DEU
+              LSK
             </p>
             <p
               class="MuiTypography-root MuiTypography-body2 emotion-11"
             >
-              DEU
+              Lisk
             </p>
           </div>
         </div>
@@ -997,6 +998,55 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
               class="MuiTypography-root MuiTypography-body2 emotion-11"
             >
               Ethereum
+            </p>
+          </div>
+        </div>
+        <p
+          class="MuiTypography-root MuiTypography-body1 emotion-35"
+        >
+          0
+        </p>
+      </div>
+      <div
+        class="select-token-balance-item MuiBox-root emotion-1"
+        data-testid="token-item-DEU"
+      >
+        <div
+          class="token-wrapper MuiBox-root emotion-1"
+        >
+          <span
+            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            >
+              <img
+                alt=""
+                aria-hidden="true"
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
+                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              />
+            </span>
+            <img
+              data-nimg="intrinsic"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+            <noscript />
+          </span>
+          <div
+            class="token-name-wrapper MuiBox-root emotion-1"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 token-short-name emotion-35"
+            >
+              DEU
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-11"
+            >
+              DEU
             </p>
           </div>
         </div>
@@ -1095,55 +1145,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-9:focus::-ms-input-p
               class="MuiTypography-root MuiTypography-body2 emotion-11"
             >
               Kalipo
-            </p>
-          </div>
-        </div>
-        <p
-          class="MuiTypography-root MuiTypography-body1 emotion-35"
-        >
-          0
-        </p>
-      </div>
-      <div
-        class="select-token-balance-item MuiBox-root emotion-1"
-        data-testid="token-item-LSK"
-      >
-        <div
-          class="token-wrapper MuiBox-root emotion-1"
-        >
-          <span
-            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-          >
-            <span
-              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-            >
-              <img
-                alt=""
-                aria-hidden="true"
-                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
-                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-              />
-            </span>
-            <img
-              data-nimg="intrinsic"
-              decoding="async"
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-            />
-            <noscript />
-          </span>
-          <div
-            class="token-name-wrapper MuiBox-root emotion-1"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body1 token-short-name emotion-35"
-            >
-              LSK
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body2 emotion-11"
-            >
-              Lisk
             </p>
           </div>
         </div>
