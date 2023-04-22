@@ -6,7 +6,8 @@ type StateType = {
   votesLimit: number,
   votesTotal: number,
   votesTotalPages: number,
-  votes: IVote[]
+  votes: IVote[],
+  openProposalApproval: boolean,
   error: any,
 };
 
@@ -15,6 +16,7 @@ const initialState: StateType = {
   votesTotal: 0,
   votesTotalPages: 0,
   votes: [],
+  openProposalApproval: false,
   error: { message: '' },
 };
 
@@ -26,10 +28,10 @@ const proposalSlice = createSlice({
      * proposal
      */
     //approve a proposal modal
-    setOpenProposalApproval(state: any, action: PayloadAction<any>) {
+    setOpenProposalApproval(state, action: PayloadAction<any>) {
       state.openProposalApproval = action.payload;
     },
-    getVotesByProposal(state: any, action: PayloadAction<any>) {
+    getVotesByProposal(state, action: PayloadAction<any>) {
       const newVotes = mockVotes.slice(0, (action.payload + 1) * state.votesLimit);
       state.votesTotal = mockVotes.length;
       state.votesTotalPages = ~~mockVotes.length / state.votesLimit;

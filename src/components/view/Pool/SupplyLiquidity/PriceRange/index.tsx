@@ -15,18 +15,23 @@ export const PriceRange: React.FC<IPriceRangeProps> = (props) => {
   const [value, setValue] = useState<number>(price);
 
   useEffect(() => {
+    setValue(price);
+  }, [price])
+
+  const onChangeValue = (value: number) => {
+    setValue(value);
     onChange && onChange(value);
-  }, [value]);
+  }
 
   return (
     <PriceRangeStyle className="set-price-range-value">
       <Typography className="price-range-value-label" variant="body2">{label}</Typography>
       <Box className="price-range-value">
-        <IconButton onClick={() => { setValue((value - 0.1) < 0 ? value : (value - 0.1)); }}>
+        <IconButton onClick={() => { onChangeValue((value - 0.001) < 0 ? value : (value - 0.001)); }}>
           <FontAwesomeIcon icon={faMinus} />
         </IconButton>
         <Typography variant="subtitle1">{value.toFixed(4)}</Typography>
-        <IconButton onClick={() => { setValue(value + 0.1); }}>
+        <IconButton onClick={() => { onChangeValue(value + 0.001); }}>
           <FontAwesomeIcon icon={faPlus} />
         </IconButton>
       </Box>

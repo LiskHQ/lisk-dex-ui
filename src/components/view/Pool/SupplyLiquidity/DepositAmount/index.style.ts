@@ -38,6 +38,7 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
 
       '.token-balance-percent': {
         display: 'flex',
+        cursor: 'pointer',
         p: {
           marginLeft: '0.75rem',
         }

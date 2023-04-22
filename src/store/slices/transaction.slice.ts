@@ -7,6 +7,8 @@ type StateType = {
   approvedTransaction: boolean,
   sendingTransaction: boolean,
   sentTransaction: boolean,
+  confirmedTransaction: boolean,
+  closeTransactionModal: boolean,
   expenses: IExpense[],
   error: any,
 };
@@ -15,9 +17,10 @@ const initialState: StateType = {
   openTransactionApproval: false,
   approvingTransaction: false,
   approvedTransaction: false,
-
   sendingTransaction: false,
   sentTransaction: false,
+  confirmedTransaction: false,
+  closeTransactionModal: false,
 
   expenses: [],
   error: { message: '' },
@@ -31,33 +34,35 @@ const transactionSlice = createSlice({
      * transaction
      */
     //approve a transaction modal
-    setOpenTransactionApproval(state: any, action: PayloadAction<any>) {
+    setOpenTransactionApproval(state, action: PayloadAction<any>) {
       state.openTransactionApproval = action.payload;
     },
-    approveTransaction(state: any, action: PayloadAction<any>) {
+    approveTransaction(state, action: PayloadAction<any>) {
       state.approvingTransaction = true;
       state.approvedTransaction = false;
     },
-    approveTransactionSuccess(state: any, action: PayloadAction<any>) {
+    approveTransactionSuccess(state, action: PayloadAction<any>) {
       state.approvingTransaction = false;
       state.approvedTransaction = true;
       state.openTransactionApproval = false;
     },
-    approveTransactionFailure(state: any, action: PayloadAction<any>) {
+    approveTransactionFailure(state, action: PayloadAction<any>) {
       state.approvingTransaction = false;
       state.approvedTransaction = false;
       state.error = action.payload;
     },
-    resetApproveTransactionState(state: any) {
+    resetApproveTransactionState(state) {
       state.approvingTransaction = false;
       state.approvedTransaction = false;
     },
 
-    sendTransaction(state: any) {
+    sendTransaction(state) {
       state.sendingTransaction = true;
       state.sentTransaction = false;
+      state.closeTransactionModal = false;
+      state.confirmedTransaction = false;
     },
-    sendTransactionSuccess(state: any) {
+    sendTransactionSuccess(state) {
       state.sendingTransaction = false;
       state.sentTransaction = true;
     },
@@ -66,13 +71,24 @@ const transactionSlice = createSlice({
       state.sentTransaction = false;
       state.error = action.payload;
     },
-    resetSendTransactionState(state: any) {
+    resetSendTransactionState(state) {
       state.sendingTransaction = false;
       state.sentTransaction = false;
+      state.confirmedTransaction = false;
+    },
+
+    setCloseTransactionModal(state) {
+      state.closeTransactionModal = true;
+    },
+
+    confirmTransactionSuccess(state) {
+      state.sendingTransaction = false;
+      state.sentTransaction = false;
+      state.confirmedTransaction = true;
     },
 
     //trasnaction summary
-    setExpenses(state: any, action: PayloadAction<any>) {
+    setExpenses(state, action: PayloadAction<any>) {
       state.expenses = [...action.payload];
     }
   },
@@ -80,4 +96,3 @@ const transactionSlice = createSlice({
 
 export const actions = transactionSlice.actions;
 export const reducer = transactionSlice.reducer;
-

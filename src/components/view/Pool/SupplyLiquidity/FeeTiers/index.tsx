@@ -36,9 +36,13 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
     onChange && onChange(value);
   }, [value]);
 
+  useEffect(() => {
+    setValue(tierValue);
+  }, [tierValue])
+
   return (
     <FeeTiersStyle className="fee-tiers">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {
           tiers.map(tier => (
             <Grid key={tier.percent} item xs={3}>

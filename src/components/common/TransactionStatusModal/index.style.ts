@@ -12,11 +12,11 @@ export const TransactionStatusStyle = styled('div')(({ theme }: any) => {
       width: '100%',
       height: '100%',
       background: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 10,
+      zIndex: 30,
     },
 
     '.transaction-status-modal-container': {
-      position: 'absolute',
+      position: 'fixed',
       left: '50%',
       top: '50%',
       display: 'flex',
@@ -30,7 +30,7 @@ export const TransactionStatusStyle = styled('div')(({ theme }: any) => {
       borderRadius: '0.5rem',
       background: `${theme.bg.secondary} !important`,
       boxShadow: theme.shadow.sm,
-      zIndex: 10,
+      zIndex: 30,
 
       [theme.breakpoints.down('md')]: {
         position: 'fixed',

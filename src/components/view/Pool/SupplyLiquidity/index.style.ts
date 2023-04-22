@@ -36,6 +36,14 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
         alignItems: 'center',
         marginTop: '1rem',
 
+        [theme.breakpoints.down('md')]: {
+          flexDirection: 'column',
+
+          '.plus-icon': {
+            margin: '1rem 0',
+          }
+        },
+
         '.plus-icon': {
           color: theme.lightcurve[0],
           width: '1.5rem',
@@ -95,6 +103,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
     },
 
     '.supply-liquidity-set-price-range': {
+      marginTop: '1.5rem',
       marginBottom: '1.5rem',
 
       '.set-price-range-title': {
@@ -102,6 +111,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
         justifyContent: 'space-between',
 
         '.full-range': {
+          cursor: 'pointer',
           color: theme.lightcurve[0],
         }
       },
@@ -114,8 +124,22 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
     },
 
     '.deposit-amounts': {
+      marginBottom: '2rem',
       '.deposit-amount': {
         marginTop: '1rem',
+      }
+    },
+
+    '.supply-liquidity-mask': {
+      position: 'absolute',
+      top: '14.5rem',
+      background: theme.text.button,
+      width: 'calc(100% - 2rem)',
+      opacity: 0.5,
+      height: '54.5rem',
+
+      [theme.breakpoints.down('md')]: {
+        top: '20rem',
       }
     }
   }

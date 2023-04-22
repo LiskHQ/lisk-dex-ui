@@ -39,7 +39,7 @@ export const baseTheme = {
       fontWeight: 400,
     },
     caption: {
-      fontSize: "0.875rem",
+      fontSize: "0.75rem",
       lineHeight: "1rem",
       fontWeight: 500,
     },

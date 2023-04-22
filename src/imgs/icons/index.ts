@@ -21,6 +21,7 @@ export * from './SearchIcon';
 export * from './EditIcon';
 export * from './InfoIcon';
 export * from './PlusCircleIcon';
+export * from './PositionIcon';
 
 export const tokenSvgs = {
   DEU: '/assets/tokens/deu.svg',

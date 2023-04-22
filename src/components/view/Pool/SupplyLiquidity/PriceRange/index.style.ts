@@ -7,6 +7,10 @@ export const PriceRangeStyle = styled('div')(({ theme }: any) => {
     borderRadius: '0.25rem',
     width: '12.25rem',
 
+    [theme.breakpoints.down('sm')]: {
+      width: '10.25rem',
+    },
+
     p: {
       textAlign: 'center',
     },

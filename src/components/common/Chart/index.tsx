@@ -9,10 +9,11 @@ interface DataPoint {
 }
 
 interface Props {
+  className?: string,
   data: DataPoint[];
 }
 
-export const Chart: React.FC<Props> = ({ data }) => {
+export const Chart: React.FC<Props> = ({ className, data }) => {
   const theme = useTheme();
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -21,9 +22,11 @@ export const Chart: React.FC<Props> = ({ data }) => {
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
-    setWidth(svgRef.current?.width?.baseVal.value);
-    setHeight(svgRef.current?.height?.baseVal.value);
 
+    if (svgRef.current) {
+      setWidth(svgRef.current.getBoundingClientRect().width);
+      setHeight(svgRef.current.getBoundingClientRect().height);
+    }
     // Set up scales
     const xScale = d3
       .scaleLinear()
@@ -33,7 +36,7 @@ export const Chart: React.FC<Props> = ({ data }) => {
     const yScale = d3
       .scaleLinear()
       .domain([0, d3.max(data, (d) => d.y) as number])
-      .range([height, 0]);
+      .range([height + 20, 20]);
 
     // Set up area generator
     const area = d3
@@ -51,7 +54,7 @@ export const Chart: React.FC<Props> = ({ data }) => {
   }, [data, height, width]);
 
   return (
-    <ChartStyle>
+    <ChartStyle className={className}>
       <svg ref={svgRef}>
         <g></g>
       </svg>

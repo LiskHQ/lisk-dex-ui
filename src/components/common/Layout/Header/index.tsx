@@ -15,8 +15,6 @@ import { DropdownComponent } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
 
 interface IProps {
-  openTransactionApproval: boolean,
-  setOpenTransactionApproval: (state: boolean) => void,
 }
 
 export const Header: React.FC<IProps> = (props) => {

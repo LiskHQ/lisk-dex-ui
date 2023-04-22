@@ -30,7 +30,7 @@ interface IProps {
 
 export const InputComponent: React.FC<IProps> = (props) => {
   const theme = useTheme();
-  const { maxLength, onChange, register, watch, options, className, name: fieldName, type, min, max, label, ...inputProps } = props;
+  const { maxLength, register, watch, options, className, name: fieldName, type, min, max, label, ...inputProps } = props;
   const value = watch && fieldName && watch(fieldName);
 
   return (

@@ -115,7 +115,7 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
           background: 'none',
 
           '&:hover': {
-            P: {
+            p: {
               textDecoration: 'underline',
             }
           },

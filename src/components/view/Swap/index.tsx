@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Box, IconButton, Typography } from "@mui/material";
 import { EditIcon, HelpIcon, SettingIcon, SwapIcon, tokenSvgs } from "imgs/icons";
 import { SwapViewStyle } from './index.style';
-import { ButtonComponent, TransactionStatusModal } from "components";
+import { ButtonComponent } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { SelectTokenModal } from "../../common/SelectTokenModal";
@@ -23,7 +23,7 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus, fetchPrices } = props;
+  const { balance, tokens, onConfirmSwap, fetchPrices } = props;
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
@@ -45,15 +45,6 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   const onEditSplipageTolerance = () => {
     setOpenTransactionSettings(true);
-  }
-
-  const onCloseTransactionConfirm = () => {
-    onCloseTransactionStatus();
-    setToToken(null);
-    setFromBalance(0);
-    setSplipageTolerance(0.5);
-    setTransactionDeadline(20);
-    setReverseRate(false);
   }
 
   useEffect(() => {
@@ -208,13 +199,6 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             splipageTolerance={splipageTolerance}
             onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
             onClose={() => { setOpenSwapConfirmModal(false); }}
-          />
-        }
-        {
-          (openTransactionApproval || approvedTransaction) &&
-          <TransactionStatusModal
-            success={approvedTransaction}
-            onClose={onCloseTransactionConfirm}
           />
         }
       </Box>

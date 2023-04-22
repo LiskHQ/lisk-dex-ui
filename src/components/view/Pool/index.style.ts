@@ -6,6 +6,12 @@ export const PoolViewStyle = styled('div')(({ theme }: any) => {
     justifyContent: 'center',
 
     marginTop: '13.25rem',
+    marginBottom: '6rem',
     padding: '0 11rem',
+
+    [theme.breakpoints.down('md')]: {
+      marginTop: '6.5rem',
+      padding: '0 1rem',
+    },
   }
 })
