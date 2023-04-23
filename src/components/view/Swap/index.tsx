@@ -21,7 +21,7 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, closeTransactionModal, onConfirmSwap, fetchPrices } = props;
+  const { balance, tokens, closeTransactionModal, onConfirmSwap } = props;
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
@@ -130,15 +130,15 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
           </Box>
           {
-            !!toToken && !!fromBalance &&
+            !!toToken && fromBalance >= 0 &&
             <Box className="swap-to-price">
               <Typography variant="body2">Price:</Typography>
               <Box onClick={() => { setReverseRate(!reverseRate) }}>
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {toToken?.shortName} = {mockEthtoLsk} LSK</> :
-                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken?.shortName}</>
+                      <>1 {toToken.shortName} = {mockEthtoLsk} LSK</> :
+                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {toToken.shortName}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -148,7 +148,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         </Box>
 
         {
-          !!toToken && !!fromBalance &&
+          !!toToken && fromBalance >= 0 &&
           <Box className="swap-summary">
             <Box className="swap-summary-property slippage-tolerance">
               <Typography className="swap-summary-property-title" variant="body2">Slippage Tolerance <HelpIcon /></Typography>
@@ -171,12 +171,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
         <ButtonComponent
           data-testid="swap-button"
-          disabled={!toToken || !fromBalance}
+          disabled={!toToken || fromBalance == 0}
           onClick={() => { setOpenSwapConfirmModal(true); }}
         >
           <Typography variant="h4" sx={{ fontWeight: 500 }}>
             {
-              !toToken ? "Select tokens" : !fromBalance ? "Enter Amount" : "Swap"
+              !toToken ? "Select tokens" : fromBalance == 0 ? "Enter Amount" : "Swap"
             }
           </Typography>
         </ButtonComponent>

@@ -7,7 +7,7 @@ import { AppActions, RootState } from "store";
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { sendingTransaction, closeTransactionModal, approvedTransaction, confirmedTransaction } = useSelector((state: RootState) => state.transaction);
+  const { sendingTransaction, closeTransactionModal, confirmedTransaction } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, createdPool, gettingPools } = useSelector((state: RootState) => state.pool);
   const [pool, setPool] = useState<IPool>();
 
