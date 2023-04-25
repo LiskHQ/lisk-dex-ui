@@ -33,8 +33,6 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
     '.MuiAccordionSummary-expandIconWrapper': {
       display: 'flex',
       alignItems: 'center',
-      WebkitTransform: 'none',
-      transform: 'none',
 
       svg: {
         color: theme.lightcurve[0],
@@ -50,6 +48,8 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
       },
 
       '&.Mui-expanded': {
+        WebkitTransform: 'none',
+        transform: 'none',
         svg: {
           color: theme.lightcurve[0],
           height: '0.75rem',

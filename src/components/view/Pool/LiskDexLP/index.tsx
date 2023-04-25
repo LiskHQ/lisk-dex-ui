@@ -39,6 +39,7 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
             pools.map((el, index) => (
               <PoolComponent
                 key={index}
+                data-testid={`pool-component-test-${el.id}`}
                 pool={el}
                 onIncreaseLiquidity={onIncreaseLiquidity}
                 onRemoveLiquidity={onRemoveLiquidity}

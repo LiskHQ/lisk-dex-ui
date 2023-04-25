@@ -1,8 +1,8 @@
+import { useRouter } from "next/router";
 import { TransactionStatusStyle } from "./index.style";
 import { Box, CircularProgress, Link, Typography } from "@mui/material";
 import { SuccessIcon } from "imgs/icons";
 import { ButtonComponent } from "components/common";
-import router from "next/router";
 import { useEffect, useState } from "react";
 import { PATHS } from "consts";
 import { compareUrl } from "utils";
@@ -14,6 +14,7 @@ export interface ITransactionStatusModalProps {
 
 export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (props) => {
   const { success, onClose } = props;
+  const router = useRouter();
   const { pathname } = router || { pathname: '' };
 
   const [stateText, setStateText] = useState<string>('');

@@ -252,9 +252,7 @@ exports[`TransactionStatusModal checks if the component matches the snapshot 1`]
       </div>
       <p
         class="MuiTypography-root MuiTypography-body1 transaction-status-content emotion-11"
-      >
-        Swapping tokens...
-      </p>
+      />
       <p
         class="MuiTypography-root MuiTypography-body2 confirm-transaction-wallet emotion-12"
       >

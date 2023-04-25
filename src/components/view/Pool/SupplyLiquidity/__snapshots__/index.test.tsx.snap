@@ -92,7 +92,7 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
   justify-content: space-between;
   background: linear-gradient(180deg, #513AE2 0%, rgba(64, 45, 183, 0.9) 100%);
   border-radius: 0.5rem;
-  color: #FFFFFF;
+  color: #282828;
   padding: 0.5rem 0.75rem;
   width: 100%;
   cursor: pointer;
@@ -121,11 +121,11 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 
 .emotion-0 .supply-liquidity-select-pair .supply-liquidity-token-selection .select-token.selected div h6 {
   margin-left: 0.5rem;
-  color: #333333;
+  color: #282828;
 }
 
 .emotion-0 .supply-liquidity-select-pair .supply-liquidity-token-selection .select-token.selected svg {
-  color: #333333;
+  color: #282828;
 }
 
 .emotion-0 .supply-liquidity-initial-price {

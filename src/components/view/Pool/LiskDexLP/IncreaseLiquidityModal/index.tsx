@@ -54,6 +54,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
         <Box className="increase-liquidity-deposit-amounts">
           <Typography className="deposit-amount-title" variant="body2">Deposit amounts</Typography>
           <InputComponent
+            data-testid="increase-liquidity-token1-input-test"
             startAdornment={
               <InputAdornment position="start">
                 <Image src={pool.token1.image} width={40} height={40} />
@@ -66,6 +67,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             onChange={(e) => { setToken1Amount(parseFloat(e.target.value)); }}
           />
           <InputComponent
+            data-testid="increase-liquidity-token2-input-test"
             startAdornment={
               <InputAdornment position="start">
                 <Image src={pool.token2.image} width={40} height={40} />
@@ -79,7 +81,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
           />
         </Box>
         <ButtonComponent
-          data-testid="increase-liquidity-modal-button-test"
+          data-testid="increase-liquidity-modal-preview-test"
           className="increase-liquidity-modal-confirm"
           loading={isLoading}
           disabled={token1Amount == 0 || token2Amount == 0}
