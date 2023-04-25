@@ -30,7 +30,7 @@ describe("Button component", () => {
     fireEvent.click(getByText("Cancel"));
     expect(mockProps.onClose).toBeCalled();
 
-    fireEvent.click(getByText("Send wallet request"));
+    fireEvent.click(getByText("Approve"));
     expect(mockProps.onConfirm).toBeCalled();
   });
 

@@ -1623,6 +1623,7 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
         >
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium proposal-header-vote-button emotion-16"
+            data-testid="vote-button-test"
             tabindex="0"
             type="button"
           >

@@ -14,14 +14,21 @@ import {
   YourVotingInfoComponent,
 } from "components";
 import { darkTheme } from "styles/theme";
+import { VoteModal } from "./VoteModal";
+import { useEffect, useState } from "react";
+import { VoteSuccessModal } from "./VoteSuccessModal";
 
 export interface IProposalViewProps {
   votes: IVote[],
   votesPage: number,
   votesTotal: number,
   votesTotalPages: number,
-  onViewMore: () => void,
   proposal: IProposal,
+  openTransactionApproval: boolean,
+  approvedTransaction: boolean,
+  onViewMore: () => void,
+  onVote: () => void,
+  onCloseVoteSuccessModal: () => void,
 }
 
 export const ProposalView: React.FC<IProposalViewProps> = (props) => {
@@ -31,10 +38,20 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
     votesTotal,
     votesTotalPages,
     proposal,
-    onViewMore
+    openTransactionApproval,
+    approvedTransaction,
+    onViewMore,
+    onVote,
+    onCloseVoteSuccessModal,
   } = props;
 
   const isUpSm = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.sm));
+
+  const [openVoteModal, setOpenVoteModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    setOpenVoteModal(false);
+  }, [approvedTransaction]);
 
   return (
     <ProposalViewStyle>
@@ -59,7 +76,11 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
                 <Typography className="proposal-header-short" variant="body2">by {proposal.author}   •   Proposed on: Dec 14th, 2022   •   Ends in 12 days</Typography>
               </Box>
               <Box className="proposal-header-actions">
-                <ButtonComponent className="proposal-header-vote-button">
+                <ButtonComponent
+                  data-testid="vote-button-test"
+                  className="proposal-header-vote-button"
+                  onClick={() => { setOpenVoteModal(true); }}
+                >
                   <Typography variant="body1">Vote</Typography>
                 </ButtonComponent>
                 <IconButton className="proposal-header-header-menu-list-button">
@@ -106,6 +127,19 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
           </>
         }
       </Box>
+      {
+        openVoteModal &&
+        <VoteModal
+          openTransactionApproval={openTransactionApproval}
+          onClose={() => { setOpenVoteModal(false); }}
+          onVote={onVote}
+        />
+      }
+      {
+        approvedTransaction && <VoteSuccessModal onClose={() => {
+          onCloseVoteSuccessModal();
+        }} />
+      }
     </ProposalViewStyle>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { ProposalView, IProposalViewProps } from "./index";
 import { lightTheme } from "styles/theme";
 import { mockProposals, mockVotes } from "__mock__";
@@ -20,8 +20,12 @@ describe("ProposalView", () => {
     votesPage: 0,
     votesTotal: mockVotes.length,
     votesTotalPages: 1,
-    onViewMore: () => jest.fn(),
     proposal: mockProposals[0],
+    openTransactionApproval: false,
+    approvedTransaction: false,
+    onViewMore: jest.fn(),
+    onVote: jest.fn(),
+    onCloseVoteSuccessModal: jest.fn(),
   }
 
   it("checks if the component matches the snapshot", () => {
@@ -40,5 +44,35 @@ describe("ProposalView", () => {
     for (const vote of mockProps.votes) {
       expect(findByText(ellipsisAddress(vote.user))).toBeTruthy();
     }
+  });
+
+  it("renders vote modal and check works", () => {
+    const { getByTestId } = renderComponent(mockProps);
+    const button = getByTestId("vote-button-test");
+    fireEvent.click(button);
+
+    expect(getByTestId("vote-modal-test")).toBeInTheDocument();
+
+    const radio = getByTestId("vote-modal-radio");
+    fireEvent.click(radio);
+
+    const voteButton = getByTestId("vote-modal-button-test");
+    fireEvent.click(voteButton);
+
+    expect(mockProps.onVote).toBeCalled();
+  });
+
+  it("renders vote modal", () => {
+    const { getByTestId } = renderComponent({
+      ...mockProps,
+      approvedTransaction: true,
+    });
+
+    expect(getByTestId("vote-success-modal-test")).toBeInTheDocument();
+
+    const closeButton = getByTestId("vote-success-modal-close-test");
+    fireEvent.click(closeButton);
+
+    expect(mockProps.onCloseVoteSuccessModal).toBeCalled();
   });
 });
