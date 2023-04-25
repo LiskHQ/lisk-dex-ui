@@ -10,7 +10,6 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { menuItems } from 'consts';
 import { LightcurveIcon, LiskIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
-import AvatarImg from 'imgs/avatar.png';
 import { useEffect } from 'react';
 import { DropdownComponent } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
@@ -59,7 +58,7 @@ export const Header: React.FC<IProps> = (props) => {
             <Typography variant="h5">2921LSK</Typography>
             <Box className="header-menu-wallet-address">
               <Typography variant="h5">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
-              <Image src={AvatarImg} />
+              <Image src="/assets/avatars/avatar.png" width={24} height={24} />
             </Box>
           </Box>
 

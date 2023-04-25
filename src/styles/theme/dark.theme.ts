@@ -19,6 +19,9 @@ const themeColors = {
     60: '#261E59',
     80: '#E6E6E6',
   },
+  secondary: {
+    0: '#F5981B'
+  },
   primary: {
     85: '#7E6CF4',
     70: '#4F39B2',
@@ -44,6 +47,7 @@ const themeColors = {
     primary: 'linear-gradient(90deg, #140C42 0%, #211953 52.88%, #110A3A 101.53%, #140C42 101.53%)',
     secondary: '#22184C',
     helper: '#6953F4',
+    proposalItem: 'linear-gradient(180deg, #2E2567 0%, rgba(37, 26, 103, 0.5) 143.01%);',
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #372589 0%, rgba(27, 19, 68, 0.8) 100%)',
     slider: '#322573',
@@ -57,7 +61,7 @@ const themeColors = {
     second: '#E2CA64',
   },
   info: {
-    primary: '#EBF7F6',
+    primary: '#2EA3DD',
     second: '#C0ECE8',
   },
   error: {

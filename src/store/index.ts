@@ -1,12 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './saga';
-import { transactionActions, transactionReducer } from './slices';
+import { transactionActions, transactionReducer, proposalActions, proposalReducer } from './slices';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducer = combineReducers({
   transaction: transactionReducer,
+  proposal: proposalReducer,
 });
 
 export const store = configureStore({
@@ -20,6 +21,7 @@ sagaMiddleware.run(rootSaga);
 
 export const AppActions = {
   transaction: transactionActions,
+  proposal: proposalActions,
 };
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

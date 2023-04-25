@@ -565,13 +565,13 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
               />
             </svg>
             <span
-              class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root emotion-6"
+              class="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary emotion-6"
             >
               <input
                 class="PrivateSwitchBase-input emotion-7"
                 name="radio-buttons"
                 type="radio"
-                value="POOL_INCENTIVIZATION"
+                value="Pool Incentivization proposal"
               />
               <span
                 class="emotion-8"
@@ -657,13 +657,13 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
               </defs>
             </svg>
             <span
-              class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root emotion-6"
+              class="MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root MuiRadio-root MuiRadio-colorPrimary MuiRadio-root MuiRadio-colorPrimary emotion-6"
             >
               <input
                 class="PrivateSwitchBase-input emotion-7"
                 name="radio-buttons"
                 type="radio"
-                value="UNIVERSAL"
+                value="Universal proposal"
               />
               <span
                 class="emotion-8"

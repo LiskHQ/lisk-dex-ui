@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Box, FormLabel, Typography } from "@mui/material";
 import { ButtonComponent } from "components/common";
 import { CancelIcon, LightcurveIcon } from "imgs/icons";
-import AvatarImg from "imgs/avatar.png";
 import { ellipsisAddress } from "utils";
 import { ApproveTransactionModalStyle } from "./index.style";
 
@@ -38,7 +37,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             <Box className="approve-transaction-account">
               <FormLabel>Account:</FormLabel>
               <Box className="approve-transaction-account-address">
-                <Image src={AvatarImg} />
+                <Image src="/assets/avatars/avatar.png" width={24} height={24} />
                 <Typography variant="body1">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
               </Box>
             </Box>

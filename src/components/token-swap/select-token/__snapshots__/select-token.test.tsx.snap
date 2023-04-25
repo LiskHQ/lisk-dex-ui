@@ -389,7 +389,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Bitcoin"
                 tabindex="0"
                 type="button"
@@ -404,7 +404,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Ethereum"
                 tabindex="0"
                 type="button"
@@ -419,7 +419,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Tether"
                 tabindex="0"
                 type="button"
@@ -434,7 +434,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-BNB"
                 tabindex="0"
                 type="button"
@@ -449,7 +449,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Lisk"
                 tabindex="0"
                 type="button"
@@ -464,7 +464,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Dex"
                 tabindex="0"
                 type="button"
@@ -479,7 +479,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Luna"
                 tabindex="0"
                 type="button"
@@ -494,7 +494,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Terra"
                 tabindex="0"
                 type="button"
@@ -509,7 +509,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Sol"
                 tabindex="0"
                 type="button"
@@ -524,7 +524,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-USD"
                 tabindex="0"
                 type="button"
@@ -539,7 +539,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-XRP"
                 tabindex="0"
                 type="button"
@@ -554,7 +554,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-PLOK"
                 tabindex="0"
                 type="button"
@@ -569,7 +569,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Doge"
                 tabindex="0"
                 type="button"
@@ -584,7 +584,7 @@ exports[`SearchBox component checks if the component matches the snapshot 1`] = 
               class="MuiListItem-root MuiListItem-gutters MuiListItem-padding emotion-4"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root makeStyles-cryptoListArrayItem-4 emotion-5"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium makeStyles-cryptoListArrayItem-4 emotion-5"
                 data-testid="token-name-Ava"
                 tabindex="0"
                 type="button"

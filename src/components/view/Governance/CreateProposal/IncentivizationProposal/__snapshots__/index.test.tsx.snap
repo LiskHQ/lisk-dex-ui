@@ -435,6 +435,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
 
 .emotion-11 {
   float: unset;
+  width: auto;
   overflow: hidden;
   padding: 0;
   line-height: 11px;
@@ -559,7 +560,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: calc(133% - 24px);
+  max-width: calc(133% - 32px);
   position: absolute;
   left: 0;
   top: 0;
@@ -806,13 +807,13 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
             </svg>
           </label>
           <div
-            class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-5"
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-5"
             data-testid="dropdown-select"
           >
             <div
               aria-expanded="false"
               aria-haspopup="listbox"
-              class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input emotion-6"
+              class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input emotion-6"
               role="button"
               tabindex="0"
             >
@@ -828,6 +829,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
             </div>
             <input
               aria-hidden="true"
+              aria-invalid="false"
               class="MuiSelect-nativeInput emotion-9"
               tabindex="-1"
               value=""
@@ -871,7 +873,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
           class="MuiFormControl-root emotion-13"
         >
           <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary emotion-14"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined emotion-14"
             data-shrink="true"
           >
             Add a multiplier  
