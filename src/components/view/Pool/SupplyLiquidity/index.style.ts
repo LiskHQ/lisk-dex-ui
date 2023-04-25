@@ -58,7 +58,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
           justifyContent: 'space-between',
           background: 'linear-gradient(180deg, #513AE2 0%, rgba(64, 45, 183, 0.9) 100%);',
           borderRadius: '0.5rem',
-          color: theme.text.button,
+          color: theme.text.primary,
           padding: '0.5rem 0.75rem',
           width: '100%',
           cursor: 'pointer',
@@ -78,12 +78,12 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
 
               h6: {
                 marginLeft: '0.5rem',
-                color: theme.opacities[5],
+                color: theme.text.primary,
               },
             },
 
             svg: {
-              color: theme.opacities[5],
+              color: theme.text.primary,
             }
           }
         }
@@ -133,7 +133,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
     '.supply-liquidity-mask': {
       position: 'absolute',
       top: '14.5rem',
-      background: theme.text.button,
+      background: theme.bg.secondary,
       width: 'calc(100% - 2rem)',
       opacity: 0.5,
       height: '54.5rem',

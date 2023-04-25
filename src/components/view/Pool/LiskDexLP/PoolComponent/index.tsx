@@ -9,10 +9,12 @@ import { ButtonComponent } from "components/common";
 
 export interface IPoolComponentProps {
   pool: IPool,
+  onIncreaseLiquidity: (pool: IPool) => void,
+  onRemoveLiquidity: (pool: IPool) => void,
 }
 
 export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
-  const { pool } = props;
+  const { pool, onIncreaseLiquidity, onRemoveLiquidity } = props;
 
   return (
     <PoolComponentStyle>
@@ -103,10 +105,13 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
           <ButtonComponent
             className="remove-liquidity"
             variant="outlined"
+            onClick={() => { onRemoveLiquidity(pool) }}
           >
             <Typography variant="body1">- Remove Liquidity</Typography>
           </ButtonComponent>
-          <ButtonComponent>
+          <ButtonComponent
+            onClick={() => { onIncreaseLiquidity(pool) }}
+          >
             <Typography variant="body1">+ Increase Liquidity</Typography>
           </ButtonComponent>
         </Box>

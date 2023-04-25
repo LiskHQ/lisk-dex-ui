@@ -5,32 +5,23 @@ import {
 } from "components";
 import { CancelIcon, LightIcon } from "imgs/icons";
 import { SupplyLiquidityStyle } from "./index.style";
-import { IPool, IToken } from "models";
+import { IPool } from "models";
 import { useState } from "react";
 
 export interface ISupplyLiquidityModalProps {
-  token1: IToken,
-  token1Amount: number,
-  token2: IToken,
-  token2Amount: number,
+  pool: IPool,
   onClose: () => void,
   onConfirm: (pool: IPool) => void,
 }
 
 export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props) => {
-  const { token1, token1Amount, token2, token2Amount, onClose, onConfirm } = props;
+  const { pool, onClose, onConfirm } = props;
 
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const onClickConfirm = () => {
     setLoading(true);
-    onConfirm({
-      token1,
-      token2,
-      token1Amount,
-      token2Amount,
-      share: 0.09,
-    });
+    onConfirm(pool);
   }
   return (
     <SupplyLiquidityStyle data-testid="supply-liquidity-modal-test">
@@ -52,26 +43,26 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           </Box>
           <Box className="supply-liquidity-modal-description">
             <Box>
-              <Image src={token1.image} width={48} height={48} />
-              <Image src={token2.image} width={48} height={48} />
+              <Image src={pool.token1.image} width={48} height={48} />
+              <Image src={pool.token2.image} width={48} height={48} />
             </Box>
-            <Typography variant="body1">Supplying {token1Amount} {token1.shortName} and {token2Amount} {token2.shortName}</Typography>
-            <Typography variant="body1">You will receive 3.45 {token1.shortName}/{token2.shortName} LP Tokens</Typography>
+            <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.shortName} and {pool.token2Amount} {pool.token2.shortName}</Typography>
+            <Typography variant="body1">You will receive 3.45 {pool.token1.shortName}/{pool.token2.shortName} LP Tokens</Typography>
           </Box>
         </Box>
         <Box className="supply-liquidity-modal-body">
           <Box className="deposit-property">
-            <Typography variant="body1">{token1.shortName} Deposited:</Typography>
+            <Typography variant="body1">{pool.token1.shortName} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={token1.image} width={24} height={24} />
-              <Typography variant="body1">{token1Amount}</Typography>
+              <Image src={pool.token1.image} width={24} height={24} />
+              <Typography variant="body1">{pool.token1Amount}</Typography>
             </Box>
           </Box>
           <Box className="deposit-property">
-            <Typography variant="body1">{token2.shortName} Deposited:</Typography>
+            <Typography variant="body1">{pool.token2.shortName} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={token2.image} width={24} height={24} />
-              <Typography variant="body1">{token2Amount}</Typography>
+              <Image src={pool.token2.image} width={24} height={24} />
+              <Typography variant="body1">{pool.token2Amount}</Typography>
             </Box>
           </Box>
           <Box className="deposit-property">

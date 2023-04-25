@@ -55,8 +55,6 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
           height: '0.75rem',
           transform: 'rotate(180deg)',
           WebkitTransform: 'rotate(180deg)',
-          animationDuration: '0.5s',
-          WebkitAnimationDuration: '0.5s',
         },
 
         '&:before': {
@@ -163,6 +161,9 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
             width: '1rem',
             height: '1rem',
             marginRight: '0.5rem',
+            path: {
+              stroke: theme.text.primary,
+            }
           }
         }
       },

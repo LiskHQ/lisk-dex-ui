@@ -2,6 +2,10 @@ import { TransactionStatusStyle } from "./index.style";
 import { Box, CircularProgress, Link, Typography } from "@mui/material";
 import { SuccessIcon } from "imgs/icons";
 import { ButtonComponent } from "components/common";
+import router from "next/router";
+import { useEffect, useState } from "react";
+import { PATHS } from "consts";
+import { compareUrl } from "utils";
 
 export interface ITransactionStatusModalProps {
   success?: boolean,
@@ -10,6 +14,25 @@ export interface ITransactionStatusModalProps {
 
 export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (props) => {
   const { success, onClose } = props;
+  const { pathname } = router || { pathname: '' };
+
+  const [stateText, setStateText] = useState<string>('');
+
+  useEffect(() => {
+    if (compareUrl(pathname, PATHS.SWAP)) {
+      setStateText('Swapping tokens...');
+      if (success) {
+        setStateText('Swap successful');
+      }
+    }
+    if (compareUrl(pathname, PATHS.POOL)) {
+      setStateText('Supplying liquidity...');
+      if (success) {
+        setStateText('Supplying liquidity successful');
+      }
+    }
+  }, [pathname, success]);
+
 
   return (
     <TransactionStatusStyle>
@@ -37,7 +60,7 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
             </Box>
         }
         <Typography className="transaction-status-content" variant="body1" >
-          {success ? "Swap successful" : "Swapping tokens..."}
+          {stateText}
         </Typography>
         {
           success ?

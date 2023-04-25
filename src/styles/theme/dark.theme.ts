@@ -32,12 +32,12 @@ const themeColors = {
     85: '#7E6CF4',
     70: '#4F39B2',
     60: '#271B5B',
-    40: '#2D2166',
+    40: '#270F8E',
     20: '#322573',
     10: '#4F39B2',
     5: '#322573',
     2.5: '#25195E',
-    1: '#F4F8F9',
+    1: '#271B5B',
     0: '#FFFFFF',
   },
   opacities: {
@@ -53,6 +53,7 @@ const themeColors = {
   bg: {
     primary: 'linear-gradient(90deg, #140C42 0%, #211953 52.88%, #110A3A 101.53%, #140C42 101.53%)',
     secondary: '#22184C',
+    modal: '#2D2166',
     helper: '#6953F4',
     proposalItem: 'linear-gradient(180deg, #2E2567 0%, rgba(37, 26, 103, 0.5) 143.01%);',
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
@@ -60,20 +61,21 @@ const themeColors = {
     slider: '#322573',
   },
   success: {
-    primary: '#E3F2E0',
-    second: '#8DC881',
+    light: '#BD5359',
+    lighter: '#8DC881',
+    dark: '#459A33',
   },
   warning: {
-    primary: '#F8F3D8',
-    second: '#E2CA64',
+    lighter: '#F8F3D8',
+    light: '#E2CA64',
   },
   info: {
-    primary: '#2EA3DD',
-    second: '#C0ECE8',
+    dark: '#2EA3DD',
+    light: '#C0ECE8',
   },
   error: {
-    primary: '#F6E4E6',
-    second: '#FB8B96',
+    dark: '#FF4557',
+    light: '#FB8B96',
   },
 } as const;
 

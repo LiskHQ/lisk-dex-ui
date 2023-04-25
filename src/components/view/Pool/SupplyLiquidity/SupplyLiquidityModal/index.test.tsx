@@ -3,7 +3,7 @@ import { ThemeProvider } from "@mui/material";
 import { fireEvent, render } from "@testing-library/react";
 import { SupplyLiquidityModal, ISupplyLiquidityModalProps } from "./index";
 import { lightTheme } from "styles/theme";
-import { mockTokens } from "__mock__";
+import { mockPool } from "__mock__/pool.mock";
 
 function renderComponent(props: ISupplyLiquidityModalProps) {
   return render(
@@ -15,10 +15,7 @@ function renderComponent(props: ISupplyLiquidityModalProps) {
 
 describe("SupplyLiquidityModal component", () => {
   const mockProps: ISupplyLiquidityModalProps = {
-    token1: mockTokens[0],
-    token1Amount: 4521.125,
-    token2: mockTokens[1],
-    token2Amount: 7.125,
+    pool: mockPool,
     onClose: jest.fn(),
     onConfirm: jest.fn(),
   }

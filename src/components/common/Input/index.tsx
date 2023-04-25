@@ -21,6 +21,8 @@ interface IProps {
   readOnly?: boolean,
   disabled?: boolean,
   defaultValue?: string | number,
+  variant?: string,
+  startAdornment?: ReactNode,
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
@@ -52,7 +54,7 @@ export const InputComponent: React.FC<IProps> = (props) => {
               color: theme.text.placeholder,
             },
             "&::-webkit-outer-spin-button. &::-webkit-inner-spin-button": {
-              WebkitAppearance: "none",
+              '-webkit-appearance': "none",
               display: "none"
             },
           },

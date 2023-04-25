@@ -1,19 +1,18 @@
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image";
 import cn from "classnames";
+import { Box, IconButton, Typography } from "@mui/material"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Box, IconButton, Typography } from "@mui/material"
 import { ButtonComponent, InputComponent, SelectTokenModal } from "components"
 import { PlusCircleIcon, SettingIcon } from "imgs/icons"
-import { IPool, IToken } from "models"
-import { useEffect, useMemo, useState } from "react"
-import { mockTokens } from "__mock__"
-import { SupplyLiquidityStyle } from "./index.style"
 import { DepositAmount } from "./DepositAmount";
 import { FeeTiers } from "./FeeTiers";
 import { PriceRange } from "./PriceRange";
 import { RangeSelector } from "./RangeSelector";
-import { SupplyLiquidityModal } from "./SupplyLiquidityModal";
+import { SupplyLiquidityStyle } from "./index.style"
+import { IPool, IToken } from "models"
+import { mockTokens } from "__mock__"
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -29,14 +28,13 @@ const chartData = [
 ];
 
 export interface ISupplyLiquidityProps {
-  sendingTransaction: boolean,
   closeTransactionModal: boolean,
-  onCofirmSupplyLiquidity: (pool: IPool) => void,
+  onPreview: (pool: IPool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
-  const { sendingTransaction, closeTransactionModal, onCofirmSupplyLiquidity } = props
+  const { closeTransactionModal, onPreview } = props
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -52,8 +50,6 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
   const [minPrice, setMinPrice] = useState<number>(1.0);
   const [maxPrice, setMaxPrice] = useState<number>(2.0);
-
-  const [openSupplyModal, setOpenSupplyModal] = useState<boolean>(false);
 
   const onSelectToken = (token: IToken) => {
     openSelectToken1 && setToken1(token);
@@ -80,23 +76,19 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice]);
 
   useEffect(() => {
-    if (sendingTransaction) {
-      setOpenSupplyModal(false);
+    if (closeTransactionModal) {
+      setToken1(null);
+      setToken2(null);
+
+      setToken1Amount(0);
+      setToken2Amount(0);
+
+      setInitialPrice(0);
+      setTierValue(0);
+
+      setMinPrice(1.0);
+      setMaxPrice(2.0);
     }
-  }, [sendingTransaction]);
-
-  useEffect(() => {
-    setToken1(null);
-    setToken2(null);
-
-    setToken1Amount(0);
-    setToken2Amount(0);
-
-    setInitialPrice(0);
-    setTierValue(0);
-
-    setMinPrice(1.0);
-    setMaxPrice(2.0);
   }, [closeTransactionModal]);
 
   return (
@@ -223,7 +215,16 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
       <ButtonComponent
         data-testid="preview-button-test"
-        onClick={() => { setOpenSupplyModal(true) }}
+        onClick={() => {
+          onPreview({
+            id: '',
+            token1: token1 as IToken,
+            token2: token2 as IToken,
+            token1Amount,
+            token2Amount,
+            share: 0.085,
+          })
+        }}
         disabled={!isValid}
       >
         <Typography variant="subtitle1">Preview</Typography>
@@ -241,18 +242,6 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
           tokens={mockTokens}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
-        />
-      }
-
-      {
-        openSupplyModal && isValid &&
-        <SupplyLiquidityModal
-          token1={token1 as IToken}
-          token2={token2 as IToken}
-          token1Amount={token1Amount}
-          token2Amount={token2Amount}
-          onClose={() => { setOpenSupplyModal(false) }}
-          onConfirm={onCofirmSupplyLiquidity}
         />
       }
     </SupplyLiquidityStyle >

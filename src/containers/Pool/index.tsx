@@ -8,7 +8,7 @@ export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const { sendingTransaction, closeTransactionModal, confirmedTransaction } = useSelector((state: RootState) => state.transaction);
-  const { pools, gotPools, createdPool, gettingPools } = useSelector((state: RootState) => state.pool);
+  const { pools, gotPools, createdPool, updatedPool, gettingPools } = useSelector((state: RootState) => state.pool);
   const [pool, setPool] = useState<IPool>();
 
   const onConfirmSupplyLiquidity = (pool: IPool) => {
@@ -20,7 +20,11 @@ export const PoolContainer: React.FC = () => {
 
   useEffect(() => {
     if (confirmedTransaction && pool) {
-      dispatch(AppActions.pool.createPoolSuccess(pool));
+      if (pool.id) {
+        dispatch(AppActions.pool.updatePoolSuccess(pool));
+      } else {
+        dispatch(AppActions.pool.createPoolSuccess(pool));
+      }
     }
   }, [confirmedTransaction, pool]);
 
@@ -30,7 +34,7 @@ export const PoolContainer: React.FC = () => {
     setTimeout(() => {
       dispatch(AppActions.pool.getPoolsSuccess());
     }, 1000);
-  }, [createdPool]);
+  }, [createdPool, updatedPool]);
 
   return (
     <PoolView
