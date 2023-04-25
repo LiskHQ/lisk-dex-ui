@@ -30,6 +30,41 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
       },
     },
 
+    '.MuiAccordionSummary-expandIconWrapper': {
+      display: 'flex',
+      alignItems: 'center',
+      WebkitTransform: 'none',
+      transform: 'none',
+
+      svg: {
+        color: theme.lightcurve[0],
+        height: '0.75rem',
+      },
+
+      '&:before': {
+        content: '"Expand"',
+        color: theme.lightcurve[0],
+        fontSize: '0.875rem',
+        fontWeight: '1.125rem',
+        marginRight: '0.25rem',
+      },
+
+      '&.Mui-expanded': {
+        svg: {
+          color: theme.lightcurve[0],
+          height: '0.75rem',
+          transform: 'rotate(180deg)',
+          WebkitTransform: 'rotate(180deg)',
+          animationDuration: '0.5s',
+          WebkitAnimationDuration: '0.5s',
+        },
+
+        '&:before': {
+          content: '"Collpase"',
+        }
+      }
+    },
+
     '.MuiAccordionDetails-root': {
       borderTop: `1px solid ${theme.primary[20]}`,
       padding: '1.5rem 1rem',
@@ -94,6 +129,10 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
           },
 
           '&.fees-earned': {
+            h2: {
+              color: '#209E1D',
+            },
+
             '.pool-details-token': {
               padding: '0.5rem 0',
             },
