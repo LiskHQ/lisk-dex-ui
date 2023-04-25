@@ -32,8 +32,8 @@ exports[`Dropdown component checks if the component matches the snapshot 1`] = `
 
 .emotion-1 {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.25rem;
   font-weight: 400;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0.00714em;

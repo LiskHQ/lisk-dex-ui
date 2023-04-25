@@ -5,6 +5,7 @@ export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
     '.MuiFormLabel-root': {
       position: 'unset',
+      display: 'flex',
       color: `${theme.text.primary} !important`,
       fontSize: '0.875rem',
       lineHeight: '1.124rem',
@@ -13,6 +14,14 @@ export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
       WebkitTransform: 'none',
       msTransform: 'none',
       marginBottom: '0.5rem',
+
+      svg: {
+        cursor: 'pointer',
+        marginLeft: '0.25rem',
+        path: {
+          stroke: `${theme.text.paragraph} !important`,
+        }
+      }
     },
 
     '.MuiOutlinedInput-root': {
@@ -20,7 +29,7 @@ export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
       color: theme.text.primary,
       border: `0.5px solid ${theme.border.primary}`,
       background: 'unset',
-      animationDuration: '0.5s !important',
+      animationDuration: '1s !important',
       fontSize: '1rem',
       lineHeight: '2rem',
 

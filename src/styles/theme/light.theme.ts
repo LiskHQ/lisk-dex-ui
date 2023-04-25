@@ -8,10 +8,12 @@ const themeColors = {
     paragraph: '#6B7280',
     body: '#6B7280',
     heading: '#4738A6',
+    button: '#FFFFFF',
+    placeholder: '#6B7280',
   },
   lightcurve: {
     0: '#6953F4',
-    10: '#5845CC',
+    10: '#A196F6',
     20: '#4738A6',
     40: '#362B7F',
     60: '#261E59',
@@ -30,7 +32,7 @@ const themeColors = {
   },
   opacities: {
     5: '#333333',
-    10: '#3D3D3D',
+    10: '#E1E1E1',
     20: '#535353',
     40: '#7E7E7E',
     80: '#D4D4D4',
@@ -41,9 +43,10 @@ const themeColors = {
   bg: {
     primary: '#FBFBFB',
     secondary: '#FFFFFF',
-    helper: '#FFFFFF',
+    helper: '#22184D',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
+    slider: '#F2F2F2',
   },
   success: {
     primary: '#E3F2E0',
@@ -58,7 +61,7 @@ const themeColors = {
     second: '#C0ECE8',
   },
   error: {
-    primary: '#F6E4E6',
+    primary: '#FF4557',
     second: '#FB8B96',
   },
 } as const;

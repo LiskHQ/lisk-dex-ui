@@ -1,17 +1,14 @@
-import BankIcon from './BankIcon';
-import LightIcon from './LightIcon';
-import LiskIcon from './LiskIcon';
-import LightcurveIcon from './LightcurveIcon';
-import VoteIcon from './VoteIcon';
-import LightEmptyIcon from './LightEmptyIcon';
-import DarkEmptyIcon from './DarkEmptyIcon';
-
-export {
-  BankIcon,
-  LightIcon,
-  LiskIcon,
-  LightEmptyIcon,
-  DarkEmptyIcon,
-  LightcurveIcon,
-  VoteIcon,
-}
+export * from './BankIcon';
+export * from './DarkEmptyIcon';
+export * from './LightEmptyIcon';
+export * from './LightIcon';
+export * from './LightcurveIcon';
+export * from './LiskIcon';
+export * from './PoolIncentivizationIcon';
+export * from './UniversalIcon';
+export * from './VoteIcon';
+export * from './HelpIcon';
+export * from './LinkIcon';
+export * from './CancelIcon';
+export * from './LoaderIcon';
+export * from './SuccessIcon';

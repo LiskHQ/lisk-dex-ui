@@ -171,7 +171,7 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
   margin: 0;
   font-size: 1.75rem;
   line-height: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0em;
 }
@@ -194,6 +194,10 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
 
 .emotion-11 .MuiFormLabel-root {
   position: unset;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   color: #282828!important;
   font-size: 0.875rem;
   line-height: 1.124rem;
@@ -207,13 +211,22 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
   margin-bottom: 0.5rem;
 }
 
+.emotion-11 .MuiFormLabel-root svg {
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+
+.emotion-11 .MuiFormLabel-root svg path {
+  stroke: #6B7280!important;
+}
+
 .emotion-11 .MuiOutlinedInput-root {
   border-radius: 0.25rem;
   color: #282828;
   border: 0.5px solid #E6E6E6;
   background: unset;
-  -webkit-animation-duration: 0.5s!important;
-  animation-duration: 0.5s!important;
+  -webkit-animation-duration: 1s!important;
+  animation-duration: 1s!important;
   font-size: 1rem;
   line-height: 2rem;
 }
@@ -227,7 +240,7 @@ exports[`GovernanceView checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-11 .MuiOutlinedInput-root:hover {
-  border: 1px solid #5845CC;
+  border: 1px solid #A196F6;
 }
 
 .emotion-11 .MuiOutlinedInput-root:focus-within {
@@ -539,8 +552,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
 
 .emotion-21 {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.25rem;
   font-weight: 400;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   letter-spacing: 0.00714em;
@@ -650,6 +663,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
         >
           <div
             class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  emotion-12"
+            data-testid="dropdown-select"
           >
             <div
               aria-expanded="false"

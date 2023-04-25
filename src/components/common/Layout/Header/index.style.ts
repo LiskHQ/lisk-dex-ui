@@ -5,7 +5,7 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
     position: 'fixed',
     left: 0,
     right: 0,
-    zIndex: 100,
+    zIndex: 10,
     borderBottom: `1px solid ${theme.primary[20]}`,
     background: theme.bg.primary,
 
@@ -14,6 +14,7 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
     },
 
     '.header-container': {
+      position: 'relative',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -39,7 +40,7 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
           fontWeight: 500,
           marginRight: '3rem',
           cursor: 'pointer',
-          animationDuration: '0.2s',
+          animationDuration: '0.5s',
 
           '&:hover': {
             opacity: '0.85',

@@ -8,22 +8,24 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import '../styles/globals.css';
 import { lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
 const clientSideEmotionCache = createEmotionCache()
 
 function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: AppPropsRoot) {
   return (
-    // <Provider store={store}>
-    <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={lightTheme}>
-        <CssBaseline />
-        <AppStyle className="layout-app">
-          <LayoutTree Component={Component} pageProps={pageProps} />
-        </AppStyle>
-      </ThemeProvider>
-    </CacheProvider>
-    // </Provider>
+    <Provider store={store}>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <AppStyle className="layout-app">
+            <LayoutTree Component={Component} pageProps={pageProps} />
+          </AppStyle>
+        </ThemeProvider>
+      </CacheProvider>
+    </Provider>
   )
 }
 

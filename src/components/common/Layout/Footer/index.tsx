@@ -5,11 +5,7 @@ import { Grid, Typography } from '@mui/material';
 
 import { menuItems } from 'consts';
 import { FooterStyle } from './index.style';
-
-const compareUrl = (a: string, b: string) => {
-  if (a.indexOf(b) === 0) return true;
-  return false;
-}
+import { compareUrl } from 'utils';
 
 export const Footer: React.FC = () => {
   const router = useRouter();

@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const LightcurveIcon: React.FC<IProps> = (props) => {
+export const LightcurveIcon: React.FC<IProps> = (props) => {
   return (
     <svg
       width="48"
@@ -20,5 +20,3 @@ const LightcurveIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default LightcurveIcon;

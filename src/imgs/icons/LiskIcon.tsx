@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const LiskIcon: React.FC<IProps> = (props) => {
+export const LiskIcon: React.FC<IProps> = (props) => {
   const { className, width = 20, height = 20, fill = "#161133", onClick } = props;
   return (
     <svg
@@ -23,5 +23,3 @@ const LiskIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default LiskIcon;

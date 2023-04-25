@@ -6,7 +6,7 @@ exports[`Footer component checks if the component matches the snapshot 1`] = `
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 10;
   border-top: 1px solid #D9D8F8;
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,8 +55,8 @@ exports[`Footer component checks if the component matches the snapshot 1`] = `
   color: #6B7280;
   font-weight: 500;
   cursor: pointer;
-  -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 
 .emotion-0 .footer-menu .footer-menu-item:hover {

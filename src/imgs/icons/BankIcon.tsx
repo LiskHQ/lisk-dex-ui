@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const BankIcon: React.FC<IProps> = (props) => {
+export const BankIcon: React.FC<IProps> = (props) => {
   const { className, width = 56, height = 48, fill = "#322573", onClick } = props;
   return (
     <svg
@@ -22,5 +22,3 @@ const BankIcon: React.FC<IProps> = (props) => {
     </svg>
   );
 };
-
-export default BankIcon;

@@ -11,7 +11,7 @@ export const baseTheme = {
     h3: {
       fontSize: "1.75rem",
       lineHeight: "2rem",
-      fontWeight: 500,
+      fontWeight: 600,
     },
     h4: {
       fontSize: "1.25rem",
@@ -43,13 +43,13 @@ export const baseTheme = {
       fontWeight: 500,
     },
     subtitle1: {
-      fontSize: "1.75rem",
-      lineHeight: "2rem",
-      fontWeight: 500,
-    },
-    subtitle2: {
       fontSize: "1.25rem",
       lineHeight: "1.5rem",
+      fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: "1.15rem",
+      lineHeight: "1.25rem",
       fontWeight: 400,
     }
   },
@@ -67,7 +67,7 @@ export const baseTheme = {
       xl: 1440,
     },
   },
-  shadows: {
+  shadow: {
     sm: "0px 1px 3px rgba(0, 0, 0, 0.1)"
   }
 }
