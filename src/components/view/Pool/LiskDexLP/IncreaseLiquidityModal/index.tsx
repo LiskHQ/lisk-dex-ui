@@ -3,9 +3,9 @@ import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
 import {
   ButtonComponent, InputComponent,
 } from "components";
-import { CancelIcon, LightIcon } from "imgs/icons";
+import { CancelIcon } from "imgs/icons";
 import { IncreaseLiquidityModalStyle } from "./index.style";
-import { IPool, IToken } from "models";
+import { IPool } from "models";
 import { useState } from "react";
 
 export interface IIncreaseLiquidityModalProps {
