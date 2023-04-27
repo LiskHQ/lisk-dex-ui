@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IExpense } from "models";
+import { TransactionType } from "consts";
+import { IExpense, ITransaction } from "models";
 
 type StateType = {
   openTransactionApproval: boolean,
@@ -10,6 +11,7 @@ type StateType = {
   confirmedTransaction: boolean,
   closeTransactionModal: boolean,
   expenses: IExpense[],
+  transaction: ITransaction,
   error: any,
 };
 
@@ -21,6 +23,9 @@ const initialState: StateType = {
   sentTransaction: false,
   confirmedTransaction: false,
   closeTransactionModal: false,
+  transaction: {
+    type: TransactionType.SWAP,
+  },
 
   expenses: [],
   error: { message: '' },
@@ -56,11 +61,27 @@ const transactionSlice = createSlice({
       state.approvedTransaction = false;
     },
 
-    sendTransaction(state) {
+    //send a transaction to wallet
+    sendTransaction(state, action: PayloadAction<any>) {
       state.sendingTransaction = true;
       state.sentTransaction = false;
       state.closeTransactionModal = false;
       state.confirmedTransaction = false;
+      state.transaction = action.payload;
+
+      state.expenses = [
+        {
+          title: 'Transaction fee',
+          amount: '0.87 LSK (~$0.66)',
+        }
+      ]
+
+      if (state.transaction.type === TransactionType.INCREASE_LIQUIDITY || state.transaction.type === TransactionType.SUPPLY_LIQUIDITY) {
+        state.expenses.push({
+          title: 'Add Liquidity',
+          amount: '4500 LSK & 5.6212 ETH(~$8752.45)',
+        })
+      }
     },
     sendTransactionSuccess(state) {
       state.sendingTransaction = false;

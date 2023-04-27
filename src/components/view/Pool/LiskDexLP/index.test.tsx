@@ -19,6 +19,7 @@ describe("LiskDexLP component", () => {
     gettingPools: false,
     gotPools: false,
     onPreview: jest.fn(),
+    onPreviewRemove: jest.fn(),
   }
 
   it("checks if the component matches the b  snapshot", () => {

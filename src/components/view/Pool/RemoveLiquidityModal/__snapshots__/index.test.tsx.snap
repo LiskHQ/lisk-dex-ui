@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SupplyLiquidityModal component checks if the component matches the snapshot 1`] = `
-.emotion-0 .supply-liquidity-modal-background {
+exports[`RemoveLiquidityModal component checks if the component matches the snapshot 1`] = `
+.emotion-0 .remove-liquidity-modal-background {
   position: fixed;
   left: 0;
   top: 0;
@@ -11,7 +11,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   z-index: 30;
 }
 
-.emotion-0 .supply-liquidity-modal-container {
+.emotion-0 .remove-liquidity-modal-container {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -28,17 +28,17 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
 }
 
 @media (max-width:575.95px) {
-  .emotion-0 .supply-liquidity-modal-container {
+  .emotion-0 .remove-liquidity-modal-container {
     width: 100%;
   }
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header {
   padding: 2rem 1.5rem;
   position: relative;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-title {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -51,21 +51,21 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   margin-bottom: 4rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-title .MuiIconButton-root {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-title .MuiIconButton-root {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-title .MuiIconButton-root svg path {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-title .MuiIconButton-root svg path {
   stroke: #282828;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-description {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-description {
   margin-bottom: 1.25rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-description div {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-description div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -77,52 +77,52 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   margin-bottom: 2rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-description p {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .remove-liquidity-modal-description p {
   text-align: center;
   margin-bottom: 0.75rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon {
   position: absolute;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-1 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-1 {
   top: 10rem;
   left: 10rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-2 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-2 {
   top: 2rem;
   left: 26rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-3 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-3 {
   top: 4rem;
   left: 2rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-4 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-4 {
   top: 8rem;
   left: 22rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-5 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-5 {
   top: 16rem;
   left: 6rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .light-icon.data-index-6 {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-header .light-icon.data-index-6 {
   top: 14rem;
   left: 28rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-body {
   padding: 1.5rem 1.5rem 2rem 1.5rem;
   border-radius: 0 0 0.5rem 0.5rem;
   background: #F2F5F9;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body .deposit-property {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-body .deposit-property {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -133,7 +133,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   margin-bottom: 0.75rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body .deposit-property .deposit-property-amount {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-body .deposit-property .deposit-property-amount {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -144,11 +144,11 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   align-items: center;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body .deposit-property .deposit-property-amount p {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-body .deposit-property .deposit-property-amount p {
   margin-left: 0.5rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body .deposit-description {
+.emotion-0 .remove-liquidity-modal-container .remove-liquidity-modal-body .deposit-description {
   margin: 3.25rem 2rem 2rem 2rem;
   text-align: center;
 }
@@ -260,7 +260,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   letter-spacing: 0.00938em;
 }
 
-.emotion-25 {
+.emotion-21 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -313,23 +313,23 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   text-transform: capitalize;
 }
 
-.emotion-25::-moz-focus-inner {
+.emotion-21::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-25 {
+  .emotion-21 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-25:hover {
+.emotion-21:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -337,51 +337,51 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
 }
 
 @media (hover: none) {
-  .emotion-25:hover {
+  .emotion-21:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-25:active {
+.emotion-21:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-25.Mui-focusVisible {
+.emotion-21.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-25.MuiButton-outlined {
+.emotion-21.MuiButton-outlined {
   border-color: #FF4557;
 }
 
-.emotion-25.MuiButton-contained {
+.emotion-21.MuiButton-contained {
   background: #6953F4;
   color: #FFFFFF;
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   opacity: 0.7;
 }
 
 <div>
   <div
     class="emotion-0"
-    data-testid="supply-liquidity-modal-test"
+    data-testid="remove-liquidity-modal-test"
   >
     <div
-      class="supply-liquidity-modal-background MuiBox-root emotion-1"
+      class="remove-liquidity-modal-background MuiBox-root emotion-1"
     />
     <div
-      class="supply-liquidity-modal-container MuiBox-root emotion-1"
+      class="remove-liquidity-modal-container MuiBox-root emotion-1"
     >
       <div
-        class="supply-liquidity-modal-header MuiBox-root emotion-1"
+        class="remove-liquidity-modal-header MuiBox-root emotion-1"
       >
         <svg
           class="light-icon data-index-1"
@@ -468,16 +468,16 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
           />
         </svg>
         <div
-          class="supply-liquidity-modal-title MuiBox-root emotion-1"
+          class="remove-liquidity-modal-title MuiBox-root emotion-1"
         >
           <h4
             class="MuiTypography-root MuiTypography-h4 emotion-5"
           >
-            Supplying Liquidity
+            Removing Liquidity
           </h4>
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium emotion-6"
-            data-testid="supply-liquidity-modal-cancel-test"
+            data-testid="remove-liquidity-modal-cancel-test"
             tabindex="0"
             type="button"
           >
@@ -524,7 +524,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
           </button>
         </div>
         <div
-          class="supply-liquidity-modal-description MuiBox-root emotion-1"
+          class="remove-liquidity-modal-description MuiBox-root emotion-1"
         >
           <div
             class="MuiBox-root emotion-1"
@@ -575,7 +575,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
           <p
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
-            Supplying 
+            You will receive 
             1862
              
             LSK
@@ -583,20 +583,12 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             0.045
              
             ETH
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            You will receive 3.45 
-            LSK
-            /
-            ETH
-             LP Tokens
+             Tokens
           </p>
         </div>
       </div>
       <div
-        class="supply-liquidity-modal-body MuiBox-root emotion-1"
+        class="remove-liquidity-modal-body MuiBox-root emotion-1"
       >
         <div
           class="deposit-property MuiBox-root emotion-1"
@@ -605,7 +597,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
             LSK
-             Deposited:
+             removed:
           </p>
           <div
             class="deposit-property-amount MuiBox-root emotion-1"
@@ -645,7 +637,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
             ETH
-             Deposited:
+             removed:
           </p>
           <div
             class="deposit-property-amount MuiBox-root emotion-1"
@@ -678,28 +670,14 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             </p>
           </div>
         </div>
-        <div
-          class="deposit-property MuiBox-root emotion-1"
-        >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            Share of pool:
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            0.09%
-          </p>
-        </div>
         <p
           class="MuiTypography-root MuiTypography-body1 deposit-description emotion-10"
         >
           Output is estimated. If the price changes by more than 0.5% your transaction will revert.
         </p>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium supply-liquidity-modal-confirm emotion-25"
-          data-testid="supply-liquidity-modal-button-test"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium remove-liquidity-modal-confirm emotion-21"
+          data-testid="remove-liquidity-modal-button-test"
           tabindex="0"
           type="button"
         >

@@ -1,4 +1,5 @@
 import { PoolView } from "components";
+import { TransactionType } from "consts";
 import { IPool } from "models";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +14,24 @@ export const PoolContainer: React.FC = () => {
 
   const onConfirmSupplyLiquidity = (pool: IPool) => {
     setTimeout(() => {
-      dispatch(AppActions.transaction.sendTransaction());
+      if (pool.id) {
+        dispatch(AppActions.transaction.sendTransaction({
+          type: TransactionType.INCREASE_LIQUIDITY,
+        }));
+      } else {
+        dispatch(AppActions.transaction.sendTransaction({
+          type: TransactionType.SUPPLY_LIQUIDITY,
+        }));
+      }
+      setPool(pool);
+    }, 1000);
+  }
+
+  const onConfirmRemoveLiquidity = (pool: IPool) => {
+    setTimeout(() => {
+      dispatch(AppActions.transaction.sendTransaction({
+        type: TransactionType.REMOVE_LIQUIDITY,
+      }));
       setPool(pool);
     }, 1000);
   }
@@ -44,6 +62,7 @@ export const PoolContainer: React.FC = () => {
       sendingTransaction={sendingTransaction}
       closeTransactionModal={closeTransactionModal}
       onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}
+      onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}
     />
   )
 };
