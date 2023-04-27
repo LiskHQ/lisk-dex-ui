@@ -62,6 +62,7 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
             {
               amountValues.map((el) => (
                 <ButtonComponent
+                  key={el}
                   variant={amount != el ? "outlined" : "contained"}
                   onClick={() => { setAmount(el) }}
                 >
