@@ -570,32 +570,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   align-items: center;
 }
 
-.emotion-20 .proposal-item-main .proposal-item-header .proposal-item-no .proposal-item-type {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 1.25rem;
-  border-radius: 0.75rem;
-  border: 0.75px solid #6953F4;
-  padding: 0.25rem 0.625rem;
+.emotion-20 .proposal-item-main .proposal-item-header .proposal-item-no .proposal-type-badge {
   margin-left: 0.75rem;
-}
-
-.emotion-20 .proposal-item-main .proposal-item-header .proposal-item-no .proposal-item-type svg {
-  width: 0.75rem;
-  height: 0.75rem;
-}
-
-.emotion-20 .proposal-item-main .proposal-item-header .proposal-item-no .proposal-item-type h6 {
-  margin-left: 0.375rem;
-  font-size: 0.75rem;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .emotion-20 .proposal-item-main .proposal-item-header .proposal-item-status {
@@ -699,6 +675,33 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   line-height: 1.235;
   letter-spacing: 0.00735em;
+}
+
+.emotion-25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 1.25rem;
+  border-radius: 0.75rem;
+  border: 0.75px solid #6953F4;
+  padding: 0.25rem 0.625rem;
+}
+
+.emotion-25 svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.emotion-25 h6 {
+  margin-left: 0.375rem;
+  font-size: 0.75rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .emotion-29 {
@@ -888,7 +891,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
                   #1
                 </h4>
                 <div
-                  class="proposal-item-type MuiBox-root emotion-1"
+                  class="proposal-type-badge emotion-25"
                 >
                   <svg
                     fill="none"

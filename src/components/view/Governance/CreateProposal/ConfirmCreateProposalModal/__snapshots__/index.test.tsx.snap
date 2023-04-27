@@ -99,11 +99,11 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
 }
 
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-body::-webkit-scrollbar-thumb {
-  background: #F2F2F2;
+  background: #6B7280;
 }
 
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-body::-webkit-scrollbar-thumb:hover {
-  background: #F2F2F2;
+  background: #6B7280;
 }
 
 .emotion-0 .confirm-proposal-modal-container .confirm-proposal-modal-body .confirm-proposal-type .MuiFormLabel-root {

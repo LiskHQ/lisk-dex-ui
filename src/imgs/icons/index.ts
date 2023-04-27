@@ -13,3 +13,5 @@ export * from './CancelIcon';
 export * from './LoaderIcon';
 export * from './SuccessIcon';
 export * from './CalendarIcon';
+export * from './PieChartIcon';
+export * from './ClockIcon';

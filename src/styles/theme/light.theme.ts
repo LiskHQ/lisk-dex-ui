@@ -19,6 +19,9 @@ const themeColors = {
     60: '#261E59',
     80: '#161133',
   },
+  secondary: {
+    0: '#F5981B'
+  },
   primary: {
     85: '#7E6CF4',
     60: '#A196F6',
@@ -47,7 +50,7 @@ const themeColors = {
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     proposalItem: 'linear-gradient(180deg, #F4F2FF 0%, rgba(238, 236, 249, 0.5) 143.01%);',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
-    slider: '#F2F2F2',
+    slider: '#6B7280',
   },
   success: {
     primary: '#BD5359',

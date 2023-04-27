@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IExpense } from "models";
 
 type StateType = {
   openTransactionApproval: boolean,
   approvingTransaction: boolean,
   approvedTransaction: boolean,
+  expenses: IExpense[],
   error: any,
 };
 
@@ -11,6 +13,7 @@ const initialState: StateType = {
   openTransactionApproval: false,
   approvingTransaction: false,
   approvedTransaction: false,
+  expenses: [],
   error: { message: '' },
 };
 
@@ -42,6 +45,11 @@ const transactionSlice = createSlice({
     resetApproveTransactionState(state: any) {
       state.approvingTransaction = false;
       state.approvedTransaction = false;
+    },
+
+    //trasnaction summary
+    setExpenses(state: any, action: PayloadAction<any>) {
+      state.expenses = [...action.payload];
     }
   },
 });

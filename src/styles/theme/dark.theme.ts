@@ -19,6 +19,9 @@ const themeColors = {
     60: '#261E59',
     80: '#E6E6E6',
   },
+  secondary: {
+    0: '#F5981B'
+  },
   primary: {
     85: '#7E6CF4',
     70: '#4F39B2',
