@@ -27,11 +27,11 @@ describe("DepositAmount component", () => {
   });
 
   it("select amount works", () => {
-    const { getByText, getByTestId } = renderComponent(mockProps);
+    const { getByDisplayValue, getByTestId } = renderComponent(mockProps);
 
     fireEvent.click(getByTestId("LSK-amount-percent-max"));
 
-    expect(getByText(mockProps.balance.toPrecision(4))).toBeInTheDocument();
+    expect(getByDisplayValue(mockProps.balance)).toBeInTheDocument();
     expect(mockProps.onChange).toBeCalled();
   });
 });

@@ -56,8 +56,14 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const [openSupplyModal, setOpenSupplyModal] = useState<boolean>(false);
 
   const onSelectToken = (token: IToken) => {
-    openSelectToken1 && setToken1(token);
-    openSelectToken2 && setToken2(token);
+    if (openSelectToken1) {
+      if (token2 !== token)
+        setToken1(token);
+    }
+    if (openSelectToken2) {
+      if (token1 !== token)
+        setToken2(token);
+    }
   }
 
   const onCloseSelectToken = () => {
@@ -76,8 +82,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   }
 
   const isValid = useMemo(() => {
-    return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice)
-  }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice]);
+    return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice && tierValue)
+  }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice, tierValue]);
 
   useEffect(() => {
     if (sendingTransaction) {
@@ -104,7 +110,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       <Box className="supply-liquidity-title">
         <Typography variant="h4">Supply Liquidity</Typography>
         <Box className="supply-liquidity-actions">
-          <Typography variant="body2">clear</Typography>
+          <Typography variant="body2">Clear</Typography>
           <IconButton>
             <SettingIcon />
           </IconButton>

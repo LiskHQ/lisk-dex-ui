@@ -397,6 +397,12 @@ exports[`TransactionSettings checks if the component matches the snapshot 1`] = 
   margin-bottom: 0.25rem;
 }
 
+.emotion-14 input::-webkit-outer-spin-button,
+.emotion-14 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
 .emotion-15 {
   font-size: 1rem;
   line-height: 1.4375em;
@@ -544,11 +550,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
 .emotion-16::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-16::-webkit-outer-spin-button. .emotion-16::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-22 {

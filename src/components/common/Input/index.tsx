@@ -1,7 +1,7 @@
 import { InputComponentStyle } from "./index.style"
 import { useTheme } from "@mui/styles";
 import { Box, InputBase, InputLabel, Typography } from "@mui/material";
-import { ChangeEventHandler, KeyboardEventHandler, ReactNode } from "react";
+import { ChangeEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
@@ -21,6 +21,10 @@ interface IProps {
   readOnly?: boolean,
   disabled?: boolean,
   defaultValue?: string | number,
+  variant?: string,
+  startAdornment?: ReactNode,
+  endAdornment?: ReactNode,
+  onClick?: MouseEventHandler<HTMLDivElement>,
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
@@ -50,10 +54,6 @@ export const InputComponent: React.FC<IProps> = (props) => {
             "&::placeholder": {
               opacity: 1,
               color: theme.text.placeholder,
-            },
-            "&::-webkit-outer-spin-button. &::-webkit-inner-spin-button": {
-              WebkitAppearance: "none",
-              display: "none"
             },
           },
           maxLength,
