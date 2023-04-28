@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import { fireEvent, getByDisplayValue, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { SwapView, ISwapViewProps } from "./index";
 import { lightTheme } from "styles/theme";
 import { mockBalance, mockTokens } from "__mock__";

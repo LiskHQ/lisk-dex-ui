@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Box, IconButton, Typography } from "@mui/material";
-import { EditIcon, HelpIcon, SettingIcon, SwapIcon, tokenSvgs } from "imgs/icons";
+import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from "imgs/icons";
 import { SwapViewStyle } from './index.style';
 import { ButtonComponent, InputComponent, TransactionStatusModal } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
