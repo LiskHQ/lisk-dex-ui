@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VoteSuccessModal checks if the component matches the snapshot 1`] = `
+.emotion-0 .vote-success-modal-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.emotion-0 .vote-success-modal-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-bottom: 10rem;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 25.625rem;
+  border-radius: 0.5rem;
+  background: #FFFFFF!important;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+@media (max-width:575.95px) {
+  .emotion-0 .vote-success-modal-container {
+    width: calc(100% - 2rem);
+    left: 1rem;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-bottom: 0.5px solid #E6E6E6;
+  color: #282828;
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-body {
+  padding: 2rem 1rem 2rem 1rem;
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-body .vote-success-modal-voting-power {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-body .vote-success-modal-voting-power .vote-success-modal-voting-power-dex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-body .vote-success-modal-voting-power .vote-success-modal-voting-power-dex svg {
+  fill: #6953F4;
+  margin-left: 0.5rem;
+}
+
+.emotion-0 .vote-success-modal-container .vote-success-modal-footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0.01071em;
+}
+
+.emotion-11 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #1976d2;
+  width: 100%;
+  background: #6953F4;
+  color: #FFFFFF;
+  padding: 0.75rem;
+  text-transform: capitalize;
+}
+
+.emotion-11::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-11.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-11 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-11:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(25, 118, 210, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-11:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-11.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-11:hover {
+  background: #A196F6;
+}
+
+.emotion-11.Mui-disabled {
+  color: #FFFFFF;
+  opacity: 0.7;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-13 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div>
+  <div
+    class="emotion-0"
+    data-testid="vote-success-modal-test"
+  >
+    <div
+      class="vote-success-modal-background MuiBox-root emotion-1"
+    />
+    <div
+      class="vote-success-modal-container MuiBox-root emotion-1"
+    >
+      <div
+        class="vote-success-modal-header MuiBox-root emotion-1"
+      >
+        <h4
+          class="MuiTypography-root MuiTypography-h4 emotion-4"
+        >
+          Vote recasted
+        </h4>
+      </div>
+      <div
+        class="vote-success-modal-body MuiBox-root emotion-1"
+      >
+        <div
+          class="vote-success-modal-voting-power MuiBox-root emotion-1"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-7"
+          >
+            You have successfully 
+            voted
+             
+          </p>
+          <div
+            class="vote-success-modal-voting-power-dex MuiBox-root emotion-1"
+          >
+            <svg
+              fill="#161133"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.28739 17.9646L10.3754 15.6185C10.4106 15.5833 10.3871 15.5247 10.3284 15.5247H8.02933C8.0176 15.5247 7.99413 15.513 7.9824 15.5012L6.03519 13.3194C6.02346 13.2959 6.01173 13.2725 6.02346 13.249L9.28446 7.65372C9.29619 7.63026 9.29619 7.6068 9.28446 7.59507L7.93548 5.27249C7.91202 5.2373 7.85337 5.2373 7.82991 5.27249L3.0088 13.554C2.99707 13.5775 2.99707 13.6009 3.0088 13.6244L6.87977 17.9763C6.8915 17.988 6.90323 17.9998 6.92669 17.9998H8.24047C8.2522 17.988 8.27566 17.9763 8.28739 17.9646Z"
+              />
+              <path
+                d="M9.71911 2.03519L8.35841 4.35777C8.34668 4.38123 8.34668 4.40469 8.35841 4.41642L9.76603 6.83284L13.4962 13.2375C13.508 13.261 13.508 13.2845 13.4845 13.3079L11.5138 15.5132L9.41413 17.8827C9.37893 17.9179 9.4024 17.9765 9.46105 17.9765H12.6047C12.6165 17.9765 12.6399 17.9648 12.6517 17.9531L16.5226 13.6012C16.5344 13.5777 16.5461 13.5543 16.5344 13.5308L9.81295 2.03519C9.80122 1.98827 9.74257 1.98827 9.71911 2.03519Z"
+              />
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-7"
+            >
+              42 LSKDEX
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="vote-success-modal-footer MuiBox-root emotion-1"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium vote-success-modal-confirm emotion-11"
+          data-testid="vote-success-modal-close-test"
+          tabindex="0"
+          type="button"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 emotion-12"
+          >
+            Close
+          </p>
+          <span
+            class="MuiTouchRipple-root emotion-13"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

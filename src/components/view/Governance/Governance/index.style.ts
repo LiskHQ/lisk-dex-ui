@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
   return {
     marginTop: '4.25rem',
+    marginBottom: '4rem',
     padding: '3rem',
 
     [theme.breakpoints.down('sm')]: {
