@@ -518,9 +518,9 @@ exports[`ProposalView checks if the component matches the snapshot 1`] = `
 .emotion-24 {
   margin: 0;
   font-size: 1.25rem;
+  line-height: 1.5rem;
   font-weight: 600;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  line-height: 1.235;
   letter-spacing: 0.00735em;
 }
 

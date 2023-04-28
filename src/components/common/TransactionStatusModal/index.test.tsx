@@ -5,6 +5,7 @@ import React from "react";
 import { lightTheme } from "styles/theme";
 
 function renderComponent(props: {
+  success?: boolean,
   onClose?: () => void
 }) {
   return render(
@@ -23,6 +24,7 @@ describe("TransactionStatusModal", () => {
   it("cancel button click", () => {
     const onClose = jest.fn();
     const { container, getByText } = renderComponent({
+      success: true,
       onClose,
     });
 

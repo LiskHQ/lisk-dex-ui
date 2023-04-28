@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "@mui/material";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, getByDisplayValue, render } from "@testing-library/react";
 import { SwapView, ISwapViewProps } from "./index";
 import { lightTheme } from "styles/theme";
 import { mockBalance, mockTokens } from "__mock__";
@@ -40,16 +40,16 @@ describe("Swap", () => {
   });
 
   it("checks if swap from percent works", () => {
-    const { getByText, getByTestId } = renderComponent(mockProps);
+    const { getByDisplayValue, getByTestId } = renderComponent(mockProps);
 
     fireEvent.click(getByTestId("swap-from-percent-25"));
-    expect(getByText((mockBalance / 4).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue((mockBalance / 4).toFixed(2))).toBeInTheDocument();
 
     fireEvent.click(getByTestId("swap-from-percent-50"));
-    expect(getByText((mockBalance / 2).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue((mockBalance / 2).toFixed(2))).toBeInTheDocument();
 
     fireEvent.click(getByTestId("swap-from-percent-max"));
-    expect(getByText((mockBalance).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue((mockBalance).toFixed(2))).toBeInTheDocument();
   });
 
   it("click swap button to open confirm modal", () => {

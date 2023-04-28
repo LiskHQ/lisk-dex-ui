@@ -5,14 +5,19 @@ export const mockBalance = 4521.425;
 
 export const mockTokens: IToken[] = [
   {
-    shortName: 'DEU',
-    name: 'DEU',
-    image: tokenSvgs.DEU,
+    shortName: 'LSK',
+    name: 'Lisk',
+    image: tokenSvgs.LSK,
   },
   {
     shortName: 'ETH',
     name: 'Ethereum',
     image: tokenSvgs.ETH,
+  },
+  {
+    shortName: 'DEU',
+    name: 'DEU',
+    image: tokenSvgs.DEU,
   },
   {
     shortName: 'FAE',
@@ -23,11 +28,6 @@ export const mockTokens: IToken[] = [
     shortName: 'KLP',
     name: 'Kalipo',
     image: tokenSvgs.KLP,
-  },
-  {
-    shortName: 'LSK',
-    name: 'Lisk',
-    image: tokenSvgs.LSK,
   },
   {
     shortName: 'RGB',

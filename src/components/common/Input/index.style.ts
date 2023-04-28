@@ -61,7 +61,7 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
     },
 
     '.MuiFormHelperText-root': {
-      color: theme.error.primary,
+      color: theme.error.dark,
       margin: '0.5rem 0 0 0',
     },
 
@@ -74,6 +74,13 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       color: theme.text.paragraph,
       marginTop: '0.25rem',
       marginBottom: '0.25rem',
+    },
+
+    input: {
+      "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+        WebkitAppearance: "none",
+        display: "none"
+      }
     }
   }
 })

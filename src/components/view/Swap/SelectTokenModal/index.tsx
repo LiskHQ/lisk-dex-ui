@@ -10,7 +10,7 @@ import { IToken } from "models";
 
 export interface ISelectTokenModalProps {
   tokens: IToken[],
-  onSelect: (value: string) => void,
+  onSelect: (value: IToken) => void,
   onClose: () => void,
 }
 
@@ -82,7 +82,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
               key={chain.shortName}
               data-testid={`token-item-${chain.shortName}`}
               className="select-token-balance-item"
-              onClick={() => { onSelect(chain.shortName); setClose(true); }}
+              onClick={() => { onSelect(chain); setClose(true); }}
             >
               <Box className="token-wrapper">
                 <Image src={chain.image} width={40} height={40} />

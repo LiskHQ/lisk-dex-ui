@@ -476,6 +476,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   transform: none;
   -webkit-transform: none;
   -ms-transform: none;
+  margin-bottom: 0.5rem;
 }
 
 .emotion-13 .MuiInputLabel-root svg {
@@ -495,7 +496,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   background: unset;
   -webkit-animation-duration: 1s!important;
   animation-duration: 1s!important;
-  margin-top: 0.5rem;
   font-size: 1rem;
   line-height: 1.625rem;
 }
@@ -525,7 +525,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
 }
 
 .emotion-13 .MuiFormHelperText-root {
-  color: #FF4557;
   margin: 0.5rem 0 0 0;
 }
 
@@ -544,6 +543,12 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   color: #6B7280;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+.emotion-13 input::-webkit-outer-spin-button,
+.emotion-13 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
 }
 
 .emotion-14 {
@@ -737,11 +742,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
 .emotion-16::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-16::-webkit-outer-spin-button. .emotion-16::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 <div>

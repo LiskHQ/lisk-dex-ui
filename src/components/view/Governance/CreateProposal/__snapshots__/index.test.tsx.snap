@@ -192,6 +192,7 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
   transform: none;
   -webkit-transform: none;
   -ms-transform: none;
+  margin-bottom: 0.5rem;
 }
 
 .emotion-12 .MuiInputLabel-root svg {
@@ -211,7 +212,6 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
   background: unset;
   -webkit-animation-duration: 1s!important;
   animation-duration: 1s!important;
-  margin-top: 0.5rem;
   font-size: 1rem;
   line-height: 1.625rem;
 }
@@ -241,7 +241,6 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-12 .MuiFormHelperText-root {
-  color: #FF4557;
   margin: 0.5rem 0 0 0;
 }
 
@@ -260,6 +259,12 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
   color: #6B7280;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+.emotion-12 input::-webkit-outer-spin-button,
+.emotion-12 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
 }
 
 .emotion-13 {
@@ -453,11 +458,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-15:focus::-ms-input-
 .emotion-15::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-15::-webkit-outer-spin-button. .emotion-15::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-17 {
@@ -933,11 +933,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-48:focus::-ms-input-
 .emotion-48::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-48::-webkit-outer-spin-button. .emotion-48::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-55 {

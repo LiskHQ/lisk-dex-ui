@@ -210,6 +210,7 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   transform: none;
   -webkit-transform: none;
   -ms-transform: none;
+  margin-bottom: 0.5rem;
 }
 
 .emotion-7 .MuiInputLabel-root svg {
@@ -229,7 +230,6 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   background: unset;
   -webkit-animation-duration: 1s!important;
   animation-duration: 1s!important;
-  margin-top: 0.5rem;
   font-size: 1rem;
   line-height: 1.625rem;
 }
@@ -259,7 +259,6 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
 }
 
 .emotion-7 .MuiFormHelperText-root {
-  color: #FF4557;
   margin: 0.5rem 0 0 0;
 }
 
@@ -278,6 +277,12 @@ exports[`SelectProposalTypeComponent checks if the component matches the snapsho
   color: #6B7280;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+.emotion-7 input::-webkit-outer-spin-button,
+.emotion-7 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
 }
 
 .emotion-8 {
@@ -471,11 +476,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-10:focus::-ms-input-
 .emotion-10::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-10::-webkit-outer-spin-button. .emotion-10::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-11 {
@@ -676,11 +676,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-26:focus::-ms-input-
 .emotion-26::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-26::-webkit-outer-spin-button. .emotion-26::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-28 {
