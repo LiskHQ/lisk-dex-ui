@@ -39,7 +39,7 @@ export const ProposalContainer: React.FC = () => {
 
     dispatch(AppActions.transaction.setExpenses([
       {
-        title: 'Transaction fee',
+        title: 'Network fee',
         amount: 0.87,
       }
     ]));
