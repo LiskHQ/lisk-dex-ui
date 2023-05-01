@@ -1,6 +1,6 @@
 import { Box, Snackbar, useMediaQuery } from "@mui/material";
 import { AlertComponent, ApproveTransactionModal, TransactionStatusModal } from "components";
-import { AlertVariant, TransactionType } from "consts";
+import { AlertVariant } from "consts";
 import Head from "next/head";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,6 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   const dispatch = useDispatch();
 
   const {
-    transaction,
     openTransactionApproval,
     approvingTransaction,
     sentTransaction,
@@ -35,30 +34,33 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   //show Snackbar alert
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const alertContent = useMemo(() => {
-    const alertContent = {
-      variant: AlertVariant.info,
-      subject: "Transaction in progress...",
-      description: "",
-      link: ""
-    };
+    if (sendingTransaction) {
+      return {
+        variant: AlertVariant.info,
+        subject: "Transaction in progress...",
+        description: "",
+      }
+    }
     if (sentTransaction) {
-      alertContent.subject = "Transaction has been sent successfully";
-      alertContent.description = "Confirmation is in progress, once confirmed you will receive another notification.";
+      return {
+        variant: AlertVariant.info,
+        subject: "Transaction has been sent successfully",
+        description: "Confirmation is in progress, once confirmed you will receive another notification.",
+      }
     }
     if (confirmedTransaction) {
-      alertContent.variant = AlertVariant.success;
-      alertContent.subject = "Transaction has been confirmed.";
-      alertContent.link = "https://etherscan.io/";
-      if (transaction.type === TransactionType.SWAP)
-        alertContent.description = "Swap 2335.45 LSK to 1.76 ETH.";
-      if (transaction.type === TransactionType.SUPPLY_LIQUIDITY)
-        alertContent.description = "Added liquidity of 3.45 LSK/ETH LP tokens.";
-      if (transaction.type === TransactionType.INCREASE_LIQUIDITY)
-        alertContent.description = "Increased liquidity by 4521 LSK and 2.74 ETH.";
-      if (transaction.type === TransactionType.REMOVE_LIQUIDITY)
-        alertContent.description = "Removed liquidity by 1623 LSK and 1.82 ETH.";
+      return {
+        variant: AlertVariant.success,
+        subject: "Transaction has been confirmed.",
+        description: "Added liquidity of 3.45 LSK/ETH LP tokens.",
+        link: "https://github.com/aaa"
+      }
     }
-    return alertContent;
+    return {
+      variant: AlertVariant.info,
+      subject: "",
+      description: "",
+    };
   }, [sendingTransaction, sentTransaction, confirmedTransaction]);
 
   const onCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -162,7 +164,6 @@ export const Layout: React.FC<IProps> = ({ children }) => {
         openTransactionStatusModal &&
         <TransactionStatusModal
           success={sentTransaction}
-          type={transaction.type}
           onClose={onCloseTransactionStatusModal}
         />
       }

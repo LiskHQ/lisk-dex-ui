@@ -3,7 +3,6 @@ import { fireEvent, render } from "@testing-library/react";
 import { ITransactionStatusModalProps, TransactionStatusModal } from "./index";
 import React from "react";
 import { lightTheme } from "styles/theme";
-import { TransactionType } from "consts";
 
 function renderComponent(props: ITransactionStatusModalProps) {
   return render(
@@ -14,23 +13,22 @@ function renderComponent(props: ITransactionStatusModalProps) {
 }
 
 describe("TransactionStatusModal", () => {
-  const mockProps = {
-    success: true,
-    type: TransactionType.SWAP,
-    onClose: jest.fn(),
-  };
   it("checks if the component matches the snapshot", () => {
-    const { container } = renderComponent(mockProps);
+    const { container } = renderComponent({});
     expect(container).toMatchSnapshot();
   });
 
   it("cancel button click", () => {
-    const { getByText } = renderComponent(mockProps);
+    const onClose = jest.fn();
+    const { getByText } = renderComponent({
+      success: true,
+      onClose,
+    });
 
     const closeButton = getByText("Close");
     fireEvent.click(closeButton);
 
-    expect(mockProps.onClose).toBeCalled();
+    expect(onClose).toBeCalled();
   });
 });
 

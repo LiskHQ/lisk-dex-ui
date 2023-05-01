@@ -3,13 +3,12 @@ import { LayoutTree } from "@moxy/next-layout";
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import '../styles/globals.css';
-import { lightTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import { PlatformContextProvider } from 'contexts/platformContext';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
 const clientSideEmotionCache = createEmotionCache()
@@ -18,12 +17,11 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
+        <PlatformContextProvider>
           <AppStyle className="layout-app">
             <LayoutTree Component={Component} pageProps={pageProps} />
           </AppStyle>
-        </ThemeProvider>
+        </PlatformContextProvider>
       </CacheProvider>
     </Provider>
   )

@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { IToken } from "models";
 import { DepositAmountStyle } from "./index.style";
 import { useEffect, useState } from "react";
+import { InputComponent } from "components/common";
 
 export interface IDepositAmountProps {
   balance: number,
@@ -14,10 +15,10 @@ export interface IDepositAmountProps {
 export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
   const { balance, token, tokenAmount, onChange } = props;
 
-  const [amount, setAmount] = useState<number>(tokenAmount);
+  const [amount, setAmount] = useState<number | string>(tokenAmount.toPrecision(4));
 
   useEffect(() => {
-    onChange(amount);
+    onChange(+amount);
   }, [amount]);
 
   useEffect(() => {
@@ -38,15 +39,20 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
               <Typography variant="subtitle1">Select tokens</Typography>
             </Box>
         }
-        <Typography variant="subtitle2">{amount.toPrecision(4)}</Typography>
+        <InputComponent
+          type="number"
+          value={amount}
+          onChange={(e) => { setAmount(+e.target.value); }}
+          onBlur={() => { setAmount((+amount).toFixed(2)) }}
+        />
       </Box>
       {
         !!token &&
         <Box className="token-balance-details">
           <Typography variant="body2">Balance: {balance}</Typography>
           <Box className="token-balance-percent token">
-            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(balance / 4) }}>25%</Typography>
-            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(balance / 2) }}>50%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(+((balance / 4).toFixed(2))) }}>25%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(+((balance / 2).toFixed(2))) }}>50%</Typography>
             <Typography data-testid={`${token.shortName}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance) }}>MAX</Typography>
           </Box>
         </Box>

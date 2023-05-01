@@ -13,7 +13,7 @@ interface IProps {
   children?: React.ReactNode,
   defaultValue?: string | number,
   onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
-  renderValue?: (value: number) => ReactNode;
+  renderValue?: (value: string | number) => ReactNode;
   register?: UseFormRegister<any>,
   options?: RegisterOptions,
   "data-testid"?: string,

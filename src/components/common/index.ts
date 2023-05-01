@@ -21,3 +21,6 @@ export * from './TransactionStatusModal';
 export * from './Alert';
 export * from './SelectTokenModal';
 export * from './Chart';
+export * from './Settings';
+export * from './TransactionSettings';
+export * from './Switch';

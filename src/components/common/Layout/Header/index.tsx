@@ -10,8 +10,8 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { menuItems } from 'consts';
 import { LightcurveIcon, LiskIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
-import { useEffect } from 'react';
-import { DropdownComponent } from 'components';
+import { useEffect, useState } from 'react';
+import { DropdownComponent, SettingsModal } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
 
 interface IProps {
@@ -21,6 +21,7 @@ export const Header: React.FC<IProps> = (props) => {
   const router = useRouter();
 
   const { pathname } = router || { pathname: '' };
+  const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
 
   useEffect(() => {
   }, [pathname]);
@@ -60,10 +61,16 @@ export const Header: React.FC<IProps> = (props) => {
             </Box>
           </Box>
 
-          <IconButton className="header-menu-list-button">
+          <IconButton className="header-menu-list-button" onClick={() => { setOpenSettingsModal(true); }}>
             <FontAwesomeIcon icon={faEllipsis} />
           </IconButton>
         </Box>
+        {
+          openSettingsModal &&
+          <SettingsModal
+            onClose={() => { setOpenSettingsModal(false); }}
+          />
+        }
       </Container>
     </HeaderStyle>
   )

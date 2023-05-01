@@ -78,12 +78,12 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
 
               h6: {
                 marginLeft: '0.5rem',
-                color: theme.text.primary,
+                color: theme.opacities[5],
               },
             },
 
             svg: {
-              color: theme.text.primary,
+              color: theme.opacities[5],
             }
           }
         }
@@ -133,7 +133,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
     '.supply-liquidity-mask': {
       position: 'absolute',
       top: '14.5rem',
-      background: theme.bg.secondary,
+      background: theme.text.button,
       width: 'calc(100% - 2rem)',
       opacity: 0.5,
       height: '54.5rem',

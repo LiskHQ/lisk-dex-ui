@@ -121,11 +121,11 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 
 .emotion-0 .supply-liquidity-select-pair .supply-liquidity-token-selection .select-token.selected div h6 {
   margin-left: 0.5rem;
-  color: #282828;
+  color: #333333;
 }
 
 .emotion-0 .supply-liquidity-select-pair .supply-liquidity-token-selection .select-token.selected svg {
-  color: #282828;
+  color: #333333;
 }
 
 .emotion-0 .supply-liquidity-initial-price {
@@ -800,6 +800,16 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
   color: #FFFFFF;
 }
 
+.emotion-88 .token-amount .MuiInputBase-root {
+  border: none;
+  padding: 0;
+}
+
+.emotion-88 .token-amount .MuiInputBase-root input {
+  font-size: 1.25rem;
+  text-align: right;
+}
+
 .emotion-88 .token-balance-details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -829,15 +839,264 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 }
 
 .emotion-92 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
   margin: 0;
-  font-size: 1.15rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  letter-spacing: 0.00714em;
+  border: 0;
+  vertical-align: top;
+  position: relative;
 }
 
-.emotion-98 {
+.emotion-92 .MuiInputLabel-root {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: unset;
+  color: #282828!important;
+  font-size: 0.875rem;
+  line-height: 1.124rem;
+  font-weight: 400;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  margin-bottom: 0.5rem;
+}
+
+.emotion-92 .MuiInputLabel-root svg {
+  cursor: pointer;
+  margin-left: 0.25rem;
+}
+
+.emotion-92 .MuiInputLabel-root svg path {
+  stroke: #6B7280!important;
+}
+
+.emotion-92 .MuiInputBase-root {
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  color: #282828;
+  border: 0.5px solid #E6E6E6;
+  background: unset;
+  -webkit-animation-duration: 1s!important;
+  animation-duration: 1s!important;
+  font-size: 1rem;
+  line-height: 1.625rem;
+}
+
+.emotion-92 .MuiInputBase-root input {
+  padding: 0;
+}
+
+.emotion-92 .MuiInputBase-root fieldset {
+  border: none;
+}
+
+.emotion-92 .MuiInputBase-root:before {
+  content: none;
+}
+
+.emotion-92 .MuiInputBase-root:after {
+  content: none;
+}
+
+.emotion-92 .MuiInputBase-root:hover {
+  border: 1px solid #A196F6;
+}
+
+.emotion-92 .MuiInputBase-root:focus-within {
+  border: 1px solid #6953F4;
+}
+
+.emotion-92 .MuiFormHelperText-root {
+  color: #FF4557;
+  margin: 0.5rem 0 0 0;
+}
+
+.emotion-92 .input-length-counter {
+  position: absolute;
+  bottom: -1.5rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: end;
+  justify-content: end;
+  color: #6B7280;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.emotion-92 input::-webkit-outer-spin-button,
+.emotion-92 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.emotion-93 {
+  font-size: 1rem;
+  line-height: 1.4375em;
+  font-weight: 500;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-93.Mui-disabled {
+  color: rgba(0, 0, 0, 0.38);
+  cursor: default;
+}
+
+.emotion-94 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+}
+
+.emotion-94::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-94::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-94:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-94::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-94:focus {
+  outline: 0;
+}
+
+.emotion-94:invalid {
+  box-shadow: none;
+}
+
+.emotion-94::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-94.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+}
+
+.emotion-94:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-94::-webkit-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-94::-moz-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-94:-ms-input-placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-94::placeholder {
+  opacity: 1;
+  color: #6B7280;
+}
+
+.emotion-102 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -890,23 +1149,23 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
   text-transform: capitalize;
 }
 
-.emotion-98::-moz-focus-inner {
+.emotion-102::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-98.Mui-disabled {
+.emotion-102.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-98 {
+  .emotion-102 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-98:hover {
+.emotion-102:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -914,35 +1173,35 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 }
 
 @media (hover: none) {
-  .emotion-98:hover {
+  .emotion-102:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-98:active {
+.emotion-102:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-98.Mui-focusVisible {
+.emotion-102.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-98.Mui-disabled {
+.emotion-102.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-98.MuiButton-outlined {
+.emotion-102.MuiButton-outlined {
   border-color: #FF4557;
 }
 
-.emotion-98.MuiButton-contained {
+.emotion-102.MuiButton-contained {
   background: #6953F4;
   color: #FFFFFF;
 }
 
-.emotion-98.Mui-disabled {
+.emotion-102.Mui-disabled {
   opacity: 0.7;
 }
 
@@ -964,7 +1223,7 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-4"
         >
-          clear
+          Clear
         </p>
         <button
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium emotion-5"
@@ -1580,11 +1839,20 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
               Select tokens
             </h6>
           </div>
-          <h6
-            class="MuiTypography-root MuiTypography-subtitle2 emotion-92"
+          <div
+            class="MuiFormControl-root emotion-92"
           >
-            0.000
-          </h6>
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-93"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input emotion-94"
+                type="number"
+                value="0"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -1602,16 +1870,25 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
               Select tokens
             </h6>
           </div>
-          <h6
-            class="MuiTypography-root MuiTypography-subtitle2 emotion-92"
+          <div
+            class="MuiFormControl-root emotion-92"
           >
-            0.000
-          </h6>
+            <div
+              class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-93"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input emotion-94"
+                type="number"
+                value="0"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-98"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-102"
       data-testid="preview-button-test"
       disabled=""
       tabindex="-1"

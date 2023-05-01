@@ -18,3 +18,8 @@ export const menuItems = [
     href: PATHS.GOVERNANCE,
   },
 ]
+
+export enum ThemeType {
+  Light = "Light",
+  Dark = "Dark",
+}

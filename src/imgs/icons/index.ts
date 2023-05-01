@@ -31,3 +31,9 @@ export const tokenSvgs = {
   LSK: '/assets/tokens/lsk.svg',
   RGB: '/assets/tokens/rgb.svg',
 }
+
+export const flagSvgs = {
+  //  EU: '/assets/flags/eu.svg',
+  US: '/assets/flags/us.svg',
+  GB: '/assets/flags/gb.svg',
+}

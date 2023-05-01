@@ -10,7 +10,7 @@ import { SelectTokenModal } from "../../common/SelectTokenModal";
 import { IToken } from "models";
 import { mockConversionRate, mockEthtoLsk } from "__mock__";
 import { SwapConfirmModal } from "./SwapConfirmModal";
-import { TransactionSettings } from "./TransactionSettings";
+import { TransactionSettingsModal } from "./TransactionSettingsModal";
 
 export interface ISwapViewProps {
   balance: number,
@@ -25,7 +25,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   //flags for open modals
   const [openSelectTokenModal, setOpenSelectTokenModal] = useState<boolean>(false);
-  const [openTransactionSettings, setOpenTransactionSettings] = useState<boolean>(false);
+  const [openTransactionSettingsModal, setOpenTransactionSettingsModal] = useState<boolean>(false);
   const [openSwapConfirmModal, setOpenSwapConfirmModal] = useState<boolean>(false);
 
   const [fromBalance, setFromBalance] = useState<number>(0);
@@ -35,14 +35,14 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   const [toToken, setToToken] = useState<IToken | null>();
 
-  const onSaveTransactionSettings = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
+  const onSaveTransactionSettingsModal = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
     setSplipageTolerance(splipageTolerance);
     setTransactionDeadline(transactionDeadline);
-    setOpenTransactionSettings(false);
+    setOpenTransactionSettingsModal(false);
   }
 
   const onEditSplipageTolerance = () => {
-    setOpenTransactionSettings(true);
+    setOpenTransactionSettingsModal(true);
   }
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           <Typography variant="h3">Swap</Typography>
           <IconButton
             data-testid="swap-setting-button"
-            onClick={() => { setOpenTransactionSettings(true); }}>
+            onClick={() => { setOpenTransactionSettingsModal(true); }}>
             <SettingIcon />
           </IconButton>
         </Box>
@@ -189,12 +189,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           />
         }
         {
-          openTransactionSettings &&
-          <TransactionSettings
+          openTransactionSettingsModal &&
+          <TransactionSettingsModal
             splipageTolerance={splipageTolerance}
             transactionDeadline={transactionDeadline}
-            onSave={onSaveTransactionSettings}
-            onClose={() => { setOpenTransactionSettings(false); }}
+            onSave={onSaveTransactionSettingsModal}
+            onClose={() => { setOpenTransactionSettingsModal(false); }}
           />
         }
         {

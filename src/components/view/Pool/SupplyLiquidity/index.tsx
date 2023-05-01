@@ -1,18 +1,19 @@
-import { useEffect, useMemo, useState } from "react"
 import Image from "next/image";
 import cn from "classnames";
-import { Box, IconButton, Typography } from "@mui/material"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Box, IconButton, Typography } from "@mui/material"
 import { ButtonComponent, InputComponent, SelectTokenModal } from "components"
 import { PlusCircleIcon, SettingIcon } from "imgs/icons"
+import { IPool, IToken } from "models"
+import { useEffect, useMemo, useState } from "react"
+import { mockTokens } from "__mock__"
+import { SupplyLiquidityStyle } from "./index.style"
 import { DepositAmount } from "./DepositAmount";
 import { FeeTiers } from "./FeeTiers";
 import { PriceRange } from "./PriceRange";
 import { RangeSelector } from "./RangeSelector";
-import { SupplyLiquidityStyle } from "./index.style"
-import { IPool, IToken } from "models"
-import { mockTokens } from "__mock__"
+import { SupplyLiquidityModal } from "./SupplyLiquidityModal";
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -28,13 +29,14 @@ const chartData = [
 ];
 
 export interface ISupplyLiquidityProps {
+  sendingTransaction: boolean,
   closeTransactionModal: boolean,
-  onPreview: (pool: IPool) => void,
+  onCofirmSupplyLiquidity: (pool: IPool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
-  const { closeTransactionModal, onPreview } = props
+  const { sendingTransaction, closeTransactionModal, onCofirmSupplyLiquidity } = props
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -51,9 +53,17 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const [minPrice, setMinPrice] = useState<number>(1.0);
   const [maxPrice, setMaxPrice] = useState<number>(2.0);
 
+  const [openSupplyModal, setOpenSupplyModal] = useState<boolean>(false);
+
   const onSelectToken = (token: IToken) => {
-    openSelectToken1 && setToken1(token);
-    openSelectToken2 && setToken2(token);
+    if (openSelectToken1) {
+      if (token2 !== token)
+        setToken1(token);
+    }
+    if (openSelectToken2) {
+      if (token1 !== token)
+        setToken2(token);
+    }
   }
 
   const onCloseSelectToken = () => {
@@ -72,23 +82,27 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   }
 
   const isValid = useMemo(() => {
-    return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice)
-  }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice]);
+    return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice && tierValue)
+  }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice, tierValue]);
 
   useEffect(() => {
-    if (closeTransactionModal) {
-      setToken1(null);
-      setToken2(null);
-
-      setToken1Amount(0);
-      setToken2Amount(0);
-
-      setInitialPrice(0);
-      setTierValue(0);
-
-      setMinPrice(1.0);
-      setMaxPrice(2.0);
+    if (sendingTransaction) {
+      setOpenSupplyModal(false);
     }
+  }, [sendingTransaction]);
+
+  useEffect(() => {
+    setToken1(null);
+    setToken2(null);
+
+    setToken1Amount(0);
+    setToken2Amount(0);
+
+    setInitialPrice(0);
+    setTierValue(0);
+
+    setMinPrice(1.0);
+    setMaxPrice(2.0);
   }, [closeTransactionModal]);
 
   return (
@@ -96,7 +110,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       <Box className="supply-liquidity-title">
         <Typography variant="h4">Supply Liquidity</Typography>
         <Box className="supply-liquidity-actions">
-          <Typography variant="body2">clear</Typography>
+          <Typography variant="body2">Clear</Typography>
           <IconButton>
             <SettingIcon />
           </IconButton>
@@ -215,16 +229,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
       <ButtonComponent
         data-testid="preview-button-test"
-        onClick={() => {
-          onPreview({
-            id: '',
-            token1: token1 as IToken,
-            token2: token2 as IToken,
-            token1Amount,
-            token2Amount,
-            share: 0.085,
-          })
-        }}
+        onClick={() => { setOpenSupplyModal(true) }}
         disabled={!isValid}
       >
         <Typography variant="subtitle1">Preview</Typography>
@@ -242,6 +247,18 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
           tokens={mockTokens}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
+        />
+      }
+
+      {
+        openSupplyModal && isValid &&
+        <SupplyLiquidityModal
+          token1={token1 as IToken}
+          token2={token2 as IToken}
+          token1Amount={token1Amount}
+          token2Amount={token2Amount}
+          onClose={() => { setOpenSupplyModal(false) }}
+          onConfirm={onCofirmSupplyLiquidity}
         />
       }
     </SupplyLiquidityStyle >
