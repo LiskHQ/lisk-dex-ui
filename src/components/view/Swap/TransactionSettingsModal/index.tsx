@@ -17,21 +17,11 @@ export interface ITransactionSettingsModalProps {
   onClose: () => void,
 }
 
-const splipageToleranceValues = [
-  0.1,
-  0.5,
-  1,
-];
-
 export const TransactionSettingsModal: React.FC<ITransactionSettingsModalProps> = (props) => {
   const { splipageTolerance: defaultSplipageTolerance, transactionDeadline: defaultTransactionDeadline, onSave, onClose } = props;
 
   const [splipageTolerance, setSplipageTolerance] = useState<number>(defaultSplipageTolerance);
   const [transactionDeadline, setTransactionDeadline] = useState<number>(defaultTransactionDeadline);
-
-  const onChangeSplipageTolerance = (value: number) => {
-    setSplipageTolerance(value);
-  }
 
   const onClickSave = () => {
     onSave({ splipageTolerance, transactionDeadline })
