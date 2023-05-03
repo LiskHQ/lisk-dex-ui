@@ -1,8 +1,8 @@
 name: STG-DEX-UI ##change based on environment eg: staging or Production
 on:
-#   push: ## for auto build when code triggered in below branch
-#     branches: 
-#       - cicdpipeline
+  push: ## for auto build when code triggered in below branch
+    branches: 
+      - cicdpipeline
   workflow_dispatch:
 jobs:
   build:
