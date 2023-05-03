@@ -2,7 +2,7 @@ name: STG-DEX-UI ##change based on environment eg: staging or Production
 on:
   push: ## for auto build when code triggered in below branch
     branches: 
-      - cicdpipeline
+        - cicdpipeline
   workflow_dispatch:
 jobs:
   build:
@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-20.04  # already has preinstalled Node 14.17.0
     strategy:
       matrix:
-        node-version: [16] # using Node 8.x
+        node-version: [14.18.1]
     env: ## ----> Change below values <---- ##
       DISTRIBUTION_ID_FE: EKR65H62LQOX6
       BUCKET_NAME: lc-stg-lisk-dex-ui
       ## ----> modify end section <---- ## 
     steps:
       - uses: actions/checkout@v2
+      # - uses: ./.github/actions/set-job-env //for later use.
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2

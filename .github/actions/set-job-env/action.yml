@@ -1,0 +1,19 @@
+name: "Setup branch environment variables"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        if [[ $GITHUB_REF == 'refs/heads/master' ]]
+        then
+            echo "BUILD_ENV=prd" >> "$GITHUB_ENV";
+        elif [[ $GITHUB_REF == 'refs/heads/development' ]]
+        then
+            echo "BUILD_ENV=stg" >> "$GITHUB_ENV";
+
+        elif [[ $GITHUB_REF =~ ^refs/heads/release/.+$ ]]
+        then
+            echo "BUILD_ENV=stg" >> "$GITHUB_ENV";
+        else
+            echo "BUILD_ENV=stg" >> "$GITHUB_ENV";
+        fi
+      shell: bash
