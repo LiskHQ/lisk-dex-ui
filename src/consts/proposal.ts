@@ -10,3 +10,9 @@ export enum ProposalStatus {
   Failed = "Failed",
   Failed_Quorum = "Failed Quorum",
 }
+
+export enum VoteType {
+  Yes = "Yes",
+  No = "No",
+  Pass = "Pass",
+}
