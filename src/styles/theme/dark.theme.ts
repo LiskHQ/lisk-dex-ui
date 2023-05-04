@@ -20,13 +20,13 @@ const themeColors = {
     80: '#E6E6E6',
   },
   secondary: {
-    0: '#F5981B',
-    5: '#F5981B',
-    10: '#CC7E16',
-    30: '#A66712',
-    40: '#7F4F0E',
-    50: '#59370A',
-    60: '#332006',
+    0: "#F5981B",
+    5: "#F5981B",
+    10: "#CC7E16",
+    30: "#A66712",
+    40: "#7F4F0E",
+    50: "#59370A",
+    60: "#332006",
   },
   primary: {
     85: '#7E6CF4',
@@ -64,20 +64,21 @@ const themeColors = {
     thumb: '#6953F4',
   },
   success: {
-    primary: '#E3F2E0',
-    second: '#8DC881',
+    light: '#BD5359',
+    lighter: '#8DC881',
+    dark: '#459A33',
   },
   warning: {
-    primary: '#F8F3D8',
-    second: '#E2CA64',
+    lighter: '#F8F3D8',
+    light: '#E2CA64',
   },
   info: {
-    primary: '#2EA3DD',
-    second: '#C0ECE8',
+    dark: '#2EA3DD',
+    light: '#C0ECE8',
   },
   error: {
-    primary: '#F6E4E6',
-    second: '#FB8B96',
+    dark: '#FF4557',
+    light: '#FB8B96',
   },
 } as const;
 
@@ -87,6 +88,6 @@ const lightTheme = createTheme({
   palette: {
     mode: 'dark',
   },
-});
+})
 
-export default lightTheme;
+export default lightTheme
