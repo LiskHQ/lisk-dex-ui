@@ -1,10 +1,10 @@
 
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, IconButton, Typography } from "@mui/material";
-import Image from "next/image";
-import { useRef } from "react";
-import { mockPoolDetails } from "__mock__";
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, IconButton, Typography } from '@mui/material';
+import Image from 'next/image';
+import { useRef } from 'react';
+import { mockPoolDetails } from '__mock__';
 import { FeaturedPoolsStyle } from './index.style';
 
 
@@ -14,12 +14,12 @@ export const FeaturedPools: React.FC = () => {
   const onClickScrollLeft = () => {
     if (poolContainerRef.current)
       poolContainerRef.current.scrollLeft -= 332;
-  }
+  };
 
   const onClickScrollRight = () => {
     if (poolContainerRef.current)
       poolContainerRef.current.scrollLeft += 332;
-  }
+  };
 
   return (
     <FeaturedPoolsStyle className="featured-pools">
@@ -67,5 +67,5 @@ export const FeaturedPools: React.FC = () => {
         <FontAwesomeIcon icon={faChevronRight} />
       </IconButton>
     </FeaturedPoolsStyle >
-  )
-}
+  );
+};

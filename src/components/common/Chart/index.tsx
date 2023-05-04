@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
-import { useTheme } from "@mui/styles";
-import { ChartStyle } from "./index.style";
-import { PlatformContext } from "contexts";
-import { ThemeType } from "consts";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import * as d3 from 'd3';
+import { useTheme } from '@mui/styles';
+import { ChartStyle } from './index.style';
+import { PlatformContext } from 'contexts';
+import { ThemeType } from 'consts';
 
 interface DataPoint {
   x: number;
@@ -56,28 +56,28 @@ export const Chart: React.FC<Props> = ({ className, data, dots }) => {
       .y1((d) => yScale(d.y));
 
     // Define gradient
-    const gradient = svg.append("defs")
-      .append("linearGradient")
-      .attr("id", "myGradient")
-      .attr("x1", "0%")
-      .attr("y1", "0%")
-      .attr("x2", "0%")
-      .attr("y2", "100%");
+    const gradient = svg.append('defs')
+      .append('linearGradient')
+      .attr('id', 'myGradient')
+      .attr('x1', '0%')
+      .attr('y1', '0%')
+      .attr('x2', '0%')
+      .attr('y2', '100%');
 
-    gradient.append("stop")
-      .attr("offset", "0%")
-      .attr("stop-color", theme.primary[2.5]);
+    gradient.append('stop')
+      .attr('offset', '0%')
+      .attr('stop-color', theme.primary[2.5]);
 
-    gradient.append("stop")
-      .attr("offset", "100%")
-      .attr("stop-color", getThemeType() === ThemeType.Light ? "rgba(242, 245, 249, 0.25)" : "rgba(45, 33, 102, 0.25)");
+    gradient.append('stop')
+      .attr('offset', '100%')
+      .attr('stop-color', getThemeType() === ThemeType.Light ? 'rgba(242, 245, 249, 0.25)' : 'rgba(45, 33, 102, 0.25)');
 
     // Draw area path
     svg
-      .append("path")
+      .append('path')
       .datum(data)
-      .attr("d", area)
-      .attr("fill", dots ? "url(#myGradient)" : theme.lightcurve[0]);
+      .attr('d', area)
+      .attr('fill', dots ? 'url(#myGradient)' : theme.lightcurve[0]);
 
     if (dots) {
       // Set up line generator
@@ -88,24 +88,24 @@ export const Chart: React.FC<Props> = ({ className, data, dots }) => {
 
       // Draw line connecting data points
       svg
-        .append("path")
+        .append('path')
         .datum(data)
-        .attr("d", line)
-        .attr("fill", "none")
-        .attr("stroke", theme.lightcurve[0])
-        .attr("stroke-width", 2);
+        .attr('d', line)
+        .attr('fill', 'none')
+        .attr('stroke', theme.lightcurve[0])
+        .attr('stroke-width', 2);
 
       // Draw circles at data points
-      svg.selectAll("circle")
+      svg.selectAll('circle')
         .data(data)
         .enter()
-        .append("circle")
-        .attr("cx", (d) => xScale(d.x))
-        .attr("cy", (d) => yScale(d.y))
-        .attr("r", 3)
-        .attr("fill", theme.primary[1])
-        .attr("stroke", theme.lightcurve[0])
-        .attr("stroke-width", 1)
+        .append('circle')
+        .attr('cx', (d) => xScale(d.x))
+        .attr('cy', (d) => yScale(d.y))
+        .attr('r', 3)
+        .attr('fill', theme.primary[1])
+        .attr('stroke', theme.lightcurve[0])
+        .attr('stroke-width', 1);
     }
   }, [data, height, width, dots, getThemeType, theme]);
 

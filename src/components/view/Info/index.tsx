@@ -1,14 +1,14 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Tab, Tabs, Typography } from "@mui/material"
-import { SearchInputComponent } from "components/common";
-import { useState } from "react";
-import { FeaturedPools } from "./FeaturedPools";
-import { InfoViewStyle } from "./index.style"
-import { InfoChart } from "./InfoChart";
-import { PoolsTable } from "./PoolsTable";
-import { TokensTable } from "./TokensTable";
-import { TransactionsTable } from "./TransactionsTable";
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { SearchInputComponent } from 'components/common';
+import { useState } from 'react';
+import { FeaturedPools } from './FeaturedPools';
+import { InfoViewStyle } from './index.style';
+import { InfoChart } from './InfoChart';
+import { PoolsTable } from './PoolsTable';
+import { TokensTable } from './TokensTable';
+import { TransactionsTable } from './TransactionsTable';
 
 export const InfoView: React.FC = () => {
 
@@ -67,5 +67,5 @@ export const InfoView: React.FC = () => {
       </Box>
       <TransactionsTable />
     </InfoViewStyle>
-  )
-}
+  );
+};

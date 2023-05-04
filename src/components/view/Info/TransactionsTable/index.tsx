@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DropdownComponent, SearchInputComponent } from "components";
-import { IToken } from "models";
-import { mockTokens } from "__mock__";
-import { TransactionsTableStyle } from "./index.style";
+import { DropdownComponent, SearchInputComponent } from 'components';
+import { IToken } from 'models';
+import { mockTokens } from '__mock__';
+import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
 
 function createData(
@@ -120,7 +120,7 @@ export const TransactionsTable: React.FC = () => {
         <DropdownComponent
           className='row-count-dropdown'
           onChange={(e) => { setLimit(e.target.value as number); }}
-          defaultValue={10}
+          defaultValue={limit}
           renderValue={(value) => (
             <Box className='show-rows-dropdown'>
               <Typography variant='h6'>Show rows:</Typography>
@@ -147,5 +147,5 @@ export const TransactionsTable: React.FC = () => {
         </IconButton>
       </Box>
     </TransactionsTableStyle >
-  )
-}
+  );
+};

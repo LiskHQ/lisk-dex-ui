@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { capitalize } from "@mui/material";
+import styled from '@emotion/styled';
 
 export const InfoViewStyle = styled('div')(({ theme }: any) => {
   return {
@@ -80,5 +79,5 @@ export const InfoViewStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

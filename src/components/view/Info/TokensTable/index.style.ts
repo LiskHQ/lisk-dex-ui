@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const TokensTableStyle = styled('div')(({ theme }: any) => {
   return {
@@ -116,5 +116,5 @@ export const TokensTableStyle = styled('div')(({ theme }: any) => {
         }
       }
     },
-  }
-})
+  };
+});

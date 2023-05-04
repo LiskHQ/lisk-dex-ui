@@ -1,13 +1,9 @@
-import { useState } from "react";
-import cn from "classnames";
-import { Box, Tab, Tabs, Typography } from "@mui/material";
-import { ButtonComponent, Chart } from "components"
-import { InfoChartStyle } from "./index.style";
-import { DecreaseIcon, IncreaseIcon } from "imgs/icons";
-
-export interface IInfoChartProps {
-
-}
+import { useState } from 'react';
+import cn from 'classnames';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { ButtonComponent, Chart } from 'components';
+import { InfoChartStyle } from './index.style';
+import { DecreaseIcon, IncreaseIcon } from 'imgs/icons';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -31,38 +27,38 @@ const periods = [
 
 const summary = [
   {
-    title: "LSK Price",
-    amount: "$1.007",
+    title: 'LSK Price',
+    amount: '$1.007',
     percent: -2.34
   },
   {
-    title: "Total Liquidity",
-    amount: "$14.4m",
+    title: 'Total Liquidity',
+    amount: '$14.4m',
     percent: 2.32
   },
   {
-    title: "Volume 24h",
-    amount: "$2.5m",
+    title: 'Volume 24h',
+    amount: '$2.5m',
     percent: 1.45
   },
   {
-    title: "Fees 24h",
-    amount: "$48.9k",
+    title: 'Fees 24h',
+    amount: '$48.9k',
     percent: 4.86
   },
   {
-    title: "Transactions 24h",
-    amount: "621",
+    title: 'Transactions 24h',
+    amount: '621',
   },
-]
+];
 
-export const InfoChart: React.FC<IInfoChartProps> = (props) => {
+export const InfoChart: React.FC = () => {
   const [tabValue, setTabValue] = useState<number>(0);
   const [period, setPeriod] = useState<string>('D');
 
   const onChangeTab = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
-  }
+  };
 
   return (
     <InfoChartStyle>
@@ -83,7 +79,7 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
                 key={el}
                 className={
                   cn({
-                    "selected": el === period
+                    'selected': el === period
                   })
                 }
                 onClick={() => { setPeriod(el); }}
@@ -114,7 +110,7 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
               <Typography variant="body2">{el.amount}</Typography>
               {
                 el.percent &&
-                <Box className={cn({ "summary-percent": true, "increase": el.percent >= 0 })} >
+                <Box className={cn({ 'summary-percent': true, 'increase': el.percent >= 0 })} >
                   <Typography variant="body2">{el.percent}%</Typography>
                   {el.percent >= 0 ? <IncreaseIcon /> : <DecreaseIcon />}
                 </Box>
@@ -124,5 +120,5 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
         }
       </Box>
     </InfoChartStyle >
-  )
-}
+  );
+};

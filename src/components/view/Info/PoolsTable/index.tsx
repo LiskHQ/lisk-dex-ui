@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import cn from "classnames";
-import { ButtonComponent } from "components";
-import { mockPoolDetails } from "__mock__";
-import { PoolsTableStyle } from "./index.style";
-import { DecreaseIcon, HelpIcon, IncreaseIcon } from 'imgs/icons';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { ButtonComponent } from 'components';
+import { mockPoolDetails } from '__mock__';
+import { PoolsTableStyle } from './index.style';
+import { HelpIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,7 +21,7 @@ const sortKeys = [
     label: 'Fees 24H',
     key: 'fees',
   },
-]
+];
 
 export const PoolsTable: React.FC = () => {
   const [isAsc, setAsc] = useState<boolean>();
@@ -30,7 +29,7 @@ export const PoolsTable: React.FC = () => {
 
   const rows = useMemo(() => {
     return mockPoolDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
-  }, [mockPoolDetails, sortKey, isAsc]);
+  }, [sortKey, isAsc]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -39,7 +38,7 @@ export const PoolsTable: React.FC = () => {
     } else {
       setAsc(!isAsc);
     }
-  }
+  };
 
   return (
     <PoolsTableStyle>
@@ -128,5 +127,5 @@ export const PoolsTable: React.FC = () => {
         </Table>
       </TableContainer>
     </PoolsTableStyle >
-  )
-}
+  );
+};

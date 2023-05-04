@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
-import cn from "classnames";
-import { ButtonComponent } from "components";
-import { mockTokenDetails } from "__mock__";
-import { TokensTableStyle } from "./index.style";
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import cn from 'classnames';
+import { ButtonComponent } from 'components';
+import { mockTokenDetails } from '__mock__';
+import { TokensTableStyle } from './index.style';
 import { DecreaseIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +26,7 @@ const sortKeys = [
     label: 'Liquidity',
     key: 'liquidity',
   },
-]
+];
 
 export const TokensTable: React.FC = () => {
   const [isAsc, setAsc] = useState<boolean>();
@@ -34,7 +34,7 @@ export const TokensTable: React.FC = () => {
 
   const rows = useMemo(() => {
     return mockTokenDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
-  }, [mockTokenDetails, sortKey, isAsc]);
+  }, [sortKey, isAsc]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -43,7 +43,7 @@ export const TokensTable: React.FC = () => {
     } else {
       setAsc(!isAsc);
     }
-  }
+  };
 
   return (
     <TokensTableStyle>
@@ -98,8 +98,8 @@ export const TokensTable: React.FC = () => {
                 <TableCell align="right">
                   <Box className={
                     cn({
-                      "price-change-td": true,
-                      "decrease": row.priceChange < 0,
+                      'price-change-td': true,
+                      'decrease': row.priceChange < 0,
                     })
                   }>
                     <Typography variant="body2">{row.priceChange}%</Typography>
@@ -131,5 +131,5 @@ export const TokensTable: React.FC = () => {
         </Table>
       </TableContainer>
     </TokensTableStyle >
-  )
-}
+  );
+};
