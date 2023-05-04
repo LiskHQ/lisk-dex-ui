@@ -1,11 +1,10 @@
 import { Container, Grid, Typography } from "@mui/material";
 import { withLayout } from "@moxy/next-layout";
-import General from "../../components/layout/public/general";
 // ../../src/components/layout/public/general
 import GetStarted from "/src/components/home/get-started/get-started";
-import { createStyles } from "@material-ui/core/styles";
 import BannerImage from "/src/components/home/banner-image/banner-image";
-import { makeStyles } from "@mui/styles";
+import { createStyles, makeStyles } from "@mui/styles";
+import { Layout } from "components/common";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -84,4 +83,4 @@ const LiskHome = () => {
   );
 };
 
-export default withLayout(<General />)(LiskHome);
+export default withLayout(<Layout />)(LiskHome);

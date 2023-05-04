@@ -1,14 +1,14 @@
 import { withLayout } from "@moxy/next-layout";
-import General from "../../components/layout/public/general";
+import { Layout } from "components/common";
 import RemoveLiquidity from "../../components/pool/liquidity/remove-liquidity/remove-liquidity";
 
 
 const CreateAddLiquidity = () => {
-    return (
-        <>
-            <RemoveLiquidity />
-        </>
-    )
+  return (
+    <>
+      <RemoveLiquidity />
+    </>
+  )
 }
 
-export default withLayout(<General children={undefined} />)(CreateAddLiquidity);
+export default withLayout(<Layout />)(CreateAddLiquidity);
