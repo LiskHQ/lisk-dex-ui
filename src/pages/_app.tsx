@@ -10,7 +10,7 @@ import { store } from 'store';
 import { PlatformContextProvider } from 'contexts/platformContext';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
-const clientSideEmotionCache = createEmotionCache()
+const clientSideEmotionCache = createEmotionCache();
 
 function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: AppPropsRoot) {
   return (
@@ -23,7 +23,7 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
         </PlatformContextProvider>
       </CacheProvider>
     </Provider>
-  )
+  );
 }
 
 const AppStyle = styled('div')(({ theme }: any) => {
@@ -32,7 +32,7 @@ const AppStyle = styled('div')(({ theme }: any) => {
     flexDirection: 'column',
     minHeight: '100vh',
     background: theme.bg.primary
-  }
-})
+  };
+});
 
-export default MyApp
+export default MyApp;

@@ -1,8 +1,8 @@
-import { PoolView } from "components";
-import { IPool } from "models";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppActions, RootState } from "store";
+import { PoolView } from 'components';
+import { IPool } from 'models';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppActions, RootState } from 'store';
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,13 +16,13 @@ export const PoolContainer: React.FC = () => {
       dispatch(AppActions.transaction.sendTransaction());
       setPool(pool);
     }, 1000);
-  }
+  };
 
   useEffect(() => {
     if (confirmedTransaction && pool) {
       dispatch(AppActions.pool.createPoolSuccess(pool));
     }
-  }, [confirmedTransaction, pool]);
+  }, [confirmedTransaction, pool, dispatch]);
 
   useEffect(() => {
     dispatch(AppActions.pool.getPools());
@@ -30,7 +30,7 @@ export const PoolContainer: React.FC = () => {
     setTimeout(() => {
       dispatch(AppActions.pool.getPoolsSuccess());
     }, 1000);
-  }, [createdPool]);
+  }, [createdPool, dispatch]);
 
   return (
     <PoolView
@@ -41,5 +41,5 @@ export const PoolContainer: React.FC = () => {
       closeTransactionModal={closeTransactionModal}
       onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}
     />
-  )
+  );
 };

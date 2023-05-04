@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const YourVotingInfoComponentStyle = styled('div')(({ theme }: any) => {
   return {
@@ -17,5 +17,5 @@ export const YourVotingInfoComponentStyle = styled('div')(({ theme }: any) => {
     '.your-voting-info-body': {
       padding: '1.5rem',
     },
-  }
-})
+  };
+});

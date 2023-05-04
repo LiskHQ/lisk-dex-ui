@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IVote } from "models";
-import { mockVotes } from "__mock__";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IVote } from 'models';
+import { mockVotes } from '__mock__';
 
 type StateType = {
   votesLimit: number,
@@ -21,7 +21,7 @@ const initialState: StateType = {
 };
 
 const proposalSlice = createSlice({
-  name: "proposal",
+  name: 'proposal',
   initialState: initialState,
   reducers: {
     /**

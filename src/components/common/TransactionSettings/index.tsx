@@ -1,9 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import { InputComponent } from "components/common";
-import { HelpIcon } from "imgs/icons";
-import { ChangeEvent, useState } from "react";
-import { TransactionSettingsStyle } from "./index.style";
-import cn from "classnames";
+import { Box, Typography } from '@mui/material';
+import { InputComponent } from 'components/common';
+import { HelpIcon } from 'imgs/icons';
+import { ChangeEvent, useState } from 'react';
+import { TransactionSettingsStyle } from './index.style';
+import cn from 'classnames';
 
 export interface ITransactionSettingsProps {
   splipageTolerance: number,
@@ -27,12 +27,12 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
   const onChangeTolerance = (value: number) => {
     setSplipageTolerance(value);
     onChangeSplipageTolerance(value);
-  }
+  };
 
   const onChangeDeadline = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setTransactionDeadline(parseInt(e.target.value));
     onChangeTransactionDeadline(parseInt(e.target.value));
-  }
+  };
 
   return (
     <TransactionSettingsStyle>
@@ -44,8 +44,8 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
               key={value}
               className={
                 cn({
-                  "switcher-box": true,
-                  "selected": value === splipageTolerance,
+                  'switcher-box': true,
+                  'selected': value === splipageTolerance,
                 })
               }
               onClick={() => { onChangeTolerance(value); }}
@@ -71,5 +71,5 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
         <Typography variant="body2">minutes</Typography>
       </Box>
     </TransactionSettingsStyle>
-  )
-}
+  );
+};

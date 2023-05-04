@@ -1,9 +1,9 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography } from '@mui/material';
 import {
   ButtonComponent,
-} from "components"
-import { LiskIcon } from "imgs/icons"
-import { VoteSuccessModalStyle } from "./index.style"
+} from 'components';
+import { LiskIcon } from 'imgs/icons';
+import { VoteSuccessModalStyle } from './index.style';
 
 export interface IVoteSuccessModalProps {
   openTransactionApproval?: boolean,
@@ -40,5 +40,5 @@ export const VoteSuccessModal: React.FC<IVoteSuccessModalProps> = (props) => {
         </Box>
       </Box>
     </VoteSuccessModalStyle>
-  )
-}
+  );
+};

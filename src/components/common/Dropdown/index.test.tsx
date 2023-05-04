@@ -1,14 +1,14 @@
-import { MenuItem, ThemeProvider } from "@mui/material";
-import { render, screen } from "@testing-library/react";
-import React from "react";
-import { lightTheme } from "styles/theme";
-import { DropdownComponent } from ".";
+import { MenuItem, ThemeProvider } from '@mui/material';
+import { render, screen } from '@testing-library/react';
+import React from 'react';
+import { lightTheme } from 'styles/theme';
+import { DropdownComponent } from '.';
 
 const props = {
   label: 'Test Label',
   onChange: jest.fn(),
   value: 2
-}
+};
 
 function renderComponent() {
   return render(
@@ -22,8 +22,8 @@ function renderComponent() {
   );
 }
 
-describe("Dropdown component", () => {
-  it("checks if the component matches the snapshot", () => {
+describe('Dropdown component', () => {
+  it('checks if the component matches the snapshot', () => {
     const { container } = renderComponent();
     expect(container).toMatchSnapshot();
   });

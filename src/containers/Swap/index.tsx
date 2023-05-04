@@ -1,7 +1,7 @@
-import { SwapView } from "components"
-import { useDispatch, useSelector } from "react-redux";
-import { AppActions, RootState } from "store";
-import { mockBalance, mockTokens } from "__mock__";
+import { SwapView } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppActions, RootState } from 'store';
+import { mockBalance, mockTokens } from '__mock__';
 
 export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -9,11 +9,11 @@ export const SwapContainer: React.FC = () => {
 
   const onConfirmSwap = () => {
     dispatch(AppActions.transaction.sendTransaction());
-  }
+  };
 
   const fetchPrices = () => {
 
-  }
+  };
   return (
     <SwapView
       balance={mockBalance}
@@ -22,5 +22,5 @@ export const SwapContainer: React.FC = () => {
       onConfirmSwap={onConfirmSwap}
       fetchPrices={fetchPrices}
     />
-  )
+  );
 };

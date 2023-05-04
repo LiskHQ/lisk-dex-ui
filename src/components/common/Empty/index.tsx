@@ -19,5 +19,5 @@ export const EmptyComponent: React.FC<IProps> = (props) => {
       <Typography className="empty-subject" variant="subtitle2">{subject}</Typography>
       <Typography className="empty-description" variant="body2">{description}</Typography>
     </EmptyComponentStyle>
-  )
-}
+  );
+};

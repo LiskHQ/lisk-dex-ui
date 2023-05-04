@@ -28,7 +28,7 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
 
   const onChangeProposalStatus = (event: SelectChangeEvent<number>) => {
     setProposalStatus(event.target.value as ProposalStatus);
-  }
+  };
 
   const filteredProposals = useMemo(() => {
     return proposals.filter(el => el.status === proposalStatus || proposalStatus === ProposalStatus.All_Proposals);
@@ -69,7 +69,7 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
             )}
           >
             {
-              Object.entries(ProposalStatus).map(([key, value], index) => (
+              Object.entries(ProposalStatus).map(([key, value]) => (
                 <MenuItem
                   key={key}
                   value={value}
@@ -110,5 +110,5 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
         </Box>
       </Box>
     </GovernanceViewStyle>
-  )
-}
+  );
+};

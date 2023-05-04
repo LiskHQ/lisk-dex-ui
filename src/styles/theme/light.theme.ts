@@ -20,13 +20,13 @@ const themeColors = {
     80: '#161133',
   },
   secondary: {
-    0: "#F5981B",
-    5: "#F5981B",
-    10: "#CC7E16",
-    30: "#A66712",
-    40: "#7F4F0E",
-    50: "#59370A",
-    60: "#332006",
+    0: '#F5981B',
+    5: '#F5981B',
+    10: '#CC7E16',
+    30: '#A66712',
+    40: '#7F4F0E',
+    50: '#59370A',
+    60: '#332006',
   },
   primary: {
     85: '#7E6CF4',
@@ -87,6 +87,6 @@ const lightTheme = createTheme({
   palette: {
     mode: 'light'
   },
-})
+});
 
-export default lightTheme
+export default lightTheme;

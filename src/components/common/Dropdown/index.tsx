@@ -17,7 +17,7 @@ interface IProps {
   renderValue?: (value: string | number) => ReactNode;
   register?: UseFormRegister<any>,
   options?: RegisterOptions,
-  "data-testid"?: string,
+  'data-testid'?: string,
 }
 
 export const DropdownComponent: React.FC<IProps> = (props) => {
@@ -46,10 +46,11 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
           }
         }}
         {...selectProps}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         {...(register && register(fieldName!, options))}
       >
         {children}
       </Select>
     </DropdownComponentStyle>
-  )
-}
+  );
+};

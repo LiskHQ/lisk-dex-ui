@@ -31,5 +31,5 @@ export const VotesComponentStyle = styled('div')(({ theme }: any) => {
         }
       }
     },
-  }
-})
+  };
+});

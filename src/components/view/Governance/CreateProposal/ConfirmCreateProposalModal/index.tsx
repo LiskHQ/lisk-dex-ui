@@ -1,9 +1,9 @@
-import { ComfirmCreateProposalModalStyle } from "./index.style";
-import { IProposal } from "models";
-import { Box, FormControl, FormLabel, Typography } from "@mui/material";
-import { ButtonComponent, InputComponent, UrlInputComponent } from "components/common";
-import { ProposalType } from "consts";
-import { CancelIcon, PoolIncentivizationIcon, UniversalIcon } from "imgs/icons";
+import { ComfirmCreateProposalModalStyle } from './index.style';
+import { IProposal } from 'models';
+import { Box, FormControl, FormLabel, Typography } from '@mui/material';
+import { ButtonComponent, InputComponent, UrlInputComponent } from 'components/common';
+import { ProposalType } from 'consts';
+import { CancelIcon, PoolIncentivizationIcon, UniversalIcon } from 'imgs/icons';
 
 export interface IConfirmCreateProposalModalProps {
   openTransactionApproval: boolean,
@@ -109,5 +109,5 @@ export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalPro
         </Box>
       </Box>
     </ComfirmCreateProposalModalStyle >
-  )
-}
+  );
+};

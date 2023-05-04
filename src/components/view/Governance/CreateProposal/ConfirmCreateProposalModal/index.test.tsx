@@ -1,10 +1,10 @@
-import { ThemeProvider } from "@mui/material";
-import { fireEvent, render } from "@testing-library/react";
-import { InputComponent } from "components/common";
-import React from "react";
-import { lightTheme } from "styles/theme";
-import { mockProposal } from "__mock__";
-import { ConfirmCreateProposalModal, IConfirmCreateProposalModalProps } from ".";
+import { ThemeProvider } from '@mui/material';
+import { fireEvent, render } from '@testing-library/react';
+import { InputComponent } from 'components/common';
+import React from 'react';
+import { lightTheme } from 'styles/theme';
+import { mockProposal } from '__mock__';
+import { ConfirmCreateProposalModal, IConfirmCreateProposalModalProps } from '.';
 
 function renderComponent(props: IConfirmCreateProposalModalProps) {
   return render(
@@ -14,21 +14,21 @@ function renderComponent(props: IConfirmCreateProposalModalProps) {
   );
 }
 
-describe("SelectProposalTypeComponent", () => {
-  it("checks if the component matches the snapshot", () => {
+describe('SelectProposalTypeComponent', () => {
+  it('checks if the component matches the snapshot', () => {
     const props: IConfirmCreateProposalModalProps = {
       openTransactionApproval: false,
       proposal: mockProposal,
-    }
+    };
     const { container } = renderComponent(props);
     expect(container).toMatchSnapshot();
   });
 
-  it("proposal values entered all input correctly", () => {
+  it('proposal values entered all input correctly', () => {
     const props: IConfirmCreateProposalModalProps = {
       openTransactionApproval: false,
       proposal: mockProposal,
-    }
+    };
     renderComponent(props);
 
     const authorInputComponent = render(
@@ -80,19 +80,19 @@ describe("SelectProposalTypeComponent", () => {
     expect(descriptionInputComponent.container).toBeInTheDocument();
   });
 
-  it("confirm & cancel button click", () => {
+  it('confirm & cancel button click', () => {
     const props: IConfirmCreateProposalModalProps = {
       openTransactionApproval: false,
       proposal: mockProposal,
       onConfirm: jest.fn(),
       onClose: jest.fn(),
-    }
+    };
     const { getByTestId } = renderComponent(props);
 
-    fireEvent.click(getByTestId("confirm-proposal-modal-confirm"));
+    fireEvent.click(getByTestId('confirm-proposal-modal-confirm'));
     expect(props.onConfirm).toBeCalled();
 
-    fireEvent.click(getByTestId("confirm-proposal-modal-cancel"));
+    fireEvent.click(getByTestId('confirm-proposal-modal-cancel'));
     expect(props.onClose).toBeCalled();
   });
 });

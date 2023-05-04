@@ -48,5 +48,5 @@ export const AlertComponentStyle = styled(Box)(({ theme }: any) => {
       right: '0.5rem',
       cursor: 'pointer',
     }
-  }
-})
+  };
+});

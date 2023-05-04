@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const SelectProposalTypeStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -54,5 +54,5 @@ export const SelectProposalTypeStyle = styled(FormControl)(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

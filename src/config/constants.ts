@@ -1,5 +1,5 @@
 const constants = {
-  lastSearch: "lastSearch",
+  lastSearch: 'lastSearch',
 };
 
 export default constants;

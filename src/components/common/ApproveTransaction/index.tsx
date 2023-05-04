@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, FormLabel, Typography } from "@mui/material";
-import { ButtonComponent } from "components/common";
-import { CancelIcon, LightcurveIcon } from "imgs/icons";
-import { ellipsisAddress } from "utils";
-import { ApproveTransactionModalStyle } from "./index.style";
-import { IExpense } from "models";
-import { useMemo } from "react";
-import { mockConversionRate } from "__mock__";
+import Image from 'next/image';
+import { Box, FormLabel, Typography } from '@mui/material';
+import { ButtonComponent } from 'components/common';
+import { CancelIcon, LightcurveIcon } from 'imgs/icons';
+import { ellipsisAddress } from 'utils';
+import { ApproveTransactionModalStyle } from './index.style';
+import { IExpense } from 'models';
+import { useMemo } from 'react';
+import { mockConversionRate } from '__mock__';
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,
@@ -23,7 +23,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
   }, [expenses]);
 
   const isSendWalletRequest = useMemo(() => {
-    return expenses ? !!expenses.find(el => el.title === "Proposal creation fee") : false;
+    return expenses ? !!expenses.find(el => el.title === 'Proposal creation fee') : false;
   }, [expenses]);
 
   return (
@@ -50,7 +50,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
               <FormLabel>Account:</FormLabel>
               <Box className="approve-transaction-account-address">
                 <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-                <Typography variant="body1">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
+                <Typography variant="body1">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
               </Box>
             </Box>
             <Box className="approve-transaction-balance">
@@ -111,12 +111,12 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
           >
             <Typography variant="body1">
               {
-                `${isSendWalletRequest ? "Send wallet request" : "Approve"}`
+                `${isSendWalletRequest ? 'Send wallet request' : 'Approve'}`
               }
             </Typography>
           </ButtonComponent>
         </Box>
       </Box>
     </ApproveTransactionModalStyle>
-  )
-}
+  );
+};

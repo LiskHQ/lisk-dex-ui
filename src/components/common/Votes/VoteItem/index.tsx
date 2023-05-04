@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Grid, Typography } from "@mui/material";
-import { IVote } from "models";
-import { VoteItemComponentStyle } from "./index.style";
-import { ellipsisAddress } from "utils";
+import Image from 'next/image';
+import { Grid, Typography } from '@mui/material';
+import { IVote } from 'models';
+import { VoteItemComponentStyle } from './index.style';
+import { ellipsisAddress } from 'utils';
 
 export interface IVoteItemComponentProps {
   vote: IVote,
@@ -23,12 +23,12 @@ export const VoteItemComponent: React.FC<IVoteItemComponentProps> = (props) => {
           vote.agreed ?
             <Typography variant="body2">
               {
-                `${isUpSm ? "Yes, I accept the proposal." : "Yes"}`
+                `${isUpSm ? 'Yes, I accept the proposal.' : 'Yes'}`
               }
             </Typography> :
             <Typography variant="body2">
               {
-                `${isUpSm ? "No, I disagree with the proposal." : "No"}`
+                `${isUpSm ? 'No, I disagree with the proposal.' : 'No'}`
               }
             </Typography>
         }
@@ -37,5 +37,5 @@ export const VoteItemComponent: React.FC<IVoteItemComponentProps> = (props) => {
         <Typography variant="body2">{vote.amount} LISKDEX</Typography>
       </Grid>
     </VoteItemComponentStyle >
-  )
-}
+  );
+};

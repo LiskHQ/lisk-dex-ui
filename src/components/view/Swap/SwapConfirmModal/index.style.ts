@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
   return {
@@ -131,5 +131,5 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
         marginBottom: '1.5rem',
       },
     }
-  }
-})
+  };
+});

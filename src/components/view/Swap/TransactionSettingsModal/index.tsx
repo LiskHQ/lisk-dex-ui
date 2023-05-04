@@ -1,8 +1,8 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import { ButtonComponent, TransactionSettings } from "components";
-import { CancelIcon } from "imgs/icons";
-import { useState } from "react";
-import { TransactionSettingsModalStyle } from "./index.style";
+import { Box, IconButton, Typography } from '@mui/material';
+import { ButtonComponent, TransactionSettings } from 'components';
+import { CancelIcon } from 'imgs/icons';
+import { useState } from 'react';
+import { TransactionSettingsModalStyle } from './index.style';
 
 export interface ITransactionSettingsModalProps {
   splipageTolerance: number,
@@ -24,8 +24,8 @@ export const TransactionSettingsModal: React.FC<ITransactionSettingsModalProps> 
   const [transactionDeadline, setTransactionDeadline] = useState<number>(defaultTransactionDeadline);
 
   const onClickSave = () => {
-    onSave({ splipageTolerance, transactionDeadline })
-  }
+    onSave({ splipageTolerance, transactionDeadline });
+  };
   return (
     <TransactionSettingsModalStyle>
       <Box className="transaction-settings-title">
@@ -41,8 +41,8 @@ export const TransactionSettingsModal: React.FC<ITransactionSettingsModalProps> 
         <TransactionSettings
           splipageTolerance={splipageTolerance}
           transactionDeadline={transactionDeadline}
-          onChangeSplipageTolerance={(value) => { setSplipageTolerance(value) }}
-          onChangeTransactionDeadline={(value) => { setTransactionDeadline(value) }}
+          onChangeSplipageTolerance={(value) => { setSplipageTolerance(value); }}
+          onChangeTransactionDeadline={(value) => { setTransactionDeadline(value); }}
         />
 
         <ButtonComponent
@@ -53,5 +53,5 @@ export const TransactionSettingsModal: React.FC<ITransactionSettingsModalProps> 
         </ButtonComponent>
       </Box>
     </TransactionSettingsModalStyle>
-  )
-}
+  );
+};

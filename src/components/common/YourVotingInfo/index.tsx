@@ -1,13 +1,9 @@
-import { faBolt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Typography } from "@mui/material";
-import { YourVotingInfoComponentStyle } from "./index.style";
+import { faBolt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Typography } from '@mui/material';
+import { YourVotingInfoComponentStyle } from './index.style';
 
-interface IProps {
-
-}
-
-export const YourVotingInfoComponent: React.FC<IProps> = (props) => {
+export const YourVotingInfoComponent: React.FC = () => {
   return (
     <YourVotingInfoComponentStyle className="your-voting-info-component">
       <Box className="your-voting-info-header">
@@ -20,5 +16,5 @@ export const YourVotingInfoComponent: React.FC<IProps> = (props) => {
         </Typography>
       </Box>
     </YourVotingInfoComponentStyle>
-  )
-}
+  );
+};

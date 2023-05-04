@@ -1,11 +1,11 @@
-import Image from "next/image";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
-import { IPool } from "models";
-import { PoolComponentStyle } from "./index.style";
-import { PieChartIcon } from "imgs/icons";
-import { ButtonComponent } from "components/common";
+import Image from 'next/image';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
+import { IPool } from 'models';
+import { PoolComponentStyle } from './index.style';
+import { PieChartIcon } from 'imgs/icons';
+import { ButtonComponent } from 'components/common';
 
 export interface IPoolComponentProps {
   pool: IPool,
@@ -112,5 +112,5 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
         </Box>
       </AccordionDetails>
     </PoolComponentStyle >
-  )
-}
+  );
+};

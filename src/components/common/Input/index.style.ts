@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -77,10 +77,10 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
     },
 
     input: {
-      "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
-        WebkitAppearance: "none",
-        display: "none"
+      '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+        WebkitAppearance: 'none',
+        display: 'none'
       }
     }
-  }
-})
+  };
+});

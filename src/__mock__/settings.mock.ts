@@ -1,5 +1,5 @@
-import { flagSvgs } from "imgs/icons";
-import { IFiatCurrency } from "models";
+import { flagSvgs } from 'imgs/icons';
+import { IFiatCurrency } from 'models';
 
 export const mockFiatCurrnecies: IFiatCurrency[] = [
   {
@@ -12,4 +12,4 @@ export const mockFiatCurrnecies: IFiatCurrency[] = [
     name: 'British Pound',
     image: flagSvgs.GB,
   }
-]
+];

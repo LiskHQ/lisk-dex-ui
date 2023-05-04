@@ -1,8 +1,8 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material";
-import { fireEvent, render } from "@testing-library/react";
-import { TransactionSettingsModal, ITransactionSettingsModalProps } from "./index";
-import { lightTheme } from "styles/theme";
+import React from 'react';
+import { ThemeProvider } from '@mui/material';
+import { fireEvent, render } from '@testing-library/react';
+import { TransactionSettingsModal, ITransactionSettingsModalProps } from './index';
+import { lightTheme } from 'styles/theme';
 
 function renderComponent(props: ITransactionSettingsModalProps) {
   return render(
@@ -12,32 +12,32 @@ function renderComponent(props: ITransactionSettingsModalProps) {
   );
 }
 
-describe("TransactionSettingsModal", () => {
+describe('TransactionSettingsModal', () => {
   const mockProps: ITransactionSettingsModalProps = {
     splipageTolerance: 0.1,
     transactionDeadline: 20,
     onSave: jest.fn(),
     onClose: jest.fn(),
-  }
+  };
 
-  it("checks if the component matches the snapshot", () => {
+  it('checks if the component matches the snapshot', () => {
     const { container } = renderComponent(mockProps);
     expect(container).toMatchSnapshot();
   });
 
-  it("click save button", () => {
+  it('click save button', () => {
     const { getByTestId } = renderComponent(mockProps);
 
-    const button = getByTestId("transaction-settings-save-test");
+    const button = getByTestId('transaction-settings-save-test');
     fireEvent.click(button);
 
     expect(mockProps.onSave).toBeCalled();
   });
 
-  it("click close button", () => {
+  it('click close button', () => {
     const { getByTestId } = renderComponent(mockProps);
 
-    const button = getByTestId("transaction-settings-cancel-test");
+    const button = getByTestId('transaction-settings-cancel-test');
     fireEvent.click(button);
 
     expect(mockProps.onClose).toBeCalled();

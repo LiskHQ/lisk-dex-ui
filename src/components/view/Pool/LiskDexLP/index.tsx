@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material"
-import { LoaderComponent } from "components/common";
-import { IPool } from "models"
-import { LiskDexLPStyle } from "./index.style"
-import { PoolComponent } from "./PoolComponent";
+import { Box, Typography } from '@mui/material';
+import { LoaderComponent } from 'components/common';
+import { IPool } from 'models';
+import { LiskDexLPStyle } from './index.style';
+import { PoolComponent } from './PoolComponent';
 
 export interface ILiskDexLProps {
   pools: IPool[],
@@ -31,5 +31,5 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
         }
       </Box>
     </LiskDexLPStyle >
-  )
-}
+  );
+};

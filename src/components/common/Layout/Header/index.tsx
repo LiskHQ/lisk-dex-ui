@@ -14,10 +14,7 @@ import { useEffect, useState } from 'react';
 import { DropdownComponent, SettingsModal } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
 
-interface IProps {
-}
-
-export const Header: React.FC<IProps> = (props) => {
+export const Header: React.FC = () => {
   const router = useRouter();
 
   const { pathname } = router || { pathname: '' };
@@ -36,8 +33,8 @@ export const Header: React.FC<IProps> = (props) => {
               <Link href={item.href} passHref legacyBehavior key={item.href}>
                 <Box
                   className={cn({
-                    "header-menu-item": true,
-                    "active": compareUrl(pathname, item.href),
+                    'header-menu-item': true,
+                    'active': compareUrl(pathname, item.href),
                   })}
                 >
                   <Typography variant="h5">{item.title}</Typography>
@@ -56,7 +53,7 @@ export const Header: React.FC<IProps> = (props) => {
           <Box className="header-menu-wallet">
             <Typography variant="h5">2921LSK</Typography>
             <Box className="header-menu-wallet-address">
-              <Typography variant="h5">{ellipsisAddress("0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1")}</Typography>
+              <Typography variant="h5">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
             </Box>
           </Box>
@@ -73,5 +70,5 @@ export const Header: React.FC<IProps> = (props) => {
         }
       </Container>
     </HeaderStyle>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { Grid } from "@mui/material"
-import { IPool } from "models"
-import { PoolViewStyle } from "./index.style"
-import { LiskDexLP } from "./LiskDexLP"
-import { SupplyLiquidity } from "./SupplyLiquidity"
+import { Grid } from '@mui/material';
+import { IPool } from 'models';
+import { PoolViewStyle } from './index.style';
+import { LiskDexLP } from './LiskDexLP';
+import { SupplyLiquidity } from './SupplyLiquidity';
 
 export interface IPoolViewProps {
   sendingTransaction: boolean,
@@ -42,5 +42,5 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
         </Grid>
       </Grid>
     </PoolViewStyle>
-  )
-}
+  );
+};

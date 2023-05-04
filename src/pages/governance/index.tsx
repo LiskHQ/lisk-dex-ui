@@ -1,6 +1,6 @@
-import { NextPage } from "next";
-import { GovernanceContainer } from "containers";
-import { withLayout } from "components";
+import { NextPage } from 'next';
+import { GovernanceContainer } from 'containers';
+import { withLayout } from 'components';
 
 const GovernanacePage: NextPage = () => {
   return (

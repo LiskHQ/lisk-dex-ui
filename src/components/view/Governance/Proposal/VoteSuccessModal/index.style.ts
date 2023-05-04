@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const VoteSuccessModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -63,5 +63,5 @@ export const VoteSuccessModalStyle = styled('div')(({ theme }: any) => {
         padding: '0.5rem 1rem 1.5rem 1rem',
       }
     }
-  }
-})
+  };
+});

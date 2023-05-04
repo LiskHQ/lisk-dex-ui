@@ -1,29 +1,29 @@
-import { ProposalStatus, ProposalType } from "consts";
-import { IPoolItem, IProposal, IVote } from "models";
+import { ProposalStatus, ProposalType } from 'consts';
+import { IPoolItem, IProposal, IVote } from 'models';
 
 export const mockProposal: Pick<
   IProposal,
   'author' | 'proposalType' | 'poolID' | 'multiplier' | 'title' | 'summary' | 'description' | 'link'
 > = {
-  author: "Author",
+  author: 'Author',
   proposalType: ProposalType.PoolIncentivization,
-  poolID: "pool1",
+  poolID: 'pool1',
   multiplier: 8,
-  title: "Deploy Lisk DEX to Bridges on V2",
-  summary: "summary",
-  description: "description",
-  link: "description"
-}
+  title: 'Deploy Lisk DEX to Bridges on V2',
+  summary: 'summary',
+  description: 'description',
+  link: 'description'
+};
 
 export const mockProposals: IProposal[] = [
   {
-    id: "proposal1",
-    author: "Author",
+    id: 'proposal1',
+    author: 'Author',
     proposalType: ProposalType.PoolIncentivization,
-    poolID: "pool1",
+    poolID: 'pool1',
     multiplier: 8,
-    title: "Deploy Lisk DEX to Bridges on V2",
-    summary: "The DEX Governance module allows creating pool incentivization proposals and universal proposals. The motivation for the proposals is slightly different.",
+    title: 'Deploy Lisk DEX to Bridges on V2',
+    summary: 'The DEX Governance module allows creating pool incentivization proposals and universal proposals. The motivation for the proposals is slightly different.',
     description: `Blockchain, the distributed ledger technology, represents most of those things. It promotes consensus because itâs a record-keeping platform.
 
 The transparent because participants in the chain can download and validate individual ledgers. And itâs permanent because those ledgers canât be altered. 
@@ -39,10 +39,10 @@ The study objectives are to present the Blockchain in Education development in N
 It additionally affords the proper insights and evaluation which are crucial to layout powerful commercial enterprise techniques and set the proper direction for improved boom for all enterprise gamers involved. 
 
 With this information, the ones in rate might be capable of create new techniques, which consciousness available in the marketplace possibilities in order to advantage them, maing their commercial enterprise efforts profitable`,
-    link: "description",
+    link: 'description',
     status: ProposalStatus.Active,
   }
-]
+];
 
 export const mockVotes: IVote[] = [
   {
@@ -105,7 +105,7 @@ export const mockVotes: IVote[] = [
     agreed: true,
     amount: 16,
   },
-]
+];
 
 export const mockPoolItems: IPoolItem[] = [
   {
@@ -136,4 +136,4 @@ export const mockPoolItems: IPoolItem[] = [
     rate: 0.1,
     amount: 11.4,
   }
-]
+];

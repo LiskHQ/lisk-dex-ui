@@ -1,6 +1,6 @@
-import { NextPage } from "next";
-import { SwapContainer } from "containers";
-import { withLayout } from "components";
+import { NextPage } from 'next';
+import { SwapContainer } from 'containers';
+import { withLayout } from 'components';
 
 const SwapPage: NextPage = () => {
   return (

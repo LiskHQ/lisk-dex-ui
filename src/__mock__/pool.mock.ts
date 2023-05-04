@@ -1,5 +1,5 @@
-import { IPool } from "models";
-import { mockTokens } from "./swap.mock";
+import { IPool } from 'models';
+import { mockTokens } from './swap.mock';
 
 export const mockPool: IPool = {
   token1: mockTokens[0],
@@ -7,8 +7,8 @@ export const mockPool: IPool = {
   token1Amount: 1862,
   token2Amount: 0.045,
   share: 0.085,
-}
+};
 
 export const mockPools: IPool[] = [
   mockPool,
-]
+];

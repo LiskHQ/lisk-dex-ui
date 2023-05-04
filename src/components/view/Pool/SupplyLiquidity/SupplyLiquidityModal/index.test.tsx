@@ -1,9 +1,9 @@
-import React from "react";
-import { ThemeProvider } from "@mui/material";
-import { fireEvent, render } from "@testing-library/react";
-import { SupplyLiquidityModal, ISupplyLiquidityModalProps } from "./index";
-import { lightTheme } from "styles/theme";
-import { mockTokens } from "__mock__";
+import React from 'react';
+import { ThemeProvider } from '@mui/material';
+import { fireEvent, render } from '@testing-library/react';
+import { SupplyLiquidityModal, ISupplyLiquidityModalProps } from './index';
+import { lightTheme } from 'styles/theme';
+import { mockTokens } from '__mock__';
 
 function renderComponent(props: ISupplyLiquidityModalProps) {
   return render(
@@ -13,7 +13,7 @@ function renderComponent(props: ISupplyLiquidityModalProps) {
   );
 }
 
-describe("SupplyLiquidityModal component", () => {
+describe('SupplyLiquidityModal component', () => {
   const mockProps: ISupplyLiquidityModalProps = {
     token1: mockTokens[0],
     token1Amount: 4521.125,
@@ -21,23 +21,23 @@ describe("SupplyLiquidityModal component", () => {
     token2Amount: 7.125,
     onClose: jest.fn(),
     onConfirm: jest.fn(),
-  }
+  };
 
-  it("checks if the component matches the snapshot", () => {
+  it('checks if the component matches the snapshot', () => {
     const { container } = renderComponent(mockProps);
     expect(container).toMatchSnapshot();
   });
 
-  it("confirm click work", () => {
+  it('confirm click work', () => {
     const { getByTestId } = renderComponent(mockProps);
-    fireEvent.click(getByTestId("supply-liquidity-modal-button-test"));
+    fireEvent.click(getByTestId('supply-liquidity-modal-button-test'));
 
     expect(mockProps.onConfirm).toBeCalled();
   });
 
-  it("cancel click work", () => {
+  it('cancel click work', () => {
     const { getByTestId } = renderComponent(mockProps);
-    fireEvent.click(getByTestId("supply-liquidity-modal-cancel-test"));
+    fireEvent.click(getByTestId('supply-liquidity-modal-cancel-test'));
 
     expect(mockProps.onClose).toBeCalled();
   });

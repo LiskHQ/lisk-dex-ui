@@ -1,9 +1,9 @@
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Typography } from "@mui/material";
-import { IVote } from "models";
-import { VotesComponentStyle } from "./index.style";
-import { VoteItemComponent } from "./VoteItem";
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Typography } from '@mui/material';
+import { IVote } from 'models';
+import { VotesComponentStyle } from './index.style';
+import { VoteItemComponent } from './VoteItem';
 
 interface IVotesComponentProps {
   isUpSm: boolean,
@@ -40,5 +40,5 @@ export const VotesComponent: React.FC<IVotesComponentProps> = (props) => {
         }
       </Box>
     </VotesComponentStyle>
-  )
-}
+  );
+};

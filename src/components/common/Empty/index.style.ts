@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const EmptyComponentStyle = styled('div')(({ theme }: any) => {
   return {
@@ -17,5 +17,5 @@ export const EmptyComponentStyle = styled('div')(({ theme }: any) => {
       marginTop: '0.5rem',
       color: theme.text.paragraph,
     }
-  }
-})
+  };
+});

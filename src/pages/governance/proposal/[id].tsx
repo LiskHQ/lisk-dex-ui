@@ -1,6 +1,6 @@
-import { NextPage } from "next";
-import { ProposalContainer } from "containers";
-import { withLayout } from "components";
+import { NextPage } from 'next';
+import { ProposalContainer } from 'containers';
+import { withLayout } from 'components';
 
 const ProposalPage: NextPage = () => {
   return (

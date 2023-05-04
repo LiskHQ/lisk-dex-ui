@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Box, FormLabel, Grid, Typography } from "@mui/material";
-import cn from "classnames";
+import { useState } from 'react';
+import { Box, FormLabel, Grid, Typography } from '@mui/material';
+import cn from 'classnames';
 
-import { SelectProposalTypeStyle } from "./index.style";
-import { ProposalType } from "consts";
-import { PoolIncentivizationIcon, UniversalIcon } from "imgs/icons";
-import { RadioComponent } from "components";
+import { SelectProposalTypeStyle } from './index.style';
+import { ProposalType } from 'consts';
+import { PoolIncentivizationIcon, UniversalIcon } from 'imgs/icons';
+import { RadioComponent } from 'components';
 
 interface IProps {
   label?: string,
@@ -19,7 +19,7 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
   const changeProposalType = (value: ProposalType) => {
     setProposalType(value);
     onChange && onChange(value);
-  }
+  };
 
   return (
     <SelectProposalTypeStyle>
@@ -37,8 +37,8 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
             data-testid="pool-incentivization-proposal-test"
             className={
               cn({
-                "proposal-box": true,
-                "selected": proposalType === ProposalType.PoolIncentivization
+                'proposal-box': true,
+                'selected': proposalType === ProposalType.PoolIncentivization
               })
             }
             onClick={() => { changeProposalType(ProposalType.PoolIncentivization); }}
@@ -61,8 +61,8 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
             data-testid="universal-proposal-test"
             className={
               cn({
-                "proposal-box": true,
-                "selected": proposalType === ProposalType.Universal
+                'proposal-box': true,
+                'selected': proposalType === ProposalType.Universal
               })
             }
             onClick={() => { changeProposalType(ProposalType.Universal); }}
@@ -82,5 +82,5 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
         </Grid>
       </Grid>
     </SelectProposalTypeStyle>
-  )
-}
+  );
+};

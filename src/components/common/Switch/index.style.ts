@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { Switch } from '@mui/material'
+import styled from '@emotion/styled';
+import { Switch } from '@mui/material';
 
 export const SwitchComponentStyle = styled(Switch)(({ theme }: any) => {
   return {
@@ -21,5 +21,5 @@ export const SwitchComponentStyle = styled(Switch)(({ theme }: any) => {
       background: `${theme.switch.track} !important`,
       borderRadius: '0.75rem',
     }
-  }
-})
+  };
+});

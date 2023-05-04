@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
   return {
@@ -142,5 +142,5 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
         top: '20rem',
       }
     }
-  }
-})
+  };
+});

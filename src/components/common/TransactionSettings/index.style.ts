@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 
 export const TransactionSettingsStyle = styled('div')(({ theme }: any) => {
   return {
@@ -63,5 +63,5 @@ export const TransactionSettingsStyle = styled('div')(({ theme }: any) => {
         marginRight: '0.75rem',
       }
     },
-  }
-})
+  };
+});

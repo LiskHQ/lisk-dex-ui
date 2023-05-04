@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 
 export const SelectTokenModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -120,5 +120,5 @@ export const SelectTokenModalStyle = styled('div')(({ theme }: any) => {
       }
     }
 
-  }
-})
+  };
+});

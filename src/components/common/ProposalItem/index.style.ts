@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ProposalItemStyle = styled('div')(({ theme }: any) => {
   return {
@@ -82,5 +82,5 @@ export const ProposalItemStyle = styled('div')(({ theme }: any) => {
         right: '0.75rem',
       },
     }
-  }
-})
+  };
+});

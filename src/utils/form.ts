@@ -6,6 +6,6 @@ export const allowDigitOnly = (event: any) => {
       event.which == 8
     )
   ) {
-    event.preventDefault()
+    event.preventDefault();
   }
-}
+};

@@ -1,7 +1,7 @@
-import { InputComponentStyle } from "./index.style"
-import { useTheme } from "@mui/styles";
-import { Box, InputBase, InputLabel, Typography } from "@mui/material";
-import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
+import { InputComponentStyle } from './index.style';
+import { useTheme } from '@mui/styles';
+import { Box, InputBase, InputLabel, Typography } from '@mui/material';
+import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react';
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
@@ -15,8 +15,6 @@ interface IProps {
   minRows?: number,
   maxRows?: number,
   maxLength?: number,
-  min?: number,
-  max?: number,
   value?: string | number,
   readOnly?: boolean,
   disabled?: boolean,
@@ -35,7 +33,7 @@ interface IProps {
 
 export const InputComponent: React.FC<IProps> = (props) => {
   const theme: any = useTheme();
-  const { maxLength, register, watch, options, className, name: fieldName, type, min, max, label, ...inputProps } = props;
+  const { maxLength, register, watch, options, className, name: fieldName, type, label, ...inputProps } = props;
   const value = watch && fieldName && watch(fieldName);
 
   return (
@@ -52,13 +50,14 @@ export const InputComponent: React.FC<IProps> = (props) => {
         type={type}
         inputProps={{
           sx: {
-            "&::placeholder": {
+            '&::placeholder': {
               opacity: 1,
               color: theme.text.placeholder,
             },
           },
           maxLength,
         }}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         {...(register && register(fieldName!, options))}
         {...inputProps}
       />
@@ -69,5 +68,5 @@ export const InputComponent: React.FC<IProps> = (props) => {
         </Box>
       }
     </InputComponentStyle >
-  )
-}
+  );
+};

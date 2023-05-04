@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPool } from "models";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IPool } from 'models';
 
 type StateType = {
   pools: IPool[],
@@ -21,14 +21,14 @@ const initialState: StateType = {
 };
 
 const poolSlice = createSlice({
-  name: "pool",
+  name: 'pool',
   initialState: initialState,
   reducers: {
     /**
      * pool
      */
     //create pool
-    createPool(state, action: PayloadAction<any>) {
+    createPool(state) {
       state.creatingPool = true;
       state.createdPool = false;
     },

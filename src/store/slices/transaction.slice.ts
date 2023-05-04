@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IExpense } from "models";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IExpense } from 'models';
 
 type StateType = {
   openTransactionApproval: boolean,
@@ -27,7 +27,7 @@ const initialState: StateType = {
 };
 
 const transactionSlice = createSlice({
-  name: "transaction",
+  name: 'transaction',
   initialState: initialState,
   reducers: {
     /**
@@ -37,11 +37,11 @@ const transactionSlice = createSlice({
     setOpenTransactionApproval(state, action: PayloadAction<any>) {
       state.openTransactionApproval = action.payload;
     },
-    approveTransaction(state, action: PayloadAction<any>) {
+    approveTransaction(state) {
       state.approvingTransaction = true;
       state.approvedTransaction = false;
     },
-    approveTransactionSuccess(state, action: PayloadAction<any>) {
+    approveTransactionSuccess(state) {
       state.approvingTransaction = false;
       state.approvedTransaction = true;
       state.openTransactionApproval = false;

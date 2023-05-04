@@ -11,5 +11,5 @@ export const SwitchComponent: React.FC<IProps> = (props) => {
     <SwitchComponentStyle
       {...props}
     />
-  )
-}
+  );
+};

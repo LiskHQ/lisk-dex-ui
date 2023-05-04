@@ -1,6 +1,6 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
-export const IncentivizationProposalStyle = styled('div')(({ theme }: any) => {
+export const IncentivizationProposalStyle = styled('div')(() => {
   return {
     '.MuiGrid-item': {
       width: '100%',
@@ -11,5 +11,5 @@ export const IncentivizationProposalStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

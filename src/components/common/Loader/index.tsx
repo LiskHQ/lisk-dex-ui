@@ -7,5 +7,5 @@ export const LoaderComponent: React.FC = () => {
     <LoaderComponentStyle className="loader-component">
       <LoaderIcon />
     </LoaderComponentStyle>
-  )
-}
+  );
+};

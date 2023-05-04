@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -100,5 +100,5 @@ export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

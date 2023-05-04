@@ -1,7 +1,7 @@
-import { TransactionStatusStyle } from "./index.style";
-import { Box, CircularProgress, Link, Typography } from "@mui/material";
-import { SuccessIcon } from "imgs/icons";
-import { ButtonComponent } from "components/common";
+import { TransactionStatusStyle } from './index.style';
+import { Box, CircularProgress, Link, Typography } from '@mui/material';
+import { SuccessIcon } from 'imgs/icons';
+import { ButtonComponent } from 'components/common';
 
 export interface ITransactionStatusModalProps {
   success?: boolean,
@@ -17,7 +17,7 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
       <Box className="transaction-status-modal-container">
         <Typography variant="h3">
           {
-            success ? "Transaction submitted" : "Waiting for Confirmation"
+            success ? 'Transaction submitted' : 'Waiting for Confirmation'
           }
         </Typography>
         {
@@ -37,7 +37,7 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
             </Box>
         }
         <Typography className="transaction-status-content" variant="body1" >
-          {success ? "Swap successful" : "Swapping tokens..."}
+          {success ? 'Swap successful' : 'Swapping tokens...'}
         </Typography>
         {
           success ?
@@ -57,5 +57,5 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
         }
       </Box>
     </TransactionStatusStyle >
-  )
-}
+  );
+};

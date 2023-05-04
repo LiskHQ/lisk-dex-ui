@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import { ProposalView } from "components"
-import { IProposal } from "models";
-import { useEffect, useMemo, useState } from "react";
-import { mockProposals } from "__mock__";
-import { useDispatch, useSelector } from "react-redux";
-import { AppActions, RootState } from "store";
+import { useRouter } from 'next/router';
+import { ProposalView } from 'components';
+import { IProposal } from 'models';
+import { useEffect, useMemo, useState } from 'react';
+import { mockProposals } from '__mock__';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppActions, RootState } from 'store';
 
 export const ProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,16 +16,16 @@ export const ProposalContainer: React.FC = () => {
   const [votesPage, setVotesPage] = useState<number>(0);
 
   const proposal: IProposal = useMemo(() => {
-    return mockProposals.find(el => el.id === router.query.id) as IProposal
+    return mockProposals.find(el => el.id === router.query.id) as IProposal;
   }, [router.query.id]);
 
   const onViewMore = () => {
     setVotesPage((prevState) => prevState + 1);
-  }
+  };
 
   useEffect(() => {
     dispatch(AppActions.proposal.getVotesByProposal(votesPage));
-  }, [votesPage]);
+  }, [votesPage, dispatch]);
 
   const onVote = () => {
     dispatch(AppActions.transaction.setExpenses([
@@ -35,11 +35,11 @@ export const ProposalContainer: React.FC = () => {
       }
     ]));
     dispatch(AppActions.transaction.setOpenTransactionApproval(true));
-  }
+  };
 
   const onCloseVoteSuccessModal = () => {
     dispatch(AppActions.transaction.resetApproveTransactionState());
-  }
+  };
 
   return (
     <ProposalView
@@ -55,4 +55,4 @@ export const ProposalContainer: React.FC = () => {
       onCloseVoteSuccessModal={onCloseVoteSuccessModal}
     />
   );
-}
+};

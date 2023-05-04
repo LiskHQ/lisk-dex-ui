@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
-import { ProposalType } from "consts";
-import { PoolIncentivizationIcon, UniversalIcon } from "imgs/icons";
-import { ProposalTypeBadgeStyle } from "./index.style";
+import { Typography } from '@mui/material';
+import { ProposalType } from 'consts';
+import { PoolIncentivizationIcon, UniversalIcon } from 'imgs/icons';
+import { ProposalTypeBadgeStyle } from './index.style';
 
 interface IProposalTypeBadgeProps {
   type: ProposalType,
@@ -21,4 +21,4 @@ export const ProposalTypeBadge: React.FC<IProposalTypeBadgeProps> = (props) => {
       <Typography variant="h6">{type}</Typography>
     </ProposalTypeBadgeStyle>
   );
-}
+};

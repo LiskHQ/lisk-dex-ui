@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
-import { ReactNode } from "react"
-import { PopoverComponentStyle } from "./index.style"
+import { Box } from '@mui/material';
+import { ReactNode } from 'react';
+import { PopoverComponentStyle } from './index.style';
 
 interface IProps {
   children?: ReactNode,
@@ -27,5 +27,5 @@ export const PopoverComponent: React.FC<IProps> = (props) => {
         {children}
       </Box>
     </PopoverComponentStyle>
-  )
-}
+  );
+};

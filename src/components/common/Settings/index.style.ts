@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const SettingsModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -91,7 +91,7 @@ export const SettingsModalStyle = styled('div')(({ theme }: any) => {
         },
 
         '.slipage-tolerance-input': {
-          width: `6.875rem !important`,
+          width: '6.875rem !important',
         }
       },
 
@@ -111,5 +111,5 @@ export const SettingsModalStyle = styled('div')(({ theme }: any) => {
         }
       },
     }
-  }
-})
+  };
+});

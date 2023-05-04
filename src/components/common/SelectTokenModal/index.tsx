@@ -1,12 +1,12 @@
-import Image from "next/image";
-import cn from "classnames";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Grid, IconButton, Typography } from "@mui/material";
-import { SearchInputComponent } from "components/common";
-import { SelectTokenModalStyle } from "./index.style";
-import { useMemo, useState } from "react";
-import { IToken } from "models";
+import Image from 'next/image';
+import cn from 'classnames';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
+import { SearchInputComponent } from 'components/common';
+import { SelectTokenModalStyle } from './index.style';
+import { useMemo, useState } from 'react';
+import { IToken } from 'models';
 
 export interface ISelectTokenModalProps {
   tokens: IToken[],
@@ -21,11 +21,11 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
 
   const onClickChevronDown = () => {
     setClose(true);
-  }
+  };
 
   const filteredTokens = useMemo(() => {
     return tokens.filter(el => el.shortName.includes(filter) || el.name.includes(filter));
-  }, [filter]);
+  }, [filter, tokens]);
 
   return (
     <SelectTokenModalStyle
@@ -97,5 +97,5 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
         }
       </Box>
     </SelectTokenModalStyle>
-  )
-}
+  );
+};
