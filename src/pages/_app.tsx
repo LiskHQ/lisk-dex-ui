@@ -1,8 +1,41 @@
-import "/styles/globals.css";
+import type { AppProps } from 'next/app';
 import { LayoutTree } from "@moxy/next-layout";
+import { EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import styled from '@emotion/styled';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 
-const MyApp = ({ Component, pageProps }) => {
-  return <LayoutTree Component={Component} pageProps={pageProps} />;
-};
+import '../styles/globals.css';
+import { lightTheme } from '../styles/theme';
+import { createEmotionCache } from '../utils';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
-export default MyApp;
+type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
+const clientSideEmotionCache = createEmotionCache()
+
+function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: AppPropsRoot) {
+  return (
+    <Provider store={store}>
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={lightTheme}>
+          <CssBaseline />
+          <AppStyle className="layout-app">
+            <LayoutTree Component={Component} pageProps={pageProps} />
+          </AppStyle>
+        </ThemeProvider>
+      </CacheProvider>
+    </Provider>
+  )
+}
+
+const AppStyle = styled('div')(({ theme }: any) => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    background: theme.bg.primary
+  }
+})
+
+export default MyApp

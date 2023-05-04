@@ -1,8 +1,8 @@
 import { withLayout } from "@moxy/next-layout";
-import General from "../../components/layout/public/general";
+import { Layout } from "components/common";
 
 const ConfirmTokenSwap = () => {
   return <div>Confirm Swap</div>;
 };
 
-export default withLayout(<General />)(ConfirmTokenSwap);
+export default withLayout(<Layout />)(ConfirmTokenSwap);

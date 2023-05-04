@@ -1,14 +1,14 @@
 import { withLayout } from "@moxy/next-layout";
-import General from "../../components/layout/public/general";
+import { Layout } from "components/common";
 import AddLiquidity from "../../components/pool/liquidity/common/add-liquidity"
 
 
 const CreateAddLiquidity = () => {
-    return (
-        <>
-            <AddLiquidity />
-        </>
-    )
+  return (
+    <>
+      <AddLiquidity />
+    </>
+  )
 }
 
-export default withLayout(<General />)(CreateAddLiquidity);
+export default withLayout(<Layout />)(CreateAddLiquidity);

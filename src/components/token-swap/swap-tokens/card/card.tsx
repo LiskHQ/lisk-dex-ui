@@ -29,7 +29,7 @@ export default function SwapToken() {
         <Card className={classes.card}>
           <CardContent>
             <Grid>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body1" color="text.secondary">
                 <SwapTokens />
               </Typography>
             </Grid>
