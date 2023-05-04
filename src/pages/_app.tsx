@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import { LayoutTree } from "@moxy/next-layout";
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -19,7 +18,7 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
       <CacheProvider value={emotionCache}>
         <PlatformContextProvider>
           <AppStyle className="layout-app">
-            <LayoutTree Component={Component} pageProps={pageProps} />
+            <Component {...pageProps} />
           </AppStyle>
         </PlatformContextProvider>
       </CacheProvider>

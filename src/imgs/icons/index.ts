@@ -23,7 +23,9 @@ export * from './InfoIcon';
 export * from './PlusCircleIcon';
 export * from './PositionIcon';
 
-export const tokenSvgs = {
+export const tokenSvgs: {
+  [key: string]: string,
+} = {
   DEU: '/assets/tokens/deu.svg',
   ETH: '/assets/tokens/eth.svg',
   FAE: '/assets/tokens/fae.svg',

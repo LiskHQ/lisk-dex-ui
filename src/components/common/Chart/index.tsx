@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Chart: React.FC<Props> = ({ className, data }) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
 
   const svgRef = useRef<SVGSVGElement>(null);
   const [width, setWidth] = useState<number>(0);

@@ -47,7 +47,7 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
               <PoolIncentivizationIcon />
               <RadioComponent
                 checked={proposalType === ProposalType.PoolIncentivization}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { changeProposalType(e.target.value); }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { changeProposalType(e.target.value as ProposalType); }}
                 value={ProposalType.PoolIncentivization}
                 name="radio-buttons"
               />
@@ -71,7 +71,7 @@ export const SelectProposalTypeComponent: React.FC<IProps> = (props) => {
               <UniversalIcon />
               <RadioComponent
                 checked={proposalType === ProposalType.Universal}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { changeProposalType(e.target.value); }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { changeProposalType(e.target.value as ProposalType); }}
                 value={ProposalType.Universal}
                 name="radio-buttons"
               />

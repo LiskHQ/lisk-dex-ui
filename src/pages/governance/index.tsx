@@ -1,7 +1,6 @@
 import { NextPage } from "next";
-import { withLayout } from "@moxy/next-layout";
 import { GovernanceContainer } from "containers";
-import { Layout } from "components";
+import { withLayout } from "components";
 
 const GovernanacePage: NextPage = () => {
   return (
@@ -9,4 +8,4 @@ const GovernanacePage: NextPage = () => {
   );
 };
 
-export default withLayout(<Layout />)(GovernanacePage);
+export default withLayout(GovernanacePage);

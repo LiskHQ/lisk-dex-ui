@@ -25,7 +25,7 @@ interface IProps {
 }
 
 export const SearchInputComponent: React.FC<IProps> = (props) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const { maxLength, onChange, options, className, type, label, ...inputProps } = props;
 
   return (

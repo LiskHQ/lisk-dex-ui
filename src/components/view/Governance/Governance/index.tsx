@@ -22,12 +22,12 @@ export interface IGovernanceViewProposal {
 }
 
 export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const { proposals } = props;
   const [proposalStatus, setProposalStatus] = useState<ProposalStatus>(ProposalStatus.All_Proposals);
 
   const onChangeProposalStatus = (event: SelectChangeEvent<number>) => {
-    setProposalStatus(event.target.value);
+    setProposalStatus(event.target.value as ProposalStatus);
   }
 
   const filteredProposals = useMemo(() => {
@@ -69,7 +69,7 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
             )}
           >
             {
-              Object.entries(ProposalStatus).map(([key, value]) => (
+              Object.entries(ProposalStatus).map(([key, value], index) => (
                 <MenuItem
                   key={key}
                   value={value}

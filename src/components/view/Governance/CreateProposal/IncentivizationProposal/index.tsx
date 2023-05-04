@@ -16,18 +16,18 @@ interface IProps {
 
 export const IncentivizationProposal: React.FC<IProps> = (props) => {
   const { className, register } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoolIdHelp, setOpenPoolIdHelp] = useState<boolean>(false);
   const [openMultiplierHelp, setOpenMultiplierHelp] = useState<boolean>(false);
   const [poolItems, setPoolItems] = useState<IPoolItem[]>(mockPoolItems);
 
-  const onClickPoolIDHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickPoolIDHelp = (event: React.MouseEvent<any>) => {
     setAnchorEl(event.currentTarget);
     setOpenPoolIdHelp(true);
   }
 
-  const onClickMultiplierHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickMultiplierHelp = (event: React.MouseEvent<any>) => {
     setAnchorEl(event.currentTarget);
     setOpenMultiplierHelp(true);
   }
@@ -39,7 +39,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
           <DropdownComponent
             name="poolID"
             className="proposal-pool-id"
-            defaultValue=""
+            defaultValue={0}
             label={
               <>
                 Select a pool ID <HelpIcon

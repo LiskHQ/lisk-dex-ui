@@ -26,7 +26,7 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
 	const [theme, setTheme] = useState<Theme>(lightTheme);
 
 	const getThemeType = () => {
-		return sessionStorage.getItem('theme') ?? ThemeType.Light;
+		return sessionStorage.getItem('theme') as ThemeType ?? ThemeType.Light;
 	}
 
 	const saveTheme = (themeType: ThemeType) => {

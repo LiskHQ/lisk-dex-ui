@@ -48,7 +48,7 @@ export const Header: React.FC<IProps> = (props) => {
 
           <DropdownComponent
             className="header-menu-chain"
-            value={10}
+            defaultValue={10}
           >
             <MenuItem value={10}><LiskIcon /><Typography variant="h5">Lisk-testnet</Typography></MenuItem>
           </DropdownComponent>

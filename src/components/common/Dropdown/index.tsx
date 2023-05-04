@@ -11,7 +11,8 @@ interface IProps {
   className?: string,
   label?: ReactNode,
   children?: React.ReactNode,
-  defaultValue?: string | number,
+  defaultValue?: any,
+  value?: any,
   onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
   renderValue?: (value: string | number) => ReactNode;
   register?: UseFormRegister<any>,
@@ -23,7 +24,7 @@ export const DropdownComponent: React.FC<IProps> = (props) => {
   const { className, label, children, register, name: fieldName, options, ...selectProps } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  const theme = useTheme();
+  const theme: any = useTheme();
   return (
     <DropdownComponentStyle
       className={className}

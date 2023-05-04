@@ -16,7 +16,7 @@ export interface ISettingsModalProps {
 
 export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
   const { onClose } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
   const platformContext = useContext(PlatformContext);
 
   const [splipageTolerance, setSpliageTolerance] = useState<number>(0);

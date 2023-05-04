@@ -8,13 +8,13 @@ import { AppActions, RootState } from "store";
 import { darkTheme } from "styles/theme";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { LayoutStyle } from "./index.style";
+import { LayoutComponentStyle } from "./index.style";
 
 interface IProps {
   children?: ReactNode,
 }
 
-export const Layout: React.FC<IProps> = ({ children }) => {
+export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.lg));
 
   const dispatch = useDispatch();
@@ -142,7 +142,7 @@ export const Layout: React.FC<IProps> = ({ children }) => {
   }, [confirmedTransaction])
 
   return (
-    <LayoutStyle maxWidth="xl" style={{ padding: 0 }}>
+    <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
       <Head>
         <title>Lisk Dex</title>
       </Head>
@@ -179,6 +179,16 @@ export const Layout: React.FC<IProps> = ({ children }) => {
           />
         </Box>
       </Snackbar>
-    </LayoutStyle>
+    </LayoutComponentStyle>
   );
 };
+
+export const withLayout =
+  (Page: React.FC): React.FC =>
+    () => {
+      return (
+        <LayoutComponent>
+          <Page />
+        </LayoutComponent>
+      );
+    };

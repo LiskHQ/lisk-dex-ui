@@ -12,7 +12,7 @@ interface IProps {
 
 export const EmptyComponent: React.FC<IProps> = (props) => {
   const { className, subject, description } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
   return (
     <EmptyComponentStyle className={className}>
       {theme?.palette.mode === 'light' ? <LightEmptyIcon /> : <DarkEmptyIcon />}

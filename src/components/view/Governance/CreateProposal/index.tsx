@@ -65,10 +65,12 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
 
   const onSubmitHandler = (data: IProposal) => {
     setOpenCreateProposalModal(true);
-    setProposal({
-      ...data,
-      proposalType,
-    })
+    if (proposalType) {
+      setProposal({
+        ...data,
+        proposalType,
+      });
+    }
   }
 
   const onCloseProposalSubmittedModal = () => {

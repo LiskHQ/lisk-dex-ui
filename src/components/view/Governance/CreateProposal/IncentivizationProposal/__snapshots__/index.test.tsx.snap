@@ -759,7 +759,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
           class="MuiFormControl-root proposal-pool-id emotion-3"
         >
           <label
-            class="MuiFormLabel-root MuiFormLabel-colorPrimary emotion-4"
+            class="MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled emotion-4"
           >
             Select a pool ID 
             <svg
@@ -833,7 +833,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
               aria-invalid="false"
               class="MuiSelect-nativeInput emotion-9"
               tabindex="-1"
-              value=""
+              value="0"
             />
             <svg
               aria-hidden="true"

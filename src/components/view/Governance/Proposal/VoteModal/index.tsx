@@ -15,7 +15,7 @@ export interface IVoteModalProps {
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
   const { openTransactionApproval, onClose, onVote } = props;
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<string>();
 
   const onChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
     setValue(value);

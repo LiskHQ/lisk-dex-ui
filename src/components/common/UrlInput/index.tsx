@@ -30,7 +30,7 @@ interface IProps {
 }
 
 export const UrlInputComponent: React.FC<IProps> = (props) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const {
     maxLength,
     helperText,
