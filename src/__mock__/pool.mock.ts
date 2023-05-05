@@ -105,3 +105,39 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   }
 ];
+
+function generatePriceChange() {
+  const basePrice = 100; // Starting price
+  const volatility = 0.2; // Degree of price fluctuation
+
+  // Generate a random percentage change between -volatility and +volatility
+  const percentChange = (Math.random() * 2 * volatility) - volatility;
+
+  // Calculate the new price by applying the percentage change to the base price
+  const newPrice = basePrice * (1 + percentChange);
+  return newPrice;
+}
+
+export const createMockChartInfo = (): {
+  time: Date,
+  price: number,
+}[] => {
+  let array: {
+    time: Date,
+    price: number,
+  }[] = [];
+
+  const currentTime = new Date().getTime();
+  let startTime = currentTime - 1000 * 60 * 60 * 24 * 30 * 365;
+
+  while (startTime < currentTime) {
+    const period = Math.random() * 1000 * 60 * 60 * 4;
+    const price = generatePriceChange();
+    array.push({
+      time: new Date(startTime += period),
+      price,
+    });
+  }
+
+  return array;
+}

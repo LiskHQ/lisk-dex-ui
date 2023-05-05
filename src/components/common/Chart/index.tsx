@@ -14,9 +14,10 @@ interface Props {
   className?: string,
   data: DataPoint[],
   dots?: boolean,
+  gradient?: boolean,
 }
 
-export const Chart: React.FC<Props> = ({ className, data, dots }) => {
+export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
   const theme: any = useTheme();
   const { getThemeType } = useContext(PlatformContext);
 
@@ -77,9 +78,9 @@ export const Chart: React.FC<Props> = ({ className, data, dots }) => {
       .append('path')
       .datum(data)
       .attr('d', area)
-      .attr('fill', dots ? 'url(#myGradient)' : theme.lightcurve[0]);
+      .attr('fill', gradient ? 'url(#myGradient)' : theme.lightcurve[0]);
 
-    if (dots) {
+    if (gradient) {
       // Set up line generator
       const line = d3
         .line<DataPoint>()
@@ -94,7 +95,9 @@ export const Chart: React.FC<Props> = ({ className, data, dots }) => {
         .attr('fill', 'none')
         .attr('stroke', theme.lightcurve[0])
         .attr('stroke-width', 2);
+    }
 
+    if (dots) {
       // Draw circles at data points
       svg.selectAll('circle')
         .data(data)

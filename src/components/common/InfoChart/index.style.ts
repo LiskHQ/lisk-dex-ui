@@ -19,6 +19,9 @@ export const InfoChartStyle = styled('div')(({ theme }: any) => {
       },
 
       '.info-chart-tab': {
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
         background: theme.primary[40],
         border: `0.5px solid ${theme.primary[20]}`,
         borderRadius: '0.75rem',
