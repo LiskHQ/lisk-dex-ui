@@ -18,9 +18,9 @@ export const InfoView: React.FC = () => {
     <InfoViewStyle>
       <Box className="info-top-box">
         <Tabs className="info-tab" value={tabValue} onChange={handleChange} centered>
-          <Tab label="Overview" />
-          <Tab label="Pools" />
-          <Tab label="Tokens" />
+          <Tab label="Overview" data-testid="overview-tab-test" />
+          <Tab label="Pools" data-testid="pools-tab-test" />
+          <Tab label="Tokens" data-testid="tokens-tab-test" />
         </Tabs>
         <SearchInputComponent
           className="info-search-box"
