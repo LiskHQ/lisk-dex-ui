@@ -57,7 +57,7 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
       .y1((d) => yScale(d.y));
 
     // Define gradient
-    const gradient = svg.append('defs')
+    const graidentSvg = svg.append('defs')
       .append('linearGradient')
       .attr('id', 'myGradient')
       .attr('x1', '0%')
@@ -65,11 +65,11 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
       .attr('x2', '0%')
       .attr('y2', '100%');
 
-    gradient.append('stop')
+    graidentSvg.append('stop')
       .attr('offset', '0%')
       .attr('stop-color', theme.primary[2.5]);
 
-    gradient.append('stop')
+    graidentSvg.append('stop')
       .attr('offset', '100%')
       .attr('stop-color', getThemeType() === ThemeType.Light ? 'rgba(242, 245, 249, 0.25)' : 'rgba(45, 33, 102, 0.25)');
 
@@ -110,7 +110,7 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
         .attr('stroke', theme.lightcurve[0])
         .attr('stroke-width', 1);
     }
-  }, [data, height, width, dots, getThemeType, theme]);
+  }, [data, height, width, dots, gradient, getThemeType, theme]);
 
   return (
     <ChartStyle className={className}>

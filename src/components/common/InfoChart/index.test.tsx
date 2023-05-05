@@ -32,7 +32,7 @@ describe('InfoChart component', () => {
         price: 100,
       },
     ]
-  }
+  };
   it('checks if the component matches the snapshot', () => {
     const { container } = renderComponent(mockProps);
     expect(container).toMatchSnapshot();
@@ -41,16 +41,16 @@ describe('InfoChart component', () => {
   it('check period button works', () => {
     const { getByTestId } = renderComponent(mockProps);
     fireEvent.click(getByTestId('peroid-unit-D-test'));
-    expect(getByTestId('volume-test')).toHaveTextContent("$100");
+    expect(getByTestId('volume-test')).toHaveTextContent('$100');
 
     fireEvent.click(getByTestId('peroid-unit-W-test'));
-    expect(getByTestId('volume-test')).toHaveTextContent("$200");
+    expect(getByTestId('volume-test')).toHaveTextContent('$200');
 
     fireEvent.click(getByTestId('peroid-unit-M-test'));
-    expect(getByTestId('volume-test')).toHaveTextContent("$300");
+    expect(getByTestId('volume-test')).toHaveTextContent('$300');
 
     fireEvent.click(getByTestId('peroid-unit-Y-test'));
-    expect(getByTestId('volume-test')).toHaveTextContent("$400");
+    expect(getByTestId('volume-test')).toHaveTextContent('$400');
   });
 
   it('empty', () => {

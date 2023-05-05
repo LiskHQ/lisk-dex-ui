@@ -122,7 +122,7 @@ export const createMockChartInfo = (): {
   time: Date,
   price: number,
 }[] => {
-  let array: {
+  const array: {
     time: Date,
     price: number,
   }[] = [];
@@ -140,4 +140,4 @@ export const createMockChartInfo = (): {
   }
 
   return array;
-}
+};

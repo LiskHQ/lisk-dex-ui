@@ -10,7 +10,7 @@ export const OverviewComponent: React.FC = () => {
 
   const chartData = useMemo(() => {
     return createMockChartInfo();
-  }, [])
+  }, []);
 
   return (
     <OverviewComponentStyle>
