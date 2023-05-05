@@ -111,6 +111,26 @@ export const InfoChartStyle = styled('div')(({ theme }: any) => {
           }
         }
       }
+    },
+
+    '.empty-chart-box': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: '2rem',
+      background: theme.bg.primary,
+      color: theme.text.paragraph,
+
+      p: {
+        marginTop: '0.75rem',
+      },
+
+      svg: {
+        path: {
+          fill: theme.text.paragraph,
+        }
+      }
     }
   };
 });
