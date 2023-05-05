@@ -52,7 +52,7 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
   const [timeLines, setTimeLines] = useState<string[]>([]);
 
   const data = useMemo(() => {
-    if (chartData) {
+    if (chartData && chartData.length > 0) {
       const now = chartData[chartData.length - 1].time;
       const startOfYear = new Date(now.getFullYear(), 0, 1);
       const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -95,38 +95,40 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
   }, [chartData, periodUnit]);
 
   useEffect(() => {
-    let start = data[0].x;
-    const end = data[data.length - 1].x;
-    const period = (end - start) / 7;
-    const array: string[] = [];
-    for (let i = 0; i < 7; i++) {
-      const time = new Date(start += period);
-      const hours = time.getHours();
-      const minutes = time.getMinutes();
-      const date = time.getDate();
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const month = months[time.getMonth()];
-      switch (periodUnit) {
-        case 'D':
-          array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
-          break;
-        case 'W':
-          array.push(`${hours}:${minutes} / ${month} ${date}`);
-          break;
-        case 'M':
-          array.push(`${hours}:${minutes} / ${month} ${date}`);
-          break;
-        case 'Y':
-          array.push(`${month} ${date}`);
-          break;
+    if (data.length > 0) {
+      let start = data[0].x;
+      const end = data[data.length - 1].x;
+      const period = (end - start) / 7;
+      const array: string[] = [];
+      for (let i = 0; i < 7; i++) {
+        const time = new Date(start += period);
+        const hours = time.getHours();
+        const minutes = time.getMinutes();
+        const date = time.getDate();
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const month = months[time.getMonth()];
+        switch (periodUnit) {
+          case 'D':
+            array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
+            break;
+          case 'W':
+            array.push(`${hours}:${minutes} / ${month} ${date}`);
+            break;
+          case 'M':
+            array.push(`${hours}:${minutes} / ${month} ${date}`);
+            break;
+          case 'Y':
+            array.push(`${month} ${date}`);
+            break;
+        }
       }
-    }
-    setTimeLines(array);
+      setTimeLines(array);
 
-    const totalVolume = data.reduce((sum, el) => {
-      return sum += el.y;
-    }, 0);
-    setVolume(totalVolume);
+      const totalVolume = data.reduce((sum, el) => {
+        return sum += el.y;
+      }, 0);
+      setVolume(totalVolume);
+    }
   }, [data, periodUnit])
 
   const onChangeTab = (event: React.SyntheticEvent, newValue: number) => {
@@ -144,12 +146,12 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
   return (
     <InfoChartStyle>
       {
-        data ?
+        data.length > 0 ?
           <>
             <Box className="info-chart-header">
               <Box className="info-chart-volume">
                 <Typography variant="body1">Volume</Typography>
-                <Typography variant="h2">${volume.toLocaleString()}</Typography>
+                <Typography data-testid="volume-test" variant="h2">${volume.toLocaleString()}</Typography>
                 <Typography variant="body2">{new Date().toDateString()}</Typography>
               </Box>
               <Tabs className="info-chart-tab" value={tabValue} onChange={onChangeTab} centered>
@@ -161,6 +163,7 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
                   periodUnits.map((el) => (
                     <ButtonComponent
                       key={el}
+                      data-testid={`peroid-unit-${el}-test`}
                       className={
                         cn({
                           'selected': el === periodUnit
@@ -181,8 +184,8 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
             />
             <Box className="info-chart-timeline">
               {
-                timeLines && timeLines.map(el => (
-                  <Typography variant="caption" key={el}>{el}</Typography>
+                timeLines && timeLines.map((el, index) => (
+                  <Typography variant="caption" key={index}>{el}</Typography>
                 ))
               }
             </Box>

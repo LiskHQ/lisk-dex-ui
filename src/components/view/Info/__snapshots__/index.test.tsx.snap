@@ -607,6 +607,12 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-15:focus::-ms-input-
 }
 
 .emotion-21 .info-chart-header .info-chart-tab {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   background: #E4EBF9;
   border: 0.5px solid #D9D8F8;
   border-radius: 0.75rem;
@@ -2420,13 +2426,15 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
               </p>
               <h2
                 class="MuiTypography-root MuiTypography-h2 emotion-25"
+                data-testid="volume-test"
               >
-                $7,601,429
+                $
+                922.716
               </h2>
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-26"
               >
-                Apr 24, 2023
+                Fri May 05 2023
               </p>
             </div>
             <div
@@ -2476,6 +2484,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
             >
               <button
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium selected emotion-36"
+                data-testid="peroid-unit-D-test"
                 tabindex="0"
                 type="button"
               >
@@ -2490,6 +2499,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
               </button>
               <button
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium  emotion-36"
+                data-testid="peroid-unit-W-test"
                 tabindex="0"
                 type="button"
               >
@@ -2504,6 +2514,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
               </button>
               <button
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium  emotion-36"
+                data-testid="peroid-unit-M-test"
                 tabindex="0"
                 type="button"
               >
@@ -2518,6 +2529,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
               </button>
               <button
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium  emotion-36"
+                data-testid="peroid-unit-Y-test"
                 tabindex="0"
                 type="button"
               >
@@ -2543,37 +2555,37 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              11:15 AM
+              4:31 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              1:45 PM
+              7:2 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              3:12 PM
+              9:33 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              5:11 PM
+              12:4 PM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              7:41 PM
+              2:35 PM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              8:16 PM
+              5:6 PM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              11:49 PM
+              7:37 PM
             </span>
           </div>
           <div
