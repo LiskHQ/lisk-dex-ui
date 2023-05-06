@@ -38,6 +38,20 @@ exports[`InfoChart component checks if the component matches the snapshot 1`] = 
   border-radius: 0.75rem;
   padding: 0.125rem;
   min-height: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@media (max-width:575.95px) {
+  .emotion-0 .info-chart-header .info-chart-tab {
+    left: unset;
+    right: 2rem;
+    -webkit-transform: unset;
+    -moz-transform: unset;
+    -ms-transform: unset;
+    transform: unset;
+  }
 }
 
 .emotion-0 .info-chart-header .info-chart-tab .MuiTabs-scroller .MuiButtonBase-root {
@@ -64,6 +78,12 @@ exports[`InfoChart component checks if the component matches the snapshot 1`] = 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+@media (max-width:575.95px) {
+  .emotion-0 .info-chart-header .info-chart-period {
+    margin-top: 2.5rem;
+  }
 }
 
 .emotion-0 .info-chart-header .info-chart-period .MuiButtonBase-root {
@@ -468,6 +488,41 @@ exports[`InfoChart component checks if the component matches the snapshot 1`] = 
   letter-spacing: 0.03333em;
 }
 
+.emotion-36 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -16px;
+  width: calc(100% + 16px);
+  margin-left: -16px;
+}
+
+.emotion-36>.MuiGrid-item {
+  padding-top: 16px;
+}
+
+.emotion-36>.MuiGrid-item {
+  padding-left: 16px;
+}
+
+.emotion-37 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 <div>
   <div
     class="emotion-0"
@@ -493,7 +548,7 @@ exports[`InfoChart component checks if the component matches the snapshot 1`] = 
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-5"
         >
-          Fri May 05 2023
+          Sat May 06 2023
         </p>
       </div>
       <div
@@ -648,217 +703,237 @@ exports[`InfoChart component checks if the component matches the snapshot 1`] = 
       </span>
     </div>
     <div
-      class="info-chart-summary MuiBox-root emotion-1"
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 info-chart-summary emotion-36"
     >
       <div
-        class="summary-item MuiBox-root emotion-1"
+        class="MuiGrid-root MuiGrid-item emotion-37"
       >
         <div
-          class="summary-title MuiBox-root emotion-1"
+          class="summary-item MuiBox-root emotion-1"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-3"
+          <div
+            class="summary-title MuiBox-root emotion-1"
           >
-            LSK Price
-          </p>
-        </div>
-        <p
-          class="MuiTypography-root MuiTypography-body2 emotion-5"
-        >
-          $1.007
-        </p>
-        <div
-          class="summary-percent MuiBox-root emotion-1"
-        >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-3"
+            >
+              LSK Price
+            </p>
+          </div>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-5"
           >
-            -2.34
-            %
+            $1.007
           </p>
-          <svg
-            fill="none"
-            height="12"
-            viewBox="0 0 12 12"
-            width="12"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="summary-percent MuiBox-root emotion-1"
           >
-            <path
-              d="M11.5 9L6.75 4.25L4.25 6.75L0.5 3"
-              stroke="#FF4557"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8.5 9H11.5V6"
-              stroke="#FF4557"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-5"
+            >
+              -2.34
+              %
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 9L6.75 4.25L4.25 6.75L0.5 3"
+                stroke="#FF4557"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.5 9H11.5V6"
+                stroke="#FF4557"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div
-        class="summary-item MuiBox-root emotion-1"
+        class="MuiGrid-root MuiGrid-item emotion-37"
       >
         <div
-          class="summary-title MuiBox-root emotion-1"
+          class="summary-item MuiBox-root emotion-1"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-3"
+          <div
+            class="summary-title MuiBox-root emotion-1"
           >
-            Total Liquidity
-          </p>
-        </div>
-        <p
-          class="MuiTypography-root MuiTypography-body2 emotion-5"
-        >
-          $14.4m
-        </p>
-        <div
-          class="summary-percent increase MuiBox-root emotion-1"
-        >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-3"
+            >
+              Total Liquidity
+            </p>
+          </div>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-5"
           >
-            2.32
-            %
+            $14.4m
           </p>
-          <svg
-            fill="none"
-            height="12"
-            viewBox="0 0 12 12"
-            width="12"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="summary-percent increase MuiBox-root emotion-1"
           >
-            <path
-              d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8.5 3H11.5V6"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-5"
+            >
+              2.32
+              %
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.5 3H11.5V6"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div
-        class="summary-item MuiBox-root emotion-1"
+        class="MuiGrid-root MuiGrid-item emotion-37"
       >
         <div
-          class="summary-title MuiBox-root emotion-1"
+          class="summary-item MuiBox-root emotion-1"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-3"
+          <div
+            class="summary-title MuiBox-root emotion-1"
           >
-            Volume 24h
-          </p>
-        </div>
-        <p
-          class="MuiTypography-root MuiTypography-body2 emotion-5"
-        >
-          $2.5m
-        </p>
-        <div
-          class="summary-percent increase MuiBox-root emotion-1"
-        >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-3"
+            >
+              Volume 24h
+            </p>
+          </div>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-5"
           >
-            1.45
-            %
+            $2.5m
           </p>
-          <svg
-            fill="none"
-            height="12"
-            viewBox="0 0 12 12"
-            width="12"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="summary-percent increase MuiBox-root emotion-1"
           >
-            <path
-              d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8.5 3H11.5V6"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-5"
+            >
+              1.45
+              %
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.5 3H11.5V6"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div
-        class="summary-item MuiBox-root emotion-1"
+        class="MuiGrid-root MuiGrid-item emotion-37"
       >
         <div
-          class="summary-title MuiBox-root emotion-1"
+          class="summary-item MuiBox-root emotion-1"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-3"
+          <div
+            class="summary-title MuiBox-root emotion-1"
           >
-            Fees 24h
-          </p>
-        </div>
-        <p
-          class="MuiTypography-root MuiTypography-body2 emotion-5"
-        >
-          $48.9k
-        </p>
-        <div
-          class="summary-percent increase MuiBox-root emotion-1"
-        >
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-3"
+            >
+              Fees 24h
+            </p>
+          </div>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-5"
           >
-            4.86
-            %
+            $48.9k
           </p>
-          <svg
-            fill="none"
-            height="12"
-            viewBox="0 0 12 12"
-            width="12"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="summary-percent increase MuiBox-root emotion-1"
           >
-            <path
-              d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8.5 3H11.5V6"
-              stroke="#459A33"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-5"
+            >
+              4.86
+              %
+            </p>
+            <svg
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.5 3L6.75 7.75L4.25 5.25L0.5 9"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8.5 3H11.5V6"
+                stroke="#459A33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div
-        class="summary-item MuiBox-root emotion-1"
+        class="MuiGrid-root MuiGrid-item emotion-37"
       >
         <div
-          class="summary-title MuiBox-root emotion-1"
+          class="summary-item MuiBox-root emotion-1"
         >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-3"
+          <div
+            class="summary-title MuiBox-root emotion-1"
           >
-            Transactions 24h
+            <p
+              class="MuiTypography-root MuiTypography-body1 emotion-3"
+            >
+              Transactions 24h
+            </p>
+          </div>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-5"
+          >
+            621
           </p>
         </div>
-        <p
-          class="MuiTypography-root MuiTypography-body2 emotion-5"
-        >
-          621
-        </p>
       </div>
     </div>
   </div>
