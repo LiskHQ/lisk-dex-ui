@@ -62,18 +62,18 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
       let startTime = 0;
 
       switch (periodUnit) {
-        case 'D':
-          startTime = startOfDay.getTime();
-          break;
-        case 'W':
-          startTime = startOfWeek.getTime();
-          break;
-        case 'M':
-          startTime = startOfMonth.getTime();
-          break;
-        case 'Y':
-          startTime = startOfYear.getTime();
-          break;
+      case 'D':
+        startTime = startOfDay.getTime();
+        break;
+      case 'W':
+        startTime = startOfWeek.getTime();
+        break;
+      case 'M':
+        startTime = startOfMonth.getTime();
+        break;
+      case 'Y':
+        startTime = startOfYear.getTime();
+        break;
       }
 
       const data = chartData.reduce((cur: { x: number; y: number }[], el: { time: Date; price: number }) => {
@@ -108,18 +108,18 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const month = months[time.getMonth()];
         switch (periodUnit) {
-          case 'D':
-            array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
-            break;
-          case 'W':
-            array.push(`${hours}:${minutes} / ${month} ${date}`);
-            break;
-          case 'M':
-            array.push(`${hours}:${minutes} / ${month} ${date}`);
-            break;
-          case 'Y':
-            array.push(`${month} ${date}`);
-            break;
+        case 'D':
+          array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
+          break;
+        case 'W':
+          array.push(`${hours}:${minutes} / ${month} ${date}`);
+          break;
+        case 'M':
+          array.push(`${hours}:${minutes} / ${month} ${date}`);
+          break;
+        case 'Y':
+          array.push(`${month} ${date}`);
+          break;
         }
       }
       setTimeLines(array);
@@ -192,8 +192,8 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
             <Grid className="info-chart-summary" container spacing={2}>
               {
                 summary.map(el => (
-                  <Grid item>
-                    <Box key={el.title} className="summary-item">
+                  <Grid item key={el.title}>
+                    <Box className="summary-item">
                       <Box className="summary-title">
                         <Typography variant="body1">{el.title}</Typography>
                       </Box>
