@@ -27,6 +27,14 @@ export const InfoChartStyle = styled('div')(({ theme }: any) => {
         borderRadius: '0.75rem',
         padding: '0.125rem',
         minHeight: '2rem',
+        width: 'fit-content',
+
+
+        [theme.breakpoints.down('sm')]: {
+          left: 'unset',
+          right: '2rem',
+          transform: 'unset',
+        },
 
         '.MuiTabs-scroller': {
           '.MuiButtonBase-root': {
@@ -52,6 +60,10 @@ export const InfoChartStyle = styled('div')(({ theme }: any) => {
 
       '.info-chart-period': {
         display: 'flex',
+
+        [theme.breakpoints.down('sm')]: {
+          marginTop: '2.5rem',
+        },
 
         '.MuiButtonBase-root': {
           padding: '0',

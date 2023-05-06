@@ -44,18 +44,18 @@ export const FeaturedPools: React.FC = () => {
                   </Box>
                 </Box>
 
-                <Box className="pool-summary">
+                <Box className="pool-detail">
                   <Box className="pool-apy">
-                    <Typography className="pool-summary-title" variant="body2">APY</Typography>
-                    <Typography variant="body2">{el.APY}%</Typography>
+                    <Typography className="pool-detail-title" variant="body2">APY</Typography>
+                    <Typography className="pool-detail-value" variant="body2">{el.APY}%</Typography>
                   </Box>
                   <Box className="pool-liquidity">
-                    <Typography className="pool-summary-title" variant="body2">Pool Liquidity</Typography>
-                    <Typography variant="body2">${el.volume}</Typography>
+                    <Typography className="pool-detail-title" variant="body2">Pool Liquidity</Typography>
+                    <Typography className="pool-detail-value" variant="body2">${el.volume}</Typography>
                   </Box>
                   <Box className="pool-apy">
-                    <Typography className="pool-summary-title" variant="body2">Fees (7d)</Typography>
-                    <Typography variant="body2">{el.fees}</Typography>
+                    <Typography className="pool-detail-title" variant="body2">Fees (7d)</Typography>
+                    <Typography className="pool-detail-value" variant="body2">{el.fees}</Typography>
                   </Box>
                 </Box>
               </Box>

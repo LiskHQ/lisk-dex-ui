@@ -2,17 +2,15 @@ import styled from '@emotion/styled';
 
 export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
   return {
-    [theme.breakpoints.down('md')]: {
-      marginTop: '6.5rem',
-      padding: '0 1rem',
-    },
-
     '.info-header': {
       display: 'flex',
       justifyContent: 'space-between',
-
       marginTop: '3rem',
       marginBottom: '2rem',
+
+      [theme.breakpoints.down('md')]: {
+        marginTop: '1rem',
+      },
 
       h6: {
         fontSize: '1.5rem',

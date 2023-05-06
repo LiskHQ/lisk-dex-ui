@@ -25,16 +25,22 @@ export const FeaturedPoolsStyle = styled('div')(({ theme }: any) => {
 
       '&.left': {
         left: '-2.5rem',
+
+        [theme.breakpoints.down('md')]: {
+          left: '0rem',
+        },
       },
 
       '&.right': {
         right: '-2.5rem',
+
+        [theme.breakpoints.down('md')]: {
+          right: '0rem',
+        },
       },
 
       svg: {
-        path: {
-          stroke: theme.lightcurve[0],
-        }
+        color: theme.lightcurve[0],
       }
     },
 
@@ -43,6 +49,21 @@ export const FeaturedPoolsStyle = styled('div')(({ theme }: any) => {
       padding: '2px',
       borderRadius: '0.5rem',
       background: 'linear-gradient(90deg, rgba(66, 112, 245, 0.8) 14.06%, rgba(83, 120, 228, 0.8) 36.98%, rgba(231, 36, 176, 0.9) 81.25%)',
+
+      '&:hover': {
+        background: '#0C152E',
+        '.pool-box-inner': {
+          background: theme.lightcurve[60],
+        },
+
+        '.token-name': {
+          color: theme.text.button,
+        },
+
+        '.pool-detail-value': {
+          color: theme.text.button,
+        }
+      },
 
       '.pool-box-inner': {
         width: '18rem',
@@ -71,12 +92,12 @@ export const FeaturedPoolsStyle = styled('div')(({ theme }: any) => {
         }
       },
 
-      '.pool-summary': {
+      '.pool-detail': {
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: '2rem',
 
-        '.pool-summary-title': {
+        '.pool-detail-title': {
           color: theme.text.paragraph,
         }
       }
