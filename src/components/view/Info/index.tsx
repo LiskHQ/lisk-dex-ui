@@ -16,17 +16,20 @@ export const InfoView: React.FC = () => {
   };
 
   const onClickTab = (tabIndex: number) => {
-    router.push(`?tabIndex=${tabIndex}`);
+    if (router)
+      router.push(`?tabIndex=${tabIndex}`);
   };
 
   useEffect(() => {
-    const { query } = router;
-    if (query) {
-      if (query.tabIndex) {
-        setTabValue(parseInt(query.tabIndex as string));
-      }
-      if (query.poolId !== undefined) {
-        setTabValue(1);
+    if (router) {
+      const { query } = router;
+      if (query) {
+        if (query.tabIndex) {
+          setTabValue(parseInt(query.tabIndex as string));
+        }
+        if (query.poolId !== undefined) {
+          setTabValue(1);
+        }
       }
     }
   }, [router]);

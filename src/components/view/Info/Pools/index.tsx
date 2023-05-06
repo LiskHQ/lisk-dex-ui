@@ -21,8 +21,10 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
   const [poolId, setPoolId] = useState<string>('');
 
   useEffect(() => {
-    const { query } = router;
-    setPoolId(query.poolId as string);
+    if (router) {
+      const { query } = router;
+      setPoolId(query.poolId as string);
+    }
   }, [router]);
 
   const pool = useMemo(() => {
