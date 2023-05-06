@@ -7,8 +7,12 @@ import { useRef } from 'react';
 import { mockPoolDetails } from '__mock__';
 import { FeaturedPoolsStyle } from './index.style';
 
+export interface IFeaturedPoolsProps {
+  onSelectPool?: (id: string) => void,
+}
 
-export const FeaturedPools: React.FC = () => {
+export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
+  const { onSelectPool } = props;
   const poolContainerRef = useRef<HTMLDivElement>(null);
 
   const onClickScrollLeft = () => {
@@ -29,7 +33,12 @@ export const FeaturedPools: React.FC = () => {
       <Box className="feature-pools-container" ref={poolContainerRef}>
         {
           mockPoolDetails.map((el, index) => (
-            <Box key={index} className="pool-box">
+            <Box
+              key={index}
+              data-testid={`feature-pool-item-${index}`}
+              className="pool-box"
+              onClick={() => { onSelectPool && onSelectPool(index.toString()) }}
+            >
               <Box className="pool-box-inner">
                 <Box className="pool-tokens">
                   <Box className="token1-image">

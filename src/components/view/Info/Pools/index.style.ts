@@ -26,6 +26,10 @@ export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
         svg: {
           marginLeft: '0.5rem',
           marginRight: '0.5rem',
+        },
+
+        h5: {
+          cursor: 'pointer',
         }
       },
 

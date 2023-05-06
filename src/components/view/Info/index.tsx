@@ -1,26 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import { SearchInputComponent, TabPanel } from 'components';
 import { InfoViewStyle } from './index.style';
 import { OverviewComponent } from './Overview';
 import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
+import { PATHS } from 'consts';
+import { useRouter } from 'next/router';
 
 export const InfoView: React.FC = () => {
-
-  const [tabValue, setValue] = useState(0);
+  const router = useRouter();
+  const [tabValue, setTabValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setTabValue(newValue);
   };
+
+  const onClickTab = (tabIndex: number) => {
+    router.push(`?tabIndex=${tabIndex}`);
+  }
+
+  useEffect(() => {
+    const { query } = router;
+    if (query) {
+      if (query.tabIndex) {
+        setTabValue(parseInt(query.tabIndex as string));
+      }
+      if (query.poolId !== undefined) {
+        setTabValue(1);
+      }
+    }
+  }, [router]);
 
   return (
     <InfoViewStyle>
       <Box className="info-top-box">
         <Tabs className="info-tab" value={tabValue} onChange={handleChange} centered>
-          <Tab label="Overview" data-testid="overview-tab-test" />
-          <Tab label="Pools" data-testid="pools-tab-test" />
-          <Tab label="Tokens" data-testid="tokens-tab-test" />
+          <Tab label="Overview" data-testid="overview-tab-test" onClick={() => onClickTab(0)} />
+          <Tab label="Pools" data-testid="pools-tab-test" onClick={() => onClickTab(1)} />
+          <Tab label="Tokens" data-testid="tokens-tab-test" onClick={() => onClickTab(2)} />
         </Tabs>
         <SearchInputComponent
           className="info-search-box"
@@ -29,11 +47,11 @@ export const InfoView: React.FC = () => {
       </Box>
 
       <TabPanel value={tabValue} index={0}>
-        <OverviewComponent />
+        <OverviewComponent router={router} />
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <PoolsComponent />
+        <PoolsComponent router={router} />
       </TabPanel>
 
       <TabPanel value={tabValue} index={2}>
