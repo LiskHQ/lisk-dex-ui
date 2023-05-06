@@ -23,9 +23,9 @@ describe('FeaturedPools component', () => {
 
   it('check click feature pool item work', () => {
     const { getByTestId } = renderComponent(mockProps);
-    fireEvent.click(getByTestId("feature-pool-item-0"));
+    fireEvent.click(getByTestId('feature-pool-item-0'));
 
-    expect(mockProps.onSelectPool).toBeCalledWith("0");
-  });;
+    expect(mockProps.onSelectPool).toBeCalledWith('0');
+  });
 });
 

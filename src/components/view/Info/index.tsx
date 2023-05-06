@@ -5,7 +5,6 @@ import { InfoViewStyle } from './index.style';
 import { OverviewComponent } from './Overview';
 import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
-import { PATHS } from 'consts';
 import { useRouter } from 'next/router';
 
 export const InfoView: React.FC = () => {
@@ -18,7 +17,7 @@ export const InfoView: React.FC = () => {
 
   const onClickTab = (tabIndex: number) => {
     router.push(`?tabIndex=${tabIndex}`);
-  }
+  };
 
   useEffect(() => {
     const { query } = router;

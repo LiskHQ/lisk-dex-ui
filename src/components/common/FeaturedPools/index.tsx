@@ -37,7 +37,7 @@ export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
               key={index}
               data-testid={`feature-pool-item-${index}`}
               className="pool-box"
-              onClick={() => { onSelectPool && onSelectPool(index.toString()) }}
+              onClick={() => { onSelectPool && onSelectPool(index.toString()); }}
             >
               <Box className="pool-box-inner">
                 <Box className="pool-tokens">

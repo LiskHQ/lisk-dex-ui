@@ -20,7 +20,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
 
   const onSelectPool = (id: string) => {
     router.push(`?poolId=${id}`);
-  }
+  };
 
   return (
     <OverviewComponentStyle>
