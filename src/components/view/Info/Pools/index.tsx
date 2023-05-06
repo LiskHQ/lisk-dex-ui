@@ -7,7 +7,7 @@ import { NextRouter } from 'next/router';
 import { PoolsComponentStyle } from './index.style';
 import { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { createMockChartInfo, mockPool, mockPoolDetails } from '__mock__';
+import { createMockChartInfo, mockPoolDetails } from '__mock__';
 import Link from 'next/link';
 import { PATHS } from 'consts';
 
@@ -53,7 +53,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
                 <FontAwesomeIcon icon={faChevronRight} />
                 <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Pools</Typography></Link>
                 <FontAwesomeIcon icon={faChevronRight} />
-                <Typography variant="h5">{mockPool.token1.shortName}/{mockPool.token2.shortName}</Typography>
+                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
               </Box>
               <Box className="info-view-contract">
                 <Typography variant="body1">View Contract</Typography>
@@ -70,18 +70,18 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
         <Box className="pool-header">
           <Box className="pool-summary">
             <Box className="pool-summary-image-1">
-              <Image src={mockPool.token1.image} width={48} height={48} />
+              <Image src={pool.token1.image} width={48} height={48} />
             </Box>
             <Box className="pool-summary-image-2">
-              <Image src={mockPool.token2.image} width={48} height={48} />
+              <Image src={pool.token2.image} width={48} height={48} />
             </Box>
 
             <Box className="pool-summary-detail">
               <Box>
-                <Typography variant="h5">{mockPool.token1.shortName}/{mockPool.token2.shortName}</Typography>
+                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
               </Box>
               <Box>
-                <Typography>1 {mockPool.token1.shortName} = $ 0.92  1 {mockPool.token2.shortName} = $2.78</Typography>
+                <Typography>1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
               </Box>
             </Box>
           </Box>
