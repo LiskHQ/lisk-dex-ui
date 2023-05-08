@@ -69,23 +69,23 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       {
         token &&
         <Box className="token-header">
-          <Box className="token-summary">
-            <Box className="token-summary-image-1">
-              <Image src={token.image} width={48} height={48} />
+          <Box className="token-header-left-box">
+            <Box className="token-summary">
+              <Box className="token-summary-image-1">
+                <Image src={token.image} width={48} height={48} />
+              </Box>
+
+              <Box className="token-summary-detail">
+                <Box className="token-summary-name">
+                  <Typography variant="h5">{token.name}</Typography>
+                  <Chip className="token-summary-share" label={token.shortName} />
+                </Box>
+                <Box>
+                  <Typography className="token-price" variant="h5">$0.92 <Typography className="token-price-increasement" variant="caption">3.24% <IncreaseIcon /></Typography></Typography>
+                </Box>
+              </Box>
             </Box>
 
-            <Box className="token-summary-detail">
-              <Box className="token-summary-name">
-                <Typography variant="h5">{token.name}</Typography>
-                <Chip className="token-summary-share" label={token.shortName} />
-              </Box>
-              <Box>
-                <Typography className="token-price" variant="h5">$0.92 <Typography className="token-price-increasement" variant="caption">3.24% <IncreaseIcon /></Typography></Typography>
-              </Box>
-            </Box>
-          </Box>
-
-          <Box className="token-actions">
             <ToggleButton
               className="like-button"
               value="like"
@@ -98,6 +98,9 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
                 icon={isLike ? fasStar : farStar}
               />
             </ToggleButton>
+          </Box>
+
+          <Box className="token-actions">
             <ButtonComponent className="add-liquidity-button" variant="outlined">
               <Typography variant="h5">Add Liquidity</Typography>
             </ButtonComponent>
@@ -109,7 +112,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       }
 
       {
-        token &&
+        !token &&
         <Box className="table-title">
           <Typography variant="subtitle1">Saved Tokens</Typography>
         </Box>

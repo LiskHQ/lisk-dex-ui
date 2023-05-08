@@ -68,26 +68,26 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       {
         pool &&
         <Box className="pool-header">
-          <Box className="pool-summary">
-            <Box className="pool-summary-image-1">
-              <Image src={pool.token1.image} width={48} height={48} />
-            </Box>
-            <Box className="pool-summary-image-2">
-              <Image src={pool.token2.image} width={48} height={48} />
+          <Box className="pool-header-left-box">
+            <Box className="pool-summary">
+              <Box className="pool-summary-image-1">
+                <Image src={pool.token1.image} width={48} height={48} />
+              </Box>
+              <Box className="pool-summary-image-2">
+                <Image src={pool.token2.image} width={48} height={48} />
+              </Box>
+
+              <Box className="pool-summary-detail">
+                <Box className="pool-summary-name">
+                  <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                  <Chip className="pool-summary-share" label={`${pool.share}%`} />
+                </Box>
+                <Box>
+                  <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
+                </Box>
+              </Box>
             </Box>
 
-            <Box className="pool-summary-detail">
-              <Box className="pool-summary-name">
-                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
-                <Chip className="pool-summary-share" label={`${pool.share}%`} />
-              </Box>
-              <Box>
-                <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
-              </Box>
-            </Box>
-          </Box>
-
-          <Box className="pool-actions">
             <ToggleButton
               className="like-button"
               value="like"
@@ -100,6 +100,9 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
                 icon={isLike ? fasStar : farStar}
               />
             </ToggleButton>
+          </Box>
+
+          <Box className="pool-actions">
             <ButtonComponent className="add-liquidity-button" variant="outlined">
               <Typography variant="h5">Add Liquidity</Typography>
             </ButtonComponent>
