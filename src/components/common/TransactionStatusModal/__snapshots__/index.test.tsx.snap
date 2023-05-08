@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionStatusModal checks if the component matches the snapshot 1`] = `
+@keyframes animation-0 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animation-1 {
+  0% {
+    stroke-dasharray: 1px,200px;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px,200px;
+    stroke-dashoffset: -125px;
+  }
+}
+
+.emotion-0 {
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-0 .transaction-status-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+
+.emotion-0 .transaction-status-modal-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 10rem;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 23.125rem;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0.5rem;
+  background: #FFFFFF!important;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 30;
+}
+
+@media (max-width:767.95px) {
+  .emotion-0 .transaction-status-modal-container {
+    position: fixed;
+  }
+}
+
+.emotion-0 .transaction-status-modal-container .transaction-status-icon {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.emotion-0 .transaction-status-modal-container .transaction-status-icon .circular-progress {
+  width: 5rem!important;
+  height: 5rem!important;
+}
+
+.emotion-0 .transaction-status-modal-container .transaction-status-icon .circular-progress.foreground {
+  color: #6953F4;
+}
+
+.emotion-0 .transaction-status-modal-container .transaction-status-icon .circular-progress.background {
+  left: 0;
+  position: absolute;
+  color: #EDEDED;
+}
+
+.emotion-0 .transaction-status-modal-container h3 {
+  font-size: 1.5rem;
+}
+
+.emotion-0 .transaction-status-modal-container .transaction-status-content {
+  margin-top: 1.5rem;
+  font-weight: 500;
+  width: 11.8rem;
+  text-align: center;
+}
+
+.emotion-0 .transaction-status-modal-container a {
+  color: #6953F4;
+  text-decoration-color: #6953F4;
+}
+
+.emotion-0 .transaction-status-modal-container button {
+  margin-top: 2rem;
+}
+
+.emotion-0 .transaction-status-modal-container .confirm-transaction-wallet {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emotion-3 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 2rem;
+  font-weight: 600;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0em;
+}
+
+.emotion-5 {
+  display: inline-block;
+  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #1976d2;
+}
+
+.emotion-6 {
+  display: block;
+}
+
+.emotion-7 {
+  stroke: currentColor;
+  -webkit-transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-8 {
+  display: inline-block;
+  color: #1976d2;
+  -webkit-animation: animation-0 1.4s linear infinite;
+  animation: animation-0 1.4s linear infinite;
+}
+
+.emotion-10 {
+  stroke: currentColor;
+  stroke-dasharray: 80px,200px;
+  stroke-dashoffset: 0;
+  -webkit-animation: animation-1 1.4s ease-in-out infinite;
+  animation: animation-1 1.4s ease-in-out infinite;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 500;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  letter-spacing: 0.01071em;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="transaction-status-background MuiBox-root emotion-1"
+    />
+    <div
+      class="transaction-status-modal-container MuiBox-root emotion-1"
+    >
+      <h3
+        class="MuiTypography-root MuiTypography-h3 emotion-3"
+      >
+        Waiting for Confirmation
+      </h3>
+      <div
+        class="transaction-status-icon MuiBox-root emotion-1"
+      >
+        <span
+          aria-valuenow="100"
+          class="MuiCircularProgress-root MuiCircularProgress-determinate MuiCircularProgress-colorPrimary circular-progress background emotion-5"
+          role="progressbar"
+          style="width: 40px; height: 40px; transform: rotate(-90deg);"
+        >
+          <svg
+            class="MuiCircularProgress-svg emotion-6"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate emotion-7"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="21.5"
+              stroke-width="1"
+              style="stroke-dasharray: 135.088; stroke-dashoffset: 0.000px;"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary circular-progress foreground emotion-8"
+          role="progressbar"
+          style="width: 40px; height: 40px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg emotion-6"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate emotion-10"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="21.5"
+              stroke-width="1"
+            />
+          </svg>
+        </span>
+      </div>
+      <p
+        class="MuiTypography-root MuiTypography-body1 transaction-status-content emotion-11"
+      >
+        Swapping tokens...
+      </p>
+      <p
+        class="MuiTypography-root MuiTypography-body2 confirm-transaction-wallet emotion-12"
+      >
+        Confirm this transaction in your wallet
+      </p>
+    </div>
+  </div>
+</div>
+`;
