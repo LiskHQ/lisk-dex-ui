@@ -1789,6 +1789,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-15:focus::-ms-input-
   stroke: #6B7280;
 }
 
+.emotion-559 .transactions-table tbody tr:hover {
+  background: #F4F8F9;
+  cursor: pointer;
+}
+
 .emotion-559 .transactions-table tbody tr td {
   border: none;
 }
@@ -2540,7 +2545,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-851:focus::-ms-input
                 data-testid="volume-test"
               >
                 $
-                196.092
+                302.767
               </h2>
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-26"
@@ -2666,37 +2671,37 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-851:focus::-ms-input
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              1:0 AM
+              1:11 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              1:23 AM
+              2:12 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              1:47 AM
+              3:13 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              2:11 AM
+              4:14 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              2:34 AM
+              5:15 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              2:58 AM
+              6:17 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              3:22 AM
+              7:18 AM
             </span>
           </div>
           <div
