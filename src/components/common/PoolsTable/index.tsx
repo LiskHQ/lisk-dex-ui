@@ -23,7 +23,12 @@ const sortKeys = [
   },
 ];
 
-export const PoolsTable: React.FC = () => {
+export interface IPoolsTable {
+  onSelectPool?: (id: string) => void,
+}
+
+export const PoolsTable: React.FC<IPoolsTable> = (props) => {
+  const { onSelectPool } = props;
   const [isAsc, setAsc] = useState<boolean>();
   const [sortKey, setSortKey] = useState<string>('');
 
@@ -48,7 +53,7 @@ export const PoolsTable: React.FC = () => {
             <TableRow>
               <TableCell><Typography variant="body2">Name</Typography></TableCell>
               {
-                sortKeys.map(el => (
+                sortKeys.map((el, index) => (
                   <TableCell
                     key={el.key}
                     align="right"
@@ -82,6 +87,7 @@ export const PoolsTable: React.FC = () => {
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() => { onSelectPool && onSelectPool(index.toString()); }}
               >
                 <TableCell scope="row">
                   <Box className="name-td">
