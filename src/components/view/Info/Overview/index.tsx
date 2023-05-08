@@ -23,7 +23,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   };
 
   const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`)
+    router.push(`?tokenId=${id}`);
   };
 
   return (
