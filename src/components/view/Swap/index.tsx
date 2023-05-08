@@ -3,25 +3,26 @@ import Image from "next/image";
 import { Box, IconButton, Typography } from "@mui/material";
 import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from "imgs/icons";
 import { SwapViewStyle } from './index.style';
-import { ButtonComponent, InputComponent, TransactionStatusModal } from "components";
+import { ButtonComponent, InputComponent, TransactionStatusModal, SelectTokenModal } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { SelectTokenModal } from "../../common/SelectTokenModal";
 import { IToken } from "models";
 import { mockConversionRate, mockEthtoLsk } from "__mock__";
-import { SwapConfirmModal } from "./SwapConfirmModal";
 import { TransactionSettings } from "./TransactionSettings";
+import { SwapConfirmModal } from "./SwapConfirmModal";
 
 export interface ISwapViewProps {
   balance: number,
   tokens: IToken[],
-  closeTransactionModal: boolean,
+  openTransactionApproval: boolean,
+  approvedTransaction: boolean,
   onConfirmSwap: () => void,
+  onCloseTransactionStatus: () => void,
   fetchPrices: () => void,
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, closeTransactionModal, onConfirmSwap } = props;
+  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus } = props;
 
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
@@ -47,7 +48,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   }
 
   const onCloseTransactionConfirm = () => {
-    closeTransactionModal();
+    onCloseTransactionStatus();
     setToken1Amount(0);
     setSplipageTolerance(0.5);
     setTransactionDeadline(20);
@@ -229,6 +230,13 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             splipageTolerance={splipageTolerance}
             onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
             onClose={() => { setOpenSwapConfirmModal(false); }}
+          />
+        }
+        {
+          (openTransactionApproval || approvedTransaction) &&
+          <TransactionStatusModal
+            success={approvedTransaction}
+            onClose={onCloseTransactionConfirm}
           />
         }
       </Box>
