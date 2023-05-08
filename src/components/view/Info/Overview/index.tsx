@@ -22,6 +22,10 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
     router.push(`?poolId=${id}`);
   };
 
+  const onSelectToken = (id: string) => {
+    router.push(`?tokenId=${id}`)
+  };
+
   return (
     <OverviewComponentStyle>
       <Box className="info-header">
@@ -43,7 +47,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
-      <TokensTable />
+      <TokensTable onSelectToken={onSelectToken} />
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>

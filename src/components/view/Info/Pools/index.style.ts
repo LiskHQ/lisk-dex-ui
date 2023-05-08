@@ -73,6 +73,26 @@ export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
 
         '.pool-summary-detail': {
           marginLeft: '1rem',
+
+          '.pool-summary-name': {
+            display: 'flex',
+            alignItems: 'center',
+
+            '.pool-summary-share': {
+              background: theme.primary[40],
+              borderRadius: '0.25rem',
+              height: 'fit-content',
+              marginLeft: '0.5rem',
+
+              span: {
+                padding: '0.25rem 0.5rem',
+                color: theme.lightcurve[0],
+
+                fontSize: '0.75rem',
+                lineHeight: '0.875rem',
+              },
+            }
+          }
         }
       },
 

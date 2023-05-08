@@ -30,6 +30,9 @@ export const InfoView: React.FC = () => {
         if (query.poolId !== undefined) {
           setTabValue(1);
         }
+        if (query.tokenId !== undefined) {
+          setTabValue(2);
+        }
       }
     }
   }, [router]);
@@ -57,7 +60,7 @@ export const InfoView: React.FC = () => {
       </TabPanel>
 
       <TabPanel value={tabValue} index={2}>
-        <TokensComponent />
+        <TokensComponent router={router} />
       </TabPanel>
     </InfoViewStyle >
   );

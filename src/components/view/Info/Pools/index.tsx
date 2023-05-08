@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box, IconButton, ToggleButton, Typography } from '@mui/material';
+import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
 import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { ButtonComponent, InfoChart, PoolsTable } from 'components';
@@ -77,11 +77,12 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
             </Box>
 
             <Box className="pool-summary-detail">
-              <Box>
+              <Box className="pool-summary-name">
                 <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                <Chip className="pool-summary-share" label={`${pool.share}%`} />
               </Box>
               <Box>
-                <Typography>1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
+                <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
               </Box>
             </Box>
           </Box>
