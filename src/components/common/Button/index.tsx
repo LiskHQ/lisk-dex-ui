@@ -13,11 +13,12 @@ interface IProps {
   onClick?: () => void,
 }
 export const ButtonComponent: React.FC<IProps> = (props) => {
-  const { children, loading, disabled, ...buttonProps } = props;
+  const { children, loading, disabled, variant = "contained", ...buttonProps } = props;
 
   return (
     <ButtonComponentStyle
       {...buttonProps}
+      variant={variant}
       disabled={disabled || loading}
     >
       {

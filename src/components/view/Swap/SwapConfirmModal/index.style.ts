@@ -9,7 +9,7 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
       width: '100%',
       height: '100%',
       background: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 10,
+      zIndex: 30,
     },
 
     '.swap-confirm-modal-container': {
@@ -22,7 +22,7 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
       borderRadius: '0.5rem',
       background: `${theme.bg.secondary} !important`,
       boxShadow: theme.shadow.md,
-      zIndex: 10,
+      zIndex: 30,
       padding: '1.5rem',
 
       [theme.breakpoints.down('sm')]: {
@@ -115,7 +115,7 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
           background: 'none',
 
           '&:hover': {
-            P: {
+            p: {
               textDecoration: 'underline',
             }
           },

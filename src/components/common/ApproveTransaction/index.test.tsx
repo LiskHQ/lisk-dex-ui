@@ -15,6 +15,7 @@ function renderComponent(props: IApproveTransactionModalProps) {
 describe("Button component", () => {
   const mockProps: IApproveTransactionModalProps = {
     approvingTransaction: false,
+    expenses: [],
     onClose: jest.fn(),
     onConfirm: jest.fn(),
   }

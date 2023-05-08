@@ -66,7 +66,7 @@ export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
     },
 
     '.MuiFormHelperText-root': {
-      color: theme.error.primary,
+      color: theme.error.dark,
       margin: '0.5rem 0 0 0',
     },
 

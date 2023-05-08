@@ -18,14 +18,27 @@ export const AlertComponentStyle = styled(Box)(({ theme }: any) => {
 
       '.alert-component-icon': {
         width: '1.25rem',
+
+        svg: {
+          width: '1.25rem',
+          height: '1.25rem',
+        }
       }
     },
 
     '.alert-component-content': {
       marginLeft: '1rem',
       paddingRight: '6rem',
-      '.alert-component-subject': {
-        marginBottom: '0.25rem',
+
+      '.alert-component-description': {
+        marginTop: '0.25rem',
+      },
+
+      '.alert-component-link': {
+        cursor: 'pointer',
+        marginTop: '1.5rem',
+        color: theme.lightcurve[0],
+        textDecoration: 'underline',
       }
     },
 

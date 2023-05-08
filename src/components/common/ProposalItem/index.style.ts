@@ -67,7 +67,7 @@ export const ProposalItemStyle = styled('div')(({ theme }: any) => {
         p: {
           color: theme.text.body,
           span: {
-            color: theme.success.primary,
+            color: theme.success.light,
           }
         }
       }

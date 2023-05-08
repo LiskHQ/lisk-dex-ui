@@ -1,7 +1,7 @@
 import { InputComponentStyle } from "./index.style"
 import { useTheme } from "@mui/styles";
 import { Box, InputBase, InputLabel, Typography } from "@mui/material";
-import { ChangeEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
+import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
@@ -25,6 +25,7 @@ interface IProps {
   startAdornment?: ReactNode,
   endAdornment?: ReactNode,
   onClick?: MouseEventHandler<HTMLDivElement>,
+  onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,

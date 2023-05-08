@@ -6,24 +6,22 @@ import { SwapViewStyle } from './index.style';
 import { ButtonComponent, InputComponent, TransactionStatusModal } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { SelectTokenModal } from "./SelectTokenModal";
+import { SelectTokenModal } from "../../common/SelectTokenModal";
 import { IToken } from "models";
 import { mockConversionRate, mockEthtoLsk } from "__mock__";
-import { TransactionSettings } from "./TransactionSettings";
 import { SwapConfirmModal } from "./SwapConfirmModal";
+import { TransactionSettings } from "./TransactionSettings";
 
 export interface ISwapViewProps {
   balance: number,
   tokens: IToken[],
-  openTransactionApproval: boolean,
-  approvedTransaction: boolean,
+  closeTransactionModal: boolean,
   onConfirmSwap: () => void,
-  onCloseTransactionStatus: () => void,
   fetchPrices: () => void,
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, openTransactionApproval, approvedTransaction, onConfirmSwap, onCloseTransactionStatus } = props;
+  const { balance, tokens, closeTransactionModal, onConfirmSwap } = props;
 
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
@@ -49,7 +47,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   }
 
   const onCloseTransactionConfirm = () => {
-    onCloseTransactionStatus();
+    closeTransactionModal();
     setToken1Amount(0);
     setSplipageTolerance(0.5);
     setTransactionDeadline(20);
@@ -231,13 +229,6 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             splipageTolerance={splipageTolerance}
             onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
             onClose={() => { setOpenSwapConfirmModal(false); }}
-          />
-        }
-        {
-          (openTransactionApproval || approvedTransaction) &&
-          <TransactionStatusModal
-            success={approvedTransaction}
-            onClose={onCloseTransactionConfirm}
           />
         }
       </Box>

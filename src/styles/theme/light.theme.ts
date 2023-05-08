@@ -20,7 +20,13 @@ const themeColors = {
     80: '#161133',
   },
   secondary: {
-    0: '#F5981B'
+    0: "#F5981B",
+    5: "#F5981B",
+    10: "#CC7E16",
+    30: "#A66712",
+    40: "#7F4F0E",
+    50: "#59370A",
+    60: "#332006",
   },
   primary: {
     85: '#7E6CF4',
@@ -53,21 +59,21 @@ const themeColors = {
     slider: '#F2F2F2',
   },
   success: {
-    primary: '#BD5359',
-    second: '#8DC881',
-    light: '#459A33',
+    light: '#BD5359',
+    lighter: '#8DC881',
+    dark: '#459A33',
   },
   warning: {
-    primary: '#F8F3D8',
-    second: '#E2CA64',
+    lighter: '#F8F3D8',
+    light: '#E2CA64',
   },
   info: {
-    primary: '#2EA3DD',
-    second: '#C0ECE8',
+    dark: '#2EA3DD',
+    light: '#C0ECE8',
   },
   error: {
-    primary: '#FF4557',
-    second: '#FB8B96',
+    dark: '#FF4557',
+    light: '#FB8B96',
   },
 } as const;
 

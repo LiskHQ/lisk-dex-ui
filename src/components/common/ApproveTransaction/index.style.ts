@@ -69,7 +69,7 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
               borderRadius: '100%',
               width: '0.625rem',
               height: '0.625rem',
-              background: theme.success.second,
+              background: theme.success.light,
               marginRight: '0.5rem',
             }
           }
@@ -138,7 +138,7 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
 
             '.estimated-balance': {
               marginLeft: '1rem',
-              color: theme.error.primary,
+              color: theme.error.dark,
             }
           },
         },
@@ -192,12 +192,12 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
           '&:hover': {
             P: {
               textDecoration: 'underline',
-              color: theme.error.primary,
+              color: theme.error.dark,
             }
           },
 
           P: {
-            color: theme.error.primary,
+            color: theme.error.dark,
           }
         }
       },

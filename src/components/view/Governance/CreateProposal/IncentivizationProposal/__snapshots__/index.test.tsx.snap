@@ -525,6 +525,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
 }
 
 .emotion-13 .MuiFormHelperText-root {
+  color: #FF4557;
   margin: 0.5rem 0 0 0;
 }
 

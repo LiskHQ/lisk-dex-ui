@@ -601,7 +601,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   content: " ";
   width: 0.5rem;
   height: 0.5rem;
-  background: #2EA3DD;
   border-radius: 100%;
 }
 

@@ -1,13 +1,10 @@
 import { ThemeProvider } from "@mui/material";
 import { fireEvent, render } from "@testing-library/react";
-import { TransactionStatusModal } from "./index";
+import { ITransactionStatusModalProps, TransactionStatusModal } from "./index";
 import React from "react";
 import { lightTheme } from "styles/theme";
 
-function renderComponent(props: {
-  success?: boolean,
-  onClose?: () => void
-}) {
+function renderComponent(props: ITransactionStatusModalProps) {
   return render(
     <ThemeProvider theme={lightTheme}>
       <TransactionStatusModal {...props} />
@@ -23,7 +20,7 @@ describe("TransactionStatusModal", () => {
 
   it("cancel button click", () => {
     const onClose = jest.fn();
-    const { container, getByText } = renderComponent({
+    const { getByText } = renderComponent({
       success: true,
       onClose,
     });
