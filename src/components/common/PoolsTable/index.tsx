@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import cn from 'classnames';
-import { ButtonComponent, DropdownComponent, PaginationComponent } from 'components';
+import { ButtonComponent, PaginationComponent } from 'components';
 import { PoolsTableStyle } from './index.style';
 import { HelpIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight, faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { IPoolDetail } from 'models';
 
 const sortKeys = [
