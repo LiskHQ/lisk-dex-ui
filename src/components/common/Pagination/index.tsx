@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { Box, IconButton, MenuItem, Typography } from '@mui/material';
 import { PaginationComponentStyle } from './index.style';
-import { tokenSvgs } from 'imgs/icons';
 import { DropdownComponent } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';

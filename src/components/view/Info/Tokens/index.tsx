@@ -204,6 +204,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               onSortClick={onSortTokenClick}
               limit={limit}
               page={page}
+              onChangeRowCount={(value) => setLimit(value)}
               onNextPage={() => { setPage(Math.max(page - 1, 1)); }}
               onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)); }}
               totalPages={totalPages}

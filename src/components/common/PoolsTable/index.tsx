@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import cn from 'classnames';
-import { ButtonComponent, DropdownComponent } from 'components';
+import { ButtonComponent, DropdownComponent, PaginationComponent } from 'components';
 import { PoolsTableStyle } from './index.style';
 import { HelpIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -154,36 +154,14 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
       </TableContainer>
       {
         pagination &&
-        <Box className="pools-pager">
-          <DropdownComponent
-            className='row-count-dropdown'
-            onChange={(e) => { onChangeRowCount && onChangeRowCount(e.target.value as number); }}
-            defaultValue={limit}
-            renderValue={(value) => (
-              <Box className='show-rows-dropdown'>
-                <Typography variant='h6'>Show rows:</Typography>
-                <Typography variant='body2'>{value}</Typography>
-              </Box>
-            )}
-          >
-            <MenuItem value="5">5</MenuItem>
-            <MenuItem value="10">10</MenuItem>
-            <MenuItem value="25">25</MenuItem>
-          </DropdownComponent>
-          <IconButton
-            onClick={() => { onNextPage && onNextPage(); }}
-            disabled={page == 1}
-          >
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </IconButton>
-          <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
-          <IconButton
-            onClick={() => { onPreviousPage && onPreviousPage(); }}
-            disabled={totalPages == page}
-          >
-            <FontAwesomeIcon icon={faArrowRight} />
-          </IconButton>
-        </Box>
+        <PaginationComponent
+          onChangeRowCount={onChangeRowCount}
+          onPreviousPage={onPreviousPage}
+          onNextPage={onNextPage}
+          page={page}
+          limit={limit}
+          totalPages={totalPages}
+        />
       }
     </PoolsTableStyle >
   );
