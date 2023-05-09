@@ -47,10 +47,15 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(10);
 
+  const [searchFilter, setSearchFilter] = useState<string>('');
+
   const pools = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
-    return mockPoolDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]).slice((page - 1) * limit, page * limit);
-  }, [sortKey, isAsc, limit, page]);
+    return mockPoolDetails
+      .filter(el => el.token1.shortName.includes(searchFilter) || el.token2.shortName.includes(searchFilter))
+      .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey])
+      .slice((page - 1) * limit, page * limit);
+  }, [sortKey, isAsc, limit, page, searchFilter]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -149,7 +154,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
         <ButtonComponent variant='outlined'><Typography variant="h5">Create a pool</Typography></ButtonComponent>
       </Box>
       <Box className="pools-table-action">
-        <SearchInputComponent placeholder='Search pools...' />
+        <SearchInputComponent placeholder='Search pools...' value={searchFilter} onChange={(value) => setSearchFilter(value)} />
       </Box>
       <PoolsTable
         pools={pools}
