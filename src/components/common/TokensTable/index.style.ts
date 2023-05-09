@@ -26,6 +26,17 @@ export const TokensTableStyle = styled('div')(({ theme }: any) => {
     },
 
     '.tokens-table': {
+
+      [theme.breakpoints.down('md')]: {
+        '.MuiTableCell-root': {
+          display: 'none',
+
+          '&.always-visible': {
+            display: 'table-cell',
+          }
+        },
+      },
+
       thead: {
         p: {
           color: theme.text.paragraph,

@@ -60,6 +60,33 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
     }
   };
 
+  // tokens table control
+  const [isTokenAsc, setTokenAsc] = useState<boolean>();
+  const [sortTokenKey, setSortTokenKey] = useState<string>('');
+
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+  const [totalPages, setMaximumPage] = useState<number>(0);
+  const [searchFilter, setSearchFilter] = useState<string>('');
+
+  const tokens = useMemo(() => {
+    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
+    return mockTokenDetails
+      .filter(el => el.shortName.includes(searchFilter) || el.name.includes(searchFilter))
+      .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
+      .slice((page - 1) * limit, page * limit);
+  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
+
+
+  const onSortTokenClick = (key: string) => {
+    if (key !== sortTokenKey) {
+      setTokenAsc(false);
+      setSortTokenKey(key);
+    } else {
+      setTokenAsc(!isAsc);
+    }
+  };
+
   return (
     <TokensComponentStyle>
       <Box className="info-header">
@@ -165,12 +192,24 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
             <Box className="token-search-box">
               <SearchInputComponent
                 placeholder="Search tokens..."
+                value={searchFilter}
+                onChange={(value) => setSearchFilter(value)}
               />
             </Box>
-            <TokensTable />
+            <TokensTable
+              pagination
+              tokens={tokens}
+              isAsc={isTokenAsc}
+              sortKey={sortTokenKey}
+              onSortClick={onSortTokenClick}
+              limit={limit}
+              page={page}
+              onNextPage={() => { setPage(Math.max(page - 1, 1)); }}
+              onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)); }}
+              totalPages={totalPages}
+            />
           </>
       }
-
     </TokensComponentStyle>
   );
 };

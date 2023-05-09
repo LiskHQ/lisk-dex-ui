@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { createMockChartInfo, mockPoolDetails } from '__mock__';
+import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
 import { NextRouter } from 'next/dist/client/router';
 
 export interface IOverviewComponentProps {
@@ -45,6 +45,23 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
     }
   };
 
+  // tokens table control
+  const [isTokenAsc, setTokenAsc] = useState<boolean>();
+  const [sortTokenKey, setSortTokenKey] = useState<string>('');
+
+  const tokens = useMemo(() => {
+    return mockTokenDetails
+      .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey]);
+  }, [sortTokenKey, isTokenAsc]);
+
+  const onSortTokenClick = (key: string) => {
+    if (key !== sortTokenKey) {
+      setTokenAsc(false);
+      setSortTokenKey(key);
+    } else {
+      setTokenAsc(!isAsc);
+    }
+  };
 
   return (
     <OverviewComponentStyle>
@@ -67,7 +84,14 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
-      <TokensTable onSelectToken={onSelectToken} />
+      <TokensTable
+        tokens={tokens}
+        isAsc={isTokenAsc}
+        sortKey={sortTokenKey}
+        onSortClick={onSortTokenClick}
+        onSelectToken={onSelectToken}
+      />
+
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>
