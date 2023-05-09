@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import { ButtonComponent } from 'components';
+import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import cn from 'classnames';
+import { ButtonComponent, DropdownComponent } from 'components';
 import { mockPoolDetails } from '__mock__';
 import { PoolsTableStyle } from './index.style';
 import { HelpIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { IPoolDetail } from 'models';
 
 const sortKeys = [
   {
@@ -24,41 +26,58 @@ const sortKeys = [
 ];
 
 export interface IPoolsTable {
+  pools: IPoolDetail[],
+  onChangeRowCount?: (count: number) => void,
+  onNextPage?: () => void,
+  onPreviousPage?: () => void,
   onSelectPool?: (id: string) => void,
+  onSortClick: (key: string) => void,
+  sortKey: string,
+  isAsc?: boolean,
+  limit?: number,
+  page?: number,
+  pagination?: boolean,
+  totalPages?: number,
 }
 
 export const PoolsTable: React.FC<IPoolsTable> = (props) => {
-  const { onSelectPool } = props;
-  const [isAsc, setAsc] = useState<boolean>();
-  const [sortKey, setSortKey] = useState<string>('');
-
-  const rows = useMemo(() => {
-    return mockPoolDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
-  }, [sortKey, isAsc]);
-
-  const onSortClick = (key: string) => {
-    if (key !== sortKey) {
-      setAsc(false);
-      setSortKey(key);
-    } else {
-      setAsc(!isAsc);
-    }
-  };
+  const {
+    onChangeRowCount,
+    onSelectPool,
+    onNextPage,
+    onPreviousPage,
+    onSortClick,
+    pagination,
+    pools,
+    sortKey,
+    isAsc,
+    limit,
+    totalPages,
+    page
+  } = props;
 
   return (
     <PoolsTableStyle>
-      <TableContainer className="transactions-table">
+      <TableContainer className="pools-table">
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant="body2">Name</Typography></TableCell>
+              <TableCell className="always-visible"><Typography variant="body2">Name</Typography></TableCell>
               {
                 sortKeys.map((el, index) => (
                   <TableCell
+                    className={
+                      cn({
+                        "always-visible": el.key === 'volume',
+                      })
+                    }
                     key={el.key}
                     align="right"
                   >
-                    <Box className="sort-key-table-cell" onClick={() => onSortClick(el.key)}>
+                    <Box
+                      className="sort-key-table-cell"
+                      onClick={() => onSortClick(el.key)}
+                    >
                       <Typography variant="body2">{el.label}</Typography>
                       {
                         sortKey === el.key ?
@@ -83,13 +102,13 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {pools && pools.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={() => { onSelectPool && onSelectPool(index.toString()); }}
               >
-                <TableCell scope="row">
+                <TableCell className="always-visible" scope="row">
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
@@ -108,7 +127,7 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                 <TableCell align="right">
                   <Typography variant="body2">${row.tvl}M</Typography>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell className="always-visible" align="right">
                   <Typography variant="body2">${row.volume}M</Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -135,6 +154,39 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      {
+        pagination &&
+        <Box className="pools-pager">
+          <DropdownComponent
+            className='row-count-dropdown'
+            onChange={(e) => { onChangeRowCount && onChangeRowCount(e.target.value as number); }}
+            defaultValue={limit}
+            renderValue={(value) => (
+              <Box className='show-rows-dropdown'>
+                <Typography variant='h6'>Show rows:</Typography>
+                <Typography variant='body2'>{value}</Typography>
+              </Box>
+            )}
+          >
+            <MenuItem value="5">5</MenuItem>
+            <MenuItem value="10">10</MenuItem>
+            <MenuItem value="25">25</MenuItem>
+          </DropdownComponent>
+          <IconButton
+            onClick={() => { onNextPage && onNextPage(); }}
+            disabled={page == 1}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </IconButton>
+          <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
+          <IconButton
+            onClick={() => { onPreviousPage && onPreviousPage(); }}
+            disabled={totalPages == page}
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </IconButton>
+        </Box>
+      }
     </PoolsTableStyle >
   );
 };

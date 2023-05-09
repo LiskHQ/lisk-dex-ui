@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
 import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { ButtonComponent, InfoChart, PoolsTable } from 'components';
+import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent } from 'components';
 import { NextRouter } from 'next/router';
 import { PoolsComponentStyle } from './index.style';
 import { useEffect, useMemo, useState } from 'react';
@@ -37,6 +37,29 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
     else
       return [];
   }, [poolId]);
+
+
+  // pools table control
+  const [isAsc, setAsc] = useState<boolean>();
+  const [sortKey, setSortKey] = useState<string>('');
+  const [totalPages, setMaximumPage] = useState<number>(0);
+
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+
+  const pools = useMemo(() => {
+    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
+    return mockPoolDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]).slice((page - 1) * limit, page * limit);
+  }, [sortKey, isAsc, limit, page]);
+
+  const onSortClick = (key: string) => {
+    if (key !== sortKey) {
+      setAsc(false);
+      setSortKey(key);
+    } else {
+      setAsc(!isAsc);
+    }
+  };
 
   return (
     <PoolsComponentStyle>
@@ -121,10 +144,26 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       }
       <InfoChart chartData={chartData} />
 
-      <Box className="table-title">
+      <Box className="table-title pools">
         <Typography variant="subtitle1">All Pools</Typography>
+        <ButtonComponent variant='outlined'><Typography variant="h5">Create a pool</Typography></ButtonComponent>
       </Box>
-      <PoolsTable />
+      <Box className="pools-table-action">
+        <SearchInputComponent placeholder='Search pools...' />
+      </Box>
+      <PoolsTable
+        pools={pools}
+        sortKey={sortKey}
+        isAsc={isAsc}
+        limit={limit}
+        page={page}
+        onNextPage={() => { setPage(Math.max(page - 1, 1)) }}
+        onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)) }}
+        onSortClick={onSortClick}
+        onChangeRowCount={value => { setLimit(value) }}
+        totalPages={totalPages}
+        pagination
+      />
     </PoolsComponentStyle>
   );
 };
