@@ -1,9 +1,7 @@
-import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import cn from 'classnames';
 import { ButtonComponent, DropdownComponent } from 'components';
-import { mockPoolDetails } from '__mock__';
 import { PoolsTableStyle } from './index.style';
 import { HelpIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -64,11 +62,11 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             <TableRow>
               <TableCell className="always-visible"><Typography variant="body2">Name</Typography></TableCell>
               {
-                sortKeys.map((el, index) => (
+                sortKeys.map((el) => (
                   <TableCell
                     className={
                       cn({
-                        "always-visible": el.key === 'volume',
+                        'always-visible': el.key === 'volume',
                       })
                     }
                     key={el.key}

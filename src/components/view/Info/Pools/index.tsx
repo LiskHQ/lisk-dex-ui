@@ -157,10 +157,10 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
         isAsc={isAsc}
         limit={limit}
         page={page}
-        onNextPage={() => { setPage(Math.max(page - 1, 1)) }}
-        onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)) }}
+        onNextPage={() => { setPage(Math.max(page - 1, 1)); }}
+        onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)); }}
         onSortClick={onSortClick}
-        onChangeRowCount={value => { setLimit(value) }}
+        onChangeRowCount={value => { setLimit(value); }}
         totalPages={totalPages}
         pagination
       />
