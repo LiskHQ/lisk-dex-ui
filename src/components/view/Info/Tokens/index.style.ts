@@ -136,7 +136,7 @@ export const TokensComponentStyle = styled('div')(({ theme }: any) => {
         },
 
         '.MuiButtonBase-root': {
-          width: 'fit-content',
+          width: 'max-content',
           minWidth: '5.625rem',
           paddingTop: '0.5rem',
           paddingBottom: '0.5rem',
