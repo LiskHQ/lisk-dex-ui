@@ -26,6 +26,24 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
         background: 'linear-gradient(180deg, #513AE2 0%, rgba(64, 45, 183, 0.9) 100%);',
         padding: '0.5rem 0.625rem',
         color: theme.text.button,
+      },
+
+      '.MuiInputBase-root': {
+        border: 'none',
+        padding: 0,
+
+        input: {
+          fontSize: '1.25rem',
+          textAlign: 'right',
+        },
+
+        '&.hover': {
+          border: 'none',
+        },
+
+        '&.active': {
+          border: 'none',
+        }
       }
     },
 

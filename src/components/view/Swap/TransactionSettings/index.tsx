@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
 import { ButtonComponent, InputComponent } from "components/common";
 import { CancelIcon, HelpIcon } from "imgs/icons";
 import { ChangeEvent, useState } from "react";
@@ -68,8 +68,14 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
             ))
           }
           <InputComponent
-            value="0.75%"
-            disabled
+            defaultValue="0.75"
+            type="number"
+            endAdornment={<InputAdornment position="end">%</InputAdornment>}
+            onClick={() => { setSplipageTolerance(0.75) }}
+            onChange={(e) => {
+              setSplipageTolerance(parseFloat(e.target.value));
+            }}
+            disabled={splipageToleranceValues.includes(splipageTolerance)}
           />
         </Box>
 
