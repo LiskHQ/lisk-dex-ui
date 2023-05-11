@@ -57,10 +57,6 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   right: 1.5rem;
 }
 
-.emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-title .MuiIconButton-root svg path {
-  stroke: #282828;
-}
-
 .emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-header .supply-liquidity-modal-description {
   margin-bottom: 1.25rem;
 }
@@ -576,11 +572,11 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
             Supplying 
-            1862
+            4521.125
              
             LSK
              and 
-            0.045
+            7.125
              
             ETH
           </p>
@@ -634,7 +630,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
-              1862
+              4521.125
             </p>
           </div>
         </div>
@@ -674,7 +670,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
-              0.045
+              7.125
             </p>
           </div>
         </div>
