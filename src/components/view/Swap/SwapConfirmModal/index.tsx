@@ -35,7 +35,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
           <Typography variant="body1">Swapping LSK</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={tokenSvgs.LSK} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{fromAmount.toFixed(2)}</Typography>
+            <Typography className="swap-confirm-amount" variant="body2">{fromAmount.toPrecision(16)}</Typography>
             <Typography className="swap-confirm-estimate-amount" variant="body2">~${(fromAmount * toFiatRate).toFixed(2)}</Typography>
           </Box>
 
@@ -47,7 +47,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
           <Typography variant="body1">for {token2.shortName}</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={token2.image} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{(fromAmount / toTokenRate).toFixed(2)}</Typography>
+            <Typography className="swap-confirm-amount" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)}</Typography>
             <Typography className="swap-confirm-estimate-amount" variant="body2">~${(fromAmount * toFiatRate).toFixed(2)}</Typography>
           </Box>
 
@@ -67,7 +67,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             </Box>
             <Box className="transaction-detail-property minimum-received">
               <Typography className="transaction-detail-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toFixed(2)} {token2.shortName}</Typography>
+              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)} {token2.shortName}</Typography>
             </Box>
           </Box>
         </Box>

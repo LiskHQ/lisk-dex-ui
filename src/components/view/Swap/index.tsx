@@ -96,9 +96,9 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           <Box className="swap-from-top-box">
             <Typography variant="body1">From:</Typography>
             <Box className="swap-from-percent">
-              <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => { setToken1Amount(+(balance / 4).toFixed(2)); }}>25%</Typography>
-              <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => { setToken1Amount(+(balance / 2).toFixed(2)); }}>50%</Typography>
-              <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => { setToken1Amount(+balance.toFixed(2)); }}>MAX</Typography>
+              <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => { setToken1Amount(+(balance / 4).toPrecision(16)); }}>25%</Typography>
+              <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => { setToken1Amount(+(balance / 2).toPrecision(16)); }}>50%</Typography>
+              <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => { setToken1Amount(+balance.toPrecision(16)); }}>MAX</Typography>
             </Box>
           </Box>
           <Box className="swap-from-mid-box">
@@ -115,7 +115,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           </Box>
           <Box className="swap-from-bottom-box">
             <Typography variant="body2">Balance: {balance}</Typography>
-            <Typography variant="body2">${((token1Amount as number) * mockConversionRate).toFixed(2)}</Typography>
+            <Typography variant="body2">${((token1Amount as number) * mockConversionRate).toPrecision(16)}</Typography>
           </Box>
         </Box>
 
@@ -145,7 +145,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle1">{!!token2 ? ((token1Amount as number) / mockEthtoLsk).toFixed(2) : '0.00'}</Typography>
+              <Typography variant="subtitle1">{!!token2 ? ((token1Amount as number) / mockEthtoLsk).toPrecision(16) : '0.00'}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -187,7 +187,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
             <Box className="swap-summary-property minimum-received">
               <Typography className="swap-summary-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="swap-summary-property-value" variant="body2">{+(+token1Amount / mockEthtoLsk).toFixed(2)} {token2.shortName}</Typography>
+              <Typography className="swap-summary-property-value" variant="body2">{+(+token1Amount / mockEthtoLsk).toPrecision(16)} {token2.shortName}</Typography>
             </Box>
           </Box>
         }

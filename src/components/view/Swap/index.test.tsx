@@ -41,13 +41,13 @@ describe("Swap", () => {
     const { getByDisplayValue, getByTestId } = renderComponent(mockProps);
 
     fireEvent.click(getByTestId("swap-from-percent-25"));
-    expect(getByDisplayValue((mockBalance / 4).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue(mockBalance / 4)).toBeInTheDocument();
 
     fireEvent.click(getByTestId("swap-from-percent-50"));
-    expect(getByDisplayValue((mockBalance / 2).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue(mockBalance / 2)).toBeInTheDocument();
 
     fireEvent.click(getByTestId("swap-from-percent-max"));
-    expect(getByDisplayValue((mockBalance).toFixed(2))).toBeInTheDocument();
+    expect(getByDisplayValue(mockBalance)).toBeInTheDocument();
   });
 
   it("click swap button to open confirm modal", () => {
