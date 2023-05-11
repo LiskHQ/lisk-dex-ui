@@ -320,6 +320,12 @@ exports[`IncreaseLiquidityModal component checks if the component matches the sn
   margin-bottom: 0.25rem;
 }
 
+.emotion-13 input::-webkit-outer-spin-button,
+.emotion-13 input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
 .emotion-14 {
   font-size: 1rem;
   line-height: 1.4375em;
@@ -492,11 +498,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-17:focus::-ms-input-
 .emotion-17::placeholder {
   opacity: 1;
   color: #6B7280;
-}
-
-.emotion-17::-webkit-outer-spin-button. .emotion-17::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  display: none;
 }
 
 .emotion-23 {
