@@ -40,7 +40,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
                 <Typography variant="body2">{pool.token1.shortName}</Typography>
               </Box>
               <Box className="pool-details-amount">
-                <Typography variant="body2">{pool.token1Amount.toFixed(2)}</Typography>
+                <Typography variant="body2">{pool.token1Amount.toPrecision(16)}</Typography>
                 <Box>
                   <Typography variant="body2">55%</Typography>
                 </Box>
@@ -53,7 +53,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
                 <Typography variant="body2">{pool.token2.shortName}</Typography>
               </Box>
               <Box className="pool-details-amount">
-                <Typography variant="body2">{pool.token2Amount.toFixed(2)}</Typography>
+                <Typography variant="body2">{pool.token2Amount.toPrecision(16)}</Typography>
                 <Box>
                   <Typography variant="body2">55%</Typography>
                 </Box>
