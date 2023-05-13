@@ -56,8 +56,6 @@ export const InfoViewStyle = styled('main')(({ theme }: any) => {
       },
 
       '.info-search-box': {
-        width: '20.25rem',
-
         [theme.breakpoints.down('md')]: {
           marginTop: '2rem',
         },

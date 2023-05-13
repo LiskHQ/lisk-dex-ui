@@ -6,6 +6,7 @@ import { OverviewComponent } from './Overview';
 import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
+import { SearchComponent } from './Search';
 
 export const InfoView: React.FC = () => {
   const router = useRouter();
@@ -45,9 +46,8 @@ export const InfoView: React.FC = () => {
           <Tab label="Pools" data-testid="pools-tab-test" onClick={() => onClickTab(1)} />
           <Tab label="Tokens" data-testid="tokens-tab-test" onClick={() => onClickTab(2)} />
         </Tabs>
-        <SearchInputComponent
+        <SearchComponent
           className="info-search-box"
-          placeholder="Search tokens or pools..."
         />
       </Box>
 
