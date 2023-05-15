@@ -48,6 +48,7 @@ export const InfoView: React.FC = () => {
         </Tabs>
         <SearchComponent
           className="info-search-box"
+          router={router}
         />
       </Box>
 
