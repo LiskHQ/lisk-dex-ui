@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
-import { SearchInputComponent, TabPanel } from 'components';
+import { TabPanel } from 'components';
 import { InfoViewStyle } from './index.style';
 import { OverviewComponent } from './Overview';
 import { PoolsComponent } from './Pools';

@@ -4,7 +4,7 @@ import { SearchComponentStyle } from './index.style';
 import { InputComponent } from 'components';
 import { Box, Typography } from '@mui/material';
 import { mockPoolDetails, mockTokenDetails } from '__mock__';
-import cn from "classnames";
+import cn from 'classnames';
 import { CancelIcon, DecreaseIcon, IncreaseIcon, SearchIcon } from 'imgs/icons';
 import { useMemo, useState } from 'react';
 
@@ -34,14 +34,14 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
       router.push('?tabIndex=1');
     }
     setFilter('');
-  }
+  };
 
   const onClickTpkensViewMore = () => {
     if (router) {
       router.push('?tabIndex=2');
     }
     setFilter('');
-  }
+  };
 
   return (
     <SearchComponentStyle
@@ -51,7 +51,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
         className="search-input"
         placeholder="Search tokens or pools..."
         value={filter}
-        onChange={(e) => { setFilter(e.target.value) }}
+        onChange={(e) => { setFilter(e.target.value); }}
 
         startAdornment={
           <SearchIcon />
@@ -71,8 +71,8 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
           {
             pools && pools.length > 0 && <>
               {
-                pools.map(pool =>
-                  <Box className="search-pool-item">
+                pools.map((pool, index) =>
+                  <Box key={index} className="search-pool-item">
                     <Box className="search-pool-name">
                       <Box className="pool-images">
                         <Box className="pool-image-1">
@@ -119,8 +119,8 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
           {
             tokens && tokens.length > 0 && <>
               {
-                tokens.map(token =>
-                  <Box className="search-pool-item">
+                tokens.map((token, index) =>
+                  <Box key={index} className="search-pool-item">
                     <Box className="search-pool-name">
                       <Box className="pool-images">
                         <Box className="pool-image-1">
