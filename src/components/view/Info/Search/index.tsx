@@ -3,31 +3,22 @@ import Image from 'next/image';
 import { SearchComponentStyle } from './index.style';
 import { InputComponent } from 'components';
 import { Box, Typography } from '@mui/material';
-import { mockPoolDetails, mockTokenDetails } from '__mock__';
 import cn from 'classnames';
 import { CancelIcon, DecreaseIcon, IncreaseIcon, SearchIcon } from 'imgs/icons';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { IPoolDetail, ITokenDetail } from 'models';
 
-interface ISearchComponentProps {
+export interface ISearchComponentProps {
   className?: string,
-  router: NextRouter,
+  router?: NextRouter,
+  onChangeSearchFilter: (value: string) => void,
+  pools?: IPoolDetail[],
+  tokens?: ITokenDetail[],
 }
 
 export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
-  const { className, router } = props;
+  const { className, router, pools, tokens, onChangeSearchFilter } = props;
   const [filter, setFilter] = useState<string>('');
-
-  const pools = useMemo(() => {
-    if (filter)
-      return mockPoolDetails.filter(pool => pool.token1.name.includes(filter) || pool.token2.name.includes(filter) || pool.token1.shortName.includes(filter) || pool.token2.shortName.includes(filter)).slice(0, 3);
-    return [];
-  }, [filter]);
-
-  const tokens = useMemo(() => {
-    if (filter)
-      return mockTokenDetails.filter(token => token.name.includes(filter) || token.shortName.includes(filter)).slice(0, 3);
-    return [];
-  }, [filter]);
 
   const onClickPoolsViewMore = () => {
     if (router) {
@@ -43,11 +34,16 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
     setFilter('');
   };
 
+  useEffect(() => {
+    onChangeSearchFilter(filter);
+  }, [filter, onChangeSearchFilter]);
+
   return (
     <SearchComponentStyle
       className={`${className} ${filter && 'filtered'}`}
     >
       <InputComponent
+        data-testid="search-input-test"
         className="search-input"
         placeholder="Search tokens or pools..."
         value={filter}
@@ -107,7 +103,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                     </Box>
                   </Box>)
               }
-              <Typography className="view-more" variant="body2" onClick={onClickPoolsViewMore}>View more...</Typography>
+              <Typography data-testid="pools-view-more-test" className="view-more" variant="body2" onClick={onClickPoolsViewMore}>View more...</Typography>
             </>
           }
 
@@ -152,7 +148,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                     </Box>
                   </Box>)
               }
-              <Typography className="view-more" variant="body2" onClick={onClickTpkensViewMore}>View more...</Typography>
+              <Typography data-testid="tokens-view-more-test" className="view-more" variant="body2" onClick={onClickTpkensViewMore}>View more...</Typography>
             </>
           }
 

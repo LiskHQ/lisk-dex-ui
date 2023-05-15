@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
 import { TabPanel } from 'components';
 import { InfoViewStyle } from './index.style';
@@ -7,10 +7,12 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
+import { mockPoolDetails, mockTokenDetails } from '__mock__';
 
 export const InfoView: React.FC = () => {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
+  const [filter, setFilter] = useState('');
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -19,6 +21,10 @@ export const InfoView: React.FC = () => {
   const onClickTab = (tabIndex: number) => {
     if (router)
       router.push(`?tabIndex=${tabIndex}`);
+  };
+
+  const onChangeSearchFilter = (value: string) => {
+    setFilter(value);
   };
 
   useEffect(() => {
@@ -38,6 +44,18 @@ export const InfoView: React.FC = () => {
     }
   }, [router]);
 
+  const searchedPools = useMemo(() => {
+    if (filter)
+      return mockPoolDetails.filter(pool => pool.token1.name.includes(filter) || pool.token2.name.includes(filter) || pool.token1.shortName.includes(filter) || pool.token2.shortName.includes(filter)).slice(0, 3);
+    return [];
+  }, [filter]);
+
+  const searchedTokens = useMemo(() => {
+    if (filter)
+      return mockTokenDetails.filter(token => token.name.includes(filter) || token.shortName.includes(filter)).slice(0, 3);
+    return [];
+  }, [filter]);
+
   return (
     <InfoViewStyle>
       <Box className="info-top-box">
@@ -49,6 +67,9 @@ export const InfoView: React.FC = () => {
         <SearchComponent
           className="info-search-box"
           router={router}
+          pools={searchedPools}
+          tokens={searchedTokens}
+          onChangeSearchFilter={onChangeSearchFilter}
         />
       </Box>
 

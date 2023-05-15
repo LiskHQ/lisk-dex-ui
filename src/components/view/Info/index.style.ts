@@ -20,6 +20,7 @@ export const InfoViewStyle = styled('main')(({ theme }: any) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      position: 'relative',
 
       [theme.breakpoints.down('md')]: {
         display: 'unset',
