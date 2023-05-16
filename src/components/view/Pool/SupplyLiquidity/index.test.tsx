@@ -14,9 +14,8 @@ function renderComponent(props: ISupplyLiquidityProps) {
 
 describe("SupplyLiquidity component", () => {
   const mockProps: ISupplyLiquidityProps = {
-    sendingTransaction: false,
     closeTransactionModal: false,
-    onCofirmSupplyLiquidity: jest.fn(),
+    onPreview: jest.fn(),
   }
 
   it("checks if the component matches the snapshot", () => {
@@ -52,7 +51,7 @@ describe("SupplyLiquidity component", () => {
       fireEvent.click(getByTestId("preview-button-test"));
 
       fireEvent.click(getByTestId("supply-liquidity-modal-button-test"));
-      expect(mockProps.onCofirmSupplyLiquidity).toBeInTheDocument();
+      expect(mockProps.onPreview).toBeInTheDocument();
     }, 1000);
 
   });

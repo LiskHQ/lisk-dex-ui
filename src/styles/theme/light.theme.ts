@@ -52,6 +52,7 @@ const themeColors = {
   bg: {
     primary: '#FBFBFB',
     secondary: '#FFFFFF',
+    modal: '#FFFFFF',
     helper: '#22184D',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     proposalItem: 'linear-gradient(180deg, #F4F2FF 0%, rgba(238, 236, 249, 0.5) 143.01%);',

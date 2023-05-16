@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import '../styles/globals.css';
-import { lightTheme } from '../styles/theme';
+import { darkTheme } from '../styles/theme';
 import { createEmotionCache } from '../utils';
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -18,7 +18,7 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <AppStyle className="layout-app">
             <LayoutTree Component={Component} pageProps={pageProps} />
