@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { Box, Typography } from "@mui/material";
-import { IToken } from "models";
-import { DepositAmountStyle } from "./index.style";
-import { useEffect, useState } from "react";
-import { InputComponent } from "components/common";
+import Image from 'next/image';
+import { Box, Typography } from '@mui/material';
+import { IToken } from 'models';
+import { DepositAmountStyle } from './index.style';
+import { useEffect, useState } from 'react';
+import { InputComponent } from 'components/common';
 
 export interface IDepositAmountProps {
   balance: number,
@@ -19,7 +19,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
 
   useEffect(() => {
     onChange(+amount);
-  }, [amount]);
+  }, [amount, onChange]);
 
   useEffect(() => {
     setAmount(tokenAmount);
@@ -43,7 +43,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
           type="number"
           value={amount}
           onChange={(e) => { setAmount(+e.target.value); }}
-          onBlur={() => { setAmount((+amount).toFixed(2)) }}
+          onBlur={() => { setAmount((+amount).toFixed(2)); }}
         />
       </Box>
       {
@@ -51,12 +51,12 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         <Box className="token-balance-details">
           <Typography variant="body2">Balance: {balance}</Typography>
           <Box className="token-balance-percent token">
-            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(+((balance / 4).toPrecision(16))) }}>25%</Typography>
-            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(+((balance / 2).toPrecision(16))) }}>50%</Typography>
-            <Typography data-testid={`${token.shortName}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance) }}>MAX</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(+((balance / 4).toPrecision(16))); }}>25%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(+((balance / 2).toPrecision(16))); }}>50%</Typography>
+            <Typography data-testid={`${token.shortName}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance); }}>MAX</Typography>
           </Box>
         </Box>
       }
     </DepositAmountStyle>
-  )
-}
+  );
+};

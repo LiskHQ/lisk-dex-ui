@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { Box, IconButton, Typography } from "@mui/material";
-import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from "imgs/icons";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Box, IconButton, Typography } from '@mui/material';
+import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
 import { SwapViewStyle } from './index.style';
-import { ButtonComponent, InputComponent, TransactionStatusModal, SelectTokenModal } from "components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { IToken } from "models";
-import { mockConversionRate, mockEthtoLsk } from "__mock__";
-import { SwapConfirmModal } from "./SwapConfirmModal";
-import { TransactionSettingsModal } from "./TransactionSettingsModal";
+import { ButtonComponent, InputComponent, TransactionStatusModal, SelectTokenModal } from 'components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { IToken } from 'models';
+import { mockConversionRate, mockEthtoLsk } from '__mock__';
+import { SwapConfirmModal } from './SwapConfirmModal';
+import { TransactionSettingsModal } from './TransactionSettingsModal';
 
 export interface ISwapViewProps {
   balance: number,
@@ -41,11 +41,11 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setSplipageTolerance(splipageTolerance);
     setTransactionDeadline(transactionDeadline);
     setOpenTransactionSettings(false);
-  }
+  };
 
   const onEditSplipageTolerance = () => {
     setOpenTransactionSettings(true);
-  }
+  };
 
   const onCloseTransactionConfirm = () => {
     onCloseTransactionStatus();
@@ -53,17 +53,17 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setSplipageTolerance(0.5);
     setTransactionDeadline(20);
     setReverseRate(false);
-  }
+  };
 
   const onSelectToken = (token: IToken) => {
     if (openSelectToken1) setToken1(token);
     if (openSelectToken2) setToken2(token);
-  }
+  };
 
   const onCloseSelectToken = () => {
     setOpenSelectToken1(false);
     setOpenSelectToken2(false);
-  }
+  };
 
   const reverseSwap = () => {
     if (token2) {
@@ -72,13 +72,13 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
       setToken2(token);
       setToken1Amount('0.00');
     }
-  }
+  };
 
   useEffect(() => {
     if (token1Amount) {
       //      fetchPrices();
     }
-  }, [token1Amount])
+  }, [token1Amount]);
 
   return (
     <SwapViewStyle>
@@ -145,7 +145,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle1">{!!token2 ? ((token1Amount as number) / mockEthtoLsk).toPrecision(16) : '0.00'}</Typography>
+              <Typography variant="subtitle1">{token2 ? ((token1Amount as number) / mockEthtoLsk).toPrecision(16) : '0.00'}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -156,7 +156,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             !!token2 && !!token1Amount &&
             <Box className="swap-to-price">
               <Typography variant="body2">Price:</Typography>
-              <Box onClick={() => { setReverseRate(!reverseRate) }}>
+              <Box onClick={() => { setReverseRate(!reverseRate); }}>
                 <Typography variant="body2">
                   {
                     !reverseRate ?
@@ -199,7 +199,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         >
           <Typography variant="h4" sx={{ fontWeight: 500 }}>
             {
-              !token2 ? "Select tokens" : !token1Amount ? "Enter Amount" : "Swap"
+              !token2 ? 'Select tokens' : !token1Amount ? 'Enter Amount' : 'Swap'
             }
           </Typography>
         </ButtonComponent>
@@ -241,5 +241,5 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         }
       </Box>
     </SwapViewStyle>
-  )
-}
+  );
+};

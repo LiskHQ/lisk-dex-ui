@@ -1,13 +1,13 @@
-import Image from "next/image";
-import { Box, Typography } from "@mui/material";
+import Image from 'next/image';
+import { Box, Typography } from '@mui/material';
 import {
   ButtonComponent,
-} from "components";
-import { CancelIcon, HelpIcon, tokenSvgs } from "imgs/icons";
-import { SwapConfirmStyle } from "./index.style";
-import { IToken } from "models";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+} from 'components';
+import { CancelIcon, HelpIcon, tokenSvgs } from 'imgs/icons';
+import { SwapConfirmStyle } from './index.style';
+import { IToken } from 'models';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 export interface ISwapConfirmModalProps {
   toFiatRate: number,
@@ -91,5 +91,5 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
         </Box>
       </Box>
     </SwapConfirmStyle>
-  )
-}
+  );
+};
