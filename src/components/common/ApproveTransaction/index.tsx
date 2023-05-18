@@ -18,9 +18,9 @@ export interface IApproveTransactionModalProps {
 export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = (props) => {
   const { approvingTransaction, expenses, onConfirm, onClose } = props;
 
-  const totalAmount = useMemo(() => {
-    return expenses ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
-  }, [expenses]);
+  // const totalAmount = useMemo(() => {
+  //   return expenses ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
+  // }, [expenses]);
 
   const isSendWalletRequest = useMemo(() => {
     return expenses ? !!expenses.find(el => el.title === "Proposal creation fee") : false;
@@ -85,14 +85,14 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             !!expenses && expenses.map(expense => (
               <Box key={expense.title} className="approve-transaction-proposal-creation-fee">
                 <Typography variant="body1">{expense.title}:</Typography>
-                <Typography variant="body1">{expense.amount} LSKDEX (~${(expense.amount * mockConversionRate).toFixed(2)})</Typography>
+                <Typography variant="body1">{expense.amount}</Typography>
               </Box>
             ))
           }
 
           <Box className="approve-transaction-proposal-transaction-total">
             <Typography variant="subtitle2">Transaction total:</Typography>
-            <Typography variant="subtitle2">{totalAmount} LSKDEX (~${(totalAmount * mockConversionRate).toFixed(2)})</Typography>
+            <Typography variant="subtitle2">{8986.562} LSKDEX (~${(8986.562 * mockConversionRate).toFixed(2)})</Typography>
           </Box>
         </Box>
 

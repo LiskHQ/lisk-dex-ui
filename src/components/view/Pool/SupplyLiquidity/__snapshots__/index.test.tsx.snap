@@ -92,7 +92,7 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
   justify-content: space-between;
   background: linear-gradient(180deg, #513AE2 0%, rgba(64, 45, 183, 0.9) 100%);
   border-radius: 0.5rem;
-  color: #282828;
+  color: #FFFFFF;
   padding: 0.5rem 0.75rem;
   width: 100%;
   cursor: pointer;

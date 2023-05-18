@@ -80,11 +80,11 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
         },
 
         '&::-webkit-scrollbar-thumb': {
-          background: theme.bg.slider,
+          background: theme.slider.primary,
         },
 
         '&::-webkit-scrollbar-thumb:hover': {
-          background: theme.bg.slider,
+          background: theme.slider.primary,
         },
 
         '.confirm-proposal-type': {

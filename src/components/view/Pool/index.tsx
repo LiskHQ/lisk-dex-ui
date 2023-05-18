@@ -3,8 +3,9 @@ import { IPool } from "models"
 import { useEffect, useState } from "react"
 import { PoolViewStyle } from "./index.style"
 import { LiskDexLP } from "./LiskDexLP"
+import { RemoveLiquidityModal } from "./RemoveLiquidityModal"
 import { SupplyLiquidity } from "./SupplyLiquidity"
-import { SupplyLiquidityModal } from "./SupplyLiquidity/SupplyLiquidityModal"
+import { SupplyLiquidityModal } from "./SupplyLiquidityModal"
 
 export interface IPoolViewProps {
   sendingTransaction: boolean,
@@ -13,6 +14,7 @@ export interface IPoolViewProps {
   gotPools: boolean,
   closeTransactionModal: boolean,
   onConfirmSupplyLiquidity: (pool: IPool) => void,
+  onConfirmRemoveLiquidity: (pool: IPool) => void,
 }
 
 export const PoolView: React.FC<IPoolViewProps> = (props) => {
@@ -22,10 +24,12 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     gotPools,
     gettingPools,
     closeTransactionModal,
-    onConfirmSupplyLiquidity
+    onConfirmSupplyLiquidity,
+    onConfirmRemoveLiquidity
   } = props;
 
   const [openSupplyModal, setOpenSupplyModal] = useState<boolean>(false);
+  const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
   const [pool, setPool] = useState<IPool>();
 
   const onPreview = (pool: IPool) => {
@@ -33,9 +37,15 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     setPool(pool);
   }
 
+  const onPreviewRemove = (pool: IPool) => {
+    setOpenRemoveLiquidityModal(true);
+    setPool(pool);
+  }
+
   useEffect(() => {
     if (sendingTransaction) {
       setOpenSupplyModal(false);
+      setOpenRemoveLiquidityModal(false);
     }
   }, [sendingTransaction]);
 
@@ -54,6 +64,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
             gotPools={gotPools}
             gettingPools={gettingPools}
             onPreview={onPreview}
+            onPreviewRemove={onPreviewRemove}
           />
         </Grid>
       </Grid>
@@ -63,6 +74,14 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
           pool={pool}
           onClose={() => { setOpenSupplyModal(false) }}
           onConfirm={onConfirmSupplyLiquidity}
+        />
+      }
+      {
+        openRemoveLiquidityModal && pool &&
+        <RemoveLiquidityModal
+          pool={pool}
+          onClose={() => { setOpenSupplyModal(false) }}
+          onConfirm={onConfirmRemoveLiquidity}
         />
       }
     </PoolViewStyle>

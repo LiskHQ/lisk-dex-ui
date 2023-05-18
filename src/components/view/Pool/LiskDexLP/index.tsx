@@ -5,18 +5,21 @@ import { useState } from "react";
 import { IncreaseLiquidityModal } from "./IncreaseLiquidityModal";
 import { LiskDexLPStyle } from "./index.style"
 import { PoolComponent } from "./PoolComponent";
+import { RemoveLiquidityModal } from "./RemoveLiquidityModal";
 
 export interface ILiskDexLProps {
   pools: IPool[],
   gettingPools: boolean,
   gotPools: boolean,
   onPreview: (pool: IPool) => void,
+  onPreviewRemove: (pool: IPool) => void,
 }
 
 export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
 
-  const { pools, gettingPools, gotPools, onPreview } = props;
+  const { pools, gettingPools, gotPools, onPreview, onPreviewRemove } = props;
   const [openIncreaseLiquidityModal, setOpenIncreaseLiquidityModal] = useState<boolean>(false);
+  const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
   const [pool, setPool] = useState<IPool>();
 
   const onIncreaseLiquidity = (pool: IPool) => {
@@ -25,6 +28,7 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
   }
 
   const onRemoveLiquidity = (pool: IPool) => {
+    setOpenRemoveLiquidityModal(true);
     setPool(pool);
   }
 
@@ -56,6 +60,14 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
           pool={pool}
           onClose={() => { setOpenIncreaseLiquidityModal(false); }}
           onPreview={onPreview}
+        />
+      }
+      {
+        openRemoveLiquidityModal && pool &&
+        <RemoveLiquidityModal
+          pool={pool}
+          onClose={() => { setOpenRemoveLiquidityModal(false); }}
+          onPreview={onPreviewRemove}
         />
       }
     </LiskDexLPStyle >

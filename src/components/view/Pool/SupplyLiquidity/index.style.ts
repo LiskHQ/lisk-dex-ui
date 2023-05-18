@@ -58,7 +58,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
           justifyContent: 'space-between',
           background: 'linear-gradient(180deg, #513AE2 0%, rgba(64, 45, 183, 0.9) 100%);',
           borderRadius: '0.5rem',
-          color: theme.text.primary,
+          color: theme.text.button,
           padding: '0.5rem 0.75rem',
           width: '100%',
           cursor: 'pointer',

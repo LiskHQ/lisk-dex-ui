@@ -1,38 +1,47 @@
-import { useRouter } from "next/router";
 import { TransactionStatusStyle } from "./index.style";
 import { Box, CircularProgress, Link, Typography } from "@mui/material";
 import { SuccessIcon } from "imgs/icons";
 import { ButtonComponent } from "components/common";
 import { useEffect, useState } from "react";
-import { PATHS } from "consts";
-import { compareUrl } from "utils";
+import { TransactionType } from "consts";
 
 export interface ITransactionStatusModalProps {
   success?: boolean,
+  type: TransactionType
   onClose?: () => void
 }
 
 export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (props) => {
-  const { success, onClose } = props;
-  const router = useRouter();
-  const { pathname } = router || { pathname: '' };
+  const { success, type, onClose } = props;
 
   const [stateText, setStateText] = useState<string>('');
 
   useEffect(() => {
-    if (compareUrl(pathname, PATHS.SWAP)) {
+    if (type === TransactionType.SWAP) {
       setStateText('Swapping tokens...');
       if (success) {
         setStateText('Swap successful');
       }
     }
-    if (compareUrl(pathname, PATHS.POOL)) {
+    if (type === TransactionType.SUPPLY_LIQUIDITY) {
       setStateText('Supplying liquidity...');
       if (success) {
-        setStateText('Supplying liquidity successful');
+        setStateText('Successfully supplied liquidity.');
       }
     }
-  }, [pathname, success]);
+    if (type === TransactionType.INCREASE_LIQUIDITY) {
+      setStateText('Supplying liquidity...');
+      if (success) {
+        setStateText('Successfully increased liquidity.');
+      }
+    }
+    if (type === TransactionType.REMOVE_LIQUIDITY) {
+      setStateText('Removing liquidity...');
+      if (success) {
+        setStateText('Successfully removed liquidity.');
+      }
+    }
+  }, [type, success]);
 
 
   return (
