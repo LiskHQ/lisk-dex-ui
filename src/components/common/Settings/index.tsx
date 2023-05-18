@@ -95,7 +95,7 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
             splipageTolerance={splipageTolerance as number}
             transactionDeadline={transactionDeadline as number}
             onChangeSplipageTolerance={onChangeSplipageTolerance}
-            onChangeTransactionDeadline={onChangeSplipageTolerance}
+            onChangeTransactionDeadline={onChangeTransactionDeadline}
           />
         </Box>
 
