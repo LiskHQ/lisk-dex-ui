@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import { Box, Typography } from '@mui/material';
+import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 import {
   ButtonComponent,
-} from 'components';
-import { CancelIcon, HelpIcon, tokenSvgs } from 'imgs/icons';
-import { SwapConfirmStyle } from './index.style';
-import { IToken } from 'models';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+} from "components";
+import { CancelIcon, HelpIcon, tokenSvgs } from "imgs/icons";
+import { SwapConfirmStyle } from "./index.style";
+import { IToken } from "models";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export interface ISwapConfirmModalProps {
   toFiatRate: number,
   toTokenRate: number,
   fromAmount: number,
-  toToken: IToken,
+  token2: IToken,
   splipageTolerance: number,
   openTransactionApproval?: boolean,
   onClose: () => void,
@@ -21,7 +21,7 @@ export interface ISwapConfirmModalProps {
 }
 
 export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
-  const { toFiatRate, toTokenRate, toToken, fromAmount, splipageTolerance, openTransactionApproval, onClose, onConfirm } = props;
+  const { toFiatRate, toTokenRate, token2, fromAmount, splipageTolerance, openTransactionApproval, onClose, onConfirm } = props;
 
   return (
     <SwapConfirmStyle data-testid="swap-confirm-modal-test">
@@ -35,7 +35,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
           <Typography variant="body1">Swapping LSK</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={tokenSvgs.LSK} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{fromAmount.toFixed(2)}</Typography>
+            <Typography className="swap-confirm-amount" variant="body2">{fromAmount.toPrecision(16)}</Typography>
             <Typography className="swap-confirm-estimate-amount" variant="body2">~${(fromAmount * toFiatRate).toFixed(2)}</Typography>
           </Box>
 
@@ -44,10 +44,10 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             icon={faArrowDown}
           />
 
-          <Typography variant="body1">for {toToken.shortName}</Typography>
+          <Typography variant="body1">for {token2.shortName}</Typography>
           <Box className="swap-confirm-token-amount">
-            <Image src={toToken.image} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{(fromAmount / toTokenRate).toFixed(2)}</Typography>
+            <Image src={token2.image} width={24} height={24} />
+            <Typography className="swap-confirm-amount" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)}</Typography>
             <Typography className="swap-confirm-estimate-amount" variant="body2">~${(fromAmount * toFiatRate).toFixed(2)}</Typography>
           </Box>
 
@@ -67,7 +67,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             </Box>
             <Box className="transaction-detail-property minimum-received">
               <Typography className="transaction-detail-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toFixed(2)} {toToken.shortName}</Typography>
+              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)} {token2.shortName}</Typography>
             </Box>
           </Box>
         </Box>
@@ -91,5 +91,5 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
         </Box>
       </Box>
     </SwapConfirmStyle>
-  );
-};
+  )
+}

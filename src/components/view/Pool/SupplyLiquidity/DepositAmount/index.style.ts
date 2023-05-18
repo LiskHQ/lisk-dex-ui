@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const DepositAmountStyle = styled('div')(({ theme }: any) => {
   return {
@@ -35,6 +35,14 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
         input: {
           fontSize: '1.25rem',
           textAlign: 'right',
+        },
+
+        '&.hover': {
+          border: 'none',
+        },
+
+        '&.active': {
+          border: 'none',
         }
       }
     },
@@ -54,5 +62,5 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  };
-});
+  }
+})
