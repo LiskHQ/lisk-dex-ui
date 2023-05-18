@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TransactionType } from "consts";
-import { IExpense, ITransaction } from "models";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TransactionType } from 'consts';
+import { IExpense, ITransaction } from 'models';
 
 type StateType = {
   openTransactionApproval: boolean,
@@ -32,7 +32,7 @@ const initialState: StateType = {
 };
 
 const transactionSlice = createSlice({
-  name: "transaction",
+  name: 'transaction',
   initialState: initialState,
   reducers: {
     /**
@@ -42,11 +42,11 @@ const transactionSlice = createSlice({
     setOpenTransactionApproval(state, action: PayloadAction<any>) {
       state.openTransactionApproval = action.payload;
     },
-    approveTransaction(state, action: PayloadAction<any>) {
+    approveTransaction(state) {
       state.approvingTransaction = true;
       state.approvedTransaction = false;
     },
-    approveTransactionSuccess(state, action: PayloadAction<any>) {
+    approveTransactionSuccess(state) {
       state.approvingTransaction = false;
       state.approvedTransaction = true;
       state.openTransactionApproval = false;
@@ -74,13 +74,13 @@ const transactionSlice = createSlice({
           title: 'Transaction fee',
           amount: '0.87 LSK (~$0.66)',
         }
-      ]
+      ];
 
       if (state.transaction.type === TransactionType.INCREASE_LIQUIDITY || state.transaction.type === TransactionType.SUPPLY_LIQUIDITY) {
         state.expenses.push({
           title: 'Add Liquidity',
           amount: '4500 LSK & 5.6212 ETH(~$8752.45)',
-        })
+        });
       }
     },
     sendTransactionSuccess(state) {

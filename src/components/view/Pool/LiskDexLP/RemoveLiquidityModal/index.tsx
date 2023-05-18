@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, IconButton, Slider, Typography } from "@mui/material";
+import Image from 'next/image';
+import { Box, IconButton, Slider, Typography } from '@mui/material';
 import {
   ButtonComponent,
-} from "components";
-import { CancelIcon } from "imgs/icons";
-import { RemoveLiquidityModalStyle } from "./index.style";
-import { IPool } from "models";
-import { useState } from "react";
+} from 'components';
+import { CancelIcon } from 'imgs/icons';
+import { RemoveLiquidityModalStyle } from './index.style';
+import { IPool } from 'models';
+import { useState } from 'react';
 
 export interface IRemoveLiquidityModalProps {
   pool: IPool,
@@ -18,7 +18,7 @@ const amountValues = [
   25,
   50,
   75
-]
+];
 
 export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props) => {
   const { pool, onClose, onPreview } = props;
@@ -32,7 +32,7 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
       ...pool,
     });
     onClose();
-  }
+  };
   return (
     <RemoveLiquidityModalStyle data-testid="remove-liquidity-modal-test">
       <Box className="remove-liquidity-modal-background" />
@@ -63,16 +63,16 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
               amountValues.map((el) => (
                 <ButtonComponent
                   key={el}
-                  variant={amount != el ? "outlined" : "contained"}
-                  onClick={() => { setAmount(el) }}
+                  variant={amount != el ? 'outlined' : 'contained'}
+                  onClick={() => { setAmount(el); }}
                 >
                   <Typography variant="body1">{el}%</Typography>
                 </ButtonComponent>
               ))
             }
             <ButtonComponent
-              variant={"outlined"}
-              onClick={() => { setAmount(amount + 1) }}
+              variant={'outlined'}
+              onClick={() => { setAmount(amount + 1); }}
             >
               <Typography variant="body1">+</Typography>
             </ButtonComponent>
@@ -120,5 +120,5 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
         </ButtonComponent>
       </Box>
     </RemoveLiquidityModalStyle>
-  )
-}
+  );
+};

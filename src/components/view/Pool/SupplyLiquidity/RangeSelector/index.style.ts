@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const RangeSelectorStyle = styled('div')(({ theme }: any) => {
   return {
@@ -90,5 +90,5 @@ export const RangeSelectorStyle = styled('div')(({ theme }: any) => {
       alignItems: 'center',
       justifyContent: 'center',
     }
-  }
-})
+  };
+});

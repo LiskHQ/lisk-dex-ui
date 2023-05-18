@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const LiskDexLPStyle = styled('div')(({ theme }: any) => {
   return {
@@ -25,5 +25,5 @@ export const LiskDexLPStyle = styled('div')(({ theme }: any) => {
         }
       }
     },
-  }
-})
+  };
+});

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TransactionSettings checks if the component matches the snapshot 1`] = `
+exports[`TransactionSettingsModal checks if the component matches the snapshot 1`] = `
 .emotion-0 {
   position: absolute;
   top: 4rem;
@@ -285,7 +285,98 @@ exports[`TransactionSettings checks if the component matches the snapshot 1`] = 
   border-radius: inherit;
 }
 
-.emotion-6 {
+.emotion-6 .transactioin-settings-slipage-tolerance {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.emotion-6 .transactioin-settings-slipage-tolerance svg {
+  margin-left: 0.25rem;
+}
+
+.emotion-6 .transaction-settings-slipage-tolerance-switcher {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.emotion-6 .transaction-settings-slipage-tolerance-switcher .switcher-box {
+  border-radius: 0.25rem;
+  border: 0.75px solid #E6E6E6;
+  padding: 0.75rem 1rem;
+  width: 4.375rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.emotion-6 .transaction-settings-slipage-tolerance-switcher .switcher-box.selected {
+  background: #6953F4;
+  color: #FFFFFF;
+  border: 0.75px solid #4738A6;
+}
+
+.emotion-6 .transaction-settings-slipage-tolerance-switcher .slipage-tolerance-input {
+  width: 11.5rem;
+}
+
+.emotion-6 .transaction-settings-slipage-tolerance-switcher .slipage-tolerance-input .MuiInputBase-input {
+  text-align: right;
+}
+
+.emotion-6 .transaction-deadline-label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.emotion-6 .transaction-deadline-label svg {
+  margin-left: 0.25rem;
+}
+
+.emotion-6 .transaction-deadline-input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.emotion-6 .transaction-deadline-input .MuiFormControl-root {
+  width: 5.625rem;
+  height: 2.75rem;
+  margin-right: 0.75rem;
+}
+
+.emotion-7 {
   margin: 0;
   font-size: 1rem;
   line-height: 1.375rem;

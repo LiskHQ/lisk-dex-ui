@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, IconButton, Typography } from "@mui/material";
+import Image from 'next/image';
+import { Box, IconButton, Typography } from '@mui/material';
 import {
   ButtonComponent,
-} from "components";
-import { CancelIcon, LightIcon } from "imgs/icons";
-import { RemoveLiquidityStyle } from "./index.style";
-import { IPool } from "models";
-import { useState } from "react";
+} from 'components';
+import { CancelIcon, LightIcon } from 'imgs/icons';
+import { RemoveLiquidityStyle } from './index.style';
+import { IPool } from 'models';
+import { useState } from 'react';
 
 export interface IRemoveLiquidityModalProps {
   pool: IPool,
@@ -22,7 +22,7 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
   const onClickConfirm = () => {
     setLoading(true);
     onConfirm(pool);
-  }
+  };
   return (
     <RemoveLiquidityStyle data-testid="remove-liquidity-modal-test">
       <Box className="remove-liquidity-modal-background" />
@@ -81,5 +81,5 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
         </Box>
       </Box>
     </RemoveLiquidityStyle>
-  )
-}
+  );
+};
