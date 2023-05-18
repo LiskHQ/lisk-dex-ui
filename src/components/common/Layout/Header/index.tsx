@@ -20,6 +20,9 @@ export const Header: React.FC = () => {
   const { pathname } = router || { pathname: '' };
   const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
 
+  const [splipageTolerance, setSpliageTolerance] = useState<number>(0);
+  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
+
   useEffect(() => {
   }, [pathname]);
 
@@ -66,6 +69,10 @@ export const Header: React.FC = () => {
           openSettingsModal &&
           <SettingsModal
             onClose={() => { setOpenSettingsModal(false); }}
+            splipageTolerance={splipageTolerance}
+            transactionDeadline={transactionDeadline}
+            onChangeSplipageTolerance={(value) => { setSpliageTolerance(value); }}
+            onChangeTransactionDeadline={(value) => { setTransactionDeadline(value); }}
           />
         }
       </Container>

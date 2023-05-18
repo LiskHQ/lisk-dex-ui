@@ -11,16 +11,18 @@ import { ThemeType } from 'consts';
 
 
 export interface ISettingsModalProps {
+  splipageTolerance?: number,
+  transactionDeadline?: number,
+  onChangeSplipageTolerance?: (value: number) => void,
+  onChangeTransactionDeadline?: (value: number) => void,
   onClose?: () => void,
 }
 
 export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
-  const { onClose } = props;
+  const { splipageTolerance, transactionDeadline, onChangeSplipageTolerance, onChangeTransactionDeadline, onClose } = props;
   const theme: any = useTheme();
   const platformContext = useContext(PlatformContext);
 
-  const [splipageTolerance, setSpliageTolerance] = useState<number>(0);
-  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
   const [themeType, setThemeType] = useState<ThemeType>(ThemeType.Light);
 
   useEffect(() => {
@@ -90,10 +92,10 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
             </DropdownComponent>
           </Box>
           <TransactionSettings
-            splipageTolerance={splipageTolerance}
-            transactionDeadline={transactionDeadline}
-            onChangeSplipageTolerance={(value) => { setSpliageTolerance(value); }}
-            onChangeTransactionDeadline={(value) => { setTransactionDeadline(value); }}
+            splipageTolerance={splipageTolerance as number}
+            transactionDeadline={transactionDeadline as number}
+            onChangeSplipageTolerance={onChangeSplipageTolerance}
+            onChangeTransactionDeadline={onChangeSplipageTolerance}
           />
         </Box>
 

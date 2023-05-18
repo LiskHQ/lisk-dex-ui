@@ -8,8 +8,8 @@ import cn from 'classnames';
 export interface ITransactionSettingsProps {
   splipageTolerance: number,
   transactionDeadline: number,
-  onChangeSplipageTolerance: (value: number) => void,
-  onChangeTransactionDeadline: (value: number) => void,
+  onChangeSplipageTolerance?: (value: number) => void,
+  onChangeTransactionDeadline?: (value: number) => void,
 }
 
 const splipageToleranceValues = [
@@ -26,12 +26,12 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
 
   const onChangeTolerance = (value: number) => {
     setSplipageTolerance(value);
-    onChangeSplipageTolerance(value);
+    onChangeSplipageTolerance && onChangeSplipageTolerance(value);
   };
 
   const onChangeDeadline = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setTransactionDeadline(parseInt(e.target.value));
-    onChangeTransactionDeadline(parseInt(e.target.value));
+    onChangeTransactionDeadline && onChangeTransactionDeadline(parseInt(e.target.value));
   };
 
   return (
