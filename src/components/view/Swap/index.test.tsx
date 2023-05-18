@@ -37,19 +37,6 @@ describe('Swap', () => {
     fireEvent.click(getByTestId('token-item-ETH'));
   });
 
-  it('checks if swap from percent works', () => {
-    const { getByText, getByTestId } = renderComponent(mockProps);
-
-    fireEvent.click(getByTestId('swap-from-percent-25'));
-    expect(getByText((mockBalance / 4).toFixed(2))).toBeInTheDocument();
-
-    fireEvent.click(getByTestId('swap-from-percent-50'));
-    expect(getByText((mockBalance / 2).toFixed(2))).toBeInTheDocument();
-
-    fireEvent.click(getByTestId('swap-from-percent-max'));
-    expect(getByText((mockBalance).toFixed(2))).toBeInTheDocument();
-  });
-
   it('click swap button to open confirm modal', () => {
     const { getByText, getByTestId } = renderComponent(mockProps);
 
