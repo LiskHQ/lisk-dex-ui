@@ -3,12 +3,13 @@ import Image from "next/image";
 import { Box, IconButton, Typography } from "@mui/material";
 import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from "imgs/icons";
 import { SwapViewStyle } from './index.style';
-import { ButtonComponent, InputComponent, TransactionStatusModal, SelectTokenModal, TransactionSettings } from "components";
+import { ButtonComponent, InputComponent, TransactionStatusModal, SelectTokenModal } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { IToken } from "models";
 import { mockConversionRate, mockEthtoLsk } from "__mock__";
 import { SwapConfirmModal } from "./SwapConfirmModal";
+import { TransactionSettingsModal } from "./TransactionSettingsModal";
 
 export interface ISwapViewProps {
   balance: number,
@@ -212,7 +213,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         }
         {
           openTransactionSettings &&
-          <TransactionSettings
+          <TransactionSettingsModal
             splipageTolerance={splipageTolerance}
             transactionDeadline={transactionDeadline}
             onSave={onSaveTransactionSettings}
