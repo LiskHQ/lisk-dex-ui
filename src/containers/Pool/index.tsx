@@ -1,28 +1,50 @@
-import { PoolView } from 'components';
-import { IPool } from 'models';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppActions, RootState } from 'store';
+import { PoolView } from "components";
+import { TransactionType } from "consts";
+import { IPool } from "models";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppActions, RootState } from "store";
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const { sendingTransaction, closeTransactionModal, confirmedTransaction } = useSelector((state: RootState) => state.transaction);
-  const { pools, gotPools, createdPool, gettingPools } = useSelector((state: RootState) => state.pool);
+  const { pools, gotPools, createdPool, updatedPool, gettingPools } = useSelector((state: RootState) => state.pool);
   const [pool, setPool] = useState<IPool>();
 
   const onConfirmSupplyLiquidity = (pool: IPool) => {
     setTimeout(() => {
-      dispatch(AppActions.transaction.sendTransaction());
+      if (pool.id) {
+        dispatch(AppActions.transaction.sendTransaction({
+          type: TransactionType.INCREASE_LIQUIDITY,
+        }));
+      } else {
+        dispatch(AppActions.transaction.sendTransaction({
+          type: TransactionType.SUPPLY_LIQUIDITY,
+        }));
+      }
       setPool(pool);
     }, 1000);
-  };
+  }
+
+  const onConfirmRemoveLiquidity = (pool: IPool) => {
+    setTimeout(() => {
+      dispatch(AppActions.transaction.sendTransaction({
+        type: TransactionType.REMOVE_LIQUIDITY,
+      }));
+      setPool(pool);
+    }, 1000);
+  }
 
   useEffect(() => {
     if (confirmedTransaction && pool) {
-      dispatch(AppActions.pool.createPoolSuccess(pool));
+      if (pool.id) {
+        dispatch(AppActions.pool.updatePoolSuccess(pool));
+      } else {
+        dispatch(AppActions.pool.createPoolSuccess(pool));
+      }
     }
-  }, [confirmedTransaction, pool, dispatch]);
+  }, [confirmedTransaction, pool]);
 
   useEffect(() => {
     dispatch(AppActions.pool.getPools());
@@ -30,7 +52,7 @@ export const PoolContainer: React.FC = () => {
     setTimeout(() => {
       dispatch(AppActions.pool.getPoolsSuccess());
     }, 1000);
-  }, [createdPool, dispatch]);
+  }, [createdPool, updatedPool]);
 
   return (
     <PoolView
@@ -40,6 +62,7 @@ export const PoolContainer: React.FC = () => {
       sendingTransaction={sendingTransaction}
       closeTransactionModal={closeTransactionModal}
       onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}
+      onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}
     />
-  );
+  )
 };

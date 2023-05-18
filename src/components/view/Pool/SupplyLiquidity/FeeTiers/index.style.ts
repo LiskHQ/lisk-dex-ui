@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const FeeTiersStyle = styled('div')(({ theme }: any) => {
   return {
@@ -33,5 +33,5 @@ export const FeeTiersStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  };
-});
+  }
+})

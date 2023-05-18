@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
   return {
@@ -78,12 +78,12 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
 
               h6: {
                 marginLeft: '0.5rem',
-                color: theme.opacities[5],
+                color: theme.text.primary,
               },
             },
 
             svg: {
-              color: theme.opacities[5],
+              color: theme.text.primary,
             }
           }
         }
@@ -133,7 +133,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
     '.supply-liquidity-mask': {
       position: 'absolute',
       top: '14.5rem',
-      background: theme.text.button,
+      background: theme.bg.secondary,
       width: 'calc(100% - 2rem)',
       opacity: 0.5,
       height: '54.5rem',
@@ -142,5 +142,5 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
         top: '20rem',
       }
     }
-  };
-});
+  }
+})

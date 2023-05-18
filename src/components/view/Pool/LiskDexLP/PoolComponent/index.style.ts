@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { Accordion } from '@mui/material';
+import styled from "@emotion/styled";
+import { Accordion } from "@mui/material";
 
 export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
   return {
@@ -33,8 +33,6 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
     '.MuiAccordionSummary-expandIconWrapper': {
       display: 'flex',
       alignItems: 'center',
-      WebkitTransform: 'none',
-      transform: 'none',
 
       svg: {
         color: theme.lightcurve[0],
@@ -50,13 +48,13 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
       },
 
       '&.Mui-expanded': {
+        WebkitTransform: 'none',
+        transform: 'none',
         svg: {
           color: theme.lightcurve[0],
           height: '0.75rem',
           transform: 'rotate(180deg)',
           WebkitTransform: 'rotate(180deg)',
-          animationDuration: '0.5s',
-          WebkitAnimationDuration: '0.5s',
         },
 
         '&:before': {
@@ -163,6 +161,9 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
             width: '1rem',
             height: '1rem',
             marginRight: '0.5rem',
+            path: {
+              stroke: theme.text.primary,
+            }
           }
         }
       },
@@ -184,5 +185,5 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
         }
       }
     }
-  };
-});
+  }
+})

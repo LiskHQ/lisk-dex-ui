@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const PriceRangeStyle = styled('div')(({ theme }: any) => {
   return {
@@ -38,5 +38,5 @@ export const PriceRangeStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  };
-});
+  }
+})

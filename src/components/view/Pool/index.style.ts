@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const PoolViewStyle = styled('div')(({ theme }: any) => {
   return {
@@ -13,5 +13,5 @@ export const PoolViewStyle = styled('div')(({ theme }: any) => {
       marginTop: '6.5rem',
       padding: '0 1rem',
     },
-  };
-});
+  }
+})

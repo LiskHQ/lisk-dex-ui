@@ -1,8 +1,8 @@
-import { Box, IconButton, Typography } from '@mui/material';
-import { PriceRangeStyle } from './index.style';
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Box, IconButton, Typography } from "@mui/material";
+import { PriceRangeStyle } from "./index.style";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export interface IPriceRangeProps {
   label: string,
@@ -16,12 +16,12 @@ export const PriceRange: React.FC<IPriceRangeProps> = (props) => {
 
   useEffect(() => {
     setValue(price);
-  }, [price]);
+  }, [price])
 
   const onChangeValue = (value: number) => {
     setValue(value);
     onChange && onChange(value);
-  };
+  }
 
   return (
     <PriceRangeStyle className="set-price-range-value">
@@ -43,5 +43,5 @@ export const PriceRange: React.FC<IPriceRangeProps> = (props) => {
       </Box>
       <Typography variant="body2">-</Typography>
     </PriceRangeStyle>
-  );
-};
+  )
+}

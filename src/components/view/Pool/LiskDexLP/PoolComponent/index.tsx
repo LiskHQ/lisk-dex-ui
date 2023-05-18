@@ -1,17 +1,17 @@
-import Image from 'next/image';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
-import { IPool } from 'models';
-import { PoolComponentStyle } from './index.style';
-import { PieChartIcon } from 'imgs/icons';
-import { ButtonComponent } from 'components/common';
+import Image from "next/image";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { IPool } from "models";
+import { PoolComponentStyle } from "./index.style";
+import { PieChartIcon } from "imgs/icons";
+import { ButtonComponent } from "components/common";
 
 export interface IPoolComponentProps {
   pool: IPool,
   onIncreaseLiquidity: (pool: IPool) => void,
   onRemoveLiquidity: (pool: IPool) => void,
-  'data-testid'?: string,
+  "data-testid"?: string,
 }
 
 export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
@@ -108,18 +108,18 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
             data-testid="remove-liquidity-test"
             className="remove-liquidity"
             variant="outlined"
-            onClick={() => { onRemoveLiquidity(pool); }}
+            onClick={() => { onRemoveLiquidity(pool) }}
           >
             <Typography variant="body1">- Remove Liquidity</Typography>
           </ButtonComponent>
           <ButtonComponent
             data-testid="increase-liquidity-test"
-            onClick={() => { onIncreaseLiquidity(pool); }}
+            onClick={() => { onIncreaseLiquidity(pool) }}
           >
             <Typography variant="body1">+ Increase Liquidity</Typography>
           </ButtonComponent>
         </Box>
       </AccordionDetails>
     </PoolComponentStyle >
-  );
-};
+  )
+}

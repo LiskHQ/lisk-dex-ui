@@ -1,4 +1,4 @@
-import { IToken } from './token.model';
+import { IToken } from "./token.model";
 
 export interface IPoolItem {
   id: string,
@@ -9,6 +9,7 @@ export interface IPoolItem {
 }
 
 export interface IPool {
+  id: string,
   token1: IToken,
   token2: IToken,
   token1Amount: number,

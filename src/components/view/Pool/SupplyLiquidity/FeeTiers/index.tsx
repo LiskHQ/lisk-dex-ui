@@ -1,8 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material';
-import { FeeTiersStyle } from './index.style';
-import { RadioComponent } from 'components';
-import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { Box, Grid, Typography } from "@mui/material";
+import { FeeTiersStyle } from "./index.style";
+import { RadioComponent } from "components";
+import { useEffect, useState } from "react";
+import cn from "classnames";
 
 export interface IFeeTiersProps {
   tierValue: number,
@@ -26,7 +26,7 @@ const tiers = [
     value: 1,
     description: 'Best for exotic pairs.'
   }
-];
+]
 
 export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
   const { tierValue, onChange } = props;
@@ -34,11 +34,11 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
 
   useEffect(() => {
     onChange && onChange(value);
-  }, [value, onChange]);
+  }, [value]);
 
   useEffect(() => {
     setValue(tierValue);
-  }, [tierValue]);
+  }, [tierValue])
 
   return (
     <FeeTiersStyle className="fee-tiers">
@@ -50,8 +50,8 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
                 data-testid={`fee-tier-${tier.value}`}
                 className={
                   cn({
-                    'fee-tier': true,
-                    'selected': tier.value === value
+                    "fee-tier": true,
+                    "selected": tier.value === value
                   })}
                 onClick={() => { setValue(tier.value); }}
               >
@@ -64,5 +64,5 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
         }
       </Grid>
     </FeeTiersStyle>
-  );
-};
+  )
+}
