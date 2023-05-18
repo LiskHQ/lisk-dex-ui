@@ -495,7 +495,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body2 swap-confirm-amount emotion-8"
           >
-            1.000000000000000
+            1.00
           </p>
           <p
             class="MuiTypography-root MuiTypography-body2 swap-confirm-estimate-amount emotion-8"
@@ -552,7 +552,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
           <p
             class="MuiTypography-root MuiTypography-body2 swap-confirm-amount emotion-8"
           >
-            1.000000000000000
+            1.00
           </p>
           <p
             class="MuiTypography-root MuiTypography-body2 swap-confirm-estimate-amount emotion-8"
@@ -799,7 +799,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
             <p
               class="MuiTypography-root MuiTypography-body2 transaction-detail-property-value emotion-8"
             >
-              1.000000000000000
+              1.00
                
               LSK
             </p>

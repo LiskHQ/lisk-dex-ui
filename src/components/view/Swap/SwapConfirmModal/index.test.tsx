@@ -18,7 +18,7 @@ describe('SwapConfirmModal', () => {
     toFiatRate: 1,
     toTokenRate: 1,
     fromAmount: 1,
-    token2: mockTokens[0],
+    toToken: mockTokens[0],
     splipageTolerance: 0.1,
     openTransactionApproval: false,
     onClose: jest.fn(),

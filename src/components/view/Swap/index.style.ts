@@ -78,16 +78,6 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
               height: '0.5rem',
               marginLeft: '0.25rem',
             }
-          },
-
-          '.MuiInputBase-root': {
-            border: 'none',
-            paddingRight: 0,
-
-            input: {
-              fontSize: '1.25rem',
-              textAlign: 'right',
-            }
           }
         },
 
@@ -107,7 +97,7 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
         alignItems: 'center',
         marginTop: '1.5rem',
 
-        button: {
+        div: {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

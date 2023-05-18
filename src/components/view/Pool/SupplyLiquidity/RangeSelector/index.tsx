@@ -31,7 +31,7 @@ function ThumbComponent(props: AirbnbThumbComponentProps) {
 
 export const RangeSelector: React.FC<IRangeSelectorProps> = (props) => {
   const { data, disabled, defaultRange, onChangeRange } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
 
   const [range, setRange] = useState<number[]>([(defaultRange[0] - 1) * 100, (defaultRange[1] - 1) * 100]);
 
