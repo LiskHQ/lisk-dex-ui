@@ -35,13 +35,13 @@ export const Header: React.FC<IHeaderProps> = (props) => {
       splipageTolerance: settings?.splipageTolerance || 0,
       transactionDeadline: settings?.transactionDeadline || 0,
     });
-  }, [platform]);
+  }, [platform, settings]);
 
   const onSaveSettings = (_settings: ISettings) => {
     platform.saveCurrency(_settings.currency);
     platform.saveTheme(_settings.theme);
     setSettings({ ..._settings });
-  }
+  };
 
   return (
     <HeaderStyle>

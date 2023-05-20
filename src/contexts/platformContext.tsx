@@ -44,7 +44,7 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
   };
 
   const saveCurrency = (_currency: string) => {
-    setCurrency(_currency)
+    setCurrency(_currency);
     sessionStorage.setItem('currency', _currency);
   };
 

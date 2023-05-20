@@ -30,7 +30,7 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
       theme: themeType,
       splipageTolerance,
       transactionDeadline,
-    })
+    });
     onClose && onClose();
   };
 

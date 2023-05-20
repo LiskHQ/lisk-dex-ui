@@ -1,4 +1,4 @@
-import { ThemeType } from "consts";
+import { ThemeType } from 'consts';
 
 export interface IFiatCurrency {
   name: string,
