@@ -1,8 +1,9 @@
 import { Box, Snackbar, useMediaQuery } from '@mui/material';
 import { AlertComponent, ApproveTransactionModal, TransactionStatusModal } from 'components';
 import { AlertVariant, TransactionType } from 'consts';
+import { PlatformContext } from 'contexts';
 import Head from 'next/head';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { darkTheme } from 'styles/theme';
@@ -18,6 +19,8 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.lg));
 
   const dispatch = useDispatch();
+
+  const platform = useContext(PlatformContext);
 
   const {
     transaction,
@@ -144,7 +147,9 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       <Head>
         <title>Lisk Dex</title>
       </Head>
-      <Header />
+      <Header
+        platform={platform}
+      />
       {children}
       {
         isUpMd ? <></> : <Footer />

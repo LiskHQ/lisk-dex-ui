@@ -13,18 +13,35 @@ import { HeaderStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { DropdownComponent, SettingsModal } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
+import { IPlatformContext } from 'contexts';
+import { ISettings } from 'models';
 
-export const Header: React.FC = () => {
+export interface IHeaderProps {
+  platform: IPlatformContext
+}
+
+export const Header: React.FC<IHeaderProps> = (props) => {
   const router = useRouter();
+  const { platform } = props;
 
   const { pathname } = router || { pathname: '' };
   const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
-
-  const [splipageTolerance, setSpliageTolerance] = useState<number>(0);
-  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
+  const [settings, setSettings] = useState<ISettings>();
 
   useEffect(() => {
-  }, [pathname]);
+    setSettings({
+      theme: platform.getThemeType(),
+      currency: platform.currency,
+      splipageTolerance: settings?.splipageTolerance || 0,
+      transactionDeadline: settings?.transactionDeadline || 0,
+    });
+  }, [platform]);
+
+  const onSaveSettings = (_settings: ISettings) => {
+    platform.saveCurrency(_settings.currency);
+    platform.saveTheme(_settings.theme);
+    setSettings({ ..._settings });
+  }
 
   return (
     <HeaderStyle>
@@ -66,13 +83,11 @@ export const Header: React.FC = () => {
           </IconButton>
         </Box>
         {
-          openSettingsModal &&
+          openSettingsModal && settings &&
           <SettingsModal
+            settings={settings}
             onClose={() => { setOpenSettingsModal(false); }}
-            splipageTolerance={splipageTolerance}
-            transactionDeadline={transactionDeadline}
-            onChangeSplipageTolerance={(value) => { setSpliageTolerance(value); }}
-            onChangeTransactionDeadline={(value) => { setTransactionDeadline(value); }}
+            onSave={onSaveSettings}
           />
         }
       </Container>
