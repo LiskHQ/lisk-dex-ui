@@ -1,7 +1,6 @@
-import { NextPage } from "next";
-import { withLayout } from "@moxy/next-layout";
-import { SwapContainer } from "containers";
-import { Layout } from "components";
+import { NextPage } from 'next';
+import { SwapContainer } from 'containers';
+import { withLayout } from 'components';
 
 const SwapPage: NextPage = () => {
   return (
@@ -9,4 +8,4 @@ const SwapPage: NextPage = () => {
   );
 };
 
-export default withLayout(<Layout />)(SwapPage);
+export default withLayout(SwapPage);

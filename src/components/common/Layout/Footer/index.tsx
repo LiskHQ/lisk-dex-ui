@@ -20,8 +20,8 @@ export const Footer: React.FC = () => {
               <Grid
                 key={index}
                 className={cn({
-                  "footer-menu-item": true,
-                  "active": compareUrl(pathname, item.href),
+                  'footer-menu-item': true,
+                  'active': compareUrl(pathname, item.href),
                 })}
                 item
                 xs={3}
@@ -33,5 +33,5 @@ export const Footer: React.FC = () => {
         }
       </Grid>
     </FooterStyle>
-  )
-}
+  );
+};

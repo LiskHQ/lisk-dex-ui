@@ -1,5 +1,5 @@
-import { ChangeEvent, InputHTMLAttributes } from "react";
-import { RadioComponentStyle } from "./index.style";
+import { ChangeEvent, InputHTMLAttributes } from 'react';
+import { RadioComponentStyle } from './index.style';
 
 interface IProps {
   checked?: boolean,
@@ -15,5 +15,5 @@ export const RadioComponent: React.FC<IProps> = (props) => {
     <RadioComponentStyle
       {...radioProps}
     />
-  )
-}
+  );
+};

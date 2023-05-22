@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -80,11 +80,11 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
         },
 
         '&::-webkit-scrollbar-thumb': {
-          background: theme.slider.primary,
+          background: theme.bg.slider,
         },
 
         '&::-webkit-scrollbar-thumb:hover': {
-          background: theme.slider.primary,
+          background: theme.bg.slider,
         },
 
         '.confirm-proposal-type': {
@@ -131,5 +131,5 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
         }
       }
     }
-  }
-})
+  };
+});

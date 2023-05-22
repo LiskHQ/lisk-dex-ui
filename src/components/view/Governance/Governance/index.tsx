@@ -22,13 +22,13 @@ export interface IGovernanceViewProposal {
 }
 
 export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const { proposals } = props;
   const [proposalStatus, setProposalStatus] = useState<ProposalStatus>(ProposalStatus.All_Proposals);
 
   const onChangeProposalStatus = (event: SelectChangeEvent<number>) => {
-    setProposalStatus(event.target.value);
-  }
+    setProposalStatus(event.target.value as ProposalStatus);
+  };
 
   const filteredProposals = useMemo(() => {
     return proposals.filter(el => el.status === proposalStatus || proposalStatus === ProposalStatus.All_Proposals);
@@ -110,5 +110,5 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
         </Box>
       </Box>
     </GovernanceViewStyle>
-  )
-}
+  );
+};

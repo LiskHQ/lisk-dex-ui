@@ -1,4 +1,4 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 
 export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
   return {
@@ -104,5 +104,5 @@ export const GovernanceViewStyle = styled('main')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

@@ -5,4 +5,4 @@ export const PATHS = {
   GOVERNANCE: '/governance',
   CREATE_PROPOSAL: '/governance/create',
   PROPOSAL: '/governance/proposal',
-}
+};

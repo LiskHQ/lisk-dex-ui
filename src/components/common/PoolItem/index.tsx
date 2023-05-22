@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 import { IPoolItem } from 'models';
-import { PoolItemStyle } from "./index.style";
+import { PoolItemStyle } from './index.style';
 import { tokenSvgs } from 'imgs/icons';
 
 interface IProps {
@@ -34,5 +34,5 @@ export const PoolItem: React.FC<IProps> = (props) => {
           <Typography className="pool-item-title" variant="body2">Select a pool ID</Typography>
       }
     </PoolItemStyle>
-  )
-}
+  );
+};

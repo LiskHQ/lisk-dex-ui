@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
-import { useTheme } from "@mui/styles";
-import { ChartStyle } from "./index.style";
+import React, { useEffect, useRef, useState } from 'react';
+import * as d3 from 'd3';
+import { useTheme } from '@mui/styles';
+import { ChartStyle } from './index.style';
 
 interface DataPoint {
   x: number;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Chart: React.FC<Props> = ({ className, data }) => {
-  const theme = useTheme();
+  const theme: any = useTheme();
 
   const svgRef = useRef<SVGSVGElement>(null);
   const [width, setWidth] = useState<number>(0);
@@ -47,11 +47,11 @@ export const Chart: React.FC<Props> = ({ className, data }) => {
 
     // Draw area path
     svg
-      .append("path")
+      .append('path')
       .datum(data)
-      .attr("d", area)
-      .attr("fill", theme.lightcurve[0]);
-  }, [data, height, width]);
+      .attr('d', area)
+      .attr('fill', theme.lightcurve[0]);
+  }, [data, height, width, theme]);
 
   return (
     <ChartStyle className={className}>

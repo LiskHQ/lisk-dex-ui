@@ -163,6 +163,10 @@ exports[`Input component checks if the component matches the snapshot 1`] = `
 }
 
 .emotion-2::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .emotion-2:-ms-input-placeholder {

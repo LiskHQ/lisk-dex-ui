@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const IncreaseLiquidityModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -89,5 +89,5 @@ export const IncreaseLiquidityModalStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

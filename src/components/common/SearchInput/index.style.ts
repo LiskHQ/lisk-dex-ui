@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const SearchInputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -74,5 +74,5 @@ export const SearchInputComponentStyle = styled(FormControl)(({ theme }: any) =>
       marginTop: '0.25rem',
       marginBottom: '0.25rem',
     }
-  }
-})
+  };
+});

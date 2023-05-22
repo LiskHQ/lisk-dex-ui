@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ProposalTypeBadgeStyle = styled('div')(({ theme }: any) => {
   return {
@@ -20,5 +20,5 @@ export const ProposalTypeBadgeStyle = styled('div')(({ theme }: any) => {
       overflow: 'hidden',
       whiteSpace: 'nowrap',
     }
-  }
-})
+  };
+});

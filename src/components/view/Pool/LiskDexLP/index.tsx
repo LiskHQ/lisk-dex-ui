@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material"
-import { LoaderComponent } from "components/common";
-import { IPool } from "models"
-import { useState } from "react";
-import { IncreaseLiquidityModal } from "./IncreaseLiquidityModal";
-import { LiskDexLPStyle } from "./index.style"
-import { PoolComponent } from "./PoolComponent";
-import { RemoveLiquidityModal } from "./RemoveLiquidityModal";
+import { Box, Typography } from '@mui/material';
+import { LoaderComponent } from 'components/common';
+import { IPool } from 'models';
+import { useState } from 'react';
+import { IncreaseLiquidityModal } from './IncreaseLiquidityModal';
+import { LiskDexLPStyle } from './index.style';
+import { PoolComponent } from './PoolComponent';
+import { RemoveLiquidityModal } from './RemoveLiquidityModal';
 
 export interface ILiskDexLProps {
   pools: IPool[],
@@ -25,12 +25,12 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
   const onIncreaseLiquidity = (pool: IPool) => {
     setOpenIncreaseLiquidityModal(true);
     setPool(pool);
-  }
+  };
 
   const onRemoveLiquidity = (pool: IPool) => {
     setOpenRemoveLiquidityModal(true);
     setPool(pool);
-  }
+  };
 
   return (
     <LiskDexLPStyle>
@@ -71,5 +71,5 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
         />
       }
     </LiskDexLPStyle >
-  )
-}
+  );
+};

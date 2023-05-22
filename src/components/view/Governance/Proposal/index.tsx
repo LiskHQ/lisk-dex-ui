@@ -1,9 +1,9 @@
-import { faChevronRight, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Grid, IconButton, Typography, useMediaQuery } from "@mui/material";
+import { faChevronRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Grid, IconButton, Typography, useMediaQuery } from '@mui/material';
 
-import { ProposalViewStyle } from "./index.style";
-import { IProposal, IVote } from "models";
+import { ProposalViewStyle } from './index.style';
+import { IProposal, IVote } from 'models';
 import {
   ButtonComponent,
   CurrentResultComponent,
@@ -12,11 +12,11 @@ import {
   StatusHistoryComponent,
   VotesComponent,
   YourVotingInfoComponent,
-} from "components";
-import { darkTheme } from "styles/theme";
-import { VoteModal } from "./VoteModal";
-import { useEffect, useState } from "react";
-import { VoteSuccessModal } from "./VoteSuccessModal";
+} from 'components';
+import { darkTheme } from 'styles/theme';
+import { VoteModal } from './VoteModal';
+import { useEffect, useState } from 'react';
+import { VoteSuccessModal } from './VoteSuccessModal';
 
 export interface IProposalViewProps {
   votes: IVote[],
@@ -142,4 +142,4 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
       }
     </ProposalViewStyle>
   );
-}
+};

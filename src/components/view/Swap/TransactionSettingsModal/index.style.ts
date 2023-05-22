@@ -1,6 +1,6 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 
-export const TransactionSettingsStyle = styled('div')(({ theme }: any) => {
+export const TransactionSettingsModalStyle = styled('div')(({ theme }: any) => {
   return {
     position: 'absolute',
     top: '4rem',
@@ -128,5 +128,5 @@ export const TransactionSettingsStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

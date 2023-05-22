@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { Button } from '@mui/material'
+import styled from '@emotion/styled';
+import { Button } from '@mui/material';
 
 export const ButtonComponentStyle = styled(Button)(({ theme }: any) => {
   return {
@@ -21,5 +21,5 @@ export const ButtonComponentStyle = styled(Button)(({ theme }: any) => {
       // color: theme.text.button,
       opacity: 0.7,
     }
-  }
-})
+  };
+});

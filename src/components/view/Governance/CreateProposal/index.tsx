@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useMemo, useState } from 'react';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
-import { InputComponent, UrlInputComponent } from "components";
-import { ProposalType } from "consts";
-import { CreateProposalViewStyle } from "./index.style";
-import { SelectProposalTypeComponent } from "./SelectProposalType";
-import { IncentivizationProposal } from "./IncentivizationProposal";
-import { ButtonComponent } from "components/common/Button";
-import { IProposal } from "models";
-import { ConfirmCreateProposalModal } from "./ConfirmCreateProposalModal";
-import { ProposalSubmittedModal } from "./ProposalSubmittedModal";
+import { InputComponent, UrlInputComponent } from 'components';
+import { ProposalType } from 'consts';
+import { CreateProposalViewStyle } from './index.style';
+import { SelectProposalTypeComponent } from './SelectProposalType';
+import { IncentivizationProposal } from './IncentivizationProposal';
+import { ButtonComponent } from 'components/common/Button';
+import { IProposal } from 'models';
+import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
+import { ProposalSubmittedModal } from './ProposalSubmittedModal';
 
 export interface ICreateProposalViewProps {
   openTransactionApproval: boolean,
@@ -41,12 +41,12 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       multiplier?: Yup.NumberSchema,
     }
       = {
-      author: Yup.string().required(),
-      title: Yup.string().required(),
-      summary: Yup.string().required(),
-      description: Yup.string().required(),
-      link: Yup.string().url(),
-    }
+        author: Yup.string().required(),
+        title: Yup.string().required(),
+        summary: Yup.string().required(),
+        description: Yup.string().required(),
+        link: Yup.string().url(),
+      };
     if (proposalType === ProposalType.PoolIncentivization) {
       schemaObject.multiplier = Yup.number().required();
       schemaObject.poolID = Yup.string().required();
@@ -61,24 +61,26 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
 
   const onChangeProposalType = (value: ProposalType) => {
     setProposalType(value);
-  }
+  };
 
   const onSubmitHandler = (data: IProposal) => {
     setOpenCreateProposalModal(true);
-    setProposal({
-      ...data,
-      proposalType,
-    })
-  }
+    if (proposalType) {
+      setProposal({
+        ...data,
+        proposalType,
+      });
+    }
+  };
 
   const onCloseProposalSubmittedModal = () => {
     setOpenCreateProposalModal(false);
     onCloseProposalSubmitted();
-  }
+  };
 
   useEffect(() => {
     trigger();
-  }, [proposalType]);
+  }, [proposalType, trigger]);
 
   return (
     <CreateProposalViewStyle>
@@ -191,4 +193,4 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       }
     </CreateProposalViewStyle>
   );
-}
+};

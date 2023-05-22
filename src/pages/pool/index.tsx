@@ -1,7 +1,6 @@
-import { NextPage } from "next";
-import { withLayout } from "@moxy/next-layout";
-import { PoolContainer } from "containers";
-import { Layout } from "components";
+import { NextPage } from 'next';
+import { PoolContainer } from 'containers';
+import { withLayout } from 'components';
 
 const PoolPage: NextPage = () => {
   return (
@@ -9,4 +8,4 @@ const PoolPage: NextPage = () => {
   );
 };
 
-export default withLayout(<Layout />)(PoolPage);
+export default withLayout(PoolPage);

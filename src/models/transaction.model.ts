@@ -1,4 +1,4 @@
-import { TransactionType } from "consts";
+import { TransactionType } from 'consts';
 
 export interface IExpense {
   title: string,

@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Accordion } from "@mui/material";
+import styled from '@emotion/styled';
+import { Accordion } from '@mui/material';
 
 export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
   return {
@@ -185,5 +185,5 @@ export const PoolComponentStyle = styled(Accordion)(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

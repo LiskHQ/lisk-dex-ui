@@ -1,12 +1,12 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Box, Grid, Typography } from "@mui/material"
-import { ProposalTypeBadge } from "components"
-import { PATHS } from "consts"
-import { CalendarIcon } from "imgs/icons"
-import { IProposal } from "models"
-import Link from "next/link"
-import { ProposalItemStyle } from "./index.style"
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Grid, Typography } from '@mui/material';
+import { ProposalTypeBadge } from 'components';
+import { PATHS } from 'consts';
+import { CalendarIcon } from 'imgs/icons';
+import { IProposal } from 'models';
+import Link from 'next/link';
+import { ProposalItemStyle } from './index.style';
 
 export interface IProposalItemComponentProps {
   proposal: IProposal,
@@ -44,5 +44,5 @@ export const ProposalItemComponent: React.FC<IProposalItemComponentProps> = (pro
         <FontAwesomeIcon className="proposal-item-arrow" icon={faChevronRight} />
       </ProposalItemStyle>
     </Link>
-  )
-}
+  );
+};

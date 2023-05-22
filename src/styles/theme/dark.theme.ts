@@ -20,13 +20,13 @@ const themeColors = {
     80: '#E6E6E6',
   },
   secondary: {
-    0: "#F5981B",
-    5: "#F5981B",
-    10: "#CC7E16",
-    30: "#A66712",
-    40: "#7F4F0E",
-    50: "#59370A",
-    60: "#332006",
+    0: '#F5981B',
+    5: '#F5981B',
+    10: '#CC7E16',
+    30: '#A66712',
+    40: '#7F4F0E',
+    50: '#59370A',
+    60: '#332006',
   },
   primary: {
     85: '#7E6CF4',
@@ -63,6 +63,10 @@ const themeColors = {
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #372589 0%, rgba(27, 19, 68, 0.8) 100%)',
   },
+  switch: {
+    track: '#382980',
+    thumb: '#6953F4',
+  },
   success: {
     light: '#BD5359',
     lighter: '#8DC881',
@@ -88,6 +92,6 @@ const lightTheme = createTheme({
   palette: {
     mode: 'dark',
   },
-})
+});
 
-export default lightTheme
+export default lightTheme;

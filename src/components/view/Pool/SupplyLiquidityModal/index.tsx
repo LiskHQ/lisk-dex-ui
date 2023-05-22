@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, IconButton, Typography } from "@mui/material";
+import Image from 'next/image';
+import { Box, IconButton, Typography } from '@mui/material';
 import {
   ButtonComponent,
-} from "components";
-import { CancelIcon, LightIcon } from "imgs/icons";
-import { SupplyLiquidityStyle } from "./index.style";
-import { IPool } from "models";
-import { useState } from "react";
+} from 'components';
+import { CancelIcon, LightIcon } from 'imgs/icons';
+import { SupplyLiquidityStyle } from './index.style';
+import { IPool } from 'models';
+import { useState } from 'react';
 
 export interface ISupplyLiquidityModalProps {
   pool: IPool,
@@ -22,7 +22,7 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
   const onClickConfirm = () => {
     setLoading(true);
     onConfirm(pool);
-  }
+  };
   return (
     <SupplyLiquidityStyle data-testid="supply-liquidity-modal-test">
       <Box className="supply-liquidity-modal-background" />
@@ -86,5 +86,5 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
         </Box>
       </Box>
     </SupplyLiquidityStyle>
-  )
-}
+  );
+};
