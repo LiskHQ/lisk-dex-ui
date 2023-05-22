@@ -601,10 +601,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-13:focus::-ms-input-
   content: " ";
   width: 0.5rem;
   height: 0.5rem;
-  border-radius: 100%;
-}
-
-.emotion-20 .proposal-item-main .proposal-item-period {
   margin-top: 0.25rem;
   display: -webkit-box;
   display: -webkit-flex;
