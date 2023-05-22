@@ -35,7 +35,7 @@ export const Header: React.FC<IHeaderProps> = (props) => {
       splipageTolerance: settings?.splipageTolerance || 0,
       transactionDeadline: settings?.transactionDeadline || 0,
     });
-  }, [platform, settings]);
+  }, [platform, settings?.splipageTolerance, settings?.transactionDeadline]);
 
   const onSaveSettings = (_settings: ISettings) => {
     platform.saveCurrency(_settings.currency);
