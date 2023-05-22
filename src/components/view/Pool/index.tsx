@@ -1,11 +1,11 @@
-import { Grid } from "@mui/material"
-import { IPool } from "models"
-import { useEffect, useState } from "react"
-import { PoolViewStyle } from "./index.style"
-import { LiskDexLP } from "./LiskDexLP"
-import { RemoveLiquidityModal } from "./RemoveLiquidityModal"
-import { SupplyLiquidity } from "./SupplyLiquidity"
-import { SupplyLiquidityModal } from "./SupplyLiquidityModal"
+import { Grid } from '@mui/material';
+import { IPool } from 'models';
+import { useEffect, useState } from 'react';
+import { PoolViewStyle } from './index.style';
+import { LiskDexLP } from './LiskDexLP';
+import { RemoveLiquidityModal } from './RemoveLiquidityModal';
+import { SupplyLiquidity } from './SupplyLiquidity';
+import { SupplyLiquidityModal } from './SupplyLiquidityModal';
 
 export interface IPoolViewProps {
   sendingTransaction: boolean,
@@ -35,12 +35,12 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   const onPreview = (pool: IPool) => {
     setOpenSupplyModal(true);
     setPool(pool);
-  }
+  };
 
   const onPreviewRemove = (pool: IPool) => {
     setOpenRemoveLiquidityModal(true);
     setPool(pool);
-  }
+  };
 
   useEffect(() => {
     if (sendingTransaction) {
@@ -72,7 +72,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
         openSupplyModal && pool &&
         <SupplyLiquidityModal
           pool={pool}
-          onClose={() => { setOpenSupplyModal(false) }}
+          onClose={() => { setOpenSupplyModal(false); }}
           onConfirm={onConfirmSupplyLiquidity}
         />
       }
@@ -80,10 +80,10 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
         openRemoveLiquidityModal && pool &&
         <RemoveLiquidityModal
           pool={pool}
-          onClose={() => { setOpenSupplyModal(false) }}
+          onClose={() => { setOpenSupplyModal(false); }}
           onConfirm={onConfirmRemoveLiquidity}
         />
       }
     </PoolViewStyle>
-  )
-}
+  );
+};

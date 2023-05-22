@@ -1,9 +1,8 @@
-import { SearchInputComponentStyle } from "./index.style"
-import { useTheme } from "@mui/styles";
-import { InputBase, InputLabel } from "@mui/material";
-import { ReactNode } from "react";
-import { RegisterOptions } from 'react-hook-form';
-import { SearchIcon } from "imgs/icons";
+import { SearchInputComponentStyle } from './index.style';
+import { useTheme } from '@mui/styles';
+import { InputBase, InputLabel } from '@mui/material';
+import { ReactNode } from 'react';
+import { SearchIcon } from 'imgs/icons';
 
 interface IProps {
   name?: string,
@@ -21,12 +20,11 @@ interface IProps {
   value?: string | number,
   readOnly?: boolean,
   onChange?: (value: string) => void,
-  options?: RegisterOptions,
 }
 
 export const SearchInputComponent: React.FC<IProps> = (props) => {
-  const theme = useTheme();
-  const { maxLength, onChange, options, className, type, label, ...inputProps } = props;
+  const theme: any = useTheme();
+  const { maxLength, onChange, className, type, label, ...inputProps } = props;
 
   return (
     <SearchInputComponentStyle
@@ -40,20 +38,20 @@ export const SearchInputComponent: React.FC<IProps> = (props) => {
         type={type}
         inputProps={{
           sx: {
-            "&::placeholder": {
+            '&::placeholder': {
               opacity: 1,
               color: theme.text.placeholder,
             },
-            "&::-webkit-outer-spin-button. &::-webkit-inner-spin-button": {
-              WebkitAppearance: "none",
-              display: "none"
+            '&::-webkit-outer-spin-button. &::-webkit-inner-spin-button': {
+              WebkitAppearance: 'none',
+              display: 'none'
             },
           },
           maxLength,
         }}
-        onChange={(event) => { onChange && onChange(event.target.value) }}
+        onChange={(event) => { onChange && onChange(event.target.value); }}
         {...inputProps}
       />
     </SearchInputComponentStyle >
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import { Box, FormControl, FormControlLabel, RadioGroup, Typography } from "@mui/material"
+import { Box, FormControl, FormControlLabel, RadioGroup, Typography } from '@mui/material';
 import {
   ButtonComponent,
   RadioComponent
-} from "components"
-import { LiskIcon } from "imgs/icons"
-import { ChangeEvent, useState } from "react"
-import { VoteModalStyle } from "./index.style"
+} from 'components';
+import { LiskIcon } from 'imgs/icons';
+import { ChangeEvent, useState } from 'react';
+import { VoteModalStyle } from './index.style';
 
 export interface IVoteModalProps {
   openTransactionApproval?: boolean,
@@ -15,11 +15,11 @@ export interface IVoteModalProps {
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
   const { openTransactionApproval, onClose, onVote } = props;
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<string>();
 
   const onChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
     setValue(value);
-  }
+  };
 
   return (
     <VoteModalStyle data-testid="vote-modal-test">
@@ -58,7 +58,7 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
             <Typography variant="body1">Cancel</Typography>
           </ButtonComponent>
           <ButtonComponent
-            data-testid={value && "vote-modal-button-test"}
+            data-testid={value && 'vote-modal-button-test'}
             className="vote-modal-confirm"
             loading={openTransactionApproval}
             onClick={() => { onVote(); }}
@@ -69,5 +69,5 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
         </Box>
       </Box>
     </VoteModalStyle>
-  )
-}
+  );
+};

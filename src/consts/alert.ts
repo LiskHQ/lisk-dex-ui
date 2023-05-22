@@ -1,4 +1,4 @@
 export enum AlertVariant {
-  success = "success",
-  info = "info",
+  success = 'success',
+  info = 'info',
 }

@@ -1,4 +1,4 @@
-import { IToken } from "./token.model";
+import { IToken } from './token.model';
 
 export interface IPoolItem {
   id: string,

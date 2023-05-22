@@ -1,9 +1,9 @@
-import { Box, Slider, SliderThumb, Typography } from "@mui/material";
-import { useTheme } from "@mui/styles";
-import { Chart } from "components/common"
-import { PositionIcon } from "imgs/icons";
-import { useEffect, useState } from "react";
-import { RangeSelectorStyle } from "./index.style"
+import { Box, Slider, SliderThumb, Typography } from '@mui/material';
+import { useTheme } from '@mui/styles';
+import { Chart } from 'components/common';
+import { PositionIcon } from 'imgs/icons';
+import { useEffect, useState } from 'react';
+import { RangeSelectorStyle } from './index.style';
 
 export interface IRangeSelectorProps {
   data: any,
@@ -14,7 +14,7 @@ export interface IRangeSelectorProps {
 
 const minDistance = 1;
 
-interface AirbnbThumbComponentProps extends React.HTMLAttributes<unknown> { }
+type AirbnbThumbComponentProps = React.HTMLAttributes<unknown>
 
 function ThumbComponent(props: AirbnbThumbComponentProps) {
   const { children, ...other } = props;
@@ -31,7 +31,7 @@ function ThumbComponent(props: AirbnbThumbComponentProps) {
 
 export const RangeSelector: React.FC<IRangeSelectorProps> = (props) => {
   const { data, disabled, defaultRange, onChangeRange } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
 
   const [range, setRange] = useState<number[]>([(defaultRange[0] - 1) * 100, (defaultRange[1] - 1) * 100]);
 
@@ -106,5 +106,5 @@ export const RangeSelector: React.FC<IRangeSelectorProps> = (props) => {
         }
       </Box>
     </RangeSelectorStyle>
-  )
-}
+  );
+};

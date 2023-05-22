@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPool } from "models";
-import { mockPools } from "__mock__/pool.mock";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IPool } from 'models';
+import { mockPools } from '__mock__/pool.mock';
 
 type StateType = {
   pools: IPool[],
@@ -27,14 +27,14 @@ const initialState: StateType = {
 };
 
 const poolSlice = createSlice({
-  name: "pool",
+  name: 'pool',
   initialState: initialState,
   reducers: {
     /**
      * pool
      */
     //create pool
-    createPool(state, action: PayloadAction<any>) {
+    createPool(state) {
       state.creatingPool = true;
       state.createdPool = false;
     },
@@ -44,7 +44,7 @@ const poolSlice = createSlice({
       const pool: IPool = {
         ...action.payload,
         id: Math.random().toString(36).substring(2, 15),
-      }
+      };
       state.pools = [...state.pools, pool];
     },
     createPoolFailure(state, action: PayloadAction<any>) {
@@ -70,7 +70,7 @@ const poolSlice = createSlice({
     },
 
     //update pool
-    updatePool(state, action) {
+    updatePool(state) {
       state.updatingPool = true;
       state.updatedPool = false;
     },
@@ -80,7 +80,7 @@ const poolSlice = createSlice({
       const index = state.pools.findIndex(el => el.id === action.payload.id);
       state.pools[index] = { ...action.payload };
     },
-    updatePoolFailure(state, action: PayloadAction<any>) {
+    updatePoolFailure(state) {
       state.updatingPool = false;
       state.updatedPool = false;
     },

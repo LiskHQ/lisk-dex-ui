@@ -20,13 +20,13 @@ const themeColors = {
     80: '#161133',
   },
   secondary: {
-    0: "#F5981B",
-    5: "#F5981B",
-    10: "#CC7E16",
-    30: "#A66712",
-    40: "#7F4F0E",
-    50: "#59370A",
-    60: "#332006",
+    0: '#F5981B',
+    5: '#F5981B',
+    10: '#CC7E16',
+    30: '#A66712',
+    40: '#7F4F0E',
+    50: '#59370A',
+    60: '#332006',
   },
   primary: {
     85: '#7E6CF4',
@@ -62,6 +62,10 @@ const themeColors = {
     proposalItem: 'linear-gradient(180deg, #F4F2FF 0%, rgba(238, 236, 249, 0.5) 143.01%);',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
   },
+  switch: {
+    track: '#E6E6E6',
+    thumb: '#FFFFFF',
+  },
   success: {
     light: '#BD5359',
     lighter: '#8DC881',
@@ -87,6 +91,6 @@ const lightTheme = createTheme({
   palette: {
     mode: 'light'
   },
-})
+});
 
-export default lightTheme
+export default lightTheme;

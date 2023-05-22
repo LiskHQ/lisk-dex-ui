@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
+import Image from 'next/image';
+import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import {
   ButtonComponent, InputComponent,
-} from "components";
-import { CancelIcon } from "imgs/icons";
-import { IncreaseLiquidityModalStyle } from "./index.style";
-import { IPool } from "models";
-import { useState } from "react";
+} from 'components';
+import { CancelIcon } from 'imgs/icons';
+import { IncreaseLiquidityModalStyle } from './index.style';
+import { IPool } from 'models';
+import { useState } from 'react';
 
 export interface IIncreaseLiquidityModalProps {
   pool: IPool,
@@ -29,7 +29,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
       token2Amount,
     });
     onClose();
-  }
+  };
   return (
     <IncreaseLiquidityModalStyle data-testid="increase-liquidity-modal-test">
       <Box className="increase-liquidity-modal-background" />
@@ -91,5 +91,5 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
         </ButtonComponent>
       </Box>
     </IncreaseLiquidityModalStyle>
-  )
-}
+  );
+};

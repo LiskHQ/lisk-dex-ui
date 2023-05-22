@@ -1,8 +1,8 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import { AlertVariant } from "consts";
-import { CancelIcon, InfoIcon, SuccessIcon } from "imgs/icons";
-import Link from "next/link";
-import { AlertComponentStyle } from "./index.style";
+import { Box, IconButton, Typography } from '@mui/material';
+import { AlertVariant } from 'consts';
+import { CancelIcon, InfoIcon, SuccessIcon } from 'imgs/icons';
+import Link from 'next/link';
+import { AlertComponentStyle } from './index.style';
 
 export interface IAlertComponent {
   variant: AlertVariant,
@@ -36,5 +36,5 @@ export const AlertComponent: React.FC<IAlertComponent> = (props) => {
         </Box>
       </Box>
     </AlertComponentStyle>
-  )
-}
+  );
+};

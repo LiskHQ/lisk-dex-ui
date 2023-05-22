@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
   return {
@@ -202,5 +202,5 @@ export const ApproveTransactionModalStyle = styled('div')(({ theme }: any) => {
         }
       },
     }
-  }
-})
+  };
+});

@@ -1,6 +1,6 @@
 
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Timeline,
   TimelineConnector,
@@ -9,16 +9,12 @@ import {
   TimelineItem,
   timelineItemClasses,
   TimelineSeparator
-} from "@mui/lab";
-import { Box, Typography } from "@mui/material";
-import { ClockIcon } from "imgs/icons";
-import { StatusHistoryComponentStyle } from "./index.style";
+} from '@mui/lab';
+import { Box, Typography } from '@mui/material';
+import { ClockIcon } from 'imgs/icons';
+import { StatusHistoryComponentStyle } from './index.style';
 
-interface IProps {
-
-}
-
-export const StatusHistoryComponent: React.FC<IProps> = (props) => {
+export const StatusHistoryComponent: React.FC = () => {
   return (
     <StatusHistoryComponentStyle className="status-history-component">
       <Box className="status-history-header">
@@ -81,5 +77,5 @@ export const StatusHistoryComponent: React.FC<IProps> = (props) => {
         </Timeline>
       </Box>
     </StatusHistoryComponentStyle>
-  )
-}
+  );
+};

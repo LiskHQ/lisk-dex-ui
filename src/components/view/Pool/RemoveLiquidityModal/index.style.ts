@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const RemoveLiquidityStyle = styled('div')(({ theme }: any) => {
   return {
@@ -68,8 +68,8 @@ export const RemoveLiquidityStyle = styled('div')(({ theme }: any) => {
           position: 'absolute',
 
           '&.data-index-1': {
-            top: `10rem`,
-            left: `10rem`,
+            top: '10rem',
+            left: '10rem',
           },
 
           '&.data-index-2': {
@@ -88,14 +88,14 @@ export const RemoveLiquidityStyle = styled('div')(({ theme }: any) => {
           },
 
           '&.data-index-5': {
-            top: `16rem`,
-            left: `6rem`,
+            top: '16rem',
+            left: '6rem',
           },
 
 
           '&.data-index-6': {
-            top: `14rem`,
-            left: `28rem`,
+            top: '14rem',
+            left: '28rem',
           },
         }
       },
@@ -126,5 +126,5 @@ export const RemoveLiquidityStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

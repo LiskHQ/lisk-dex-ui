@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 type StateType = {
   error: any,
@@ -9,7 +9,7 @@ const initialState: StateType = {
 };
 
 const swapSlice = createSlice({
-  name: "swap",
+  name: 'swap',
   initialState: initialState,
   reducers: {
     /**
