@@ -4,6 +4,7 @@ exports[`CreateProposalView checks if the component matches the snapshot 1`] = `
 .emotion-0 {
   position: relative;
   margin-top: 4.25rem;
+  margin-bottom: 4rem;
   padding: 3rem 17.1875rem;
 }
 
