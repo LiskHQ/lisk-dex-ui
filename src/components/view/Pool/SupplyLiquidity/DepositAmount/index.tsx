@@ -19,7 +19,8 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
 
   useEffect(() => {
     onChange(+amount);
-  }, [amount, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amount]);
 
   useEffect(() => {
     setAmount(tokenAmount);
