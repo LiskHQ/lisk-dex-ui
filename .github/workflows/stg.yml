@@ -1,36 +1,23 @@
-name: STG-DEX-UI ##change based on environment eg: staging or Production
+name: STG-DEX-UI
 on:
-  push: ## for auto build when code triggered in below branch
-    branches: 
-        - cicdpipeline
+  push:
+    branches:
+      - cicdpipeline
   workflow_dispatch:
 jobs:
   build:
-    name: DEX-UI Deploy
-    runs-on: ubuntu-20.04  # already has preinstalled Node 14.17.0
-    strategy:
-      matrix:
-        node-version: [14.18.1]
-    env: ## ----> Change below values <---- ##
-      DISTRIBUTION_ID_FE: EKR65H62LQOX6
-      BUCKET_NAME: lc-stg-lisk-dex-ui
-      ## ----> modify end section <---- ## 
+    name: Build & Deploy
+    runs-on: ubuntu-20.04
+    env: ###--> Change all values here <--###
+      ECR_REPO_NAME: lc/stg/lisk-dexui
+      SERVICE_NAME: DAITMS-STG-FRONTEND-SERVICE
+      CLUSTER_NAME: LC-ECS-CLUSTER
+      CONTAINER_NAME: LC-STG-TD-LISKDEXUI
+      TASK_DEF_NAME: LC-STG-TD-LISKDEXUI
+      DISTRIBUTION_ID_FE: E334SGUQX1BQDQ
+
     steps:
       - uses: actions/checkout@v2
-      # - uses: ./.github/actions/set-job-env //for later use.
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: npm install
-        run: |
-          yarn install
-
-      - name: Build
-        run: |
-          yarn run build
 
       - name: Configure AWS cli
         uses: aws-actions/configure-aws-credentials@v1
@@ -39,17 +26,50 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Deploy DEX-UI
-        uses: jakejarvis/s3-sync-action@v0.5.1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
         with:
-          args: --acl public-read --delete
-        env:
-          AWS_S3_BUCKET: ${{ env.BUCKET_NAME }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
-          SOURCE_DIR: "./dist"
 
-      - name: Invalidate CF
+      - name: Build & Push Docker Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID_FE }} --paths '/*'
+          docker build -t ${{ env.ECR_REPO_NAME }}:latest .
+          docker tag ${{ env.ECR_REPO_NAME }}:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
+          docker tag ${{ env.ECR_REPO_NAME }}:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO_NAME }}:latest
+          docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
+          docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO_NAME }}:latest
+          
+      - name: Replace ECS Task Definition Template
+        uses: franzbischoff/replace_envs@v1
+        env:
+          DEPLOYMENT_NAME: ${{env.CONTAINER_NAME}}
+          DOCKER_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
+        with:
+          from_file: "ecs-task-definition.json"
+          to_file: "${{env.TASK_DEF_NAME}}-task-def_${{ github.run_id }}.json"
+          commit: "false"
+
+      - name: Create new Task Definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{env.TASK_DEF_NAME}}-task-def_${{ github.run_id }}.json
+          container-name: ${{env.CONTAINER_NAME}}
+          image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
+
+    #   - name: Deploy task definition
+    #     uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+    #     with:
+    #       task-definition: ${{ steps.task-def.outputs.task-definition }}
+    #       service: ${{ env.SERVICE_NAME }}
+    #       cluster: ${{ env.CLUSTER_NAME }}
+    #       wait-for-service-stability: true
+
+    #   - name: Invalidate CF
+    #     run: |
+    #       aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID_FE }} --paths '/*'
