@@ -22,5 +22,5 @@ export const VoteItemComponentStyle = styled(Grid)(({ theme }: any) => {
     '.vote-amount': {
       justifyContent: 'end',
     }
-  }
-})
+  };
+});

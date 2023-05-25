@@ -1,14 +1,10 @@
-import { Box, CircularProgress, LinearProgress, Typography } from "@mui/material";
-import { ProposalStatus } from "consts";
-import { PieChartIcon } from "imgs/icons";
-import { ProposalStatusBadge } from "../ProposalStatusBadge";
-import { CurrentResultComponentStyle } from "./index.style";
+import { Box, CircularProgress, LinearProgress, Typography } from '@mui/material';
+import { ProposalStatus } from 'consts';
+import { PieChartIcon } from 'imgs/icons';
+import { ProposalStatusBadge } from '../ProposalStatusBadge';
+import { CurrentResultComponentStyle } from './index.style';
 
-interface IProps {
-
-}
-
-export const CurrentResultComponent: React.FC<IProps> = (props) => {
+export const CurrentResultComponent: React.FC = () => {
   return (
     <CurrentResultComponentStyle className="current-result-component">
       <Box className="current-result-header">
@@ -69,5 +65,5 @@ export const CurrentResultComponent: React.FC<IProps> = (props) => {
         </Box>
       </Box>
     </CurrentResultComponentStyle>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import styled from "@emotion/styled"
-import { Container } from "@mui/material"
+import styled from '@emotion/styled';
+import { Container } from '@mui/material';
 
-export const LayoutStyle = styled(Container)(({ theme }: any) => {
+export const LayoutComponentStyle = styled(Container)(() => {
   return {
     position: 'relative',
-  }
-})
+  };
+});

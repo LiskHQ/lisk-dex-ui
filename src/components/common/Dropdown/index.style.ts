@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -62,5 +62,5 @@ export const DropdownComponentStyle = styled(FormControl)(({ theme }: any) => {
       top: 'calc(50% - 0.5em)',
       pointerEvents: 'none',
     }
-  }
-})
+  };
+});

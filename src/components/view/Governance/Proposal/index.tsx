@@ -1,9 +1,9 @@
-import { faChevronRight, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Grid, IconButton, Typography, useMediaQuery } from "@mui/material";
+import { faChevronRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Box, Grid, IconButton, Typography, useMediaQuery } from '@mui/material';
 
-import { ProposalViewStyle } from "./index.style";
-import { IProposal, IVote } from "models";
+import { ProposalViewStyle } from './index.style';
+import { IProposal, IVote } from 'models';
 import {
   ButtonComponent,
   CurrentResultComponent,
@@ -12,12 +12,11 @@ import {
   StatusHistoryComponent,
   VotesComponent,
   YourVotingInfoComponent,
-} from "components";
-import { darkTheme } from "styles/theme";
-import { VoteModal } from "./VoteModal";
-import { useEffect, useState } from "react";
-import { VoteSuccessModal } from "./VoteSuccessModal";
-import { VoteType } from "consts";
+} from 'components';
+import { darkTheme } from 'styles/theme';
+import { VoteModal } from './VoteModal';
+import { useEffect, useState } from 'react';
+import { VoteSuccessModal } from './VoteSuccessModal';
 
 export interface IProposalViewProps {
   votes: IVote[],
@@ -27,9 +26,8 @@ export interface IProposalViewProps {
   proposal: IProposal,
   openTransactionApproval: boolean,
   approvedTransaction: boolean,
-  voteType?: VoteType,
   onViewMore: () => void,
-  onVote: (vote: boolean) => void,
+  onVote: () => void,
   onCloseVoteSuccessModal: () => void,
 }
 
@@ -42,7 +40,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
     proposal,
     openTransactionApproval,
     approvedTransaction,
-    voteType,
     onViewMore,
     onVote,
     onCloseVoteSuccessModal,
@@ -84,9 +81,7 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
                   className="proposal-header-vote-button"
                   onClick={() => { setOpenVoteModal(true); }}
                 >
-                  <Typography variant="body1">
-                    {`${voteType ? "Revote" : "Vote"}`}
-                  </Typography>
+                  <Typography variant="body1">Vote</Typography>
                 </ButtonComponent>
                 <IconButton className="proposal-header-header-menu-list-button">
                   <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -137,21 +132,14 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
         <VoteModal
           openTransactionApproval={openTransactionApproval}
           onClose={() => { setOpenVoteModal(false); }}
-          type={voteType}
-          onVote={(value: VoteType) => {
-            value === VoteType.Pass ? setOpenVoteModal(false) : onVote(value === VoteType.Yes);
-          }}
+          onVote={onVote}
         />
       }
       {
-        approvedTransaction &&
-        <VoteSuccessModal
-          revote={!!voteType}
-          onClose={() => {
-            onCloseVoteSuccessModal();
-          }}
-        />
+        approvedTransaction && <VoteSuccessModal onClose={() => {
+          onCloseVoteSuccessModal();
+        }} />
       }
     </ProposalViewStyle>
   );
-}
+};

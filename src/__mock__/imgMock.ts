@@ -1,1 +1,1 @@
-export const svgUrl: string = 'svg-url';
+export const svgUrl = 'svg-url';
