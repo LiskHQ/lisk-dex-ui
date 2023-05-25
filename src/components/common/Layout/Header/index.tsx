@@ -13,15 +13,35 @@ import { HeaderStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { DropdownComponent, SettingsModal } from 'components';
 import { compareUrl, ellipsisAddress } from 'utils';
+import { IPlatformContext } from 'contexts';
+import { ISettings } from 'models';
 
-export const Header: React.FC = () => {
+export interface IHeaderProps {
+  platform: IPlatformContext
+}
+
+export const Header: React.FC<IHeaderProps> = (props) => {
   const router = useRouter();
+  const { platform } = props;
 
   const { pathname } = router || { pathname: '' };
   const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
+  const [settings, setSettings] = useState<ISettings>();
 
   useEffect(() => {
-  }, [pathname]);
+    setSettings({
+      theme: platform.getThemeType(),
+      currency: platform.currency,
+      splipageTolerance: settings?.splipageTolerance || 0,
+      transactionDeadline: settings?.transactionDeadline || 0,
+    });
+  }, [platform, settings?.splipageTolerance, settings?.transactionDeadline]);
+
+  const onSaveSettings = (_settings: ISettings) => {
+    platform.saveCurrency(_settings.currency);
+    platform.saveTheme(_settings.theme);
+    setSettings({ ..._settings });
+  };
 
   return (
     <HeaderStyle>
@@ -63,9 +83,11 @@ export const Header: React.FC = () => {
           </IconButton>
         </Box>
         {
-          openSettingsModal &&
+          openSettingsModal && settings &&
           <SettingsModal
+            settings={settings}
             onClose={() => { setOpenSettingsModal(false); }}
+            onSave={onSaveSettings}
           />
         }
       </Container>
