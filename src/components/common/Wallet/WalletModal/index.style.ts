@@ -1,0 +1,180 @@
+import styled from '@emotion/styled';
+
+export const WalletModalStyle = styled('div')(({ theme }: any) => {
+  return {
+    '.wallet-modal-background': {
+      position: 'fixed',
+      left: 0,
+      top: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 30,
+
+      [theme.breakpoints.down('sm')]: {
+        background: 'rgba(0, 0, 0, 0.5)',
+      },
+    },
+
+    '.wallet-modal-container': {
+      position: 'absolute',
+      right: '4.375rem',
+      top: '4.375rem',
+      borderRadius: '0.75rem',
+      background: theme.bg.secondary,
+      boxShadow: theme.shadow.md,
+      width: '22.5rem',
+      minHeight: '43.25rem',
+      zIndex: 30,
+
+      [theme.breakpoints.down('sm')]: {
+        left: '50%',
+        right: 'unset',
+        transform: 'translateX(-50%)',
+      },
+
+      '.wallet-header': {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1rem 1rem 2rem 1rem',
+        borderBottom: `0.5px solid ${theme.border.primary}`,
+
+        h2: {
+          textAlign: 'center',
+          fontWeight: 500,
+        },
+
+        '.avatar-icon': {
+          width: '2.5rem',
+          height: '2.5rem',
+        },
+
+        p: {
+          fontSize: '0.75rem',
+          textAlign: 'center',
+          marginTop: '0.75rem',
+          marginBottom: '0.25rem',
+        },
+
+        '.wallet-header-top-box': {
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '1.5rem',
+
+          p: {
+            fontSize: '0.875rem',
+            color: theme.text.primary,
+          },
+
+          '.wallet-menu-button': {
+            svg: {
+              width: '1rem',
+              height: '1rem',
+            }
+          },
+
+          '.wallet-exit-button': {
+            svg: {
+              color: '#E10916',
+              width: '1rem',
+              height: '1rem',
+            }
+          }
+        }
+      },
+
+      '.wallet-body': {
+        maxHeight: '25rem',
+        overflow: 'auto',
+
+        h4: {
+          marginTop: '1.5rem',
+          marginLeft: '1rem',
+          marginBottom: '1rem',
+          fontWeight: 500,
+        },
+
+        '&::-webkit-scrollbar': {
+          width: '0.1rem',
+        },
+
+        '&::-webkit-scrollbar-track': {
+          background: 'none',
+        },
+
+        '&::-webkit-scrollbar-thumb': {
+          background: theme.bg.slider,
+        },
+
+        '&::-webkit-scrollbar-thumb:hover': {
+          background: theme.bg.slider,
+        },
+
+        '.token-item': {
+          padding: '0.75rem 1rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '0.5rem',
+
+          '&:hover': {
+            cursor: 'pointer',
+            background: theme.primary[1],
+          },
+
+          '.token-summary': {
+            width: '100%',
+            marginLeft: '0.75rem',
+            marginRight: '0.5rem',
+
+            '.token-summary-box': {
+              display: 'flex',
+              justifyContent: 'space-between',
+
+              '&.bottom': {
+                color: theme.text.paragraph,
+              }
+            }
+          },
+
+          svg: {
+            width: '0.5rem',
+            height: '0.75rem',
+
+            path: {
+              fill: theme.text.paragraph,
+            }
+          }
+        },
+      },
+
+      '.wallet-footer': {
+        width: '100%',
+        borderTop: `0.5px solid ${theme.border.primary}`,
+
+        '.wallet-tab': {
+          '.MuiTabs-flexContainer': {
+            display: 'flex',
+            justifyContent: 'space-around',
+            width: '100%',
+            button: {
+              width: '50%',
+              textTransform: 'capitalize',
+
+              '&.Mui-selected': {
+                color: theme.lightcurve[0],
+              }
+            }
+          },
+
+          '.MuiTabs-indicator': {
+            display: 'none',
+          }
+        }
+      }
+    }
+  };
+});

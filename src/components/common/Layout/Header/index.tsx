@@ -1,20 +1,19 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
-import { Box, IconButton, MenuItem, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
 import { menuItems } from 'consts';
-import { LightcurveIcon, LiskIcon } from 'imgs/icons';
+import { LightcurveIcon } from 'imgs/icons';
 import { HeaderStyle } from './index.style';
 import { useEffect, useState } from 'react';
-import { DropdownComponent, SettingsModal } from 'components';
-import { compareUrl, ellipsisAddress } from 'utils';
 import { IPlatformContext } from 'contexts';
 import { ISettings } from 'models';
+import { SettingsModal, WalletComponent } from 'components';
+import { compareUrl } from 'utils';
 
 export interface IHeaderProps {
   platform: IPlatformContext
@@ -23,6 +22,8 @@ export interface IHeaderProps {
 export const Header: React.FC<IHeaderProps> = (props) => {
   const router = useRouter();
   const { platform } = props;
+
+  const { walletConnection } = platform;
 
   const { pathname } = router || { pathname: '' };
   const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
@@ -43,6 +44,7 @@ export const Header: React.FC<IHeaderProps> = (props) => {
     setSettings({ ..._settings });
   };
 
+
   return (
     <HeaderStyle>
       <Container className="header-container" maxWidth="xl">
@@ -62,26 +64,21 @@ export const Header: React.FC<IHeaderProps> = (props) => {
               </Link>
             ))
           }
-
-          <DropdownComponent
-            className="header-menu-chain"
-            defaultValue={10}
-          >
-            <MenuItem value={10}><LiskIcon /><Typography variant="h5">Lisk-testnet</Typography></MenuItem>
-          </DropdownComponent>
-
-          <Box className="header-menu-wallet">
-            <Typography variant="h5">2921LSK</Typography>
-            <Box className="header-menu-wallet-address">
-              <Typography variant="h5">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
-              <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-            </Box>
-          </Box>
-
-          <IconButton className="header-menu-list-button" onClick={() => { setOpenSettingsModal(true); }}>
-            <FontAwesomeIcon icon={faEllipsis} />
-          </IconButton>
         </Box>
+
+        <Box className="header-actions">
+          <WalletComponent
+            walletConnection={walletConnection}
+          />
+
+          {
+            walletConnection &&
+            <IconButton className="header-menu-list-button" onClick={() => { setOpenSettingsModal(true); }}>
+              <FontAwesomeIcon icon={faEllipsis} />
+            </IconButton>
+          }
+        </Box>
+
         {
           openSettingsModal && settings &&
           <SettingsModal
