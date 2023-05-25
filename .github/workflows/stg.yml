@@ -2,6 +2,7 @@ name: STG-DEX-UI
 on:
   push:
     branches:
+      - development
       - cicdpipeline
   workflow_dispatch:
 jobs:
