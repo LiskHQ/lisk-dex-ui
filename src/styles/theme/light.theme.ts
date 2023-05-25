@@ -20,11 +20,17 @@ const themeColors = {
     80: '#161133',
   },
   secondary: {
-    0: '#F5981B'
+    0: '#F5981B',
+    5: '#F5981B',
+    10: '#CC7E16',
+    30: '#A66712',
+    40: '#7F4F0E',
+    50: '#59370A',
+    60: '#332006',
   },
   primary: {
     85: '#7E6CF4',
-    60: '#A196F6',
+    60: '#FAFAFC',
     40: '#E4EBF9',
     20: '#D9D8F8',
     10: '#E7E9F9',
@@ -43,30 +49,39 @@ const themeColors = {
   border: {
     primary: '#E6E6E6',
   },
+  slider: {
+    primary: '#F2F2F2',
+    secondary: '#F4F8F9',
+  },
   bg: {
     primary: '#FBFBFB',
     secondary: '#FFFFFF',
+    modal: '#FFFFFF',
     helper: '#22184D',
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     proposalItem: 'linear-gradient(180deg, #F4F2FF 0%, rgba(238, 236, 249, 0.5) 143.01%);',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
-    slider: '#6B7280',
+  },
+  switch: {
+    track: '#E6E6E6',
+    thumb: '#FFFFFF',
   },
   success: {
-    primary: '#BD5359',
-    second: '#8DC881',
+    light: '#BD5359',
+    lighter: '#8DC881',
+    dark: '#459A33',
   },
   warning: {
-    primary: '#F8F3D8',
-    second: '#E2CA64',
+    lighter: '#F8F3D8',
+    light: '#E2CA64',
   },
   info: {
-    primary: '#2EA3DD',
-    second: '#C0ECE8',
+    dark: '#2EA3DD',
+    light: '#C0ECE8',
   },
   error: {
-    primary: '#FF4557',
-    second: '#FB8B96',
+    dark: '#FF4557',
+    light: '#FB8B96',
   },
 } as const;
 
@@ -76,6 +91,6 @@ const lightTheme = createTheme({
   palette: {
     mode: 'light'
   },
-})
+});
 
-export default lightTheme
+export default lightTheme;

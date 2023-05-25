@@ -1,20 +1,25 @@
-import { PATHS } from "./paths";
+import { PATHS } from './paths';
 
 export const menuItems = [
   {
-    title: "Swap",
+    title: 'Swap',
     href: PATHS.SWAP,
   },
   {
-    title: "Pool",
+    title: 'Pool',
     href: PATHS.POOL,
   },
   {
-    title: "Info",
+    title: 'Info',
     href: PATHS.INFO,
   },
   {
-    title: "Governance",
+    title: 'Governance',
     href: PATHS.GOVERNANCE,
   },
-]
+];
+
+export enum ThemeType {
+  Light = 'Light',
+  Dark = 'Dark',
+}

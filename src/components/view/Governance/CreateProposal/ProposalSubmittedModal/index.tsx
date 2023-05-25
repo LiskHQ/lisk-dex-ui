@@ -1,7 +1,7 @@
-import { ProposalSubmittedStyle } from "./index.style";
-import { Box, Link, Typography } from "@mui/material";
-import { SuccessIcon } from "imgs/icons";
-import { ButtonComponent } from "components/common";
+import { ProposalSubmittedStyle } from './index.style';
+import { Box, Link, Typography } from '@mui/material';
+import { SuccessIcon } from 'imgs/icons';
+import { ButtonComponent } from 'components/common';
 
 interface IProps {
   onClose?: () => void
@@ -28,5 +28,5 @@ export const ProposalSubmittedModal: React.FC<IProps> = (props) => {
         </ButtonComponent>
       </Box>
     </ProposalSubmittedStyle >
-  )
-}
+  );
+};

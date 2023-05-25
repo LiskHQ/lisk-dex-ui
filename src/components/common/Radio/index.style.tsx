@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { Radio } from '@mui/material'
+import styled from '@emotion/styled';
+import { Radio } from '@mui/material';
 
 export const RadioComponentStyle = styled(Radio)(({ theme }: any) => {
   return {
@@ -8,5 +8,5 @@ export const RadioComponentStyle = styled(Radio)(({ theme }: any) => {
     '&.Mui-checked': {
       color: `${theme.lightcurve[0]} !important`,
     }
-  }
-})
+  };
+});

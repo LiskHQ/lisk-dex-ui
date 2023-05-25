@@ -1,11 +1,11 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled';
 
 export const HeaderStyle = styled('div')(({ theme }: any) => {
   return {
     position: 'fixed',
     left: 0,
     right: 0,
-    zIndex: 10,
+    zIndex: 30,
     borderBottom: `1px solid ${theme.primary[20]}`,
     background: theme.bg.primary,
 
@@ -123,5 +123,5 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

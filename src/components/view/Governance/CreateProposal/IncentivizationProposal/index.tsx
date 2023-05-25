@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { Box, Grid, MenuItem, Typography } from "@mui/material"
-import { useTheme } from "@mui/styles"
-import { DropdownComponent, InputComponent, PoolItem, PopoverComponent } from "components"
-import { HelpIcon } from "imgs/icons"
-import { IPoolItem } from "models"
-import { allowDigitOnly } from "utils"
-import { IncentivizationProposalStyle } from "./index.style"
-import { UseFormRegister } from "react-hook-form"
-import { mockPoolItems } from "__mock__"
+import { useMemo, useState } from 'react';
+import { Box, Grid, MenuItem, Typography } from '@mui/material';
+import { useTheme } from '@mui/styles';
+import { DropdownComponent, InputComponent, PoolItem, PopoverComponent } from 'components';
+import { HelpIcon } from 'imgs/icons';
+import { IPoolItem } from 'models';
+import { allowDigitOnly } from 'utils';
+import { IncentivizationProposalStyle } from './index.style';
+import { UseFormRegister } from 'react-hook-form';
+import { mockPoolItems } from '__mock__';
 
 interface IProps {
   className?: string,
@@ -16,21 +16,24 @@ interface IProps {
 
 export const IncentivizationProposal: React.FC<IProps> = (props) => {
   const { className, register } = props;
-  const theme = useTheme();
+  const theme: any = useTheme();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoolIdHelp, setOpenPoolIdHelp] = useState<boolean>(false);
   const [openMultiplierHelp, setOpenMultiplierHelp] = useState<boolean>(false);
-  const [poolItems, setPoolItems] = useState<IPoolItem[]>(mockPoolItems);
 
-  const onClickPoolIDHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const poolItems: IPoolItem[] = useMemo(() => {
+    return mockPoolItems;
+  }, []);
+
+  const onClickPoolIDHelp = (event: React.MouseEvent<any>) => {
     setAnchorEl(event.currentTarget);
     setOpenPoolIdHelp(true);
-  }
+  };
 
-  const onClickMultiplierHelp = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickMultiplierHelp = (event: React.MouseEvent<any>) => {
     setAnchorEl(event.currentTarget);
     setOpenMultiplierHelp(true);
-  }
+  };
 
   return (
     <IncentivizationProposalStyle className={className}>
@@ -39,7 +42,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
           <DropdownComponent
             name="poolID"
             className="proposal-pool-id"
-            defaultValue=""
+            defaultValue={''}
             label={
               <>
                 Select a pool ID <HelpIcon
@@ -114,7 +117,6 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
               </>
             }
             type="number"
-            min={0}
             placeholder="Add multiplier"
             onKeyDown={allowDigitOnly}
             register={register}
@@ -122,5 +124,5 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
         </Grid>
       </Grid>
     </IncentivizationProposalStyle >
-  )
-}
+  );
+};

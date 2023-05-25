@@ -1,6 +1,6 @@
-import { LoaderComponent } from "components";
-import { ReactNode } from "react"
-import { ButtonComponentStyle } from "./index.style"
+import { LoaderComponent } from 'components';
+import { ReactNode } from 'react';
+import { ButtonComponentStyle } from './index.style';
 
 interface IProps {
   className?: string,
@@ -9,15 +9,16 @@ interface IProps {
   loading?: boolean,
   variant?: string,
   type?: string,
-  "data-testid"?: string,
+  'data-testid'?: string,
   onClick?: () => void,
 }
 export const ButtonComponent: React.FC<IProps> = (props) => {
-  const { children, loading, disabled, ...buttonProps } = props;
+  const { children, loading, disabled, variant = 'contained', ...buttonProps } = props;
 
   return (
     <ButtonComponentStyle
       {...buttonProps}
+      variant={variant}
       disabled={disabled || loading}
     >
       {
@@ -26,5 +27,5 @@ export const ButtonComponent: React.FC<IProps> = (props) => {
           children
       }
     </ButtonComponentStyle>
-  )
-}
+  );
+};

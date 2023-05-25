@@ -1,4 +1,4 @@
-import { ProposalStatus, ProposalType } from "consts";
+import { ProposalStatus, ProposalType } from 'consts';
 
 export interface IProposal {
   id: string,

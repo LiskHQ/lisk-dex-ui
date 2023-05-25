@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -66,7 +66,7 @@ export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
     },
 
     '.MuiFormHelperText-root': {
-      color: theme.error.primary,
+      color: theme.error.dark,
       margin: '0.5rem 0 0 0',
     },
 
@@ -100,5 +100,5 @@ export const UrlInputComponentStyle = styled(FormControl)(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

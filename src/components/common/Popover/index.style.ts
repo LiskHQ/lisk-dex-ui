@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { Popover } from '@mui/material'
+import styled from '@emotion/styled';
+import { Popover } from '@mui/material';
 
 export const PopoverComponentStyle = styled(Popover)(({ theme }: any) => {
   return {
@@ -30,5 +30,5 @@ export const PopoverComponentStyle = styled(Popover)(({ theme }: any) => {
         borderBottom: '0.375rem solid transparent',
       }
     }
-  }
-})
+  };
+});
