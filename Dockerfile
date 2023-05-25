@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
 
 # Expose the default Next.js port (3000)
-EXPOSE 3002
+EXPOSE 3000
 
 # Start the Next.js application
 CMD ["yarn", "start"]
