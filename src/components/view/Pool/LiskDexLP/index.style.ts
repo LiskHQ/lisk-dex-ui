@@ -16,14 +16,14 @@ export const LiskDexLPStyle = styled('div')(({ theme }: any) => {
       justifyContent: 'center',
       marginTop: '2.5rem',
       marginBottom: '1rem',
-    },
 
-    '.loader-component': {
-      svg: {
-        path: {
-          stroke: theme.lightcurve[0],
+      '.loader-component': {
+        svg: {
+          path: {
+            stroke: theme.lightcurve[0],
+          }
         }
       }
-    }
+    },
   };
 });
