@@ -1,12 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IVote } from "models";
-import { mockVotes } from "__mock__";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IVote } from 'models';
+import { mockVotes } from '__mock__';
 
 type StateType = {
   votesLimit: number,
   votesTotal: number,
   votesTotalPages: number,
-  votes: IVote[]
+  votes: IVote[],
+  openProposalApproval: boolean,
   error: any,
 };
 
@@ -15,30 +16,26 @@ const initialState: StateType = {
   votesTotal: 0,
   votesTotalPages: 0,
   votes: [],
+  openProposalApproval: false,
   error: { message: '' },
 };
 
 const proposalSlice = createSlice({
-  name: "proposal",
+  name: 'proposal',
   initialState: initialState,
   reducers: {
     /**
      * proposal
      */
     //approve a proposal modal
-    getVotesByProposal(state: any, action: PayloadAction<number>) {
+    setOpenProposalApproval(state, action: PayloadAction<any>) {
+      state.openProposalApproval = action.payload;
+    },
+    getVotesByProposal(state, action: PayloadAction<any>) {
       const newVotes = mockVotes.slice(0, (action.payload + 1) * state.votesLimit);
       state.votesTotal = mockVotes.length;
       state.votesTotalPages = ~~mockVotes.length / state.votesLimit;
       state.votes = [...newVotes];
-    },
-
-    vote(state: any, action: PayloadAction<IVote>) {
-      const index = state.votes.findIndex(el => el.user === action.payload.user);
-      if (index >= 0)
-        state.votes[index] = action.payload;
-      else
-        state.votes = [...state.votes, action.payload]
     }
   },
 });

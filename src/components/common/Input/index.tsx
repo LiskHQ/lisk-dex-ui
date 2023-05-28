@@ -1,7 +1,7 @@
-import { InputComponentStyle } from "./index.style"
-import { useTheme } from "@mui/styles";
-import { Box, InputBase, InputLabel, Typography } from "@mui/material";
-import { KeyboardEventHandler, ReactNode } from "react";
+import { InputComponentStyle } from './index.style';
+import { useTheme } from '@mui/styles';
+import { Box, InputBase, InputLabel, Typography } from '@mui/material';
+import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react';
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
 interface IProps {
@@ -15,11 +15,16 @@ interface IProps {
   minRows?: number,
   maxRows?: number,
   maxLength?: number,
-  min?: number,
-  max?: number,
   value?: string | number,
   readOnly?: boolean,
-  onChange?: (value: string) => void,
+  disabled?: boolean,
+  defaultValue?: string | number,
+  variant?: string,
+  startAdornment?: ReactNode,
+  endAdornment?: ReactNode,
+  onClick?: MouseEventHandler<HTMLDivElement>,
+  onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
   onKeyDown?: KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>,
@@ -27,32 +32,32 @@ interface IProps {
 }
 
 export const InputComponent: React.FC<IProps> = (props) => {
-  const theme = useTheme();
-  const { maxLength, onChange, register, watch, options, className, name: fieldName, type, min, max, label, ...inputProps } = props;
+  const theme: any = useTheme();
+  const { maxLength, register, watch, options, className, name: fieldName, type, label, ...inputProps } = props;
   const value = watch && fieldName && watch(fieldName);
 
   return (
     <InputComponentStyle
       className={className}
     >
-      <InputLabel shrink>
-        {label}
-      </InputLabel>
+      {
+        label &&
+        <InputLabel shrink>
+          {label}
+        </InputLabel>
+      }
       <InputBase
         type={type}
         inputProps={{
           sx: {
-            "&::placeholder": {
+            '&::placeholder': {
               opacity: 1,
               color: theme.text.placeholder,
-            },
-            "&::-webkit-outer-spin-button. &::-webkit-inner-spin-button": {
-              WebkitAppearance: "none",
-              display: "none"
             },
           },
           maxLength,
         }}
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         {...(register && register(fieldName!, options))}
         {...inputProps}
       />
@@ -63,5 +68,5 @@ export const InputComponent: React.FC<IProps> = (props) => {
         </Box>
       }
     </InputComponentStyle >
-  )
-}
+  );
+};

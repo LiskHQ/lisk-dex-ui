@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 export const ProposalSubmittedStyle = styled('div')(({ theme }: any) => {
   return {
@@ -56,5 +56,5 @@ export const ProposalSubmittedStyle = styled('div')(({ theme }: any) => {
         marginTop: '2rem',
       }
     }
-  }
-})
+  };
+});

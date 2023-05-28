@@ -4,8 +4,8 @@ import { LoaderComponentStyle } from './index.style';
 
 export const LoaderComponent: React.FC = () => {
   return (
-    <LoaderComponentStyle>
+    <LoaderComponentStyle className="loader-component">
       <LoaderIcon />
     </LoaderComponentStyle>
-  )
-}
+  );
+};

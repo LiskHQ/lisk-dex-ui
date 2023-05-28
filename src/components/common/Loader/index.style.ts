@@ -1,6 +1,6 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
-export const LoaderComponentStyle = styled('div')(({ theme }: any) => {
+export const LoaderComponentStyle = styled('div')(() => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -15,5 +15,5 @@ export const LoaderComponentStyle = styled('div')(({ theme }: any) => {
         }
       }
     }
-  }
-})
+  };
+});

@@ -30,12 +30,12 @@ exports[`PoolItem component checks if the component matches the snapshot 1`] = `
   line-height: 2rem;
 }
 
-.emotion-0 .pool-item-left .pool-item-chain1 {
+.emotion-0 .pool-item-left .pool-item-token1 {
   width: 2rem;
   height: 2rem;
 }
 
-.emotion-0 .pool-item-left .pool-item-chain2 {
+.emotion-0 .pool-item-left .pool-item-token2 {
   width: 2rem;
   height: 2rem;
   margin-left: -1rem!important;

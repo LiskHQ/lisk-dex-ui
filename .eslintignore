@@ -4,5 +4,7 @@ coverage
 storybook
 app/build
 app/build-testnet
-
+jest.config.js
+jest.setup.js
+next.config.js
 

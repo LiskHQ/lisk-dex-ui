@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
-import { FormControl } from '@mui/material'
+import styled from '@emotion/styled';
+import { FormControl } from '@mui/material';
 
 export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
   return {
@@ -14,6 +14,7 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       transform: 'none',
       WebkitTransform: 'none',
       msTransform: 'none',
+      marginBottom: '0.5rem',
 
       svg: {
         cursor: 'pointer',
@@ -31,7 +32,6 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       border: `0.5px solid ${theme.border.primary}`,
       background: 'unset',
       animationDuration: '1s !important',
-      marginTop: '0.5rem',
       fontSize: '1rem',
       lineHeight: '1.625rem',
 
@@ -61,7 +61,7 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
     },
 
     '.MuiFormHelperText-root': {
-      color: theme.error.primary,
+      color: theme.error.dark,
       margin: '0.5rem 0 0 0',
     },
 
@@ -74,6 +74,13 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
       color: theme.text.paragraph,
       marginTop: '0.25rem',
       marginBottom: '0.25rem',
+    },
+
+    input: {
+      '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+        WebkitAppearance: 'none',
+        display: 'none'
+      }
     }
-  }
-})
+  };
+});
