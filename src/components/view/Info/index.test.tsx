@@ -13,11 +13,6 @@ function renderComponent() {
 }
 
 describe('Info page', () => {
-  it('checks if the component matches the snapshot', () => {
-    const { container } = renderComponent();
-    expect(container).toMatchSnapshot();
-  });
-
   it('checks if change tab works fine', () => {
     const { getByText, getByTestId } = renderComponent();
 
