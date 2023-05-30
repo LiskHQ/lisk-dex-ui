@@ -2429,12 +2429,12 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
                 data-testid="volume-test"
               >
                 $
-                751.802
+                439.791
               </h2>
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-26"
               >
-                Sun May 28 2023
+                Tue May 30 2023
               </p>
             </div>
             <div
@@ -2555,12 +2555,27 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              3:24 AM
+              3:19 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              5:5 AM
+              4:0 AM
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-caption emotion-50"
+            >
+              4:41 AM
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-caption emotion-50"
+            >
+              5:22 AM
+            </span>
+            <span
+              class="MuiTypography-root MuiTypography-caption emotion-50"
+            >
+              6:4 AM
             </span>
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
@@ -2570,22 +2585,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-844:focus::-ms-input
             <span
               class="MuiTypography-root MuiTypography-caption emotion-50"
             >
-              8:25 AM
-            </span>
-            <span
-              class="MuiTypography-root MuiTypography-caption emotion-50"
-            >
-              10:6 AM
-            </span>
-            <span
-              class="MuiTypography-root MuiTypography-caption emotion-50"
-            >
-              11:46 AM
-            </span>
-            <span
-              class="MuiTypography-root MuiTypography-caption emotion-50"
-            >
-              1:26 PM
+              7:26 AM
             </span>
           </div>
           <div
