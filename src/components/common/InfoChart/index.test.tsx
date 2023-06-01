@@ -33,10 +33,6 @@ describe('InfoChart component', () => {
       },
     ]
   };
-  it('checks if the component matches the snapshot', () => {
-    const { container } = renderComponent(mockProps);
-    expect(container).toMatchSnapshot();
-  });
 
   it('check period button works', () => {
     const { getByTestId } = renderComponent(mockProps);

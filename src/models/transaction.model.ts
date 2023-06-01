@@ -1,4 +1,10 @@
+import { TransactionType } from 'consts';
+
 export interface IExpense {
   title: string,
-  amount: number,
+  amount: string,
+}
+
+export interface ITransaction {
+  type: TransactionType,
 }

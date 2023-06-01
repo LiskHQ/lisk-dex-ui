@@ -1,35 +1,41 @@
 import Image from 'next/image';
-import { Box, IconButton, MenuItem, Typography } from '@mui/material';
+import { Box, IconButton, MenuItem, SelectChangeEvent, Typography } from '@mui/material';
 import { ButtonComponent, DropdownComponent, TransactionSettings, SwitchComponent } from 'components';
 import { CancelIcon } from 'imgs/icons';
 import { SettingsModalStyle } from './index.style';
 import { mockFiatCurrnecies } from '__mock__';
 import { useTheme } from '@mui/styles';
-import { useContext, useEffect, useState } from 'react';
-import { PlatformContext } from 'contexts';
+import { useState } from 'react';
 import { ThemeType } from 'consts';
-
+import { ISettings } from 'models';
 
 export interface ISettingsModalProps {
+  settings: ISettings,
+  onSave: (settings: ISettings) => void,
   onClose?: () => void,
 }
 
 export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
-  const { onClose } = props;
+  const { settings, onSave, onClose } = props;
   const theme: any = useTheme();
-  const platformContext = useContext(PlatformContext);
 
-  const [splipageTolerance, setSpliageTolerance] = useState<number>(0);
-  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
-  const [themeType, setThemeType] = useState<ThemeType>(ThemeType.Light);
+  const [themeType, setThemeType] = useState<ThemeType>(settings.theme);
+  const [currency, setCurrency] = useState<string>(settings.currency);
+  const [splipageTolerance, setSpliageTolerance] = useState<number>(settings.splipageTolerance);
+  const [transactionDeadline, setTransactionDeadline] = useState<number>(settings.transactionDeadline);
 
-  useEffect(() => {
-    setThemeType(platformContext.getThemeType() === ThemeType.Dark ? ThemeType.Dark : ThemeType.Light);
-  }, [platformContext]);
-
-  const onSave = () => {
-    platformContext.saveTheme(themeType);
+  const onSaveSettings = () => {
+    onSave({
+      currency,
+      theme: themeType,
+      splipageTolerance,
+      transactionDeadline,
+    });
     onClose && onClose();
+  };
+
+  const onChangeCurrency = (event: SelectChangeEvent<number>) => {
+    setCurrency(event.target.value as string);
   };
 
   return (
@@ -63,7 +69,8 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
             </Box>
             <DropdownComponent
               className="currency-dropdown"
-              defaultValue="USD"
+              value={currency}
+              onChange={onChangeCurrency}
               renderValue={(value) => {
                 const item = mockFiatCurrnecies.find(el => el.shortName === value);
                 return (
@@ -90,10 +97,10 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
             </DropdownComponent>
           </Box>
           <TransactionSettings
-            splipageTolerance={splipageTolerance}
-            transactionDeadline={transactionDeadline}
-            onChangeSplipageTolerance={(value) => { setSpliageTolerance(value); }}
-            onChangeTransactionDeadline={(value) => { setTransactionDeadline(value); }}
+            splipageTolerance={splipageTolerance as number}
+            transactionDeadline={transactionDeadline as number}
+            onChangeSplipageTolerance={(value) => setSpliageTolerance(value)}
+            onChangeTransactionDeadline={(value) => setTransactionDeadline(value)}
           />
         </Box>
 
@@ -109,7 +116,7 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
           <ButtonComponent
             data-testid="settings-modal-confirm-test"
             className="settings-modal-confirm"
-            onClick={() => { onSave(); }}
+            onClick={onSaveSettings}
           >
             <Typography variant="body1">
               Save
