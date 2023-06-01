@@ -35,6 +35,14 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
         input: {
           fontSize: '1.25rem',
           textAlign: 'right',
+        },
+
+        '&.hover': {
+          border: 'none',
+        },
+
+        '&.active': {
+          border: 'none',
         }
       }
     },
