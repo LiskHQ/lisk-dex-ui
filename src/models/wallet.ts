@@ -71,3 +71,8 @@ export interface ChainsMap {
 export interface ChainNamespaces {
   [namespace: string]: ChainsMap;
 }
+
+export interface AccountAction {
+  method: string;
+  callback: (chainId: string, address: string) => Promise<void>;
+}

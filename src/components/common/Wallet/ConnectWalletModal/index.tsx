@@ -10,13 +10,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 export interface IConnectWalletModalProps {
-  requestString: string,
+  uri: string,
   onConnect: () => void,
   onClose: () => void,
 }
 
 export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) => {
-  const { requestString, onConnect, onClose } = props;
+  const { uri, onConnect, onClose } = props;
 
   const [isConnected] = useState<boolean>(true);
   const [isConnecting] = useState<boolean>(false);
@@ -28,12 +28,12 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
       <Box className={
         cn({
           'connect-wallet-modal-container': true,
-          request: !!requestString
+          request: !!uri
         })
       }>
         <Box className="select-wallet-header">
           {
-            requestString ?
+            uri ?
               <>
                 <Box className="lisk-dex-icon">
                   <LiskIcon />
@@ -56,9 +56,9 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
 
         <Box className="select-wallet-body">
           {
-            requestString ?
+            uri ?
               <Box>
-                <QRCode className="request-qr-code" value={requestString} />
+                <QRCode className="request-qr-code" value={uri} />
                 <Typography variant="body2">or</Typography>
                 <Box className="request-copy">
                   <CopyIcon />
@@ -85,7 +85,7 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
         </Box>
 
         {
-          requestString &&
+          uri &&
           <Box
             className={
               cn({

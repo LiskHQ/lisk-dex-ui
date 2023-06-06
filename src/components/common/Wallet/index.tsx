@@ -10,6 +10,9 @@ import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { WalletModal } from './WalletModal';
+import { useChainData, useJsonRpc, useWalletConnectClient } from 'contexts';
+import { DEFAULT_LISK_METHODS } from 'consts';
+import { AccountAction } from 'models';
 
 interface IWalletComponentProps {
   walletConnection: boolean,
@@ -21,10 +24,67 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   const [openConnectWalletModal, setOpenConnectWalletModal] = useState<boolean>(false);
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false);
 
-  const [requestString, setRequestString] = useState<string>('');
+  const [uri, setUri] = useState<string>('');
+
+  // Initialize the WalletConnect client.
+  const {
+    client,
+    pairings,
+    session,
+    connect,
+    disconnect,
+    chains,
+    accounts,
+    balances,
+    isFetchingBalances,
+    isInitializing,
+    setChains,
+  } = useWalletConnectClient();
+
+  // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
+  const {
+    ping,
+    liskRpc,
+    isRpcRequestPending,
+    rpcResult,
+    isTestnet,
+    setIsTestnet,
+  } = useJsonRpc();
+
+  const { chainData } = useChainData();
 
   const onConnect = () => {
-    setRequestString('lisk-dex');
+    if (typeof client === "undefined") {
+      throw new Error("WalletConnect is not initialized");
+    }
+    connect(undefined, (uri: string) => {
+      setUri(uri);
+    });
+  };
+
+  const getLiskActions = (): AccountAction[] => {
+    const onSignTransaction = async (chainId: string, address: string) => {
+      //      openRequestModal();
+      await liskRpc.testSignTransaction(chainId, address);
+    };
+    const onSignMessage = async (chainId: string, address: string) => {
+      //      openRequestModal();
+      await liskRpc.testSignMessage(chainId, address);
+    };
+    return [
+      { method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION, callback: onSignTransaction },
+      { method: DEFAULT_LISK_METHODS.LSK_SIGN_MESSAGE, callback: onSignMessage },
+    ];
+  };
+
+  const getBlockchainActions = (chainId: string) => {
+    const [namespace] = chainId.split(":");
+    switch (namespace) {
+      case "lisk":
+        return getLiskActions();
+      default:
+        break;
+    }
   };
 
   return (
@@ -45,7 +105,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-            onClick={() => setOpenWalletModal(true)}
+              onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
               <Typography variant="h5">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
@@ -69,7 +129,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
       {
         openConnectWalletModal &&
         <ConnectWalletModal
-          requestString={requestString}
+          uri={uri}
           onClose={() => setOpenConnectWalletModal(false)}
           onConnect={onConnect}
         />

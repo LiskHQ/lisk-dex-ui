@@ -30,7 +30,7 @@ import { apiGetAccountBalance } from "apis";
 interface IContext {
   client: Client | undefined;
   session: SessionTypes.Struct | undefined;
-  connect: (pairing?: { topic: string }) => Promise<void>;
+  connect: (pairing?: { topic: string }, callback?: (uri: string) => void) => Promise<void>;
   disconnect: () => Promise<void>;
   isInitializing: boolean;
   chains: string[];
@@ -108,7 +108,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
   }, []);
 
   const connect = useCallback(
-    async pairing => {
+    async (pairing: any, callback?: any) => {
       if (typeof client === "undefined") {
         throw new Error("WalletConnect is not initialized");
       }
@@ -124,9 +124,10 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
         // Open QRCode modal if a URI was returned (i.e. we're not connecting an existing pairing).
         if (uri) {
-          QRCodeModal.open(uri, () => {
-            console.log("EVENT", "QR Code Modal closed");
-          });
+          // QRCodeModal.open(uri, () => {
+          //   console.log("EVENT", "QR Code Modal closed");
+          // });
+          callback(uri);
         }
 
         const session = await approval();
