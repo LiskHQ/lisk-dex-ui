@@ -1,6 +1,6 @@
-import Client from "@walletconnect/sign-client";
-import { PairingTypes, SessionTypes } from "@walletconnect/types";
-import QRCodeModal from "@walletconnect/qrcode-modal";
+import Client from '@walletconnect/sign-client';
+import { PairingTypes, SessionTypes } from '@walletconnect/types';
+import QRCodeModal from '@walletconnect/qrcode-modal';
 import {
   createContext,
   ReactNode,
@@ -9,20 +9,20 @@ import {
   useEffect,
   useMemo,
   useState,
-} from "react";
-import { PublicKey } from "@solana/web3.js";
+} from 'react';
+import { PublicKey } from '@solana/web3.js';
 
 import {
   DEFAULT_APP_METADATA,
   DEFAULT_LOGGER,
   DEFAULT_PROJECT_ID,
   DEFAULT_RELAY_URL,
-} from "consts";
-import { AccountBalances } from "models";
-import { getPublicKeysFromAccounts } from "utils";
-import { getAppMetadata, getSdkError } from "@walletconnect/utils";
-import { getRequiredNamespaces } from "utils";
-import { apiGetAccountBalance } from "apis";
+} from 'consts';
+import { AccountBalances } from 'models';
+import { getPublicKeysFromAccounts } from 'utils';
+import { getAppMetadata, getSdkError } from '@walletconnect/utils';
+import { getRequiredNamespaces } from 'utils';
+import { apiGetAccountBalance } from 'apis';
 
 /**
  * Types
@@ -75,7 +75,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
     try {
       const arr = await Promise.all(
         _accounts.map(async account => {
-          const [namespace, reference, address] = account.split(":");
+          const [namespace, reference, address] = account.split(':');
           const chainId = `${namespace}:${reference}`;
           const assets = await apiGetAccountBalance(address, chainId);
           return { account, assets: [assets] };
@@ -109,13 +109,13 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
   const connect = useCallback(
     async (pairing: any, callback?: any) => {
-      if (typeof client === "undefined") {
-        throw new Error("WalletConnect is not initialized");
+      if (typeof client === 'undefined') {
+        throw new Error('WalletConnect is not initialized');
       }
-      console.log("connect, pairing topic is:", pairing?.topic);
+      console.log('connect, pairing topic is:', pairing?.topic);
       try {
         const requiredNamespaces = getRequiredNamespaces(chains);
-        console.log("requiredNamespaces config for connect:", requiredNamespaces);
+        console.log('requiredNamespaces config for connect:', requiredNamespaces);
 
         const { uri, approval } = await client.connect({
           pairingTopic: pairing?.topic,
@@ -131,7 +131,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
         }
 
         const session = await approval();
-        console.log("Established session:", session);
+        console.log('Established session:', session);
         await onSessionConnected(session);
         // Update known pairings after session is connected.
         setPairings(client.pairing.getAll({ active: true }));
@@ -147,15 +147,15 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
   );
 
   const disconnect = useCallback(async () => {
-    if (typeof client === "undefined") {
-      throw new Error("WalletConnect is not initialized");
+    if (typeof client === 'undefined') {
+      throw new Error('WalletConnect is not initialized');
     }
-    if (typeof session === "undefined") {
-      throw new Error("Session is not connected");
+    if (typeof session === 'undefined') {
+      throw new Error('Session is not connected');
     }
     await client.disconnect({
       topic: session.topic,
-      reason: getSdkError("USER_DISCONNECTED"),
+      reason: getSdkError('USER_DISCONNECTED'),
     });
     // Reset app state after disconnect.
     reset();
@@ -163,28 +163,28 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
   const _subscribeToEvents = useCallback(
     async (_client: Client) => {
-      if (typeof _client === "undefined") {
-        throw new Error("WalletConnect is not initialized");
+      if (typeof _client === 'undefined') {
+        throw new Error('WalletConnect is not initialized');
       }
 
-      _client.on("session_ping", args => {
-        console.log("EVENT", "session_ping", args);
+      _client.on('session_ping', args => {
+        console.log('EVENT', 'session_ping', args);
       });
 
-      _client.on("session_event", args => {
-        console.log("EVENT", "session_event", args);
+      _client.on('session_event', args => {
+        console.log('EVENT', 'session_event', args);
       });
 
-      _client.on("session_update", ({ topic, params }) => {
-        console.log("EVENT", "session_update", { topic, params });
+      _client.on('session_update', ({ topic, params }) => {
+        console.log('EVENT', 'session_update', { topic, params });
         const { namespaces } = params;
         const _session = _client.session.get(topic);
         const updatedSession = { ..._session, namespaces };
         onSessionConnected(updatedSession);
       });
 
-      _client.on("session_delete", () => {
-        console.log("EVENT", "session_delete");
+      _client.on('session_delete', () => {
+        console.log('EVENT', 'session_delete');
         reset();
       });
     },
@@ -193,19 +193,19 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
   const _checkPersistedState = useCallback(
     async (_client: Client) => {
-      if (typeof _client === "undefined") {
-        throw new Error("WalletConnect is not initialized");
+      if (typeof _client === 'undefined') {
+        throw new Error('WalletConnect is not initialized');
       }
       // populates existing pairings to state
       setPairings(_client.pairing.getAll({ active: true }));
-      console.log("RESTORED PAIRINGS: ", _client.pairing.getAll({ active: true }));
+      console.log('RESTORED PAIRINGS: ', _client.pairing.getAll({ active: true }));
 
-      if (typeof session !== "undefined") return;
+      if (typeof session !== 'undefined') return;
       // populates (the last) existing session to state
       if (_client.session.length) {
         const lastKeyIndex = _client.session.keys.length - 1;
         const _session = _client.session.get(_client.session.keys[lastKeyIndex]);
-        console.log("RESTORED SESSION:", _session);
+        console.log('RESTORED SESSION:', _session);
         await onSessionConnected(_session);
         return _session;
       }
@@ -224,12 +224,10 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
         metadata: getAppMetadata() || DEFAULT_APP_METADATA,
       });
 
-      console.log("CREATED CLIENT: ", _client);
+      console.log('CREATED CLIENT: ', _client);
       setClient(_client);
       await _subscribeToEvents(_client);
       await _checkPersistedState(_client);
-    } catch (err) {
-      throw err;
     } finally {
       setIsInitializing(false);
     }
@@ -286,7 +284,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 export function useWalletConnectClient() {
   const context = useContext(ClientContext);
   if (context === undefined) {
-    throw new Error("useWalletConnectClient must be used within a ClientContextProvider");
+    throw new Error('useWalletConnectClient must be used within a ClientContextProvider');
   }
   return context;
 }

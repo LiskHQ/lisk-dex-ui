@@ -1,9 +1,9 @@
-import { apiGetChainNamespace, ChainsMap } from "caip-api";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { LiskChainData } from "../chains/lisk";
+import { apiGetChainNamespace, ChainsMap } from 'caip-api';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { LiskChainData } from '../chains/lisk';
 
-import { ChainNamespaces } from "models";
-import { getAllChainNamespaces } from "utils";
+import { ChainNamespaces } from 'models';
+import { getAllChainNamespaces } from 'utils';
 
 /**
  * Types
@@ -30,7 +30,7 @@ export function ChainDataContextProvider({ children }: { children: ReactNode | R
       namespaces.map(async namespace => {
         let chains: ChainsMap | undefined;
         try {
-          if (namespace === "lisk") {
+          if (namespace === 'lisk') {
             chains = LiskChainData;
           } else {
             chains = await apiGetChainNamespace(namespace);
@@ -38,7 +38,7 @@ export function ChainDataContextProvider({ children }: { children: ReactNode | R
         } catch (e) {
           // ignore error
         }
-        if (typeof chains !== "undefined") {
+        if (typeof chains !== 'undefined') {
           chainData[namespace] = chains;
         }
       }),
@@ -65,7 +65,7 @@ export function ChainDataContextProvider({ children }: { children: ReactNode | R
 export function useChainData() {
   const context = useContext(ChainDataContext);
   if (context === undefined) {
-    throw new Error("useChainData must be used within a ChainDataContextProvider");
+    throw new Error('useChainData must be used within a ChainDataContextProvider');
   }
   return context;
 }

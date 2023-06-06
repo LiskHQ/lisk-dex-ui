@@ -67,9 +67,7 @@ export const Header: React.FC<IHeaderProps> = (props) => {
         </Box>
 
         <Box className="header-actions">
-          <WalletComponent
-            walletConnection={walletConnection}
-          />
+          <WalletComponent />
 
           {
             walletConnection &&

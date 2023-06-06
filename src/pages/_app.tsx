@@ -4,7 +4,7 @@ import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import '../styles/globals.css';
-import { createEmotionCache } from '../utils';
+import { createEmotionCache } from 'utils';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { ChainDataContextProvider, ClientContextProvider, JsonRpcContextProvider, PlatformContextProvider } from 'contexts';

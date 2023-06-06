@@ -8,15 +8,39 @@ import { useState } from 'react';
 import { CheckCircleIcon } from 'imgs/icons/CheckCircleIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { ChainData, ChainMetadata, ChainNamespaces } from 'models';
+import { getChainMetadata } from 'chains';
 
 export interface IConnectWalletModalProps {
+  chainData: ChainNamespaces,
   uri: string,
-  onConnect: () => void,
+  chainOptions: string[],
+  onConnect: (chainId: string) => void,
   onClose: () => void,
+}
+interface BlockchainDisplayData {
+  data: ChainData;
+  meta: ChainMetadata;
+}
+
+function getBlockchainDisplayData(
+  chainId: string,
+  chainData: ChainNamespaces,
+): BlockchainDisplayData | undefined {
+  const [namespace, reference] = chainId.split(':');
+  let meta: ChainMetadata;
+  try {
+    meta = getChainMetadata(chainId);
+  } catch (e) {
+    return undefined;
+  }
+  const data: ChainData = chainData[namespace][reference];
+  if (typeof data === 'undefined') return undefined;
+  return { data, meta };
 }
 
 export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) => {
-  const { uri, onConnect, onClose } = props;
+  const { chainData, uri, chainOptions, onConnect, onClose } = props;
 
   const [isConnected] = useState<boolean>(true);
   const [isConnecting] = useState<boolean>(false);
@@ -66,20 +90,29 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
                 </Box>
               </Box> :
               <>
-                <Box className="network-item">
-                  <Box className="lisk-dex">
-                    <Box className="lisk-dex-icon">
-                      <LiskIcon />
-                    </Box>
-                    <Typography variant="h4">Lisk DEX</Typography>
-                  </Box>
+                {
+                  chainOptions.map(chainId => {
+                    const chain = getBlockchainDisplayData(chainId, chainData);
+                    return (
+                      <>
+                        <Box className="network-item">
+                          <Box className="lisk-dex">
+                            <Box className="lisk-dex-icon">
+                              <LiskIcon />
+                            </Box>
+                            <Typography variant="h4">{chain?.meta.name}</Typography>
+                          </Box>
 
-                  <Typography variant="body2" onClick={onConnect}>Connet</Typography>
-                </Box>
+                          <Typography variant="body2" onClick={() => onConnect(chainId)}>Connet</Typography>
+                        </Box>
 
-                <Box className="close-button">
-                  <Typography variant="body1" onClick={onClose}>Close</Typography>
-                </Box>
+                        <Box className="close-button">
+                          <Typography variant="body1" onClick={onClose}>Close</Typography>
+                        </Box>
+                      </>
+                    );
+                  })
+                }
               </>
           }
         </Box>

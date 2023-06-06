@@ -7,8 +7,9 @@ import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisV
 import { mockTokens } from '__mock__';
 import { useState } from 'react';
 import { HistoryComponent } from './History';
-import { IToken } from 'models';
+import { AccountAction, AccountBalances, ChainNamespaces, IToken } from 'models';
 import { TokenComponent } from './Token';
+import { ellipsisAddress } from 'utils';
 
 enum TABS {
   WALLET = 0,
@@ -16,11 +17,16 @@ enum TABS {
 }
 
 export interface IWalletModalProps {
+  chainId: string,
+  balances?: AccountBalances,
+  address?: string,
+  actions?: AccountAction[],
+  chainData: ChainNamespaces,
   onClose: () => void,
 }
 
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
-  const { onClose } = props;
+  const { address, onClose } = props;
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
@@ -45,7 +51,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                       <IconButton className="wallet-menu-button">
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                       </IconButton>
-                      <Typography variant="body2">0x93...e57f</Typography>
+                      <Typography variant="body2">{ellipsisAddress(address || '')}</Typography>
                       <IconButton className="wallet-exit-button" onClick={onClose}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                       </IconButton>

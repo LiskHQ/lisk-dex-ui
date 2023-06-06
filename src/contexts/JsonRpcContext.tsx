@@ -1,14 +1,21 @@
-import { utils } from "ethers";
-import { codec, cryptography } from '@liskhq/lisk-client';
-import { createContext, ReactNode, useContext, useState } from "react";
-import bs58 from "bs58";
+import dynamic from 'next/dynamic';
+import { createContext, ReactNode, useContext, useState } from 'react';
+import bs58 from 'bs58';
 
-import { getLocalStorageTestnetFlag } from "utils";
-import { useWalletConnectClient } from "./ClientContext";
+import { getLocalStorageTestnetFlag } from 'utils';
+import { useWalletConnectClient } from './ClientContext';
 import {
   DEFAULT_LISK_METHODS,
-} from "consts";
-import { useChainData } from "./ChainDataContext";
+} from 'consts';
+// import { useChainData } from './ChainDataContext';
+
+const codec: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.codec), {
+  ssr: false,
+});
+
+const cryptography: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.cryptography), {
+  ssr: false,
+});
 
 const baseTransactionSchema = {
   $id: '/lisk/baseTransaction',
@@ -122,18 +129,18 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   const [result, setResult] = useState<IFormattedRpcResponse | null>();
   const [isTestnet, setIsTestnet] = useState(getLocalStorageTestnetFlag());
 
-  const { client, session, accounts, balances, liskPublicKeys } = useWalletConnectClient();
+  const { client, session, accounts, liskPublicKeys } = useWalletConnectClient();
 
-  const { chainData } = useChainData();
+  // const { chainData } = useChainData();
 
   const _createJsonRpcRequestHandler =
     (rpcRequest: (chainId: string, address: string) => Promise<IFormattedRpcResponse>) =>
       async (chainId: string, address: string) => {
-        if (typeof client === "undefined") {
-          throw new Error("WalletConnect is not initialized");
+        if (typeof client === 'undefined') {
+          throw new Error('WalletConnect is not initialized');
         }
-        if (typeof session === "undefined") {
-          throw new Error("Session is not connected");
+        if (typeof session === 'undefined') {
+          throw new Error('Session is not connected');
         }
 
         try {
@@ -141,7 +148,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
           const result = await rpcRequest(chainId, address);
           setResult(result);
         } catch (err: any) {
-          console.error("RPC request failed: ", err);
+          console.error('RPC request failed: ', err);
           setResult({
             address,
             valid: false,
@@ -152,15 +159,15 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         }
       };
 
-  const _verifyEip155MessageSignature = (message: string, signature: string, address: string) =>
-    utils.verifyMessage(message, signature).toLowerCase() === address.toLowerCase();
+  // const _verifyEip155MessageSignature = (message: string, signature: string, address: string) =>
+  //   utils.verifyMessage(message, signature).toLowerCase() === address.toLowerCase();
 
   const ping = async () => {
-    if (typeof client === "undefined") {
-      throw new Error("WalletConnect is not initialized");
+    if (typeof client === 'undefined') {
+      throw new Error('WalletConnect is not initialized');
     }
-    if (typeof session === "undefined") {
-      throw new Error("Session is not connected");
+    if (typeof session === 'undefined') {
+      throw new Error('Session is not connected');
     }
 
     try {
@@ -177,9 +184,9 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
 
       // display result
       setResult({
-        method: "ping",
+        method: 'ping',
         valid,
-        result: valid ? "Ping succeeded" : "Ping failed",
+        result: valid ? 'Ping succeeded' : 'Ping failed',
       });
     } catch (e) {
       console.error(e);
@@ -196,40 +203,40 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
       async (chainId: string, address: string): Promise<IFormattedRpcResponse> => {
         console.log('testSignTransaction accounts', accounts);
         if (!liskPublicKeys) {
-          throw new Error("Could not find Lisk PublicKeys.");
+          throw new Error('Could not find Lisk PublicKeys.');
         }
 
         const schema = {
-          "$id": "/lisk/transferParams",
-          "title": "Transfer transaction params",
-          "type": "object",
-          "required": [
-            "tokenID",
-            "amount",
-            "recipientAddress",
-            "data"
+          '$id': '/lisk/transferParams',
+          'title': 'Transfer transaction params',
+          'type': 'object',
+          'required': [
+            'tokenID',
+            'amount',
+            'recipientAddress',
+            'data'
           ],
-          "properties": {
-            "tokenID": {
-              "dataType": "bytes",
-              "fieldNumber": 1,
-              "minLength": 8,
-              "maxLength": 8
+          'properties': {
+            'tokenID': {
+              'dataType': 'bytes',
+              'fieldNumber': 1,
+              'minLength': 8,
+              'maxLength': 8
             },
-            "amount": {
-              "dataType": "uint64",
-              "fieldNumber": 2
+            'amount': {
+              'dataType': 'uint64',
+              'fieldNumber': 2
             },
-            "recipientAddress": {
-              "dataType": "bytes",
-              "fieldNumber": 3,
-              "format": "lisk32"
+            'recipientAddress': {
+              'dataType': 'bytes',
+              'fieldNumber': 3,
+              'format': 'lisk32'
             },
-            "data": {
-              "dataType": "string",
-              "fieldNumber": 4,
-              "minLength": 0,
-              "maxLength": 64
+            'data': {
+              'dataType': 'string',
+              'fieldNumber': 4,
+              'minLength': 0,
+              'maxLength': 64
             }
           }
         };
@@ -238,7 +245,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         // const senderPublicKey = liskPublicKeys.find(item => item.includes(address));
         // Also, we should serialize and send the tx bytes instead of a raw tx object
 
-        const recipientAddress = cryptography.address.getAddressFromLisk32Address('lsk3ay4z7wqjczbo5ogcqxgxx23xyacxmycwxfh4d')
+        const recipientAddress = cryptography.address.getAddressFromLisk32Address('lsk3ay4z7wqjczbo5ogcqxgxx23xyacxmycwxfh4d');
         console.log('recipientAddress', recipientAddress, recipientAddress.toString('hex'));
         const rawTx = {
           module: 'token',
@@ -261,8 +268,10 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         const payload = binary.toString('hex');
 
         try {
+          //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const result = await client!.request<string>({
             chainId,
+            //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             topic: session!.topic,
             request: {
               method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION,
@@ -297,8 +306,10 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         );
 
         try {
+          //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const result = await client!.request<{ signature: string }>({
             chainId,
+            //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             topic: session!.topic,
             request: {
               method: DEFAULT_LISK_METHODS.LSK_SIGN_MESSAGE,
@@ -348,7 +359,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
 export function useJsonRpc() {
   const context = useContext(JsonRpcContext);
   if (context === undefined) {
-    throw new Error("useJsonRpc must be used within a JsonRpcContextProvider");
+    throw new Error('useJsonRpc must be used within a JsonRpcContextProvider');
   }
   return context;
 }

@@ -4,58 +4,60 @@ import { LiskIcon } from 'imgs/icons';
 import { ellipsisAddress } from 'utils';
 import { WalletComponentStyle } from './index.style';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ConnectWalletModal } from './ConnectWalletModal';
 import cn from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { WalletModal } from './WalletModal';
 import { useChainData, useJsonRpc, useWalletConnectClient } from 'contexts';
-import { DEFAULT_LISK_METHODS } from 'consts';
+import { DEFAULT_LISK_METHODS, DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
 import { AccountAction } from 'models';
 
-interface IWalletComponentProps {
-  walletConnection: boolean,
-}
-
-export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
-  const { walletConnection } = props;
-
+export const WalletComponent: React.FC = () => {
   const [openConnectWalletModal, setOpenConnectWalletModal] = useState<boolean>(false);
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false);
 
   const [uri, setUri] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [chainId, setChainId] = useState<string>('');
 
   // Initialize the WalletConnect client.
   const {
     client,
-    pairings,
-    session,
+    // pairings,
+    // session,
     connect,
-    disconnect,
+    // disconnect,
     chains,
     accounts,
     balances,
-    isFetchingBalances,
-    isInitializing,
+    // isFetchingBalances,
+    // isInitializing,
     setChains,
   } = useWalletConnectClient();
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
-    ping,
+    // ping,
     liskRpc,
-    isRpcRequestPending,
-    rpcResult,
+    // isRpcRequestPending,
+    // rpcResult,
     isTestnet,
-    setIsTestnet,
+    // setIsTestnet,
   } = useJsonRpc();
 
   const { chainData } = useChainData();
 
-  const onConnect = () => {
-    if (typeof client === "undefined") {
-      throw new Error("WalletConnect is not initialized");
+  const onConnect = (chainId: string) => {
+    if (chains.includes(chainId)) {
+      setChains(chains.filter(chain => chain !== chainId));
+    } else {
+      setChains([...chains, chainId]);
+    }
+
+    if (typeof client === 'undefined') {
+      throw new Error('WalletConnect is not initialized');
     }
     connect(undefined, (uri: string) => {
       setUri(uri);
@@ -78,19 +80,28 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   };
 
   const getBlockchainActions = (chainId: string) => {
-    const [namespace] = chainId.split(":");
+    const [namespace] = chainId.split(':');
     switch (namespace) {
-      case "lisk":
-        return getLiskActions();
-      default:
-        break;
+    case 'lisk':
+      return getLiskActions();
+    default:
+      break;
     }
   };
+
+  useEffect(() => {
+    if (accounts.length) {
+      const [namespace, reference, address] = accounts[0].split(':');
+      const chainId = `${namespace}:${reference}`;
+      setAddress(address);
+      setChainId(chainId);
+    }
+  }, [accounts]);
 
   return (
     <WalletComponentStyle>
       {
-        walletConnection ?
+        accounts.length ?
           <>
             <DropdownComponent
               className="header-menu-chain"
@@ -105,10 +116,10 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-              onClick={() => setOpenWalletModal(true)}
+            onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-              <Typography variant="h5">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
+              <Typography variant="h5">{ellipsisAddress(address)}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
           </> :
@@ -129,6 +140,8 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
       {
         openConnectWalletModal &&
         <ConnectWalletModal
+          chainData={chainData}
+          chainOptions={isTestnet ? DEFAULT_TEST_CHAINS : DEFAULT_MAIN_CHAINS}
           uri={uri}
           onClose={() => setOpenConnectWalletModal(false)}
           onConnect={onConnect}
@@ -138,6 +151,11 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
         openWalletModal &&
         <WalletModal
           onClose={() => setOpenWalletModal(false)}
+          chainData={chainData}
+          chainId={chainId}
+          address={address}
+          balances={balances}
+          actions={getBlockchainActions(chainId)}
         />
       }
     </WalletComponentStyle>
