@@ -13,7 +13,6 @@ function renderComponent() {
 }
 
 describe('Info page', () => {
-
   it('checks if change tab works fine', () => {
     const { getByText, getByTestId } = renderComponent();
 
