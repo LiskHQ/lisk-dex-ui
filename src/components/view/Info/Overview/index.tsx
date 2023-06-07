@@ -56,7 +56,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
-      <PoolsTable />
+      <PoolsTable onSelectPool={onSelectPool} />
 
       <Box className="table-title">
         <Typography variant="subtitle1">Transactions</Typography>
