@@ -16,7 +16,13 @@ import { AccountAction } from 'models';
 import { useDispatch } from 'react-redux';
 import { AppActions } from 'store';
 
-export const WalletComponent: React.FC = () => {
+export interface IWalletComponentProps {
+  onConnected: (connected: boolean) => void,
+}
+
+export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
+  const { onConnected } = props;
+
   const dispatch = useDispatch();
   const [openConnectWalletModal, setOpenConnectWalletModal] = useState<boolean>(false);
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false);
@@ -82,7 +88,7 @@ export const WalletComponent: React.FC = () => {
     setChains([chainId]);
     setConnectClicked(true);
   };
-  
+
   useEffect(() => {
     if (chains.length && connectClicked) {
       setConnectClicked(false);
@@ -99,27 +105,36 @@ export const WalletComponent: React.FC = () => {
     setOpenConnectWalletModal(false);
     setUri('');
   };
-  
+
   const onDisconnect = () => {
-    disconnect();
-    setOpenWalletModal(false);
+    disconnect()
+      .then(() => {
+        setOpenWalletModal(false);
+      });
   };
 
   useEffect(() => {
-    if (accounts.length) {
+    if (accounts.length > 0) {
       const [namespace, reference, address] = accounts[0].split(':');
       const chainId = `${namespace}:${reference}`;
       setAddress(address);
       setChainId(chainId);
-      
+
       dispatch(AppActions.wallet.setAddress(address));
+
+      onConnected(true);
+    } else {
+      setUri('');
+      setAddress('');
+      setChainId('');
+      onConnected(false);
     }
-  }, [accounts, dispatch]);
+  }, [accounts, dispatch, onConnected]);
 
   return (
     <WalletComponentStyle>
       {
-        accounts.length ?
+        accounts.length > 0 ?
           <>
             <DropdownComponent
               className="header-menu-chain"

@@ -16,18 +16,17 @@ import { SettingsModal, WalletComponent } from 'components';
 import { compareUrl } from 'utils';
 
 export interface IHeaderProps {
-  platform: IPlatformContext
+  platform: IPlatformContext,
 }
 
 export const Header: React.FC<IHeaderProps> = (props) => {
   const router = useRouter();
   const { platform } = props;
 
-  const { walletConnection } = platform;
-
   const { pathname } = router || { pathname: '' };
   const [openSettingsModal, setOpenSettingsModal] = useState<boolean>(false);
   const [settings, setSettings] = useState<ISettings>();
+  const [connected, setConnected] = useState<boolean>(false);
 
   useEffect(() => {
     setSettings({
@@ -67,10 +66,10 @@ export const Header: React.FC<IHeaderProps> = (props) => {
         </Box>
 
         <Box className="header-actions">
-          <WalletComponent />
+          <WalletComponent onConnected={(_connected) => setConnected(_connected)} />
 
           {
-            walletConnection &&
+            connected &&
             <IconButton className="header-menu-list-button" onClick={() => { setOpenSettingsModal(true); }}>
               <FontAwesomeIcon icon={faEllipsis} />
             </IconButton>
