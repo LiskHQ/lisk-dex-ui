@@ -23,10 +23,11 @@ export interface IWalletModalProps {
   actions?: AccountAction[],
   chainData: ChainNamespaces,
   onClose: () => void,
+  onDisconnect: () => void,
 }
 
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
-  const { address, onClose } = props;
+  const { address, onClose, onDisconnect } = props;
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
@@ -52,7 +53,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                       </IconButton>
                       <Typography variant="body2">{ellipsisAddress(address || '')}</Typography>
-                      <IconButton className="wallet-exit-button" onClick={onClose}>
+                      <IconButton className="wallet-exit-button" onClick={onDisconnect}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                       </IconButton>
                     </Box>

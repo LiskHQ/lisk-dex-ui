@@ -1,5 +1,5 @@
 export const LOCALSTORAGE_KEY_TESTNET = 'TESTNET';
-export const INITIAL_STATE_TESTNET_DEFAULT = true;
+export const INITIAL_STATE_TESTNET_DEFAULT = process.env.NEXT_PUBLIC_TEST_NET === 'testnet';
 
 export const ellipsisAddress = (address: string) => {
   return `${address.slice(0, 6)}...${address.slice(address.length - 4, address.length)}`;

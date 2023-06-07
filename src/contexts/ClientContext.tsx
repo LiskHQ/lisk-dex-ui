@@ -11,14 +11,8 @@ import {
   useState,
 } from 'react';
 import { PublicKey } from '@solana/web3.js';
-
-import {
-  DEFAULT_APP_METADATA,
-  DEFAULT_LOGGER,
-  DEFAULT_PROJECT_ID,
-  DEFAULT_RELAY_URL,
-} from 'consts';
 import { AccountBalances } from 'models';
+import { DEFAULT_APP_METADATA, DEFAULT_LOGGER, DEFAULT_PROJECT_ID, DEFAULT_RELAY_URL } from 'consts';
 import { getPublicKeysFromAccounts } from 'utils';
 import { getAppMetadata, getSdkError } from '@walletconnect/utils';
 import { getRequiredNamespaces } from 'utils';
@@ -26,7 +20,7 @@ import { apiGetAccountBalance } from 'apis';
 
 /**
  * Types
- */
+**/
 interface IContext {
   client: Client | undefined;
   session: SessionTypes.Struct | undefined;

@@ -4,7 +4,7 @@ import { CancelIcon, CopyIcon, LiskIcon } from 'imgs/icons';
 import { ConnectWalletModalStyle } from './index.style';
 import QRCode from 'react-qr-code';
 import { LoaderComponent } from 'components/common/Loader';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CheckCircleIcon } from 'imgs/icons/CheckCircleIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
@@ -15,6 +15,7 @@ export interface IConnectWalletModalProps {
   chainData: ChainNamespaces,
   uri: string,
   chainOptions: string[],
+  address: string,
   onConnect: (chainId: string) => void,
   onClose: () => void,
 }
@@ -40,11 +41,40 @@ function getBlockchainDisplayData(
 }
 
 export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) => {
-  const { chainData, uri, chainOptions, onConnect, onClose } = props;
+  const { chainData, uri, chainOptions, address, onConnect, onClose } = props;
 
-  const [isConnected] = useState<boolean>(true);
-  const [isConnecting] = useState<boolean>(false);
+  const [connected, setConnected] = useState<boolean>(false);
+  const [connecting, setConnecting] = useState<boolean>(true);
   const [error] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const onClickCopy = () => {
+    if (uri) {
+      navigator.clipboard.writeText(uri);
+      setCopied(true);
+    }
+  };
+
+  useEffect(() => {
+    if (copied) {
+      setTimeout(() => {
+        setCopied(false);
+      }, 3000);
+    }
+  }, [copied]);
+
+  useEffect(() => {
+    setConnected(!!address);
+    setConnecting(!address);
+  }, [address]);
+
+  useEffect(() => {
+    if (connected) {
+      setTimeout(() => {
+        onClose();
+      }, 3000);
+    }
+  }, [connected, onClose]);
 
   return (
     <ConnectWalletModalStyle>
@@ -84,35 +114,43 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
               <Box>
                 <QRCode className="request-qr-code" value={uri} />
                 <Typography variant="body2">or</Typography>
-                <Box className="request-copy">
-                  <CopyIcon />
-                  <Typography variant="body2">Copy request</Typography>
-                </Box>
+                {
+                  copied ?
+                    <Typography className="request-copied" variant="body2">Copied request</Typography> :
+                    <Box
+                      className="request-copy"
+                      onClick={onClickCopy}
+                    >
+                      <CopyIcon />
+                      <Typography variant="body2">Copy request</Typography>
+                    </Box>
+                }
               </Box> :
               <>
                 {
                   chainOptions.map(chainId => {
                     const chain = getBlockchainDisplayData(chainId, chainData);
                     return (
-                      <>
-                        <Box className="network-item">
-                          <Box className="lisk-dex">
-                            <Box className="lisk-dex-icon">
-                              <LiskIcon />
-                            </Box>
-                            <Typography variant="h4">{chain?.meta.name}</Typography>
+                      <Box
+                        key={chainId}
+                        className="network-item"
+                        onClick={() => onConnect(chainId)}
+                      >
+                        <Box className="lisk-dex">
+                          <Box className="lisk-dex-icon">
+                            <LiskIcon />
                           </Box>
-
-                          <Typography variant="body2" onClick={() => onConnect(chainId)}>Connet</Typography>
+                          <Typography variant="h4">{chain?.meta.name || chain?.data.name}</Typography>
                         </Box>
 
-                        <Box className="close-button">
-                          <Typography variant="body1" onClick={onClose}>Close</Typography>
-                        </Box>
-                      </>
+                        <Typography variant="body2">Connet</Typography>
+                      </Box>
                     );
                   })
                 }
+                <Box className="close-button">
+                  <Typography variant="body1" onClick={onClose}>Close</Typography>
+                </Box>
               </>
           }
         </Box>
@@ -123,21 +161,21 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
             className={
               cn({
                 'select-wallet-footer': true,
-                'connecting': isConnecting,
-                'connected': isConnected,
+                'connecting': connecting,
+                'connected': connected,
                 'error': error,
               })
             }
           >
             {
-              isConnecting &&
+              connecting &&
               <>
                 <LoaderComponent />
                 <Typography variant="body2">Awaiting for connection...</Typography>
               </>
             }
             {
-              isConnected &&
+              connected &&
               <>
                 <CheckCircleIcon />
                 <Typography variant="body2">Connected</Typography>

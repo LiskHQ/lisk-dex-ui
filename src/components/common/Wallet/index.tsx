@@ -13,10 +13,14 @@ import { WalletModal } from './WalletModal';
 import { useChainData, useJsonRpc, useWalletConnectClient } from 'contexts';
 import { DEFAULT_LISK_METHODS, DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
 import { AccountAction } from 'models';
+import { useDispatch } from 'react-redux';
+import { AppActions } from 'store';
 
 export const WalletComponent: React.FC = () => {
+  const dispatch = useDispatch();
   const [openConnectWalletModal, setOpenConnectWalletModal] = useState<boolean>(false);
   const [openWalletModal, setOpenWalletModal] = useState<boolean>(false);
+  const [connectClicked, setConnectClicked] = useState<boolean>(false);
 
   const [uri, setUri] = useState<string>('');
   const [address, setAddress] = useState<string>('');
@@ -28,7 +32,7 @@ export const WalletComponent: React.FC = () => {
     // pairings,
     // session,
     connect,
-    // disconnect,
+    disconnect,
     chains,
     accounts,
     balances,
@@ -48,21 +52,6 @@ export const WalletComponent: React.FC = () => {
   } = useJsonRpc();
 
   const { chainData } = useChainData();
-
-  const onConnect = (chainId: string) => {
-    if (chains.includes(chainId)) {
-      setChains(chains.filter(chain => chain !== chainId));
-    } else {
-      setChains([...chains, chainId]);
-    }
-
-    if (typeof client === 'undefined') {
-      throw new Error('WalletConnect is not initialized');
-    }
-    connect(undefined, (uri: string) => {
-      setUri(uri);
-    });
-  };
 
   const getLiskActions = (): AccountAction[] => {
     const onSignTransaction = async (chainId: string, address: string) => {
@@ -89,14 +78,43 @@ export const WalletComponent: React.FC = () => {
     }
   };
 
+  const onConnect = (chainId: string) => {
+    setChains([chainId]);
+    setConnectClicked(true);
+  };
+  
+  useEffect(() => {
+    if (chains.length && connectClicked) {
+      setConnectClicked(false);
+      if (typeof client === 'undefined') {
+        throw new Error('WalletConnect is not initialized');
+      }
+      connect(undefined, (uri: string) => {
+        setUri(uri);
+      });
+    }
+  }, [chains, connectClicked, client, connect]);
+
+  const onCloseConnectWalletModal = () => {
+    setOpenConnectWalletModal(false);
+    setUri('');
+  };
+  
+  const onDisconnect = () => {
+    disconnect();
+    setOpenWalletModal(false);
+  };
+
   useEffect(() => {
     if (accounts.length) {
       const [namespace, reference, address] = accounts[0].split(':');
       const chainId = `${namespace}:${reference}`;
       setAddress(address);
       setChainId(chainId);
+      
+      dispatch(AppActions.wallet.setAddress(address));
     }
-  }, [accounts]);
+  }, [accounts, dispatch]);
 
   return (
     <WalletComponentStyle>
@@ -143,13 +161,15 @@ export const WalletComponent: React.FC = () => {
           chainData={chainData}
           chainOptions={isTestnet ? DEFAULT_TEST_CHAINS : DEFAULT_MAIN_CHAINS}
           uri={uri}
-          onClose={() => setOpenConnectWalletModal(false)}
+          onClose={onCloseConnectWalletModal}
+          address={address}
           onConnect={onConnect}
         />
       }
       {
         openWalletModal &&
         <WalletModal
+          onDisconnect={onDisconnect}
           onClose={() => setOpenWalletModal(false)}
           chainData={chainData}
           chainId={chainId}

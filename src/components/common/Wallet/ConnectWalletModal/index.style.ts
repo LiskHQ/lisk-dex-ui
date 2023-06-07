@@ -68,6 +68,7 @@ export const ConnectWalletModalStyle = styled('div')(({ theme }: any) => {
           },
 
           '&:hover': {
+            cursor: 'pointer',
             borderLeft: `0.25rem solid ${theme.lightcurve[0]}`,
 
             p: {
@@ -194,11 +195,20 @@ export const ConnectWalletModalStyle = styled('div')(({ theme }: any) => {
             textAlign: 'center',
           },
 
+          '.request-copied': {
+            marginTop: '1rem',
+            color: theme.success.dark,
+          },
+
           '.request-copy': {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             marginTop: '1rem',
+
+            '&:hover': {
+              cursor: 'pointer',
+            },
 
             svg: {
               marginRight: '0.25rem',
