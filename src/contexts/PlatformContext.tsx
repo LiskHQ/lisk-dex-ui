@@ -55,7 +55,7 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
     sessionStorage.setItem('currency', _currency);
   };
   const getWalletConnection = () => {
-    return !!sessionStorage.getItem('wallet-token') ?? false;
+    return !!sessionStorage.getItem('wallet-token');
   };
 
   const saveWalletConnectToken = (token: string) => {
