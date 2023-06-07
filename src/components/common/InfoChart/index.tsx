@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import cn from 'classnames';
-import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { ButtonComponent, Chart } from 'components';
 import { InfoChartStyle } from './index.style';
 import { DecreaseIcon, IncreaseIcon, PositionIcon } from 'imgs/icons';
@@ -189,25 +189,27 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
                 ))
               }
             </Box>
-            <Box className="info-chart-summary">
+            <Grid className="info-chart-summary" container spacing={2}>
               {
                 summary.map(el => (
-                  <Box key={el.title} className="summary-item">
-                    <Box className="summary-title">
-                      <Typography variant="body1">{el.title}</Typography>
-                    </Box>
-                    <Typography variant="body2">{el.amount}</Typography>
-                    {
-                      el.percent &&
-                      <Box className={cn({ 'summary-percent': true, 'increase': el.percent >= 0 })} >
-                        <Typography variant="body2">{el.percent}%</Typography>
-                        {el.percent >= 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+                  <Grid item key={el.title}>
+                    <Box className="summary-item">
+                      <Box className="summary-title">
+                        <Typography variant="body1">{el.title}</Typography>
                       </Box>
-                    }
-                  </Box>
+                      <Typography variant="body2">{el.amount}</Typography>
+                      {
+                        el.percent &&
+                        <Box className={cn({ 'summary-percent': true, 'increase': el.percent >= 0 })} >
+                          <Typography variant="body2">{el.percent}%</Typography>
+                          {el.percent >= 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+                        </Box>
+                      }
+                    </Box>
+                  </Grid>
                 ))
               }
-            </Box>
+            </Grid>
           </>
           :
           <Box className="empty-chart-box">

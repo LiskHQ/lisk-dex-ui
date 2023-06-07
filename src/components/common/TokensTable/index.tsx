@@ -28,7 +28,12 @@ const sortKeys = [
   },
 ];
 
-export const TokensTable: React.FC = () => {
+export interface ITokensTable {
+  onSelectToken?: (id: string) => void,
+}
+
+export const TokensTable: React.FC<ITokensTable> = (props) => {
+  const { onSelectToken } = props;
   const [isAsc, setAsc] = useState<boolean>();
   const [sortKey, setSortKey] = useState<string>('');
 
@@ -79,6 +84,7 @@ export const TokensTable: React.FC = () => {
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                onClick={() => { onSelectToken && onSelectToken(index.toString()); }}
               >
                 <TableCell scope="row">
                   <Box className="name-td">

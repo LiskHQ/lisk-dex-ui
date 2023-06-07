@@ -5,12 +5,26 @@ import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } 
 import { OverviewComponentStyle } from './index.style';
 import { useMemo } from 'react';
 import { createMockChartInfo } from '__mock__';
+import { NextRouter } from 'next/dist/client/router';
 
-export const OverviewComponent: React.FC = () => {
+export interface IOverviewComponentProps {
+  router: NextRouter,
+}
+
+export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
+  const { router } = props;
 
   const chartData = useMemo(() => {
     return createMockChartInfo();
   }, []);
+
+  const onSelectPool = (id: string) => {
+    router.push(`?poolId=${id}`);
+  };
+
+  const onSelectToken = (id: string) => {
+    router.push(`?tokenId=${id}`);
+  };
 
   return (
     <OverviewComponentStyle>
@@ -24,7 +38,7 @@ export const OverviewComponent: React.FC = () => {
       <Box className="table-title">
         <Typography variant="subtitle1">Featured Pools</Typography>
       </Box>
-      <FeaturedPools />
+      <FeaturedPools onSelectPool={onSelectPool} />
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Tokens</Typography>
@@ -33,7 +47,7 @@ export const OverviewComponent: React.FC = () => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
-      <TokensTable />
+      <TokensTable onSelectToken={onSelectToken} />
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>

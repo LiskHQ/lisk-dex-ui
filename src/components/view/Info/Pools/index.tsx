@@ -1,92 +1,125 @@
-import { Box, Typography } from '@mui/material';
-// import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
-// import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-import { InfoChart, PoolsTable } from 'components';
+import Image from 'next/image';
+import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
+import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { ButtonComponent, InfoChart, PoolsTable } from 'components';
+import { NextRouter } from 'next/router';
 import { PoolsComponentStyle } from './index.style';
+import { useEffect, useMemo, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { createMockChartInfo, mockPoolDetails } from '__mock__';
+import Link from 'next/link';
+import { PATHS } from 'consts';
 
-// const chartData = [
-//   { x: 1.1, y: 50 },
-//   { x: 1.2, y: 100 },
-//   { x: 1.3, y: 120 },
-//   { x: 1.4, y: 440 },
-//   { x: 1.5, y: 40 },
-//   { x: 1.6, y: 130 },
-//   { x: 1.7, y: 240 },
-//   { x: 1.8, y: 435 },
-//   { x: 1.9, y: 333 },
-//   { x: 2.0, y: 223 },
-// ];
+export interface IPoolsComponentProps {
+  router: NextRouter,
+}
 
-export const PoolsComponent: React.FC = () => {
-  // const [isLike, setLike] = useState<boolean>(false);
+export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
+  const { router } = props;
+  const [isLike, setLike] = useState<boolean>(false);
+  const [poolId, setPoolId] = useState<string>('');
+
+  useEffect(() => {
+    if (router) {
+      const { query } = router;
+      setPoolId(query.poolId as string);
+    }
+  }, [router]);
+
+  const pool = useMemo(() => {
+    return mockPoolDetails[parseInt(poolId)];
+  }, [poolId]);
+
+  const chartData = useMemo(() => {
+    if (poolId)
+      return createMockChartInfo();
+    else
+      return [];
+  }, [poolId]);
 
   return (
     <PoolsComponentStyle>
       <Box className="info-header">
-        <Box>
-          <Typography variant="subtitle1">Liquidity Pools</Typography>
-          <Typography variant="body1">Start earning incentives by providing liquidity.</Typography>
-        </Box>
-        {/* <Box className="info-path">
-          <Typography variant="h5">Home</Typography>
-          <FontAwesomeIcon icon={faChevronRight} />
-          <Typography variant="h5">Pools</Typography>
-          <FontAwesomeIcon icon={faChevronRight} />
-          <Typography variant="h5">{mockPool.token1.shortName}/{mockPool.token2.shortName}</Typography>
-        </Box>
-        <Box className="info-view-contract">
-          <Typography variant="body1">View Contract</Typography>
-          <IconButton>
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </IconButton>
-        </Box> */}
+        {
+          !pool ?
+            <Box>
+              <Typography variant="subtitle1">Liquidity Pools</Typography>
+              <Typography variant="body1">Start earning incentives by providing liquidity.</Typography>
+            </Box> :
+            <>
+              <Box className="info-path">
+                <Link href={PATHS.INFO}><Typography variant="h5">Home</Typography></Link>
+                <FontAwesomeIcon icon={faChevronRight} />
+                <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Pools</Typography></Link>
+                <FontAwesomeIcon icon={faChevronRight} />
+                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+              </Box>
+              <Box className="info-view-contract">
+                <Typography variant="body1">View Contract</Typography>
+                <IconButton>
+                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                </IconButton>
+              </Box>
+            </>
+        }
       </Box>
 
-      {/* <Box className="pool-header">
-        <Box className="pool-summary">
-          <Box className="pool-summary-image-1">
-            <Image src={mockPool.token1.image} width={48} height={48} />
-          </Box>
-          <Box className="pool-summary-image-2">
-            <Image src={mockPool.token2.image} width={48} height={48} />
+      {
+        pool &&
+        <Box className="pool-header">
+          <Box className="pool-header-left-box">
+            <Box className="pool-summary">
+              <Box className="pool-summary-image-1">
+                <Image src={pool.token1.image} width={48} height={48} />
+              </Box>
+              <Box className="pool-summary-image-2">
+                <Image src={pool.token2.image} width={48} height={48} />
+              </Box>
+
+              <Box className="pool-summary-detail">
+                <Box className="pool-summary-name">
+                  <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                  <Chip className="pool-summary-share" label={`${pool.share}%`} />
+                </Box>
+                <Box>
+                  <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
+                </Box>
+              </Box>
+            </Box>
+
+            <ToggleButton
+              className="like-button"
+              value="like"
+              selected={isLike}
+              onChange={() => {
+                setLike(!isLike);
+              }}
+            >
+              <FontAwesomeIcon
+                icon={isLike ? fasStar : farStar}
+              />
+            </ToggleButton>
           </Box>
 
-          <Box className="pool-summary-detail">
-            <Box>
-              <Typography variant="h5">{mockPool.token1.shortName}/{mockPool.token2.shortName}</Typography>
-            </Box>
-            <Box>
-              <Typography>1 {mockPool.token1.shortName} = $ 0.92  1 {mockPool.token2.shortName} = $2.78</Typography>
-            </Box>
+          <Box className="pool-actions">
+            <ButtonComponent className="add-liquidity-button" variant="outlined">
+              <Typography variant="h5">Add Liquidity</Typography>
+            </ButtonComponent>
+            <ButtonComponent>
+              <Typography variant="h5">Trade</Typography>
+            </ButtonComponent>
           </Box>
         </Box>
+      }
 
-        <Box className="pool-actions">
-          <ToggleButton
-            className="like-button"
-            value="like"
-            selected={isLike}
-            onChange={() => {
-              setLike(!isLike);
-            }}
-          >
-            <FontAwesomeIcon
-              icon={isLike ? fasStar : farStar}
-            />
-          </ToggleButton>
-          <ButtonComponent className="add-liquidity-button" variant="outlined">
-            <Typography variant="h5">Add Liquidity</Typography>
-          </ButtonComponent>
-          <ButtonComponent>
-            <Typography variant="h5">Trade</Typography>
-          </ButtonComponent>
+      {
+        !pool &&
+        <Box className="table-title">
+          <Typography variant="subtitle1">Saved Pools</Typography>
         </Box>
-      </Box> */}
-
-      <Box className="table-title">
-        <Typography variant="subtitle1">Saved Pools</Typography>
-      </Box>
-      <InfoChart />
+      }
+      <InfoChart chartData={chartData} />
 
       <Box className="table-title">
         <Typography variant="subtitle1">All Pools</Typography>

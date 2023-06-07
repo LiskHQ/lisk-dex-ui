@@ -72,6 +72,9 @@ export const PoolsTable: React.FC = () => {
                   <HelpIcon />
                 </Box>
               </TableCell>
+              <TableCell align="right">
+                <Typography variant="body2">Actions</Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
