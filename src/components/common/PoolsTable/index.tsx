@@ -53,7 +53,7 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             <TableRow>
               <TableCell><Typography variant="body2">Name</Typography></TableCell>
               {
-                sortKeys.map((el, index) => (
+                sortKeys.map(el => (
                   <TableCell
                     key={el.key}
                     align="right"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import Image from 'next/image';
 import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
@@ -31,11 +31,30 @@ const rows = [
   createData(mockTokens[1], mockTokens[4], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
 ];
 
-const maxPages = 5;
+export interface ITransactionsTable {
+  onChangeRowCount?: (count: number) => void,
+  onNextPage?: () => void,
+  onPreviousPage?: () => void,
+  limit?: number,
+  page?: number,
+  totalPages?: number,
+}
 
-export const TransactionsTable: React.FC = () => {
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
+export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
+  const {
+    onChangeRowCount,
+    onNextPage,
+    onPreviousPage,
+    limit,
+    totalPages,
+    page
+  } = props;
+
+  const transactions: any = useMemo(() => {
+    if (page && limit)
+      return rows.slice((page - 1) * limit, page * limit);
+    return [];
+  }, [rows, page, limit]);
 
   return (
     <TransactionsTableStyle>
@@ -72,7 +91,7 @@ export const TransactionsTable: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {transactions && transactions.map((row: any, index: number) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -119,7 +138,7 @@ export const TransactionsTable: React.FC = () => {
       <Box className="transactions-pager">
         <DropdownComponent
           className='row-count-dropdown'
-          onChange={(e) => { setLimit(e.target.value as number); }}
+          onChange={(e) => { onChangeRowCount && onChangeRowCount(e.target.value as number); }}
           defaultValue={limit}
           renderValue={(value) => (
             <Box className='show-rows-dropdown'>
@@ -133,15 +152,15 @@ export const TransactionsTable: React.FC = () => {
           <MenuItem value="25">25</MenuItem>
         </DropdownComponent>
         <IconButton
-          onClick={() => { setPage(page - 1); }}
+          onClick={() => { onPreviousPage && onPreviousPage(); }}
           disabled={page == 1}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </IconButton>
-        <Typography variant='body2'>Page {page} of 5</Typography>
+        <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
         <IconButton
-          onClick={() => { setPage(page + 1); }}
-          disabled={maxPages == page}
+          onClick={() => { onNextPage && onNextPage(); }}
+          disabled={totalPages == page}
         >
           <FontAwesomeIcon icon={faArrowRight} />
         </IconButton>
