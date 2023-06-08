@@ -42,7 +42,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
           <DropdownComponent
             name="poolID"
             className="proposal-pool-id"
-            defaultValue={0}
+            defaultValue={''}
             label={
               <>
                 Select a pool ID <HelpIcon

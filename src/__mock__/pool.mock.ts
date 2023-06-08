@@ -2,6 +2,7 @@ import { IPool, IPoolDetail } from 'models';
 import { mockTokens } from './swap.mock';
 
 export const mockPool: IPool = {
+  id: '1001',
   token1: mockTokens[0],
   token2: mockTokens[1],
   token1Amount: 1862,
