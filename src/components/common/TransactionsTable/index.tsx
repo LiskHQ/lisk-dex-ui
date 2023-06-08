@@ -54,7 +54,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
     if (page && limit)
       return rows.slice((page - 1) * limit, page * limit);
     return [];
-  }, [rows, page, limit]);
+  }, [page, limit]);
 
   return (
     <TransactionsTableStyle>
