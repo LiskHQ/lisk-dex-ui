@@ -55,8 +55,20 @@ export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
 
     '.pool-header': {
       display: 'flex',
+      alignItems: 'center',
       justifyContent: 'space-between',
       marginBottom: '2rem',
+
+      [theme.breakpoints.down('sm')]: {
+        display: 'unset',
+      },
+
+      '.pool-header-left-box': {
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
 
       '.pool-summary': {
         display: 'flex',
@@ -73,32 +85,64 @@ export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
 
         '.pool-summary-detail': {
           marginLeft: '1rem',
+
+          '.pool-summary-name': {
+            display: 'flex',
+            alignItems: 'center',
+
+            '.pool-summary-share': {
+              background: theme.primary[40],
+              borderRadius: '0.25rem',
+              height: 'fit-content',
+              marginLeft: '0.5rem',
+
+              span: {
+                padding: '0.25rem 0.5rem',
+                color: theme.lightcurve[0],
+
+                fontSize: '0.75rem',
+                lineHeight: '0.875rem',
+              },
+            }
+          }
+        }
+      },
+
+      '.like-button': {
+        width: 'fit-content',
+        minWidth: '3.5rem !important',
+        border: 'none',
+        background: theme.primary[2.5],
+
+        svg: {
+          width: '1.25rem',
+          height: '1.25rem',
+          color: theme.lightcurve[0],
         }
       },
 
       '.pool-actions': {
+        width: 'max-content',
         display: 'flex',
         alignItems: 'center',
 
-        '.like-button': {
-          width: 'fit-content',
-          minWidth: '3.5rem !important',
-          border: 'none',
-          background: theme.primary[2.5],
-
-          svg: {
-            width: '1.25rem',
-            height: '1.25rem',
-            color: theme.lightcurve[0],
-          }
+        [theme.breakpoints.down('sm')]: {
+          display: 'unset',
+          width: '100%',
         },
 
         '.MuiButtonBase-root': {
-          width: 'fit-content',
+          width: 'max-content',
           minWidth: '5.625rem',
           paddingTop: '0.5rem',
           paddingBottom: '0.5rem',
           marginLeft: '0.75rem',
+
+          [theme.breakpoints.down('sm')]: {
+            width: '100%',
+            marginTop: '0.75rem',
+            marginLeft: 0,
+          },
 
           '&.MuiButton-outlined': {
             color: theme.lightcurve[0],
