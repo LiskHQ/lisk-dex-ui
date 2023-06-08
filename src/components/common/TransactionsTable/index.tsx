@@ -91,7 +91,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactions && transactions.map((row: any, index: number) => (
+            {!!transactions && transactions.map((row: any, index: number) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
