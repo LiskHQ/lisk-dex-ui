@@ -50,7 +50,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
     page
   } = props;
 
-  const transactions: any = useMemo(() => {
+  const transactions = useMemo(() => {
     if (page && limit)
       return rows.slice((page - 1) * limit, page * limit);
     return [];
@@ -91,7 +91,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {!!transactions && transactions.map((row: any, index: number) => (
+            {transactions.length > 0 && transactions.map((row: any, index: number) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
