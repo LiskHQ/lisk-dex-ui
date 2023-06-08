@@ -171,14 +171,14 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             <MenuItem value="25">25</MenuItem>
           </DropdownComponent>
           <IconButton
-            onClick={() => { onNextPage && onNextPage(); }}
+            onClick={() => { onPreviousPage && onPreviousPage(); }}
             disabled={page == 1}
           >
             <FontAwesomeIcon icon={faArrowLeft} />
           </IconButton>
           <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
           <IconButton
-            onClick={() => { onPreviousPage && onPreviousPage(); }}
+            onClick={() => { onNextPage && onNextPage(); }}
             disabled={totalPages == page}
           >
             <FontAwesomeIcon icon={faArrowRight} />
