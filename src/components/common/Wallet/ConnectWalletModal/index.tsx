@@ -143,7 +143,7 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
                           <Typography variant="h4">{chain?.meta.name || chain?.data.name}</Typography>
                         </Box>
 
-                        <Typography variant="body2">Connet</Typography>
+                        <Typography variant="body2">Connect</Typography>
                       </Box>
                     );
                   })
