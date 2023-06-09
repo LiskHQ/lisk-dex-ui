@@ -15,7 +15,7 @@ export interface IVoteModalProps {
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
   const { openTransactionApproval, onClose, onVote } = props;
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>('yes');
 
   const onChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
     setValue(value);
@@ -38,12 +38,13 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
           </Box>
           <FormControl>
             <RadioGroup
+              data-testid="vote-modal-radio"
               aria-labelledby="demo-radio-buttons-group-label"
               name="radio-buttons-group"
               value={value}
               onChange={onChange}
             >
-              <FormControlLabel data-testid="vote-modal-radio" value="yes" control={<RadioComponent />} label="Yes" />
+              <FormControlLabel value="yes" control={<RadioComponent />} label="Yes" />
               <FormControlLabel value="no" control={<RadioComponent />} label="No" />
               <FormControlLabel value="pass" control={<RadioComponent />} label="Pass" />
             </RadioGroup>
