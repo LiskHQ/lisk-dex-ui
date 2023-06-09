@@ -1,8 +1,9 @@
 import { Box, Snackbar, useMediaQuery } from '@mui/material';
 import { AlertComponent, ApproveTransactionModal, TransactionStatusModal } from 'components';
-import { AlertVariant } from 'consts';
+import { AlertVariant, TransactionType } from 'consts';
+import { PlatformContext } from 'contexts';
 import Head from 'next/head';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { darkTheme } from 'styles/theme';
@@ -19,7 +20,10 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 
   const dispatch = useDispatch();
 
+  const platform = useContext(PlatformContext);
+
   const {
+    transaction,
     openTransactionApproval,
     approvingTransaction,
     sentTransaction,
@@ -34,34 +38,31 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   //show Snackbar alert
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const alertContent = useMemo(() => {
-    if (sendingTransaction) {
-      return {
-        variant: AlertVariant.info,
-        subject: 'Transaction in progress...',
-        description: '',
-      };
-    }
+    const alertContent = {
+      variant: AlertVariant.info,
+      subject: 'Transaction in progress...',
+      description: '',
+      link: ''
+    };
     if (sentTransaction) {
-      return {
-        variant: AlertVariant.info,
-        subject: 'Transaction has been sent successfully',
-        description: 'Confirmation is in progress, once confirmed you will receive another notification.',
-      };
+      alertContent.subject = 'Transaction has been sent successfully';
+      alertContent.description = 'Confirmation is in progress, once confirmed you will receive another notification.';
     }
     if (confirmedTransaction) {
-      return {
-        variant: AlertVariant.success,
-        subject: 'Transaction has been confirmed.',
-        description: 'Added liquidity of 3.45 LSK/ETH LP tokens.',
-        link: 'https://github.com/aaa'
-      };
+      alertContent.variant = AlertVariant.success;
+      alertContent.subject = 'Transaction has been confirmed.';
+      alertContent.link = 'https://etherscan.io/';
+      if (transaction.type === TransactionType.SWAP)
+        alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';
+      if (transaction.type === TransactionType.SUPPLY_LIQUIDITY)
+        alertContent.description = 'Added liquidity of 3.45 LSK/ETH LP tokens.';
+      if (transaction.type === TransactionType.INCREASE_LIQUIDITY)
+        alertContent.description = 'Increased liquidity by 4521 LSK and 2.74 ETH.';
+      if (transaction.type === TransactionType.REMOVE_LIQUIDITY)
+        alertContent.description = 'Removed liquidity by 1623 LSK and 1.82 ETH.';
     }
-    return {
-      variant: AlertVariant.info,
-      subject: '',
-      description: '',
-    };
-  }, [sendingTransaction, sentTransaction, confirmedTransaction]);
+    return alertContent;
+  }, [sentTransaction, confirmedTransaction, transaction]);
 
   const onCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -146,7 +147,9 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       <Head>
         <title>Lisk Dex</title>
       </Head>
-      <Header />
+      <Header
+        platform={platform}
+      />
       {children}
       {
         isUpMd ? <></> : <Footer />
@@ -164,6 +167,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
         openTransactionStatusModal &&
         <TransactionStatusModal
           success={sentTransaction}
+          type={transaction.type}
           onClose={onCloseTransactionStatusModal}
         />
       }

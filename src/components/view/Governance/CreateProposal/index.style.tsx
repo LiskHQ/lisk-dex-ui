@@ -4,6 +4,7 @@ export const CreateProposalViewStyle = styled('div')(({ theme }: any) => {
   return {
     position: 'relative',
     marginTop: '4.25rem',
+    marginBottom: '4rem',
     padding: '3rem 17.1875rem',
 
     [theme.breakpoints.down('lg')]: {
