@@ -26,15 +26,23 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
   const [height, setHeight] = useState<number>(0);
 
   useEffect(() => {
+    function handleResize() {
+      if (svgRef.current) {
+        setWidth(svgRef.current.getBoundingClientRect().width);
+        setHeight(svgRef.current.getBoundingClientRect().height);
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [svgRef]);
+
+  useEffect(() => {
     const svg = d3.select(svgRef.current);
 
     while (svgRef.current && svgRef.current.firstChild) {
       svgRef.current.removeChild(svgRef.current.firstChild);
-    }
-
-    if (svgRef.current) {
-      setWidth(svgRef.current.getBoundingClientRect().width);
-      setHeight(svgRef.current.getBoundingClientRect().height);
     }
 
     if (!width || !height) return;
