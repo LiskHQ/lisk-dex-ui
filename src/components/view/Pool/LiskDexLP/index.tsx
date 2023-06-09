@@ -16,7 +16,6 @@ export interface ILiskDexLProps {
 }
 
 export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
-
   const { pools, gettingPools, gotPools, onPreview, onPreviewRemove } = props;
   const [openIncreaseLiquidityModal, setOpenIncreaseLiquidityModal] = useState<boolean>(false);
   const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);

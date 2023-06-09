@@ -168,7 +168,41 @@ export const PoolsComponentStyle = styled('div')(({ theme }: any) => {
           height: '0.5rem',
           marginLeft: '0.25rem',
         }
+      },
+
+      '&.pools': {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        '.MuiButtonBase-root': {
+          width: '9rem',
+          padding: '0.5rem 0.75rem',
+          marginBottom: '-9rem',
+          textTransform: 'none',
+
+          [theme.breakpoints.down('sm')]: {
+            marginBottom: 0,
+          },
+
+          color: theme.lightcurve[0],
+          borderColor: theme.lightcurve[0],
+        }
       }
+    },
+
+    '.pools-table-action': {
+      display: 'flex',
+      textTransform: 'none',
+      alignItems: 'end',
+
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column'
+      },
+
+      '.MuiInputBase-root': {
+        width: '20.25rem',
+      },
     }
   };
 });

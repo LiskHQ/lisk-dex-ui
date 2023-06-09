@@ -7,7 +7,7 @@ import { PATHS } from 'consts';
 import Link from 'next/link';
 import { NextRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import { createMockChartInfo, mockTokenDetails } from '__mock__';
+import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
 import { TokensComponentStyle } from './index.style';
 import Image from 'next/image';
 import { IncreaseIcon } from 'imgs/icons';
@@ -39,6 +39,26 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       return [];
   }, [tokenId]);
 
+  // pools table control
+  const [isAsc, setAsc] = useState<boolean>();
+  const [sortKey, setSortKey] = useState<string>('');
+
+  const pools = useMemo(() => {
+    if (token)
+      return mockPoolDetails
+        .filter(pool => pool.token1.shortName === token.shortName || pool.token2.shortName === token.shortName)
+        .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
+    return [];
+  }, [sortKey, isAsc, token]);
+
+  const onSortClick = (key: string) => {
+    if (key !== sortKey) {
+      setAsc(false);
+      setSortKey(key);
+    } else {
+      setAsc(!isAsc);
+    }
+  };
   // transactions table control
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
@@ -132,7 +152,12 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
             <Box className="table-title">
               <Typography variant="subtitle1">Pools</Typography>
             </Box>
-            <PoolsTable />
+            <PoolsTable
+              pools={pools}
+              sortKey={sortKey}
+              isAsc={isAsc}
+              onSortClick={onSortClick}
+            />
 
             <Box className="table-title">
               <Typography variant="subtitle1">Transactions</Typography>

@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                 item
                 xs={3}
               >
-                <Typography variant="h6">{item.title}</Typography>
+                <Typography variant="h5">{item.title}</Typography>
               </Grid>
             </Link>
           ))

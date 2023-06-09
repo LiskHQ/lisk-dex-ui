@@ -40,7 +40,7 @@ export const FooterStyle = styled('div')(({ theme }: any) => {
           borderTop: `2.5px solid ${theme.lightcurve[0]}`,
           color: theme.lightcurve[0],
           h5: {
-            fontWeight: '700',
+            fontWeight: '600',
           }
         }
       }
