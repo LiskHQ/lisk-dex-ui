@@ -62,6 +62,12 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
       setTokenAsc(!isAsc);
     }
   };
+  // transactions table control
+  const [transactionsPage, setTransactionsPage] = useState<number>(1);
+  const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
+  const transactionsTotalPages = useMemo(() => {
+    return Math.ceil(10 / transactionsLimit);
+  }, [transactionsLimit]);
 
   return (
     <OverviewComponentStyle>
@@ -111,7 +117,14 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
       <Box className="table-title">
         <Typography variant="subtitle1">Transactions</Typography>
       </Box>
-      <TransactionsTable />
+      <TransactionsTable
+        page={transactionsPage}
+        limit={transactionsLimit}
+        totalPages={transactionsTotalPages}
+        onChangeRowCount={value => setTransactionsLimit(value)}
+        onNextPage={() => setTransactionsPage(Math.min(transactionsPage + 1, transactionsTotalPages))}
+        onPreviousPage={() => setTransactionsPage(Math.max(transactionsPage - 1, 1))}
+      />
     </OverviewComponentStyle>
   );
 };

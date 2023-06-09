@@ -62,7 +62,7 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             <TableRow>
               <TableCell className="always-visible"><Typography variant="body2">Name</Typography></TableCell>
               {
-                sortKeys.map((el) => (
+                sortKeys.map(el => (
                   <TableCell
                     className={
                       cn({

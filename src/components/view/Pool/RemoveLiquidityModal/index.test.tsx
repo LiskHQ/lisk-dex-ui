@@ -1,24 +1,21 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
-import { SupplyLiquidityModal, ISupplyLiquidityModalProps } from './index';
+import { RemoveLiquidityModal, IRemoveLiquidityModalProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockTokens } from '__mock__';
+import { mockPool } from '__mock__/pool.mock';
 
-function renderComponent(props: ISupplyLiquidityModalProps) {
+function renderComponent(props: IRemoveLiquidityModalProps) {
   return render(
     <ThemeProvider theme={lightTheme} >
-      <SupplyLiquidityModal {...props} />
+      <RemoveLiquidityModal {...props} />
     </ThemeProvider>
   );
 }
 
-describe('SupplyLiquidityModal component', () => {
-  const mockProps: ISupplyLiquidityModalProps = {
-    token1: mockTokens[0],
-    token1Amount: 4521.125,
-    token2: mockTokens[1],
-    token2Amount: 7.125,
+describe('RemoveLiquidityModal component', () => {
+  const mockProps: IRemoveLiquidityModalProps = {
+    pool: mockPool,
     onClose: jest.fn(),
     onConfirm: jest.fn(),
   };
@@ -30,14 +27,14 @@ describe('SupplyLiquidityModal component', () => {
 
   it('confirm click work', () => {
     const { getByTestId } = renderComponent(mockProps);
-    fireEvent.click(getByTestId('supply-liquidity-modal-button-test'));
+    fireEvent.click(getByTestId('remove-liquidity-modal-button-test'));
 
     expect(mockProps.onConfirm).toBeCalled();
   });
 
   it('cancel click work', () => {
     const { getByTestId } = renderComponent(mockProps);
-    fireEvent.click(getByTestId('supply-liquidity-modal-cancel-test'));
+    fireEvent.click(getByTestId('remove-liquidity-modal-cancel-test'));
 
     expect(mockProps.onClose).toBeCalled();
   });
