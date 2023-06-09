@@ -39,6 +39,13 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       return [];
   }, [tokenId]);
 
+  // transactions table control
+  const [transactionsPage, setTransactionsPage] = useState<number>(1);
+  const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
+  const transactionsTotalPages = useMemo(() => {
+    return Math.ceil(10 / transactionsLimit);
+  }, [transactionsLimit]);
+
   return (
     <TokensComponentStyle>
       <Box className="info-header">
@@ -130,7 +137,14 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
             <Box className="table-title">
               <Typography variant="subtitle1">Transactions</Typography>
             </Box>
-            <TransactionsTable />
+            <TransactionsTable
+              page={transactionsPage}
+              limit={transactionsLimit}
+              totalPages={transactionsTotalPages}
+              onChangeRowCount={value => setTransactionsLimit(value)}
+              onNextPage={() => setTransactionsPage(transactionsPage + 1)}
+              onPreviousPage={() => setTransactionsPage(transactionsPage - 1)}
+            />
           </> :
           <>
             <Box className="table-title">
