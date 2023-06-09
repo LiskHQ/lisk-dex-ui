@@ -9,6 +9,7 @@ export interface IPoolItem {
 }
 
 export interface IPool {
+  id: string,
   token1: IToken,
   token2: IToken,
   token1Amount: number,

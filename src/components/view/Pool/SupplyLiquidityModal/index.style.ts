@@ -42,6 +42,12 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
             position: 'absolute',
             top: '1.5rem',
             right: '1.5rem',
+
+            svg: {
+              path: {
+                stroke: theme.text.primary,
+              }
+            }
           }
         },
 
