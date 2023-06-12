@@ -6,6 +6,7 @@ import { OverviewComponent } from './Overview';
 import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
+import { PATHS } from 'consts';
 
 export const InfoView: React.FC = () => {
   const router = useRouter();
@@ -37,6 +38,24 @@ export const InfoView: React.FC = () => {
     }
   }, [router]);
 
+  const onSelectPool = (id: string) => {
+    router.push(`?poolId=${id}`);
+  };
+
+  const onSelectToken = (id: string) => {
+    router.push(`?tokenId=${id}`);
+  };
+
+  const onGotoSwap = (token1: string, token2?: string) => {
+    const url = `${PATHS.SWAP}?token1=${token1}&token2=${token2 || ''}`;
+    router.replace(url);
+  };
+
+  const onGotoAddLiquidity = (token1: string, token2?: string) => {
+    const url = `${PATHS.POOL}?token1=${token1}&token2=${token2 || ''}`;
+    router.replace(url);
+  };
+
   return (
     <InfoViewStyle>
       <Box className="info-top-box">
@@ -52,15 +71,32 @@ export const InfoView: React.FC = () => {
       </Box>
 
       <TabPanel value={tabValue} index={0}>
-        <OverviewComponent router={router} />
+        <OverviewComponent
+          onSwap={onGotoSwap}
+          onAddLiquidity={onGotoAddLiquidity}
+          onSelectPool={onSelectPool}
+          onSelectToken={onSelectToken}
+        />
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <PoolsComponent router={router} />
+        <PoolsComponent
+          router={router}
+          onSwap={onGotoSwap}
+          onAddLiquidity={onGotoAddLiquidity}
+          onSelectPool={onSelectPool}
+          onSelectToken={onSelectToken}
+        />
       </TabPanel>
 
       <TabPanel value={tabValue} index={2}>
-        <TokensComponent router={router} />
+        <TokensComponent
+          router={router}
+          onSwap={onGotoSwap}
+          onAddLiquidity={onGotoAddLiquidity}
+          onSelectPool={onSelectPool}
+          onSelectToken={onSelectToken}
+        />
       </TabPanel>
     </InfoViewStyle >
   );

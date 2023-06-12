@@ -13,11 +13,22 @@ import Image from 'next/image';
 import { IncreaseIcon } from 'imgs/icons';
 
 export interface ITokenComponentProps {
+  onSwap: (token1: string, token2?: string) => void,
+  onAddLiquidity: (token1: string, token2?: string) => void,
+  onSelectPool: (id: string) => void,
+  onSelectToken: (id: string) => void,
   router: NextRouter,
 }
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
-  const { router } = props;
+  const {
+    onSwap,
+    onAddLiquidity,
+    onSelectPool,
+    onSelectToken,
+    router
+  } = props;
+
   const [isLike, setLike] = useState<boolean>(false);
   const [tokenId, setTokenId] = useState<string>('');
 
@@ -83,13 +94,12 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       .slice((page - 1) * limit, page * limit);
   }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
 
-
   const onSortTokenClick = (key: string) => {
     if (key !== sortTokenKey) {
       setTokenAsc(false);
       setSortTokenKey(key);
     } else {
-      setTokenAsc(!isAsc);
+      setTokenAsc(!isTokenAsc);
     }
   };
 
@@ -183,7 +193,10 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               pools={pools}
               sortKey={sortKey}
               isAsc={isAsc}
+              onSelectPool={onSelectPool}
               onSortClick={onSortClick}
+              onSwap={onSwap}
+              onAddLiquidity={onAddLiquidity}
             />
 
             <Box className="table-title">
@@ -215,6 +228,9 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               isAsc={isTokenAsc}
               sortKey={sortTokenKey}
               onSortClick={onSortTokenClick}
+              onSelectToken={onSelectToken}
+              onSwap={onSwap}
+              onAddLiquidity={onAddLiquidity}
               limit={limit}
               page={page}
               onChangeRowCount={(value) => setLimit(value)}

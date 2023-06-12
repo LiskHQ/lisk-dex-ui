@@ -13,6 +13,7 @@ import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
 import { IPool, IToken } from 'models';
 import { mockTokens } from '__mock__';
+import { useRouter } from 'next/dist/client/router';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -33,7 +34,7 @@ export interface ISupplyLiquidityProps {
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
-
+  const router = useRouter();
   const { closeTransactionModal, onPreview } = props;
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
@@ -80,6 +81,21 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const isValid = useMemo(() => {
     return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice && tierValue);
   }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice, tierValue]);
+
+
+  useEffect(() => {
+    if (router) {
+      const { query } = router;
+      if (query) {
+        if (query.token1) {
+          setToken1(mockTokens.find(token => token.shortName === query.token1) as IToken);
+        }
+        if (query.token2) {
+          setToken2(mockTokens.find(token => token.shortName === query.token2) as IToken);
+        }
+      }
+    }
+  }, [router]);
 
   useEffect(() => {
     if (closeTransactionModal) {
