@@ -76,3 +76,9 @@ export interface AccountAction {
   method: string;
   callback: (chainId: string, address: string) => Promise<void>;
 }
+
+export interface IAccount {
+  chainId: string,
+  publicKey: string,
+  data?: any,
+}

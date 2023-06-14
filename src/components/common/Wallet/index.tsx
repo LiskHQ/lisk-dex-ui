@@ -12,7 +12,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { WalletModal } from './WalletModal';
 import { useChainData, useJsonRpc, useWalletConnectClient } from 'contexts';
 import { DEFAULT_LISK_METHODS, DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
-import { AccountAction } from 'models';
+import { AccountAction, IAccount } from 'models';
 import { useDispatch } from 'react-redux';
 import { AppActions } from 'store';
 
@@ -29,7 +29,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   const [connectClicked, setConnectClicked] = useState<boolean>(false);
 
   const [uri, setUri] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
+  const [account, setAccount] = useState<IAccount>();
   const [chainId, setChainId] = useState<string>('');
 
   // Initialize the WalletConnect client.
@@ -77,14 +77,15 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   const getBlockchainActions = (chainId: string) => {
     const [namespace] = chainId.split(':');
     switch (namespace) {
-      case 'lisk':
-        return getLiskActions();
-      default:
-        break;
+    case 'lisk':
+      return getLiskActions();
+    default:
+      break;
     }
   };
 
   const onConnect = (chainId: string) => {
+    setChainId(chainId);
     setChains([chainId]);
     setConnectClicked(true);
   };
@@ -115,26 +116,24 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
 
   useEffect(() => {
     if (accounts.length > 0) {
-      const [namespace, reference, address] = accounts[0].split(':');
-      const chainId = `${namespace}:${reference}`;
-      setAddress(address);
-      setChainId(chainId);
-
-      dispatch(AppActions.wallet.setAddress(address));
-
-      onConnected(true);
+      const account = accounts.find(el => el.chainId === chainId);
+      if (account) {
+        setAccount(account);
+        dispatch(AppActions.wallet.setAccount(account));
+        onConnected(true);
+      }
     } else {
       setUri('');
-      setAddress('');
+      setAccount(undefined);
       setChainId('');
       onConnected(false);
     }
-  }, [accounts, dispatch, onConnected]);
+  }, [accounts, chainId, dispatch, onConnected]);
 
   return (
     <WalletComponentStyle>
       {
-        accounts.length > 0 ?
+        account ?
           <>
             <DropdownComponent
               className="header-menu-chain"
@@ -149,10 +148,10 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-              onClick={() => setOpenWalletModal(true)}
+            onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-              <Typography variant="h5">{ellipsisAddress(address)}</Typography>
+              <Typography variant="h5">{ellipsisAddress(account.data.summary.address)}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
           </> :
@@ -177,7 +176,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
           chainOptions={isTestnet ? DEFAULT_TEST_CHAINS : DEFAULT_MAIN_CHAINS}
           uri={uri}
           onClose={onCloseConnectWalletModal}
-          address={address}
+          connected={!!account}
           onConnect={onConnect}
         />
       }
@@ -188,7 +187,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
           onClose={() => setOpenWalletModal(false)}
           chainData={chainData}
           chainId={chainId}
-          address={address}
+          account={account}
           balances={balances}
           actions={getBlockchainActions(chainId)}
         />

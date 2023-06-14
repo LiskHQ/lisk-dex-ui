@@ -11,12 +11,11 @@ import {
   useState,
 } from 'react';
 import { PublicKey } from '@solana/web3.js';
-import { AccountBalances } from 'models';
+import { AccountBalances, IAccount } from 'models';
 import { DEFAULT_APP_METADATA, DEFAULT_LOGGER, DEFAULT_PROJECT_ID, DEFAULT_RELAY_URL } from 'consts';
-import { getPublicKeysFromAccounts } from 'utils';
 import { getAppMetadata, getSdkError } from '@walletconnect/utils';
-import { getRequiredNamespaces } from 'utils';
-import { apiGetAccountBalance } from 'apis';
+import { getAccountsFromNamespaces, getRequiredNamespaces } from 'utils';
+import { apiGetAccounts } from 'apis';
 
 /**
  * Types
@@ -29,7 +28,7 @@ interface IContext {
   isInitializing: boolean;
   chains: string[];
   pairings: PairingTypes.Struct[];
-  accounts: string[];
+  accounts: IAccount[];
   liskPublicKeys?: Record<string, PublicKey>;
   balances: AccountBalances;
   isFetchingBalances: boolean;
@@ -53,8 +52,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
   const [isInitializing, setIsInitializing] = useState(false);
 
   const [balances, setBalances] = useState<AccountBalances>({});
-  const [accounts, setAccounts] = useState<string[]>([]);
-  const [liskPublicKeys, setLiskPublicKeys] = useState<Record<string, PublicKey>>();
+  const [accounts, setAccounts] = useState<IAccount[]>([]);
   const [chains, setChains] = useState<string[]>([]);
 
   const reset = () => {
@@ -64,23 +62,22 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
     setChains([]);
   };
 
-  const getAccountBalances = async (_accounts: string[]) => {
+  const getAccountDetails = async (_accounts: string[]) => {
     setIsFetchingBalances(true);
     try {
       const arr = await Promise.all(
         _accounts.map(async account => {
-          const [namespace, reference, address] = account.split(':');
-          const chainId = `${namespace}:${reference}`;
-          const assets = await apiGetAccountBalance(address, chainId);
-          return { account, assets: [assets] };
+          const [namespace, reference, publicKey] = account.split(':');
+          const data = await apiGetAccounts({ publicKey });
+          return {
+            chainId: `${namespace}:${reference}`,
+            publicKey,
+            data
+          };
         }),
       );
 
-      const balances: AccountBalances = {};
-      arr.forEach(({ account, assets }) => {
-        balances[account] = assets;
-      });
-      setBalances(balances);
+      setAccounts(arr);
     } catch (e) {
       console.error(e);
     } finally {
@@ -96,9 +93,8 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
     setSession(_session);
     setChains(allNamespaceChains);
-    setAccounts(allNamespaceAccounts);
-    setLiskPublicKeys(getPublicKeysFromAccounts(allNamespaceAccounts));
-    await getAccountBalances(allNamespaceAccounts);
+    await setAccounts(getAccountsFromNamespaces(allNamespaceAccounts));
+    await getAccountDetails(allNamespaceAccounts);
   }, []);
 
   const connect = useCallback(
@@ -240,7 +236,6 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
       balances,
       isFetchingBalances,
       accounts,
-      liskPublicKeys,
       chains,
       client,
       session,
@@ -254,7 +249,6 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
       balances,
       isFetchingBalances,
       accounts,
-      liskPublicKeys,
       chains,
       client,
       session,

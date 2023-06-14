@@ -7,7 +7,7 @@ import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisV
 import { mockTokens } from '__mock__';
 import { useEffect, useState } from 'react';
 import { HistoryComponent } from './History';
-import { AccountAction, AccountBalances, ChainNamespaces, IToken } from 'models';
+import { AccountAction, AccountBalances, ChainNamespaces, IAccount, IToken } from 'models';
 import { TokenComponent } from './Token';
 import { ellipsisAddress } from 'utils';
 import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
@@ -20,7 +20,7 @@ enum TABS {
 export interface IWalletModalProps {
   chainId: string,
   balances?: AccountBalances,
-  address?: string,
+  account?: IAccount,
   actions?: AccountAction[],
   chainData: ChainNamespaces,
   onClose: () => void,
@@ -28,12 +28,13 @@ export interface IWalletModalProps {
 }
 
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
-  const { balances, address, onClose, onDisconnect } = props;
+  const { balances, account, onClose, onDisconnect } = props;
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
   const [addressCopied, setAddressCopied] = useState<boolean>(false);
   const [menuAddressCopied, setMenuAddressCopied] = useState<boolean>(false);
   const [openWalletMenu, setOpenWalletMenu] = useState<boolean>(false);
+  const [address, setAddress] = useState<string>('');
 
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
     setTab(value);
@@ -54,6 +55,11 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   };
 
   useEffect(() => {
+    if (account)
+      setAddress(account.data.summary.address);
+  }, [account]);
+
+  useEffect(() => {
     if (addressCopied) {
       setTimeout(() => {
         setAddressCopied(false);
@@ -70,7 +76,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   }, [menuAddressCopied]);
 
   useEffect(() => {
-    console.log("balances: ", balances);
+    console.log('balances: ', balances);
   }, [balances]);
 
   const onViewLiskscan = () => {

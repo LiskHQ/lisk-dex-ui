@@ -1,3 +1,5 @@
+import { IAccount } from 'models';
+
 export const LOCALSTORAGE_KEY_TESTNET = 'TESTNET';
 export const INITIAL_STATE_TESTNET_DEFAULT = process.env.NEXT_PUBLIC_TEST_NET === 'testnet';
 
@@ -22,4 +24,15 @@ export function getLocalStorageTestnetFlag(): boolean {
     }
   }
   return value;
-} 
+}
+
+export function getAccountsFromNamespaces(allNamespaceAccounts: string[]): IAccount[] {
+  return allNamespaceAccounts.reduce((accounts: IAccount[], account) => {
+    const [namespace, reference, publicKey] = account.split(':');
+    accounts.push({
+      chainId: `${namespace}:${reference}`,
+      publicKey,
+    });
+    return accounts;
+  }, []);
+}

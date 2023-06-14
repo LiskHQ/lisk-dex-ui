@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IAccount } from 'models';
 
 type StateType = {
-  address: string,
-  balance: number,
+  account: IAccount | null,
   error: any,
 };
 
 const initialState: StateType = {
-  address: '',
-  balance: 0,
+  account: null,
   error: { message: '' },
 };
 
@@ -19,15 +18,12 @@ const walletSlice = createSlice({
     /**
      * wallet
      */
-    setAddress(state, action: PayloadAction<string>) {
-      state.address = action.payload;
+    setAccount(state, action: PayloadAction<IAccount>) {
+      state.account = action.payload;
     },
-    setBalance(state, action: PayloadAction<number>) {
-      state.balance = action.payload;
-    },
+
     resetWalletState(state) {
-      state.address = '';
-      state.balance = 0;
+      state.account = null;
     }
   },
 });

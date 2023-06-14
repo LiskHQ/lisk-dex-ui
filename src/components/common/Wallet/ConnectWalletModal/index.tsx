@@ -15,7 +15,7 @@ export interface IConnectWalletModalProps {
   chainData: ChainNamespaces,
   uri: string,
   chainOptions: string[],
-  address: string,
+  connected: boolean,
   onConnect: (chainId: string) => void,
   onClose: () => void,
 }
@@ -41,9 +41,8 @@ function getBlockchainDisplayData(
 }
 
 export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) => {
-  const { chainData, uri, chainOptions, address, onConnect, onClose } = props;
+  const { chainData, uri, chainOptions, connected, onConnect, onClose } = props;
 
-  const [connected, setConnected] = useState<boolean>(false);
   const [connecting, setConnecting] = useState<boolean>(true);
   const [error] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
@@ -64,9 +63,8 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
   }, [copied]);
 
   useEffect(() => {
-    setConnected(!!address);
-    setConnecting(!address);
-  }, [address]);
+    setConnecting(!connected);
+  }, [connected]);
 
   useEffect(() => {
     if (connected) {
