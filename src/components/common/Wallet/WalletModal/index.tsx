@@ -1,15 +1,16 @@
 import cn from 'classnames';
-import { Box, IconButton, Tab, Tabs, Typography } from '@mui/material';
+import { Box, IconButton, MenuItem, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import { WalletModalStyle } from './index.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faUpRightFromSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { mockTokens } from '__mock__';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HistoryComponent } from './History';
 import { AccountAction, AccountBalances, ChainNamespaces, IToken } from 'models';
 import { TokenComponent } from './Token';
 import { ellipsisAddress } from 'utils';
+import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
 
 enum TABS {
   WALLET = 0,
@@ -27,11 +28,53 @@ export interface IWalletModalProps {
 }
 
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
-  const { address, onClose, onDisconnect } = props;
+  const { balances, address, onClose, onDisconnect } = props;
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
+  const [addressCopied, setAddressCopied] = useState<boolean>(false);
+  const [menuAddressCopied, setMenuAddressCopied] = useState<boolean>(false);
+  const [openWalletMenu, setOpenWalletMenu] = useState<boolean>(false);
+
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
     setTab(value);
+  };
+
+  const onCopyAddress = () => {
+    if (address) {
+      navigator.clipboard.writeText(address);
+      setAddressCopied(true);
+    }
+  };
+
+  const onMenuCopyAddress = () => {
+    if (address) {
+      navigator.clipboard.writeText(address);
+      setMenuAddressCopied(true);
+    }
+  };
+
+  useEffect(() => {
+    if (addressCopied) {
+      setTimeout(() => {
+        setAddressCopied(false);
+      }, 3000);
+    }
+  }, [addressCopied]);
+
+  useEffect(() => {
+    if (menuAddressCopied) {
+      setTimeout(() => {
+        setMenuAddressCopied(false);
+      }, 3000);
+    }
+  }, [menuAddressCopied]);
+
+  useEffect(() => {
+    console.log("balances: ", balances);
+  }, [balances]);
+
+  const onViewLiskscan = () => {
+    window.open(`https://liskscan.com/account/${address}`, '_blank');
   };
 
   return (
@@ -49,10 +92,39 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                 <>
                   <Box className="wallet-header">
                     <Box className="wallet-header-top-box">
-                      <IconButton className="wallet-menu-button">
+                      <IconButton className="wallet-menu-button" onClick={() => setOpenWalletMenu(!openWalletMenu)}>
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                       </IconButton>
-                      <Typography variant="body2">{ellipsisAddress(address || '')}</Typography>
+                      {
+                        openWalletMenu &&
+                        <Box className="wallet-menu">
+                          <MenuItem className={menuAddressCopied ? 'menu-copied-address' : ''} onClick={onMenuCopyAddress}>
+                            {
+                              menuAddressCopied ?
+                                <>
+                                  <CheckCircleIcon />
+                                  <Typography variant="body2">Copied Address</Typography>
+                                </> :
+                                <>
+                                  <CopyIcon />
+                                  <Typography variant="body2">Copy Address</Typography>
+                                </>
+                            }
+                          </MenuItem>
+                          <MenuItem onClick={onViewLiskscan}>
+                            <FontAwesomeIcon icon={faUpRightFromSquare} />
+                            <Typography variant="body2">View on Liskscan</Typography>
+                          </MenuItem>
+                        </Box>
+                      }
+                      <Typography className="wallet-address" variant="body2" onClick={onCopyAddress}>{ellipsisAddress(address || '')}</Typography>
+                      {
+                        addressCopied &&
+                        <Box className="copied-alert">
+                          <CheckCircleIcon />
+                          <Typography variant="body2">Copied Address</Typography>
+                        </Box>
+                      }
                       <IconButton className="wallet-exit-button" onClick={onDisconnect}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                       </IconButton>

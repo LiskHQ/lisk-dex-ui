@@ -53,8 +53,6 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
         p: {
           fontSize: '0.75rem',
           textAlign: 'center',
-          marginTop: '0.75rem',
-          marginBottom: '0.25rem',
         },
 
         '.wallet-header-top-box': {
@@ -64,9 +62,13 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
           justifyContent: 'space-between',
           marginBottom: '1.5rem',
 
-          p: {
+          '.wallet-address': {
             fontSize: '0.875rem',
             color: theme.text.primary,
+            
+            '&:hover': {
+              cursor: 'pointer',
+            }
           },
 
           '.wallet-menu-button': {
@@ -81,6 +83,74 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
               color: '#E10916',
               width: '1rem',
               height: '1rem',
+            }
+          },
+          
+          '.copied-alert': {
+            position: 'absolute',
+            top: '2.75rem',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 300,
+            
+            display: 'flex',
+            alignItems: 'center',
+            background: theme.primary[1],
+            borderRadius: '0.5rem',
+            padding: '0.5rem',
+            
+            svg: {
+              width: '1rem',
+              height: '1rem',
+              path: {
+                stroke: theme.success.dark,
+              },
+              marginRight: '0.5rem',
+            },
+            
+            p: {
+              color: theme.success.dark,
+            }
+          },
+          
+          '.wallet-menu': {
+            position: 'absolute',
+            top: '3rem',
+            left: '1rem',
+            zIndex: 300,
+            
+            background: theme.bg.secondary,
+            padding: '0.375rem',
+            borderRadius: '0.5rem',
+            border: `1px solid ${theme.border.primary}`,
+            
+            '.MuiMenuItem-root': {
+              svg: {
+                width: '1rem',
+                height: '1rem',
+                
+                path: {
+                  color: theme.text.primary,
+                  stroke: theme.text.primary,
+                },
+                
+                marginRight: '0.5rem',
+              },
+
+              color: theme.text.primary,
+              borderRadius: '0.5rem',
+              
+              '&.menu-copied-address': {
+                svg: {
+                  path: {
+                    stroke: theme.success.dark,
+                  },
+                },
+                
+                p: {
+                  color: theme.success.dark,
+                }
+              }
             }
           }
         }

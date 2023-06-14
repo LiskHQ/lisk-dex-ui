@@ -43,6 +43,7 @@ export const WalletComponentStyle = styled('div')(({ theme }: any) => {
       background: theme.primary[2.5],
       border: `0.5px solid ${theme.primary[5]}`,
       borderRadius: '0.75rem',
+      height: '3rem',
       padding: '0.125rem 0.5rem 0.125rem 0.5rem',
       marginLeft: '0.75rem',
       color: theme.text.primary,

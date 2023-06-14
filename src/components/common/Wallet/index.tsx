@@ -77,10 +77,10 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   const getBlockchainActions = (chainId: string) => {
     const [namespace] = chainId.split(':');
     switch (namespace) {
-    case 'lisk':
-      return getLiskActions();
-    default:
-      break;
+      case 'lisk':
+        return getLiskActions();
+      default:
+        break;
     }
   };
 
@@ -149,7 +149,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-            onClick={() => setOpenWalletModal(true)}
+              onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
               <Typography variant="h5">{ellipsisAddress(address)}</Typography>
