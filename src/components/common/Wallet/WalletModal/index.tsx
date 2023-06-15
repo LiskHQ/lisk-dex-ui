@@ -7,7 +7,7 @@ import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisV
 import { mockTokens } from '__mock__';
 import { useEffect, useState } from 'react';
 import { HistoryComponent } from './History';
-import { AccountAction, AccountBalances, ChainNamespaces, IAccount, IToken } from 'models';
+import { AccountBalances, IAccount, IToken } from 'models';
 import { TokenComponent } from './Token';
 import { ellipsisAddress } from 'utils';
 import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
@@ -18,11 +18,8 @@ enum TABS {
 }
 
 export interface IWalletModalProps {
-  chainId: string,
   balances?: AccountBalances,
   account?: IAccount,
-  actions?: AccountAction[],
-  chainData: ChainNamespaces,
   onClose: () => void,
   onDisconnect: () => void,
 }
@@ -165,7 +162,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                           <FontAwesomeIcon icon={faChevronRight} />
                         </Box>
                       ))
-                    })
+                    }
                   </Box>
                 </>
             }</>,

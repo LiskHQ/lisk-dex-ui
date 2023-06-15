@@ -72,7 +72,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
           return {
             chainId: `${namespace}:${reference}`,
             publicKey,
-            data
+            data: data.data[0],
           };
         }),
       );
@@ -93,7 +93,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
 
     setSession(_session);
     setChains(allNamespaceChains);
-    await setAccounts(getAccountsFromNamespaces(allNamespaceAccounts));
+    setAccounts(getAccountsFromNamespaces(allNamespaceAccounts));
     await getAccountDetails(allNamespaceAccounts);
   }, []);
 
@@ -112,11 +112,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
           requiredNamespaces,
         });
 
-        // Open QRCode modal if a URI was returned (i.e. we're not connecting an existing pairing).
         if (uri) {
-          // QRCodeModal.open(uri, () => {
-          //   console.log("EVENT", "QR Code Modal closed");
-          // });
           callback(uri);
         }
 

@@ -11,8 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { WalletModal } from './WalletModal';
 import { useChainData, useJsonRpc, useWalletConnectClient } from 'contexts';
-import { DEFAULT_LISK_METHODS, DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
-import { AccountAction, IAccount } from 'models';
+import { DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
+import { IAccount } from 'models';
 import { useDispatch } from 'react-redux';
 import { AppActions } from 'store';
 
@@ -30,7 +30,6 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
 
   const [uri, setUri] = useState<string>('');
   const [account, setAccount] = useState<IAccount>();
-  const [chainId, setChainId] = useState<string>('');
 
   // Initialize the WalletConnect client.
   const {
@@ -50,7 +49,6 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
     // ping,
-    liskRpc,
     // isRpcRequestPending,
     // rpcResult,
     isTestnet,
@@ -59,33 +57,32 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
 
   const { chainData } = useChainData();
 
-  const getLiskActions = (): AccountAction[] => {
-    const onSignTransaction = async (chainId: string, address: string) => {
-      //      openRequestModal();
-      await liskRpc.testSignTransaction(chainId, address);
-    };
-    const onSignMessage = async (chainId: string, address: string) => {
-      //      openRequestModal();
-      await liskRpc.testSignMessage(chainId, address);
-    };
-    return [
-      { method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION, callback: onSignTransaction },
-      { method: DEFAULT_LISK_METHODS.LSK_SIGN_MESSAGE, callback: onSignMessage },
-    ];
-  };
+  // const getLiskActions = (): AccountAction[] => {
+  //   const onSignTransaction = async (chainId: string, address: string) => {
+  //     //      openRequestModal();
+  //     await liskRpc.testSignTransaction(chainId, address);
+  //   };
+  //   const onSignMessage = async (chainId: string, address: string) => {
+  //     //      openRequestModal();
+  //     await liskRpc.testSignMessage(chainId, address);
+  //   };
+  //   return [
+  //     { method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION, callback: onSignTransaction },
+  //     { method: DEFAULT_LISK_METHODS.LSK_SIGN_MESSAGE, callback: onSignMessage },
+  //   ];
+  // };
 
-  const getBlockchainActions = (chainId: string) => {
-    const [namespace] = chainId.split(':');
-    switch (namespace) {
-    case 'lisk':
-      return getLiskActions();
-    default:
-      break;
-    }
-  };
+  // const getBlockchainActions = (chainId: string) => {
+  //   const [namespace] = chainId.split(':');
+  //   switch (namespace) {
+  //     case 'lisk':
+  //       return getLiskActions();
+  //     default:
+  //       break;
+  //   }
+  // };
 
   const onConnect = (chainId: string) => {
-    setChainId(chainId);
     setChains([chainId]);
     setConnectClicked(true);
   };
@@ -116,7 +113,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
 
   useEffect(() => {
     if (accounts.length > 0) {
-      const account = accounts.find(el => el.chainId === chainId);
+      const account = accounts[0];
       if (account) {
         setAccount(account);
         dispatch(AppActions.wallet.setAccount(account));
@@ -125,15 +122,15 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
     } else {
       setUri('');
       setAccount(undefined);
-      setChainId('');
       onConnected(false);
+      setOpenWalletModal(false);
     }
-  }, [accounts, chainId, dispatch, onConnected]);
+  }, [accounts, dispatch, onConnected]);
 
   return (
     <WalletComponentStyle>
       {
-        account ?
+        (account && account.data) ?
           <>
             <DropdownComponent
               className="header-menu-chain"
@@ -185,11 +182,8 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
         <WalletModal
           onDisconnect={onDisconnect}
           onClose={() => setOpenWalletModal(false)}
-          chainData={chainData}
-          chainId={chainId}
           account={account}
           balances={balances}
-          actions={getBlockchainActions(chainId)}
         />
       }
     </WalletComponentStyle>
