@@ -36,3 +36,11 @@ export function getAccountsFromNamespaces(allNamespaceAccounts: string[]): IAcco
     return accounts;
   }, []);
 }
+
+export function getFiatfromToken(tokenAmount: number, conversion: number) {
+  return (tokenAmount * conversion).toLocaleString(undefined,
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+}

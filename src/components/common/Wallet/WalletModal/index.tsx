@@ -4,18 +4,20 @@ import Image from 'next/image';
 import { WalletModalStyle } from './index.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faUpRightFromSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
-import { mockTokens } from '__mock__';
 import { useEffect, useState } from 'react';
 import { HistoryComponent } from './History';
 import { AccountBalances, IAccount, IToken } from 'models';
 import { TokenComponent } from './Token';
-import { ellipsisAddress } from 'utils';
-import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
+import { ellipsisAddress, getFiatfromToken } from 'utils';
+import { CheckCircleIcon, CopyIcon, tokenSvgs } from 'imgs/icons';
+import { mockConversionRate } from '__mock__';
 
 enum TABS {
   WALLET = 0,
   HISTORY = 1,
 }
+
+const lskDigits = 8;
 
 export interface IWalletModalProps {
   balances?: AccountBalances,
@@ -136,33 +138,28 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                       <Image src="/assets/avatars/avatar.png" width={40} height={40} />
                     </Box>
                     <Typography variant="body2">Total balance</Typography>
-                    <Typography variant="h2">$48,642.45</Typography>
+                    <Typography variant="h2">${getFiatfromToken(account?.data.token.balance / (10 ** lskDigits), mockConversionRate)}</Typography>
                   </Box>
 
                   <Box className="wallet-body">
                     <Typography variant="h4">Tokens</Typography>
-                    {
-                      mockTokens.map((token, index) => (
-                        <Box
-                          key={index}
-                          className="token-item"
-                          onClick={() => setToken(token)}
-                        >
-                          <Image src={token.image} width={40} height={40} />
-                          <Box className="token-summary">
-                            <Box className="token-summary-box top">
-                              <Typography variant="body1">{token.name}</Typography>
-                              <Typography variant="body2">20,452.45 {token.shortName}</Typography>
-                            </Box>
-                            <Box className="token-summary-box bottom">
-                              <Typography variant="body2">{token.shortName}</Typography>
-                              <Typography variant="body2">$22,452.45</Typography>
-                            </Box>
-                          </Box>
-                          <FontAwesomeIcon icon={faChevronRight} />
+                    <Box
+                      className="token-item"
+                      onClick={() => setToken(token)}
+                    >
+                      <Image src={tokenSvgs.LSK} width={40} height={40} />
+                      <Box className="token-summary">
+                        <Box className="token-summary-box top">
+                          <Typography variant="body1">Lisk</Typography>
+                          <Typography variant="body2">{account?.data.token.balance / (10 ** lskDigits)} LSK</Typography>
                         </Box>
-                      ))
-                    }
+                        <Box className="token-summary-box bottom">
+                          <Typography variant="body2">LSK</Typography>
+                          <Typography variant="body2">${getFiatfromToken(account?.data.token.balance / (10 ** lskDigits), mockConversionRate)}</Typography>
+                        </Box>
+                      </Box>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </Box>
                   </Box>
                 </>
             }</>,
