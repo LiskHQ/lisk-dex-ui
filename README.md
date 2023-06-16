@@ -8,10 +8,9 @@ Lisk DEX UI is an interactive user-interface and lean frontend for the DEX v1.0.
 
 The following dependencies need to be installed in order to run Lisk DEX UI:
 
-| Dependencies            | Version |
-| ----------------------- | ------- |
-| NodeJS                  | 16.14.2 |
-| Python (for developmen) | 2.7.18  |
+| Dependencies | Version |
+| ------------ | ------- |
+| NodeJS       | 16.14.2 |
 
 
 ## Development
