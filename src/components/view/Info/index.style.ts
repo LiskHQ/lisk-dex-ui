@@ -20,6 +20,7 @@ export const InfoViewStyle = styled('main')(({ theme }: any) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      position: 'relative',
 
       [theme.breakpoints.down('md')]: {
         display: 'unset',
@@ -56,8 +57,6 @@ export const InfoViewStyle = styled('main')(({ theme }: any) => {
       },
 
       '.info-search-box': {
-        width: '20.25rem',
-
         [theme.breakpoints.down('md')]: {
           marginTop: '2rem',
         },
