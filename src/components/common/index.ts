@@ -24,3 +24,4 @@ export * from './Chart';
 export * from './Settings';
 export * from './TransactionSettings';
 export * from './Switch';
+export * from './Wallet';

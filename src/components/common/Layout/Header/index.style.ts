@@ -19,17 +19,19 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
       justifyContent: 'space-between',
       alignItems: 'center',
       height: '4.25rem',
-      padding: '0 3rem',
+      padding: '0 1.5rem',
 
       [theme.breakpoints.down('sm')]: {
         padding: '0 1rem',
       },
 
       '.header-menu': {
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
         display: 'flex',
-        width: '100%',
         height: '100%',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
 
         '.header-menu-item': {
@@ -58,69 +60,16 @@ export const HeaderStyle = styled('div')(({ theme }: any) => {
             display: 'none'
           },
         },
+      },
 
-        '.header-menu-chain': {
-          '&>.MuiOutlinedInput-root': {
-            width: '10rem',
-            background: theme.primary[2.5],
-            border: `0.5px solid ${theme.primary[5]}`,
-            borderRadius: '0.75rem',
-            marginLeft: '2rem',
-
-            '&>.MuiSelect-select': {
-              display: 'flex',
-              padding: '0.75rem 0.75rem 0.75rem 0.5rem !important',
-            },
-
-            p: {
-              color: theme.text.primary,
-            },
-
-            svg: {
-              color: theme.text.primary,
-              fill: theme.text.primary,
-              marginRight: '0.25rem',
-            },
-
-            fieldset: {
-              border: 'none',
-            },
-
-            [theme.breakpoints.down('lg')]: {
-              display: 'none'
-            },
-          }
-        },
-
-        '.header-menu-wallet': {
-          display: 'flex',
-          alignItems: 'center',
-          background: theme.primary[2.5],
-          border: `0.5px solid ${theme.primary[5]}`,
-          borderRadius: '0.75rem',
-          padding: '0.125rem 0.125rem 0.125rem 0.5rem',
-          marginLeft: '0.75rem',
-          color: theme.text.primary,
-
-          '.header-menu-wallet-address': {
-            display: 'flex',
-            alignItems: 'center',
-            background: theme.bg.walletAddress,
-            border: `0.5px solid ${theme.primary[20]}`,
-            borderRadius: '0.75rem',
-            padding: '0.5rem 0.625rem',
-            marginLeft: '0.75rem',
-
-            h5: {
-              marginRight: '0.5rem',
-            }
-          }
-        },
+      '.header-actions': {
+        display: 'flex',
+        alignItems: 'center',
 
         '.header-menu-list-button': {
           marginLeft: '0.5rem',
           color: theme.text.primary,
-        }
+        },
       }
     }
   };

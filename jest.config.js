@@ -1,3 +1,6 @@
+global.TextEncoder = require('util').TextEncoder;
+global.TextDecoder = require('util').TextDecoder;
+
 module.exports = {
   modulePaths: ["<rootDir>/src", "node_modules"],
   moduleNameMapper: {
@@ -10,6 +13,7 @@ module.exports = {
   setupFilesAfterEnv: ["./jest.setup.js"],
   testEnvironment: "jsdom",
   snapshotSerializers: ["@emotion/jest/serializer"],
+  "transformIgnorePatterns": [],
   transform: {
     "^.+\\.(t|j)sx?$": [
       "@swc/jest",
