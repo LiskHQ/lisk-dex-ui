@@ -91,11 +91,12 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
     if (chains.length && connectClicked) {
       setConnectClicked(false);
       if (typeof client === 'undefined') {
-        throw new Error('WalletConnect is not initialized');
+        console.log('WalletConnect is not initialized');
+      } else {
+        connect(undefined, (uri: string) => {
+          setUri(uri);
+        });
       }
-      connect(undefined, (uri: string) => {
-        setUri(uri);
-      });
     }
   }, [chains, connectClicked, client, connect]);
 
@@ -145,7 +146,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-            onClick={() => setOpenWalletModal(true)}
+              onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
               <Typography variant="h5">{ellipsisAddress(account.data.summary.address)}</Typography>
