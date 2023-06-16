@@ -47,13 +47,21 @@ export const InfoView: React.FC = () => {
 
   const searchedPools = useMemo(() => {
     if (filter)
-      return mockPoolDetails.filter(pool => pool.token1.name.includes(filter) || pool.token2.name.includes(filter) || pool.token1.shortName.includes(filter) || pool.token2.shortName.includes(filter)).slice(0, 3);
+      return mockPoolDetails.filter(pool =>
+        pool.token1.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        pool.token2.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        pool.token1.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        pool.token2.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        .slice(0, 3);
     return [];
   }, [filter]);
 
   const searchedTokens = useMemo(() => {
     if (filter)
-      return mockTokenDetails.filter(token => token.name.includes(filter) || token.shortName.includes(filter)).slice(0, 3);
+      return mockTokenDetails.filter(token =>
+        token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        token.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        .slice(0, 3);
     return [];
   }, [filter]);
 
