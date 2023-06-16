@@ -21,8 +21,9 @@ Make sure the proper environment variables are set:
 cp .env.local.example .env.local
 ``` 
 
-Then run the development server:
+Then run `yarn install` and the development server:
 ```
+yarn install
 yarn dev
 ```
 
@@ -30,6 +31,7 @@ yarn dev
 ```
 $ git clone https://github.com/LiskHQ/lisk-dex-ui.git
 $ cd lisk-dex-ui
+$ yarn install
 $ yarn build
 $ yarn start
 ```
