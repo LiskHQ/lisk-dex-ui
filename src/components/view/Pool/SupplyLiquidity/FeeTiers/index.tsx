@@ -34,6 +34,7 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
 
   useEffect(() => {
     onChange(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   useEffect(() => {
