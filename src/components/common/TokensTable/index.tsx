@@ -34,6 +34,8 @@ export interface ITokensTable {
   onPreviousPage?: () => void,
   onSelectToken?: (id: string) => void,
   onSortClick: (key: string) => void,
+  onSwap?: (token: string) => void,
+  onAddLiquidity?: (token: string) => void,
   sortKey: string,
   isAsc?: boolean,
   limit?: number,
@@ -49,6 +51,8 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
     onNextPage,
     onPreviousPage,
     onSortClick,
+    onAddLiquidity,
+    onSwap,
     pagination,
     tokens,
     sortKey,
@@ -57,6 +61,16 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
     totalPages,
     page
   } = props;
+
+  const onSwapClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, tokenId: string) => {
+    e.stopPropagation();
+    onSwap && onSwap(tokenId);
+  };
+
+  const onAddLiquidityClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, tokenId: string) => {
+    e.stopPropagation();
+    onAddLiquidity && onAddLiquidity(tokenId);
+  };
 
   return (
     <TokensTableStyle>
@@ -136,10 +150,17 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                 </TableCell>
                 <TableCell align="right">
                   <Box className="actions-td">
-                    <ButtonComponent variant="outlined" size="small">
+                    <ButtonComponent
+                      variant="outlined"
+                      size="small"
+                      onClick={e => { onAddLiquidityClick(e, row.shortName); }}
+                    >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
-                    <ButtonComponent size="small">
+                    <ButtonComponent
+                      size="small"
+                      onClick={e => { onSwapClick(e, row.shortName); }}
+                    >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>
                   </Box>

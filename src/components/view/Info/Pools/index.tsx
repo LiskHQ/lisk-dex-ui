@@ -12,11 +12,20 @@ import Link from 'next/link';
 import { PATHS } from 'consts';
 
 export interface IPoolsComponentProps {
+  onSwap: (token1: string, token2?: string) => void,
+  onAddLiquidity: (token1: string, token2?: string) => void,
+  onSelectPool: (id: string) => void,
+  onSelectToken: (id: string) => void,
   router: NextRouter,
 }
 
 export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
-  const { router } = props;
+  const {
+    onSwap,
+    onAddLiquidity,
+    onSelectPool,
+    router
+  } = props;
   const [isLike, setLike] = useState<boolean>(false);
   const [poolId, setPoolId] = useState<string>('');
 
@@ -165,6 +174,9 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
         onNextPage={() => { setPage(Math.min(page + 1, totalPages)); }}
         onPreviousPage={() => { setPage(Math.max(page - 1, 1)); }}
         onSortClick={onSortClick}
+        onSelectPool={onSelectPool}
+        onSwap={onSwap}
+        onAddLiquidity={onAddLiquidity}
         onChangeRowCount={value => { setLimit(value); }}
         totalPages={totalPages}
         pagination

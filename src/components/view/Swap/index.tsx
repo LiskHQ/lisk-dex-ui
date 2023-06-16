@@ -10,6 +10,7 @@ import { IToken } from 'models';
 import { mockConversionRate, mockEthtoLsk } from '__mock__';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
+import { useRouter } from 'next/router';
 
 export interface ISwapViewProps {
   balance: number,
@@ -20,6 +21,7 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
+  const router = useRouter();
   const { balance, tokens, closeTransactionModal, onConfirmSwap } = props;
 
   //flags for open modals
@@ -44,6 +46,20 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const onEditSplipageTolerance = () => {
     setOpenTransactionSettings(true);
   };
+
+  useEffect(() => {
+    if (router) {
+      const { query } = router;
+      if (query) {
+        if (query.token1) {
+          setToken1(tokens.find(token => token.shortName === query.token1) as IToken);
+        }
+        if (query.token2) {
+          setToken2(tokens.find(token => token.shortName === query.token2) as IToken);
+        }
+      }
+    }
+  }, [router, tokens]);
 
   useEffect(() => {
     if (closeTransactionModal) {
