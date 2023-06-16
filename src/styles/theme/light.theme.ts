@@ -61,6 +61,7 @@ const themeColors = {
     banner: 'linear-gradient(180deg, #F3F3FD 0%, rgba(238, 238, 249, 0.9) 100%)',
     proposalItem: 'linear-gradient(180deg, #F4F2FF 0%, rgba(238, 236, 249, 0.5) 143.01%);',
     walletAddress: 'linear-gradient(180deg, #EEEFF7 0%, rgba(232, 234, 245, 0.8) 100%);',
+    slider: '#F2F2F2',
   },
   switch: {
     track: '#E6E6E6',

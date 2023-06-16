@@ -32,12 +32,12 @@ const themeColors = {
     85: '#7E6CF4',
     70: '#4F39B2',
     60: '#271B5B',
-    40: '#270F8E',
+    40: '#2D2166',
     20: '#322573',
     10: '#4F39B2',
     5: '#322573',
     2.5: '#25195E',
-    1: '#271B5B',
+    1: '#F4F8F9',
     0: '#FFFFFF',
   },
   opacities: {
@@ -50,18 +50,14 @@ const themeColors = {
   border: {
     primary: '#433199',
   },
-  slider: {
-    primary: '#322573',
-    secondary: '#F4F8F9',
-  },
   bg: {
     primary: 'linear-gradient(90deg, #140C42 0%, #211953 52.88%, #110A3A 101.53%, #140C42 101.53%)',
     secondary: '#22184C',
-    modal: '#2D2166',
     helper: '#6953F4',
     proposalItem: 'linear-gradient(180deg, #2E2567 0%, rgba(37, 26, 103, 0.5) 143.01%);',
     banner: 'linear-gradient(180deg, #150556 0%, rgba(25, 9, 98, 0.9) 100%)',
     walletAddress: 'linear-gradient(180deg, #372589 0%, rgba(27, 19, 68, 0.8) 100%)',
+    slider: '#322573',
   },
   switch: {
     track: '#382980',

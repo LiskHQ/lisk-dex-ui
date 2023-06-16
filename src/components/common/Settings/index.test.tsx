@@ -47,4 +47,3 @@ describe('SettingsModal', () => {
     expect(mockProps.onSave).toBeCalled();
   });
 });
-

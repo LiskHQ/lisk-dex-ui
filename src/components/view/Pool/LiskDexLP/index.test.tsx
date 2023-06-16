@@ -30,7 +30,7 @@ describe('LiskDexLP component', () => {
   it('click on preview', () => {
     const { getByTestId } = renderComponent(mockProps);
     setTimeout(() => {
-      fireEvent.click(getByTestId('pool-component-test-1001'));
+      fireEvent.click(getByTestId('pool-component-test-0'));
       fireEvent.click(getByTestId('increase-liquidity-test'));
       expect(getByTestId('increase-liquidity-modal-test')).toBeInTheDocument();
     }, 1000);

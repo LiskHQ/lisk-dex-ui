@@ -16,3 +16,13 @@ export interface IPool {
   token2Amount: number,
   share: number,
 }
+
+export interface IPoolDetail {
+  token1: IToken,
+  token2: IToken,
+  tvl: number,
+  volume: number,
+  fees: number,
+  share: number,
+  APY: number,
+}
