@@ -13,11 +13,22 @@ import Image from 'next/image';
 import { IncreaseIcon } from 'imgs/icons';
 
 export interface ITokenComponentProps {
+  onSwap: (token1: string, token2?: string) => void,
+  onAddLiquidity: (token1: string, token2?: string) => void,
+  onSelectPool: (id: string) => void,
+  onSelectToken: (id: string) => void,
   router: NextRouter,
 }
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
-  const { router } = props;
+  const {
+    onSwap,
+    onAddLiquidity,
+    onSelectPool,
+    onSelectToken,
+    router
+  } = props;
+
   const [isLike, setLike] = useState<boolean>(false);
   const [tokenId, setTokenId] = useState<string>('');
 
@@ -65,6 +76,32 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const transactionsTotalPages = useMemo(() => {
     return Math.ceil(10 / transactionsLimit);
   }, [transactionsLimit]);
+
+  // tokens table control
+  const [isTokenAsc, setTokenAsc] = useState<boolean>();
+  const [sortTokenKey, setSortTokenKey] = useState<string>('');
+
+  const [page, setPage] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(10);
+  const [totalPages, setMaximumPage] = useState<number>(0);
+  const [searchFilter, setSearchFilter] = useState<string>('');
+
+  const tokens = useMemo(() => {
+    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
+    return mockTokenDetails
+      .filter(el => el.shortName.includes(searchFilter) || el.name.includes(searchFilter))
+      .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
+      .slice((page - 1) * limit, page * limit);
+  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
+
+  const onSortTokenClick = (key: string) => {
+    if (key !== sortTokenKey) {
+      setTokenAsc(false);
+      setSortTokenKey(key);
+    } else {
+      setTokenAsc(!isTokenAsc);
+    }
+  };
 
   return (
     <TokensComponentStyle>
@@ -156,7 +193,10 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               pools={pools}
               sortKey={sortKey}
               isAsc={isAsc}
+              onSelectPool={onSelectPool}
               onSortClick={onSortClick}
+              onSwap={onSwap}
+              onAddLiquidity={onAddLiquidity}
             />
 
             <Box className="table-title">
@@ -178,12 +218,28 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
             <Box className="token-search-box">
               <SearchInputComponent
                 placeholder="Search tokens..."
+                value={searchFilter}
+                onChange={(value) => setSearchFilter(value)}
               />
             </Box>
-            <TokensTable />
+            <TokensTable
+              pagination
+              tokens={tokens}
+              isAsc={isTokenAsc}
+              sortKey={sortTokenKey}
+              onSortClick={onSortTokenClick}
+              onSelectToken={onSelectToken}
+              onSwap={onSwap}
+              onAddLiquidity={onAddLiquidity}
+              limit={limit}
+              page={page}
+              onChangeRowCount={(value) => setLimit(value)}
+              onNextPage={() => { setPage(Math.max(page - 1, 1)); }}
+              onPreviousPage={() => { setPage(Math.min(page + 1, totalPages)); }}
+              totalPages={totalPages}
+            />
           </>
       }
-
     </TokensComponentStyle>
   );
 };

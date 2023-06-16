@@ -4,27 +4,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { createMockChartInfo, mockPoolDetails } from '__mock__';
-import { NextRouter } from 'next/dist/client/router';
+import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
 
 export interface IOverviewComponentProps {
-  router: NextRouter,
+  onSwap: (token1: string, token2?: string) => void,
+  onAddLiquidity: (token1: string, token2?: string) => void,
+  onSelectPool: (id: string) => void,
+  onSelectToken: (id: string) => void,
 }
 
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
-  const { router } = props;
+  const {
+    onSwap,
+    onAddLiquidity,
+    onSelectPool,
+    onSelectToken,
+  } = props;
 
   const chartData = useMemo(() => {
     return createMockChartInfo();
   }, []);
-
-  const onSelectPool = (id: string) => {
-    router.push(`?poolId=${id}`);
-  };
-
-  const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`);
-  };
 
   // pools table control
   const [isAsc, setAsc] = useState<boolean>();
@@ -45,6 +44,23 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
     }
   };
 
+  // tokens table control
+  const [isTokenAsc, setTokenAsc] = useState<boolean>();
+  const [sortTokenKey, setSortTokenKey] = useState<string>('');
+
+  const tokens = useMemo(() => {
+    return mockTokenDetails
+      .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey]);
+  }, [sortTokenKey, isTokenAsc]);
+
+  const onSortTokenClick = (key: string) => {
+    if (key !== sortTokenKey) {
+      setTokenAsc(false);
+      setSortTokenKey(key);
+    } else {
+      setTokenAsc(!isTokenAsc);
+    }
+  };
   // transactions table control
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
@@ -73,7 +89,16 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
-      <TokensTable onSelectToken={onSelectToken} />
+      <TokensTable
+        tokens={tokens}
+        isAsc={isTokenAsc}
+        sortKey={sortTokenKey}
+        onSortClick={onSortTokenClick}
+        onSelectToken={onSelectToken}
+        onSwap={onSwap}
+        onAddLiquidity={onAddLiquidity}
+      />
+
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>
@@ -88,6 +113,8 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         onSelectPool={onSelectPool}
         sortKey={sortKey}
         isAsc={isAsc}
+        onSwap={onSwap}
+        onAddLiquidity={onAddLiquidity}
       />
 
       <Box className="table-title">

@@ -1,13 +1,12 @@
-import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import cn from 'classnames';
-import { ButtonComponent } from 'components';
-import { mockTokenDetails } from '__mock__';
+import { ButtonComponent, PaginationComponent } from 'components';
 import { TokensTableStyle } from './index.style';
 import { DecreaseIcon, IncreaseIcon } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { ITokenDetail } from 'models';
 
 const sortKeys = [
   {
@@ -29,25 +28,48 @@ const sortKeys = [
 ];
 
 export interface ITokensTable {
+  tokens: ITokenDetail[],
+  onChangeRowCount?: (count: number) => void,
+  onNextPage?: () => void,
+  onPreviousPage?: () => void,
   onSelectToken?: (id: string) => void,
+  onSortClick: (key: string) => void,
+  onSwap?: (token: string) => void,
+  onAddLiquidity?: (token: string) => void,
+  sortKey: string,
+  isAsc?: boolean,
+  limit?: number,
+  page?: number,
+  pagination?: boolean,
+  totalPages?: number
 }
 
 export const TokensTable: React.FC<ITokensTable> = (props) => {
-  const { onSelectToken } = props;
-  const [isAsc, setAsc] = useState<boolean>();
-  const [sortKey, setSortKey] = useState<string>('');
+  const {
+    onChangeRowCount,
+    onSelectToken,
+    onNextPage,
+    onPreviousPage,
+    onSortClick,
+    onAddLiquidity,
+    onSwap,
+    pagination,
+    tokens,
+    sortKey,
+    isAsc,
+    limit,
+    totalPages,
+    page
+  } = props;
 
-  const rows = useMemo(() => {
-    return mockTokenDetails.sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
-  }, [sortKey, isAsc]);
+  const onSwapClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, tokenId: string) => {
+    e.stopPropagation();
+    onSwap && onSwap(tokenId);
+  };
 
-  const onSortClick = (key: string) => {
-    if (key !== sortKey) {
-      setAsc(false);
-      setSortKey(key);
-    } else {
-      setAsc(!isAsc);
-    }
+  const onAddLiquidityClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, tokenId: string) => {
+    e.stopPropagation();
+    onAddLiquidity && onAddLiquidity(tokenId);
   };
 
   return (
@@ -56,12 +78,17 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant="body2">Name</Typography></TableCell>
+              <TableCell className="always-visible"><Typography variant="body2">Name</Typography></TableCell>
               {
                 sortKeys.map(el => (
                   <TableCell
                     key={el.key}
                     align="right"
+                    className={
+                      cn({
+                        'always-visible': el.key === 'volume',
+                      })
+                    }
                   >
                     <Box className="sort-key-table-cell" onClick={() => onSortClick(el.key)}>
                       <Typography variant="body2">{el.label}</Typography>
@@ -80,13 +107,13 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
+            {tokens && tokens.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={() => { onSelectToken && onSelectToken(index.toString()); }}
               >
-                <TableCell scope="row">
+                <TableCell className="always-visible" scope="row">
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
@@ -115,7 +142,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                     }
                   </Box>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell className="always-visible" align="right">
                   <Typography variant="body2">${row.volume}M</Typography>
                 </TableCell>
                 <TableCell align="right">
@@ -123,10 +150,17 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                 </TableCell>
                 <TableCell align="right">
                   <Box className="actions-td">
-                    <ButtonComponent variant="outlined" size="small">
+                    <ButtonComponent
+                      variant="outlined"
+                      size="small"
+                      onClick={e => { onAddLiquidityClick(e, row.shortName); }}
+                    >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
-                    <ButtonComponent size="small">
+                    <ButtonComponent
+                      size="small"
+                      onClick={e => { onSwapClick(e, row.shortName); }}
+                    >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>
                   </Box>
@@ -136,6 +170,17 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      {
+        pagination &&
+        <PaginationComponent
+          onChangeRowCount={onChangeRowCount}
+          onNextPage={onNextPage}
+          onPreviousPage={onPreviousPage}
+          limit={limit}
+          page={page}
+          totalPages={totalPages}
+        />
+      }
     </TokensTableStyle >
   );
 };
