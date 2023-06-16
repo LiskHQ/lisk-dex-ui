@@ -1,7 +1,5 @@
 ![Logo](./docs/assets/banner_ui.png)
 
-![](https://lh5.googleusercontent.com/0bn7sMzHuLDhO9_R6QB5pb6oS_xxsb7J1hwY_gG6jdFIo9_44WBsNtDO4Jhi0NQ6rIuQXNdMsHu7y_WMQZdsCWbhrY4Z0KxGoEyVrB65O9aItQFHInWXfWgILQLayZc-2UDyne1dIB4kSFg1usWbDg)
-
 # Lisk DEX UI
 
 Lisk DEX UI is an interactive user-interface and lean frontend for the DEX v1.0.0 and makes the user's interaction as simple and efficient as possible, in terms of accomplishing user goals.
