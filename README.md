@@ -6,7 +6,7 @@ Lisk DEX UI is an interactive user-interface and lean frontend for the DEX v1.0.
 
 ## Dependencies
 
-The following dependencies need to be installed in order to run applications created with the Lisk SDK.
+The following dependencies need to be installed in order to run Lisk DEX UI:
 
 | Dependencies            | Version |
 | ----------------------- | ------- |
@@ -14,6 +14,17 @@ The following dependencies need to be installed in order to run applications cre
 | Python (for developmen) | 2.7.18  |
 
 
+## Development
+
+Make sure the proper environment variables are set:
+```
+cp .env.local.example .env.local
+``` 
+
+Then run the development server:
+```
+yarn dev
+```
 
 ## Install
 ```
