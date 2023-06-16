@@ -33,8 +33,8 @@ export const FeeTiers: React.FC<IFeeTiersProps> = (props) => {
   const [value, setValue] = useState<number>(tierValue);
 
   useEffect(() => {
-    onChange && onChange(value);
-  }, [value, onChange]);
+    onChange(value);
+  }, [value]);
 
   useEffect(() => {
     setValue(tierValue);
