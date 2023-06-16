@@ -1,5 +1,5 @@
 import { LoaderComponent } from 'components';
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { ButtonComponentStyle } from './index.style';
 
 interface IProps {
@@ -11,7 +11,7 @@ interface IProps {
   size?: string,
   type?: string,
   'data-testid'?: string,
-  onClick?: () => void,
+  onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 export const ButtonComponent: React.FC<IProps> = (props) => {
   const { children, loading, disabled, variant = 'contained', ...buttonProps } = props;
