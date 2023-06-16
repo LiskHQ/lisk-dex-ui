@@ -33,6 +33,8 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
       }
     }
 
+    handleResize();
+
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);

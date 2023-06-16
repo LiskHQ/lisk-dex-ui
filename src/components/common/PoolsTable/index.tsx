@@ -30,6 +30,8 @@ export interface IPoolsTable {
   onPreviousPage?: () => void,
   onSelectPool?: (id: string) => void,
   onSortClick: (key: string) => void,
+  onAddLiquidity?: (token1: string, token2: string) => void,
+  onSwap?: (token1: string, token2: string) => void,
   sortKey: string,
   isAsc?: boolean,
   limit?: number,
@@ -45,6 +47,8 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
     onNextPage,
     onPreviousPage,
     onSortClick,
+    onAddLiquidity,
+    onSwap,
     pagination,
     pools,
     sortKey,
@@ -53,6 +57,16 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
     totalPages,
     page
   } = props;
+
+  const onSwapClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, token1: string, token2: string) => {
+    e.stopPropagation();
+    onSwap && onSwap(token1, token2);
+  };
+
+  const onAddLiquidityClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, token1: string, token2: string) => {
+    e.stopPropagation();
+    onAddLiquidity && onAddLiquidity(token1, token2);
+  };
 
   return (
     <PoolsTableStyle>
@@ -115,7 +129,7 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                     <Box className="token2-image">
                       <Image src={row.token2.image} width={32} height={32}></Image>
                     </Box>
-                    <Typography>{row.token1.shortName} - {row.token1.shortName}</Typography>
+                    <Typography>{row.token1.shortName} - {row.token2.shortName}</Typography>
 
                     <Box className="token-share">
                       <Typography variant="caption">{row.share}</Typography>
@@ -139,10 +153,17 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                 </TableCell>
                 <TableCell align="right">
                   <Box className="actions-td">
-                    <ButtonComponent variant="outlined" size="small">
+                    <ButtonComponent
+                      variant="outlined"
+                      size="small"
+                      onClick={e => { onAddLiquidityClick(e, row.token1.shortName, row.token2.shortName); }}
+                    >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
-                    <ButtonComponent size="small">
+                    <ButtonComponent
+                      size="small"
+                      onClick={e => { onSwapClick(e, row.token1.shortName, row.token2.shortName); }}
+                    >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>
                   </Box>

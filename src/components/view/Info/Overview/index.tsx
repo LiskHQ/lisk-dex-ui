@@ -5,26 +5,25 @@ import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } 
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
 import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
-import { NextRouter } from 'next/dist/client/router';
 
 export interface IOverviewComponentProps {
-  router: NextRouter,
+  onSwap: (token1: string, token2?: string) => void,
+  onAddLiquidity: (token1: string, token2?: string) => void,
+  onSelectPool: (id: string) => void,
+  onSelectToken: (id: string) => void,
 }
 
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
-  const { router } = props;
+  const {
+    onSwap,
+    onAddLiquidity,
+    onSelectPool,
+    onSelectToken,
+  } = props;
 
   const chartData = useMemo(() => {
     return createMockChartInfo();
   }, []);
-
-  const onSelectPool = (id: string) => {
-    router.push(`?poolId=${id}`);
-  };
-
-  const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`);
-  };
 
   // pools table control
   const [isAsc, setAsc] = useState<boolean>();
@@ -59,7 +58,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
       setTokenAsc(false);
       setSortTokenKey(key);
     } else {
-      setTokenAsc(!isAsc);
+      setTokenAsc(!isTokenAsc);
     }
   };
   // transactions table control
@@ -96,6 +95,8 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         sortKey={sortTokenKey}
         onSortClick={onSortTokenClick}
         onSelectToken={onSelectToken}
+        onSwap={onSwap}
+        onAddLiquidity={onAddLiquidity}
       />
 
 
@@ -112,6 +113,8 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         onSelectPool={onSelectPool}
         sortKey={sortKey}
         isAsc={isAsc}
+        onSwap={onSwap}
+        onAddLiquidity={onAddLiquidity}
       />
 
       <Box className="table-title">
