@@ -18,8 +18,6 @@ export const cryptoDecimalFormat = (amount: number, type: 'string' | 'number' = 
     maximumFractionDigits: 16,
   });
 
-  console.log(text);
-
   text = text.replace(/,/g, '');
 
   if (type === 'string') {

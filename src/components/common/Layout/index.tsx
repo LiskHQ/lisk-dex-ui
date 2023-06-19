@@ -100,7 +100,8 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
     if (!account) {
       router.replace(PATHS.SWAP);
     }
-  }, [account, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account]);
 
   useEffect(() => {
     if (sendingTransaction) {
