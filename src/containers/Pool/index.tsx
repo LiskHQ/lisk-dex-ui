@@ -1,3 +1,4 @@
+import { useSelect } from '@mui/base';
 import { PoolView } from 'components';
 import { TransactionType } from 'consts';
 import { IPool } from 'models';
@@ -10,6 +11,7 @@ export const PoolContainer: React.FC = () => {
 
   const { sendingTransaction, closeTransactionModal, confirmedTransaction } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, createdPool, updatedPool, gettingPools } = useSelector((state: RootState) => state.pool);
+  const { account } = useSelector((state: RootState) => state.wallet);
   const [pool, setPool] = useState<IPool>();
 
   const onConfirmSupplyLiquidity = (pool: IPool) => {
@@ -59,6 +61,7 @@ export const PoolContainer: React.FC = () => {
       pools={pools}
       gettingPools={gettingPools}
       gotPools={gotPools}
+      account={account}
       sendingTransaction={sendingTransaction}
       closeTransactionModal={closeTransactionModal}
       onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}

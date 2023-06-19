@@ -10,6 +10,8 @@ import { IAccount, IToken } from 'models';
 import { mockConversionRate, mockEthtoLsk } from '__mock__';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
+import { LISK_DECIMALS } from 'consts';
+import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 
 export interface ISwapViewProps {
   account: IAccount | null,
@@ -23,7 +25,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   const balance = useMemo(() => {
     if (account && account.data) {
-      return account.data.token.balance;
+      return account.data.token.balance / (10 ** LISK_DECIMALS);
     }
     return 0;
   }, [account]);
@@ -101,9 +103,9 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           <Box className="swap-from-top-box">
             <Typography variant="body1">From:</Typography>
             <Box className="swap-from-percent">
-              <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => { setToken1Amount(+(balance / 4).toPrecision(16)); }}>25%</Typography>
-              <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => { setToken1Amount(+(balance / 2).toPrecision(16)); }}>50%</Typography>
-              <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => { setToken1Amount(+balance.toPrecision(16)); }}>MAX</Typography>
+              <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance / 4))}>25%</Typography>
+              <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance / 2))}>50%</Typography>
+              <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance))}>MAX</Typography>
             </Box>
           </Box>
           <Box className="swap-from-mid-box">
@@ -120,7 +122,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           </Box>
           <Box className="swap-from-bottom-box">
             <Typography variant="body2">Balance: {balance}</Typography>
-            <Typography variant="body2">${((token1Amount as number) * mockConversionRate).toPrecision(16)}</Typography>
+            <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * mockConversionRate)}</Typography>
           </Box>
         </Box>
 
@@ -150,7 +152,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle1">{token2 ? ((token1Amount as number) / mockEthtoLsk).toPrecision(16) : '0.00'}</Typography>
+              <Typography variant="subtitle1">{token2 ? cryptoDecimalFormat((token1Amount as number) / mockEthtoLsk) : '0.00'}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -165,8 +167,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {token2.shortName} = {mockEthtoLsk} LSK</> :
-                      <>1 LSK = {(1 / mockEthtoLsk).toFixed(4)} {token2.shortName}</>
+                      <>1 {token2.shortName} = {mockEthtoLsk} {token1.shortName}</> :
+                      <>1 {token1.shortName} = {cryptoDecimalFormat(1 / mockEthtoLsk)} {token2.shortName}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -192,7 +194,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
             <Box className="swap-summary-property minimum-received">
               <Typography className="swap-summary-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="swap-summary-property-value" variant="body2">{+(+token1Amount / mockEthtoLsk).toPrecision(16)} {token2.shortName}</Typography>
+              <Typography className="swap-summary-property-value" variant="body2">{cryptoDecimalFormat(+token1Amount / mockEthtoLsk)} {token2.shortName}</Typography>
             </Box>
           </Box>
         }

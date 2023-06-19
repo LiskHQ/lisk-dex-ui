@@ -1,3 +1,5 @@
+export const LISK_DECIMALS = 8;
+
 export const DEFAULT_MAIN_CHAINS = [
   // mainnets
   'lisk:00000000',

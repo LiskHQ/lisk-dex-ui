@@ -11,8 +11,9 @@ import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { IPool, IToken } from 'models';
+import { IAccount, IPool, IToken } from 'models';
 import { mockTokens } from '__mock__';
+import { LISK_DECIMALS } from 'consts';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -28,6 +29,7 @@ const chartData = [
 ];
 
 export interface ISupplyLiquidityProps {
+  account: IAccount | null,
   closeTransactionModal: boolean,
   onPreview: (pool: IPool) => void,
 }
