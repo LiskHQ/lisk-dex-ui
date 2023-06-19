@@ -1,4 +1,3 @@
-import { useSelect } from '@mui/base';
 import { PoolView } from 'components';
 import { TransactionType } from 'consts';
 import { IPool } from 'models';

@@ -100,7 +100,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
     if (!account) {
       router.replace(PATHS.SWAP);
     }
-  }, [account]);
+  }, [account, router]);
 
   useEffect(() => {
     if (sendingTransaction) {

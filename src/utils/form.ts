@@ -11,17 +11,25 @@ export const allowDigitOnly = (event: any) => {
 };
 
 
-export const cryptoDecimalFormat = (amount: number) => {
-  const text = amount.toLocaleString(undefined, {
+export const cryptoDecimalFormat = (amount: number, type: 'string' | 'number' = 'string'): string | number => {
+  let text = amount.toLocaleString(undefined, {
     style: 'decimal',
     minimumFractionDigits: 2,
     maximumFractionDigits: 16,
   });
 
-  return parseFloat(text.replace(/,/g, ''));
-}
+  console.log(text);
 
-export const currencyDecimalFormat = (amount: number, currency: string = 'USD') => {
+  text = text.replace(/,/g, '');
+
+  if (type === 'string') {
+    return text;
+  } else {
+    return parseFloat(text);
+  }
+};
+
+export const currencyDecimalFormat = (amount: number, currency = 'USD') => {
   const text = amount.toLocaleString(undefined, {
     style: 'currency',
     currency: currency,
@@ -29,5 +37,5 @@ export const currencyDecimalFormat = (amount: number, currency: string = 'USD') 
     maximumFractionDigits: 2,
   });
 
-  return parseFloat(currency.replace(/,/g, ''));
-}
+  return text;
+};

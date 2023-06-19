@@ -125,6 +125,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
       setAccount(undefined);
       onConnected(false);
       setOpenWalletModal(false);
+      dispatch(AppActions.wallet.resetWalletState());
     }
   }, [accounts, dispatch, onConnected]);
 
@@ -146,7 +147,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-              onClick={() => setOpenWalletModal(true)}
+            onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
               <Typography variant="h5">{ellipsisAddress(account.data.summary.address)}</Typography>

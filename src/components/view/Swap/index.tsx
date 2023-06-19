@@ -23,13 +23,6 @@ export interface ISwapViewProps {
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const { account, tokens, closeTransactionModal, onConfirmSwap } = props;
 
-  const balance = useMemo(() => {
-    if (account && account.data) {
-      return account.data.token.balance / (10 ** LISK_DECIMALS);
-    }
-    return 0;
-  }, [account]);
-
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -49,18 +42,25 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setOpenTransactionSettings(false);
   };
 
+  const reverseSwap = () => {
+    if (token2) {
+      const token = token1;
+      setToken1(token2);
+      setToken2(token);
+      setToken1Amount(0);
+    }
+  };
+
+  const resetSwap = () => {
+    setToken1Amount(0);
+    setSplipageTolerance(0.5);
+    setTransactionDeadline(20);
+    setReverseRate(false);
+  };
+
   const onEditSplipageTolerance = () => {
     setOpenTransactionSettings(true);
   };
-
-  useEffect(() => {
-    if (closeTransactionModal) {
-      setToken1Amount(0);
-      setSplipageTolerance(0.5);
-      setTransactionDeadline(20);
-      setReverseRate(false);
-    }
-  }, [closeTransactionModal]);
 
   const onSelectToken = (token: IToken) => {
     if (openSelectToken1) setToken1(token);
@@ -72,20 +72,20 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setOpenSelectToken2(false);
   };
 
-  const reverseSwap = () => {
-    if (token2) {
-      const token = token1;
-      setToken1(token2);
-      setToken2(token);
-      setToken1Amount('0.00');
+  const balance = useMemo(() => {
+    if (account && account.data) {
+      return account.data.token.balance / (10 ** LISK_DECIMALS);
+    } else {
+      resetSwap();
     }
-  };
+    return 0;
+  }, [account]);
 
   useEffect(() => {
-    if (token1Amount) {
-      //      fetchPrices();
+    if (closeTransactionModal) {
+      resetSwap();
     }
-  }, [token1Amount]);
+  }, [closeTransactionModal]);
 
   return (
     <SwapViewStyle>
@@ -117,12 +117,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             <InputComponent
               type="number"
               value={token1Amount}
-              onChange={(e) => setToken1Amount(parseFloat(e.target.value))}
+              onChange={e => setToken1Amount(e.target.value)}
             />
           </Box>
           <Box className="swap-from-bottom-box">
-            <Typography variant="body2">Balance: {balance}</Typography>
-            <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * mockConversionRate)}</Typography>
+            <Typography variant="body2">Balance: {cryptoDecimalFormat(balance)}</Typography>
+            <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * mockConversionRate, 'USD')}</Typography>
           </Box>
         </Box>
 
@@ -152,7 +152,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle1">{token2 ? cryptoDecimalFormat((token1Amount as number) / mockEthtoLsk) : '0.00'}</Typography>
+              <Typography variant="subtitle1">{cryptoDecimalFormat((token1Amount as number) / mockEthtoLsk)}</Typography>
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>

@@ -13,7 +13,6 @@ import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
 import { IAccount, IPool, IToken } from 'models';
 import { mockTokens } from '__mock__';
-import { LISK_DECIMALS } from 'consts';
 
 const chartData = [
   { x: 1.1, y: 50 },
