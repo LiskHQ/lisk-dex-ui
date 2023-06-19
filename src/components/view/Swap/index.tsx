@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Box, IconButton, Typography } from '@mui/material';
 import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
@@ -6,21 +6,27 @@ import { SwapViewStyle } from './index.style';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { IToken } from 'models';
+import { IAccount, IToken } from 'models';
 import { mockConversionRate, mockEthtoLsk } from '__mock__';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
 
 export interface ISwapViewProps {
-  balance: number,
+  account: IAccount | null,
   tokens: IToken[],
   closeTransactionModal: boolean,
   onConfirmSwap: () => void,
-  fetchPrices: () => void,
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
-  const { balance, tokens, closeTransactionModal, onConfirmSwap } = props;
+  const { account, tokens, closeTransactionModal, onConfirmSwap } = props;
+
+  const balance = useMemo(() => {
+    if (account && account.data) {
+      return account.data.token.balance;
+    }
+    return 0;
+  }, [account]);
 
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
