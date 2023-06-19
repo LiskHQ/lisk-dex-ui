@@ -201,12 +201,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
         <ButtonComponent
           data-testid="swap-button"
-          disabled={!token2 || !token1Amount}
+          disabled={!token2 || !token1Amount || !account}
           onClick={() => { setOpenSwapConfirmModal(true); }}
         >
           <Typography variant="h4" sx={{ fontWeight: 500 }}>
             {
-              !token2 ? 'Select tokens' : !token1Amount ? 'Enter Amount' : 'Swap'
+              !account ? 'Connect wallet' : !token2 ? 'Select tokens' : !token1Amount ? 'Enter Amount' : 'Swap'
             }
           </Typography>
         </ButtonComponent>
