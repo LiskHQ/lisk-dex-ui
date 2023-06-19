@@ -3,11 +3,15 @@ import { IAccount } from 'models';
 
 type StateType = {
   account: IAccount | null,
+  gettingTransactions: boolean,
+  gotTransactions: boolean,
   error: any,
 };
 
 const initialState: StateType = {
   account: null,
+  gettingTransactions: false,
+  gotTransactions: false,
   error: { message: '' },
 };
 
@@ -20,6 +24,22 @@ const walletSlice = createSlice({
      */
     setAccount(state, action: PayloadAction<IAccount>) {
       state.account = action.payload;
+    },
+
+    getTransactions(state, action) {
+      state.gettingTransactions = true;
+      state.gotTransactions = false;
+    },
+
+    getTransactionsSuccess(state, action) {
+      state.gettingTransactions = false;
+      state.gotTransactions = true;
+    },
+
+    getTransactionsFailure(state, action) {
+      state.gettingTransactions = false;
+      state.gotTransactions = false;
+      state.error = action.payload;
     },
 
     resetWalletState(state) {
