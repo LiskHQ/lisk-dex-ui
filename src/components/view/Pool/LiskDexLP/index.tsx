@@ -16,7 +16,6 @@ export interface ILiskDexLProps {
 }
 
 export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
-
   const { pools, gettingPools, gotPools, onPreview, onPreviewRemove } = props;
   const [openIncreaseLiquidityModal, setOpenIncreaseLiquidityModal] = useState<boolean>(false);
   const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
@@ -43,7 +42,7 @@ export const LiskDexLP: React.FC<ILiskDexLProps> = (props) => {
             pools.map((el, index) => (
               <PoolComponent
                 key={index}
-                data-testid={`pool-component-test-${el.id}`}
+                data-testid={`pool-component-test-${index}`}
                 pool={el}
                 onIncreaseLiquidity={onIncreaseLiquidity}
                 onRemoveLiquidity={onRemoveLiquidity}

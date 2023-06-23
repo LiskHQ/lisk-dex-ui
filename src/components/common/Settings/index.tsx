@@ -118,9 +118,7 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
             className="settings-modal-confirm"
             onClick={onSaveSettings}
           >
-            <Typography variant="body1">
-              Save
-            </Typography>
+            <Typography variant="body1">Save</Typography>
           </ButtonComponent>
         </Box>
       </Box>

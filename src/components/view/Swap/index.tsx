@@ -12,6 +12,7 @@ import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
 import { LISK_DECIMALS } from 'consts';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
+import { useRouter } from 'next/router';
 
 export interface ISwapViewProps {
   account: IAccount | null,
@@ -21,6 +22,7 @@ export interface ISwapViewProps {
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
+  const router = useRouter();
   const { account, tokens, closeTransactionModal, onConfirmSwap } = props;
 
   //flags for open modals
@@ -61,6 +63,29 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const onEditSplipageTolerance = () => {
     setOpenTransactionSettings(true);
   };
+
+  useEffect(() => {
+    if (router) {
+      const { query } = router;
+      if (query) {
+        if (query.token1) {
+          setToken1(tokens.find(token => token.shortName === query.token1) as IToken);
+        }
+        if (query.token2) {
+          setToken2(tokens.find(token => token.shortName === query.token2) as IToken);
+        }
+      }
+    }
+  }, [router, tokens]);
+
+  useEffect(() => {
+    if (closeTransactionModal) {
+      setToken1Amount(0);
+      setSplipageTolerance(0.5);
+      setTransactionDeadline(20);
+      setReverseRate(false);
+    }
+  }, [closeTransactionModal]);
 
   const onSelectToken = (token: IToken) => {
     if (openSelectToken1) setToken1(token);

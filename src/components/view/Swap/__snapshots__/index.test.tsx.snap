@@ -1053,12 +1053,13 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
             class="MuiTypography-root MuiTypography-body2 emotion-6"
           >
             Balance: 
-            0.00004521425
+            4521.425
           </p>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-6"
           >
-            $0.00
+            $
+            0.000000000000000
           </p>
         </div>
       </div>
