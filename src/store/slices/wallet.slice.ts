@@ -26,11 +26,13 @@ const walletSlice = createSlice({
       state.account = action.payload;
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTransactions(state, action) {
       state.gettingTransactions = true;
       state.gotTransactions = false;
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTransactionsSuccess(state, action) {
       state.gettingTransactions = false;
       state.gotTransactions = true;

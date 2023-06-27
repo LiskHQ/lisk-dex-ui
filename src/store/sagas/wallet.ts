@@ -1,6 +1,6 @@
-import { apiGetTransactions } from "apis";
-import { call, put } from "redux-saga/effects";
-import { AppActions } from "store";
+import { apiGetTransactions } from 'apis';
+import { call, put } from 'redux-saga/effects';
+import { AppActions } from 'store';
 
 interface IResponse {
   data: unknown,
