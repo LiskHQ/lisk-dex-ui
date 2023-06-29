@@ -24,6 +24,9 @@ export * from './PlusCircleIcon';
 export * from './PositionIcon';
 export * from './IncreaseIcon';
 export * from './DecreaseIcon';
+export * from './CheckCircleIcon';
+export * from './CopyIcon';
+export * from './BadgeCheckIcon';
 
 export const tokenSvgs: {
   [key: string]: string,

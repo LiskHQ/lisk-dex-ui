@@ -11,7 +11,7 @@ import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { IPool, IToken } from 'models';
+import { IAccount, IPool, IToken } from 'models';
 import { mockTokens } from '__mock__';
 import { useRouter } from 'next/dist/client/router';
 
@@ -29,6 +29,7 @@ const chartData = [
 ];
 
 export interface ISupplyLiquidityProps {
+  account: IAccount | null,
   closeTransactionModal: boolean,
   onPreview: (pool: IPool) => void,
 }

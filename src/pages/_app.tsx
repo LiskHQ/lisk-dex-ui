@@ -4,10 +4,10 @@ import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import '../styles/globals.css';
-import { createEmotionCache } from '../utils';
+import { createEmotionCache } from 'utils';
 import { Provider } from 'react-redux';
 import { store } from 'store';
-import { PlatformContextProvider } from 'contexts/platformContext';
+import { ChainDataContextProvider, ClientContextProvider, JsonRpcContextProvider, PlatformContextProvider } from 'contexts';
 
 type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
 const clientSideEmotionCache = createEmotionCache();
@@ -17,9 +17,15 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
         <PlatformContextProvider>
-          <AppStyle className="layout-app">
-            <Component {...pageProps} />
-          </AppStyle>
+          <ChainDataContextProvider>
+            <ClientContextProvider>
+              <JsonRpcContextProvider>
+                <AppStyle className="layout-app">
+                  <Component {...pageProps} />
+                </AppStyle>
+              </JsonRpcContextProvider>
+            </ClientContextProvider>
+          </ChainDataContextProvider>
         </PlatformContextProvider>
       </CacheProvider>
     </Provider>
