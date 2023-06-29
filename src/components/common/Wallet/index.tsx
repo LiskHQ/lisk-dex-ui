@@ -91,11 +91,12 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
     if (chains.length && connectClicked) {
       setConnectClicked(false);
       if (typeof client === 'undefined') {
-        throw new Error('WalletConnect is not initialized');
+        console.log('WalletConnect is not initialized');
+      } else {
+        connect(undefined, (uri: string) => {
+          setUri(uri);
+        });
       }
-      connect(undefined, (uri: string) => {
-        setUri(uri);
-      });
     }
   }, [chains, connectClicked, client, connect]);
 
@@ -124,6 +125,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
       setAccount(undefined);
       onConnected(false);
       setOpenWalletModal(false);
+      dispatch(AppActions.wallet.resetWalletState());
     }
   }, [accounts, dispatch, onConnected]);
 

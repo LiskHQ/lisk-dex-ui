@@ -15,11 +15,18 @@ function renderComponent(props: ISwapViewProps) {
 
 describe('Swap', () => {
   const mockProps: ISwapViewProps = {
-    balance: mockBalance,
+    account: {
+      chainId: 'lisk:00400',
+      publicKey: 'f97c8daab9e9bbcbc6e3dec7399d05b27803fccc20ce75b7576847bde94e6802',
+      data: {
+        token: {
+          balance: mockBalance,
+        },
+      }
+    },
     tokens: mockTokens,
     closeTransactionModal: false,
     onConfirmSwap: jest.fn(),
-    fetchPrices: jest.fn(),
   };
 
   it('checks if the component matches the snapshot', () => {

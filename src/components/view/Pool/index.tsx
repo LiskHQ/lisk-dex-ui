@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { IPool } from 'models';
+import { IAccount, IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { PoolViewStyle } from './index.style';
 import { LiskDexLP } from './LiskDexLP';
@@ -13,6 +13,7 @@ export interface IPoolViewProps {
   gettingPools: boolean,
   gotPools: boolean,
   closeTransactionModal: boolean,
+  account: IAccount | null,
   onConfirmSupplyLiquidity: (pool: IPool) => void,
   onConfirmRemoveLiquidity: (pool: IPool) => void,
 }
@@ -23,6 +24,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     pools,
     gotPools,
     gettingPools,
+    account,
     closeTransactionModal,
     onConfirmSupplyLiquidity,
     onConfirmRemoveLiquidity
@@ -55,6 +57,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
             onPreview={onPreview}
+            account={account}
             closeTransactionModal={closeTransactionModal}
           />
         </Grid>
