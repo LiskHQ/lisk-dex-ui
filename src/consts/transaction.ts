@@ -4,3 +4,12 @@ export enum TransactionType {
   INCREASE_LIQUIDITY = 'INCREASE_LIQUIDITY',
   REMOVE_LIQUIDITY = 'REMOVE_LIQUIDITY',
 }
+
+export enum TransactionModule {
+  dex = 'dex',
+}
+
+export enum TransactionCommand {
+  swapExactIn = 'swapExactIn',
+
+}
