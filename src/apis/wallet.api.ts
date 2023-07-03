@@ -19,3 +19,12 @@ export async function apiGetAccounts(params: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetTransactions(params: any) {
+  const response: ResponseGenerator = await liskApiInstance.get(`/api/${API_VERSION}/transactions`, {
+    params,
+  });
+  if (response)
+    return response.data;
+  return {};
+}

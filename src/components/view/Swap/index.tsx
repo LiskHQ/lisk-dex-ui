@@ -10,9 +10,9 @@ import { IAccount, IToken } from 'models';
 import { mockConversionRate, mockEthtoLsk } from '__mock__';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
-import { useRouter } from 'next/router';
 import { LISK_DECIMALS } from 'consts';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
+import { useRouter } from 'next/router';
 
 export interface ISwapViewProps {
   account: IAccount | null,
