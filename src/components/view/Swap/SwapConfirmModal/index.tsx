@@ -44,7 +44,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             icon={faArrowDown}
           />
 
-          <Typography variant="body1">for {token2.shortName}</Typography>
+          <Typography variant="body1">for {token2.symbol}</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={token2.image} width={24} height={24} />
             <Typography className="swap-confirm-amount" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)}</Typography>
@@ -67,7 +67,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             </Box>
             <Box className="transaction-detail-property minimum-received">
               <Typography className="transaction-detail-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)} {token2.shortName}</Typography>
+              <Typography className="transaction-detail-property-value" variant="body2">{(fromAmount / toTokenRate).toPrecision(16)} {token2.symbol}</Typography>
             </Box>
           </Box>
         </Box>

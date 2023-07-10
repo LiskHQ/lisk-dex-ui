@@ -24,7 +24,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
   };
 
   const filteredTokens = useMemo(() => {
-    return tokens.filter(el => el.shortName.includes(filter) || el.name.includes(filter));
+    return tokens.filter(el => el.symbol.includes(filter) || el.name.includes(filter));
   }, [filter, tokens]);
 
   return (
@@ -63,11 +63,11 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
             {
               tokens.map(chain => (
                 <Grid item
-                  key={chain.shortName}
+                  key={chain.symbol}
                 >
                   <Box className="select-token-chain-box">
                     <Image src={chain.image} width={20} height={20} />
-                    <Typography variant="body2">{chain.shortName}</Typography>
+                    <Typography variant="body2">{chain.symbol}</Typography>
                   </Box>
                 </Grid>
               ))
@@ -79,15 +79,15 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
         {
           filteredTokens.map(chain => (
             <Box
-              key={chain.shortName}
-              data-testid={`token-item-${chain.shortName}`}
+              key={chain.symbol}
+              data-testid={`token-item-${chain.symbol}`}
               className="select-token-balance-item"
               onClick={() => { onSelect(chain); setClose(true); }}
             >
               <Box className="token-wrapper">
                 <Image src={chain.image} width={40} height={40} />
                 <Box className="token-name-wrapper">
-                  <Typography className="token-short-name" variant="body1">{chain.shortName}</Typography>
+                  <Typography className="token-short-name" variant="body1">{chain.symbol}</Typography>
                   <Typography variant="body2">{chain.name}</Typography>
                 </Box>
               </Box>

@@ -33,7 +33,7 @@ export const TokenComponent: React.FC<ITokenComponentProps> = (props) => {
           <Image src={token.image} width={40} height={40} />
         </Box>
         <Typography variant="body2">$22,671.52</Typography>
-        <Typography variant="h2">20,452.45 {token.shortName}</Typography>
+        <Typography variant="h2">20,452.45 {token.symbol}</Typography>
       </Box>
     </TokenComponentStyle >
   );

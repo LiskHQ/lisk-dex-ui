@@ -80,7 +80,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                       </Box>
                       <Box className="pool-token-names">
                         <Typography variant="h5">{pool.token1.name} & {pool.token2.name}</Typography>
-                        <Typography variant="body2">{pool.token1.shortName} / {pool.token2.shortName}</Typography>
+                        <Typography variant="body2">{pool.token1.symbol} / {pool.token2.symbol}</Typography>
                       </Box>
                     </Box>
                     <Box className="search-pool-value">
@@ -125,7 +125,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                       </Box>
                       <Box className="pool-token-names">
                         <Typography variant="h5">{token.name}</Typography>
-                        <Typography variant="body2">{token.shortName}</Typography>
+                        <Typography variant="body2">{token.symbol}</Typography>
                       </Box>
                     </Box>
                     <Box className="search-pool-value">

@@ -129,7 +129,7 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                     <Box className="token2-image">
                       <Image src={row.token2.image} width={32} height={32}></Image>
                     </Box>
-                    <Typography>{row.token1.shortName} - {row.token2.shortName}</Typography>
+                    <Typography>{row.token1.symbol} - {row.token2.symbol}</Typography>
 
                     <Box className="token-share">
                       <Typography variant="caption">{row.share}</Typography>
@@ -156,13 +156,13 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                     <ButtonComponent
                       variant="outlined"
                       size="small"
-                      onClick={e => { onAddLiquidityClick(e, row.token1.shortName, row.token2.shortName); }}
+                      onClick={e => { onAddLiquidityClick(e, row.token1.symbol, row.token2.symbol); }}
                     >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
                     <ButtonComponent
                       size="small"
-                      onClick={e => { onSwapClick(e, row.token1.shortName, row.token2.shortName); }}
+                      onClick={e => { onSwapClick(e, row.token1.symbol, row.token2.symbol); }}
                     >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>

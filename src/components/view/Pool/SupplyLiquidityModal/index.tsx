@@ -46,20 +46,20 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
               <Image src={pool.token1.image} width={48} height={48} />
               <Image src={pool.token2.image} width={48} height={48} />
             </Box>
-            <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.shortName} and {pool.token2Amount} {pool.token2.shortName}</Typography>
-            <Typography variant="body1">You will receive 3.45 {pool.token1.shortName}/{pool.token2.shortName} LP Tokens</Typography>
+            <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.symbol} and {pool.token2Amount} {pool.token2.symbol}</Typography>
+            <Typography variant="body1">You will receive 3.45 {pool.token1.symbol}/{pool.token2.symbol} LP Tokens</Typography>
           </Box>
         </Box>
         <Box className="supply-liquidity-modal-body">
           <Box className="deposit-property">
-            <Typography variant="body1">{pool.token1.shortName} Deposited:</Typography>
+            <Typography variant="body1">{pool.token1.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
               <Image src={pool.token1.image} width={24} height={24} />
               <Typography variant="body1">{pool.token1Amount}</Typography>
             </Box>
           </Box>
           <Box className="deposit-property">
-            <Typography variant="body1">{pool.token2.shortName} Deposited:</Typography>
+            <Typography variant="body1">{pool.token2.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
               <Image src={pool.token2.image} width={24} height={24} />
               <Typography variant="body1">{pool.token2Amount}</Typography>

@@ -61,7 +61,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
   const pools = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
     return mockPoolDetails
-      .filter(el => el.token1.shortName.includes(searchFilter) || el.token2.shortName.includes(searchFilter))
+      .filter(el => el.token1.symbol.includes(searchFilter) || el.token2.symbol.includes(searchFilter))
       .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey])
       .slice((page - 1) * limit, page * limit);
   }, [sortKey, isAsc, limit, page, searchFilter]);
@@ -90,7 +90,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
                 <FontAwesomeIcon icon={faChevronRight} />
                 <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Pools</Typography></Link>
                 <FontAwesomeIcon icon={faChevronRight} />
-                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
               </Box>
               <Box className="info-view-contract">
                 <Typography variant="body1">View Contract</Typography>
@@ -116,11 +116,11 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
 
               <Box className="pool-summary-detail">
                 <Box className="pool-summary-name">
-                  <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                  <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
                   <Chip className="pool-summary-share" label={`${pool.share}%`} />
                 </Box>
                 <Box>
-                  <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
+                  <Typography variant="h5">1 {pool.token1.symbol} = $0.92  1 {pool.token2.symbol} = $2.78</Typography>
                 </Box>
               </Box>
             </Box>

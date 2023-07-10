@@ -50,8 +50,8 @@ export const InfoView: React.FC = () => {
       return mockPoolDetails.filter(pool =>
         pool.token1.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
         pool.token2.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token1.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        pool.token1.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        pool.token2.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
   }, [filter]);
@@ -60,7 +60,7 @@ export const InfoView: React.FC = () => {
     if (filter)
       return mockTokenDetails.filter(token =>
         token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        token.shortName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
   }, [filter]);

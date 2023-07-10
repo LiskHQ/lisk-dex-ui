@@ -7,9 +7,11 @@ type StateType = {
 
   gettingToken2TokenConversion: boolean,
   gotToken2TokenConversion: boolean,
+  token2TokenConversion: number,
 
   gettingToken2FiatConversion: boolean,
   gotToken2FiatConversion: boolean,
+  token2FiatConversion: number,
 
   gettingPopularPairings: boolean,
   gotPopularPairings: boolean,
@@ -25,9 +27,11 @@ const initialState: StateType = {
 
   gettingToken2TokenConversion: false,
   gotToken2TokenConversion: false,
+  token2TokenConversion: 0,
 
   gettingToken2FiatConversion: false,
   gotToken2FiatConversion: false,
+  token2FiatConversion: 0,
 
   gettingPopularPairings: false,
   gotPopularPairings: false,
@@ -72,6 +76,7 @@ const tokenSlice = createSlice({
     getToken2TokenCoversionSuccess(state, action) {
       state.gettingToken2TokenConversion = false;
       state.gotToken2TokenConversion = true;
+      state.token2TokenConversion = action.payload.data.convertedPrice;
     },
     getToken2TokenCoversionFailure(state, action) {
       state.gettingToken2TokenConversion = false;
@@ -91,6 +96,7 @@ const tokenSlice = createSlice({
     getToken2FiatConversionSuccess(state, action) {
       state.gettingToken2FiatConversion = false;
       state.gotToken2FiatConversion = true;
+      state.token2FiatConversion = action.payload.data.convertedPrice;
     },
     getToken2FiatConversionFailure(state, action) {
       state.gettingToken2FiatConversion = false;

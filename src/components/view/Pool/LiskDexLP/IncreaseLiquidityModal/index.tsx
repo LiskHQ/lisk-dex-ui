@@ -44,7 +44,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
         <Box className="increase-liquidity-modal-summmary">
           <Image src={pool.token1.image} width={24} height={24} />
           <Image src={pool.token2.image} width={24} height={24} />
-          <Typography className="summary-token-name" variant="body1">{pool.token1.shortName} / {pool.token1.shortName}</Typography>
+          <Typography className="summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token1.symbol}</Typography>
 
           <Box className="summary-rate">
             <Typography variant="body2">0.05%</Typography>
@@ -58,7 +58,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             startAdornment={
               <InputAdornment position="start">
                 <Image src={pool.token1.image} width={40} height={40} />
-                <Typography variant="subtitle1">{pool.token1.shortName}</Typography>
+                <Typography variant="subtitle1">{pool.token1.symbol}</Typography>
               </InputAdornment>
             }
             variant="outlined"
@@ -71,7 +71,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             startAdornment={
               <InputAdornment position="start">
                 <Image src={pool.token2.image} width={40} height={40} />
-                <Typography variant="subtitle1">{pool.token2.shortName}</Typography>
+                <Typography variant="subtitle1">{pool.token2.symbol}</Typography>
               </InputAdornment>
             }
             variant="outlined"

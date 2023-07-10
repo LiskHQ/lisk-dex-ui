@@ -105,22 +105,22 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                     <Box className="token2-image">
                       <Image src={row.token2.image} width={32} height={32}></Image>
                     </Box>
-                    <Typography>{row.token1.shortName} - {row.token1.shortName}</Typography>
+                    <Typography>{row.token1.symbol} - {row.token1.symbol}</Typography>
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="action-td">
-                    <Typography variant="body2">Swap {row.token1.shortName} for {row.token2.shortName}</Typography>
+                    <Typography variant="body2">Swap {row.token1.symbol} for {row.token2.symbol}</Typography>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="details-td">
                     <Image src={row.token1.image} width={16} height={16} />
-                    <Typography variant="body2">142.3k {row.token1.shortName}</Typography>
+                    <Typography variant="body2">142.3k {row.token1.symbol}</Typography>
                     <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
                     <Image src={row.token2.image} width={16} height={16} />
-                    <Typography variant="body2">0.4k {row.token1.shortName}</Typography>
+                    <Typography variant="body2">0.4k {row.token1.symbol}</Typography>
                   </Box>
                 </TableCell>
                 <TableCell align="right">

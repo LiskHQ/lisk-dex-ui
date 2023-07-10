@@ -120,8 +120,8 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                       <Image className="token1-image" src={row.image} width={32} height={32}></Image>
                     </Box>
                     <Typography variant="body2">{row.name}</Typography>
-                    <Box className="token-shortname">
-                      <Typography variant="caption">{row.shortName}</Typography>
+                    <Box className="token-symbol">
+                      <Typography variant="caption">{row.symbol}</Typography>
                     </Box>
                   </Box>
                 </TableCell>
@@ -153,13 +153,13 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                     <ButtonComponent
                       variant="outlined"
                       size="small"
-                      onClick={e => { onAddLiquidityClick(e, row.shortName); }}
+                      onClick={e => { onAddLiquidityClick(e, row.symbol); }}
                     >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
                     <ButtonComponent
                       size="small"
-                      onClick={e => { onSwapClick(e, row.shortName); }}
+                      onClick={e => { onSwapClick(e, row.symbol); }}
                     >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>

@@ -1,18 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Box, IconButton, Typography } from '@mui/material';
-import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
-import { SwapViewStyle } from './index.style';
-import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { IAccount, IToken } from 'models';
-import { mockConversionRate, mockEthtoLsk } from '__mock__';
+
+import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
-import { LISK_DECIMALS } from 'consts';
+import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
+import { SwapViewStyle } from './index.style';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
-import { useRouter } from 'next/router';
+import { RootState } from 'store';
+import { IAccount, IToken } from 'models';
+import { LISK_DECIMALS } from 'consts';
+import { mockConversionRate, mockEthtoLsk } from '__mock__';
 
 export interface ISwapViewProps {
   account: IAccount | null,
@@ -37,6 +40,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
   const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
   const [reverseRate, setReverseRate] = useState<boolean>(false);
+
+  const { token2FiatConversion } = useSelector((root: RootState) => root.token);
 
   const onSaveTransactionSettings = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
     setSplipageTolerance(splipageTolerance);
@@ -69,14 +74,18 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
       const { query } = router;
       if (query) {
         if (query.token1) {
-          setToken1(tokens.find(token => token.shortName === query.token1) as IToken);
+          setToken1(tokens.find(token => token.symbol === query.token1) as IToken);
         }
         if (query.token2) {
-          setToken2(tokens.find(token => token.shortName === query.token2) as IToken);
+          setToken2(tokens.find(token => token.symbol === query.token2) as IToken);
         }
       }
     }
   }, [router, tokens]);
+
+  useEffect(() => {
+    // getToken2FiatConversion(token1.symbol, token2?.symbol);
+  }, [token1, token2]);
 
   useEffect(() => {
     if (closeTransactionModal) {
@@ -136,7 +145,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           <Box className="swap-from-mid-box">
             <Box className="swap-from-select-token" onClick={() => { setOpenSelectToken1(true); }}>
               <Image src={token1.image} width={28} height={28} alt="image" />
-              <Typography variant="subtitle2">{token1.shortName}</Typography>
+              <Typography variant="subtitle2">{token1.symbol}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
             <InputComponent
@@ -168,7 +177,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                   token2 ?
                     <>
                       <Image src={token2.image} width={28} height={28} />
-                      <Typography variant="subtitle2">{token2.shortName}</Typography>
+                      <Typography variant="subtitle2">{token2.symbol}</Typography>
                       <FontAwesomeIcon icon={faChevronDown} />
                     </> :
                     <>
@@ -192,8 +201,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {token2.shortName} = {mockEthtoLsk} {token1.shortName}</> :
-                      <>1 {token1.shortName} = {cryptoDecimalFormat(1 / mockEthtoLsk)} {token2.shortName}</>
+                      <>1 {token2.symbol} = {mockEthtoLsk} {token1.symbol}</> :
+                      <>1 {token1.symbol} = {cryptoDecimalFormat(1 / mockEthtoLsk)} {token2.symbol}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -219,7 +228,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
             <Box className="swap-summary-property minimum-received">
               <Typography className="swap-summary-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="swap-summary-property-value" variant="body2">{cryptoDecimalFormat(+token1Amount / mockEthtoLsk)} {token2.shortName}</Typography>
+              <Typography className="swap-summary-property-value" variant="body2">{cryptoDecimalFormat(+token1Amount / mockEthtoLsk)} {token2.symbol}</Typography>
             </Box>
           </Box>
         }

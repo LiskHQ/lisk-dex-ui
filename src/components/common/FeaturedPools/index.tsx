@@ -48,8 +48,8 @@ export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
                     <Image src={el.token2.image} width={48} height={48} />
                   </Box>
                   <Box className="token-name">
-                    <Typography variant="h4">{el.token1.shortName}</Typography>
-                    <Typography variant="h4">{el.token2.shortName}</Typography>
+                    <Typography variant="h4">{el.token1.symbol}</Typography>
+                    <Typography variant="h4">{el.token2.symbol}</Typography>
                   </Box>
                 </Box>
 

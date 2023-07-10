@@ -3,12 +3,12 @@ import { IFiatCurrency } from 'models';
 
 export const mockFiatCurrnecies: IFiatCurrency[] = [
   {
-    shortName: 'USD',
+    symbol: 'USD',
     name: 'US Dollar',
     image: flagSvgs.US,
   },
   {
-    shortName: 'GBP',
+    symbol: 'GBP',
     name: 'British Pound',
     image: flagSvgs.GB,
   }

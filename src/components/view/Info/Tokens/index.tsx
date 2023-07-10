@@ -57,7 +57,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const pools = useMemo(() => {
     if (token)
       return mockPoolDetails
-        .filter(pool => pool.token1.shortName === token.shortName || pool.token2.shortName === token.shortName)
+        .filter(pool => pool.token1.symbol === token.symbol || pool.token2.symbol === token.symbol)
         .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
     return [];
   }, [sortKey, isAsc, token]);
@@ -89,7 +89,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const tokens = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
     return mockTokenDetails
-      .filter(el => el.shortName.includes(searchFilter) || el.name.includes(searchFilter))
+      .filter(el => el.symbol.includes(searchFilter) || el.name.includes(searchFilter))
       .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
       .slice((page - 1) * limit, page * limit);
   }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
@@ -118,7 +118,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
                 <FontAwesomeIcon icon={faChevronRight} />
                 <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Tokens</Typography></Link>
                 <FontAwesomeIcon icon={faChevronRight} />
-                <Typography variant="h5">{token.shortName}</Typography>
+                <Typography variant="h5">{token.symbol}</Typography>
               </Box>
               <Box className="info-view-contract">
                 <Typography variant="body1">View Contract</Typography>
@@ -142,7 +142,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               <Box className="token-summary-detail">
                 <Box className="token-summary-name">
                   <Typography variant="h5">{token.name}</Typography>
-                  <Chip className="token-summary-share" label={token.shortName} />
+                  <Chip className="token-summary-share" label={token.symbol} />
                 </Box>
                 <Box>
                   <Typography className="token-price" variant="h5">$0.92 <Typography className="token-price-increasement" variant="caption">3.24% <IncreaseIcon /></Typography></Typography>

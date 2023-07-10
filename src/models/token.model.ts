@@ -1,6 +1,6 @@
 export interface IToken {
   name: string,
-  shortName: string,
+  symbol: string,
   image: string,
 }
 

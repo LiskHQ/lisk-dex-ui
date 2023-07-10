@@ -91,7 +91,7 @@ export const TokensTableStyle = styled('div')(({ theme }: any) => {
             marginRight: '0.625rem',
           },
 
-          '.token-shortname': {
+          '.token-symbol': {
             background: theme.primary[40],
             borderRadius: '0.25rem',
             color: theme.primary[0],
