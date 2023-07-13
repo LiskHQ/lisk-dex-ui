@@ -31,7 +31,11 @@ export function* getToken2TokenConversionSaga(action: any) {
     );
 
     if (result) {
-      yield put(AppActions.token.getToken2TokenCoversionSuccess(result));
+      const { credibleDirectPriceToken2ToToken1 } = result.data as any;
+      yield put(AppActions.token.getToken2TokenCoversionSuccess({
+        ...action.payload,
+        credibleDirectPriceToken2ToToken1,
+      }));
     }
   } catch (error) {
     yield put(AppActions.token.getToken2TokenCoversionFailure(error));
@@ -39,6 +43,8 @@ export function* getToken2TokenConversionSaga(action: any) {
 }
 
 export function* getToken2FiatConversionSaga(action: any) {
+  const { tokenSymbol } = action.payload;
+
   try {
     const result: IResponse = yield call(
       async () =>
@@ -46,7 +52,12 @@ export function* getToken2FiatConversionSaga(action: any) {
     );
 
     if (result) {
-      yield put(AppActions.token.getToken2FiatConversionSuccess(result));
+      const { convertedPrice, convertedTarget } = result.data as any;
+      yield put(AppActions.token.getToken2FiatConversionSuccess({
+        tokenSymbol,
+        convertedTarget,
+        convertedPrice,
+      }));
     }
   } catch (error) {
     yield put(AppActions.token.getToken2FiatConversionFailure(error));

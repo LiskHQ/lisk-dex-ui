@@ -1,6 +1,6 @@
 import { dexApiInstance } from 'utils';
 
-const API_VERSION = 'v2';
+const API_VERSION = 'v1';
 
 interface ResponseGenerator {
   config?: any;
@@ -39,7 +39,7 @@ export async function apiGetToken2FiatConversion(params: any) {
 }
 
 export async function apiGetPopularPairings(params: any) {
-  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/tokens/popular-pairings`, {
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/tokens/popularPairings`, {
     params,
   });
   if (response)

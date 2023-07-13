@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -13,20 +13,21 @@ import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
 import { SwapViewStyle } from './index.style';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 import { RootState } from 'store';
+import { PlatformContext } from 'contexts';
 import { IAccount, IToken } from 'models';
 import { LISK_DECIMALS } from 'consts';
-import { mockConversionRate, mockEthtoLsk } from '__mock__';
 
 export interface ISwapViewProps {
   account: IAccount | null,
   tokens: IToken[],
   closeTransactionModal: boolean,
   onConfirmSwap: () => void,
+  getToken2FiatConversion: (tokenSymbol: string, currency:string) => void,
 }
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const router = useRouter();
-  const { account, tokens, closeTransactionModal, onConfirmSwap } = props;
+  const { account, tokens, closeTransactionModal, onConfirmSwap, getToken2FiatConversion } = props;
 
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
@@ -41,7 +42,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
   const [reverseRate, setReverseRate] = useState<boolean>(false);
 
-  const { token2FiatConversion } = useSelector((root: RootState) => root.token);
+  const { conversionRates } = useSelector((root: RootState) => root.token);
+  const { currency } = useContext(PlatformContext);
 
   const onSaveTransactionSettings = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
     setSplipageTolerance(splipageTolerance);
@@ -84,8 +86,21 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   }, [router, tokens]);
 
   useEffect(() => {
-    // getToken2FiatConversion(token1.symbol, token2?.symbol);
-  }, [token1, token2]);
+    getToken2FiatConversion(token1.symbol, currency);
+  }, [token1]);
+
+  useEffect(() => {
+    if (token2) {
+      getToken2FiatConversion(token2.symbol, currency);
+    }
+  }, [token2]);
+
+  useEffect(() => {
+    getToken2FiatConversion(token1.symbol, currency);
+    if (token2) {
+      getToken2FiatConversion(token2.symbol, currency);
+    }
+  }, [currency]);
 
   useEffect(() => {
     if (closeTransactionModal) {
@@ -120,6 +135,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
       resetSwap();
     }
   }, [closeTransactionModal]);
+
+  const isValidSwap = useMemo(() => {
+    if (+token1Amount > balance)
+      return false;
+    return true;
+  }, []);
 
   return (
     <SwapViewStyle>
@@ -156,7 +177,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           </Box>
           <Box className="swap-from-bottom-box">
             <Typography variant="body2">Balance: {cryptoDecimalFormat(balance)}</Typography>
-            <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * mockConversionRate, 'USD')}</Typography>
+            <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * conversionRates[token1.symbol][currency], currency)}</Typography>
           </Box>
         </Box>
 
@@ -186,7 +207,10 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              <Typography variant="subtitle1">{cryptoDecimalFormat((token1Amount as number) / mockEthtoLsk)}</Typography>
+              {
+                token2 && 
+                <Typography variant="subtitle1">{cryptoDecimalFormat((token1Amount as number) * (conversionRates[token1.symbol][token2.symbol] || 0))}</Typography>
+              }
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: -</Typography>
@@ -201,8 +225,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                 <Typography variant="body2">
                   {
                     !reverseRate ?
-                      <>1 {token2.symbol} = {mockEthtoLsk} {token1.symbol}</> :
-                      <>1 {token1.symbol} = {cryptoDecimalFormat(1 / mockEthtoLsk)} {token2.symbol}</>
+                      <>1 {token2.symbol} = {(conversionRates[token1.symbol][token2.symbol] || 0)} {token1.symbol}</> :
+                      <>1 {token1.symbol} = {cryptoDecimalFormat(1 * (conversionRates[token1.symbol][token2.symbol] || 0))} {token2.symbol}</>
                   }
                 </Typography>
                 <SwapIcon />
@@ -228,7 +252,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
             <Box className="swap-summary-property minimum-received">
               <Typography className="swap-summary-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="swap-summary-property-value" variant="body2">{cryptoDecimalFormat(+token1Amount / mockEthtoLsk)} {token2.symbol}</Typography>
+              <Typography className="swap-summary-property-value" variant="body2">{cryptoDecimalFormat(+token1Amount * (conversionRates[token1.symbol][token2.symbol] || 0))} {token2.symbol}</Typography>
             </Box>
           </Box>
         }
@@ -262,10 +286,10 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           />
         }
         {
-          openSwapConfirmModal &&
+          openSwapConfirmModal && token2 && 
           <SwapConfirmModal
-            toFiatRate={mockConversionRate}
-            toTokenRate={mockEthtoLsk}
+            toFiatRate={conversionRates[token1.symbol][currency]}
+            toTokenRate={(conversionRates[token1.symbol][token2.symbol] || 0)}
             token2={token2 as IToken}
             fromAmount={+token1Amount}
             splipageTolerance={splipageTolerance}

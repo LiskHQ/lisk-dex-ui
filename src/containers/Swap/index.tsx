@@ -23,8 +23,8 @@ export const SwapContainer: React.FC = () => {
   } = useJsonRpc();
   
   useEffect(() => {
-    dispatch(AppActions.token.getPopularPairings({}));
     dispatch(AppActions.token.getAvailableTokens({}));
+    // dispatch(AppActions.token.getPopularPairings({}));
   }, []);
 
   const onConfirmSwap = () => {
@@ -45,7 +45,7 @@ export const SwapContainer: React.FC = () => {
           amountTokenIn: BigInt(250),
           tokenIdOut: 1,
           minAmountTokenOut: BigInt(10),
-//          swapRoute: [poolID],
+          //          swapRoute: [poolID],
           swapRoute: [1],
           maxTimestampValid: 10,
         },
@@ -55,12 +55,20 @@ export const SwapContainer: React.FC = () => {
     }
   };
 
+  const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
+    dispatch(AppActions.token.getToken2FiatConversion({
+      tokenSymbol,
+      currency,
+    }));
+  }
+
   return (
     <SwapView
       account={account}
       tokens={mockTokens}
       closeTransactionModal={closeTransactionModal}
       onConfirmSwap={onConfirmSwap}
+      getToken2FiatConversion={getToken2FiatConversion}
     />
   );
 };

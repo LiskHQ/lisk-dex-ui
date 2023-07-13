@@ -4,12 +4,16 @@ import { fireEvent, render } from '@testing-library/react';
 import { SwapView, ISwapViewProps } from './index';
 import { lightTheme } from 'styles/theme';
 import { mockBalance, mockTokens } from '__mock__';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 function renderComponent(props: ISwapViewProps) {
   return render(
-    <ThemeProvider theme={lightTheme}>
-      <SwapView {...props} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={lightTheme}>
+        <SwapView {...props} />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
@@ -27,6 +31,7 @@ describe('Swap', () => {
     tokens: mockTokens,
     closeTransactionModal: false,
     onConfirmSwap: jest.fn(),
+    getToken2FiatConversion: jest.fn(),
   };
 
   it('checks if the component matches the snapshot', () => {

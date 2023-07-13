@@ -1,7 +1,14 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import { AppActions } from 'store';
 import { getTransactionsSaga } from './wallet';
-import { getAvailableTokensSaga, getPopularPairingsSaga, getPriceImpactSaga, getSlippageBoundsSaga, getToken2FiatConversionSaga, getToken2TokenConversionSaga } from './token';
+import {
+  getAvailableTokensSaga,
+  getPopularPairingsSaga,
+  getPriceImpactSaga,
+  getSlippageBoundsSaga,
+  getToken2FiatConversionSaga,
+  getToken2TokenConversionSaga
+} from './token';
 
 function* rootSaga() {
   yield all([takeLatest(AppActions.wallet.getTransactions.type, getTransactionsSaga)]);

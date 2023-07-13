@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './saga';
 import {
   transactionActions,
   transactionReducer,
@@ -13,6 +12,7 @@ import {
   tokenReducer,
   tokenActions
 } from './slices';
+import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -31,8 +31,6 @@ export const store = configureStore({
       .concat(sagaMiddleware)
 });
 
-sagaMiddleware.run(rootSaga);
-
 export const AppActions = {
   transaction: transactionActions,
   proposal: proposalActions,
@@ -40,6 +38,8 @@ export const AppActions = {
   wallet: walletActions,
   token: tokenActions,
 };
+
+sagaMiddleware.run(rootSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

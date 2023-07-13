@@ -10,3 +10,9 @@ export interface ITokenDetail extends IToken {
   volume: number,
   liquidity: number
 }
+
+export type ConversionRates = {
+  [baseCurrency: string]: {
+    [targetCurrency: string]: number;
+  };
+};
