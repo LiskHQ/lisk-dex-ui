@@ -16,7 +16,7 @@ export function* getAvailableTokensSaga(action: any) {
     );
 
     if (result) {
-      yield put(AppActions.token.getAvailableTokensSuccess(result));
+      yield put(AppActions.token.getAvailableTokensSuccess(result.data));
     }
   } catch (error) {
     yield put(AppActions.token.getAvailableTokensFailure(error));

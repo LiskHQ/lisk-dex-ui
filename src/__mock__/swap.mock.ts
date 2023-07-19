@@ -4,35 +4,36 @@ import { IToken, ITokenDetail } from 'models';
 export const mockBalance = 4521.425;
 
 export const mockTokens: IToken[] = [
-  {
-    symbol: 'LSK',
-    name: 'Lisk',
-    image: tokenSvgs.LSK,
-  },
-  {
-    symbol: 'ETH',
-    name: 'Ethereum',
-    image: tokenSvgs.ETH,
-  },
-  {
-    symbol: 'DEU',
-    name: 'DEU',
-    image: tokenSvgs.DEU,
-  },
-  {
-    symbol: 'FAE',
-    name: 'Faet',
-    image: tokenSvgs.FAE,
-  },
-  {
-    symbol: 'KLP',
-    name: 'Kalipo',
-    image: tokenSvgs.KLP,
-  },
-  {
-    symbol: 'RGB',
-    name: 'RGB',
-    image: tokenSvgs.RGB,
+    {
+      chainID: "04000000",
+      chainName: "Lisk",
+      tokenID: "0400000000000000",
+      tokenName: "Lisk",
+      networkType: "devnet",
+      description: "Default token for the entire Lisk ecosystem",
+      logo: {
+          png: "https://raw.githubusercontent.com/LiskHQ/app-registry/main/devnet/Lisk/images/tokens/lisk.png",
+          svg: "https://raw.githubusercontent.com/LiskHQ/app-registry/main/devnet/Lisk/images/tokens/lisk.svg"
+      },
+      symbol: "LSK",
+      displayDenom: "lsk",
+      baseDenom: "beddows",
+      denomUnits: [
+          {
+              "denom": "beddows",
+              "decimals": 0,
+              "aliases": [
+                  "Beddows"
+              ]
+          },
+          {
+              "denom": "lsk",
+              "decimals": 8,
+              "aliases": [
+                  "Lisk"
+              ]
+          }
+      ]
   },
 ];
 

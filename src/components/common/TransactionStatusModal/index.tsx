@@ -2,7 +2,7 @@ import { TransactionStatusStyle } from './index.style';
 import { Box, CircularProgress, Link, Typography } from '@mui/material';
 import { SuccessIcon } from 'imgs/icons';
 import { ButtonComponent } from 'components/common';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TransactionType } from 'consts';
 
 export interface ITransactionStatusModalProps {
@@ -15,6 +15,7 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
   const { success, type, onClose } = props;
 
   const [stateText, setStateText] = useState<string>('');
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (type === TransactionType.SWAP) {
@@ -42,12 +43,23 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
       }
     }
   }, [type, success]);
-
+  
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        onClose && onClose();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
 
   return (
     <TransactionStatusStyle>
       <Box className="transaction-status-background" />
-      <Box className="transaction-status-modal-container">
+      <Box className="transaction-status-modal-container" ref={wrapperRef}>
         <Typography variant="h3">
           {
             success ? 'Transaction submitted' : 'Waiting for Confirmation'

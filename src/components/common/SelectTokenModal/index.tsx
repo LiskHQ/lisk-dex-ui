@@ -7,6 +7,7 @@ import { SearchInputComponent } from 'components/common';
 import { SelectTokenModalStyle } from './index.style';
 import { useMemo, useState } from 'react';
 import { IToken } from 'models';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface ISelectTokenModalProps {
   tokens: IToken[],
@@ -24,7 +25,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
   };
 
   const filteredTokens = useMemo(() => {
-    return tokens.filter(el => el.symbol.includes(filter) || el.name.includes(filter));
+    return tokens.filter(el => el.symbol.includes(filter) || el.tokenName.includes(filter));
   }, [filter, tokens]);
 
   return (
@@ -61,13 +62,13 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
           <Typography variant="body2">Common tokens</Typography>
           <Grid container className="select-token-common-tokens-list" spacing={1}>
             {
-              tokens.map(chain => (
+              tokens.map(token => (
                 <Grid item
-                  key={chain.symbol}
+                  key={token.symbol}
                 >
                   <Box className="select-token-chain-box">
-                    <Image src={chain.image} width={20} height={20} />
-                    <Typography variant="body2">{chain.symbol}</Typography>
+                    <Image src={tokenSvgs[token.symbol]} width={20} height={20} />
+                    <Typography variant="body2">{token.symbol}</Typography>
                   </Box>
                 </Grid>
               ))
@@ -77,18 +78,18 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
       </Box>
       <Box className="select-token-balance-list">
         {
-          filteredTokens.map(chain => (
+          filteredTokens.map(token => (
             <Box
-              key={chain.symbol}
-              data-testid={`token-item-${chain.symbol}`}
+              key={token.symbol}
+              data-testid={`token-item-${token.symbol}`}
               className="select-token-balance-item"
-              onClick={() => { onSelect(chain); setClose(true); }}
+              onClick={() => { onSelect(token); setClose(true); }}
             >
               <Box className="token-wrapper">
-                <Image src={chain.image} width={40} height={40} />
+                <Image src={tokenSvgs[token.symbol]} width={40} height={40} />
                 <Box className="token-name-wrapper">
-                  <Typography className="token-short-name" variant="body1">{chain.symbol}</Typography>
-                  <Typography variant="body2">{chain.name}</Typography>
+                  <Typography className="token-short-name" variant="body1">{token.symbol}</Typography>
+                  <Typography variant="body2">{token.tokenName}</Typography>
                 </Box>
               </Box>
               <Typography variant="body1">{0}</Typography>

@@ -1,74 +1,122 @@
-import { SwapView } from 'components';
-import { TransactionCommand, TransactionModule, TransactionType } from 'consts';
+import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
+import { LISK_DECIMALS, TransactionCommand, TransactionModule, TransactionType } from 'consts';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
-import { mockTokens } from '__mock__';
 import { useJsonRpc } from 'contexts';
 import { swapExactInCommandSchema } from 'utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ISwapData } from 'models';
 
 export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { closeTransactionModal } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
+  const { submitedTransaction, submitingTransaction, closeTransactionModal } = useSelector((state: RootState) => state.transaction);
+  const { availableTokens } = useSelector((state: RootState) => state.token);
+  const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
+  const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
-    ping,
     isRpcRequestPending,
     rpcResult,
-    isTestnet,
     liskRpc,
-    setIsTestnet,
   } = useJsonRpc();
   
   useEffect(() => {
-    dispatch(AppActions.token.getAvailableTokens({}));
-    // dispatch(AppActions.token.getPopularPairings({}));
-  }, []);
-
-  const onConfirmSwap = () => {
-    // dispatch(AppActions.transaction.sendTransaction({
-    //   type: TransactionType.SWAP,
-    // }));
     if (account) {
-      const { address, publicKey } = account.data.summary;
+      const reference = account.chainId.split(':')[1];
+      dispatch(AppActions.token.getAvailableTokens({ chainID: reference }));
+    }
+    // dispatch(AppActions.token.getPopularPairings({}));
+  }, [account]);
+
+  const onConfirmSwap = (data: ISwapData) => {
+    const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
+
+    if (account) {
+      const { chainId, publicKey } = account;
+      console.log("account detail: ", chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommand.swapExactIn,
-        fee: '100000000',
-        nonce: '1',
+        fee: BigInt(5000000),
+        nonce: BigInt(0),
         senderPublicKey: publicKey,
         signatures: [],
         params: {
-          tokenIdIn: 0,
-          amountTokenIn: BigInt(250),
-          tokenIdOut: 1,
-          minAmountTokenOut: BigInt(10),
-          //          swapRoute: [poolID],
-          swapRoute: [1],
-          maxTimestampValid: 10,
+          tokenIdIn: tokenIn.tokenID,
+          amountTokenIn: BigInt(amountIn * (10 ** LISK_DECIMALS)),
+          tokenIdOut: tokenOut.tokenID,
+          minAmountTokenOut: BigInt(minAmountOut * (10 ** LISK_DECIMALS)),
+          swapRoute: [Buffer.from('0000000000000000000001000000000000c8', 'hex')],
+          maxTimestampValid: BigInt(100000000000),
         },
       };
 
-      liskRpc.signTransaction(account.chainId, address, swapExactInCommandSchema, rawTx);
+      liskRpc.signTransaction(chainId, publicKey, swapExactInCommandSchema, rawTx);
+      setOpenTransactionStatusModal(true);
     }
   };
+
+  useEffect(() => {
+    if (rpcResult && rpcResult.valid) {
+      setOpenApproveTransactionModal(true);
+    }
+  }, [rpcResult])
+
+  const onCloseTransactionStatusModal = () => {
+    setOpenTransactionStatusModal(false);
+  };
+
+  const onCloseApproveTransactionModal = () => {
+    setOpenApproveTransactionModal(false);
+  }
 
   const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
     dispatch(AppActions.token.getToken2FiatConversion({
       tokenSymbol,
       currency,
     }));
-  }
+  };
+
+  const onConfirmApproval = () => {
+    if (rpcResult?.result) {
+      const signedTransactions = JSON.parse(rpcResult.result);
+      dispatch(AppActions.transaction.submitTransaction({
+        transaction: signedTransactions[0],
+      }));
+    }
+  };
 
   return (
-    <SwapView
-      account={account}
-      tokens={mockTokens}
-      closeTransactionModal={closeTransactionModal}
-      onConfirmSwap={onConfirmSwap}
-      getToken2FiatConversion={getToken2FiatConversion}
-    />
+    <>
+      <SwapView
+        account={account}
+        tokens={availableTokens}
+        closeTransactionModal={closeTransactionModal}
+        onConfirmSwap={onConfirmSwap}
+        getToken2FiatConversion={getToken2FiatConversion}
+      />
+      {
+        (openTransactionStatusModal && isRpcRequestPending) &&
+        <TransactionStatusModal
+          success={submitedTransaction}
+          type={TransactionType.SWAP}
+          onClose={onCloseTransactionStatusModal}
+        />
+      }
+      {
+        openApproveTransactionModal &&
+        <ApproveTransactionModal
+          expenses={[{
+            title: 'Transaction fee',
+            amount: '0.87',
+          }]}
+          approvingTransaction={submitingTransaction}
+          onConfirm={onConfirmApproval}
+          onClose={onCloseApproveTransactionModal}
+        />
+      }
+    </>
   );
 };

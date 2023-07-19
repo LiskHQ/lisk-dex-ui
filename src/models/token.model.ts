@@ -1,7 +1,23 @@
+export interface DenomUnit {
+  denom: string,
+  decimals: number,
+  aliases: string[]
+}
 export interface IToken {
-  name: string,
+  chainID: string,
+  chainName: string,
+  tokenName: string,
+  tokenID: string,
+  networkType?: string,
+  description?: string,
+  logo: {
+    png: string,
+    svg: string,
+  },
   symbol: string,
-  image: string,
+  displayDenom?: string,
+  baseDenom?: string,
+  denomUnits?: DenomUnit[],
 }
 
 export interface ITokenDetail extends IToken {
@@ -16,3 +32,10 @@ export type ConversionRates = {
     [targetCurrency: string]: number;
   };
 };
+
+export interface ISwapData {
+  tokenIn: IToken,
+  tokenOut: IToken,
+  amountIn: number,
+  minAmountOut: number,
+}

@@ -9,19 +9,20 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
-import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
+import { EditIcon, HelpIcon, SettingIcon, SwapIcon, tokenSvgs } from 'imgs/icons';
 import { SwapViewStyle } from './index.style';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 import { RootState } from 'store';
 import { PlatformContext } from 'contexts';
-import { IAccount, IToken } from 'models';
+import { IAccount, ISwapData, IToken } from 'models';
 import { LISK_DECIMALS } from 'consts';
+import { mockTokens } from '__mock__';
 
 export interface ISwapViewProps {
   account: IAccount | null,
   tokens: IToken[],
   closeTransactionModal: boolean,
-  onConfirmSwap: () => void,
+  onConfirmSwap: (data: ISwapData) => void,
   getToken2FiatConversion: (tokenSymbol: string, currency:string) => void,
 }
 
@@ -34,14 +35,14 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
   const [openTransactionSettings, setOpenTransactionSettings] = useState<boolean>(false);
   const [openSwapConfirmModal, setOpenSwapConfirmModal] = useState<boolean>(false);
-
-  const [token1, setToken1] = useState<IToken>(tokens[0]);
+  
+  const [token1, setToken1] = useState<IToken>(tokens[0] || mockTokens[0]);
   const [token1Amount, setToken1Amount] = useState<number | string>('0.00');
   const [token2, setToken2] = useState<IToken>();
   const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
   const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
   const [reverseRate, setReverseRate] = useState<boolean>(false);
-
+  
   const { conversionRates } = useSelector((root: RootState) => root.token);
   const { currency } = useContext(PlatformContext);
 
@@ -136,8 +137,14 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     }
   }, [closeTransactionModal]);
 
+  const estimatedAmount: number = useMemo(() => {
+    if (token2)
+      return (token1Amount as number) * (conversionRates[token1.symbol][token2.symbol] || 0);
+    return 0;
+  }, [token1Amount, token1, token2]);
+
   const isValidSwap = useMemo(() => {
-    if (+token1Amount > balance)
+    if (+token1Amount > balance || token1.symbol === token2?.symbol || estimatedAmount !== 0)
       return false;
     return true;
   }, []);
@@ -165,7 +172,9 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           </Box>
           <Box className="swap-from-mid-box">
             <Box className="swap-from-select-token" onClick={() => { setOpenSelectToken1(true); }}>
-              <Image src={token1.image} width={28} height={28} alt="image" />
+              {
+                token1.logo && <Image src={tokenSvgs[token1.symbol]} width={28} height={28} alt="image" />
+              }
               <Typography variant="subtitle2">{token1.symbol}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
@@ -197,7 +206,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                 {
                   token2 ?
                     <>
-                      <Image src={token2.image} width={28} height={28} />
+                      <Image src={tokenSvgs[token2.symbol]} width={28} height={28} />
                       <Typography variant="subtitle2">{token2.symbol}</Typography>
                       <FontAwesomeIcon icon={faChevronDown} />
                     </> :
@@ -209,7 +218,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               </Box>
               {
                 token2 && 
-                <Typography variant="subtitle1">{cryptoDecimalFormat((token1Amount as number) * (conversionRates[token1.symbol][token2.symbol] || 0))}</Typography>
+                <Typography variant="subtitle1">{cryptoDecimalFormat(estimatedAmount)}</Typography>
               }
             </Box>
             <Box className="swap-to-bottom-box">
@@ -259,7 +268,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
         <ButtonComponent
           data-testid="swap-button"
-          disabled={!token2 || !token1Amount || !account}
+          disabled={!token2 || !token1Amount || !account || !isValidSwap}
           onClick={() => { setOpenSwapConfirmModal(true); }}
         >
           <Typography variant="h4" sx={{ fontWeight: 500 }}>
@@ -288,12 +297,14 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         {
           openSwapConfirmModal && token2 && 
           <SwapConfirmModal
-            toFiatRate={conversionRates[token1.symbol][currency]}
-            toTokenRate={(conversionRates[token1.symbol][token2.symbol] || 0)}
-            token2={token2 as IToken}
-            fromAmount={+token1Amount}
+            tokenIn={token1 as IToken}
+            tokenOut={token2 as IToken}
+            amountIn={+token1Amount}
+            estimatedAmount={estimatedAmount}
+            currency={currency}
+            conversionRates={conversionRates}
             splipageTolerance={splipageTolerance}
-            onConfirm={() => { onConfirmSwap(); setOpenSwapConfirmModal(false); }}
+            onConfirm={onConfirmSwap}
             onClose={() => { setOpenSwapConfirmModal(false); }}
           />
         }

@@ -37,6 +37,7 @@ export const tokenSvgs: {
   KLP: '/assets/tokens/klp.svg',
   LSK: '/assets/tokens/lsk.svg',
   RGB: '/assets/tokens/rgb.svg',
+  DEX: '/assets/tokens/dex.svg',
 };
 
 export const flagSvgs = {

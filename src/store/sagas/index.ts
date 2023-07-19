@@ -9,9 +9,12 @@ import {
   getToken2FiatConversionSaga,
   getToken2TokenConversionSaga
 } from './token';
+import { submitTransactionSaga } from './transaction';
 
 function* rootSaga() {
   yield all([takeLatest(AppActions.wallet.getTransactions.type, getTransactionsSaga)]);
+
+  yield all([takeLatest(AppActions.transaction.submitTransaction.type, submitTransactionSaga)]);
 
   yield all([takeLatest(AppActions.token.getAvailableTokens.type, getAvailableTokensSaga)]);
   yield all([takeLatest(AppActions.token.getPopularPairings.type, getPopularPairingsSaga)]);

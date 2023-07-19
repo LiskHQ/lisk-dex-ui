@@ -37,6 +37,17 @@ export function getAccountsFromNamespaces(allNamespaceAccounts: string[]): IAcco
   }, []);
 }
 
+
+export function getPublicKeysFromAccounts(allNamespaceAccounts: string[]): string[] {
+  console.log("allNamespaceAccounts:", allNamespaceAccounts);
+
+  return allNamespaceAccounts.reduce((publicKeys: string[], account) => {
+    const [namespace, reference, publicKey] = account.split(':');
+    publicKeys.push(publicKey);
+    return publicKeys;
+  }, []);
+}
+
 export function getFiatfromToken(tokenAmount: number, conversion: number) {
   return (tokenAmount * conversion).toLocaleString(undefined,
     {

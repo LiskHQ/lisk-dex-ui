@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ConversionRates } from 'models';
+import { ConversionRates, IToken } from 'models';
 
 type StateType = {
   gettingAvailableTokens: boolean,
   gotAvailableTokens: boolean,
-  availableTokens: string[],
+  availableTokens: IToken[],
 
   gettingToken2TokenConversion: boolean,
   gotToken2TokenConversion: boolean,
@@ -34,7 +34,11 @@ const initialState: StateType = {
 
   conversionRates: {
     LSK: {
-      USD: 0,
+      USD: 0.8863,
+      DEX: 0.1,
+    },
+    DEX: {
+      USD: 0.0886
     }
   },
 
