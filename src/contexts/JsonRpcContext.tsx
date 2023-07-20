@@ -156,6 +156,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
             valid: false,
             result: err?.message ?? err,
           });
+          throw new Error(err);
         } finally {
           setPending(false);
         }

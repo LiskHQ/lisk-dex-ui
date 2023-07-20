@@ -44,4 +44,5 @@ export const flagSvgs = {
   //  EU: '/assets/flags/eu.svg',
   US: '/assets/flags/us.svg',
   GB: '/assets/flags/gb.svg',
+  EU: '/assets/flags/eu.svg',
 };

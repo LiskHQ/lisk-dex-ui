@@ -34,7 +34,7 @@ const initialState: StateType = {
 
   //submit signed transaction
   submitingTransaction: false,
-  submitedTransaction: false, 
+  submitedTransaction: false,
   error: { message: '' },
 };
 
@@ -128,6 +128,12 @@ const transactionSlice = createSlice({
       state.submitingTransaction = false;
       state.submitedTransaction = false;
       state.error = action.payload;
+    },
+
+    resetTransactionStates(state) {
+      state.submitedTransaction = false;
+      state.submitingTransaction = false;
+      state.error = { message: '' }
     },
 
     //trasnaction summary

@@ -13,3 +13,9 @@ export enum TransactionCommand {
   swapExactIn = 'swapExactIn',
 
 }
+
+export enum TransactionStatus {
+  PENDING,
+  SUCCESS,
+  FAILURE,
+}

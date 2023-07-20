@@ -1,5 +1,5 @@
 import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { LISK_DECIMALS, TransactionCommand, TransactionModule, TransactionType } from 'consts';
+import { LISK_DECIMALS, TransactionCommand, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
@@ -10,18 +10,20 @@ import { ISwapData } from 'models';
 export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
   const { account } = useSelector((state: RootState) => state.wallet);
-  const { submitedTransaction, submitingTransaction, closeTransactionModal } = useSelector((state: RootState) => state.transaction);
+  const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { availableTokens } = useSelector((state: RootState) => state.token);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
+  const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
-  
+  const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
+
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
     isRpcRequestPending,
     rpcResult,
     liskRpc,
   } = useJsonRpc();
-  
+
   useEffect(() => {
     if (account) {
       const reference = account.chainId.split(':')[1];
@@ -55,6 +57,7 @@ export const SwapContainer: React.FC = () => {
 
       liskRpc.signTransaction(chainId, publicKey, swapExactInCommandSchema, rawTx);
       setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
     }
   };
 
@@ -62,10 +65,31 @@ export const SwapContainer: React.FC = () => {
     if (rpcResult && rpcResult.valid) {
       setOpenApproveTransactionModal(true);
     }
-  }, [rpcResult])
+  }, [rpcResult]);
+
+  useEffect(() => {
+    if (isRpcRequestPending) {
+      setTransactionStatus(TransactionStatus.PENDING);
+      setOpenTransactionStatusModal(true);
+    }
+    if (submitedTransaction) {
+      setTransactionStatus(TransactionStatus.SUCCESS);
+      setOpenTransactionStatusModal(true);
+      onCloseApproveTransactionModal();
+    }
+    if (transactionError.error) {
+      setTransactionStatus(TransactionStatus.FAILURE);
+      setOpenTransactionStatusModal(true);
+      onCloseApproveTransactionModal();
+    }
+  }, [isRpcRequestPending, transactionError, submitedTransaction]);
 
   const onCloseTransactionStatusModal = () => {
     setOpenTransactionStatusModal(false);
+    if (submitedTransaction || transactionError.error) {
+      setCloseTransactionModal(true);
+      dispatch(AppActions.transaction.resetTransactionStates());
+    }
   };
 
   const onCloseApproveTransactionModal = () => {
@@ -79,6 +103,7 @@ export const SwapContainer: React.FC = () => {
     }));
   };
 
+  //submit signed transaction
   const onConfirmApproval = () => {
     if (rpcResult?.result) {
       const signedTransactions = JSON.parse(rpcResult.result);
@@ -98,9 +123,9 @@ export const SwapContainer: React.FC = () => {
         getToken2FiatConversion={getToken2FiatConversion}
       />
       {
-        (openTransactionStatusModal && isRpcRequestPending) &&
+        openTransactionStatusModal &&
         <TransactionStatusModal
-          success={submitedTransaction}
+          status={transactionStatus}
           type={TransactionType.SWAP}
           onClose={onCloseTransactionStatusModal}
         />

@@ -18,7 +18,7 @@ export function* submitTransactionSaga(action: any) {
     if (result) {
       yield put(AppActions.transaction.submitTransactionSuccess(result));
     }
-  } catch (error) {
-    yield put(AppActions.transaction.submitTransactionFailure(error));
+  } catch (error: any) {
+    yield put(AppActions.transaction.submitTransactionFailure(error.response.data));
   }
 }

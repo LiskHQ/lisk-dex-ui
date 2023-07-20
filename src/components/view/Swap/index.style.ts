@@ -185,6 +185,10 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
           borderTop: `1px solid ${theme.primary[5]}`,
           padding: '0.5rem 1rem 0.5rem 1rem',
 
+          '&:hover': {
+            cursor: 'pointer',
+          },
+
           div: {
             display: 'flex',
             alignItems: 'center',

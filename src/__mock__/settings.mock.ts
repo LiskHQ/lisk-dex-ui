@@ -8,8 +8,8 @@ export const mockFiatCurrnecies: IFiatCurrency[] = [
     image: flagSvgs.US,
   },
   {
-    symbol: 'GBP',
-    name: 'British Pound',
-    image: flagSvgs.GB,
+    symbol: 'EUR',
+    name: 'EU Euro',
+    image: flagSvgs.EU,
   }
 ];
