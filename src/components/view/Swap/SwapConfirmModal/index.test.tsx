@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SwapConfirmModal, ISwapConfirmModalProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockTokens } from '__mock__';
+import { mockConversionRates, mockTokens } from '__mock__';
 
 function renderComponent(props: ISwapConfirmModalProps) {
   return render(
@@ -15,12 +15,14 @@ function renderComponent(props: ISwapConfirmModalProps) {
 
 describe('SwapConfirmModal', () => {
   const mockProps: ISwapConfirmModalProps = {
-    toFiatRate: 1,
-    toTokenRate: 1,
-    fromAmount: 1,
-    token2: mockTokens[0],
+    tokenIn: mockTokens[0],
+    tokenOut: mockTokens[0],
+    amountIn: 1000,
+    estimatedAmount: 100,
     splipageTolerance: 0.1,
     openTransactionApproval: false,
+    conversionRates: mockConversionRates,
+    currency: 'USD',
     onClose: jest.fn(),
     onConfirm: jest.fn(),
   };

@@ -8,6 +8,7 @@ import { IToken } from 'models';
 import { mockTokens } from '__mock__';
 import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
+import { tokenSvgs } from 'imgs/icons';
 
 function createData(
   token1: IToken,
@@ -21,14 +22,14 @@ function createData(
 const rows = [
   createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
   createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[3], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[2], mockTokens[2], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[4], mockTokens[4], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[3], mockTokens[3], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[2], mockTokens[4], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[5], mockTokens[5], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[4], mockTokens[2], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[1], mockTokens[4], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
+  createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
 ];
 
 export interface ITransactionsTable {
@@ -100,10 +101,10 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
-                      <Image className="token1-image" src={row.token1.image} width={32} height={32}></Image>
+                      <Image className="token1-image" src={tokenSvgs[row.token1.symbol]} width={32} height={32}></Image>
                     </Box>
                     <Box className="token2-image">
-                      <Image src={row.token2.image} width={32} height={32}></Image>
+                      <Image src={tokenSvgs[row.token2.symbol]} width={32} height={32}></Image>
                     </Box>
                     <Typography>{row.token1.symbol} - {row.token1.symbol}</Typography>
                   </Box>
@@ -116,10 +117,10 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                 </TableCell>
                 <TableCell align="right">
                   <Box className="details-td">
-                    <Image src={row.token1.image} width={16} height={16} />
+                    <Image src={tokenSvgs[row.token1.symbol]} width={16} height={16} />
                     <Typography variant="body2">142.3k {row.token1.symbol}</Typography>
                     <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
-                    <Image src={row.token2.image} width={16} height={16} />
+                    <Image src={tokenSvgs[row.token2.symbol]} width={16} height={16} />
                     <Typography variant="body2">0.4k {row.token1.symbol}</Typography>
                   </Box>
                 </TableCell>

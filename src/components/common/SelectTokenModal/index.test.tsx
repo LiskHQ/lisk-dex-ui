@@ -28,7 +28,7 @@ describe('SelectTokenModal', () => {
   it('click save button', () => {
     const { getByTestId } = renderComponent(mockProps);
 
-    const button = getByTestId('token-item-ETH');
+    const button = getByTestId('token-item-LSK');
     fireEvent.click(button);
 
     expect(mockProps.onSelect).toBeCalled();

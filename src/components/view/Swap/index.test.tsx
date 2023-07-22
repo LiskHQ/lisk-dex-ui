@@ -46,7 +46,7 @@ describe('Swap', () => {
     fireEvent.click(selectTokenButton);
     expect(getByText('Select token')).toBeInTheDocument();
 
-    fireEvent.click(getByTestId('token-item-ETH'));
+    fireEvent.click(getByTestId('token-item-DEX'));
   });
 
   it('click swap button to open confirm modal', () => {
@@ -54,7 +54,7 @@ describe('Swap', () => {
 
     const selectTokenButton = getByText('Select a token');
     fireEvent.click(selectTokenButton);
-    fireEvent.click(getByTestId('token-item-ETH'));
+    fireEvent.click(getByTestId('token-item-DEX'));
     fireEvent.click(getByTestId('swap-from-percent-25'));
 
     fireEvent.click(getByTestId('swap-button'));

@@ -1,6 +1,6 @@
 import { TransactionStatusStyle } from './index.style';
 import { Box, CircularProgress, Link, Typography } from '@mui/material';
-import { CancelIcon, SuccessIcon } from 'imgs/icons';
+import { SuccessIcon } from 'imgs/icons';
 import { ButtonComponent } from 'components/common';
 import { useEffect, useRef, useState } from 'react';
 import { TransactionStatus, TransactionType } from 'consts';

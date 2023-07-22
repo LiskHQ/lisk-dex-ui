@@ -57,7 +57,6 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
             onPreview={onPreview}
-            account={account}
             closeTransactionModal={closeTransactionModal}
           />
         </Grid>

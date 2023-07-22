@@ -3,7 +3,7 @@ import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
 import cn from 'classnames';
 import { ButtonComponent, PaginationComponent } from 'components';
 import { PoolsTableStyle } from './index.style';
-import { HelpIcon, IncreaseIcon } from 'imgs/icons';
+import { HelpIcon, IncreaseIcon, tokenSvgs } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { IPoolDetail } from 'models';
@@ -124,10 +124,10 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
-                      <Image src={row.token1.image} width={32} height={32}></Image>
+                      <Image src={tokenSvgs[row.token1.symbol]} width={32} height={32}></Image>
                     </Box>
                     <Box className="token2-image">
-                      <Image src={row.token2.image} width={32} height={32}></Image>
+                      <Image src={tokenSvgs[row.token2.symbol]} width={32} height={32}></Image>
                     </Box>
                     <Typography>{row.token1.symbol} - {row.token2.symbol}</Typography>
 

@@ -4,6 +4,7 @@ import { IToken } from 'models';
 import { DepositAmountStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { InputComponent } from 'components/common';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface IDepositAmountProps {
   balance: number,
@@ -32,7 +33,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         {
           token ?
             <Box className="selected-token">
-              <Image src={token.image} width={28} height={28} />
+              <Image src={tokenSvgs[token.symbol]} width={28} height={28} />
               <Typography variant="subtitle1">{token.symbol}</Typography>
             </Box>
             :

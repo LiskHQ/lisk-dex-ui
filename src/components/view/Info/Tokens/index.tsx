@@ -10,7 +10,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
 import { TokensComponentStyle } from './index.style';
 import Image from 'next/image';
-import { IncreaseIcon } from 'imgs/icons';
+import { IncreaseIcon, tokenSvgs } from 'imgs/icons';
 
 export interface ITokenComponentProps {
   onSwap: (token1: string, token2?: string) => void,
@@ -89,7 +89,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const tokens = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
     return mockTokenDetails
-      .filter(el => el.symbol.includes(searchFilter) || el.name.includes(searchFilter))
+      .filter(el => el.symbol.includes(searchFilter) || el.chainName.includes(searchFilter))
       .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
       .slice((page - 1) * limit, page * limit);
   }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
@@ -136,12 +136,12 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
           <Box className="token-header-left-box">
             <Box className="token-summary">
               <Box className="token-summary-image-1">
-                <Image src={token.image} width={48} height={48} />
+                <Image src={tokenSvgs[token.symbol]} width={48} height={48} />
               </Box>
 
               <Box className="token-summary-detail">
                 <Box className="token-summary-name">
-                  <Typography variant="h5">{token.name}</Typography>
+                  <Typography variant="h5">{token.chainName}</Typography>
                   <Chip className="token-summary-share" label={token.symbol} />
                 </Box>
                 <Box>

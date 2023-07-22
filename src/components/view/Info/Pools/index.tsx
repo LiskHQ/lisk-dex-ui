@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createMockChartInfo, mockPoolDetails } from '__mock__';
 import Link from 'next/link';
 import { PATHS } from 'consts';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface IPoolsComponentProps {
   onSwap: (token1: string, token2?: string) => void,
@@ -108,10 +109,10 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
           <Box className="pool-header-left-box">
             <Box className="pool-summary">
               <Box className="pool-summary-image-1">
-                <Image src={pool.token1.image} width={48} height={48} />
+                <Image src={tokenSvgs[pool.token1.symbol]} width={48} height={48} />
               </Box>
               <Box className="pool-summary-image-2">
-                <Image src={pool.token2.image} width={48} height={48} />
+                <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
               </Box>
 
               <Box className="pool-summary-detail">

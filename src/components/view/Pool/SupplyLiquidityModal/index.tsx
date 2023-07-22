@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material';
 import {
   ButtonComponent,
 } from 'components';
-import { CancelIcon, LightIcon } from 'imgs/icons';
+import { CancelIcon, LightIcon, tokenSvgs } from 'imgs/icons';
 import { SupplyLiquidityStyle } from './index.style';
 import { IPool } from 'models';
 import { useState } from 'react';
@@ -43,8 +43,8 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           </Box>
           <Box className="supply-liquidity-modal-description">
             <Box>
-              <Image src={pool.token1.image} width={48} height={48} />
-              <Image src={pool.token2.image} width={48} height={48} />
+              <Image src={tokenSvgs[pool.token1.symbol]} width={48} height={48} />
+              <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
             </Box>
             <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.symbol} and {pool.token2Amount} {pool.token2.symbol}</Typography>
             <Typography variant="body1">You will receive 3.45 {pool.token1.symbol}/{pool.token2.symbol} LP Tokens</Typography>
@@ -54,14 +54,14 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           <Box className="deposit-property">
             <Typography variant="body1">{pool.token1.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={pool.token1.image} width={24} height={24} />
+              <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
               <Typography variant="body1">{pool.token1Amount}</Typography>
             </Box>
           </Box>
           <Box className="deposit-property">
             <Typography variant="body1">{pool.token2.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={pool.token2.image} width={24} height={24} />
+              <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
               <Typography variant="body1">{pool.token2Amount}</Typography>
             </Box>
           </Box>

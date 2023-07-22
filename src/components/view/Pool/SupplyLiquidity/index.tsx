@@ -5,13 +5,13 @@ import { Box, IconButton, Typography } from '@mui/material';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
-import { PlusCircleIcon, SettingIcon } from 'imgs/icons';
+import { PlusCircleIcon, SettingIcon, tokenSvgs } from 'imgs/icons';
 import { DepositAmount } from './DepositAmount';
 import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { IAccount, IPool, IToken } from 'models';
+import { IPool, IToken } from 'models';
 import { mockTokens } from '__mock__';
 import { useRouter } from 'next/dist/client/router';
 
@@ -29,7 +29,6 @@ const chartData = [
 ];
 
 export interface ISupplyLiquidityProps {
-  account: IAccount | null,
   closeTransactionModal: boolean,
   onPreview: (pool: IPool) => void,
 }
@@ -143,7 +142,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token1 ?
                 <Box>
-                  <Image src={token1.image} width={28} height={28} />
+                  <Image src={tokenSvgs[token1.symbol]} width={28} height={28} />
                   <Typography variant="subtitle1">{token1.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
@@ -168,7 +167,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token2 ?
                 <Box>
-                  <Image src={token2.image} width={28} height={28} />
+                  <Image src={tokenSvgs[token2.symbol]} width={28} height={28} />
                   <Typography variant="subtitle1">{token2.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
