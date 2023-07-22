@@ -45,7 +45,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
       minAmountOut: estimatedAmount,
     });
     onClose();
-  }
+  };
 
   return (
     <SwapConfirmStyle data-testid="swap-confirm-modal-test">

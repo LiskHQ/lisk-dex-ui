@@ -63,10 +63,11 @@ export const TransactionStatusModal: React.FC<ITransactionStatusModalProps> = (p
         onClose && onClose();
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wrapperRef]);
 
   return (

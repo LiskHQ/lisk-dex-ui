@@ -24,7 +24,6 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     pools,
     gotPools,
     gettingPools,
-    account,
     closeTransactionModal,
     onConfirmSupplyLiquidity,
     onConfirmRemoveLiquidity

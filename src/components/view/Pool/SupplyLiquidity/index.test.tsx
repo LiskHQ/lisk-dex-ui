@@ -3,7 +3,6 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SupplyLiquidity, ISupplyLiquidityProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockAccount } from '__mock__';
 
 function renderComponent(props: ISupplyLiquidityProps) {
   return render(

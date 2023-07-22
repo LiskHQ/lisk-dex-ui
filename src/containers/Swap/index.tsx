@@ -30,14 +30,14 @@ export const SwapContainer: React.FC = () => {
       dispatch(AppActions.token.getAvailableTokens({ chainID: reference }));
     }
     // dispatch(AppActions.token.getPopularPairings({}));
-  }, [account]);
+  }, [account, dispatch]);
 
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
 
     if (account) {
       const { chainId, publicKey } = account;
-      console.log("account detail: ", chainId, publicKey);
+      console.log('account detail: ', chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommand.swapExactIn,
@@ -94,7 +94,7 @@ export const SwapContainer: React.FC = () => {
 
   const onCloseApproveTransactionModal = () => {
     setOpenApproveTransactionModal(false);
-  }
+  };
 
   const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
     dispatch(AppActions.token.getToken2FiatConversion({

@@ -3,7 +3,7 @@ import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
 import cn from 'classnames';
 import { ButtonComponent, PaginationComponent } from 'components';
 import { TokensTableStyle } from './index.style';
-import { DecreaseIcon, IncreaseIcon } from 'imgs/icons';
+import { DecreaseIcon, IncreaseIcon, tokenSvgs } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { ITokenDetail } from 'models';
@@ -117,9 +117,9 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
-                      <Image className="token1-image" src={row.image} width={32} height={32}></Image>
+                      <Image className="token1-image" src={tokenSvgs[row.symbol]} width={32} height={32}></Image>
                     </Box>
-                    <Typography variant="body2">{row.name}</Typography>
+                    <Typography variant="body2">{tokenSvgs[row.symbol]}</Typography>
                     <Box className="token-symbol">
                       <Typography variant="caption">{row.symbol}</Typography>
                     </Box>

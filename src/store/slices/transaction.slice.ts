@@ -115,7 +115,8 @@ const transactionSlice = createSlice({
       state.confirmedTransaction = true;
     },
 
-    //submit signed transaction
+    // submit signed transaction
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitTransaction(state, action) {
       state.submitingTransaction = true;
       state.submitedTransaction = false;
@@ -123,6 +124,7 @@ const transactionSlice = createSlice({
     submitTransactionSuccess(state, action) {
       state.submitingTransaction = false;
       state.submitedTransaction = true;
+      action.payload;
     },
     submitTransactionFailure(state, action) {
       state.submitingTransaction = false;
@@ -133,7 +135,7 @@ const transactionSlice = createSlice({
     resetTransactionStates(state) {
       state.submitedTransaction = false;
       state.submitingTransaction = false;
-      state.error = { message: '' }
+      state.error = { message: '' };
     },
 
     //trasnaction summary

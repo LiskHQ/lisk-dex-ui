@@ -39,9 +39,10 @@ export function getAccountsFromNamespaces(allNamespaceAccounts: string[]): IAcco
 
 
 export function getPublicKeysFromAccounts(allNamespaceAccounts: string[]): string[] {
-  console.log("allNamespaceAccounts:", allNamespaceAccounts);
+  console.log('allNamespaceAccounts:', allNamespaceAccounts);
 
   return allNamespaceAccounts.reduce((publicKeys: string[], account) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [namespace, reference, publicKey] = account.split(':');
     publicKeys.push(publicKey);
     return publicKeys;

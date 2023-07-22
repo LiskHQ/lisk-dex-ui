@@ -56,7 +56,6 @@ describe('Swap', () => {
     fireEvent.click(selectTokenButton);
     fireEvent.click(getByTestId('token-item-DEX'));
     fireEvent.click(getByTestId('swap-from-percent-25'));
-
     fireEvent.click(getByTestId('swap-button'));
 
     expect(getByText('Review & Confirms')).toBeInTheDocument();

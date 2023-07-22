@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import bs58 from 'bs58';
 
 import { getLocalStorageTestnetFlag } from 'utils';
@@ -8,16 +7,6 @@ import {
   DEFAULT_LISK_METHODS,
 } from 'consts';
 import { codec } from '@liskhq/lisk-codec';
-// import { useChainData } from './ChainDataContext';
-
-
-// const codec: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.codec), {
-//   ssr: false,
-// });
-
-// const cryptography: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.cryptography), {
-//   ssr: false,
-// });
 
 const baseTransactionSchema = {
   $id: '/lisk/baseTransaction',
@@ -204,7 +193,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   const liskRpc = {
     signTransaction: _createJsonRpcRequestHandler(
       async (chainId: string, address: string, schema: any, rawTx: any): Promise<IFormattedRpcResponse> => {
-        console.log("data: ", chainId, ",here: ", address);
+        console.log('data: ', chainId, ',here: ', address);
         console.log('testSignTransaction accounts', accounts);
 
         const tx = await fromTransactionJSON(rawTx, schema);
@@ -212,7 +201,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         const payload = binary.toString('hex');
 
         try {
-          console.log("client: ", client);
+          console.log('client: ', client);
           //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const result = await client!.request<string>({
             chainId,
@@ -241,7 +230,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
             result,
           };
         } catch (error: any) {
-          console.log("error", error);
+          console.log('error', error);
           throw new Error(error);
         }
       },
