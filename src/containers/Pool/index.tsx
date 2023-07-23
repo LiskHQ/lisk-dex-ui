@@ -51,7 +51,7 @@ export const PoolContainer: React.FC = () => {
     dispatch(AppActions.pool.getPools());
 
     setTimeout(() => {
-      dispatch(AppActions.pool.getPoolsSuccess());
+      dispatch(AppActions.pool.getPoolsSuccess({}));
     }, 1000);
   }, [createdPool, updatedPool, dispatch]);
 

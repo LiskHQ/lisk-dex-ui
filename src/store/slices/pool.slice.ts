@@ -58,10 +58,10 @@ const poolSlice = createSlice({
       state.gettingPools = true;
       state.gotPools = false;
     },
-    getPoolsSuccess(state) {
+    getPoolsSuccess(state, action) {
       state.gettingPools = false;
       state.gotPools = true;
-      //      state.pools = [...mockPools];
+      state.pools = [...action.payload.poolsAvailable.poolsAvailable];
     },
     getPoolsFailure(state, action: PayloadAction<any>) {
       state.gettingPools = false;

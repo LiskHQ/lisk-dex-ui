@@ -5,7 +5,7 @@ import { AppActions } from 'store';
 interface IResponse {
   data: unknown,
   meta: unknown,
-  linnks: unknown,
+  links: unknown,
 }
 
 export function* getAvailableTokensSaga(action: any) {

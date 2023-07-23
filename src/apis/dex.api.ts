@@ -65,6 +65,19 @@ export async function apiGetSlippageBounds(params: any) {
   return {};
 }
 
+export async function apiGetPools(params: any) {
+  const { offset = 0, limit = 10 } = params;
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/pools/available`, {
+    params: {
+      offset,
+      limit
+    },
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
 export async function apiSubmitTransaction(data: any) {
   const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions', data);
   if (response)
