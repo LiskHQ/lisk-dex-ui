@@ -29,9 +29,9 @@ export async function apiGetTransactions(params: any) {
   return {};
 }
 
-export async function apiSubmitTransaction(data: any) {
-  const response: ResponseGenerator = await liskApiInstance.post(`/api/${API_VERSION}/transactions`, data);
-  if (response)
-    return response.data;
-  return {};
-}
+// export async function apiSubmitTransaction(data: any) {
+//   const response: ResponseGenerator = await liskApiInstance.post(`/api/${API_VERSION}/transactions`, data);
+//   if (response)
+//     return response.data;
+//   return {};
+// }

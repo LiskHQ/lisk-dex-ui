@@ -64,3 +64,10 @@ export async function apiGetSlippageBounds(params: any) {
     return response.data;
   return {};
 }
+
+export async function apiSubmitTransaction(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions', data);
+  if (response)
+    return response.data;
+  return {};
+}

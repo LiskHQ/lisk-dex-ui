@@ -1,6 +1,6 @@
 import { Box, Snackbar, useMediaQuery } from '@mui/material';
 import { AlertComponent, ApproveTransactionModal, TransactionStatusModal } from 'components';
-import { AlertVariant, PATHS, TransactionType } from 'consts';
+import { AlertVariant, PATHS, TransactionStatus, TransactionType } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -177,7 +177,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       {
         openTransactionStatusModal &&
         <TransactionStatusModal
-          success={sentTransaction}
+          status={TransactionStatus.SUCCESS}
           type={transaction.type}
           onClose={onCloseTransactionStatusModal}
         />

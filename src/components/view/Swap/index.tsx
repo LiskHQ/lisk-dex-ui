@@ -88,13 +88,15 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   useEffect(() => {
     getToken2FiatConversion(token1.symbol, currency);
-  }, [token1, currency, getToken2FiatConversion]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token1, currency]);
 
   useEffect(() => {
     if (token2) {
       getToken2FiatConversion(token2.symbol, currency);
     }
-  }, [token2, currency, getToken2FiatConversion]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token2, currency]);
 
   useEffect(() => {
     if (closeTransactionModal) {
@@ -137,7 +139,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   }, [token1Amount, token1, token2, conversionRates]);
 
   const isValidSwap = useMemo(() => {
-    if (+token1Amount > balance || token1.symbol === token2?.symbol || estimatedAmount !== 0)
+    if (+token1Amount > balance || token1.symbol === token2?.symbol || estimatedAmount === 0)
       return false;
     return true;
   }, [balance, token1Amount, token1, token2, estimatedAmount]);
