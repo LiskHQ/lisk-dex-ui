@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 const Home: NextPage = () => {
 
   useEffect(() => {
-    router.push(PATHS.SWAP);
+    //    router.push(PATHS.SWAP);
   }, []);
 
   return null;

@@ -193,9 +193,6 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   const liskRpc = {
     signTransaction: _createJsonRpcRequestHandler(
       async (chainId: string, address: string, schema: any, rawTx: any): Promise<IFormattedRpcResponse> => {
-        console.log('data: ', chainId, ',here: ', address);
-        console.log('testSignTransaction accounts', accounts);
-
         const tx = await fromTransactionJSON(rawTx, schema);
         const binary = await encodeTransaction(tx, schema);
         const payload = binary.toString('hex');

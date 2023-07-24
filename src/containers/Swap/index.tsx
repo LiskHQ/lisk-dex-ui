@@ -1,5 +1,5 @@
 import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { LISK_DECIMALS, TransactionCommand, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
@@ -40,7 +40,7 @@ export const SwapContainer: React.FC = () => {
       console.log('account detail: ', chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
-        command: TransactionCommand.swapExactIn,
+        command: TransactionCommands.swapExactIn,
         fee: BigInt(5000000),
         nonce: BigInt(0),
         senderPublicKey: publicKey,

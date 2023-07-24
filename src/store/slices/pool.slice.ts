@@ -54,7 +54,7 @@ const poolSlice = createSlice({
     },
 
     //get pools
-    getPools(state) {
+    getPools(state, action) {
       state.gettingPools = true;
       state.gotPools = false;
     },

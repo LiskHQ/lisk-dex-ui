@@ -9,9 +9,10 @@ export enum TransactionModule {
   dex = 'dex',
 }
 
-export enum TransactionCommand {
-  swapExactIn = 'swapExactIn',
-
+export const TransactionCommands = {
+  swapExactIn: 'swapExactIn',
+  createPool: 'createPool',
+  addLiquidity: 'addLiquidity',
 }
 
 export enum TransactionStatus {
