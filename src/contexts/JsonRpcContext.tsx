@@ -209,7 +209,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
               params: {
                 payload,
                 schema,
-                recipientChainID: '04000000',
+                recipientChainID: '04000011',
               },
             },
           });
@@ -218,13 +218,20 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
 
           // @todo verify the signatures
           const valid = true;
-          console.log('result', result);
+          console.log('result signature: ', result);
+
+          rawTx.signatures = [Buffer.from(JSON.parse(result), "hex")];
+
+          console.log("rawTx with signatures", rawTx);
+          const _tx = await fromTransactionJSON(rawTx, schema);
+          const _binary = await encodeTransaction(_tx, schema);
+          const _signedTransaction = _binary.toString('hex');
 
           return {
             method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION,
             address,
             valid,
-            result,
+            result: _signedTransaction,
           };
         } catch (error: any) {
           console.log('error', error);

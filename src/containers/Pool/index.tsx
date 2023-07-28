@@ -41,7 +41,7 @@ export const PoolContainer: React.FC = () => {
         command: TransactionCommands.createPool,
         fee: BigInt(5000000000000000000),
         nonce: BigInt(1),
-        senderPublicKey: publicKey,
+        senderPublicKey: Buffer.from(publicKey, "hex"),
         signatures: [],
         params: {
           tokenID0: Buffer.from('0100000000', 'hex'),
@@ -103,7 +103,7 @@ export const PoolContainer: React.FC = () => {
       //     amount: '1000000000000',
       //     data: '',
       //     recipientAddress: 'lskj34x8zh85zh4khjq64ofudmjax2hzc5hxw7vok',
-      //     tokenID: '0400000000000000'
+      //     tokenID: '0400001100000000'
       //   },
       //   id: '3d49adde25a12ca34c5893f645ceed395220d1a936e46b9412a2bb77b68e3583',
       // };
@@ -145,9 +145,9 @@ export const PoolContainer: React.FC = () => {
   //submit signed transaction
   const onConfirmApproval = () => {
     if (rpcResult?.result) {
-      const signedTransactions = JSON.parse(rpcResult.result);
+      console.log("rpcResult: ", rpcResult);
       dispatch(AppActions.transaction.submitTransaction({
-        transaction: signedTransactions[0],
+        transaction: rpcResult.result,
       }));
     }
   };

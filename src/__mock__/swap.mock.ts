@@ -4,9 +4,9 @@ export const mockBalance = 4521.425;
 
 export const mockTokens: IToken[] = [
   {
-    chainID: '04000000',
+    chainID: '04000011',
     chainName: 'Lisk',
-    tokenID: '0400000000000000',
+    tokenID: '0400001100000000',
     tokenName: 'Lisk',
     networkType: 'devnet',
     description: 'Default token for the entire Lisk ecosystem',
@@ -35,7 +35,7 @@ export const mockTokens: IToken[] = [
     ]
   },
   {
-    chainID: '04000000',
+    chainID: '04000011',
     chainName: 'Lisk',
     tokenID: '0DEX00000000000000',
     tokenName: 'DEX',
