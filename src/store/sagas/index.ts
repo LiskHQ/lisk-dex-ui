@@ -13,7 +13,8 @@ import {
   submitTransactionSaga
 } from './transaction.saga';
 import {
-  getPoolsSaga
+  getPoolsSaga,
+  getStasticsSaga,
 } from './pool.saga';
 
 function* rootSaga() {
@@ -28,6 +29,7 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getSlippageBounds.type, getSlippageBoundsSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
+  yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);
 }
 
 export default rootSaga;
