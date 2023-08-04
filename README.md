@@ -1,3 +1,5 @@
+![UI](https://github.com/LiskHQ/lisk-dex-ui/assets/121556982/b1ee0471-5111-4f37-a785-4dd5c5245b6f)
+
 # Lisk DEX UI
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
