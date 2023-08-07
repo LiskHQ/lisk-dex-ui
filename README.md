@@ -5,7 +5,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/liskHQ/lisk-dex-ui)
 ![GitHub repo size](https://img.shields.io/github/repo-size/liskhq/lisk-dex-ui)
-[![DeepScan grade](https://deepscan.io/api/teams/6759/projects/8870/branches/113510/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=6759&pid=8870&bid=113510)
+[![DeepScan grade](https://deepscan.io/api/teams/6759/projects/8870/branches/113510/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=19600&pid=23054&bid=773115)
 ![GitHub issues](https://img.shields.io/github/issues-raw/liskhq/lisk-dex-ui)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/liskhq/lisk-dex-ui)
 
