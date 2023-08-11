@@ -77,6 +77,14 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
         alertContent.variant = AlertVariant.fail;
         alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH failed.';
       }
+      if (socketEvent === SOCKET_EVENTS.POSITION_CREATED) {
+        alertContent.variant = AlertVariant.success;
+        alertContent.description = 'Pool has been created successfully.';
+      }
+      if (socketEvent === SOCKET_EVENTS.POSITION_CREATION_FAILED) {
+        alertContent.variant = AlertVariant.fail;
+        alertContent.description = 'There is an error ocurried during creating your pool.';
+      }
     }
     return alertContent;
   }, [sentTransaction, confirmedTransaction, transaction, socketEvent]);
