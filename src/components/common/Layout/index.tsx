@@ -85,6 +85,8 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
         alertContent.variant = AlertVariant.fail;
         alertContent.description = 'There is an error ocurried during creating your pool.';
       }
+
+      setOpenAlert(true);
     }
     return alertContent;
   }, [sentTransaction, confirmedTransaction, transaction, socketEvent]);
