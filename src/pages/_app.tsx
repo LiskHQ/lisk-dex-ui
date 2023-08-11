@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 
 import '../styles/globals.css';
 import { createEmotionCache } from 'utils';
@@ -13,6 +14,7 @@ type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
 const clientSideEmotionCache = createEmotionCache();
 
 function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: AppPropsRoot) {
+
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>

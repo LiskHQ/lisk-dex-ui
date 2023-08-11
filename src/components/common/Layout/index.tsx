@@ -12,6 +12,9 @@ import { Footer } from './Footer';
 import { Header } from './Header';
 import { LayoutComponentStyle } from './index.style';
 
+import { socket } from 'utils';
+import { SOCKET_EVENTS } from 'consts';
+
 interface IProps {
   children?: ReactNode,
 }
@@ -39,6 +42,9 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 
   const { account } = useSelector((state: RootState) => state.wallet);
 
+  // current socket event
+  const [socketEvent, setSocketEvent] = useState<string>("");
+
   //show Snackbar alert
   const [openAlert, setOpenAlert] = useState<boolean>(false);
   const alertContent = useMemo(() => {
@@ -56,17 +62,26 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       alertContent.variant = AlertVariant.success;
       alertContent.subject = 'Transaction has been confirmed.';
       alertContent.link = 'https://etherscan.io/';
-      if (transaction.type === TransactionType.SWAP)
+      // if (transaction.type === TransactionType.SWAP)
+      //   alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';
+      // if (transaction.type === TransactionType.SUPPLY_LIQUIDITY)
+      //   alertContent.description = 'Added liquidity of 3.45 LSK/ETH LP tokens.';
+      // if (transaction.type === TransactionType.INCREASE_LIQUIDITY)
+      //   alertContent.description = 'Increased liquidity by 4521 LSK and 2.74 ETH.';
+      // if (transaction.type === TransactionType.REMOVE_LIQUIDITY)
+      //   alertContent.description = 'Removed liquidity by 1623 LSK and 1.82 ETH.';
+    }
+    if (socketEvent !== "") {
+      if (socketEvent === SOCKET_EVENTS.SWAPPED) {
         alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';
-      if (transaction.type === TransactionType.SUPPLY_LIQUIDITY)
-        alertContent.description = 'Added liquidity of 3.45 LSK/ETH LP tokens.';
-      if (transaction.type === TransactionType.INCREASE_LIQUIDITY)
-        alertContent.description = 'Increased liquidity by 4521 LSK and 2.74 ETH.';
-      if (transaction.type === TransactionType.REMOVE_LIQUIDITY)
-        alertContent.description = 'Removed liquidity by 1623 LSK and 1.82 ETH.';
+      }
+      if (socketEvent === SOCKET_EVENTS.SWAP_FAILED) {
+        alertContent.variant = AlertVariant.fail;
+        alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH failed.';
+      }
     }
     return alertContent;
-  }, [sentTransaction, confirmedTransaction, transaction]);
+  }, [sentTransaction, confirmedTransaction, transaction, socketEvent]);
 
   const onCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -152,6 +167,64 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       setOpenAlert(true);
     }
   }, [confirmedTransaction]);
+
+  useEffect(() => {
+    const onConnect = () => {
+      console.log('Web socket has been connected.');
+    }
+
+    const onDisconnect = () => {
+      console.log('Web socket has been disonnected.');
+    }
+
+    socket.on(SOCKET_EVENTS.SOCKET_CONNECT, onConnect);
+    socket.on(SOCKET_EVENTS.SOCKET_DISCONNECT, onDisconnect);
+
+    socket.on(SOCKET_EVENTS.POOL_CREATED, () => {
+      setSocketEvent(SOCKET_EVENTS.POOL_CREATED);
+    });
+
+    socket.on(SOCKET_EVENTS.POOL_CREATION_FAILED, () => {
+      setSocketEvent(SOCKET_EVENTS.POOL_CREATION_FAILED);
+    });
+
+    socket.on(SOCKET_EVENTS.POSITION_CREATED, () => {
+      setSocketEvent(SOCKET_EVENTS.POSITION_CREATED);
+    });
+
+    socket.on(SOCKET_EVENTS.POSITION_CREATION_FAILED, () => {
+      setSocketEvent(SOCKET_EVENTS.POSITION_CREATION_FAILED);
+    });
+
+    socket.on(SOCKET_EVENTS.POSITION_UPDATED, () => {
+      setSocketEvent(SOCKET_EVENTS.POSITION_UPDATED);
+    });
+
+    socket.on(SOCKET_EVENTS.POSITION_UPDATE_FAILED, () => {
+      setSocketEvent(SOCKET_EVENTS.POSITION_UPDATE_FAILED);
+    });
+
+    socket.on(SOCKET_EVENTS.FEES_INCENTIVES_COLLECTED, () => {
+      setSocketEvent(SOCKET_EVENTS.FEES_INCENTIVES_COLLECTED);
+    });
+
+    socket.on(SOCKET_EVENTS.AMOUNT_BELOW_MIN, () => {
+      setSocketEvent(SOCKET_EVENTS.AMOUNT_BELOW_MIN);
+    });
+
+    socket.on(SOCKET_EVENTS.SWAPPED, () => {
+      setSocketEvent(SOCKET_EVENTS.SWAPPED);
+    });
+
+    socket.on(SOCKET_EVENTS.SWAP_FAILED, () => {
+      setSocketEvent(SOCKET_EVENTS.SWAP_FAILED);
+    });
+
+    return () => {
+      socket.off(SOCKET_EVENTS.SOCKET_CONNECT, onConnect);
+      socket.off(SOCKET_EVENTS.SOCKET_DISCONNECT, onDisconnect);
+    };
+  }, []);
 
   return (
     <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
