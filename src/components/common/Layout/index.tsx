@@ -77,6 +77,8 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
         alertContent.variant = AlertVariant.fail;
         alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH failed.';
       }
+
+      setOpenAlert(true);
     }
     return alertContent;
   }, [sentTransaction, confirmedTransaction, transaction, socketEvent]);
