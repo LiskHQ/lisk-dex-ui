@@ -1,9 +1,8 @@
 import { Box, Snackbar, useMediaQuery } from '@mui/material';
 import { AlertComponent, ApproveTransactionModal, TransactionStatusModal } from 'components';
-import { AlertVariant, PATHS, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, TransactionStatus } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
@@ -23,7 +22,6 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.lg));
 
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const platform = useContext(PlatformContext);
 

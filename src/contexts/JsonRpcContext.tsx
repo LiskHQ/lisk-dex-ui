@@ -120,7 +120,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   const [result, setResult] = useState<IFormattedRpcResponse | null>();
   const [isTestnet, setIsTestnet] = useState(getLocalStorageTestnetFlag());
 
-  const { client, session, accounts } = useWalletConnectClient();
+  const { client, session } = useWalletConnectClient();
 
   // const { chainData } = useChainData();
 

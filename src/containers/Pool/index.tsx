@@ -1,17 +1,17 @@
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
-import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
-import { addLiquiditySchema, createPoolSchema } from 'utils';
+import { createPoolSchema } from 'utils';
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
-  const { pools, gotPools, createdPool, updatedPool, gettingPools } = useSelector((state: RootState) => state.pool);
+  const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
   const [pool, setPool] = useState<IPool>();
 
@@ -35,6 +35,7 @@ export const PoolContainer: React.FC = () => {
     if (account) {
       const { chainId, publicKey } = account;
       const { token1Amount, token2Amount } = pool;
+      console.log(' token1Amount, token2Amount: ', token1Amount, token2Amount);
       console.log("chainId, publicKey:", chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
