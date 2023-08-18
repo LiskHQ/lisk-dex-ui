@@ -1,4 +1,4 @@
-import { apiGetPools } from 'apis';
+import { apiGetPools, apiGetStastics } from 'apis';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
 
@@ -20,5 +20,20 @@ export function* getPoolsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.pool.getPoolsFailure(error));
+  }
+}
+
+export function* getStasticsSaga(action: any) {
+  try {
+    const result: IResponse = yield call(
+      async () =>
+        await apiGetStastics(action.payload)
+    );
+
+    if (result) {
+      yield put(AppActions.pool.getStasticsSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.pool.getStasticsFailure(error));
   }
 }

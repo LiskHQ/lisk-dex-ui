@@ -6,10 +6,10 @@ type StateType = {
   pools: IPool[],
   gettingPools: boolean,
   gotPools: boolean,
-  creatingPool: boolean,
-  createdPool: boolean,
-  updatingPool: boolean,
-  updatedPool: boolean,
+
+  stastics: any,
+  gettingStastics: boolean,
+  gotStastics: boolean,
   error: any,
 };
 
@@ -18,11 +18,10 @@ const initialState: StateType = {
   gettingPools: false,
   gotPools: false,
 
-  creatingPool: false,
-  createdPool: false,
+  stastics: {},
+  gettingStastics: false,
+  gotStastics: false,
 
-  updatingPool: false,
-  updatedPool: false,
   error: { message: '' },
 };
 
@@ -33,27 +32,9 @@ const poolSlice = createSlice({
     /**
      * pool
      */
-    //create pool
-    createPool(state) {
-      state.creatingPool = true;
-      state.createdPool = false;
-    },
-    createPoolSuccess(state, action: PayloadAction<any>) {
-      state.creatingPool = false;
-      state.createdPool = true;
-      const pool: IPool = {
-        ...action.payload,
-        id: Math.random().toString(36).substring(2, 15),
-      };
-      state.pools = [...state.pools, pool];
-    },
-    createPoolFailure(state, action: PayloadAction<any>) {
-      state.creatingPool = false;
-      state.createdPool = false;
-      state.error = action.payload;
-    },
 
     //get pools
+    //eslint-disable-next-line  @typescript-eslint/no-unused-vars
     getPools(state, action) {
       state.gettingPools = true;
       state.gotPools = false;
@@ -69,20 +50,21 @@ const poolSlice = createSlice({
       state.error = action.payload;
     },
 
-    //update pool
-    updatePool(state) {
-      state.updatingPool = true;
-      state.updatedPool = false;
+    //get stastics
+    //eslint-disable-next-line  @typescript-eslint/no-unused-vars
+    getStastics(state, action) {
+      state.gettingStastics = true;
+      state.gotStastics = false;
     },
-    updatePoolSuccess(state, action: PayloadAction<IPool>) {
-      state.updatingPool = false;
-      state.updatedPool = true;
-      const index = state.pools.findIndex(el => el.id === action.payload.id);
-      state.pools[index] = { ...action.payload };
+    getStasticsSuccess(state, action) {
+      state.gettingStastics = true;
+      state.gotStastics = false;
+      state.stastics = action.payload.data;
     },
-    updatePoolFailure(state) {
-      state.updatingPool = false;
-      state.updatedPool = false;
+    getStasticsFailure(state, action) {
+      state.gettingStastics = true;
+      state.gotStastics = false;
+      state.error = action.payload;
     },
   },
 });
