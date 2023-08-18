@@ -30,7 +30,7 @@ describe('SupplyLiquidity component', () => {
     expect(getByTestId('token-item-LSK')).toBeInTheDocument();
 
     fireEvent.click(getByTestId('select-token2-test'));
-    expect(getByTestId('token-item-ETH')).toBeInTheDocument();
+    expect(getByTestId('token-item-DEX')).toBeInTheDocument();
   });
 
   it('open confirmation modal', () => {
@@ -40,7 +40,7 @@ describe('SupplyLiquidity component', () => {
     fireEvent.click(getByTestId('token-item-LSK'));
 
     fireEvent.click(getByTestId('select-token2-test'));
-    fireEvent.click(getByTestId('token-item-ETH'));
+    fireEvent.click(getByTestId('token-item-DEX'));
 
     fireEvent.input(getByTestId('initial-price-input-test'), 500);
     fireEvent.click(getByTestId('fee-tier-1'));

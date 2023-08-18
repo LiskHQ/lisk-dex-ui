@@ -301,6 +301,10 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
   padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
+.emotion-0 .swap-container .swap-to-box .swap-to-price:hover {
+  cursor: pointer;
+}
+
 .emotion-0 .swap-container .swap-to-box .swap-to-price div {
   display: -webkit-box;
   display: -webkit-flex;
@@ -752,16 +756,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
   color: #6B7280;
 }
 
-.emotion-33 {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-  font-weight: 400;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  letter-spacing: 0.00938em;
-}
-
-.emotion-37 {
+.emotion-36 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -814,23 +809,23 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
   text-transform: capitalize;
 }
 
-.emotion-37::-moz-focus-inner {
+.emotion-36::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-37.Mui-disabled {
+.emotion-36.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-37 {
+  .emotion-36 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-37:hover {
+.emotion-36:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -838,39 +833,39 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
 }
 
 @media (hover: none) {
-  .emotion-37:hover {
+  .emotion-36:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-37:active {
+.emotion-36:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-37.Mui-focusVisible {
+.emotion-36.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-37.Mui-disabled {
+.emotion-36.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-37.MuiButton-outlined {
+.emotion-36.MuiButton-outlined {
   border-color: #FF4557;
 }
 
-.emotion-37.MuiButton-contained {
+.emotion-36.MuiButton-contained {
   background: #6953F4;
   color: #FFFFFF;
 }
 
-.emotion-37.Mui-disabled {
+.emotion-36.Mui-disabled {
   opacity: 0.7;
 }
 
-.emotion-38 {
+.emotion-37 {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5rem;
@@ -1053,13 +1048,12 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
             class="MuiTypography-root MuiTypography-body2 emotion-6"
           >
             Balance: 
-            4521.425
+            0.00004521425
           </p>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-6"
           >
-            $
-            0.000000000000000
+            $0.00
           </p>
         </div>
       </div>
@@ -1130,11 +1124,6 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
                 />
               </svg>
             </div>
-            <h6
-              class="MuiTypography-root MuiTypography-subtitle1 emotion-33"
-            >
-              0.00
-            </h6>
           </div>
           <div
             class="swap-to-bottom-box MuiBox-root emotion-1"
@@ -1153,14 +1142,14 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
         </div>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-37"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-36"
         data-testid="swap-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <h4
-          class="MuiTypography-root MuiTypography-h4 emotion-38"
+          class="MuiTypography-root MuiTypography-h4 emotion-37"
         >
           Select tokens
         </h4>

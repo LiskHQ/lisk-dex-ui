@@ -6,18 +6,24 @@ import { darkTheme, lightTheme } from 'styles/theme';
 import { ThemeType } from 'consts';
 
 export type IPlatformContext = {
+  walletConnection: boolean,
   currency: string,
   getThemeType: () => ThemeType,
   saveTheme: (theme: ThemeType) => void,
   saveCurrency: (currency: string) => void,
+  getWalletConnection: () => boolean,
+  saveWalletConnectToken: (tokens: string) => void,
   resetSession: () => void
 };
 
 export const PlatformContext = createContext<IPlatformContext>({
+  walletConnection: false,
   currency: 'USD',
   getThemeType: () => ThemeType.Light,
   saveTheme: () => { },
   saveCurrency: () => { },
+  getWalletConnection: () => false,
+  saveWalletConnectToken: () => { },
   resetSession: () => { },
 });
 
@@ -29,6 +35,7 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
 
   const [theme, setTheme] = useState<Theme>(lightTheme);
   const [currency, setCurrency] = useState<string>('USD');
+  const [walletConnection, setWalletConnection] = useState<boolean>(false);
 
   const getThemeType = () => {
     return sessionStorage.getItem('theme') as ThemeType ?? ThemeType.Light;
@@ -47,6 +54,13 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
     setCurrency(_currency);
     sessionStorage.setItem('currency', _currency);
   };
+  const getWalletConnection = () => {
+    return !!sessionStorage.getItem('wallet-token');
+  };
+
+  const saveWalletConnectToken = (token: string) => {
+    sessionStorage.setItem('wallet-token', token);
+  };
 
   const resetSession = () => {
     sessionStorage.removeItem('theme');
@@ -60,14 +74,18 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
       setTheme(lightTheme);
 
     setCurrency(getCurrency());
+    setWalletConnection(getWalletConnection());
   }, []);
 
   return (
     <PlatformContext.Provider value={{
+      walletConnection,
       currency,
       getThemeType,
       saveTheme,
       saveCurrency,
+      getWalletConnection,
+      saveWalletConnectToken,
       resetSession,
     }}>
       <ThemeProvider theme={theme}>

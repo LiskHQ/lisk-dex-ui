@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { mockPoolDetails } from '__mock__';
 import { FeaturedPoolsStyle } from './index.style';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface IFeaturedPoolsProps {
   onSelectPool?: (id: string) => void,
@@ -42,14 +43,14 @@ export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
               <Box className="pool-box-inner">
                 <Box className="pool-tokens">
                   <Box className="token1-image">
-                    <Image src={el.token1.image} width={48} height={48} />
+                    <Image src={tokenSvgs[el.token1.symbol]} width={48} height={48} />
                   </Box>
                   <Box className="token2-image">
-                    <Image src={el.token2.image} width={48} height={48} />
+                    <Image src={tokenSvgs[el.token2.symbol]} width={48} height={48} />
                   </Box>
                   <Box className="token-name">
-                    <Typography variant="h4">{el.token1.shortName}</Typography>
-                    <Typography variant="h4">{el.token2.shortName}</Typography>
+                    <Typography variant="h4">{el.token1.symbol}</Typography>
+                    <Typography variant="h4">{el.token2.symbol}</Typography>
                   </Box>
                 </Box>
 

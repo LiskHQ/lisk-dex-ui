@@ -588,7 +588,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
              and 
             0.045
              
-            ETH
+            DEX
           </p>
           <p
             class="MuiTypography-root MuiTypography-body1 emotion-10"
@@ -596,7 +596,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             You will receive 3.45 
             LSK
             /
-            ETH
+            DEX
              LP Tokens
           </p>
         </div>
@@ -650,7 +650,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
           <p
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
-            ETH
+            DEX
              Deposited:
           </p>
           <div

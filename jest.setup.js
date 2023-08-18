@@ -5,5 +5,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
 import { Settings } from "luxon";
+import { TextEncoder, TextDecoder } from 'util';
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 Settings.defaultLocale = "en-US";

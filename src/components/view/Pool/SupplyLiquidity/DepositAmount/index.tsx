@@ -4,6 +4,7 @@ import { IToken } from 'models';
 import { DepositAmountStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { InputComponent } from 'components/common';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface IDepositAmountProps {
   balance: number,
@@ -32,8 +33,8 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         {
           token ?
             <Box className="selected-token">
-              <Image src={token.image} width={28} height={28} />
-              <Typography variant="subtitle1">{token.shortName}</Typography>
+              <Image src={tokenSvgs[token.symbol]} width={28} height={28} />
+              <Typography variant="subtitle1">{token.symbol}</Typography>
             </Box>
             :
             <Box className="select-tokens">
@@ -52,9 +53,9 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         <Box className="token-balance-details">
           <Typography variant="body2">Balance: {balance}</Typography>
           <Box className="token-balance-percent token">
-            <Typography data-testid={`${token.shortName}-amount-percent-25`} variant="body2" onClick={() => { setAmount(+((balance / 4).toPrecision(16))); }}>25%</Typography>
-            <Typography data-testid={`${token.shortName}-amount-percent-50`} variant="body2" onClick={() => { setAmount(+((balance / 2).toPrecision(16))); }}>50%</Typography>
-            <Typography data-testid={`${token.shortName}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance); }}>MAX</Typography>
+            <Typography data-testid={`${token.symbol}-amount-percent-25`} variant="body2" onClick={() => { setAmount(+((balance / 4).toPrecision(16))); }}>25%</Typography>
+            <Typography data-testid={`${token.symbol}-amount-percent-50`} variant="body2" onClick={() => { setAmount(+((balance / 2).toPrecision(16))); }}>50%</Typography>
+            <Typography data-testid={`${token.symbol}-amount-percent-max`} variant="body2" onClick={() => { setAmount(balance); }}>MAX</Typography>
           </Box>
         </Box>
       }

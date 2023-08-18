@@ -2,7 +2,7 @@ import { ThemeType } from 'consts';
 
 export interface IFiatCurrency {
   name: string,
-  shortName: string,
+  symbol: string,
   image: any,
 }
 

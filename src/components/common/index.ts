@@ -31,3 +31,4 @@ export * from './FeaturedPools';
 export * from './TokensTable';
 export * from './InfoChart';
 export * from './Pagination';
+export * from './Wallet';

@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { ITransactionStatusModalProps, TransactionStatusModal } from './index';
 import React from 'react';
 import { lightTheme } from 'styles/theme';
-import { TransactionType } from 'consts';
+import { TransactionStatus, TransactionType } from 'consts';
 
 function renderComponent(props: ITransactionStatusModalProps) {
   return render(
@@ -15,7 +15,7 @@ function renderComponent(props: ITransactionStatusModalProps) {
 
 describe('TransactionStatusModal', () => {
   const mockProps = {
-    success: true,
+    status: TransactionStatus.SUCCESS,
     type: TransactionType.SWAP,
     onClose: jest.fn(),
   };

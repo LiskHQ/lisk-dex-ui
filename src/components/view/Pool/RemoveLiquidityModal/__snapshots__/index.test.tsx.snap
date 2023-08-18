@@ -588,7 +588,7 @@ exports[`RemoveLiquidityModal component checks if the component matches the snap
              and 
             0.045
              
-            ETH
+            DEX
              Tokens
           </p>
         </div>
@@ -642,7 +642,7 @@ exports[`RemoveLiquidityModal component checks if the component matches the snap
           <p
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
-            ETH
+            DEX
              removed:
           </p>
           <div

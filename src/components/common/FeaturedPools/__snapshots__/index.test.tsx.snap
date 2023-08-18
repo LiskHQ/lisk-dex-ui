@@ -333,7 +333,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                ETH
+                DEX
               </h4>
             </div>
           </div>
@@ -453,12 +453,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                DEU
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                FAE
+                DEX
               </h4>
             </div>
           </div>
@@ -578,12 +578,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                DEU
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                KLP
+                DEX
               </h4>
             </div>
           </div>
@@ -708,7 +708,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                FAE
+                DEX
               </h4>
             </div>
           </div>
@@ -828,12 +828,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                FAE
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                KLP
+                DEX
               </h4>
             </div>
           </div>
@@ -953,12 +953,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                ETH
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                FAE
+                DEX
               </h4>
             </div>
           </div>
@@ -1083,7 +1083,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                DEU
+                DEX
               </h4>
             </div>
           </div>
@@ -1203,12 +1203,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                KLP
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                RGB
+                DEX
               </h4>
             </div>
           </div>
@@ -1328,12 +1328,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                ETH
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                KLP
+                DEX
               </h4>
             </div>
           </div>
@@ -1453,12 +1453,12 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                DEU
+                LSK
               </h4>
               <h4
                 class="MuiTypography-root MuiTypography-h4 emotion-10"
               >
-                RGB
+                DEX
               </h4>
             </div>
           </div>

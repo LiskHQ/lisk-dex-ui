@@ -22,8 +22,12 @@ export * from './EditIcon';
 export * from './InfoIcon';
 export * from './PlusCircleIcon';
 export * from './PositionIcon';
+export * from './CheckCircleIcon';
+export * from './CopyIcon';
+export * from './BadgeCheckIcon';
 export * from './IncreaseIcon';
 export * from './DecreaseIcon';
+export * from './FailureIcon';
 
 export const tokenSvgs: {
   [key: string]: string,
@@ -34,10 +38,12 @@ export const tokenSvgs: {
   KLP: '/assets/tokens/klp.svg',
   LSK: '/assets/tokens/lsk.svg',
   RGB: '/assets/tokens/rgb.svg',
+  DEX: '/assets/tokens/dex.svg',
 };
 
 export const flagSvgs = {
   //  EU: '/assets/flags/eu.svg',
   US: '/assets/flags/us.svg',
   GB: '/assets/flags/gb.svg',
+  EU: '/assets/flags/eu.svg',
 };

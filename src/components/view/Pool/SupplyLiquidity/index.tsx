@@ -5,7 +5,7 @@ import { Box, IconButton, Typography } from '@mui/material';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
-import { PlusCircleIcon, SettingIcon } from 'imgs/icons';
+import { PlusCircleIcon, SettingIcon, tokenSvgs } from 'imgs/icons';
 import { DepositAmount } from './DepositAmount';
 import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
@@ -88,10 +88,10 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       const { query } = router;
       if (query) {
         if (query.token1) {
-          setToken1(mockTokens.find(token => token.shortName === query.token1) as IToken);
+          setToken1(mockTokens.find(token => token.symbol === query.token1) as IToken);
         }
         if (query.token2) {
-          setToken2(mockTokens.find(token => token.shortName === query.token2) as IToken);
+          setToken2(mockTokens.find(token => token.symbol === query.token2) as IToken);
         }
       }
     }
@@ -142,8 +142,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token1 ?
                 <Box>
-                  <Image src={token1.image} width={28} height={28} />
-                  <Typography variant="subtitle1">{token1.shortName}</Typography>
+                  <Image src={tokenSvgs[token1.symbol]} width={28} height={28} />
+                  <Typography variant="subtitle1">{token1.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
             }
@@ -167,8 +167,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token2 ?
                 <Box>
-                  <Image src={token2.image} width={28} height={28} />
-                  <Typography variant="subtitle1">{token2.shortName}</Typography>
+                  <Image src={tokenSvgs[token2.symbol]} width={28} height={28} />
+                  <Typography variant="subtitle1">{token2.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
             }
