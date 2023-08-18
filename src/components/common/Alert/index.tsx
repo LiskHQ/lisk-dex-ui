@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import { AlertVariant } from 'consts';
-import { CancelIcon, InfoIcon, SuccessIcon } from 'imgs/icons';
+import { CancelIcon, InfoIcon, SuccessIcon, FailureIcon } from 'imgs/icons';
 import Link from 'next/link';
 import { AlertComponentStyle } from './index.style';
 
@@ -26,6 +26,7 @@ export const AlertComponent: React.FC<IAlertComponent> = (props) => {
             {
               [AlertVariant.success]: <SuccessIcon />,
               [AlertVariant.info]: <InfoIcon />,
+              [AlertVariant.fail]: <FailureIcon />,
             }[variant]
           }
         </Box>

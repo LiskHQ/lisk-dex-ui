@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { createContext, ReactNode, useContext, useState } from 'react';
 import bs58 from 'bs58';
 
@@ -7,15 +6,7 @@ import { useWalletConnectClient } from './ClientContext';
 import {
   DEFAULT_LISK_METHODS,
 } from 'consts';
-// import { useChainData } from './ChainDataContext';
-
-const codec: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.codec), {
-  ssr: false,
-});
-
-const cryptography: any = dynamic(() => import('@liskhq/lisk-client' as any).then((module) => module.cryptography), {
-  ssr: false,
-});
+import { codec } from '@liskhq/lisk-codec';
 
 const baseTransactionSchema = {
   $id: '/lisk/baseTransaction',
@@ -56,15 +47,15 @@ const baseTransactionSchema = {
   },
 };
 
-const encodeTransaction = (tx: any, paramsSchema: any) => {
+const encodeTransaction = async (tx: any, paramsSchema: any) => {
   let encodedParams;
   if (!Buffer.isBuffer(tx.params)) {
-    encodedParams = paramsSchema ? codec.codec.encode(paramsSchema, tx.params) : Buffer.alloc(0);
+    encodedParams = paramsSchema ? codec.encode(paramsSchema, tx.params) : Buffer.alloc(0);
   } else {
     encodedParams = tx.params;
   }
 
-  const encodedTransaction = codec.codec.encode(baseTransactionSchema, {
+  const encodedTransaction = codec.encode(baseTransactionSchema, {
     ...tx,
     params: encodedParams,
   });
@@ -72,17 +63,17 @@ const encodeTransaction = (tx: any, paramsSchema: any) => {
   return encodedTransaction;
 };
 
-const fromTransactionJSON = (rawTx: any, paramsSchema: any) => {
-  const tx = codec.codec.fromJSON(baseTransactionSchema, {
+const fromTransactionJSON = async (rawTx: any, paramsSchema: any) => {
+  const tx = codec.fromJSON(baseTransactionSchema, {
     ...rawTx,
     params: '',
   });
+
   let params;
   if (typeof rawTx.params === 'string') {
-    params = paramsSchema ? codec.codec.decode(paramsSchema, Buffer.from(rawTx.params, 'hex')) : {};
+    params = paramsSchema ? codec.decode(paramsSchema, Buffer.from(rawTx.params, 'hex')) : {};
   } else {
-    params = paramsSchema ? codec.codec.fromJSON(paramsSchema, rawTx.params) : {};
-    console.log('params', rawTx.params, params);
+    params = paramsSchema ? codec.fromJSON(paramsSchema, rawTx.params) : {};
   }
 
   return {
@@ -102,13 +93,13 @@ interface IFormattedRpcResponse {
   result: string;
 }
 
-type TRpcRequestCallback = (chainId: string, address: string) => Promise<void>;
+type TRpcRequestCallback = (chainId: string, address: string, schema: any, rawTx: any) => Promise<void>;
 
 interface IContext {
   ping: () => Promise<void>;
   liskRpc: {
     testSignMessage: TRpcRequestCallback;
-    testSignTransaction: TRpcRequestCallback;
+    signTransaction: TRpcRequestCallback;
   };
   rpcResult?: IFormattedRpcResponse | null;
   isRpcRequestPending: boolean;
@@ -129,13 +120,13 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   const [result, setResult] = useState<IFormattedRpcResponse | null>();
   const [isTestnet, setIsTestnet] = useState(getLocalStorageTestnetFlag());
 
-  const { client, session, accounts, liskPublicKeys } = useWalletConnectClient();
+  const { client, session } = useWalletConnectClient();
 
   // const { chainData } = useChainData();
 
   const _createJsonRpcRequestHandler =
-    (rpcRequest: (chainId: string, address: string) => Promise<IFormattedRpcResponse>) =>
-      async (chainId: string, address: string) => {
+    (rpcRequest: (chainId: string, address: string, schema: any, rawTx: any) => Promise<IFormattedRpcResponse>) =>
+      async (chainId: string, address: string, schema: any, rawTx: any) => {
         if (typeof client === 'undefined') {
           throw new Error('WalletConnect is not initialized');
         }
@@ -145,7 +136,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
 
         try {
           setPending(true);
-          const result = await rpcRequest(chainId, address);
+          const result = await rpcRequest(chainId, address, schema, rawTx);
           setResult(result);
         } catch (err: any) {
           console.error('RPC request failed: ', err);
@@ -154,6 +145,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
             valid: false,
             result: err?.message ?? err,
           });
+          throw new Error(err);
         } finally {
           setPending(false);
         }
@@ -199,75 +191,14 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
   // -------- LISK RPC METHODS --------
 
   const liskRpc = {
-    testSignTransaction: _createJsonRpcRequestHandler(
-      async (chainId: string, address: string): Promise<IFormattedRpcResponse> => {
-        console.log('testSignTransaction accounts', accounts);
-        if (!liskPublicKeys) {
-          throw new Error('Could not find Lisk PublicKeys.');
-        }
-
-        const schema = {
-          '$id': '/lisk/transferParams',
-          'title': 'Transfer transaction params',
-          'type': 'object',
-          'required': [
-            'tokenID',
-            'amount',
-            'recipientAddress',
-            'data'
-          ],
-          'properties': {
-            'tokenID': {
-              'dataType': 'bytes',
-              'fieldNumber': 1,
-              'minLength': 8,
-              'maxLength': 8
-            },
-            'amount': {
-              'dataType': 'uint64',
-              'fieldNumber': 2
-            },
-            'recipientAddress': {
-              'dataType': 'bytes',
-              'fieldNumber': 3,
-              'format': 'lisk32'
-            },
-            'data': {
-              'dataType': 'string',
-              'fieldNumber': 4,
-              'minLength': 0,
-              'maxLength': 64
-            }
-          }
-        };
-
-        // @todo we need to have the public key of account here. Just need to update the connection response.
-        // const senderPublicKey = liskPublicKeys.find(item => item.includes(address));
-        // Also, we should serialize and send the tx bytes instead of a raw tx object
-
-        const recipientAddress = cryptography.address.getAddressFromLisk32Address('lsk3ay4z7wqjczbo5ogcqxgxx23xyacxmycwxfh4d');
-        console.log('recipientAddress', recipientAddress, recipientAddress.toString('hex'));
-        const rawTx = {
-          module: 'token',
-          command: 'transfer',
-          fee: '100000000',
-          nonce: '1',
-          senderPublicKey: 'cf434a889d6c7a064e8de61bb01759a76f585e5ff45a78ba8126ca332601f535',
-          signatures: [],
-          params: {
-            amount: '1000000000000',
-            data: '',
-            recipientAddress: 'lskj34x8zh85zh4khjq64ofudmjax2hzc5hxw7vok',
-            tokenID: '0400000000000000'
-          },
-          id: '3d49adde25a12ca34c5893f645ceed395220d1a936e46b9412a2bb77b68e3583',
-        };
-
-        const tx = fromTransactionJSON(rawTx, schema);
-        const binary = encodeTransaction(tx, schema);
+    signTransaction: _createJsonRpcRequestHandler(
+      async (chainId: string, address: string, schema: any, rawTx: any): Promise<IFormattedRpcResponse> => {
+        const tx = await fromTransactionJSON(rawTx, schema);
+        const binary = await encodeTransaction(tx, schema);
         const payload = binary.toString('hex');
 
         try {
+          console.log('client: ', client);
           //eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           const result = await client!.request<string>({
             chainId,
@@ -278,22 +209,32 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
               params: {
                 payload,
                 schema,
-                recipientChainID: '04000000',
+                recipientChainID: '04000011',
               },
             },
           });
 
+          console.log('before valid true');
+
           // @todo verify the signatures
           const valid = true;
-          console.log('result', result);
+          console.log('result signature: ', result);
+
+          rawTx.signatures = [Buffer.from(JSON.parse(result), "hex")];
+
+          console.log("rawTx with signatures", rawTx);
+          const _tx = await fromTransactionJSON(rawTx, schema);
+          const _binary = await encodeTransaction(_tx, schema);
+          const _signedTransaction = _binary.toString('hex');
 
           return {
             method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION,
             address,
             valid,
-            result,
+            result: _signedTransaction,
           };
         } catch (error: any) {
+          console.log('error', error);
           throw new Error(error);
         }
       },
@@ -320,11 +261,6 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
             },
           });
 
-          // const valid = verifyMessageSignature(
-          //   senderPublicKey.toBase58(),
-          //   result.signature,
-          //   message,
-          // );
           const valid = true; // @todo fix the validator
 
           return {

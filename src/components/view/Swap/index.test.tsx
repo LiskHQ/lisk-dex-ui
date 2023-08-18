@@ -4,12 +4,16 @@ import { fireEvent, render } from '@testing-library/react';
 import { SwapView, ISwapViewProps } from './index';
 import { lightTheme } from 'styles/theme';
 import { mockBalance, mockTokens } from '__mock__';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 function renderComponent(props: ISwapViewProps) {
   return render(
-    <ThemeProvider theme={lightTheme}>
-      <SwapView {...props} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={lightTheme}>
+        <SwapView {...props} />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
@@ -27,6 +31,7 @@ describe('Swap', () => {
     tokens: mockTokens,
     closeTransactionModal: false,
     onConfirmSwap: jest.fn(),
+    getToken2FiatConversion: jest.fn(),
   };
 
   it('checks if the component matches the snapshot', () => {
@@ -41,7 +46,7 @@ describe('Swap', () => {
     fireEvent.click(selectTokenButton);
     expect(getByText('Select token')).toBeInTheDocument();
 
-    fireEvent.click(getByTestId('token-item-ETH'));
+    fireEvent.click(getByTestId('token-item-DEX'));
   });
 
   it('click swap button to open confirm modal', () => {
@@ -49,9 +54,8 @@ describe('Swap', () => {
 
     const selectTokenButton = getByText('Select a token');
     fireEvent.click(selectTokenButton);
-    fireEvent.click(getByTestId('token-item-ETH'));
+    fireEvent.click(getByTestId('token-item-DEX'));
     fireEvent.click(getByTestId('swap-from-percent-25'));
-
     fireEvent.click(getByTestId('swap-button'));
 
     expect(getByText('Review & Confirms')).toBeInTheDocument();

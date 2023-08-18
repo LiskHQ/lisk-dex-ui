@@ -3,7 +3,7 @@ import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import {
   ButtonComponent, InputComponent,
 } from 'components';
-import { CancelIcon } from 'imgs/icons';
+import { CancelIcon, tokenSvgs } from 'imgs/icons';
 import { IncreaseLiquidityModalStyle } from './index.style';
 import { IPool } from 'models';
 import { useState } from 'react';
@@ -42,9 +42,9 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
         </Box>
 
         <Box className="increase-liquidity-modal-summmary">
-          <Image src={pool.token1.image} width={24} height={24} />
-          <Image src={pool.token2.image} width={24} height={24} />
-          <Typography className="summary-token-name" variant="body1">{pool.token1.shortName} / {pool.token1.shortName}</Typography>
+          <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
+          <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
+          <Typography className="summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token1.symbol}</Typography>
 
           <Box className="summary-rate">
             <Typography variant="body2">0.05%</Typography>
@@ -57,8 +57,8 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             data-testid="increase-liquidity-token1-input-test"
             startAdornment={
               <InputAdornment position="start">
-                <Image src={pool.token1.image} width={40} height={40} />
-                <Typography variant="subtitle1">{pool.token1.shortName}</Typography>
+                <Image src={tokenSvgs[pool.token1.symbol]} width={40} height={40} />
+                <Typography variant="subtitle1">{pool.token1.symbol}</Typography>
               </InputAdornment>
             }
             variant="outlined"
@@ -70,8 +70,8 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             data-testid="increase-liquidity-token2-input-test"
             startAdornment={
               <InputAdornment position="start">
-                <Image src={pool.token2.image} width={40} height={40} />
-                <Typography variant="subtitle1">{pool.token2.shortName}</Typography>
+                <Image src={tokenSvgs[pool.token2.symbol]} width={40} height={40} />
+                <Typography variant="subtitle1">{pool.token2.symbol}</Typography>
               </InputAdornment>
             }
             variant="outlined"

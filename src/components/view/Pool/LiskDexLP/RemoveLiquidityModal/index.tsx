@@ -3,7 +3,7 @@ import { Box, IconButton, Slider, Typography } from '@mui/material';
 import {
   ButtonComponent,
 } from 'components';
-import { CancelIcon } from 'imgs/icons';
+import { CancelIcon, tokenSvgs } from 'imgs/icons';
 import { RemoveLiquidityModalStyle } from './index.style';
 import { IPool } from 'models';
 import { useState } from 'react';
@@ -45,9 +45,9 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
         </Box>
 
         <Box className="remove-liquidity-modal-summmary">
-          <Image src={pool.token1.image} width={24} height={24} />
-          <Image src={pool.token2.image} width={24} height={24} />
-          <Typography className="summary-token-name" variant="body1">{pool.token1.shortName} / {pool.token1.shortName}</Typography>
+          <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
+          <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
+          <Typography className="summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token1.symbol}</Typography>
 
           <Box className="summary-rate">
             <Typography variant="body2">0.05%</Typography>
@@ -83,15 +83,15 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
         <Box className="remove-liquidity-will-receive">
           <Box className="token-amount">
             <Box className="token1 title">
-              <Image src={pool.token1.image} width={24} height={24} />
-              <Typography variant="body1">{pool.token1.shortName}</Typography>
+              <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
+              <Typography variant="body1">{pool.token1.symbol}</Typography>
             </Box>
             <Typography>{pool.token1Amount}</Typography>
           </Box>
           <Box className="token-amount token2">
             <Box className="title token2">
-              <Image src={pool.token2.image} width={24} height={24} />
-              <Typography variant="body1">{pool.token2.shortName}</Typography>
+              <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
+              <Typography variant="body1">{pool.token2.symbol}</Typography>
             </Box>
             <Typography>{pool.token2Amount}</Typography>
           </Box>
@@ -100,12 +100,12 @@ export const RemoveLiquidityModal: React.FC<IRemoveLiquidityModalProps> = (props
         <Typography variant="body2">Prices</Typography>
         <Box className="remove-liquidity-will-receive">
           <Box className="token-amount">
-            <Typography variant="body1">1 {pool.token1.shortName}</Typography>
-            <Typography>0.00345 {pool.token2.shortName}</Typography>
+            <Typography variant="body1">1 {pool.token1.symbol}</Typography>
+            <Typography>0.00345 {pool.token2.symbol}</Typography>
           </Box>
           <Box className="token-amount token2">
-            <Typography variant="body1">1 {pool.token2.shortName}</Typography>
-            <Typography>2138.42 {pool.token1.shortName}</Typography>
+            <Typography variant="body1">1 {pool.token2.symbol}</Typography>
+            <Typography>2138.42 {pool.token1.symbol}</Typography>
           </Box>
         </Box>
 

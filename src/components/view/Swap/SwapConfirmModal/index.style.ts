@@ -129,6 +129,7 @@ export const SwapConfirmStyle = styled('div')(({ theme }: any) => {
       '.swap-confirm-arrow': {
         marginTop: '1.5rem',
         marginBottom: '1.5rem',
+        marginLeft: '0.375rem',
       },
     }
   };

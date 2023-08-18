@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createMockChartInfo, mockPoolDetails } from '__mock__';
 import Link from 'next/link';
 import { PATHS } from 'consts';
+import { tokenSvgs } from 'imgs/icons';
 
 export interface IPoolsComponentProps {
   onSwap: (token1: string, token2?: string) => void,
@@ -61,7 +62,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
   const pools = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
     return mockPoolDetails
-      .filter(el => el.token1.shortName.includes(searchFilter) || el.token2.shortName.includes(searchFilter))
+      .filter(el => el.token1.symbol.includes(searchFilter) || el.token2.symbol.includes(searchFilter))
       .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey])
       .slice((page - 1) * limit, page * limit);
   }, [sortKey, isAsc, limit, page, searchFilter]);
@@ -90,7 +91,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
                 <FontAwesomeIcon icon={faChevronRight} />
                 <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Pools</Typography></Link>
                 <FontAwesomeIcon icon={faChevronRight} />
-                <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
               </Box>
               <Box className="info-view-contract">
                 <Typography variant="body1">View Contract</Typography>
@@ -108,19 +109,19 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
           <Box className="pool-header-left-box">
             <Box className="pool-summary">
               <Box className="pool-summary-image-1">
-                <Image src={pool.token1.image} width={48} height={48} />
+                <Image src={tokenSvgs[pool.token1.symbol]} width={48} height={48} />
               </Box>
               <Box className="pool-summary-image-2">
-                <Image src={pool.token2.image} width={48} height={48} />
+                <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
               </Box>
 
               <Box className="pool-summary-detail">
                 <Box className="pool-summary-name">
-                  <Typography variant="h5">{pool.token1.shortName}/{pool.token2.shortName}</Typography>
+                  <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
                   <Chip className="pool-summary-share" label={`${pool.share}%`} />
                 </Box>
                 <Box>
-                  <Typography variant="h5">1 {pool.token1.shortName} = $0.92  1 {pool.token2.shortName} = $2.78</Typography>
+                  <Typography variant="h5">1 {pool.token1.symbol} = $0.92  1 {pool.token2.symbol} = $2.78</Typography>
                 </Box>
               </Box>
             </Box>

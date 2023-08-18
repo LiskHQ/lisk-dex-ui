@@ -3,16 +3,9 @@ import { ChainMetadata, NamespaceMetadata } from 'models';
 
 // TODO: add `lisk` namespace to `caip-api` package to avoid manual specification here.
 export const LiskChainData: ChainsMap = {
-  '00000000': {
-    id: 'lisk:04000000',
-    name: 'Lisk Mainnet',
-    rpc: ['https://service.lisk.com', 'https://solana-api.projectserum.com'],
-    slip44: 501,
-    testnet: false,
-  },
-  '04000000': {
-    id: 'lisk:04000000',
-    name: 'Lisk Devnet',
+  '04000011': {
+    id: 'lisk:04000011',
+    name: 'Lisk Dex',
     rpc: ['https://testnet.service.lisk.com'],
     slip44: 501,
     testnet: true,
@@ -20,13 +13,8 @@ export const LiskChainData: ChainsMap = {
 };
 
 export const LiskMetadata: NamespaceMetadata = {
-  // Lisk Mainnet
-  '00000000': {
-    logo: 'https://lisk-qa.ams3.digitaloceanspaces.com/lisk.png',
-    rgb: '0, 0, 0',
-  },
-  // Lisk Devnet
-  '04000000': {
+  // Lisk Dex
+  '04000011': {
     logo: 'https://lisk-qa.ams3.digitaloceanspaces.com/lisk.png',
     rgb: '0, 0, 0',
   },

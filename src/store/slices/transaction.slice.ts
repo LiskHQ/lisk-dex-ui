@@ -12,6 +12,9 @@ type StateType = {
   closeTransactionModal: boolean,
   expenses: IExpense[],
   transaction: ITransaction,
+
+  submitingTransaction: boolean,
+  submitedTransaction: boolean,
   error: any,
 };
 
@@ -28,6 +31,10 @@ const initialState: StateType = {
   },
 
   expenses: [],
+
+  //submit signed transaction
+  submitingTransaction: false,
+  submitedTransaction: false,
   error: { message: '' },
 };
 
@@ -106,6 +113,29 @@ const transactionSlice = createSlice({
       state.sendingTransaction = false;
       state.sentTransaction = false;
       state.confirmedTransaction = true;
+    },
+
+    // submit signed transaction
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    submitTransaction(state, action) {
+      state.submitingTransaction = true;
+      state.submitedTransaction = false;
+    },
+    submitTransactionSuccess(state, action) {
+      state.submitingTransaction = false;
+      state.submitedTransaction = true;
+      action.payload;
+    },
+    submitTransactionFailure(state, action) {
+      state.submitingTransaction = false;
+      state.submitedTransaction = false;
+      state.error = action.payload;
+    },
+
+    resetTransactionStates(state) {
+      state.submitedTransaction = false;
+      state.submitingTransaction = false;
+      state.error = { message: '' };
     },
 
     //trasnaction summary

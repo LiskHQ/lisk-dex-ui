@@ -1,2 +1,2 @@
-export * from './wallet.api';
-export * from './token.api';
+export * from './lisk.api';
+export * from './dex.api';

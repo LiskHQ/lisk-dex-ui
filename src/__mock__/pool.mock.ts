@@ -25,8 +25,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   },
   {
-    token1: mockTokens[2],
-    token2: mockTokens[3],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 15.6,
     volume: 2.3,
     fees: 2.9,
@@ -34,8 +34,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   },
   {
-    token1: mockTokens[2],
-    token2: mockTokens[4],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 3.4,
     volume: 4.1,
     fees: 1.1,
@@ -44,7 +44,7 @@ export const mockPoolDetails: IPoolDetail[] = [
   },
   {
     token1: mockTokens[0],
-    token2: mockTokens[3],
+    token2: mockTokens[1],
     tvl: 7.8,
     volume: 1.7,
     fees: 4.4,
@@ -52,8 +52,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.05
   },
   {
-    token1: mockTokens[3],
-    token2: mockTokens[4],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 16.8,
     volume: 2.1,
     fees: 3.5,
@@ -61,8 +61,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   },
   {
-    token1: mockTokens[1],
-    token2: mockTokens[3],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 13.22,
     volume: 4.06,
     fees: 3.55,
@@ -71,7 +71,7 @@ export const mockPoolDetails: IPoolDetail[] = [
   },
   {
     token1: mockTokens[0],
-    token2: mockTokens[2],
+    token2: mockTokens[1],
     tvl: 9.22,
     volume: 2.6,
     fees: 4.65,
@@ -79,8 +79,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   },
   {
-    token1: mockTokens[4],
-    token2: mockTokens[5],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 20.2,
     volume: 3.06,
     fees: 3.45,
@@ -88,8 +88,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.05
   },
   {
-    token1: mockTokens[1],
-    token2: mockTokens[4],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 1.2,
     volume: 3.06,
     fees: 7.5,
@@ -97,8 +97,8 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.05
   },
   {
-    token1: mockTokens[2],
-    token2: mockTokens[5],
+    token1: mockTokens[0],
+    token2: mockTokens[1],
     tvl: 15.2,
     volume: 8.96,
     fees: 9.5,

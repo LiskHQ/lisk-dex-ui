@@ -48,11 +48,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
-    // ping,
-    // isRpcRequestPending,
-    // rpcResult,
     isTestnet,
-    // setIsTestnet,
   } = useJsonRpc();
 
   const { chainData } = useChainData();

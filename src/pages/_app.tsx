@@ -13,6 +13,7 @@ type AppPropsRoot = AppProps & { emotionCache: EmotionCache }
 const clientSideEmotionCache = createEmotionCache();
 
 function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: AppPropsRoot) {
+
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>

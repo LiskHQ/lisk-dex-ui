@@ -72,24 +72,24 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
               value={currency}
               onChange={onChangeCurrency}
               renderValue={(value) => {
-                const item = mockFiatCurrnecies.find(el => el.shortName === value);
+                const item = mockFiatCurrnecies.find(el => el.symbol === value);
                 return (
                   <Box sx={{
                     display: 'flex',
                   }}>
                     <Image src={item?.image} width={24} height={17} />
-                    <Typography variant="body1" sx={{ marginLeft: '0.75rem' }}>{item?.shortName}</Typography>
+                    <Typography variant="body1" sx={{ marginLeft: '0.75rem' }}>{item?.symbol}</Typography>
                   </Box>
                 );
               }}
             >
               {
                 mockFiatCurrnecies.map(el => (
-                  <MenuItem key={el.shortName} value={el.shortName} sx={{
+                  <MenuItem key={el.symbol} value={el.symbol} sx={{
                     display: 'flex',
                   }}>
                     <Image src={el.image} width={24} height={17} />
-                    <Typography variant="body1" sx={{ marginLeft: '0.75rem' }}>{el.shortName}</Typography>
+                    <Typography variant="body1" sx={{ marginLeft: '0.75rem' }}>{el.symbol}</Typography>
                     <Typography variant="body2" sx={{ marginLeft: '0.75rem', color: theme.text.paragraph }}>{el.name}</Typography>
                   </MenuItem>
                 ))
