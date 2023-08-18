@@ -1,4 +1,4 @@
-import { all, takeLatest } from 'redux-saga/effects';
+import { all, take, takeLatest } from 'redux-saga/effects';
 import { AppActions } from 'store';
 import {
   getAvailableTokensSaga,
@@ -15,6 +15,13 @@ import {
 import {
   getPoolsSaga
 } from './pool.saga';
+import {
+  getProposalsSaga,
+  getCertainProposalSaga
+} from './proposal.saga';
+import {
+  getVotesSaga
+} from './vote.saga';
 
 function* rootSaga() {
   yield all([takeLatest(AppActions.wallet.getTransactions.type, getTransactionsSaga)]);
@@ -28,6 +35,11 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getSlippageBounds.type, getSlippageBoundsSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
+
+  yield all([takeLatest(AppActions.proposal.getProposals.type, getProposalsSaga)]);
+  yield all([takeLatest(AppActions.proposal.getCertainProposal.type, getCertainProposalSaga)]);
+
+  yield all([takeLatest(AppActions.proposal.getVotes.type, getVotesSaga)]);
 }
 
 export default rootSaga;

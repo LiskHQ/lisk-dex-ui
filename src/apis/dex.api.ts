@@ -84,3 +84,36 @@ export async function apiSubmitTransaction(data: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetProposals(params: any) {
+  const { offset = 0, limit = 10 } = params;
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/proposals`, {
+    params: {
+      offset,
+      limit
+    }
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetCertainProposal(params: any) {
+  const { proposalId } = params;
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/proposals?proposalId=${proposalId}`);
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetVotes(params: any) {
+  const { address } = params;
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/votes`, {
+    params: {
+      voterAddress: address
+    }
+  });
+  if (response)
+    return response.data;
+  return {};
+}
