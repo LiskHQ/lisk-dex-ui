@@ -1,4 +1,4 @@
-import { all, take, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 import { AppActions } from 'store';
 import {
   getAvailableTokensSaga,

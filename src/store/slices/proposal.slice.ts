@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IVote, IProposal } from 'models';
 import { mockVotes } from '__mock__';
-import { stat } from 'fs';
 
 type StateType = {
   votesLimit: number,

@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { ProposalView } from 'components';
-import { IProposal } from 'models';
-import { useEffect, useMemo, useState } from 'react';
-import { mockProposals } from '__mock__';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 
