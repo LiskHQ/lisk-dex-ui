@@ -27,6 +27,7 @@ export * from './CopyIcon';
 export * from './BadgeCheckIcon';
 export * from './IncreaseIcon';
 export * from './DecreaseIcon';
+export * from './FailureIcon';
 
 export const tokenSvgs: {
   [key: string]: string,

@@ -35,7 +35,9 @@ export const PoolContainer: React.FC = () => {
   const onConfirmSupplyLiquidity = (pool: IPool) => {
     if (account) {
       const { chainId, publicKey } = account;
-
+      const { token1Amount, token2Amount } = pool;
+      console.log(' token1Amount, token2Amount: ', token1Amount, token2Amount);
+      console.log("chainId, publicKey:", chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,

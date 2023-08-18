@@ -4,3 +4,4 @@ export * from './proposal';
 export * from './alert';
 export * from './transaction';
 export * from './wallet';
+export * as SOCKET_EVENTS from './socket.events';
