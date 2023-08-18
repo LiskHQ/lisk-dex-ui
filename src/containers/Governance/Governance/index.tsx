@@ -1,5 +1,5 @@
 import { GovernanceView } from 'components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 // import { mockProposals } from '__mock__';
 
