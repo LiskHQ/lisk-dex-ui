@@ -57,7 +57,7 @@ const tokenSlice = createSlice({
      * available tokens
      */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getAvailableTokens(state, action) {
+    getAvailableTokens(state) {
       state.gettingAvailableTokens = true;
       state.gotAvailableTokens = false;
     },

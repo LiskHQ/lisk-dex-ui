@@ -12,7 +12,7 @@ export function* getAvailableTokensSaga(action: any) {
   try {
     const result: IResponse = yield call(
       async () =>
-        await apiGetAvailableTokens(action.payload)
+        await apiGetAvailableTokens()
     );
 
     if (result) {

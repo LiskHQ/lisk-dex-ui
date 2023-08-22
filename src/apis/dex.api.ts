@@ -11,10 +11,8 @@ interface ResponseGenerator {
   statusText?: string;
 }
 
-export async function apiGetAvailableTokens(params: any) {
-  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/blockchain/apps/meta/tokens/supported`, {
-    params,
-  });
+export async function apiGetAvailableTokens() {
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/tokens/supported`);
   if (response)
     return response.data;
   return {};
