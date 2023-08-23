@@ -78,7 +78,7 @@ export async function apiGetPools(params: any) {
 
 export async function apiGetStastics(params: any) {
   const { offset = 0, limit = 10, interval = 'day' } = params;
-  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/pools/gettingStatistics`, {
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/gettingStatistics`, {
     params: {
       offset,
       limit,
