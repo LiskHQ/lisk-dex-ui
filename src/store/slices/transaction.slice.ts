@@ -11,10 +11,18 @@ type StateType = {
   confirmedTransaction: boolean,
   closeTransactionModal: boolean,
   expenses: IExpense[],
-  transaction: ITransaction,
+  transaction: any,
 
   submitingTransaction: boolean,
   submitedTransaction: boolean,
+
+  gettingTransactions: boolean,
+  gotTransactions: boolean,
+  transactions: ITransaction[],
+  count: number,
+  offset: number,
+  total: number,
+
   error: any,
 };
 
@@ -35,6 +43,16 @@ const initialState: StateType = {
   //submit signed transaction
   submitingTransaction: false,
   submitedTransaction: false,
+
+  //get transactions
+  gettingTransactions: false,
+  gotTransactions: false,
+
+  transactions: [],
+  count: 10,
+  offset: 0,
+  total: 0,
+
   error: { message: '' },
 };
 
@@ -129,6 +147,30 @@ const transactionSlice = createSlice({
     submitTransactionFailure(state, action) {
       state.submitingTransaction = false;
       state.submitedTransaction = false;
+      state.error = action.payload;
+    },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getTransactions(state, action) {
+      state.gettingTransactions = true;
+      state.gotTransactions = false;
+    },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getTransactionsSuccess(state, action) {
+      state.gettingTransactions = false;
+      state.gotTransactions = true;
+
+      const { data, meta } = action.payload;
+      state.transactions = [...data];
+      state.count = meta.count;
+      state.offset = meta.offset;
+      state.total = meta.total;
+    },
+
+    getTransactionsFailure(state, action) {
+      state.gettingTransactions = false;
+      state.gotTransactions = false;
       state.error = action.payload;
     },
 

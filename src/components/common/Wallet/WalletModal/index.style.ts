@@ -23,7 +23,6 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
       background: theme.bg.secondary,
       boxShadow: theme.shadow.md,
       width: '22.5rem',
-      minHeight: '43.25rem',
       zIndex: 30,
 
       [theme.breakpoints.down('sm')]: {
@@ -157,8 +156,8 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
       },
 
       '.wallet-body': {
-        minHeight: '25rem',
-        maxHeight: '25rem',
+        minHeight: '26.125rem',
+        maxHeight: '26.125rem',
         overflow: 'auto',
 
         h4: {
