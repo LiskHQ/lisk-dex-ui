@@ -55,6 +55,7 @@ const proposalSlice = createSlice({
     },
 
     // get proposals
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getProposals(state, action: PayloadAction<any>) {
       state.gettingProposals = true;
       state.gotProposals = false;
@@ -71,6 +72,7 @@ const proposalSlice = createSlice({
     },
 
     // get certain proposal
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getCertainProposal(state, action: PayloadAction<any>) {
       state.gettingCertainProposal = true;
       state.gotCertainProposal = false;
@@ -87,6 +89,7 @@ const proposalSlice = createSlice({
     },
 
     // get votes
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getVotes(state, action: PayloadAction<any>) {
       state.gettingVotes = true;
       state.gotVotes = false;

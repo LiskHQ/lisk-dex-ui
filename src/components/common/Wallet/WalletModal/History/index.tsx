@@ -26,6 +26,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
       offset,
       senderAddress: accountAddress
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const _transactions: ITransaction[] = useMemo(() => {

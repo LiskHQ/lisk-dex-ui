@@ -41,7 +41,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const { account } = useSelector((state: RootState) => state.wallet);
 
   // current socket event
-  const [socketEvent, setSocketEvent] = useState<string>("");
+  const [socketEvent, setSocketEvent] = useState<string>('');
 
   //show Snackbar alert
   const [openAlert, setOpenAlert] = useState<boolean>(false);
@@ -69,7 +69,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       // if (transaction.type === TransactionType.REMOVE_LIQUIDITY)
       //   alertContent.description = 'Removed liquidity by 1623 LSK and 1.82 ETH.';
     }
-    if (socketEvent !== "") {
+    if (socketEvent !== '') {
       if (socketEvent === SOCKET_EVENTS.SWAPPED) {
         alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';
       }
@@ -81,7 +81,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       setOpenAlert(true);
     }
     return alertContent;
-  }, [sentTransaction, confirmedTransaction, transaction, socketEvent]);
+  }, [sentTransaction, confirmedTransaction, socketEvent]);
 
   const onCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -171,11 +171,11 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   useEffect(() => {
     const onConnect = () => {
       console.log('Web socket has been connected.');
-    }
+    };
 
     const onDisconnect = () => {
       console.log('Web socket has been disonnected.');
-    }
+    };
 
     socket.on(SOCKET_EVENTS.SOCKET_CONNECT, onConnect);
     socket.on(SOCKET_EVENTS.SOCKET_DISCONNECT, onDisconnect);
