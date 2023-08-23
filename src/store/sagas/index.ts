@@ -16,6 +16,13 @@ import {
   getPoolsSaga,
   getStasticsSaga,
 } from './pool.saga';
+import {
+  getProposalsSaga,
+  getCertainProposalSaga
+} from './proposal.saga';
+import {
+  getVotesSaga
+} from './vote.saga';
 
 function* rootSaga() {
   yield all([takeLatest(AppActions.wallet.getTransactions.type, getTransactionsSaga)]);
@@ -30,6 +37,10 @@ function* rootSaga() {
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
   yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);
+
+  yield all([takeLatest(AppActions.proposal.getProposals.type, getProposalsSaga)]);
+  yield all([takeLatest(AppActions.proposal.getCertainProposal.type, getCertainProposalSaga)]);
+  yield all([takeLatest(AppActions.proposal.getVotes.type, getVotesSaga)]);
 }
 
 export default rootSaga;

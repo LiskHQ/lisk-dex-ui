@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { ProposalView } from 'components';
-import { IProposal } from 'models';
-import { useEffect, useMemo, useState } from 'react';
-import { mockProposals } from '__mock__';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 
@@ -10,14 +8,10 @@ export const ProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { votes, votesTotal, votesTotalPages } = useSelector((state: RootState) => state.proposal);
+  const { votes, votesTotal, votesTotalPages, proposal } = useSelector((state: RootState) => state.proposal);
   const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
 
   const [votesPage, setVotesPage] = useState<number>(0);
-
-  const proposal: IProposal = useMemo(() => {
-    return mockProposals.find(el => el.id === router.query.id) as IProposal;
-  }, [router.query.id]);
 
   const onViewMore = () => {
     setVotesPage((prevState) => prevState + 1);
@@ -25,7 +19,10 @@ export const ProposalContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(AppActions.proposal.getVotesByProposal(votesPage));
-  }, [votesPage, dispatch]);
+    if (router.query.id) {
+      dispatch(AppActions.proposal.getCertainProposal({ proposalId: router.query.id }));
+    }
+  }, [votesPage, dispatch, router.query.id]);
 
   const onVote = () => {
     dispatch(AppActions.transaction.setExpenses([

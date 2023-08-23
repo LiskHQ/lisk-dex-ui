@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IVote } from 'models';
+import { IVote, IProposal } from 'models';
 import { mockVotes } from '__mock__';
 
 type StateType = {
@@ -7,7 +7,15 @@ type StateType = {
   votesTotal: number,
   votesTotalPages: number,
   votes: IVote[],
+  proposals: IProposal[],
+  proposal: IProposal,
   openProposalApproval: boolean,
+  gettingProposals: boolean,
+  gotProposals: boolean,
+  gettingCertainProposal: boolean,
+  gotCertainProposal: boolean,
+  gettingVotes: boolean,
+  gotVotes: boolean,
   error: any,
 };
 
@@ -16,7 +24,15 @@ const initialState: StateType = {
   votesTotal: 0,
   votesTotalPages: 0,
   votes: [],
+  proposals: [],
+  proposal: {} as IProposal,
   openProposalApproval: false,
+  gettingProposals: false,
+  gotProposals: false,
+  gettingCertainProposal: false,
+  gotCertainProposal: false,
+  gettingVotes: false,
+  gotVotes: false,
   error: { message: '' },
 };
 
@@ -36,6 +52,54 @@ const proposalSlice = createSlice({
       state.votesTotal = mockVotes.length;
       state.votesTotalPages = ~~mockVotes.length / state.votesLimit;
       state.votes = [...newVotes];
+    },
+
+    // get proposals
+    getProposals(state, action: PayloadAction<any>) {
+      state.gettingProposals = true;
+      state.gotProposals = false;
+    },
+    getProposalsSuccess(state, action) {
+      state.gettingProposals = false;
+      state.gotProposals = true;
+      state.proposals = [...action.payload.data];
+    },
+    getProposalsFailure(state, action: PayloadAction<any>) {
+      state.gettingProposals = false;
+      state.gotProposals = false;
+      state.error = action.payload;
+    },
+
+    // get certain proposal
+    getCertainProposal(state, action: PayloadAction<any>) {
+      state.gettingCertainProposal = true;
+      state.gotCertainProposal = false;
+    },
+    getCertainProposalSuccess(state, action) {
+      state.gettingCertainProposal = false;
+      state.gotCertainProposal = true;
+      state.proposal = action.payload.data;
+    },
+    getCertainProposalFailure(state, action: PayloadAction<any>) {
+      state.gettingCertainProposal = false;
+      state.gotCertainProposal = false;
+      state.error = action.payload;
+    },
+
+    // get votes
+    getVotes(state, action: PayloadAction<any>) {
+      state.gettingVotes = true;
+      state.gotVotes = false;
+    },
+    getVotesSuccess(state, action) {
+      state.gettingVotes = false;
+      state.gotVotes = true;
+      state.votes = [...action.payload.data];
+    },
+    getVotesFailure(state, action: PayloadAction<any>) {
+      state.gettingVotes = false;
+      state.gotVotes = false;
+      state.error = action.payload;
     }
   },
 });
