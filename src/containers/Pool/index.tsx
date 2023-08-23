@@ -13,6 +13,8 @@ export const PoolContainer: React.FC = () => {
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [pool, setPool] = useState<IPool>();
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
 
