@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -19,6 +19,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
   const { accountAddress } = props;
   const { availableTokens } = useSelector((root: RootState) => root.token);
   const { transactions, offset, total } = useSelector((root: RootState) => root.transaction);
+  const [_transactions, setTransactions] = useState<ITransaction[]>([]);
 
   useEffect(() => {
     dispatch(AppActions.transaction.getTransactions({
@@ -29,10 +30,8 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const _transactions: ITransaction[] = useMemo(() => {
-    if (_transactions)
-      return [..._transactions, ...transactions];
-    return [...transactions];
+  useEffect(() => {
+    setTransactions(prev => [...prev, ...transactions]);
   }, [transactions]);
 
   const loadMoreTransactions = () => {
