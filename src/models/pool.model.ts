@@ -17,6 +17,17 @@ export interface IPool {
   share: number,
 }
 
+export interface ICreatePool {
+  token1: IToken,
+  token2: IToken,
+  feeTier: number,
+  tickInitialPrice: number,
+  tickLower: number,
+  tickUpper: number,
+  token1Amount: number,
+  token2Amount: number,
+}
+
 export interface IPoolDetail {
   token1: IToken,
   token2: IToken,

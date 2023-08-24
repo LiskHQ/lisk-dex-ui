@@ -11,9 +11,10 @@ import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { IPool, IToken } from 'models';
-import { mockTokens } from '__mock__';
+import { ICreatePool, IPool, IToken } from 'models';
 import { useRouter } from 'next/dist/client/router';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -30,7 +31,7 @@ const chartData = [
 
 export interface ISupplyLiquidityProps {
   closeTransactionModal: boolean,
-  onPreview: (pool: IPool) => void,
+  onPreview: (pool: ICreatePool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
@@ -51,6 +52,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
   const [minPrice, setMinPrice] = useState<number>(1.0);
   const [maxPrice, setMaxPrice] = useState<number>(2.0);
+
+  const { availableTokens } = useSelector((root: RootState) => root.token);
 
   const onSelectToken = (token: IToken) => {
     if (openSelectToken1) {
@@ -88,10 +91,10 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       const { query } = router;
       if (query) {
         if (query.token1) {
-          setToken1(mockTokens.find(token => token.symbol === query.token1) as IToken);
+          setToken1(availableTokens.find(token => token.symbol === query.token1) as IToken);
         }
         if (query.token2) {
-          setToken2(mockTokens.find(token => token.symbol === query.token2) as IToken);
+          setToken2(availableTokens.find(token => token.symbol === query.token2) as IToken);
         }
       }
     }
@@ -239,12 +242,14 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         data-testid="preview-button-test"
         onClick={() => {
           onPreview({
-            id: '',
             token1: token1 as IToken,
             token2: token2 as IToken,
             token1Amount,
             token2Amount,
-            share: 0.085,
+            tickInitialPrice: initialPrice,
+            tickLower: minPrice,
+            tickUpper: maxPrice,
+            feeTier: tierValue
           });
         }}
         disabled={!isValid}
@@ -261,7 +266,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       {
         (openSelectToken1 || openSelectToken2) &&
         <SelectTokenModal
-          tokens={mockTokens}
+          tokens={availableTokens}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
         />

@@ -1,11 +1,14 @@
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
-import { TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
-import { IPool } from 'models';
+import { ICreatePool, IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
-import { createPoolSchema } from 'utils';
+import { addLiquiditySchema, createPoolSchema, createPositionSchema } from 'utils';
+
+export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
+export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,7 +16,6 @@ export const PoolContainer: React.FC = () => {
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
-  const [pool, setPool] = useState<IPool>();
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
@@ -23,6 +25,7 @@ export const PoolContainer: React.FC = () => {
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
     dispatch(AppActions.pool.getStastics({}));
+    dispatch(AppActions.token.getAvailableTokens());
   }, [dispatch]);
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
@@ -32,12 +35,10 @@ export const PoolContainer: React.FC = () => {
     liskRpc,
   } = useJsonRpc();
 
-  const onConfirmSupplyLiquidity = (pool: IPool) => {
+  const createPool = (pool: ICreatePool) => {
     if (account) {
       const { chainId, publicKey } = account;
-      const { token1Amount, token2Amount } = pool;
-      console.log(' token1Amount, token2Amount: ', token1Amount, token2Amount);
-      console.log("chainId, publicKey:", chainId, publicKey);
+      const { token1, token2, feeTier, tickInitialPrice, token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
@@ -46,15 +47,15 @@ export const PoolContainer: React.FC = () => {
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
-          tokenID0: Buffer.from('0100000000', 'hex'),
-          tokenID1: Buffer.from('1000000000', 'hex'),
-          feeTier: 100,
-          tickInitialPrice: 1,
+          tokenID0: Buffer.from(token1.tokenID, 'hex'),
+          tokenID1: Buffer.from(token2.tokenID, 'hex'),
+          feeTier: feeTier * 100,
+          tickInitialPrice: tickInitialPrice,
           initialPosition: {
-            tickLower: -887272,
-            tickUpper: 887272,
-            amount0Desired: BigInt(1000),
-            amount1Desired: BigInt(1000),
+            tickLower: MIN_TICK,
+            tickUpper: MAX_TICK,
+            amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+            amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
           },
           maxTimestampValid: BigInt(100000000000),
         },
@@ -66,12 +67,67 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
+  const createPosition = (pool: ICreatePool) => {
+    if (account) {
+      const { chainId, publicKey } = account;
+      const { tickLower, tickUpper, token1Amount, token2Amount } = pool;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.createPosition,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(1),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          poolID: Buffer.from('0000000100000000010164000000', 'hex'),
+          tickLower: MIN_TICK,
+          tickUpper: MAX_TICK,
+          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
+          amount0Min: BigInt(0),
+          amount1Min: BigInt(0),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, createPositionSchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
+  };
+
+  const addLiquidity = (pool: IPool) => {
+    if (account) {
+      const { chainId, publicKey } = account;
+      const { token1Amount, token2Amount } = pool;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.addLiquidity,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(1),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          positionID: Buffer.from('0000000100', 'hex'),
+          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
+          amount0Min: BigInt(0),
+          amount1Min: BigInt(0),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, addLiquiditySchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
+  };
+
   const onConfirmRemoveLiquidity = (pool: IPool) => {
     setTimeout(() => {
       dispatch(AppActions.transaction.sendTransaction({
         type: TransactionType.REMOVE_LIQUIDITY,
       }));
-      setPool(pool);
     }, 1000);
   };
 
@@ -81,10 +137,23 @@ export const PoolContainer: React.FC = () => {
     }
   }, [rpcResult]);
 
+  useEffect(() => {
+    if (submitedTransaction) {
+      setTransactionStatus(TransactionStatus.SUCCESS);
+      setOpenTransactionStatusModal(true);
+    }
+    if (transactionError.error) {
+      setTransactionStatus(TransactionStatus.FAILURE);
+      setOpenTransactionStatusModal(true);
+    }
+    setOpenApproveTransactionModal(false);
+  }, [submitedTransaction, transactionError]);
+
   const onCloseTransactionStatusModal = () => {
     setOpenTransactionStatusModal(false);
     if (submitedTransaction || transactionError.error) {
       setCloseTransactionModal(true);
+      setTransactionStatus(TransactionStatus.PENDING);
       dispatch(AppActions.transaction.resetTransactionStates());
     }
   };
@@ -93,11 +162,9 @@ export const PoolContainer: React.FC = () => {
     setOpenApproveTransactionModal(false);
   };
 
-
   //submit signed transaction
   const onConfirmApproval = () => {
     if (rpcResult?.result) {
-      console.log('rpcResult: ', rpcResult);
       dispatch(AppActions.transaction.submitTransaction({
         transaction: rpcResult.result,
       }));
@@ -111,16 +178,18 @@ export const PoolContainer: React.FC = () => {
         gettingPools={gettingPools}
         gotPools={gotPools}
         account={account}
-        sendingTransaction={isRpcRequestPending}
+        requestingSignature={isRpcRequestPending && openTransactionStatusModal}
         closeTransactionModal={closeTransactionModal}
-        onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}
+        createPool={createPool}
+        createPosition={createPosition}
+        addLiquidity={addLiquidity}
         onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}
       />
       {
         openTransactionStatusModal &&
         <TransactionStatusModal
           status={transactionStatus}
-          type={TransactionType.SWAP}
+          type={TransactionType.SUPPLY_LIQUIDITY}
           onClose={onCloseTransactionStatusModal}
         />
       }

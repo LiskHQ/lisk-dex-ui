@@ -177,6 +177,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               type="number"
               value={token1Amount}
               onChange={e => setToken1Amount(e.target.value)}
+              onBlur={() => { setToken1Amount(cryptoDecimalFormat(+token1Amount)); }}
             />
           </Box>
           <Box className="swap-from-bottom-box">
