@@ -13,9 +13,12 @@ export const PoolContainer: React.FC = () => {
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [pool, setPool] = useState<IPool>();
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -36,13 +39,13 @@ export const PoolContainer: React.FC = () => {
       const { chainId, publicKey } = account;
       const { token1Amount, token2Amount } = pool;
       console.log(' token1Amount, token2Amount: ', token1Amount, token2Amount);
-      console.log("chainId, publicKey:", chainId, publicKey);
+      console.log('chainId, publicKey:', chainId, publicKey);
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
         fee: BigInt(5000000000000000000),
         nonce: BigInt(1),
-        senderPublicKey: Buffer.from(publicKey, "hex"),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
           tokenID0: Buffer.from('0100000000', 'hex'),
@@ -146,7 +149,7 @@ export const PoolContainer: React.FC = () => {
   //submit signed transaction
   const onConfirmApproval = () => {
     if (rpcResult?.result) {
-      console.log("rpcResult: ", rpcResult);
+      console.log('rpcResult: ', rpcResult);
       dispatch(AppActions.transaction.submitTransaction({
         transaction: rpcResult.result,
       }));

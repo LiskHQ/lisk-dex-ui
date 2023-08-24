@@ -11,7 +11,7 @@ export const HistoryComponentStyle = styled('div')(({ theme }: any) => {
 
     '.transaction-list': {
       maxHeight: '34.25rem',
-      overflow: 'auto',
+      minHeight: '34.25rem',
 
       '&::-webkit-scrollbar': {
         width: '0.1rem',

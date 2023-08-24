@@ -13,7 +13,7 @@ export const TransactionCommands = {
   swapExactIn: 'swapExactIn',
   createPool: 'createPool',
   addLiquidity: 'addLiquidity',
-}
+};
 
 export enum TransactionStatus {
   PENDING,

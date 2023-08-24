@@ -169,7 +169,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                 </>
             }</>,
             [TABS.HISTORY]: <>
-              <HistoryComponent />
+              <HistoryComponent accountAddress={address} />
             </>
           }[tab]
         }
