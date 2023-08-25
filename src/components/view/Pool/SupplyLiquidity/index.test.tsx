@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SupplyLiquidity, ISupplyLiquidityProps } from './index';
 import { lightTheme } from 'styles/theme';
+import { mockTokens } from '__mock__';
 
 function renderComponent(props: ISupplyLiquidityProps) {
   return render(
@@ -14,6 +15,7 @@ function renderComponent(props: ISupplyLiquidityProps) {
 
 describe('SupplyLiquidity component', () => {
   const mockProps: ISupplyLiquidityProps = {
+    tokens: mockTokens,
     closeTransactionModal: false,
     onPreview: jest.fn(),
   };

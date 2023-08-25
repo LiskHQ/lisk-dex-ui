@@ -18,6 +18,15 @@ export async function apiGetAvailableTokens() {
   return {};
 }
 
+export async function apiGetAccountTokens(params: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/tokens', {
+    params
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
 export async function apiGetToken2TokenConversion(params: any) {
   const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/prices/convert/token`, {
     params,

@@ -11,10 +11,8 @@ import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { ICreatePool, IPool, IToken } from 'models';
+import { ICreatePool, IToken } from 'models';
 import { useRouter } from 'next/dist/client/router';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -31,12 +29,13 @@ const chartData = [
 
 export interface ISupplyLiquidityProps {
   closeTransactionModal: boolean,
+  tokens: IToken[],
   onPreview: (pool: ICreatePool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const router = useRouter();
-  const { closeTransactionModal, onPreview } = props;
+  const { tokens, closeTransactionModal, onPreview } = props;
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -52,8 +51,6 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
   const [minPrice, setMinPrice] = useState<number>(1.0);
   const [maxPrice, setMaxPrice] = useState<number>(2.0);
-
-  const { availableTokens } = useSelector((root: RootState) => root.token);
 
   const onSelectToken = (token: IToken) => {
     if (openSelectToken1) {
@@ -91,14 +88,14 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       const { query } = router;
       if (query) {
         if (query.token1) {
-          setToken1(availableTokens.find(token => token.symbol === query.token1) as IToken);
+          setToken1(tokens.find(token => token.symbol === query.token1) as IToken);
         }
         if (query.token2) {
-          setToken2(availableTokens.find(token => token.symbol === query.token2) as IToken);
+          setToken2(tokens.find(token => token.symbol === query.token2) as IToken);
         }
       }
     }
-  }, [router]);
+  }, [router, tokens]);
 
   useEffect(() => {
     if (closeTransactionModal) {
@@ -266,7 +263,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       {
         (openSelectToken1 || openSelectToken2) &&
         <SelectTokenModal
-          tokens={availableTokens}
+          tokens={tokens}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
         />

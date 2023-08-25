@@ -1,17 +1,18 @@
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Box, IconButton, MenuItem, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import { WalletModalStyle } from './index.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faUpRightFromSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useMemo, useState } from 'react';
 import { HistoryComponent } from './History';
-import { AccountBalances, IAccount, IToken } from 'models';
+import { IAccount, IToken } from 'models';
 import { TokenComponent } from './Token';
 import { ellipsisAddress, getFiatfromToken } from 'utils';
 import { CheckCircleIcon, CopyIcon, tokenSvgs } from 'imgs/icons';
 import { mockConversionRate } from '__mock__';
-import { LISK_DECIMALS } from 'consts';
+import { AppActions, RootState } from 'store';
 
 enum TABS {
   WALLET = 0,
@@ -19,20 +20,21 @@ enum TABS {
 }
 
 export interface IWalletModalProps {
-  balances?: AccountBalances,
   account?: IAccount,
   onClose: () => void,
   onDisconnect: () => void,
 }
 
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
-  const { balances, account, onClose, onDisconnect } = props;
+  const dispatch = useDispatch();
+  const { account, onClose, onDisconnect } = props;
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
   const [addressCopied, setAddressCopied] = useState<boolean>(false);
   const [menuAddressCopied, setMenuAddressCopied] = useState<boolean>(false);
   const [openWalletMenu, setOpenWalletMenu] = useState<boolean>(false);
   const [address, setAddress] = useState<string>('');
+  const { accountTokens, availableTokens } = useSelector((root: RootState) => root.token);
 
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
     setTab(value);
@@ -53,9 +55,14 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   };
 
   useEffect(() => {
-    if (account)
-      setAddress(account.data.summary.address);
-  }, [account]);
+    if (account && account.address) {
+      setAddress(account.address);
+      dispatch(AppActions.token.getAccountTokens({
+        address: account.address,
+      }));
+      dispatch(AppActions.token.getAvailableTokens());
+    }
+  }, [account, dispatch]);
 
   useEffect(() => {
     if (addressCopied) {
@@ -73,19 +80,17 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
     }
   }, [menuAddressCopied]);
 
-  useEffect(() => {
-    console.log('balances: ', balances);
-  }, [balances]);
-
   const onViewLiskscan = () => {
     window.open(`https://liskscan.com/account/${address}`, '_blank');
   };
 
   const balance = useMemo(() => {
-    if (account && account.data)
-      return account?.data.token.balance / (10 ** LISK_DECIMALS);
     return 0;
-  }, [account]);
+  }, []);
+
+  const getTokenDetail = (tokenID: string) => {
+    return availableTokens.find(el => el.tokenID === tokenID);
+  };
 
   return (
     <WalletModalStyle>
@@ -148,23 +153,27 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
 
                   <Box className="wallet-body">
                     <Typography variant="h4">Tokens</Typography>
-                    <Box
-                      className="token-item"
-                      onClick={() => setToken(token)}
-                    >
-                      <Image src={tokenSvgs.LSK} width={40} height={40} />
-                      <Box className="token-summary">
-                        <Box className="token-summary-box top">
-                          <Typography variant="body1">Lisk</Typography>
-                          <Typography variant="body2">{balance} LSK</Typography>
-                        </Box>
-                        <Box className="token-summary-box bottom">
-                          <Typography variant="body2">LSK</Typography>
-                          <Typography variant="body2">${getFiatfromToken(balance, mockConversionRate)}</Typography>
-                        </Box>
-                      </Box>
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </Box>
+                    {
+                      accountTokens.map(token =>
+                        <Box
+                          className="token-item"
+                          key={token.tokenID}
+                          onClick={() => setToken(token)}
+                        >
+                          <Image src={tokenSvgs[getTokenDetail(token.tokenID)?.symbol || 'LSK']} width={40} height={40} />
+                          <Box className="token-summary">
+                            <Box className="token-summary-box top">
+                              <Typography variant="body1">{getTokenDetail(token.tokenID)?.tokenName}</Typography>
+                              <Typography variant="body2">{token.avaialbleBalance} {getTokenDetail(token.tokenID)?.symbol}</Typography>
+                            </Box>
+                            <Box className="token-summary-box bottom">
+                              <Typography variant="body2">{getTokenDetail(token.tokenID)?.symbol}</Typography>
+                              <Typography variant="body2">${getFiatfromToken(balance, mockConversionRate)}</Typography>
+                            </Box>
+                          </Box>
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Box>)
+                    }
                   </Box>
                 </>
             }</>,

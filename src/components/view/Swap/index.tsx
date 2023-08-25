@@ -15,7 +15,6 @@ import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 import { RootState } from 'store';
 import { PlatformContext } from 'contexts';
 import { IAccount, ISwapData, IToken } from 'models';
-import { LISK_DECIMALS } from 'consts';
 import { mockTokens } from '__mock__';
 
 export interface ISwapViewProps {
@@ -118,8 +117,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   };
 
   const balance = useMemo(() => {
-    if (account && account.data) {
-      return account.data.token.balance / (10 ** LISK_DECIMALS);
+    if (account && account.address) {
+      return 0;
     } else {
       resetSwap();
     }

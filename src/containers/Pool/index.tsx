@@ -43,7 +43,7 @@ export const PoolContainer: React.FC = () => {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
         fee: BigInt(5000000000000000000),
-        nonce: BigInt(1),
+        nonce: BigInt(2),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
@@ -70,7 +70,7 @@ export const PoolContainer: React.FC = () => {
   const createPosition = (pool: ICreatePool) => {
     if (account) {
       const { chainId, publicKey } = account;
-      const { tickLower, tickUpper, token1Amount, token2Amount } = pool;
+      const { token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPosition,

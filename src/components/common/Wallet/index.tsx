@@ -34,15 +34,10 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   // Initialize the WalletConnect client.
   const {
     client,
-    // pairings,
-    // session,
     connect,
     disconnect,
     chains,
     accounts,
-    balances,
-    // isFetchingBalances,
-    // isInitializing,
     setChains,
   } = useWalletConnectClient();
 
@@ -52,31 +47,6 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   } = useJsonRpc();
 
   const { chainData } = useChainData();
-
-  // const getLiskActions = (): AccountAction[] => {
-  //   const onSignTransaction = async (chainId: string, address: string) => {
-  //     //      openRequestModal();
-  //     await liskRpc.testSignTransaction(chainId, address);
-  //   };
-  //   const onSignMessage = async (chainId: string, address: string) => {
-  //     //      openRequestModal();
-  //     await liskRpc.testSignMessage(chainId, address);
-  //   };
-  //   return [
-  //     { method: DEFAULT_LISK_METHODS.LSK_SIGN_TRANSACTION, callback: onSignTransaction },
-  //     { method: DEFAULT_LISK_METHODS.LSK_SIGN_MESSAGE, callback: onSignMessage },
-  //   ];
-  // };
-
-  // const getBlockchainActions = (chainId: string) => {
-  //   const [namespace] = chainId.split(':');
-  //   switch (namespace) {
-  //     case 'lisk':
-  //       return getLiskActions();
-  //     default:
-  //       break;
-  //   }
-  // };
 
   const onConnect = (chainId: string) => {
     setChains([chainId]);
@@ -111,6 +81,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   useEffect(() => {
     if (accounts.length > 0) {
       const account = accounts[0];
+      console.log('accounts:', accounts);
       if (account) {
         setAccount(account);
         dispatch(AppActions.wallet.setAccount(account));
@@ -128,13 +99,13 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   return (
     <WalletComponentStyle>
       {
-        (account && account.data) ?
+        (account && account.address) ?
           <>
             <DropdownComponent
               className="header-menu-chain"
               defaultValue={10}
             >
-              <MenuItem value={10}><LiskIcon /><Typography variant="h5">Lisk-testnet</Typography></MenuItem>
+              <MenuItem value={10}><LiskIcon /><Typography variant="h5">Dex Testnet</Typography></MenuItem>
             </DropdownComponent>
 
             <Box className={
@@ -146,7 +117,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
             onClick={() => setOpenWalletModal(true)}
             >
               <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-              <Typography variant="h5">{ellipsisAddress(account.data.summary.address)}</Typography>
+              <Typography variant="h5">{ellipsisAddress(account.address)}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>
           </> :
@@ -181,7 +152,6 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
           onDisconnect={onDisconnect}
           onClose={() => setOpenWalletModal(false)}
           account={account}
-          balances={balances}
         />
       }
     </WalletComponentStyle>
