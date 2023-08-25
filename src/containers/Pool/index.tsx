@@ -5,7 +5,7 @@ import { IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
-import { createPoolSchema } from 'utils';
+import { createPoolSchema, removeLiquiditySchema } from 'utils';
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -119,12 +119,28 @@ export const PoolContainer: React.FC = () => {
   };
 
   const onConfirmRemoveLiquidity = (pool: IPool) => {
-    setTimeout(() => {
-      dispatch(AppActions.transaction.sendTransaction({
-        type: TransactionType.REMOVE_LIQUIDITY,
-      }));
-      setPool(pool);
-    }, 1000);
+    if (account) {
+      const { chainId, publicKey } = account;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.removeLiquidity,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(1),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          positionID: Buffer.from('0000000100', 'hex'),
+          liquidityToRemove: BigInt(250),
+          amount0Min: BigInt(1000),
+          amount1Min: BigInt(1000),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, removeLiquiditySchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
   };
 
   useEffect(() => {

@@ -13,6 +13,7 @@ export const TransactionCommands = {
   swapExactIn: 'swapExactIn',
   createPool: 'createPool',
   addLiquidity: 'addLiquidity',
+  removeLiquidity: 'removeLiquidity',
 };
 
 export enum TransactionStatus {
