@@ -116,11 +116,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setOpenSelectToken2(false);
   };
 
-  const balance = useMemo(() => {
+  const balance = 0;
+
+  useEffect(() => {
     if (!account) {
       resetSwap();
     }
-    return 0;
   }, [account]);
 
   useEffect(() => {
