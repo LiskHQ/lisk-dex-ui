@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Box, IconButton, MenuItem, Tab, Tabs, Typography } from '@mui/material';
@@ -84,9 +84,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
     window.open(`https://liskscan.com/account/${address}`, '_blank');
   };
 
-  const balance = useMemo(() => {
-    return 0;
-  }, []);
+  const balance = 0;
 
   const getTokenDetail = (tokenID: string) => {
     return availableTokens.find(el => el.tokenID === tokenID);

@@ -117,9 +117,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   };
 
   const balance = useMemo(() => {
-    if (account && account.address) {
-      return 0;
-    } else {
+    if (!account) {
       resetSwap();
     }
     return 0;
