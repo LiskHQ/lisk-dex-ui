@@ -34,7 +34,7 @@ const poolSlice = createSlice({
      */
 
     //get pools
-    //eslint-disable-next-line  @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getPools(state, action) {
       state.gettingPools = true;
       state.gotPools = false;

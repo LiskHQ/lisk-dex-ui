@@ -18,6 +18,8 @@ export const PoolContainer: React.FC = () => {
   const { account } = useSelector((state: RootState) => state.wallet);
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);

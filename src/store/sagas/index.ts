@@ -25,7 +25,7 @@ import {
 } from './vote.saga';
 
 function* rootSaga() {
-  yield all([takeLatest(AppActions.wallet.getTransactions.type, getTransactionsSaga)]);
+  yield all([takeLatest(AppActions.transaction.getTransactions.type, getTransactionsSaga)]);
   yield all([takeLatest(AppActions.transaction.submitTransaction.type, submitTransactionSaga)]);
 
   yield all([takeLatest(AppActions.token.getAvailableTokens.type, getAvailableTokensSaga)]);

@@ -31,9 +31,9 @@ export function* getTransactionsSaga(action: any) {
     );
 
     if (result) {
-      yield put(AppActions.wallet.getTransactionsSuccess(result));
+      yield put(AppActions.transaction.getTransactionsSuccess(result));
     }
   } catch (error) {
-    yield put(AppActions.wallet.getTransactionsFailure(error));
+    yield put(AppActions.transaction.getTransactionsFailure(error));
   }
 }

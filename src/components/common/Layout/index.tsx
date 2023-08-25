@@ -36,7 +36,6 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
       description: '',
       link: ''
     };
-
     if (socketEvent !== '') {
       if (socketEvent === SOCKET_EVENTS.SWAPPED) {
         alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';

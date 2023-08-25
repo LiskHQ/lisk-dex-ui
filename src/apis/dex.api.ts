@@ -138,3 +138,12 @@ export async function apiGetVotes(params: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetTransactions(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/transactions', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}
