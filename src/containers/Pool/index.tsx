@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
 import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { ICreatePool, IPool } from 'models';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { addLiquiditySchema, createPoolSchema, createPositionSchema } from 'utils';
+import { apiGetAuth } from 'apis';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
 export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
@@ -37,15 +38,26 @@ export const PoolContainer: React.FC = () => {
     liskRpc,
   } = useJsonRpc();
 
-  const createPool = (pool: ICreatePool) => {
+  const createPool = async (pool: ICreatePool) => {
     if (account) {
-      const { chainId, publicKey } = account;
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
       const { token1, token2, feeTier, tickInitialPrice, token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
         fee: BigInt(5000000000000000000),
-        nonce: BigInt(2),
+        nonce: BigInt(data.nonce),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
@@ -69,15 +81,26 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
-  const createPosition = (pool: ICreatePool) => {
+  const createPosition = async (pool: ICreatePool) => {
     if (account) {
-      const { chainId, publicKey } = account;
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
       const { token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPosition,
         fee: BigInt(5000000000000000000),
-        nonce: BigInt(1),
+        nonce: BigInt(data.nonce),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
@@ -98,15 +121,26 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
-  const addLiquidity = (pool: IPool) => {
+  const addLiquidity = async (pool: IPool) => {
     if (account) {
-      const { chainId, publicKey } = account;
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
       const { token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.addLiquidity,
         fee: BigInt(5000000000000000000),
-        nonce: BigInt(1),
+        nonce: BigInt(data.nonce),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
@@ -125,12 +159,8 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onConfirmRemoveLiquidity = (pool: IPool) => {
-    setTimeout(() => {
-      dispatch(AppActions.transaction.sendTransaction({
-        type: TransactionType.REMOVE_LIQUIDITY,
-      }));
-    }, 1000);
   };
 
   useEffect(() => {

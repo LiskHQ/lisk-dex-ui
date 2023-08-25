@@ -147,3 +147,12 @@ export async function apiGetTransactions(data: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetAuth(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/auth', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}

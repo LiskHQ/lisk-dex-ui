@@ -99,26 +99,30 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
 
   useEffect(() => {
     if (closeTransactionModal) {
-      setToken1(null);
-      setToken2(null);
-
-      setToken1Amount(0);
-      setToken2Amount(0);
-
-      setInitialPrice(0);
-      setTierValue(0);
-
-      setMinPrice(1.0);
-      setMaxPrice(2.0);
+      resetPoolValues();
     }
   }, [closeTransactionModal]);
+
+  const resetPoolValues = () => {
+    setToken1(null);
+    setToken2(null);
+
+    setToken1Amount(0);
+    setToken2Amount(0);
+
+    setInitialPrice(0);
+    setTierValue(0);
+
+    setMinPrice(1.0);
+    setMaxPrice(2.0);
+  };
 
   return (
     <SupplyLiquidityStyle>
       <Box className="supply-liquidity-title">
         <Typography variant="h4">Supply Liquidity</Typography>
         <Box className="supply-liquidity-actions">
-          <Typography variant="body2">Clear</Typography>
+          <Typography variant="body2" onClick={resetPoolValues}>Clear</Typography>
           <IconButton>
             <SettingIcon />
           </IconButton>

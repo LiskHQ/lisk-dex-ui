@@ -1,17 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TransactionType } from 'consts';
-import { IExpense, ITransaction } from 'models';
+import { createSlice } from '@reduxjs/toolkit';
+import { ITransaction } from 'models';
 
 type StateType = {
-  sendingTransaction: boolean,
-  sentTransaction: boolean,
-  expenses: IExpense[],
-
   submitingTransaction: boolean,
   submitedTransaction: boolean,
 
   gettingTransactions: boolean,
   gotTransactions: boolean,
+
   transactions: ITransaction[],
   count: number,
   offset: number,
@@ -21,11 +17,6 @@ type StateType = {
 };
 
 const initialState: StateType = {
-  sendingTransaction: false,
-  sentTransaction: false,
-
-  expenses: [],
-
   //submit signed transaction
   submitingTransaction: false,
   submitedTransaction: false,
@@ -49,37 +40,6 @@ const transactionSlice = createSlice({
     /**
      * transaction
      */
-    //send a transaction to wallet
-    sendTransaction(state, action: PayloadAction<any>) {
-      state.sendingTransaction = true;
-      state.sentTransaction = false;
-
-      state.expenses = [
-        {
-          title: 'Transaction fee',
-          amount: '0.87 LSK (~$0.66)',
-        }
-      ];
-    },
-    sendTransactionSuccess(state) {
-      state.sendingTransaction = false;
-      state.sentTransaction = true;
-    },
-    sendTransactionFailure(state, action: PayloadAction<any>) {
-      state.sendingTransaction = false;
-      state.sentTransaction = false;
-      state.error = action.payload;
-    },
-    resetSendTransactionState(state) {
-      state.sendingTransaction = false;
-      state.sentTransaction = false;
-    },
-
-    confirmTransactionSuccess(state) {
-      state.sendingTransaction = false;
-      state.sentTransaction = false;
-    },
-
     // submit signed transaction
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     submitTransaction(state, action) {
@@ -102,7 +62,6 @@ const transactionSlice = createSlice({
       state.gettingTransactions = true;
       state.gotTransactions = false;
     },
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTransactionsSuccess(state, action) {
       state.gettingTransactions = false;
@@ -114,7 +73,6 @@ const transactionSlice = createSlice({
       state.offset = meta.offset;
       state.total = meta.total;
     },
-
     getTransactionsFailure(state, action) {
       state.gettingTransactions = false;
       state.gotTransactions = false;
@@ -126,11 +84,6 @@ const transactionSlice = createSlice({
       state.submitingTransaction = false;
       state.error = { message: '' };
     },
-
-    //trasnaction summary
-    setExpenses(state, action: PayloadAction<any>) {
-      state.expenses = [...action.payload];
-    }
   },
 });
 

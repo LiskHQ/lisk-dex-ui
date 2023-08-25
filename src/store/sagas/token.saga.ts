@@ -8,7 +8,7 @@ interface IResponse {
   links: unknown,
 }
 
-export function* getAvailableTokensSaga(action: any) {
+export function* getAvailableTokensSaga() {
   try {
     const result: IResponse = yield call(
       async () =>
