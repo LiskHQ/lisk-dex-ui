@@ -1,3 +1,12 @@
+import {
+  LENGTH_POOL_ID,
+  MAX_LENGTH_METADATA_AUTHOR,
+  MAX_LENGTH_METADATA_LINK,
+  MAX_LENGTH_METADATA_SUMMARY,
+  MAX_LENGTH_METADATA_TITLE,
+  MAX_LENGTH_PROPOSAL_TEXT,
+} from 'consts';
+
 export const swapExactInCommandSchema = {
   '$id': '/dex/swapExactInCommandSchema',
   'type': 'object',
@@ -219,6 +228,74 @@ export const addLiquiditySchema = {
     maxTimestampValid: {
       dataType: 'uint64',
       fieldNumber: 6,
+    },
+  },
+};
+
+export const proposalContentSchema = {
+  $id: '/dexGovernance/proposalContentSchema',
+  type: 'object',
+  required: ['text', 'poolID', 'multiplier', 'metadata'],
+  properties: {
+    text: {
+      dataType: 'bytes',
+      maxLength: MAX_LENGTH_PROPOSAL_TEXT,
+      fieldNumber: 1,
+    },
+    poolID: {
+      dataType: 'bytes',
+      maxLength: LENGTH_POOL_ID,
+      fieldNumber: 2,
+    },
+    multiplier: {
+      dataType: 'uint32',
+      fieldNumber: 3,
+    },
+    metadata: {
+      type: 'object',
+      required: ['title', 'author', 'summary', 'discussionsTo'],
+      fieldNumber: 4,
+      properties: {
+        title: {
+          dataType: 'bytes',
+          minLength: 1,
+          maxLength: MAX_LENGTH_METADATA_TITLE,
+          fieldNumber: 1,
+        },
+        author: {
+          dataType: 'bytes',
+          minLength: 1,
+          maxLength: MAX_LENGTH_METADATA_AUTHOR,
+          fieldNumber: 2,
+        },
+        summary: {
+          dataType: 'bytes',
+          minLength: 1,
+          maxLength: MAX_LENGTH_METADATA_SUMMARY,
+          fieldNumber: 3,
+        },
+        discussionsTo: {
+          dataType: 'bytes',
+          maxLength: MAX_LENGTH_METADATA_LINK,
+          fieldNumber: 4,
+        },
+      },
+    },
+  },
+};
+
+export const createProposalParamsSchema = {
+  $id: '/dexGovernance/createProposalParams',
+  type: 'object',
+  required: ['type', 'content'],
+  properties: {
+    type: {
+      dataType: 'uint32',
+      fieldNumber: 1,
+    },
+    content: {
+      ...proposalContentSchema,
+      fieldNumber: 2,
     },
   },
 };

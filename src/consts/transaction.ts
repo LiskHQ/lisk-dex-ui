@@ -7,12 +7,14 @@ export enum TransactionType {
 
 export enum TransactionModule {
   dex = 'dex',
+  dexGovernance = 'dexGovernance'
 }
 
 export const TransactionCommands = {
   swapExactIn: 'swapExactIn',
   createPool: 'createPool',
   addLiquidity: 'addLiquidity',
+  createProposal: 'createProposal',
 };
 
 export enum TransactionStatus {
