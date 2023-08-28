@@ -14,13 +14,12 @@ export const CreateProposalContainer: React.FC = () => {
   const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
 
   const {
-    isRpcRequestPending,
     rpcResult,
     liskRpc,
   } = useJsonRpc();
@@ -90,6 +89,18 @@ export const CreateProposalContainer: React.FC = () => {
       setOpenApproveTransactionModal(true);
     }
   }, [rpcResult]);
+
+  useEffect(() => {
+    if (submitedTransaction) {
+      setTransactionStatus(TransactionStatus.SUCCESS);
+      setOpenTransactionStatusModal(true);
+    }
+    if (transactionError.error) {
+      setTransactionStatus(TransactionStatus.FAILURE);
+      setOpenTransactionStatusModal(true);
+    }
+    setOpenApproveTransactionModal(false);
+  }, [submitedTransaction, transactionError]);
 
   return (
     <>
