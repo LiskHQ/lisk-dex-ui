@@ -32,3 +32,10 @@ export interface ITransaction {
   index: number,
   meta: any,
 }
+
+export interface IAuth {
+  nonce: string,
+  numberOfSignatures: number,
+  mandatoryKeys: any[],
+  optionalKeys: any[]
+}

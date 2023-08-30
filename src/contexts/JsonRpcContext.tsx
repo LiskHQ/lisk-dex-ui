@@ -181,7 +181,6 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
         result: valid ? 'Ping succeeded' : 'Ping failed',
       });
     } catch (e) {
-      console.error(e);
       setResult(null);
     } finally {
       setPending(false);

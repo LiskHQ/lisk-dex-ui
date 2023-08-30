@@ -11,9 +11,16 @@ interface ResponseGenerator {
   statusText?: string;
 }
 
-export async function apiGetAvailableTokens(params: any) {
-  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/blockchain/apps/meta/tokens/supported`, {
-    params,
+export async function apiGetAvailableTokens() {
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/tokens/supported`);
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetAccountTokens(params: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/tokens', {
+    params
   });
   if (response)
     return response.data;
@@ -78,6 +85,20 @@ export async function apiGetPools(params: any) {
   return {};
 }
 
+export async function apiGetStastics(params: any) {
+  const { offset = 0, limit = 10, interval = 'day' } = params;
+  const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/gettingStatistics`, {
+    params: {
+      offset,
+      limit,
+      interval,
+    },
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
 export async function apiSubmitTransaction(data: any) {
   const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions', data);
   if (response)
@@ -120,6 +141,15 @@ export async function apiGetVotes(params: any) {
 
 export async function apiGetTransactions(data: any) {
   const response: ResponseGenerator = await dexApiInstance.get('/api/v3/transactions', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetAuth(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/auth', {
     params: data
   });
   if (response)

@@ -121,7 +121,7 @@ export const SupplyLiquidityStyle = styled('div')(({ theme }: any) => {
         },
 
         '.deposit-description': {
-          margin: '3.25rem 2rem 2rem 2rem',
+          margin: '3.25rem 1.25rem 2rem 1.25rem',
           textAlign: 'center',
         }
       }

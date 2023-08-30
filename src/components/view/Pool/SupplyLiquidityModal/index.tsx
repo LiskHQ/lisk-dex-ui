@@ -5,23 +5,25 @@ import {
 } from 'components';
 import { CancelIcon, LightIcon, tokenSvgs } from 'imgs/icons';
 import { SupplyLiquidityStyle } from './index.style';
-import { IPool } from 'models';
+import { ICreatePool } from 'models';
 import { useState } from 'react';
+import { TransactionCommands } from 'consts';
 
 export interface ISupplyLiquidityModalProps {
-  pool: IPool,
+  pool: ICreatePool,
+  moduleCommand: string,
   onClose: () => void,
-  onConfirm: (pool: IPool) => void,
+  onConfirm: () => void,
 }
 
 export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props) => {
-  const { pool, onClose, onConfirm } = props;
+  const { pool, moduleCommand, onClose, onConfirm } = props;
 
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const onClickConfirm = () => {
     setLoading(true);
-    onConfirm(pool);
+    onConfirm();
   };
   return (
     <SupplyLiquidityStyle data-testid="supply-liquidity-modal-test">
@@ -67,13 +69,24 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           </Box>
           <Box className="deposit-property">
             <Typography variant="body1">Share of pool:</Typography>
-            <Typography variant="body1">0.09%</Typography>
+            <Typography variant="body1">
+              {
+                moduleCommand === TransactionCommands.createPool ?
+                  '100%' :
+                  '0.09%'
+              }
+            </Typography>
           </Box>
           <Typography
             className="deposit-description"
             variant="body1"
           >
-            Output is estimated. If the price changes by more than 0.5% your transaction will revert.
+            {
+              moduleCommand === TransactionCommands.createPool ?
+                'When creating a new pool you are the first liquidity provider. The ratio of tokens added will determine the price of the pool.' :
+                'Output is estimated. If the price changes by more than 0.5% your transaction will revert.'
+
+            }
           </Typography>
           <ButtonComponent
             data-testid="supply-liquidity-modal-button-test"
