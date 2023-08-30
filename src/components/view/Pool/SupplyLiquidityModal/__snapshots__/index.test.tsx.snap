@@ -149,7 +149,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
 }
 
 .emotion-0 .supply-liquidity-modal-container .supply-liquidity-modal-body .deposit-description {
-  margin: 3.25rem 2rem 2rem 2rem;
+  margin: 3.25rem 1.25rem 2rem 1.25rem;
   text-align: center;
 }
 

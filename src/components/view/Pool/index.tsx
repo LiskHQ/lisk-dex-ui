@@ -1,39 +1,48 @@
+import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
-import { IAccount, IPool } from 'models';
+import { IAccount, ICreatePool, IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { PoolViewStyle } from './index.style';
 import { LiskDexLP } from './LiskDexLP';
 import { RemoveLiquidityModal } from './RemoveLiquidityModal';
 import { SupplyLiquidity } from './SupplyLiquidity';
 import { SupplyLiquidityModal } from './SupplyLiquidityModal';
+import { TransactionCommands } from 'consts';
+import { RootState } from 'store';
 
 export interface IPoolViewProps {
-  sendingTransaction: boolean,
+  requestingSignature: boolean,
   pools: IPool[],
   gettingPools: boolean,
   gotPools: boolean,
   closeTransactionModal: boolean,
   account: IAccount | null,
-  onConfirmSupplyLiquidity: (pool: IPool) => void,
+  createPool: (pool: ICreatePool) => void,
+  createPosition: (pool: ICreatePool) => void,
+  addLiquidity: (pool: IPool) => void,
   onConfirmRemoveLiquidity: (pool: IPool) => void,
 }
 
 export const PoolView: React.FC<IPoolViewProps> = (props) => {
   const {
-    sendingTransaction,
+    requestingSignature,
     pools,
     gotPools,
     gettingPools,
     closeTransactionModal,
-    onConfirmSupplyLiquidity,
+    createPool,
+    createPosition,
+    addLiquidity,
     onConfirmRemoveLiquidity
   } = props;
 
   const [openSupplyModal, setOpenSupplyModal] = useState<boolean>(false);
   const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
-  const [pool, setPool] = useState<IPool>();
+  const [pool, setPool] = useState<IPool | ICreatePool>();
+  const [moduleCommand, setModuleCommand] = useState<string>('');
+  const { availableTokens } = useSelector((root: RootState) => root.token);
 
-  const onPreview = (pool: IPool) => {
+  const onPreview = (pool: IPool | ICreatePool) => {
     setOpenSupplyModal(true);
     setPool(pool);
   };
@@ -44,17 +53,38 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   };
 
   useEffect(() => {
-    if (sendingTransaction) {
+    if (requestingSignature) {
       setOpenSupplyModal(false);
       setOpenRemoveLiquidityModal(false);
     }
-  }, [sendingTransaction]);
+  }, [requestingSignature]);
+
+  useEffect(() => {
+    if (pools.length > 0) {
+      setModuleCommand(TransactionCommands.createPosition);
+    } else {
+      setModuleCommand(TransactionCommands.createPool);
+    }
+  }, [pools]);
+
+  const onConfirmSupplyLiquidity = () => {
+    if (moduleCommand === TransactionCommands.createPool) {
+      createPool(pool as ICreatePool);
+    }
+    if (moduleCommand === TransactionCommands.createPosition) {
+      createPosition(pool as ICreatePool);
+    }
+    if (moduleCommand === TransactionCommands.addLiquidity) {
+      addLiquidity(pool as IPool);
+    }
+  };
 
   return (
     <PoolViewStyle>
       <Grid container spacing={3}>
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
+            tokens={availableTokens}
             onPreview={onPreview}
             closeTransactionModal={closeTransactionModal}
           />
@@ -72,7 +102,8 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
       {
         openSupplyModal && pool &&
         <SupplyLiquidityModal
-          pool={pool}
+          pool={pool as ICreatePool}
+          moduleCommand={moduleCommand}
           onClose={() => { setOpenSupplyModal(false); }}
           onConfirm={onConfirmSupplyLiquidity}
         />
@@ -80,7 +111,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
       {
         openRemoveLiquidityModal && pool &&
         <RemoveLiquidityModal
-          pool={pool}
+          pool={pool as IPool}
           onClose={() => { setOpenSupplyModal(false); }}
           onConfirm={onConfirmRemoveLiquidity}
         />

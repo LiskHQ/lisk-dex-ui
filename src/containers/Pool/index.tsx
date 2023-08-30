@@ -1,11 +1,15 @@
-import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
-import { TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
-import { useJsonRpc } from 'contexts';
-import { IPool } from 'models';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
+import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { useJsonRpc } from 'contexts';
+import { ICreatePool, IPool } from 'models';
 import { AppActions, RootState } from 'store';
-import { createPoolSchema, removeLiquiditySchema } from 'utils';
+import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema } from 'utils';
+import { apiGetAuth } from 'apis';
+
+export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
+export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
 
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,8 +17,6 @@ export const PoolContainer: React.FC = () => {
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [pool, setPool] = useState<IPool>();
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
 
@@ -25,6 +27,8 @@ export const PoolContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
+    dispatch(AppActions.pool.getStastics({}));
+    dispatch(AppActions.token.getAvailableTokens());
   }, [dispatch]);
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
@@ -34,83 +38,42 @@ export const PoolContainer: React.FC = () => {
     liskRpc,
   } = useJsonRpc();
 
-  const onConfirmSupplyLiquidity = (pool: IPool) => {
+  const createPool = async (pool: ICreatePool) => {
     if (account) {
-      const { chainId, publicKey } = account;
-      const { token1Amount, token2Amount } = pool;
-      console.log(' token1Amount, token2Amount: ', token1Amount, token2Amount);
-      console.log('chainId, publicKey:', chainId, publicKey);
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
+      const { token1, token2, feeTier, tickInitialPrice, token1Amount, token2Amount } = pool;
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
         fee: BigInt(5000000000000000000),
-        nonce: BigInt(1),
+        nonce: BigInt(data.nonce),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
         params: {
-          tokenID0: Buffer.from('0100000000', 'hex'),
-          tokenID1: Buffer.from('1000000000', 'hex'),
-          feeTier: 100,
-          tickInitialPrice: 1,
+          tokenID0: Buffer.from(token1.tokenID, 'hex'),
+          tokenID1: Buffer.from(token2.tokenID, 'hex'),
+          feeTier: feeTier * 100,
+          tickInitialPrice: tickInitialPrice,
           initialPosition: {
-            tickLower: -887272,
-            tickUpper: 887272,
-            amount0Desired: BigInt(1000),
-            amount1Desired: BigInt(1000),
+            tickLower: MIN_TICK,
+            tickUpper: MAX_TICK,
+            amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+            amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
           },
           maxTimestampValid: BigInt(100000000000),
         },
       };
-      // const schema = {
-      //   "$id": "/lisk/transferParams",
-      //   "title": "Transfer transaction params",
-      //   "type": "object",
-      //   "required": [
-      //     "tokenID",
-      //     "amount",
-      //     "recipientAddress",
-      //     "data"
-      //   ],
-      //   "properties": {
-      //     "tokenID": {
-      //       "dataType": "bytes",
-      //       "fieldNumber": 1,
-      //       "minLength": 8,
-      //       "maxLength": 8
-      //     },
-      //     "amount": {
-      //       "dataType": "uint64",
-      //       "fieldNumber": 2
-      //     },
-      //     "recipientAddress": {
-      //       "dataType": "bytes",
-      //       "fieldNumber": 3,
-      //       "format": "lisk32"
-      //     },
-      //     "data": {
-      //       "dataType": "string",
-      //       "fieldNumber": 4,
-      //       "minLength": 0,
-      //       "maxLength": 64
-      //     }
-      //   }
-      // };
-
-      // const rawTx = {
-      //   module: 'token',
-      //   command: 'transfer',
-      //   fee: '100000000',
-      //   nonce: '1',
-      //   senderPublicKey: 'cf434a889d6c7a064e8de61bb01759a76f585e5ff45a78ba8126ca332601f535',
-      //   signatures: [],
-      //   params: {
-      //     amount: '1000000000000',
-      //     data: '',
-      //     recipientAddress: 'lskj34x8zh85zh4khjq64ofudmjax2hzc5hxw7vok',
-      //     tokenID: '0400001100000000'
-      //   },
-      //   id: '3d49adde25a12ca34c5893f645ceed395220d1a936e46b9412a2bb77b68e3583',
-      // };
 
       liskRpc.signTransaction(chainId, publicKey, createPoolSchema, rawTx);
       setOpenTransactionStatusModal(true);
@@ -118,6 +81,85 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
+  const createPosition = async (pool: ICreatePool) => {
+    if (account) {
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
+      const { token1Amount, token2Amount } = pool;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.createPosition,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(data.nonce),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          poolID: Buffer.from('0000000100000000010164000000', 'hex'),
+          tickLower: MIN_TICK,
+          tickUpper: MAX_TICK,
+          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
+          amount0Min: BigInt(0),
+          amount1Min: BigInt(0),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, createPositionSchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
+  };
+
+  const addLiquidity = async (pool: IPool) => {
+    if (account) {
+      const { chainId, publicKey, address } = account;
+      let data;
+
+      try {
+        const reponse = await apiGetAuth({
+          address: address,
+        });
+        data = reponse.data;
+      } catch (e) {
+        console.log(e);
+      }
+
+      const { token1Amount, token2Amount } = pool;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.addLiquidity,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(data.nonce),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          positionID: Buffer.from('0000000100', 'hex'),
+          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
+          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
+          amount0Min: BigInt(0),
+          amount1Min: BigInt(0),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, addLiquiditySchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onConfirmRemoveLiquidity = (pool: IPool) => {
     if (account) {
       const { chainId, publicKey } = account;
@@ -149,10 +191,23 @@ export const PoolContainer: React.FC = () => {
     }
   }, [rpcResult]);
 
+  useEffect(() => {
+    if (submitedTransaction) {
+      setTransactionStatus(TransactionStatus.SUCCESS);
+      setOpenTransactionStatusModal(true);
+    }
+    if (transactionError.error) {
+      setTransactionStatus(TransactionStatus.FAILURE);
+      setOpenTransactionStatusModal(true);
+    }
+    setOpenApproveTransactionModal(false);
+  }, [submitedTransaction, transactionError]);
+
   const onCloseTransactionStatusModal = () => {
     setOpenTransactionStatusModal(false);
     if (submitedTransaction || transactionError.error) {
       setCloseTransactionModal(true);
+      setTransactionStatus(TransactionStatus.PENDING);
       dispatch(AppActions.transaction.resetTransactionStates());
     }
   };
@@ -161,26 +216,14 @@ export const PoolContainer: React.FC = () => {
     setOpenApproveTransactionModal(false);
   };
 
-
   //submit signed transaction
   const onConfirmApproval = () => {
     if (rpcResult?.result) {
-      console.log('rpcResult: ', rpcResult);
       dispatch(AppActions.transaction.submitTransaction({
         transaction: rpcResult.result,
       }));
     }
   };
-
-  // useEffect(() => {
-  //   if (confirmedTransaction && pool) {
-  //     if (pool.id) {
-  //       dispatch(AppActions.pool.updatePoolSuccess(pool));
-  //     } else {
-  //       dispatch(AppActions.pool.createPoolSuccess(pool));
-  //     }
-  //   }
-  // }, [confirmedTransaction, pool, dispatch]);
 
   return (
     <>
@@ -189,16 +232,18 @@ export const PoolContainer: React.FC = () => {
         gettingPools={gettingPools}
         gotPools={gotPools}
         account={account}
-        sendingTransaction={isRpcRequestPending}
+        requestingSignature={isRpcRequestPending && openTransactionStatusModal}
         closeTransactionModal={closeTransactionModal}
-        onConfirmSupplyLiquidity={onConfirmSupplyLiquidity}
+        createPool={createPool}
+        createPosition={createPosition}
+        addLiquidity={addLiquidity}
         onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}
       />
       {
         openTransactionStatusModal &&
         <TransactionStatusModal
           status={transactionStatus}
-          type={TransactionType.SWAP}
+          type={TransactionType.SUPPLY_LIQUIDITY}
           onClose={onCloseTransactionStatusModal}
         />
       }

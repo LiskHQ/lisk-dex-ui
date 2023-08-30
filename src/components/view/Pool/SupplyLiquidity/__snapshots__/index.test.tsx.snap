@@ -801,21 +801,13 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 }
 
 .emotion-88 .token-amount .MuiInputBase-root {
-  border: none;
+  border: none!important;
   padding: 0;
 }
 
 .emotion-88 .token-amount .MuiInputBase-root input {
   font-size: 1.25rem;
   text-align: right;
-}
-
-.emotion-88 .token-amount .MuiInputBase-root.hover {
-  border: none;
-}
-
-.emotion-88 .token-amount .MuiInputBase-root.active {
-  border: none;
 }
 
 .emotion-88 .token-balance-details {

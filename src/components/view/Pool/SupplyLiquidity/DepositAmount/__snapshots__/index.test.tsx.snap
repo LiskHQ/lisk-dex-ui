@@ -45,21 +45,13 @@ exports[`DepositAmount component checks if the component matches the snapshot 1`
 }
 
 .emotion-0 .token-amount .MuiInputBase-root {
-  border: none;
+  border: none!important;
   padding: 0;
 }
 
 .emotion-0 .token-amount .MuiInputBase-root input {
   font-size: 1.25rem;
   text-align: right;
-}
-
-.emotion-0 .token-amount .MuiInputBase-root.hover {
-  border: none;
-}
-
-.emotion-0 .token-amount .MuiInputBase-root.active {
-  border: none;
 }
 
 .emotion-0 .token-balance-details {

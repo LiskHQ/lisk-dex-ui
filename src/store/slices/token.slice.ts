@@ -6,6 +6,10 @@ type StateType = {
   gotAvailableTokens: boolean,
   availableTokens: IToken[],
 
+  gettingAccountTokens: boolean,
+  gotAccountTokens: boolean,
+  accountTokens: any[],
+
   gettingToken2TokenConversion: boolean,
   gotToken2TokenConversion: boolean,
 
@@ -25,6 +29,10 @@ const initialState: StateType = {
   gettingAvailableTokens: false,
   gotAvailableTokens: false,
   availableTokens: [],
+
+  gettingAccountTokens: false,
+  gotAccountTokens: false,
+  accountTokens: [],
 
   gettingToken2TokenConversion: false,
   gotToken2TokenConversion: false,
@@ -57,7 +65,7 @@ const tokenSlice = createSlice({
      * available tokens
      */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    getAvailableTokens(state, action) {
+    getAvailableTokens(state) {
       state.gettingAvailableTokens = true;
       state.gotAvailableTokens = false;
     },
@@ -70,6 +78,26 @@ const tokenSlice = createSlice({
     getAvailableTokensFailure(state, action) {
       state.gettingAvailableTokens = false;
       state.gotAvailableTokens = false;
+      state.error = action.payload;
+    },
+
+    /**
+     * account tokens
+     */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getAccountTokens(state, action) {
+      state.gettingAccountTokens = true;
+      state.gotAccountTokens = false;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getAccountTokensSuccess(state, action) {
+      state.gettingAccountTokens = false;
+      state.gotAccountTokens = true;
+      state.accountTokens = [...action.payload];
+    },
+    getAccountTokensFailure(state, action) {
+      state.gettingAccountTokens = false;
+      state.gotAccountTokens = false;
       state.error = action.payload;
     },
 

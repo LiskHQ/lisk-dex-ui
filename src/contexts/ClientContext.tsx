@@ -15,7 +15,7 @@ import { AccountBalances, IAccount } from 'models';
 import { DEFAULT_APP_METADATA, DEFAULT_LOGGER, DEFAULT_PROJECT_ID, DEFAULT_RELAY_URL } from 'consts';
 import { getAppMetadata, getSdkError } from '@walletconnect/utils';
 import { getAccountsFromNamespaces, getRequiredNamespaces } from 'utils';
-import { apiGetAccounts } from 'apis';
+import { apiGeLegacyAccount } from 'apis';
 
 /**
  * Types
@@ -62,17 +62,17 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
     setChains([]);
   };
 
-  const getAccountDetails = async (_accounts: string[]) => {
+  const getAccountsAddresses = async (_accounts: string[]) => {
     setIsFetchingBalances(true);
     try {
       const arr = await Promise.all(
         _accounts.map(async account => {
           const [namespace, reference, publicKey] = account.split(':');
-          const data = await apiGetAccounts({ publicKey });
+          const data = await apiGeLegacyAccount({ publicKey });
           return {
             chainId: `${namespace}:${reference}`,
             publicKey,
-            data: data.data[0],
+            address: data.meta.address
           };
         }),
       );
@@ -94,7 +94,7 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
     setSession(_session);
     setChains(allNamespaceChains);
     setAccounts(getAccountsFromNamespaces(allNamespaceAccounts));
-    await getAccountDetails(allNamespaceAccounts);
+    await getAccountsAddresses(allNamespaceAccounts);
   }, []);
 
   const connect = useCallback(
