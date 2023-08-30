@@ -25,19 +25,15 @@ export const SwapContainer: React.FC = () => {
   } = useJsonRpc();
 
   useEffect(() => {
-    if (account) {
-      const reference = account.chainId.split(':')[1];
-      dispatch(AppActions.token.getAvailableTokens({ chainID: reference }));
-    }
-    // dispatch(AppActions.token.getPopularPairings({}));
-  }, [account, dispatch]);
+    dispatch(AppActions.token.getAvailableTokens());
+  }, [dispatch]);
 
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
 
     if (account) {
       const { chainId, publicKey } = account;
-      console.log('account detail: ', chainId, publicKey);
+
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.swapExactIn,

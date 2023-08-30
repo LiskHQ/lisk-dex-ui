@@ -1,4 +1,4 @@
-import { apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion } from 'apis';
+import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion } from 'apis';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
 
@@ -8,11 +8,11 @@ interface IResponse {
   links: unknown,
 }
 
-export function* getAvailableTokensSaga(action: any) {
+export function* getAvailableTokensSaga() {
   try {
     const result: IResponse = yield call(
       async () =>
-        await apiGetAvailableTokens(action.payload)
+        await apiGetAvailableTokens()
     );
 
     if (result) {
@@ -20,6 +20,21 @@ export function* getAvailableTokensSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.token.getAvailableTokensFailure(error));
+  }
+}
+
+export function* getAccountTokensSaga(action: any) {
+  try {
+    const result: IResponse = yield call(
+      async () =>
+        await apiGetAccountTokens(action.payload)
+    );
+
+    if (result) {
+      yield put(AppActions.token.getAccountTokensSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.token.getAccountTokensSuccess(error));
   }
 }
 

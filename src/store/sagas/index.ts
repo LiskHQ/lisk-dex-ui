@@ -13,7 +13,8 @@ import {
   submitTransactionSaga
 } from './transaction.saga';
 import {
-  getPoolsSaga
+  getPoolsSaga,
+  getStasticsSaga,
 } from './pool.saga';
 import {
   getProposalsSaga,
@@ -35,10 +36,10 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getSlippageBounds.type, getSlippageBoundsSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
+  yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);
 
   yield all([takeLatest(AppActions.proposal.getProposals.type, getProposalsSaga)]);
   yield all([takeLatest(AppActions.proposal.getCertainProposal.type, getCertainProposalSaga)]);
-
   yield all([takeLatest(AppActions.proposal.getVotes.type, getVotesSaga)]);
 }
 

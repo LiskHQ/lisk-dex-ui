@@ -11,8 +11,7 @@ import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { IPool, IToken } from 'models';
-import { mockTokens } from '__mock__';
+import { ICreatePool, IToken } from 'models';
 import { useRouter } from 'next/dist/client/router';
 
 const chartData = [
@@ -30,12 +29,13 @@ const chartData = [
 
 export interface ISupplyLiquidityProps {
   closeTransactionModal: boolean,
-  onPreview: (pool: IPool) => void,
+  tokens: IToken[],
+  onPreview: (pool: ICreatePool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const router = useRouter();
-  const { closeTransactionModal, onPreview } = props;
+  const { tokens, closeTransactionModal, onPreview } = props;
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -88,37 +88,41 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       const { query } = router;
       if (query) {
         if (query.token1) {
-          setToken1(mockTokens.find(token => token.symbol === query.token1) as IToken);
+          setToken1(tokens.find(token => token.symbol === query.token1) as IToken);
         }
         if (query.token2) {
-          setToken2(mockTokens.find(token => token.symbol === query.token2) as IToken);
+          setToken2(tokens.find(token => token.symbol === query.token2) as IToken);
         }
       }
     }
-  }, [router]);
+  }, [router, tokens]);
 
   useEffect(() => {
     if (closeTransactionModal) {
-      setToken1(null);
-      setToken2(null);
-
-      setToken1Amount(0);
-      setToken2Amount(0);
-
-      setInitialPrice(0);
-      setTierValue(0);
-
-      setMinPrice(1.0);
-      setMaxPrice(2.0);
+      resetPoolValues();
     }
   }, [closeTransactionModal]);
+
+  const resetPoolValues = () => {
+    setToken1(null);
+    setToken2(null);
+
+    setToken1Amount(0);
+    setToken2Amount(0);
+
+    setInitialPrice(0);
+    setTierValue(0);
+
+    setMinPrice(1.0);
+    setMaxPrice(2.0);
+  };
 
   return (
     <SupplyLiquidityStyle>
       <Box className="supply-liquidity-title">
         <Typography variant="h4">Supply Liquidity</Typography>
         <Box className="supply-liquidity-actions">
-          <Typography variant="body2">Clear</Typography>
+          <Typography variant="body2" onClick={resetPoolValues}>Clear</Typography>
           <IconButton>
             <SettingIcon />
           </IconButton>
@@ -239,12 +243,14 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         data-testid="preview-button-test"
         onClick={() => {
           onPreview({
-            id: '',
             token1: token1 as IToken,
             token2: token2 as IToken,
             token1Amount,
             token2Amount,
-            share: 0.085,
+            tickInitialPrice: initialPrice,
+            tickLower: minPrice,
+            tickUpper: maxPrice,
+            feeTier: tierValue
           });
         }}
         disabled={!isValid}
@@ -261,7 +267,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
       {
         (openSelectToken1 || openSelectToken2) &&
         <SelectTokenModal
-          tokens={mockTokens}
+          tokens={tokens}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
         />

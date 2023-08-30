@@ -29,21 +29,13 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
       },
 
       '.MuiInputBase-root': {
-        border: 'none',
+        border: 'none !important',
         padding: 0,
 
         input: {
           fontSize: '1.25rem',
           textAlign: 'right',
         },
-
-        '&.hover': {
-          border: 'none',
-        },
-
-        '&.active': {
-          border: 'none',
-        }
       }
     },
 

@@ -13,6 +13,7 @@ export enum TransactionModule {
 export const TransactionCommands = {
   swapExactIn: 'swapExactIn',
   createPool: 'createPool',
+  createPosition: 'createPosition',
   addLiquidity: 'addLiquidity',
   createProposal: 'createProposal',
 };

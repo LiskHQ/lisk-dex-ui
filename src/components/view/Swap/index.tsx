@@ -15,7 +15,6 @@ import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 import { RootState } from 'store';
 import { PlatformContext } from 'contexts';
 import { IAccount, ISwapData, IToken } from 'models';
-import { LISK_DECIMALS } from 'consts';
 import { mockTokens } from '__mock__';
 
 export interface ISwapViewProps {
@@ -117,13 +116,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setOpenSelectToken2(false);
   };
 
-  const balance = useMemo(() => {
-    if (account && account.data) {
-      return account.data.token.balance / (10 ** LISK_DECIMALS);
-    } else {
+  const balance = 0;
+
+  useEffect(() => {
+    if (!account) {
       resetSwap();
     }
-    return 0;
   }, [account]);
 
   useEffect(() => {
@@ -177,6 +175,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               type="number"
               value={token1Amount}
               onChange={e => setToken1Amount(e.target.value)}
+              onBlur={() => { setToken1Amount(cryptoDecimalFormat(+token1Amount)); }}
             />
           </Box>
           <Box className="swap-from-bottom-box">

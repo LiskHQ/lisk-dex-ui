@@ -80,5 +80,5 @@ export interface AccountAction {
 export interface IAccount {
   chainId: string,
   publicKey: string,
-  data?: any,
+  address?: string,
 }
