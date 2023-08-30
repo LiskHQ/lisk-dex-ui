@@ -11,7 +11,6 @@ export const CreateProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
 
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
-  const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
@@ -60,7 +59,7 @@ export const CreateProposalContainer: React.FC = () => {
   };
 
   const onCloseProposalSubmitted = () => {
-    dispatch(AppActions.transaction.resetApproveTransactionState());
+    dispatch(AppActions.transaction.resetTransactionStates());
   };
 
   const onCloseTransactionStatusModal = () => {
@@ -105,8 +104,6 @@ export const CreateProposalContainer: React.FC = () => {
   return (
     <>
       <CreateProposalView
-        openTransactionApproval={openTransactionApproval}
-        approvedTransaction={approvedTransaction}
         onSubmit={onSubmit}
         onCloseProposalSubmitted={onCloseProposalSubmitted}
       />

@@ -17,14 +17,12 @@ import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
 import { ProposalSubmittedModal } from './ProposalSubmittedModal';
 
 export interface ICreateProposalViewProps {
-  openTransactionApproval: boolean,
-  approvedTransaction: boolean,
   onSubmit: (proposal: IProposal) => void,
   onCloseProposalSubmitted: () => void,
 }
 
 export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
-  const { openTransactionApproval, approvedTransaction, onSubmit, onCloseProposalSubmitted } = props;
+  const { onSubmit, onCloseProposalSubmitted } = props;
 
   const [proposalType, setProposalType] = useState<ProposalType>();
   const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
@@ -41,12 +39,12 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       multiplier?: Yup.NumberSchema,
     }
       = {
-        author: Yup.string().required(),
-        title: Yup.string().required(),
-        summary: Yup.string().required(),
-        description: Yup.string().required(),
-        link: Yup.string().url(),
-      };
+      author: Yup.string().required(),
+      title: Yup.string().required(),
+      summary: Yup.string().required(),
+      description: Yup.string().required(),
+      link: Yup.string().url(),
+    };
     if (proposalType === ProposalType.PoolIncentivization) {
       schemaObject.multiplier = Yup.number().required();
       schemaObject.poolID = Yup.string().required();
@@ -181,16 +179,14 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       {
         proposal && openCreateProposalModal &&
         <ConfirmCreateProposalModal
-          openTransactionApproval={openTransactionApproval}
           proposal={proposal}
           onConfirm={() => { onSubmit(proposal); }}
           onClose={() => { setOpenCreateProposalModal(false); }}
         />
       }
-      {
-        approvedTransaction &&
+      {/* {
         <ProposalSubmittedModal onClose={onCloseProposalSubmittedModal} />
-      }
+      } */}
     </CreateProposalViewStyle>
   );
 };

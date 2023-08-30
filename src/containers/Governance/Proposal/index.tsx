@@ -9,7 +9,6 @@ export const ProposalContainer: React.FC = () => {
   const router = useRouter();
 
   const { votes, votesTotal, votesTotalPages, proposal } = useSelector((state: RootState) => state.proposal);
-  const { openTransactionApproval, approvedTransaction } = useSelector((state: RootState) => state.transaction);
 
   const [votesPage, setVotesPage] = useState<number>(0);
 
@@ -25,17 +24,9 @@ export const ProposalContainer: React.FC = () => {
   }, [votesPage, dispatch, router.query.id]);
 
   const onVote = () => {
-    dispatch(AppActions.transaction.setExpenses([
-      {
-        title: 'Network fee',
-        amount: 0.87,
-      }
-    ]));
-    dispatch(AppActions.transaction.setOpenTransactionApproval(true));
   };
 
   const onCloseVoteSuccessModal = () => {
-    dispatch(AppActions.transaction.resetApproveTransactionState());
   };
 
   return (
@@ -45,8 +36,6 @@ export const ProposalContainer: React.FC = () => {
       votesTotal={votesTotal}
       votesTotalPages={votesTotalPages}
       proposal={proposal}
-      openTransactionApproval={openTransactionApproval}
-      approvedTransaction={approvedTransaction}
       onViewMore={onViewMore}
       onVote={onVote}
       onCloseVoteSuccessModal={onCloseVoteSuccessModal}
