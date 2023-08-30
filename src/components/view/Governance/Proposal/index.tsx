@@ -15,7 +15,7 @@ import {
 } from 'components';
 import { darkTheme } from 'styles/theme';
 import { VoteModal } from './VoteModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { VoteSuccessModal } from './VoteSuccessModal';
 
 export interface IProposalViewProps {

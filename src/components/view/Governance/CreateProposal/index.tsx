@@ -14,7 +14,6 @@ import { IncentivizationProposal } from './IncentivizationProposal';
 import { ButtonComponent } from 'components/common/Button';
 import { IProposal } from 'models';
 import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
-import { ProposalSubmittedModal } from './ProposalSubmittedModal';
 
 export interface ICreateProposalViewProps {
   onSubmit: (proposal: IProposal) => void,
@@ -71,10 +70,10 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
     }
   };
 
-  const onCloseProposalSubmittedModal = () => {
-    setOpenCreateProposalModal(false);
-    onCloseProposalSubmitted();
-  };
+  // const onCloseProposalSubmittedModal = () => {
+  //   setOpenCreateProposalModal(false);
+  //   onCloseProposalSubmitted();
+  // };
 
   useEffect(() => {
     trigger();
