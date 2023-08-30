@@ -6,14 +6,13 @@ import { ProposalType } from 'consts';
 import { CancelIcon, PoolIncentivizationIcon, UniversalIcon } from 'imgs/icons';
 
 export interface IConfirmCreateProposalModalProps {
-  openTransactionApproval: boolean,
   proposal: IProposal,
   onConfirm?: () => void,
   onClose?: () => void,
 }
 
 export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalProps> = (props) => {
-  const { openTransactionApproval, onConfirm, onClose, proposal } = props;
+  const { onConfirm, onClose, proposal } = props;
 
   return (
     <ComfirmCreateProposalModalStyle>
@@ -101,7 +100,6 @@ export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalPro
         <Box className="confirm-proposal-modal-footer">
           <ButtonComponent
             data-testid="confirm-proposal-modal-confirm"
-            loading={openTransactionApproval}
             onClick={() => { onConfirm && onConfirm(); }}
           >
             <Typography variant="body1">Confirm</Typography>

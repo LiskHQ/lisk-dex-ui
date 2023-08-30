@@ -14,17 +14,14 @@ import { IncentivizationProposal } from './IncentivizationProposal';
 import { ButtonComponent } from 'components/common/Button';
 import { IProposal } from 'models';
 import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
-import { ProposalSubmittedModal } from './ProposalSubmittedModal';
 
 export interface ICreateProposalViewProps {
-  openTransactionApproval: boolean,
-  approvedTransaction: boolean,
   onSubmit: (proposal: IProposal) => void,
   onCloseProposalSubmitted: () => void,
 }
 
 export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
-  const { openTransactionApproval, approvedTransaction, onSubmit, onCloseProposalSubmitted } = props;
+  const { onSubmit } = props;
 
   const [proposalType, setProposalType] = useState<ProposalType>();
   const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
@@ -71,11 +68,6 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
         proposalType,
       });
     }
-  };
-
-  const onCloseProposalSubmittedModal = () => {
-    setOpenCreateProposalModal(false);
-    onCloseProposalSubmitted();
   };
 
   useEffect(() => {
@@ -181,15 +173,10 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       {
         proposal && openCreateProposalModal &&
         <ConfirmCreateProposalModal
-          openTransactionApproval={openTransactionApproval}
           proposal={proposal}
           onConfirm={() => { onSubmit(proposal); }}
           onClose={() => { setOpenCreateProposalModal(false); }}
         />
-      }
-      {
-        approvedTransaction &&
-        <ProposalSubmittedModal onClose={onCloseProposalSubmittedModal} />
       }
     </CreateProposalViewStyle>
   );

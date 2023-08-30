@@ -15,7 +15,7 @@ import {
 } from 'components';
 import { darkTheme } from 'styles/theme';
 import { VoteModal } from './VoteModal';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { VoteSuccessModal } from './VoteSuccessModal';
 
 export interface IProposalViewProps {
@@ -24,8 +24,6 @@ export interface IProposalViewProps {
   votesTotal: number,
   votesTotalPages: number,
   proposal: IProposal,
-  openTransactionApproval: boolean,
-  approvedTransaction: boolean,
   onViewMore: () => void,
   onVote: () => void,
   onCloseVoteSuccessModal: () => void,
@@ -38,8 +36,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
     votesTotal,
     votesTotalPages,
     proposal,
-    openTransactionApproval,
-    approvedTransaction,
     onViewMore,
     onVote,
     onCloseVoteSuccessModal,
@@ -48,10 +44,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
   const isUpSm = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.sm));
 
   const [openVoteModal, setOpenVoteModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    setOpenVoteModal(false);
-  }, [approvedTransaction]);
 
   return (
     <ProposalViewStyle>
@@ -130,13 +122,12 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
       {
         openVoteModal &&
         <VoteModal
-          openTransactionApproval={openTransactionApproval}
           onClose={() => { setOpenVoteModal(false); }}
           onVote={onVote}
         />
       }
       {
-        approvedTransaction && <VoteSuccessModal onClose={() => {
+        <VoteSuccessModal onClose={() => {
           onCloseVoteSuccessModal();
         }} />
       }
