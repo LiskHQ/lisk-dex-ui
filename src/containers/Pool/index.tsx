@@ -5,7 +5,7 @@ import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatu
 import { useJsonRpc } from 'contexts';
 import { ICreatePool, IPool } from 'models';
 import { AppActions, RootState } from 'store';
-import { addLiquiditySchema, createPoolSchema, createPositionSchema } from 'utils';
+import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema } from 'utils';
 import { apiGetAuth } from 'apis';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
@@ -161,6 +161,28 @@ export const PoolContainer: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onConfirmRemoveLiquidity = (pool: IPool) => {
+    if (account) {
+      const { chainId, publicKey } = account;
+      const rawTx = {
+        module: TransactionModule.dex,
+        command: TransactionCommands.removeLiquidity,
+        fee: BigInt(5000000000000000000),
+        nonce: BigInt(1),
+        senderPublicKey: Buffer.from(publicKey, 'hex'),
+        signatures: [],
+        params: {
+          positionID: Buffer.from('0000000100', 'hex'),
+          liquidityToRemove: BigInt(250),
+          amount0Min: BigInt(1000),
+          amount1Min: BigInt(1000),
+          maxTimestampValid: BigInt(100000000000),
+        },
+      };
+
+      liskRpc.signTransaction(chainId, publicKey, removeLiquiditySchema, rawTx);
+      setOpenTransactionStatusModal(true);
+      setCloseTransactionModal(false);
+    }
   };
 
   useEffect(() => {

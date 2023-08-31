@@ -45,10 +45,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
 
   const [openVoteModal, setOpenVoteModal] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   setOpenVoteModal(false);
-  // }, [approvedTransaction]);
-
   return (
     <ProposalViewStyle>
       <Box className="proposal-path">
@@ -130,9 +126,10 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
           onVote={onVote}
         />
       }
-      {<VoteSuccessModal onClose={() => {
-        onCloseVoteSuccessModal();
-      }} />
+      {
+        <VoteSuccessModal onClose={() => {
+          onCloseVoteSuccessModal();
+        }} />
       }
     </ProposalViewStyle>
   );

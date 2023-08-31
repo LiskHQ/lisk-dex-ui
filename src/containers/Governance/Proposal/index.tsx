@@ -9,7 +9,6 @@ export const ProposalContainer: React.FC = () => {
   const router = useRouter();
 
   const { votes, votesTotal, votesTotalPages, proposal } = useSelector((state: RootState) => state.proposal);
-
   const [votesPage, setVotesPage] = useState<number>(0);
 
   const onViewMore = () => {

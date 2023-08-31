@@ -21,7 +21,7 @@ export interface ICreateProposalViewProps {
 }
 
 export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
-  const { onSubmit, onCloseProposalSubmitted } = props;
+  const { onSubmit } = props;
 
   const [proposalType, setProposalType] = useState<ProposalType>();
   const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
@@ -69,11 +69,6 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       });
     }
   };
-
-  // const onCloseProposalSubmittedModal = () => {
-  //   setOpenCreateProposalModal(false);
-  //   onCloseProposalSubmitted();
-  // };
 
   useEffect(() => {
     trigger();
@@ -183,9 +178,6 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
           onClose={() => { setOpenCreateProposalModal(false); }}
         />
       }
-      {/* {
-        <ProposalSubmittedModal onClose={onCloseProposalSubmittedModal} />
-      } */}
-    </CreateProposalViewStyle>
+    </CreateProposalViewStyle >
   );
 };
