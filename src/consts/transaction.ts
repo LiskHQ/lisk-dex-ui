@@ -14,6 +14,7 @@ export const TransactionCommands = {
   createPool: 'createPool',
   createPosition: 'createPosition',
   addLiquidity: 'addLiquidity',
+  removeLiquidity: 'removeLiquidity',
 };
 
 export enum TransactionStatus {
