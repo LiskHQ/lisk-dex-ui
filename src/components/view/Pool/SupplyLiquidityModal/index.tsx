@@ -49,7 +49,6 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
               <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
             </Box>
             <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.symbol} and {pool.token2Amount} {pool.token2.symbol}</Typography>
-            <Typography variant="body1">You will receive 3.45 {pool.token1.symbol}/{pool.token2.symbol} LP Tokens</Typography>
           </Box>
         </Box>
         <Box className="supply-liquidity-modal-body">
@@ -67,25 +66,13 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
               <Typography variant="body1">{pool.token2Amount}</Typography>
             </Box>
           </Box>
-          <Box className="deposit-property">
-            <Typography variant="body1">Share of pool:</Typography>
-            <Typography variant="body1">
-              {
-                moduleCommand === TransactionCommands.createPool ?
-                  '100%' :
-                  '0.09%'
-              }
-            </Typography>
-          </Box>
           <Typography
             className="deposit-description"
             variant="body1"
           >
             {
-              moduleCommand === TransactionCommands.createPool ?
-                'When creating a new pool you are the first liquidity provider. The ratio of tokens added will determine the price of the pool.' :
-                'Output is estimated. If the price changes by more than 0.5% your transaction will revert.'
-
+              moduleCommand === TransactionCommands.createPool &&
+              'When creating a new pool you are the first liquidity provider. The ratio of tokens added will determine the price of the pool.'
             }
           </Typography>
           <ButtonComponent

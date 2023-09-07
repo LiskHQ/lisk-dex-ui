@@ -260,7 +260,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   letter-spacing: 0.00938em;
 }
 
-.emotion-25 {
+.emotion-21 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -313,23 +313,23 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
   text-transform: capitalize;
 }
 
-.emotion-25::-moz-focus-inner {
+.emotion-21::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-25 {
+  .emotion-21 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-25:hover {
+.emotion-21:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -337,35 +337,35 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
 }
 
 @media (hover: none) {
-  .emotion-25:hover {
+  .emotion-21:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-25:active {
+.emotion-21:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-25.Mui-focusVisible {
+.emotion-21.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-25.MuiButton-outlined {
+.emotion-21.MuiButton-outlined {
   border-color: #FF4557;
 }
 
-.emotion-25.MuiButton-contained {
+.emotion-21.MuiButton-contained {
   background: #6953F4;
   color: #FFFFFF;
 }
 
-.emotion-25.Mui-disabled {
+.emotion-21.Mui-disabled {
   opacity: 0.7;
 }
 
@@ -590,15 +590,6 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
              
             DEX
           </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            You will receive 3.45 
-            LSK
-            /
-            DEX
-             LP Tokens
-          </p>
         </div>
       </div>
       <div
@@ -684,27 +675,11 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             </p>
           </div>
         </div>
-        <div
-          class="deposit-property MuiBox-root emotion-1"
-        >
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            Share of pool:
-          </p>
-          <p
-            class="MuiTypography-root MuiTypography-body1 emotion-10"
-          >
-            0.09%
-          </p>
-        </div>
         <p
           class="MuiTypography-root MuiTypography-body1 deposit-description emotion-10"
-        >
-          Output is estimated. If the price changes by more than 0.5% your transaction will revert.
-        </p>
+        />
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium supply-liquidity-modal-confirm emotion-25"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium supply-liquidity-modal-confirm emotion-21"
           data-testid="supply-liquidity-modal-button-test"
           tabindex="0"
           type="button"
