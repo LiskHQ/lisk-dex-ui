@@ -21,11 +21,8 @@ describe('ProposalView', () => {
     votesTotal: mockVotes.length,
     votesTotalPages: 1,
     proposal: mockProposals[0],
-    openTransactionApproval: false,
-    approvedTransaction: false,
     onViewMore: jest.fn(),
     onVote: jest.fn(),
-    onCloseVoteSuccessModal: jest.fn(),
   };
 
   it('checks if the component matches the snapshot', () => {
@@ -60,19 +57,5 @@ describe('ProposalView', () => {
     fireEvent.click(voteButton);
 
     expect(mockProps.onVote).toBeCalled();
-  });
-
-  it('renders vote modal', () => {
-    const { getByTestId } = renderComponent({
-      ...mockProps,
-      approvedTransaction: true,
-    });
-
-    expect(getByTestId('vote-success-modal-test')).toBeInTheDocument();
-
-    const closeButton = getByTestId('vote-success-modal-close-test');
-    fireEvent.click(closeButton);
-
-    expect(mockProps.onCloseVoteSuccessModal).toBeCalled();
   });
 });

@@ -10,7 +10,7 @@ import { VoteModalStyle } from './index.style';
 export interface IVoteModalProps {
   openTransactionApproval?: boolean,
   onClose: () => void,
-  onVote: () => void,
+  onVote: (value: string) => void,
 }
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
@@ -62,7 +62,7 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
             data-testid={value && 'vote-modal-button-test'}
             className="vote-modal-confirm"
             loading={openTransactionApproval}
-            onClick={() => { onVote(); }}
+            onClick={() => { onVote(value); }}
             disabled={!value}
           >
             <Typography variant="body1">Vote</Typography>

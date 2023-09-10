@@ -16,7 +16,6 @@ import {
 import { darkTheme } from 'styles/theme';
 import { VoteModal } from './VoteModal';
 import { useState } from 'react';
-import { VoteSuccessModal } from './VoteSuccessModal';
 
 export interface IProposalViewProps {
   votes: IVote[],
@@ -25,8 +24,7 @@ export interface IProposalViewProps {
   votesTotalPages: number,
   proposal: IProposal,
   onViewMore: () => void,
-  onVote: () => void,
-  onCloseVoteSuccessModal: () => void,
+  onVote: (value: string) => void,
 }
 
 export const ProposalView: React.FC<IProposalViewProps> = (props) => {
@@ -38,7 +36,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
     proposal,
     onViewMore,
     onVote,
-    onCloseVoteSuccessModal,
   } = props;
 
   const isUpSm = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.sm));
@@ -125,11 +122,6 @@ export const ProposalView: React.FC<IProposalViewProps> = (props) => {
           onClose={() => { setOpenVoteModal(false); }}
           onVote={onVote}
         />
-      }
-      {
-        <VoteSuccessModal onClose={() => {
-          onCloseVoteSuccessModal();
-        }} />
       }
     </ProposalViewStyle>
   );

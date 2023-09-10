@@ -299,3 +299,19 @@ export const removeLiquiditySchema = {
     },
   },
 };
+
+export const voteOnProposalParamsSchema = {
+  $id: '/dexGovernance/voteOnProposalParamsSchema',
+  type: 'object',
+  required: ['proposalIndex', 'decision'],
+  properties: {
+    proposalIndex: {
+      dataType: 'uint32',
+      fieldNumber: 1,
+    },
+    decision: {
+      dataType: 'uint32',
+      fieldNumber: 2,
+    },
+  },
+};
