@@ -20,10 +20,10 @@ export const PoolItem: React.FC<IProps> = (props) => {
           <>
             <Box className="pool-item-left">
               <Box className="pool-item-token1">
-                <Image src={tokenSvgs[data.token1]} />
+                <Image src={tokenSvgs[data.token1]} width={32} height={32} />
               </Box>
               <Box className="pool-item-token2">
-                <Image src={tokenSvgs[data.token2]} />
+                <Image src={tokenSvgs[data.token2]} width={32} height={32} />
               </Box>
               <Typography className="pool-item-title" variant="body2">{data.token1}-{data.token2}</Typography>
               <Box className="pool-item-rate"><Typography variant="body2">{data.rate}%</Typography></Box>

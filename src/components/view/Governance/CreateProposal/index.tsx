@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { Box, Typography } from '@mui/material';
 
 import { InputComponent, UrlInputComponent } from 'components';
-import { ProposalType } from 'consts';
+import { MAX_LENGTH_METADATA_LINK, MAX_LENGTH_METADATA_SUMMARY, MAX_LENGTH_METADATA_TITLE, MAX_LENGTH_PROPOSAL_TEXT, ProposalType } from 'consts';
 import { CreateProposalViewStyle } from './index.style';
 import { SelectProposalTypeComponent } from './SelectProposalType';
 import { IncentivizationProposal } from './IncentivizationProposal';
@@ -119,7 +119,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
                 className="proposal-title"
                 label="Title"
                 placeholder="Add title"
-                maxLength={124}
+                maxLength={MAX_LENGTH_METADATA_TITLE}
                 register={register}
                 watch={watch}
               />
@@ -131,7 +131,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
                 multiline
                 minRows={3}
                 maxRows={3}
-                maxLength={500}
+                maxLength={MAX_LENGTH_METADATA_SUMMARY}
                 register={register}
                 watch={watch}
               />
@@ -143,7 +143,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
                 multiline
                 minRows={7}
                 maxRows={7}
-                maxLength={10240}
+                maxLength={MAX_LENGTH_PROPOSAL_TEXT}
                 register={register}
                 watch={watch}
               />
@@ -152,7 +152,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
                 className="proposal-link"
                 label={<>Discussions to <Typography variant="caption">(optional)</Typography></>}
                 placeholder="Link"
-                maxLength={200}
+                maxLength={MAX_LENGTH_METADATA_LINK}
                 register={register}
                 watch={watch}
               />
@@ -178,6 +178,6 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
           onClose={() => { setOpenCreateProposalModal(false); }}
         />
       }
-    </CreateProposalViewStyle>
+    </CreateProposalViewStyle >
   );
 };
