@@ -1,0 +1,35 @@
+{
+    "containerDefinitions": [
+        {
+            "secrets": null,
+            "name": "${DEPLOYMENT_NAME}",
+            "image": "${DOCKER_IMAGE}",
+            "cpu": 0,
+            "memoryReservation": 600,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/${DEPLOYMENT_NAME}",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "family": "${DEPLOYMENT_NAME}",
+    "taskRoleArn": "arn:aws:iam::132202091885:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::132202091885:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "EC2"
+    ]
+}
