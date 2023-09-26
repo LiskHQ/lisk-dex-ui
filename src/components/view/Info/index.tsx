@@ -7,13 +7,19 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
-import { mockPoolDetails, mockTokenDetails } from '__mock__';
+import { mockTokenDetails } from '__mock__';
 import { PATHS } from 'consts';
+import { IPoolDetail } from 'models';
 
-export const InfoView: React.FC = () => {
+export interface InfoViewProps {
+  poolDetails: IPoolDetail[]
+}
+
+export const InfoView: React.FC<InfoViewProps> = (props) => {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
+  const { poolDetails } = props;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -47,11 +53,12 @@ export const InfoView: React.FC = () => {
 
   const searchedPools = useMemo(() => {
     if (filter)
-      return mockPoolDetails.filter(pool =>
-        pool.token1.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token1.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return poolDetails.filter(pool =>
+        pool.poolName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        // pool.token1.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        // pool.token2.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        // pool.token1.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        // pool.token2.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
   }, [filter]);
@@ -102,6 +109,7 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          poolDetails={poolDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
@@ -112,6 +120,7 @@ export const InfoView: React.FC = () => {
       <TabPanel value={tabValue} index={1}>
         <PoolsComponent
           router={router}
+          poolDetails={poolDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}

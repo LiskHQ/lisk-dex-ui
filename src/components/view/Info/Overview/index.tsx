@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
+import { IPoolDetail } from 'models';
+import { createMockChartInfo, mockTokenDetails } from '__mock__';
 
 export interface IOverviewComponentProps {
+  poolDetails: IPoolDetail[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -15,6 +17,7 @@ export interface IOverviewComponentProps {
 
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const {
+    poolDetails,
     onSwap,
     onAddLiquidity,
     onSelectPool,
@@ -30,10 +33,10 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const [sortKey, setSortKey] = useState<string>('');
 
   const pools = useMemo(() => {
-    return mockPoolDetails
+    return poolDetails
       .slice(0, 9)
       .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
-  }, [sortKey, isAsc]);
+  }, [sortKey, isAsc, poolDetails]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -98,7 +101,6 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         onSwap={onSwap}
         onAddLiquidity={onAddLiquidity}
       />
-
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>

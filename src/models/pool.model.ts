@@ -29,11 +29,12 @@ export interface ICreatePool {
 }
 
 export interface IPoolDetail {
-  token1: IToken,
-  token2: IToken,
-  tvl: number,
-  volume: number,
-  fees: number,
-  share: number,
-  APY: number,
+  token1?: IToken,
+  token2?: IToken,
+  poolName: string,
+  poolTVL: number,
+  poolVolume24H: number,
+  poolFees24H: number,
+  share?: number,
+  poolAPY: number,
 }

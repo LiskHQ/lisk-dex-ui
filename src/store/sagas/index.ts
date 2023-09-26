@@ -15,6 +15,7 @@ import {
 import {
   getPoolsSaga,
   getStasticsSaga,
+  getTopPoolsFromDatabaseSaga,
 } from './pool.saga';
 import {
   getProposalsSaga,
@@ -37,6 +38,7 @@ function* rootSaga() {
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
   yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);
+  yield all([takeLatest(AppActions.pool.getTopPoolsFromDatabase.type, getTopPoolsFromDatabaseSaga)]);
 
   yield all([takeLatest(AppActions.proposal.getProposals.type, getProposalsSaga)]);
   yield all([takeLatest(AppActions.proposal.getCertainProposal.type, getCertainProposalSaga)]);
