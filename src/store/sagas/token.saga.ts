@@ -1,4 +1,4 @@
-import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion } from 'apis';
+import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion, apiGetTopTokensFromDatabase } from 'apis';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
 
@@ -121,5 +121,20 @@ export function* getSlippageBoundsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.token.getSlippageBoundsFailure(error));
+  }
+}
+
+export function* getTopTokensFromDatabaseSaga(action: any) {
+  try {
+    const result: IResponse = yield call(
+      async () =>
+        await apiGetTopTokensFromDatabase(action.payload)
+    );
+
+    if (result) {
+      yield put(AppActions.token.getTopTokensFromDatabaseSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.token.getTopTokensFromDatabaseFailure(error));
   }
 }

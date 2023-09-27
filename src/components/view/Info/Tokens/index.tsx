@@ -7,12 +7,14 @@ import { PATHS } from 'consts';
 import Link from 'next/link';
 import { NextRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
+import { createMockChartInfo, mockPoolDetails } from '__mock__';
 import { TokensComponentStyle } from './index.style';
 import Image from 'next/image';
 import { IncreaseIcon, tokenSvgs } from 'imgs/icons';
+import { ITokenDetail } from 'models';
 
 export interface ITokenComponentProps {
+  tokenDetails: ITokenDetail[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -22,6 +24,7 @@ export interface ITokenComponentProps {
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const {
+    tokenDetails,
     onSwap,
     onAddLiquidity,
     onSelectPool,
@@ -40,7 +43,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   }, [router]);
 
   const token = useMemo(() => {
-    return mockTokenDetails[parseInt(tokenId)];
+    return tokenDetails[parseInt(tokenId)];
   }, [tokenId]);
 
   const chartData = useMemo(() => {
@@ -88,11 +91,11 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
 
   const tokens = useMemo(() => {
     setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
-    return mockTokenDetails
-      .filter(el => el.symbol.includes(searchFilter) || el.chainName.includes(searchFilter))
+    return tokenDetails
+      .filter(el => el.name.includes(searchFilter))
       .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
       .slice((page - 1) * limit, page * limit);
-  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter]);
+  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter, tokenDetails]);
 
   const onSortTokenClick = (key: string) => {
     if (key !== sortTokenKey) {

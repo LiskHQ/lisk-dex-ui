@@ -7,13 +7,20 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
-import { mockPoolDetails, mockTokenDetails } from '__mock__';
+import { mockPoolDetails } from '__mock__';
 import { PATHS } from 'consts';
+import { ITokenDetail } from 'models';
 
-export const InfoView: React.FC = () => {
+export interface InfoViewProps {
+  tokenDetails: ITokenDetail[],
+}
+
+export const InfoView: React.FC<InfoViewProps> = (props) => {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
+
+  const { tokenDetails } = props;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -58,9 +65,9 @@ export const InfoView: React.FC = () => {
 
   const searchedTokens = useMemo(() => {
     if (filter)
-      return mockTokenDetails.filter(token =>
-        token.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return tokenDetails.filter(token =>
+        // token.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
   }, [filter]);
@@ -102,6 +109,7 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
@@ -122,6 +130,7 @@ export const InfoView: React.FC = () => {
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
           router={router}
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}

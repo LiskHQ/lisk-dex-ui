@@ -21,9 +21,10 @@ export interface IToken {
 }
 
 export interface ITokenDetail extends IToken {
+  name: string,
   price: number,
   priceChange: number,
-  volume: number,
+  volume24H: number,
   liquidity: number
 }
 

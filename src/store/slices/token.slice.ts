@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ConversionRates, IToken } from 'models';
+import { ConversionRates, IToken, ITokenDetail } from 'models';
 
 type StateType = {
   gettingAvailableTokens: boolean,
@@ -15,6 +15,11 @@ type StateType = {
 
   gettingToken2FiatConversion: boolean,
   gotToken2FiatConversion: boolean,
+
+  gettingTopTokensFromDatabase: boolean,
+  gotTopTokensFromDatabase: boolean,
+
+  tokenDetails: ITokenDetail[],
 
   conversionRates: ConversionRates,
 
@@ -39,6 +44,11 @@ const initialState: StateType = {
 
   gettingToken2FiatConversion: false,
   gotToken2FiatConversion: false,
+
+  gettingTopTokensFromDatabase: false,
+  gotTopTokensFromDatabase: false,
+
+  tokenDetails: [],
 
   conversionRates: {
     LSK: {
@@ -200,7 +210,22 @@ const tokenSlice = createSlice({
       state.gettingPopularPairings = false;
       state.gotPopularPairings = false;
       state.error = action.payload;
-    }
+    },
+
+    getTopTokensFromDatabase(state, action) {
+      state.gettingTopTokensFromDatabase = true;
+      state.gotTopTokensFromDatabase = false;
+    },
+    getTopTokensFromDatabaseSuccess(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = true;
+      state.tokenDetails = [...action.payload.topTokensFromDatabase];
+    },
+    getTopTokensFromDatabaseFailure(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = false;
+      state.error = action.payload;
+    },
   },
 });
 
