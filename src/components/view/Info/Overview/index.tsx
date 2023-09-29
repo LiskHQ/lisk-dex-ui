@@ -94,6 +94,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
+
       <TokensTable
         tokens={tokens}
         isAsc={isTokenAsc}
@@ -103,7 +104,6 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         onSwap={onSwap}
         onAddLiquidity={onAddLiquidity}
       />
-
 
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>

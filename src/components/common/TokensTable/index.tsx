@@ -110,6 +110,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
             {tokens && tokens.map((row, index) => (
               <TableRow
                 key={row.tokenID}
+                data-testid='table-token-row'
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={() => { onSelectToken && onSelectToken(row.tokenID); }}
               >

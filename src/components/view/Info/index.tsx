@@ -68,7 +68,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
   const searchedTokens = useMemo(() => {
     if (filter)
       return tokenDetails.filter(token =>
-        // token.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
         token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
@@ -131,7 +131,6 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
-          router={router}
           tokenID={tokenID}
           tokenDetails={tokenDetails}
           onSwap={onGotoSwap}

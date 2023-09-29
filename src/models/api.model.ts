@@ -1,4 +1,4 @@
-import { IFilteredTokens, ITokenDetail } from "./token.model"
+import { IFilteredTokens, ITokenDetail } from './token.model';
 
 export interface IResponse {
   data: unknown,

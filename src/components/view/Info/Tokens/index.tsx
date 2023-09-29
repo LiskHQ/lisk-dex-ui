@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { NextRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -20,8 +19,7 @@ export interface ITokenComponentProps {
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
-  onSelectToken: (id: string) => void,
-  router: NextRouter,
+  onSelectToken: (id: string) => void
 }
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
@@ -31,8 +29,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
     onSwap,
     onAddLiquidity,
     onSelectPool,
-    onSelectToken,
-    router
+    onSelectToken
   } = props;
 
   const [isLike, setLike] = useState<boolean>(false);
