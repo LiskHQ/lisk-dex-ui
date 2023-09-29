@@ -52,11 +52,10 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const [sortTokenKey, setSortTokenKey] = useState<string>('');
 
   const tokens = useMemo(() => {
-    console.log("sortTokenKey: ", sortTokenKey);
     if (sortTokenKey)
       return tokenDetails
         .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey]);
-    return [];
+    return [...tokenDetails];
   }, [sortTokenKey, isTokenAsc, tokenDetails]);
 
   const onSortTokenClick = (key: string) => {

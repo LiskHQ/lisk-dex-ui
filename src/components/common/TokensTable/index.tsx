@@ -109,9 +109,9 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
           <TableBody>
             {tokens && tokens.map((row, index) => (
               <TableRow
-                key={index}
+                key={row.tokenID}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => { onSelectToken && onSelectToken(index.toString()); }}
+                onClick={() => { onSelectToken && onSelectToken(row.tokenID); }}
               >
                 <TableCell className="always-visible" scope="row">
                   <Box className="name-td">

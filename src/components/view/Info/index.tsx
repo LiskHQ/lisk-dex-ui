@@ -19,6 +19,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
+  const [tokenID, setTokenID] = useState<string>('');
 
   const { tokenDetails } = props;
 
@@ -39,13 +40,14 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
     if (router) {
       const { query } = router;
       if (query) {
+        setTokenID(query.tokenID as string);
         if (query.tabIndex) {
           setTabValue(parseInt(query.tabIndex as string));
         }
         if (query.poolId !== undefined) {
           setTabValue(1);
         }
-        if (query.tokenId !== undefined) {
+        if (query.tokenID !== undefined) {
           setTabValue(2);
         }
       }
@@ -70,14 +72,14 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
         token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, tokenDetails]);
 
   const onSelectPool = (id: string) => {
     router.push(`?poolId=${id}`);
   };
 
   const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`);
+    router.push(`?tokenID=${id}`);
   };
 
   const onGotoSwap = (token1: string, token2?: string) => {
@@ -130,6 +132,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
           router={router}
+          tokenID={tokenID}
           tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}

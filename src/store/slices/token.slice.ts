@@ -20,6 +20,7 @@ type StateType = {
   gotTopTokensFromDatabase: boolean,
 
   tokenDetails: ITokenDetail[],
+  tokenDetail: ITokenDetail,
 
   conversionRates: ConversionRates,
 
@@ -49,6 +50,15 @@ const initialState: StateType = {
   gotTopTokensFromDatabase: false,
 
   tokenDetails: [],
+  tokenDetail: {
+    name: '',
+    price: 0,
+    priceChange: 0,
+    volume24H: 0,
+    liquidity: 0,
+    tokenID: '',
+    symbol: '',
+  },
 
   conversionRates: {
     LSK: {
@@ -212,6 +222,7 @@ const tokenSlice = createSlice({
       state.error = action.payload;
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTopTokensFromDatabase(state, action) {
       state.gettingTopTokensFromDatabase = true;
       state.gotTopTokensFromDatabase = false;
@@ -219,7 +230,12 @@ const tokenSlice = createSlice({
     getTopTokensFromDatabaseSuccess(state, action) {
       state.gettingTopTokensFromDatabase = false;
       state.gotTopTokensFromDatabase = true;
-      state.tokenDetails = [...action.payload.topTokensFromDatabase];
+      state.tokenDetails = [...action.payload];
+    },
+    getTokenDetailFromDatabaseSuccess(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = true;
+      state.tokenDetail = { ...action.payload };
     },
     getTopTokensFromDatabaseFailure(state, action) {
       state.gettingTopTokensFromDatabase = false;
