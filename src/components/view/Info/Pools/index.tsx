@@ -57,7 +57,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       poolVolume24H: 0,
       share: 0,
     };
-  }, [poolID]);
+  }, [poolID, poolDetails]);
 
   const chartData = useMemo(() => {
     if (poolID)
@@ -71,6 +71,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       getToken2FiatConversion(getPoolToken0(pool.poolName), currency);
       getToken2FiatConversion(getPoolToken1(pool.poolName), currency);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pool, currency]);
 
   const pools = useMemo(() => {
@@ -79,7 +80,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       .filter(el => el.poolName.includes(searchFilter))
       .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey])
       .slice((page - 1) * limit, page * limit);
-  }, [sortKey, isAsc, limit, page, searchFilter]);
+  }, [sortKey, isAsc, limit, page, searchFilter, poolDetails]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {

@@ -64,7 +64,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
         .filter(pool => getPoolToken0(pool.poolName) === token.symbol || getPoolToken1(pool.poolName) === token.symbol)
         .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
     return [];
-  }, [sortKey, isAsc, token]);
+  }, [sortKey, isAsc, token, poolDetails]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {

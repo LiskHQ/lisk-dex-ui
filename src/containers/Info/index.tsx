@@ -17,7 +17,7 @@ export const InfoContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(AppActions.pool.getTopPoolsFromDatabase({}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <InfoView

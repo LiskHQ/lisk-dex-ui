@@ -20,7 +20,7 @@ describe('Overview component', () => {
     onAddLiquidity: jest.fn,
     onSelectPool: jest.fn,
     onSelectToken: jest.fn,
-  }
+  };
 
   it('checks if overview component renders pools correctly', () => {
     const { getAllByTestId } = renderComponent(props);

@@ -89,6 +89,7 @@ const poolSlice = createSlice({
     getTopPoolsFromDatabaseFailure(state, action) {
       state.gettingPoolDetails = false;
       state.gotPoolDetails = false;
+      state.error = action.payload;
     }
   },
 });

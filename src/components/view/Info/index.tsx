@@ -65,7 +65,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
         pool.poolName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, poolDetails]);
 
   const searchedTokens = useMemo(() => {
     if (filter)

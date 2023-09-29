@@ -24,7 +24,7 @@ describe('Info Pools component', () => {
     onSelectPool: jest.fn(),
     onSelectToken: jest.fn(),
     getToken2FiatConversion: jest.fn(),
-  }
+  };
 
   it('checks if pools component renders pools correctly', () => {
     const { getAllByTestId } = renderComponent(props);
