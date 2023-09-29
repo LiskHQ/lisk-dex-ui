@@ -3,7 +3,6 @@ import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
 import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent } from 'components';
-import { NextRouter } from 'next/router';
 import { PoolsComponentStyle } from './index.style';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +22,6 @@ export interface IPoolsComponentProps {
   getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
   poolDetails: IPoolDetail[],
   poolID: string,
-  router: NextRouter,
   conversionRates: ConversionRates,
 }
 

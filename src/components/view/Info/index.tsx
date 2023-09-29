@@ -123,7 +123,6 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={1}>
         <PoolsComponent
-          router={router}
           poolDetails={poolDetails}
           poolID={poolID}
           conversionRates={conversionRates}
