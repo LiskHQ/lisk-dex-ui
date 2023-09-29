@@ -34,6 +34,6 @@ describe('Info page', () => {
 
   it('checks if info page renders pools correctly', () => {
     const { getAllByTestId } = renderComponent(props);
-    expect(getAllByTestId('table-pool-test')).toHaveLength(props.poolDetails.length);
+    expect(getAllByTestId('table-pool-row')).toHaveLength(props.poolDetails.length);
   });
 });
