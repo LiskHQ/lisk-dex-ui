@@ -16,8 +16,7 @@ export const mockPools: IPool[] = [
 
 export const mockPoolDetails: IPoolDetail[] = [
   {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
+    poolID: '000000000000000000000100000000000001',
     poolName: 'LSK-DEX',
     poolTVL: 12.2,
     poolVolume24H: 6.06,
@@ -26,8 +25,7 @@ export const mockPoolDetails: IPoolDetail[] = [
     share: 0.3
   },
   {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
+    poolID: '000000000000000000000100000000000002',
     poolName: 'LSK-DEX',
     poolTVL: 15.6,
     poolVolume24H: 2.3,

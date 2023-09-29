@@ -118,8 +118,9 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             {pools && pools.map((row, index) => (
               <TableRow
                 key={index}
+                data-testid='table-pool-test'
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => { onSelectPool && onSelectPool(index.toString()); }}
+                onClick={() => { onSelectPool && onSelectPool(row.poolID); }}
               >
                 <TableCell className="always-visible" scope="row">
                   <Box className="name-td">

@@ -7,12 +7,15 @@ import { PATHS } from 'consts';
 import Link from 'next/link';
 import { NextRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
+import { createMockChartInfo, mockTokenDetails } from '__mock__';
 import { TokensComponentStyle } from './index.style';
 import Image from 'next/image';
 import { IncreaseIcon, tokenSvgs } from 'imgs/icons';
+import { IPoolDetail } from 'models';
+import { getPoolToken0, getPoolToken1 } from 'utils';
 
 export interface ITokenComponentProps {
+  poolDetails: IPoolDetail[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -22,6 +25,7 @@ export interface ITokenComponentProps {
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const {
+    poolDetails,
     onSwap,
     onAddLiquidity,
     onSelectPool,
@@ -56,8 +60,8 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
 
   const pools = useMemo(() => {
     if (token)
-      return mockPoolDetails
-        .filter(pool => pool.token1.symbol === token.symbol || pool.token2.symbol === token.symbol)
+      return poolDetails
+        .filter(pool => getPoolToken0(pool.poolName) === token.symbol || getPoolToken1(pool.poolName) === token.symbol)
         .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
     return [];
   }, [sortKey, isAsc, token]);
@@ -87,7 +91,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const [searchFilter, setSearchFilter] = useState<string>('');
 
   const tokens = useMemo(() => {
-    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
+    setMaximumPage(Math.ceil(poolDetails.length / limit));
     return mockTokenDetails
       .filter(el => el.symbol.includes(searchFilter) || el.chainName.includes(searchFilter))
       .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])

@@ -6,6 +6,14 @@ import { useEffect } from 'react';
 export const InfoContainer: React.FC = () => {
   const dispatch = useDispatch();
   const { poolDetails } = useSelector((root: RootState) => root.pool);
+  const { conversionRates } = useSelector((root: RootState) => root.token);
+
+  const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
+    dispatch(AppActions.token.getToken2FiatConversion({
+      tokenSymbol,
+      currency,
+    }));
+  };
 
   useEffect(() => {
     dispatch(AppActions.pool.getTopPoolsFromDatabase({}));
@@ -14,6 +22,8 @@ export const InfoContainer: React.FC = () => {
   return (
     <InfoView
       poolDetails={poolDetails}
+      conversionRates={conversionRates}
+      getToken2FiatConversion={getToken2FiatConversion}
     />
   );
 };
