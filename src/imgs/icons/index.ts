@@ -32,13 +32,18 @@ export * from './FailureIcon';
 export const tokenSvgs: {
   [key: string]: string,
 } = {
-  DEU: '/assets/tokens/deu.svg',
+  EDU: '/assets/tokens/deu.svg',
   ETH: '/assets/tokens/eth.svg',
-  FAE: '/assets/tokens/fae.svg',
+  FT: '/assets/tokens/fae.svg',
   KLP: '/assets/tokens/klp.svg',
   LSK: '/assets/tokens/lsk.svg',
-  RGB: '/assets/tokens/rgb.svg',
+  LSEGBK: '/assets/tokens/rgb.svg',
   DEX: '/assets/tokens/dex.svg',
+  BZR: '/assets/tokens/bzr.svg',
+  CLI: '/assets/tokens/cli.svg',
+  ENV: '/assets/tokens/env.svg',
+  IDN: '/assets/tokens/idn.svg',
+  TPC: '/assets/tokens/tpc.svg',
 };
 
 export const flagSvgs = {

@@ -108,6 +108,10 @@ export const TokensComponentStyle = styled('div')(({ theme }: any) => {
           '.token-price': {
             '.token-price-increasement': {
               color: theme.success.dark,
+
+              '&.decrease': {
+                color: theme.error.dark,
+              }
             }
           }
         },

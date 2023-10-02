@@ -165,3 +165,12 @@ export async function apiGetTopPoolsFromDatabase(data: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetTopTokensFromDatabase(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/dex-information/v1/getTopTokensFromDatabase', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}

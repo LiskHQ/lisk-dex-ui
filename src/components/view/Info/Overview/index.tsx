@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { IPoolDetail } from 'models';
-import { createMockChartInfo, mockTokenDetails } from '__mock__';
+import { ITokenDetail, IPoolDetail } from 'models';
+import { createMockChartInfo } from '__mock__';
 
 export interface IOverviewComponentProps {
+  tokenDetails: ITokenDetail[],
   poolDetails: IPoolDetail[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
@@ -18,6 +19,7 @@ export interface IOverviewComponentProps {
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const {
     poolDetails,
+    tokenDetails,
     onSwap,
     onAddLiquidity,
     onSelectPool,
@@ -52,9 +54,11 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const [sortTokenKey, setSortTokenKey] = useState<string>('');
 
   const tokens = useMemo(() => {
-    return mockTokenDetails
-      .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey]);
-  }, [sortTokenKey, isTokenAsc]);
+    if (sortTokenKey)
+      return tokenDetails
+        .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey]);
+    return [...tokenDetails];
+  }, [sortTokenKey, isTokenAsc, tokenDetails]);
 
   const onSortTokenClick = (key: string) => {
     if (key !== sortTokenKey) {
@@ -92,6 +96,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </Box>
       </Box>
+
       <TokensTable
         tokens={tokens}
         isAsc={isTokenAsc}

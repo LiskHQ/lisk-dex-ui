@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { InfoView, InfoViewProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockPoolDetails } from '__mock__';
+import { mockTokenDetails, mockPoolDetails } from '__mock__';
 
 function renderComponent(props: InfoViewProps) {
   return render(
@@ -15,10 +15,12 @@ function renderComponent(props: InfoViewProps) {
 
 describe('Info page', () => {
   const props: InfoViewProps = {
+    tokenDetails: mockTokenDetails,
     poolDetails: mockPoolDetails,
     conversionRates: {},
     getToken2FiatConversion: jest.fn,
   };
+
   it('checks if change tab works fine', () => {
     const { getByText, getByTestId } = renderComponent(props);
 
@@ -35,5 +37,10 @@ describe('Info page', () => {
   it('checks if info page renders pools correctly', () => {
     const { getAllByTestId } = renderComponent(props);
     expect(getAllByTestId('table-pool-row')).toHaveLength(props.poolDetails.length);
+  });
+
+  it('checks if info page renders tokens correctly', () => {
+    const { getAllByTestId } = renderComponent(props);
+    expect(getAllByTestId('table-token-row')).toHaveLength(props.tokenDetails.length);
   });
 });

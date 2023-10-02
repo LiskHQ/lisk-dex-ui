@@ -6,7 +6,8 @@ import {
   getPriceImpactSaga,
   getSlippageBoundsSaga,
   getToken2FiatConversionSaga,
-  getToken2TokenConversionSaga
+  getToken2TokenConversionSaga,
+  getTopTokensFromDatabaseSaga
 } from './token.saga';
 import {
   getTransactionsSaga,
@@ -35,6 +36,7 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getToken2FiatConversion.type, getToken2FiatConversionSaga)]);
   yield all([takeLatest(AppActions.token.getPriceImpact.type, getPriceImpactSaga)]);
   yield all([takeLatest(AppActions.token.getSlippageBounds.type, getSlippageBoundsSaga)]);
+  yield all([takeLatest(AppActions.token.getTopTokensFromDatabase.type, getTopTokensFromDatabaseSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
   yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);

@@ -125,7 +125,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                         </Box>
                       </Box>
                       <Box className="pool-token-names">
-                        <Typography variant="h5">{token.chainName}</Typography>
+                        <Typography variant="h5">{token.name}</Typography>
                         <Typography variant="body2">{token.symbol}</Typography>
                       </Box>
                     </Box>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material';
 import { render } from '@testing-library/react';
 import { lightTheme } from 'styles/theme';
-import { mockPoolDetails } from '__mock__';
+import { mockTokenDetails, mockPoolDetails } from '__mock__';
 import { IOverviewComponentProps, OverviewComponent } from '.';
 
 function renderComponent(props: IOverviewComponentProps) {
@@ -15,6 +15,7 @@ function renderComponent(props: IOverviewComponentProps) {
 
 describe('Overview component', () => {
   const props: IOverviewComponentProps = {
+    tokenDetails: mockTokenDetails,
     poolDetails: mockPoolDetails,
     onSwap: jest.fn,
     onAddLiquidity: jest.fn,
@@ -25,5 +26,10 @@ describe('Overview component', () => {
   it('checks if overview component renders pools correctly', () => {
     const { getAllByTestId } = renderComponent(props);
     expect(getAllByTestId('table-pool-row')).toHaveLength(props.poolDetails.length);
+  });
+
+  it('checks if overview component renders tokens correctly', () => {
+    const { getAllByTestId } = renderComponent(props);
+    expect(getAllByTestId('table-token-row')).toHaveLength(props.tokenDetails.length);
   });
 });

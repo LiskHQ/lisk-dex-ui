@@ -20,11 +20,14 @@ export interface IToken {
   denomUnits?: DenomUnit[],
 }
 
-export interface ITokenDetail extends IToken {
+export interface ITokenDetail {
+  name: string,
   price: number,
   priceChange: number,
-  volume: number,
-  liquidity: number
+  volume24H: number,
+  liquidity: number,
+  tokenID: string,
+  symbol: string,
 }
 
 export type ConversionRates = {
@@ -38,4 +41,8 @@ export interface ISwapData {
   tokenOut: IToken,
   amountIn: number,
   minAmountOut: number,
+}
+
+export interface IFilteredTokens {
+  filteredTokens: ITokenDetail[],
 }

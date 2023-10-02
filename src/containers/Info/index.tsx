@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 export const InfoContainer: React.FC = () => {
   const dispatch = useDispatch();
+  const { tokenDetails } = useSelector((root: RootState) => root.token);
   const { poolDetails } = useSelector((root: RootState) => root.pool);
   const { conversionRates } = useSelector((root: RootState) => root.token);
 
@@ -16,6 +17,7 @@ export const InfoContainer: React.FC = () => {
   };
 
   useEffect(() => {
+    dispatch(AppActions.token.getTopTokensFromDatabase({}));
     dispatch(AppActions.pool.getTopPoolsFromDatabase({}));
   }, [dispatch]);
 
@@ -24,6 +26,7 @@ export const InfoContainer: React.FC = () => {
       poolDetails={poolDetails}
       conversionRates={conversionRates}
       getToken2FiatConversion={getToken2FiatConversion}
+      tokenDetails={tokenDetails}
     />
   );
 };
