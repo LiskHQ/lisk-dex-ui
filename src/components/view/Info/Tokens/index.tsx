@@ -11,8 +11,10 @@ import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__
 import { TokensComponentStyle } from './index.style';
 import Image from 'next/image';
 import { IncreaseIcon, tokenSvgs } from 'imgs/icons';
+import { ITransaction } from 'models';
 
 export interface ITokenComponentProps {
+  transactions: ITransaction[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -22,6 +24,7 @@ export interface ITokenComponentProps {
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const {
+    transactions,
     onSwap,
     onAddLiquidity,
     onSelectPool,
@@ -74,8 +77,8 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
   const transactionsTotalPages = useMemo(() => {
-    return Math.ceil(10 / transactionsLimit);
-  }, [transactionsLimit]);
+    return Math.ceil(transactions.length / transactionsLimit);
+  }, [transactionsLimit, transactions]);
 
   // tokens table control
   const [isTokenAsc, setTokenAsc] = useState<boolean>();
@@ -203,6 +206,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               <Typography variant="subtitle1">Transactions</Typography>
             </Box>
             <TransactionsTable
+              transactions={transactions}
               page={transactionsPage}
               limit={transactionsLimit}
               totalPages={transactionsTotalPages}

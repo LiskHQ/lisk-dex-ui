@@ -70,8 +70,8 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
   const transactionsTotalPages = useMemo(() => {
-    return Math.ceil(10 / transactionsLimit);
-  }, [transactionsLimit]);
+    return Math.ceil(transactions.length / transactionsLimit);
+  }, [transactionsLimit, transactions]);
 
   return (
     <OverviewComponentStyle>

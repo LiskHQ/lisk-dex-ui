@@ -133,6 +133,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
+          transactions={transactions}
           router={router}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
