@@ -1,4 +1,4 @@
-import { apiGetPools, apiGetStastics } from 'apis';
+import { apiGetPools, apiGetStastics, apiGetTopPoolsFromDatabase } from 'apis';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
 
@@ -35,5 +35,20 @@ export function* getStasticsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.pool.getStasticsFailure(error));
+  }
+}
+
+export function* getTopPoolsFromDatabaseSaga(action: any) {
+  try {
+    const result: IResponse = yield call(
+      async () =>
+        await apiGetTopPoolsFromDatabase(action.payload)
+    );
+
+    if (result) {
+      yield put(AppActions.pool.getTopPoolsFromDatabaseSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.pool.getTopPoolsFromDatabaseFailure(error));
   }
 }

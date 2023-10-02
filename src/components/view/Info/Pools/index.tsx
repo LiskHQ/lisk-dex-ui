@@ -3,21 +3,26 @@ import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
 import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent } from 'components';
-import { NextRouter } from 'next/router';
 import { PoolsComponentStyle } from './index.style';
-import { useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { createMockChartInfo, mockPoolDetails } from '__mock__';
 import Link from 'next/link';
 import { PATHS } from 'consts';
 import { tokenSvgs } from 'imgs/icons';
+import { ConversionRates, IPoolDetail } from 'models';
+import { createMockChartInfo } from '__mock__';
+import { currencyDecimalFormat, getPoolToken0, getPoolToken1 } from 'utils';
+import { PlatformContext } from 'contexts';
 
 export interface IPoolsComponentProps {
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
   onSelectToken: (id: string) => void,
-  router: NextRouter,
+  getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
+  poolDetails: IPoolDetail[],
+  poolID: string,
+  conversionRates: ConversionRates,
 }
 
 export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
@@ -25,30 +30,12 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
     onSwap,
     onAddLiquidity,
     onSelectPool,
-    router
+    getToken2FiatConversion,
+    conversionRates,
+    poolDetails,
+    poolID,
   } = props;
-  const [isLike, setLike] = useState<boolean>(false);
-  const [poolId, setPoolId] = useState<string>('');
-
-  useEffect(() => {
-    if (router) {
-      const { query } = router;
-      setPoolId(query.poolId as string);
-    }
-  }, [router]);
-
-  const pool = useMemo(() => {
-    return mockPoolDetails[parseInt(poolId)];
-  }, [poolId]);
-
-  const chartData = useMemo(() => {
-    if (poolId)
-      return createMockChartInfo();
-    else
-      return [];
-  }, [poolId]);
-
-
+  const { currency } = useContext(PlatformContext);
   // pools table control
   const [isAsc, setAsc] = useState<boolean>();
   const [sortKey, setSortKey] = useState<string>('');
@@ -58,14 +45,42 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
   const [limit, setLimit] = useState<number>(10);
 
   const [searchFilter, setSearchFilter] = useState<string>('');
+  const [isLike, setLike] = useState<boolean>(false);
+
+  const pool = useMemo(() => {
+    return poolDetails.find(el => el.poolID === poolID) || {
+      poolID: '',
+      poolName: '',
+      poolAPY: 0,
+      poolFees24H: 0,
+      poolTVL: 0,
+      poolVolume24H: 0,
+      share: 0,
+    };
+  }, [poolID, poolDetails]);
+
+  const chartData = useMemo(() => {
+    if (poolID)
+      return createMockChartInfo();
+    else
+      return [];
+  }, [poolID]);
+
+  useEffect(() => {
+    if (pool.poolID) {
+      getToken2FiatConversion(getPoolToken0(pool.poolName), currency);
+      getToken2FiatConversion(getPoolToken1(pool.poolName), currency);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pool, currency]);
 
   const pools = useMemo(() => {
-    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
-    return mockPoolDetails
-      .filter(el => el.token1.symbol.includes(searchFilter) || el.token2.symbol.includes(searchFilter))
+    setMaximumPage(Math.ceil(poolDetails.length / limit));
+    return poolDetails
+      .filter(el => el.poolName.includes(searchFilter))
       .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey])
       .slice((page - 1) * limit, page * limit);
-  }, [sortKey, isAsc, limit, page, searchFilter]);
+  }, [sortKey, isAsc, limit, page, searchFilter, poolDetails]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -80,7 +95,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
     <PoolsComponentStyle>
       <Box className="info-header">
         {
-          !pool ?
+          !poolID ?
             <Box>
               <Typography variant="subtitle1">Liquidity Pools</Typography>
               <Typography variant="body1">Start earning incentives by providing liquidity.</Typography>
@@ -91,7 +106,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
                 <FontAwesomeIcon icon={faChevronRight} />
                 <Link href={`${PATHS.INFO}?tabIndex=1`}><Typography variant="h5">Pools</Typography></Link>
                 <FontAwesomeIcon icon={faChevronRight} />
-                <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
+                <Typography variant="h5">{getPoolToken0(pool.poolName)}/{getPoolToken1(pool.poolName)}</Typography>
               </Box>
               <Box className="info-view-contract">
                 <Typography variant="body1">View Contract</Typography>
@@ -104,24 +119,29 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       </Box>
 
       {
-        pool &&
+        poolID &&
         <Box className="pool-header">
           <Box className="pool-header-left-box">
             <Box className="pool-summary">
               <Box className="pool-summary-image-1">
-                <Image src={tokenSvgs[pool.token1.symbol]} width={48} height={48} />
+                <Image src={tokenSvgs[getPoolToken0(pool.poolName)]} width={48} height={48} />
               </Box>
               <Box className="pool-summary-image-2">
-                <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
+                <Image src={tokenSvgs[getPoolToken1(pool.poolName)]} width={48} height={48} />
               </Box>
 
               <Box className="pool-summary-detail">
                 <Box className="pool-summary-name">
-                  <Typography variant="h5">{pool.token1.symbol}/{pool.token2.symbol}</Typography>
+                  <Typography variant="h5">{getPoolToken0(pool.poolName)}/{getPoolToken1(pool.poolName)}</Typography>
                   <Chip className="pool-summary-share" label={`${pool.share}%`} />
                 </Box>
                 <Box>
-                  <Typography variant="h5">1 {pool.token1.symbol} = $0.92  1 {pool.token2.symbol} = $2.78</Typography>
+                  {
+                    conversionRates[getPoolToken0(pool.poolName)] && conversionRates[getPoolToken1(pool.poolName)] &&
+                    <Typography variant="h5">
+                      1 {getPoolToken0(pool.poolName)} = {currencyDecimalFormat(+conversionRates[getPoolToken0(pool.poolName)][currency], currency)}  1 {getPoolToken1(pool.poolName)} = {currencyDecimalFormat(+conversionRates[getPoolToken1(pool.poolName)][currency], currency)}
+                    </Typography>
+                  }
                 </Box>
               </Box>
             </Box>
@@ -152,7 +172,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       }
 
       {
-        !pool &&
+        !poolID &&
         <Box className="table-title">
           <Typography variant="subtitle1">Saved Pools</Typography>
         </Box>

@@ -8,14 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent, TokensTable, TransactionsTable, } from 'components';
 import { DecreaseIcon, IncreaseIcon, tokenSvgs } from 'imgs/icons';
-import { PATHS } from 'consts';
+import { createMockChartInfo } from '__mock__';
 import { TokensComponentStyle } from './index.style';
-import { createMockChartInfo, mockPoolDetails } from '__mock__';
-import { ITokenDetail } from 'models';
+import { ITokenDetail, IPoolDetail } from 'models';
+import { getPoolToken0, getPoolToken1 } from 'utils';
+import { PATHS } from 'consts';
 
 export interface ITokenComponentProps {
   tokenDetails: ITokenDetail[],
   tokenID: string,
+  poolDetails: IPoolDetail[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -24,6 +26,7 @@ export interface ITokenComponentProps {
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const {
+    poolDetails,
     tokenDetails,
     tokenID,
     onSwap,
@@ -60,11 +63,11 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
 
   const pools = useMemo(() => {
     if (tokenDetail.symbol)
-      return mockPoolDetails
-        .filter(pool => pool.token1.symbol === tokenDetail.symbol || pool.token2.symbol === tokenDetail.symbol)
+      return poolDetails
+        .filter(pool => getPoolToken0(pool.poolName) === tokenDetail.symbol || getPoolToken1(pool.poolName) === tokenDetail.symbol)
         .sort((a: any, b: any) => isAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey]);
     return [];
-  }, [sortKey, isAsc, tokenDetail]);
+  }, [sortKey, isAsc, tokenDetail, poolDetails]);
 
   const onSortClick = (key: string) => {
     if (key !== sortKey) {
@@ -91,12 +94,12 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const [searchFilter, setSearchFilter] = useState<string>('');
 
   const tokens = useMemo(() => {
-    setMaximumPage(Math.ceil(mockPoolDetails.length / limit));
+    setMaximumPage(Math.ceil(poolDetails.length / limit));
     return tokenDetails
-      .filter(el => el.name.includes(searchFilter))
+      .filter(el => el.symbol.includes(searchFilter) || el.name.includes(searchFilter))
       .sort((a: any, b: any) => isTokenAsc ? a[sortTokenKey] - b[sortTokenKey] : b[sortTokenKey] - a[sortTokenKey])
       .slice((page - 1) * limit, page * limit);
-  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter, tokenDetails]);
+  }, [sortTokenKey, isTokenAsc, limit, page, searchFilter, tokenDetails, poolDetails.length]);
 
   const onSortTokenClick = (key: string) => {
     if (key !== sortTokenKey) {

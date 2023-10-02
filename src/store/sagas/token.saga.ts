@@ -30,7 +30,7 @@ export function* getAccountTokensSaga(action: any) {
       yield put(AppActions.token.getAccountTokensSuccess(result.data));
     }
   } catch (error) {
-    yield put(AppActions.token.getAccountTokensSuccess(error));
+    yield put(AppActions.token.getAccountTokensFailure(error));
   }
 }
 

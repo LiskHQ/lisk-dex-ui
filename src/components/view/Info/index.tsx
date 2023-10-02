@@ -7,19 +7,27 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
-import { mockPoolDetails } from '__mock__';
 import { PATHS } from 'consts';
-import { ITokenDetail } from 'models';
+import { ConversionRates, ITokenDetail, IPoolDetail } from 'models';
 
 export interface InfoViewProps {
   tokenDetails: ITokenDetail[],
+  poolDetails: IPoolDetail[],
+  conversionRates: ConversionRates,
+  getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
 }
 
 export const InfoView: React.FC<InfoViewProps> = (props) => {
+  const {
+    poolDetails,
+    conversionRates,
+    getToken2FiatConversion,
+  } = props;
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
   const [tokenID, setTokenID] = useState<string>('');
+  const [poolID, setPoolID] = useState('');
 
   const { tokenDetails } = props;
 
@@ -40,11 +48,12 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
     if (router) {
       const { query } = router;
       if (query) {
+        setPoolID(query.poolID as string);
         setTokenID(query.tokenID as string);
         if (query.tabIndex) {
           setTabValue(parseInt(query.tabIndex as string));
         }
-        if (query.poolId !== undefined) {
+        if (query.poolID !== undefined) {
           setTabValue(1);
         }
         if (query.tokenID !== undefined) {
@@ -56,14 +65,11 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
   const searchedPools = useMemo(() => {
     if (filter)
-      return mockPoolDetails.filter(pool =>
-        pool.token1.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token1.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return poolDetails.filter(pool =>
+        pool.poolName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, poolDetails]);
 
   const searchedTokens = useMemo(() => {
     if (filter)
@@ -75,7 +81,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
   }, [filter, tokenDetails]);
 
   const onSelectPool = (id: string) => {
-    router.push(`?poolId=${id}`);
+    router.push(`?poolID=${id}`);
   };
 
   const onSelectToken = (id: string) => {
@@ -111,6 +117,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          poolDetails={poolDetails}
           tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
@@ -121,7 +128,10 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={1}>
         <PoolsComponent
-          router={router}
+          poolDetails={poolDetails}
+          poolID={poolID}
+          conversionRates={conversionRates}
+          getToken2FiatConversion={getToken2FiatConversion}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
@@ -131,6 +141,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
 
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
+          poolDetails={poolDetails}
           tokenID={tokenID}
           tokenDetails={tokenDetails}
           onSwap={onGotoSwap}

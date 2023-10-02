@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material';
 import { render } from '@testing-library/react';
 import { lightTheme } from 'styles/theme';
-import { mockTokenDetails } from '__mock__';
+import { mockPoolDetails, mockTokenDetails } from '__mock__';
 import { ITokenComponentProps, TokensComponent } from '.';
 
 function renderComponent(props: ITokenComponentProps) {
@@ -17,11 +17,12 @@ describe('Info Tokens component', () => {
   const props: ITokenComponentProps = {
     tokenDetails: mockTokenDetails,
     tokenID: '',
+    poolDetails: mockPoolDetails,
     onSwap: jest.fn(),
     onAddLiquidity: jest.fn(),
     onSelectPool: jest.fn(),
     onSelectToken: jest.fn(),
-  }
+  };
 
   it('checks if tokens component renders tokens correctly', () => {
     const { getAllByTestId } = renderComponent(props);

@@ -7,19 +7,20 @@ import { HelpIcon, IncreaseIcon, tokenSvgs } from 'imgs/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { IPoolDetail } from 'models';
+import { getPoolToken0, getPoolToken1 } from 'utils';
 
 const sortKeys = [
   {
     label: 'TVL',
-    key: 'tvl',
+    key: 'poolTVL',
   },
   {
     label: 'Volume 24H',
-    key: 'volume',
+    key: 'poolVolume24H',
   },
   {
     label: 'Fees 24H',
-    key: 'fees',
+    key: 'poolFees24H',
   },
 ];
 
@@ -117,19 +118,20 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
             {pools && pools.map((row, index) => (
               <TableRow
                 key={index}
+                data-testid='table-pool-row'
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => { onSelectPool && onSelectPool(index.toString()); }}
+                onClick={() => { onSelectPool && onSelectPool(row.poolID); }}
               >
                 <TableCell className="always-visible" scope="row">
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
                     <Box className="token1-image">
-                      <Image src={tokenSvgs[row.token1.symbol]} width={32} height={32}></Image>
+                      <Image src={tokenSvgs[getPoolToken0(row.poolName)]} width={32} height={32}></Image>
                     </Box>
                     <Box className="token2-image">
-                      <Image src={tokenSvgs[row.token2.symbol]} width={32} height={32}></Image>
+                      <Image src={tokenSvgs[getPoolToken1(row.poolName)]} width={32} height={32}></Image>
                     </Box>
-                    <Typography>{row.token1.symbol} - {row.token2.symbol}</Typography>
+                    <Typography>{getPoolToken0(row.poolName)} - {getPoolToken1(row.poolName)}</Typography>
 
                     <Box className="token-share">
                       <Typography variant="caption">{row.share}</Typography>
@@ -137,17 +139,17 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="body2">${row.tvl}M</Typography>
+                  <Typography variant="body2">${row.poolTVL}M</Typography>
                 </TableCell>
                 <TableCell className="always-visible" align="right">
-                  <Typography variant="body2">${row.volume}M</Typography>
+                  <Typography variant="body2">${row.poolVolume24H}M</Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="body2">${row.fees}K</Typography>
+                  <Typography variant="body2">${row.poolFees24H}K</Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="apy-td">
-                    <Typography variant="body2">{row.APY}%</Typography>
+                    <Typography variant="body2">{row.poolAPY}%</Typography>
                     <IncreaseIcon />
                   </Box>
                 </TableCell>
@@ -156,13 +158,13 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                     <ButtonComponent
                       variant="outlined"
                       size="small"
-                      onClick={e => { onAddLiquidityClick(e, row.token1.symbol, row.token2.symbol); }}
+                      onClick={e => { onAddLiquidityClick(e, getPoolToken0(row.poolName), getPoolToken1(row.poolName)); }}
                     >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
                     <ButtonComponent
                       size="small"
-                      onClick={e => { onSwapClick(e, row.token1.symbol, row.token2.symbol); }}
+                      onClick={e => { onSwapClick(e, getPoolToken0(row.poolName), getPoolToken1(row.poolName)); }}
                     >
                       <Typography variant="body2">Swap</Typography>
                     </ButtonComponent>
