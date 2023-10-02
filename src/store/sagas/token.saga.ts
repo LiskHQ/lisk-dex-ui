@@ -1,12 +1,8 @@
-import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion } from 'apis';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion, apiGetTopTokensFromDatabase } from 'apis';
+import { IFilteredTokens, IResponse, ITopTokensFromDatabaseReponse, ITopTokensFromDatabaseRequest } from 'models';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
-
-interface IResponse {
-  data: unknown,
-  meta: unknown,
-  links: unknown,
-}
 
 export function* getAvailableTokensSaga() {
   try {
@@ -121,5 +117,28 @@ export function* getSlippageBoundsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.token.getSlippageBoundsFailure(error));
+  }
+}
+
+export function* getTopTokensFromDatabaseSaga(action: PayloadAction<ITopTokensFromDatabaseRequest>) {
+  try {
+    const result: ITopTokensFromDatabaseReponse = yield call(
+      async () =>
+        await apiGetTopTokensFromDatabase(action.payload)
+    );
+
+    if (result.data) {
+      const { topTokensFromDatabase } = result.data;
+
+      const { tokenID } = action.payload;
+      if (!tokenID)
+        yield put(AppActions.token.getTopTokensFromDatabaseSuccess(topTokensFromDatabase));
+      else {
+        const { filteredTokens } = topTokensFromDatabase[0] as IFilteredTokens;
+        yield put(AppActions.token.getTokenDetailFromDatabaseSuccess(filteredTokens[0]));
+      }
+    }
+  } catch (error) {
+    yield put(AppActions.token.getTopTokensFromDatabaseFailure(error));
   }
 }

@@ -7,13 +7,21 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
-import { mockPoolDetails, mockTokenDetails } from '__mock__';
+import { mockPoolDetails } from '__mock__';
 import { PATHS } from 'consts';
+import { ITokenDetail } from 'models';
 
-export const InfoView: React.FC = () => {
+export interface InfoViewProps {
+  tokenDetails: ITokenDetail[],
+}
+
+export const InfoView: React.FC<InfoViewProps> = (props) => {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
+  const [tokenID, setTokenID] = useState<string>('');
+
+  const { tokenDetails } = props;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -32,13 +40,14 @@ export const InfoView: React.FC = () => {
     if (router) {
       const { query } = router;
       if (query) {
+        setTokenID(query.tokenID as string);
         if (query.tabIndex) {
           setTabValue(parseInt(query.tabIndex as string));
         }
         if (query.poolId !== undefined) {
           setTabValue(1);
         }
-        if (query.tokenId !== undefined) {
+        if (query.tokenID !== undefined) {
           setTabValue(2);
         }
       }
@@ -58,19 +67,19 @@ export const InfoView: React.FC = () => {
 
   const searchedTokens = useMemo(() => {
     if (filter)
-      return mockTokenDetails.filter(token =>
-        token.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return tokenDetails.filter(token =>
+        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, tokenDetails]);
 
   const onSelectPool = (id: string) => {
     router.push(`?poolId=${id}`);
   };
 
   const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`);
+    router.push(`?tokenID=${id}`);
   };
 
   const onGotoSwap = (token1: string, token2?: string) => {
@@ -102,6 +111,7 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
@@ -121,7 +131,8 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
-          router={router}
+          tokenID={tokenID}
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}

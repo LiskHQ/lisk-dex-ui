@@ -109,9 +109,10 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
           <TableBody>
             {tokens && tokens.map((row, index) => (
               <TableRow
-                key={index}
+                key={row.tokenID}
+                data-testid='table-token-row'
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                onClick={() => { onSelectToken && onSelectToken(index.toString()); }}
+                onClick={() => { onSelectToken && onSelectToken(row.tokenID); }}
               >
                 <TableCell className="always-visible" scope="row">
                   <Box className="name-td">
@@ -119,7 +120,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                     <Box className="token1-image">
                       <Image className="token1-image" src={tokenSvgs[row.symbol]} width={32} height={32}></Image>
                     </Box>
-                    <Typography variant="body2">{tokenSvgs[row.symbol]}</Typography>
+                    <Typography variant="body2">{row.name}</Typography>
                     <Box className="token-symbol">
                       <Typography variant="caption">{row.symbol}</Typography>
                     </Box>
@@ -143,7 +144,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                   </Box>
                 </TableCell>
                 <TableCell className="always-visible" align="right">
-                  <Typography variant="body2">${row.volume}M</Typography>
+                  <Typography variant="body2">${row.volume24H}M</Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="body2">${row.liquidity}M</Typography>

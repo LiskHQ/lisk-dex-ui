@@ -69,73 +69,30 @@ export const mockTokens: IToken[] = [
 
 export const mockTokenDetails: ITokenDetail[] = [
   {
-    ...mockTokens[0],
+    name: 'Lisk',
     price: 1.23,
-    priceChange: 3.24,
-    volume: 1.23,
+    priceChange: +3.24,
+    volume24H: 1.23,
     liquidity: 7.2,
+    tokenID: '0400001100000000',
+    symbol: 'LSK'
   },
   {
-    ...mockTokens[1],
+    name: 'Bazar',
+    price: 1732.25,
+    priceChange: -4.54,
+    volume24H: 1.23,
+    liquidity: 7.2,
+    tokenID: '0000000000000002',
+    symbol: 'BZR'
+  },
+  {
+    name: 'doEDU',
     price: 1.23,
-    priceChange: -3.24,
-    volume: 1.23,
+    priceChange: +3.24,
+    volume24H: 1.23,
     liquidity: 7.2,
-  },
-  {
-    ...mockTokens[0],
-    price: 1.23,
-    priceChange: 3.24,
-    volume: 1.23,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[1],
-    price: 3.23,
-    priceChange: -3.24,
-    volume: 1.23,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[0],
-    price: 10.23,
-    priceChange: 3.24,
-    volume: 6.43,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[1],
-    price: 4.23,
-    priceChange: -3.24,
-    volume: 1.23,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[0],
-    price: 5.23,
-    priceChange: 3.24,
-    volume: 4.53,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[1],
-    price: 7.23,
-    priceChange: 3.24,
-    volume: 8.23,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[0],
-    price: 4.23,
-    priceChange: 3.24,
-    volume: 23.33,
-    liquidity: 7.2,
-  },
-  {
-    ...mockTokens[1],
-    price: 1.23,
-    priceChange: 3.24,
-    volume: 1.23,
-    liquidity: 7.2,
+    tokenID: '0000000000000003',
+    symbol: 'EDU'
   },
 ];
