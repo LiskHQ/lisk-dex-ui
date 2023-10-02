@@ -4,38 +4,19 @@ import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer,
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DropdownComponent, SearchInputComponent } from 'components';
-import { IToken } from 'models';
+import { IToken, ITransaction } from 'models';
 import { mockTokens } from '__mock__';
 import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
 import { tokenSvgs } from 'imgs/icons';
-
-function createData(
-  token1: IToken,
-  token2: IToken,
-  account: string,
-  time: string,
-) {
-  return { token1, token2, account, time };
-}
-
-const rows = [
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-];
+import { TransactionCommands } from 'consts';
 
 export interface ITransactionsTable {
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
   onPreviousPage?: () => void,
+  onChangeCommand?: (value: string) => void,
+  transactions: ITransaction[],
   limit?: number,
   page?: number,
   totalPages?: number,
@@ -43,6 +24,8 @@ export interface ITransactionsTable {
 
 export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
   const {
+    transactions: _transactions,
+    onChangeCommand,
     onChangeRowCount,
     onNextPage,
     onPreviousPage,
@@ -53,7 +36,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
 
   const transactions = useMemo(() => {
     if (page && limit)
-      return rows.slice((page - 1) * limit, page * limit);
+      return _transactions.slice((page - 1) * limit, page * limit);
     return [];
   }, [page, limit]);
 
@@ -64,19 +47,17 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
           className="transactions-search-input"
           placeholder="Search transactions by token..."
         />
-        <DropdownComponent className="transactions-filter-dropdown" defaultValue={10}>
-          <MenuItem value="10">
+        <DropdownComponent className="transactions-filter-dropdown" defaultValue={''} onChange={(value: any) => onChangeCommand && onChangeCommand(value)}>
+          <MenuItem value="">
             <Typography variant="body2">All transactions</Typography>
           </MenuItem>
-          <MenuItem value="20">
-            <Typography variant="body2">Swaps</Typography>
-          </MenuItem>
-          <MenuItem value="30">
-            <Typography variant="body2">Adds</Typography>
-          </MenuItem>
-          <MenuItem value="40">
-            <Typography variant="body2">Removes</Typography>
-          </MenuItem>
+          {
+            Object.entries(TransactionCommands).map(([key, value]) =>
+              <MenuItem value={value}>
+                <Typography variant="body2">{value}</Typography>
+              </MenuItem>
+            )
+          }
         </DropdownComponent>
       </Box>
 

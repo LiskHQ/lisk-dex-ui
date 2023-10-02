@@ -5,20 +5,25 @@ import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } 
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
 import { createMockChartInfo, mockPoolDetails, mockTokenDetails } from '__mock__';
+import { ITransaction } from 'models';
 
 export interface IOverviewComponentProps {
+  transactions: ITransaction[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
   onSelectToken: (id: string) => void,
+  onChangeTransactionCommand?: (value: string) => void,
 }
 
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const {
+    transactions,
     onSwap,
     onAddLiquidity,
     onSelectPool,
     onSelectToken,
+    onChangeTransactionCommand,
   } = props;
 
   const chartData = useMemo(() => {
@@ -99,7 +104,6 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         onAddLiquidity={onAddLiquidity}
       />
 
-
       <Box className="table-title">
         <Typography variant="subtitle1">Top Pools</Typography>
         <Box className="view-all">
@@ -121,9 +125,11 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         <Typography variant="subtitle1">Transactions</Typography>
       </Box>
       <TransactionsTable
+        transactions={transactions}
         page={transactionsPage}
         limit={transactionsLimit}
         totalPages={transactionsTotalPages}
+        onChangeCommand={onChangeTransactionCommand}
         onChangeRowCount={value => setTransactionsLimit(value)}
         onNextPage={() => setTransactionsPage(Math.min(transactionsPage + 1, transactionsTotalPages))}
         onPreviousPage={() => setTransactionsPage(Math.max(transactionsPage - 1, 1))}

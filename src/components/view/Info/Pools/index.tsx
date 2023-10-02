@@ -48,7 +48,6 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       return [];
   }, [poolId]);
 
-
   // pools table control
   const [isAsc, setAsc] = useState<boolean>();
   const [sortKey, setSortKey] = useState<string>('');

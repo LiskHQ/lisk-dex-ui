@@ -9,8 +9,18 @@ import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
 import { mockPoolDetails, mockTokenDetails } from '__mock__';
 import { PATHS } from 'consts';
+import { ITransaction } from 'models';
 
-export const InfoView: React.FC = () => {
+export interface InfoViewProps {
+  transactions: ITransaction[],
+  onChangeTransactionCommand: (value: string) => void,
+}
+
+export const InfoView: React.FC<InfoViewProps> = (props) => {
+  const {
+    transactions,
+    onChangeTransactionCommand,
+  } = props;
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
@@ -102,10 +112,12 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          transactions={transactions}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
           onSelectToken={onSelectToken}
+          onChangeTransactionCommand={onChangeTransactionCommand}
         />
       </TabPanel>
 
