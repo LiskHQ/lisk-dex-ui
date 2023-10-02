@@ -16,93 +16,21 @@ export const mockPools: IPool[] = [
 
 export const mockPoolDetails: IPoolDetail[] = [
   {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 12.2,
-    volume: 6.06,
-    fees: 1.5,
-    APY: 3.24,
+    poolID: '000000000000000000000100000000000001',
+    poolName: 'LSK-DEX',
+    poolTVL: 12.2,
+    poolVolume24H: 6.06,
+    poolFees24H: 1.5,
+    poolAPY: 3.24,
     share: 0.3
   },
   {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 15.6,
-    volume: 2.3,
-    fees: 2.9,
-    APY: 11.24,
-    share: 0.3
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 3.4,
-    volume: 4.1,
-    fees: 1.1,
-    APY: 5.67,
-    share: 0.05
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 7.8,
-    volume: 1.7,
-    fees: 4.4,
-    APY: 6.23,
-    share: 0.05
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 16.8,
-    volume: 2.1,
-    fees: 3.5,
-    APY: 5.44,
-    share: 0.3
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 13.22,
-    volume: 4.06,
-    fees: 3.55,
-    APY: 13.24,
-    share: 0.3
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 9.22,
-    volume: 2.6,
-    fees: 4.65,
-    APY: 3.15,
-    share: 0.3
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 20.2,
-    volume: 3.06,
-    fees: 3.45,
-    APY: 3.24,
-    share: 0.05
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 1.2,
-    volume: 3.06,
-    fees: 7.5,
-    APY: 3.54,
-    share: 0.05
-  },
-  {
-    token1: mockTokens[0],
-    token2: mockTokens[1],
-    tvl: 15.2,
-    volume: 8.96,
-    fees: 9.5,
-    APY: 3.24,
+    poolID: '000000000000000000000100000000000002',
+    poolName: 'LSK-DEX',
+    poolTVL: 15.6,
+    poolVolume24H: 2.3,
+    poolFees24H: 2.9,
+    poolAPY: 11.24,
     share: 0.3
   }
 ];

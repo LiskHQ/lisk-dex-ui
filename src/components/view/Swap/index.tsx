@@ -74,7 +74,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   useEffect(() => {
     if (router) {
       const { query } = router;
-      if (query) {
+      if (query && tokens.length) {
         if (query.token1) {
           setToken1(tokens.find(token => token.symbol === query.token1) as IToken);
         }
