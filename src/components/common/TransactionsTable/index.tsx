@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
@@ -41,8 +41,12 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
     return [];
   }, [page, limit, _transactions]);
 
-  const getTokenName = (tokenId: string) => {
-    return availableTokens.find(token => token.tokenID === tokenId)?.tokenName || '';
+  useEffect(() => {
+    console.log("token: ", getTokenSymbol(transactions[0].params.tokenIdIn), transactions.length);
+  }, [transactions, _transactions]);
+
+  const getTokenSymbol = (tokenId: string) => {
+    return availableTokens.find(token => token.tokenID === tokenId)?.symbol || '';
   };
 
   return (
@@ -81,8 +85,8 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
             {transactions.length > 0 && transactions.map((row: ITransaction, index: number) => (
               <TableRow
                 key={index}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 data-testid='table-transaction-row'
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell scope="row">
                   <Box className="name-td">
@@ -91,12 +95,12 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                       {
                         [TransactionCommands.swapExactIn]: <>
                           <Box className="token1-image">
-                            <Image className="token1-image" src={tokenSvgs[getTokenName(row.params.tokenIdIn)]} width={32} height={32}></Image>
+                            <Image className="token1-image" src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={32} height={32}></Image>
                           </Box>
                           <Box className="token2-image">
-                            <Image src={tokenSvgs[getTokenName(row.params.tokenIdOut)]} width={32} height={32}></Image>
+                            <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={32} height={32}></Image>
                           </Box>
-                          <Typography>{getTokenName(row.params.tokenIdIn)} - {getTokenName(row.params.tokenIdOut)}</Typography>
+                          <Typography>{getTokenSymbol(row.params.tokenIdIn)} - {getTokenSymbol(row.params.tokenIdOut)}</Typography>
                         </>,
                       }[row.moduleCommand]
                     }
@@ -107,7 +111,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                     {
                       {
                         [TransactionCommands.swapExactIn]: <>
-                          <Typography variant="body2">Swap {getTokenName(row.params.tokenIdIn)} for {getTokenName(row.params.tokenIdOut)}</Typography>
+                          <Typography variant="body2">Swap {getTokenSymbol(row.params.tokenIdIn)} for {getTokenSymbol(row.params.tokenIdOut)}</Typography>
                         </>,
                       }[row.moduleCommand]
                     }
@@ -119,11 +123,11 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
                     {
                       {
                         [TransactionCommands.swapExactIn]: <>
-                          <Image src={tokenSvgs[getTokenName(row.params.tokenIdIn)]} width={16} height={16} />
-                          <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenName(row.params.tokenIdIn)}</Typography>
+                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenSymbol(row.params.tokenIdIn)}</Typography>
                           <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
-                          <Image src={tokenSvgs[getTokenName(row.params.tokenIdOut)]} width={16} height={16} />
-                          <Typography variant="body2">{row.params.amountTokenOut} {getTokenName(row.params.tokenIdOut)}</Typography>
+                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.amountTokenOut} {getTokenSymbol(row.params.tokenIdOut)}</Typography>
                         </>
                       }[row.moduleCommand]
                     }

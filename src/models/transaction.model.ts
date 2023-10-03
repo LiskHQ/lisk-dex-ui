@@ -24,7 +24,6 @@ export interface ITransaction {
   params: any,
   executionStatus: string,
   index: number,
-  meta: any,
 }
 
 export interface IAuth {
