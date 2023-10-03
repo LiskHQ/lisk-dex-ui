@@ -18,6 +18,7 @@ describe('Overview component', () => {
     transactions: [],
     tokenDetails: mockTokenDetails,
     poolDetails: mockPoolDetails,
+    availableTokens: [],
     onSwap: jest.fn,
     onAddLiquidity: jest.fn,
     onSelectPool: jest.fn,

@@ -41,10 +41,6 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
     return [];
   }, [page, limit, _transactions]);
 
-  useEffect(() => {
-    console.log("token: ", getTokenSymbol(transactions[0].params.tokenIdIn), transactions.length);
-  }, [transactions, _transactions]);
-
   const getTokenSymbol = (tokenId: string) => {
     return availableTokens.find(token => token.tokenID === tokenId)?.symbol || '';
   };
