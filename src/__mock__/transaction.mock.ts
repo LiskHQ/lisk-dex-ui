@@ -28,4 +28,4 @@ export const mockTransactions: ITransaction[] = [
     executionStatus: 'success',
     index: 0,
   }
-]
+];

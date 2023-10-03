@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/material';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { ITransactionsTableProps, TransactionsTable } from './index';
 import React from 'react';
 import { lightTheme } from 'styles/theme';
