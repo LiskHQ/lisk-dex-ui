@@ -8,12 +8,13 @@ import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
 import { PATHS } from 'consts';
-import { ConversionRates, ITokenDetail, IPoolDetail, ITransaction } from 'models';
+import { ConversionRates, ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 
 export interface InfoViewProps {
   transactions: ITransaction[],
   tokenDetails: ITokenDetail[],
   poolDetails: IPoolDetail[],
+  availableTokens: IToken[],
   conversionRates: ConversionRates,
   getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
   onChangeTransactionCommand: (value: string) => void,
@@ -22,6 +23,7 @@ export interface InfoViewProps {
 export const InfoView: React.FC<InfoViewProps> = (props) => {
   const {
     transactions,
+    availableTokens,
     poolDetails,
     conversionRates,
     getToken2FiatConversion,
@@ -122,6 +124,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
           transactions={transactions}
+          availableTokens={availableTokens}
           poolDetails={poolDetails}
           tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
@@ -148,6 +151,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
           transactions={transactions}
+          availableTokens={availableTokens}
           poolDetails={poolDetails}
           tokenID={tokenID}
           tokenDetails={tokenDetails}
@@ -155,6 +159,7 @@ export const InfoView: React.FC<InfoViewProps> = (props) => {
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
           onSelectToken={onSelectToken}
+          onChangeTransactionCommand={onChangeTransactionCommand}
         />
       </TabPanel>
     </InfoViewStyle >

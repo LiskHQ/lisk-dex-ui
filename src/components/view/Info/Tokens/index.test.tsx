@@ -15,6 +15,7 @@ function renderComponent(props: ITokenComponentProps) {
 
 describe('Info Tokens component', () => {
   const props: ITokenComponentProps = {
+    transactions: [],
     tokenDetails: mockTokenDetails,
     tokenID: '',
     poolDetails: mockPoolDetails,
@@ -22,6 +23,7 @@ describe('Info Tokens component', () => {
     onAddLiquidity: jest.fn(),
     onSelectPool: jest.fn(),
     onSelectToken: jest.fn(),
+    onChangeTransactionCommand: jest.fn(),
   };
 
   it('checks if tokens component renders tokens correctly', () => {

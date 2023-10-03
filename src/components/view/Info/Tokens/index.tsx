@@ -10,31 +10,35 @@ import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent, TokensTab
 import { DecreaseIcon, IncreaseIcon, tokenSvgs } from 'imgs/icons';
 import { createMockChartInfo } from '__mock__';
 import { TokensComponentStyle } from './index.style';
-import { ITokenDetail, IPoolDetail, ITransaction } from 'models';
+import { ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 import { getPoolToken0, getPoolToken1 } from 'utils';
 import { PATHS } from 'consts';
 
 export interface ITokenComponentProps {
   tokenDetails: ITokenDetail[],
+  availableTokens: IToken[],
   tokenID: string,
   poolDetails: IPoolDetail[],
   transactions: ITransaction[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
-  onSelectToken: (id: string) => void
+  onSelectToken: (id: string) => void,
+  onChangeTransactionCommand: (value: string) => void,
 }
 
 export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const {
     transactions,
+    availableTokens,
     poolDetails,
     tokenDetails,
     tokenID,
     onSwap,
     onAddLiquidity,
     onSelectPool,
-    onSelectToken
+    onSelectToken,
+    onChangeTransactionCommand,
   } = props;
 
   const [isLike, setLike] = useState<boolean>(false);
@@ -226,9 +230,11 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
             </Box>
             <TransactionsTable
               transactions={transactions}
+              availableTokens={availableTokens}
               page={transactionsPage}
               limit={transactionsLimit}
               totalPages={transactionsTotalPages}
+              onChangeCommand={onChangeTransactionCommand}
               onChangeRowCount={value => setTransactionsLimit(value)}
               onNextPage={() => setTransactionsPage(transactionsPage + 1)}
               onPreviousPage={() => setTransactionsPage(transactionsPage - 1)}

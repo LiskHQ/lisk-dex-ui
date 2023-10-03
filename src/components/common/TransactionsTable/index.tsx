@@ -5,7 +5,6 @@ import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesom
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DropdownComponent, SearchInputComponent } from 'components';
 import { IToken, ITransaction } from 'models';
-import { mockTokens } from '__mock__';
 import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
 import { tokenSvgs } from 'imgs/icons';
@@ -17,6 +16,7 @@ export interface ITransactionsTable {
   onPreviousPage?: () => void,
   onChangeCommand?: (value: string) => void,
   transactions: ITransaction[],
+  availableTokens: IToken[],
   limit?: number,
   page?: number,
   totalPages?: number,
@@ -25,6 +25,7 @@ export interface ITransactionsTable {
 export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
   const {
     transactions: _transactions,
+    availableTokens,
     onChangeCommand,
     onChangeRowCount,
     onNextPage,
@@ -38,7 +39,11 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
     if (page && limit)
       return _transactions.slice((page - 1) * limit, page * limit);
     return [];
-  }, [page, limit]);
+  }, [page, limit, _transactions]);
+
+  const getTokenName = (tokenId: string) => {
+    return availableTokens.find(token => token.tokenID === tokenId)?.tokenName || '';
+  };
 
   return (
     <TransactionsTableStyle>
@@ -53,7 +58,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
           </MenuItem>
           {
             Object.entries(TransactionCommands).map(([key, value]) =>
-              <MenuItem value={value}>
+              <MenuItem value={value} key={key}>
                 <Typography variant="body2">{value}</Typography>
               </MenuItem>
             )
@@ -73,45 +78,64 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactions.length > 0 && transactions.map((row: any, index: number) => (
+            {transactions.length > 0 && transactions.map((row: ITransaction, index: number) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                data-testid='table-transaction-row'
               >
                 <TableCell scope="row">
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
-                    <Box className="token1-image">
-                      <Image className="token1-image" src={tokenSvgs[row.token1.symbol]} width={32} height={32}></Image>
-                    </Box>
-                    <Box className="token2-image">
-                      <Image src={tokenSvgs[row.token2.symbol]} width={32} height={32}></Image>
-                    </Box>
-                    <Typography>{row.token1.symbol} - {row.token1.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Box className="token1-image">
+                            <Image className="token1-image" src={tokenSvgs[getTokenName(row.params.tokenIdIn)]} width={32} height={32}></Image>
+                          </Box>
+                          <Box className="token2-image">
+                            <Image src={tokenSvgs[getTokenName(row.params.tokenIdOut)]} width={32} height={32}></Image>
+                          </Box>
+                          <Typography>{getTokenName(row.params.tokenIdIn)} - {getTokenName(row.params.tokenIdOut)}</Typography>
+                        </>,
+                      }[row.moduleCommand]
+                    }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="action-td">
-                    <Typography variant="body2">Swap {row.token1.symbol} for {row.token2.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Typography variant="body2">Swap {getTokenName(row.params.tokenIdIn)} for {getTokenName(row.params.tokenIdOut)}</Typography>
+                        </>,
+                      }[row.moduleCommand]
+                    }
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="details-td">
-                    <Image src={tokenSvgs[row.token1.symbol]} width={16} height={16} />
-                    <Typography variant="body2">142.3k {row.token1.symbol}</Typography>
-                    <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
-                    <Image src={tokenSvgs[row.token2.symbol]} width={16} height={16} />
-                    <Typography variant="body2">0.4k {row.token1.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Image src={tokenSvgs[getTokenName(row.params.tokenIdIn)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenName(row.params.tokenIdIn)}</Typography>
+                          <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
+                          <Image src={tokenSvgs[getTokenName(row.params.tokenIdOut)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.amountTokenOut} {getTokenName(row.params.tokenIdOut)}</Typography>
+                        </>
+                      }[row.moduleCommand]
+                    }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="action-td">
-                    <Typography variant="body2">{ellipsisAddress(row.account)}</Typography>
+                    <Typography variant="body2">{ellipsisAddress(row.sender.address)}</Typography>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </Box>
                 </TableCell>
-                <TableCell align="right">{row.time}</TableCell>
+                <TableCell align="right">{new Date(row.block.timestamp).toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>

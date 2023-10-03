@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { ITokenDetail, IPoolDetail, ITransaction } from 'models';
+import { ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 import { createMockChartInfo } from '__mock__';
 
 export interface IOverviewComponentProps {
   transactions: ITransaction[],
   tokenDetails: ITokenDetail[],
   poolDetails: IPoolDetail[],
+  availableTokens: IToken[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
@@ -21,6 +22,7 @@ export interface IOverviewComponentProps {
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const {
     transactions,
+    availableTokens,
     poolDetails,
     tokenDetails,
     onSwap,
@@ -133,6 +135,7 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
       </Box>
       <TransactionsTable
         transactions={transactions}
+        availableTokens={availableTokens}
         page={transactionsPage}
         limit={transactionsLimit}
         totalPages={transactionsTotalPages}

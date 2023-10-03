@@ -15,12 +15,14 @@ function renderComponent(props: IOverviewComponentProps) {
 
 describe('Overview component', () => {
   const props: IOverviewComponentProps = {
+    transactions: [],
     tokenDetails: mockTokenDetails,
     poolDetails: mockPoolDetails,
     onSwap: jest.fn,
     onAddLiquidity: jest.fn,
     onSelectPool: jest.fn,
     onSelectToken: jest.fn,
+    onChangeTransactionCommand: jest.fn,
   };
 
   it('checks if overview component renders pools correctly', () => {
