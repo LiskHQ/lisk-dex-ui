@@ -10,7 +10,7 @@ import { ellipsisAddress } from 'utils';
 import { tokenSvgs } from 'imgs/icons';
 import { TransactionCommands } from 'consts';
 
-export interface ITransactionsTable {
+export interface ITransactionsTableProps {
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
   onPreviousPage?: () => void,
@@ -22,7 +22,7 @@ export interface ITransactionsTable {
   totalPages?: number,
 }
 
-export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
+export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
   const {
     transactions: _transactions,
     availableTokens,
@@ -166,6 +166,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
         <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
         <IconButton
           onClick={() => { onNextPage && onNextPage(); }}
+          data-testid='transaction-table-next-page-test'
           disabled={totalPages == page}
         >
           <FontAwesomeIcon icon={faArrowRight} />
