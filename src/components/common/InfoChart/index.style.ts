@@ -124,6 +124,12 @@ export const InfoChartStyle = styled('div')(({ theme }: any) => {
           '&.increase': {
             color: theme.success.dark,
           }
+        },
+
+        '.summary-total-tokens-locked': {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-around',
         }
       }
     },
