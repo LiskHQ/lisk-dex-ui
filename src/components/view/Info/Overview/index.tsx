@@ -82,18 +82,18 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const infoChartSummary = useMemo(() => {
     return [
       {
-        title: `${tokenDetails[0].symbol} Price`,
-        value: `${currencySymbols[currency]}${tokenDetails[0].price}`,
-        changePercent: tokenDetails[0].priceChange,
+        title: `${tokenDetails[0] ? tokenDetails[0].symbol : ''} Price`,
+        value: `${currencySymbols[currency]}${tokenDetails[0] ? tokenDetails[0].price : ''}`,
+        changePercent: tokenDetails[0] ? tokenDetails[0].priceChange : '',
       },
       {
         title: 'Total Liquidity',
-        value: `${currencySymbols[currency]}${tokenDetails[0].liquidity}`,
+        value: `${currencySymbols[currency]}${tokenDetails[0] ? tokenDetails[0].liquidity : ''}`,
         changePercent: 2.32,
       },
       {
         title: 'Volume 24h',
-        value: `${currencySymbols[currency]}${tokenDetails[0].volume24H}`,
+        value: `${currencySymbols[currency]}${tokenDetails[0] ? tokenDetails[0].volume24H : ''}`,
         changePercent: 1.45,
       },
       {
