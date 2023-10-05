@@ -174,3 +174,15 @@ export async function apiGetTopTokensFromDatabase(data: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetTransactionStatistics(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/transactions/statistics', {
+    params: {
+      interval: 'day',
+      ...data,
+    }
+  });
+  if (response)
+    return response.data;
+  return {};
+}

@@ -7,7 +7,7 @@ import { PoolsComponentStyle } from './index.style';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { PATHS } from 'consts';
+import { PATHS, currencySymbols } from 'consts';
 import { tokenSvgs } from 'imgs/icons';
 import { ConversionRates, IPoolDetail } from 'models';
 import { createMockChartInfo } from '__mock__';
@@ -90,6 +90,35 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
       setAsc(!isAsc);
     }
   };
+
+  const infoChartSummary = useMemo(() => {
+    return [
+      {
+        title: 'Liquidity',
+        value: `${currencySymbols[currency]}221.4M`,
+        changePercent: -2.34,
+      },
+      {
+        title: 'Total Tokens Locked',
+        value: `${poolDetails[0].poolName}`,
+      },
+      {
+        title: 'TVL',
+        value: `${currencySymbols[currency]}${poolDetails[0].poolTVL}`,
+        changePercent: 1.45,
+      },
+      {
+        title: 'Volume 24h',
+        value: `${currencySymbols[currency]}${poolDetails[0].poolVolume24H}`,
+        changePercent: 4.86
+      },
+      {
+        title: 'Fees 24h',
+        value: `${currencySymbols[currency]}4252`,
+        changePercent: 4.86
+      }
+    ];
+  }, [currency, poolDetails]);
 
   return (
     <PoolsComponentStyle>
@@ -177,7 +206,12 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
           <Typography variant="subtitle1">Saved Pools</Typography>
         </Box>
       }
-      <InfoChart chartData={chartData} />
+      <InfoChart
+        infoChartSummary={infoChartSummary}
+        chartData={chartData}
+        tabs={['Volume', 'Liquidity', 'Fees']}
+        onTabChange={() => { }}
+      />
 
       <Box className="table-title pools">
         <Typography variant="subtitle1">All Pools</Typography>

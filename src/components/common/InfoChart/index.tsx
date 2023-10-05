@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import cn from 'classnames';
 import { Box, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { ButtonComponent, Chart } from 'components';
 import { InfoChartStyle } from './index.style';
-import { DecreaseIcon, IncreaseIcon, PositionIcon } from 'imgs/icons';
+import { DecreaseIcon, IncreaseIcon, PositionIcon, tokenSvgs } from 'imgs/icons';
+import { getPoolToken0, getPoolToken1 } from 'utils';
 
 const periodUnits = [
   'D',
@@ -12,39 +14,15 @@ const periodUnits = [
   'Y',
 ];
 
-const summary = [
-  {
-    title: 'LSK Price',
-    amount: '$1.007',
-    percent: -2.34
-  },
-  {
-    title: 'Total Liquidity',
-    amount: '$14.4m',
-    percent: 2.32
-  },
-  {
-    title: 'Volume 24h',
-    amount: '$2.5m',
-    percent: 1.45
-  },
-  {
-    title: 'Fees 24h',
-    amount: '$48.9k',
-    percent: 4.86
-  },
-  {
-    title: 'Transactions 24h',
-    amount: '621',
-  },
-];
-
 export interface IInfoChartProps {
   chartData?: { time: Date, price: number }[],
+  tabs: string[],
+  infoChartSummary: any,
+  onTabChange: (tab: string) => void,
 }
 
 export const InfoChart: React.FC<IInfoChartProps> = (props) => {
-  const { chartData } = props;
+  const { chartData, tabs, infoChartSummary, onTabChange } = props;
 
   const [tabValue, setTabValue] = useState<number>(0);
   const [periodUnit, setPeriodUnit] = useState<string>('D');
@@ -62,18 +40,18 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
       let startTime = 0;
 
       switch (periodUnit) {
-      case 'D':
-        startTime = startOfDay.getTime();
-        break;
-      case 'W':
-        startTime = startOfWeek.getTime();
-        break;
-      case 'M':
-        startTime = startOfMonth.getTime();
-        break;
-      case 'Y':
-        startTime = startOfYear.getTime();
-        break;
+        case 'D':
+          startTime = startOfDay.getTime();
+          break;
+        case 'W':
+          startTime = startOfWeek.getTime();
+          break;
+        case 'M':
+          startTime = startOfMonth.getTime();
+          break;
+        case 'Y':
+          startTime = startOfYear.getTime();
+          break;
       }
 
       const data = chartData.reduce((cur: { x: number; y: number }[], el: { time: Date; price: number }) => {
@@ -108,18 +86,18 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const month = months[time.getMonth()];
         switch (periodUnit) {
-        case 'D':
-          array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
-          break;
-        case 'W':
-          array.push(`${hours}:${minutes} / ${month} ${date}`);
-          break;
-        case 'M':
-          array.push(`${hours}:${minutes} / ${month} ${date}`);
-          break;
-        case 'Y':
-          array.push(`${month} ${date}`);
-          break;
+          case 'D':
+            array.push(`${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`);
+            break;
+          case 'W':
+            array.push(`${hours}:${minutes} / ${month} ${date}`);
+            break;
+          case 'M':
+            array.push(`${hours}:${minutes} / ${month} ${date}`);
+            break;
+          case 'Y':
+            array.push(`${month} ${date}`);
+            break;
         }
       }
       setTimeLines(array);
@@ -135,14 +113,6 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
     setTabValue(newValue);
   };
 
-  const onClickLiquidity = () => {
-    //    setVolume();
-  };
-
-  const onClickTVL = () => {
-    //    setVolume();
-  };
-
   return (
     <InfoChartStyle>
       {
@@ -155,8 +125,9 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
                 <Typography variant="body2">{new Date().toDateString()}</Typography>
               </Box>
               <Tabs className="info-chart-tab" value={tabValue} onChange={onChangeTab} centered>
-                <Tab label="Liquidity" onClick={onClickLiquidity} />
-                <Tab label="TVL" onClick={onClickTVL} />
+                {
+                  tabs.map((tab) => <Tab key={tab} label={tab} data-testid={`tab-test-${tab}`} onClick={() => onTabChange(tab)} />)
+                }
               </Tabs>
               <Box className="info-chart-period">
                 {
@@ -189,27 +160,39 @@ export const InfoChart: React.FC<IInfoChartProps> = (props) => {
                 ))
               }
             </Box>
-            <Grid className="info-chart-summary" container spacing={2}>
-              {
-                summary.map(el => (
-                  <Grid item key={el.title}>
-                    <Box className="summary-item">
-                      <Box className="summary-title">
-                        <Typography variant="body1">{el.title}</Typography>
-                      </Box>
-                      <Typography variant="body2">{el.amount}</Typography>
-                      {
-                        el.percent &&
-                        <Box className={cn({ 'summary-percent': true, 'increase': el.percent >= 0 })} >
-                          <Typography variant="body2">{el.percent}%</Typography>
-                          {el.percent >= 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+            {
+              !!infoChartSummary.length &&
+              <Grid className="info-chart-summary" container spacing={2}>
+                {
+                  infoChartSummary.map((el: any, index: number) =>
+                    <Grid item key={index}>
+                      <Box className="summary-item">
+                        <Box className="summary-title">
+                          <Typography variant="body1">{el.title}</Typography>
                         </Box>
-                      }
-                    </Box>
-                  </Grid>
-                ))
-              }
-            </Grid>
+                        {
+                          el.title === 'Total Tokens Locked' ?
+                            <Box className='summary-total-tokens-locked'>
+                              <Image src={tokenSvgs[getPoolToken0(el.value)]} width={24} height={24} />
+                              <Typography variant="body2">38.5k</Typography>
+                              <Image src={tokenSvgs[getPoolToken1(el.value)]} width={24} height={24} />
+                              <Typography variant="body2">145.9k</Typography>
+                            </Box> :
+                            <Typography variant="body2">{el.value}</Typography>
+                        }
+                        {
+                          !!el.changePercent &&
+                          <Box className={cn({ 'summary-percent': true, 'increase': el.changePercent >= 0 })} >
+                            <Typography variant="body2">{el.changePercent}%</Typography>
+                            {el.changePercent >= 0 ? <IncreaseIcon /> : <DecreaseIcon />}
+                          </Box>
+                        }
+                      </Box>
+                    </Grid>
+                  )
+                }
+              </Grid>
+            }
           </>
           :
           <Box className="empty-chart-box">
