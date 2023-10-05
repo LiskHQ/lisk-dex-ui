@@ -4,45 +4,29 @@ import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer,
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { DropdownComponent, SearchInputComponent } from 'components';
-import { IToken } from 'models';
-import { mockTokens } from '__mock__';
+import { IToken, ITransaction } from 'models';
 import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
 import { tokenSvgs } from 'imgs/icons';
+import { TransactionCommands } from 'consts';
 
-function createData(
-  token1: IToken,
-  token2: IToken,
-  account: string,
-  time: string,
-) {
-  return { token1, token2, account, time };
-}
-
-const rows = [
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[0], mockTokens[1], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-  createData(mockTokens[1], mockTokens[0], '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '2022-10-22 09:24:31'),
-];
-
-export interface ITransactionsTable {
+export interface ITransactionsTableProps {
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
   onPreviousPage?: () => void,
+  onChangeCommand?: (value: string) => void,
+  transactions: ITransaction[],
+  availableTokens: IToken[],
   limit?: number,
   page?: number,
   totalPages?: number,
 }
 
-export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
+export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
   const {
+    transactions: _transactions,
+    availableTokens,
+    onChangeCommand,
     onChangeRowCount,
     onNextPage,
     onPreviousPage,
@@ -53,9 +37,13 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
 
   const transactions = useMemo(() => {
     if (page && limit)
-      return rows.slice((page - 1) * limit, page * limit);
+      return _transactions.slice((page - 1) * limit, page * limit);
     return [];
-  }, [page, limit]);
+  }, [page, limit, _transactions]);
+
+  const getTokenSymbol = (tokenId: string) => {
+    return availableTokens.find(token => token.tokenID === tokenId)?.symbol || '';
+  };
 
   return (
     <TransactionsTableStyle>
@@ -64,19 +52,17 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
           className="transactions-search-input"
           placeholder="Search transactions by token..."
         />
-        <DropdownComponent className="transactions-filter-dropdown" defaultValue={10}>
-          <MenuItem value="10">
+        <DropdownComponent className="transactions-filter-dropdown" defaultValue={''} onChange={(value: any) => onChangeCommand && onChangeCommand(value)}>
+          <MenuItem value="">
             <Typography variant="body2">All transactions</Typography>
           </MenuItem>
-          <MenuItem value="20">
-            <Typography variant="body2">Swaps</Typography>
-          </MenuItem>
-          <MenuItem value="30">
-            <Typography variant="body2">Adds</Typography>
-          </MenuItem>
-          <MenuItem value="40">
-            <Typography variant="body2">Removes</Typography>
-          </MenuItem>
+          {
+            Object.entries(TransactionCommands).map(([key, value]) =>
+              <MenuItem value={value} key={key}>
+                <Typography variant="body2">{value}</Typography>
+              </MenuItem>
+            )
+          }
         </DropdownComponent>
       </Box>
 
@@ -92,45 +78,64 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactions.length > 0 && transactions.map((row: any, index: number) => (
+            {transactions.length > 0 && transactions.map((row: ITransaction, index: number) => (
               <TableRow
                 key={index}
+                data-testid='table-transaction-row'
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell scope="row">
                   <Box className="name-td">
                     <Typography>{index + 1}</Typography>
-                    <Box className="token1-image">
-                      <Image className="token1-image" src={tokenSvgs[row.token1.symbol]} width={32} height={32}></Image>
-                    </Box>
-                    <Box className="token2-image">
-                      <Image src={tokenSvgs[row.token2.symbol]} width={32} height={32}></Image>
-                    </Box>
-                    <Typography>{row.token1.symbol} - {row.token1.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Box className="token1-image">
+                            <Image className="token1-image" src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={32} height={32}></Image>
+                          </Box>
+                          <Box className="token2-image">
+                            <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={32} height={32}></Image>
+                          </Box>
+                          <Typography>{getTokenSymbol(row.params.tokenIdIn)} - {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                        </>,
+                      }[row.moduleCommand]
+                    }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="action-td">
-                    <Typography variant="body2">Swap {row.token1.symbol} for {row.token2.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Typography variant="body2">Swap {getTokenSymbol(row.params.tokenIdIn)} for {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                        </>,
+                      }[row.moduleCommand]
+                    }
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="details-td">
-                    <Image src={tokenSvgs[row.token1.symbol]} width={16} height={16} />
-                    <Typography variant="body2">142.3k {row.token1.symbol}</Typography>
-                    <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
-                    <Image src={tokenSvgs[row.token2.symbol]} width={16} height={16} />
-                    <Typography variant="body2">0.4k {row.token1.symbol}</Typography>
+                    {
+                      {
+                        [TransactionCommands.swapExactIn]: <>
+                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenSymbol(row.params.tokenIdIn)}</Typography>
+                          <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
+                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={16} height={16} />
+                          <Typography variant="body2">{row.params.amountTokenOut} {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                        </>
+                      }[row.moduleCommand]
+                    }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="action-td">
-                    <Typography variant="body2">{ellipsisAddress(row.account)}</Typography>
+                    <Typography variant="body2">{ellipsisAddress(row.sender.address)}</Typography>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                   </Box>
                 </TableCell>
-                <TableCell align="right">{row.time}</TableCell>
+                <TableCell align="right">{new Date(row.block.timestamp).toLocaleString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -161,6 +166,7 @@ export const TransactionsTable: React.FC<ITransactionsTable> = (props) => {
         <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
         <IconButton
           onClick={() => { onNextPage && onNextPage(); }}
+          data-testid='transaction-table-next-page-test'
           disabled={totalPages == page}
         >
           <FontAwesomeIcon icon={faArrowRight} />

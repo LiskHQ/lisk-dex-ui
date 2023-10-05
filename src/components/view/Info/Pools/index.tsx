@@ -1,11 +1,11 @@
+import { useContext, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Box, Chip, IconButton, ToggleButton, Typography } from '@mui/material';
 import { faArrowUpRightFromSquare, faChevronRight, faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent, InfoChart, PoolsTable, SearchInputComponent } from 'components';
 import { PoolsComponentStyle } from './index.style';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { PATHS } from 'consts';
 import { tokenSvgs } from 'imgs/icons';
@@ -35,6 +35,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
     poolDetails,
     poolID,
   } = props;
+
   const { currency } = useContext(PlatformContext);
   // pools table control
   const [isAsc, setAsc] = useState<boolean>();

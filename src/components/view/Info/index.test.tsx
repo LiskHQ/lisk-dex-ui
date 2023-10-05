@@ -18,7 +18,10 @@ describe('Info page', () => {
     tokenDetails: mockTokenDetails,
     poolDetails: mockPoolDetails,
     conversionRates: {},
+    transactions: [],
+    availableTokens: [],
     getToken2FiatConversion: jest.fn,
+    onChangeTransactionCommand: jest.fn,
   };
 
   it('checks if change tab works fine', () => {
