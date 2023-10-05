@@ -1,13 +1,25 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions, RootState } from 'store';
 import { InfoView } from 'components';
-import { useEffect } from 'react';
 
 export const InfoContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { tokenDetails } = useSelector((root: RootState) => root.token);
+  const [moduleCommand, setModuleCommand] = useState<string>('');
+  const { transactions } = useSelector((root: RootState) => root.transaction);
+  const { tokenDetails, availableTokens } = useSelector((root: RootState) => root.token);
   const { poolDetails } = useSelector((root: RootState) => root.pool);
   const { conversionRates } = useSelector((root: RootState) => root.token);
+
+  useEffect(() => {
+    dispatch(AppActions.transaction.getTransactions({
+      moduleCommand: moduleCommand || undefined,
+    }));
+  }, [dispatch, moduleCommand]);
+
+  const onChangeTransactionCommand = (value: string) => {
+    setModuleCommand(value);
+  };
 
   const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
     dispatch(AppActions.token.getToken2FiatConversion({
@@ -19,14 +31,18 @@ export const InfoContainer: React.FC = () => {
   useEffect(() => {
     dispatch(AppActions.token.getTopTokensFromDatabase({}));
     dispatch(AppActions.pool.getTopPoolsFromDatabase({}));
+    dispatch(AppActions.token.getAvailableTokens());
   }, [dispatch]);
 
   return (
     <InfoView
       poolDetails={poolDetails}
       conversionRates={conversionRates}
+      availableTokens={availableTokens}
       getToken2FiatConversion={getToken2FiatConversion}
       tokenDetails={tokenDetails}
+      transactions={transactions}
+      onChangeTransactionCommand={onChangeTransactionCommand}
     />
   );
 };

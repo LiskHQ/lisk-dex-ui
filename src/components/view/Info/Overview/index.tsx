@@ -4,28 +4,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FeaturedPools, InfoChart, PoolsTable, TokensTable, TransactionsTable } from 'components';
 import { OverviewComponentStyle } from './index.style';
 import { useContext, useMemo, useState } from 'react';
-import { ITokenDetail, IPoolDetail } from 'models';
+import { ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 import { createMockChartInfo } from '__mock__';
 import { PlatformContext } from 'contexts';
 import { currencySymbols } from 'consts';
 
 export interface IOverviewComponentProps {
+  transactions: ITransaction[],
   tokenDetails: ITokenDetail[],
   poolDetails: IPoolDetail[],
+  availableTokens: IToken[],
   onSwap: (token1: string, token2?: string) => void,
   onAddLiquidity: (token1: string, token2?: string) => void,
   onSelectPool: (id: string) => void,
   onSelectToken: (id: string) => void,
+  onChangeTransactionCommand?: (value: string) => void,
 }
 
 export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const {
+    transactions,
+    availableTokens,
     poolDetails,
     tokenDetails,
     onSwap,
     onAddLiquidity,
     onSelectPool,
     onSelectToken,
+    onChangeTransactionCommand,
   } = props;
 
   const chartData = useMemo(() => {
@@ -76,8 +82,8 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
   const [transactionsPage, setTransactionsPage] = useState<number>(1);
   const [transactionsLimit, setTransactionsLimit] = useState<number>(10);
   const transactionsTotalPages = useMemo(() => {
-    return Math.ceil(10 / transactionsLimit);
-  }, [transactionsLimit]);
+    return Math.ceil(transactions.length / transactionsLimit);
+  }, [transactionsLimit, transactions]);
 
   const infoChartSummary = useMemo(() => {
     return [
@@ -169,9 +175,12 @@ export const OverviewComponent: React.FC<IOverviewComponentProps> = (props) => {
         <Typography variant="subtitle1">Transactions</Typography>
       </Box>
       <TransactionsTable
+        transactions={transactions}
+        availableTokens={availableTokens}
         page={transactionsPage}
         limit={transactionsLimit}
         totalPages={transactionsTotalPages}
+        onChangeCommand={onChangeTransactionCommand}
         onChangeRowCount={value => setTransactionsLimit(value)}
         onNextPage={() => setTransactionsPage(Math.min(transactionsPage + 1, transactionsTotalPages))}
         onPreviousPage={() => setTransactionsPage(Math.max(transactionsPage - 1, 1))}

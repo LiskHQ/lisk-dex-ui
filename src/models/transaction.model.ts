@@ -1,12 +1,6 @@
-import { TransactionType } from 'consts';
-
 export interface IExpense {
   title: string,
   amount: string,
-}
-
-export interface ITransaction {
-  type: TransactionType,
 }
 
 export interface ITransaction {
@@ -30,7 +24,6 @@ export interface ITransaction {
   params: any,
   executionStatus: string,
   index: number,
-  meta: any,
 }
 
 export interface IAuth {
