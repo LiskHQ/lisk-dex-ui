@@ -12,7 +12,7 @@ export const FeeTiersStyle = styled('div')(({ theme }: any) => {
 
       '&.selected': {
         border: `0.75px solid ${theme.lightcurve[0]}`,
-        background: theme.primary[1],
+        background: theme.primary[2.5],
       },
 
       '.fee-tier-description': {

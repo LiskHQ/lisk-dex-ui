@@ -10,6 +10,11 @@ export const SettingsModalStyle = styled('div')(({ theme }: any) => {
     height: '100%',
     zIndex: 201,
 
+    [theme.breakpoints.down('md')]: {
+      top: 0,
+      right: 0,
+    },
+
     '.settings-background': {
       position: 'fixed',
       left: 0,
@@ -31,8 +36,11 @@ export const SettingsModalStyle = styled('div')(({ theme }: any) => {
       zIndex: 201,
 
       [theme.breakpoints.down('md')]: {
-        width: '100%',
+        width: 'calc(100% - 2rem)',
         top: '5.5rem',
+        position: 'absolute',
+        float: 'none',
+        margin: '0 1rem 0 1rem',
       },
 
       '.settings-modal-header': {
