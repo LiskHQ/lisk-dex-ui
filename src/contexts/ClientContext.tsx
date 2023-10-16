@@ -15,7 +15,9 @@ import { AccountBalances, IAccount } from 'models';
 import { DEFAULT_APP_METADATA, DEFAULT_LOGGER, DEFAULT_PROJECT_ID, DEFAULT_RELAY_URL } from 'consts';
 import { getAppMetadata, getSdkError } from '@walletconnect/utils';
 import { getAccountsFromNamespaces, getRequiredNamespaces } from 'utils';
-import { apiGeLegacyAccount } from 'apis';
+import { address as addressFunctions } from '@liskhq/lisk-cryptography';
+
+const getLisk32AddressFromPublicKey = (publicKey: string) => addressFunctions.getLisk32AddressFromPublicKey(Buffer.from(publicKey, 'hex'));
 
 /**
  * Types
@@ -68,11 +70,11 @@ export function ClientContextProvider({ children }: { children: ReactNode | Reac
       const arr = await Promise.all(
         _accounts.map(async account => {
           const [namespace, reference, publicKey] = account.split(':');
-          const data = await apiGeLegacyAccount({ publicKey });
+          const address = getLisk32AddressFromPublicKey(publicKey);
           return {
             chainId: `${namespace}:${reference}`,
             publicKey,
-            address: data.meta.address
+            address
           };
         }),
       );

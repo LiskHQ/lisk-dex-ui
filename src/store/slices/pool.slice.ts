@@ -18,7 +18,7 @@ type StateType = {
 };
 
 const initialState: StateType = {
-  pools: [...mockPools],
+  pools: [],
   gettingPools: false,
   gotPools: false,
 

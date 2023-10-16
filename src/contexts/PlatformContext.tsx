@@ -19,7 +19,7 @@ export type IPlatformContext = {
 export const PlatformContext = createContext<IPlatformContext>({
   walletConnection: false,
   currency: 'USD',
-  getThemeType: () => ThemeType.Light,
+  getThemeType: () => ThemeType.Dark,
   saveTheme: () => { },
   saveCurrency: () => { },
   getWalletConnection: () => false,
@@ -38,7 +38,7 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
   const [walletConnection, setWalletConnection] = useState<boolean>(false);
 
   const getThemeType = () => {
-    return sessionStorage.getItem('theme') as ThemeType ?? ThemeType.Light;
+    return sessionStorage.getItem('theme') as ThemeType ?? ThemeType.Dark;
   };
 
   const saveTheme = (themeType: ThemeType) => {

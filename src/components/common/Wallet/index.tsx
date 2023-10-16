@@ -15,6 +15,7 @@ import { DEFAULT_MAIN_CHAINS, DEFAULT_TEST_CHAINS } from 'consts';
 import { IAccount } from 'models';
 import { useDispatch } from 'react-redux';
 import { AppActions } from 'store';
+import WalletVisual from './WalletVisual';
 
 export interface IWalletComponentProps {
   onConnected: (connected: boolean) => void,
@@ -81,7 +82,6 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   useEffect(() => {
     if (accounts.length > 0) {
       const account = accounts[0];
-      console.log('accounts:', accounts);
       if (account) {
         setAccount(account);
         dispatch(AppActions.wallet.setAccount(account));
@@ -114,9 +114,9 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-            onClick={() => setOpenWalletModal(true)}
+              onClick={() => setOpenWalletModal(true)}
             >
-              <Image src="/assets/avatars/avatar.png" width={24} height={24} />
+              <WalletVisual address={account.address} size={24} />
               <Typography variant="h5">{ellipsisAddress(account.address)}</Typography>
               <FontAwesomeIcon icon={faChevronDown} />
             </Box>

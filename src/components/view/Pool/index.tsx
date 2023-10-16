@@ -60,6 +60,7 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   }, [requestingSignature]);
 
   useEffect(() => {
+    console.log('pools length: ', pools.length);
     if (pools.length > 0) {
       setModuleCommand(TransactionCommands.createPosition);
     } else {

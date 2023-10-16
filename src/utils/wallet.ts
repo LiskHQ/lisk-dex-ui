@@ -63,3 +63,15 @@ export function timestampToString(time: number) {
 
   return `${months[date.getMonth()]} ${date.getDate()}th ${date.getFullYear()} ${date.getHours() % 12}:${date.getMinutes()} at ${date.getHours() >= 12 ? 'pm' : 'am'}`;
 }
+
+const randomCharsSequence = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+export const generateUniqueId = (randomDigits: number = 5) => {
+  let uniqueId = `${new Date().getTime()}-`;
+  Array.from(Array(randomDigits).keys()).map(() => {
+    const randomCharIndex = Math.floor(Math.random() * randomCharsSequence.length);
+    uniqueId = uniqueId.concat(randomCharsSequence.charAt(randomCharIndex));
+    return uniqueId;
+  });
+  return uniqueId;
+};

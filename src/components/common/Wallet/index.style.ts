@@ -62,9 +62,8 @@ export const WalletComponentStyle = styled('div')(({ theme }: any) => {
       },
 
       svg: {
-        marginLeft: '0.5rem',
-        width: '0.75rem',
-        height: '0.75rem',
+        marginLeft: '0.25rem',
+        marginRight: '0.25rem',
       }
     },
 
