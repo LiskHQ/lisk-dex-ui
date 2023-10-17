@@ -20,7 +20,7 @@ const styles: any = {
     display: 'inline-block',
   },
 
-}
+};
 
 const round = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
 
@@ -55,9 +55,9 @@ const round = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
  * the first option has 4/10 chance and each of other two has 3/10 chance.
  */
 
-const Rect = (props: React.SVGProps<SVGRectElement>) => <rect {...props} />;
-const Circle = (props: React.SVGProps<SVGCircleElement>) => <circle {...props} />;
-const Polygon = (props: React.SVGProps<SVGPolygonElement>) => <polygon {...props} />;
+const Rect = (props: React.SVGProps<SVGRectElement>) => <rect data-testid='react' {...props} />;
+const Circle = (props: React.SVGProps<SVGCircleElement>) => <circle data-testid='circle' {...props} />;
+const Polygon = (props: React.SVGProps<SVGPolygonElement>) => <polygon data-testid='polygon' {...props} />;
 
 const computeTriangle = (props: any) => ({
   points: [
@@ -118,6 +118,7 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
     circle: {
       component: Circle,
       props: {
+        'data-testid': 'circle',
         cx: coordinates[chunk[1]] + sizes[chunk[3]] / 2,
         cy: coordinates[chunk[2]] + sizes[chunk[3]] / 2,
         r: sizes[chunk[3]] / 2,
@@ -126,6 +127,7 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
     square: {
       component: Rect,
       props: {
+        'data-testid': 'square',
         x: coordinates[chunk[1]],
         y: coordinates[chunk[2]],
         height: sizes[chunk[3]],
@@ -135,6 +137,7 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
     rect: {
       component: Rect,
       props: {
+        'data-testid': 'react',
         x: coordinates[chunk[1]],
         y: coordinates[chunk[2]],
         height: sizes[chunk[3]],
@@ -144,6 +147,7 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
     triangle: {
       component: Polygon,
       props: computeTriangle({
+        'data-testid': 'triangle',
         x: coordinates[chunk[1]],
         y: coordinates[chunk[2]],
         size: sizes[chunk[3]],
@@ -152,6 +156,7 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
     pentagon: {
       component: Polygon,
       props: computePentagon({
+        'data-testid': 'pentagon',
         x: coordinates[chunk[1]],
         y: coordinates[chunk[2]],
         size: sizes[chunk[3]],
@@ -210,10 +215,7 @@ export interface IWalletVisualProps {
   disabled?: boolean,
 }
 
-export interface IWalletVisualState {
-}
-
-class WalletVisual extends React.Component<IWalletVisualProps, IWalletVisualState> {
+class WalletVisual extends React.Component<IWalletVisualProps> {
   uniqueSvgUrlHash: string;
   static defaultProps: { size: number; };
   constructor(props: IWalletVisualProps) {
@@ -276,7 +278,7 @@ class WalletVisual extends React.Component<IWalletVisualProps, IWalletVisualStat
         style={{ height: size, width: size, ...styles.wrapper }}
         className={className}
       >
-        <svg height={size} width={size} style={{ ...styles.walletVisual }}>
+        <svg height={size} width={size} style={{ ...styles.walletVisual }} data-testid='svg'>
           <Gradients scheme={gradientsSchemesUrlsHashed} disabled={this.props.disabled} />
           {shapes.map((shape: any, i: number) => (
             <shape.component {...shape.props} key={i} />

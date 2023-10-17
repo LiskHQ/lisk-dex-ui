@@ -174,3 +174,12 @@ export async function apiGetTopTokensFromDatabase(data: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetEstimationFee(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions/estimate-fees', {
+    data
+  });
+  if (response)
+    return response.data;
+  return {};
+}

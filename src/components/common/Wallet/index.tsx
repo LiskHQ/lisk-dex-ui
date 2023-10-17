@@ -3,7 +3,6 @@ import { ButtonComponent, DropdownComponent } from 'components';
 import { LiskIcon } from 'imgs/icons';
 import { ellipsisAddress } from 'utils';
 import { WalletComponentStyle } from './index.style';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ConnectWalletModal } from './ConnectWalletModal';
 import cn from 'classnames';
@@ -114,7 +113,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-              onClick={() => setOpenWalletModal(true)}
+            onClick={() => setOpenWalletModal(true)}
             >
               <WalletVisual address={account.address} size={24} />
               <Typography variant="h5">{ellipsisAddress(account.address)}</Typography>

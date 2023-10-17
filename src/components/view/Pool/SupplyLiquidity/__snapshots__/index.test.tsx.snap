@@ -332,7 +332,7 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 
 .emotion-18 .fee-tier.selected {
   border: 0.75px solid #6953F4;
-  background: #F4F8F9;
+  background: #F2F5F9;
 }
 
 .emotion-18 .fee-tier .fee-tier-description {

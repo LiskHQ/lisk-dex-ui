@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPool, IPoolDetail } from 'models';
-import { mockPools } from '__mock__/pool.mock';
 
 type StateType = {
   pools: IPool[],

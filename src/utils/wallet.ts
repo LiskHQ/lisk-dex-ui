@@ -66,7 +66,7 @@ export function timestampToString(time: number) {
 
 const randomCharsSequence = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-export const generateUniqueId = (randomDigits: number = 5) => {
+export const generateUniqueId = (randomDigits = 5) => {
   let uniqueId = `${new Date().getTime()}-`;
   Array.from(Array(randomDigits).keys()).map(() => {
     const randomCharIndex = Math.floor(Math.random() * randomCharsSequence.length);
