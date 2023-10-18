@@ -1,4 +1,4 @@
-import { liskApiInstance } from 'utils';
+import { dexApiInstance, liskApiInstance } from 'utils';
 
 const API_VERSION = 'v3';
 
@@ -19,3 +19,56 @@ export async function apiGeLegacyAccount(params: any) {
     return response.data;
   return {};
 }
+
+export async function apiGetChainTokens(params: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/blockchain/apps/meta/tokens', {
+    params
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetTokenBalances(params: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/token/balances', {
+    params
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiSubmitTransaction(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions', data);
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetTransactions(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/transactions', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetAuth(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/auth', {
+    params: data
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+
+export async function apiGetEstimationFee(data: any) {
+  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions/estimate-fees', {
+    data
+  });
+  if (response)
+    return response.data;
+  return {};
+}
+

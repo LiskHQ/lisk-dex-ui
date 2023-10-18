@@ -18,15 +18,6 @@ export async function apiGetAvailableTokens() {
   return {};
 }
 
-export async function apiGetAccountTokens(params: any) {
-  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/tokens', {
-    params
-  });
-  if (response)
-    return response.data;
-  return {};
-}
-
 export async function apiGetToken2TokenConversion(params: any) {
   const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/prices/convert/token`, {
     params,
@@ -99,13 +90,6 @@ export async function apiGetStastics(params: any) {
   return {};
 }
 
-export async function apiSubmitTransaction(data: any) {
-  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions', data);
-  if (response)
-    return response.data;
-  return {};
-}
-
 export async function apiGetProposals(params: any) {
   const { offset = 0, limit = 10 } = params;
   const response: ResponseGenerator = await dexApiInstance.get(`/api/dex/${API_VERSION}/proposals`, {
@@ -139,24 +123,6 @@ export async function apiGetVotes(params: any) {
   return {};
 }
 
-export async function apiGetTransactions(data: any) {
-  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/transactions', {
-    params: data
-  });
-  if (response)
-    return response.data;
-  return {};
-}
-
-export async function apiGetAuth(data: any) {
-  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/auth', {
-    params: data
-  });
-  if (response)
-    return response.data;
-  return {};
-}
-
 export async function apiGetTopPoolsFromDatabase(data: any) {
   const response: ResponseGenerator = await dexApiInstance.get('/api/dex-information/v1/getTopPoolsFromDatabase', {
     params: data
@@ -169,15 +135,6 @@ export async function apiGetTopPoolsFromDatabase(data: any) {
 export async function apiGetTopTokensFromDatabase(data: any) {
   const response: ResponseGenerator = await dexApiInstance.get('/api/dex-information/v1/getTopTokensFromDatabase', {
     params: data
-  });
-  if (response)
-    return response.data;
-  return {};
-}
-
-export async function apiGetEstimationFee(data: any) {
-  const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions/estimate-fees', {
-    data
   });
   if (response)
     return response.data;

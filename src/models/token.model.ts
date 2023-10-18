@@ -46,3 +46,13 @@ export interface ISwapData {
 export interface IFilteredTokens {
   filteredTokens: ITokenDetail[],
 }
+
+export interface ILockedBalance {
+  module: string,
+  amount: string,
+}
+export interface ITokenBalance {
+  tokenID: string,
+  availableBalance: string,
+  lockedBalances?: ILockedBalance[],
+}

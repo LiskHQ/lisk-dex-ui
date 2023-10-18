@@ -1,12 +1,14 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import { AppActions } from 'store';
 import {
+  getAccountTokensSaga,
   getAvailableTokensSaga,
   getPopularPairingsSaga,
   getPriceImpactSaga,
   getSlippageBoundsSaga,
   getToken2FiatConversionSaga,
   getToken2TokenConversionSaga,
+  getTokenBalancesSaga,
   getTopTokensFromDatabaseSaga
 } from './token.saga';
 import {
@@ -37,6 +39,8 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getPriceImpact.type, getPriceImpactSaga)]);
   yield all([takeLatest(AppActions.token.getSlippageBounds.type, getSlippageBoundsSaga)]);
   yield all([takeLatest(AppActions.token.getTopTokensFromDatabase.type, getTopTokensFromDatabaseSaga)]);
+  yield all([takeLatest(AppActions.token.getAccountTokens.type, getAccountTokensSaga)]);
+  yield all([takeLatest(AppActions.token.getTokenBalances.type, getTokenBalancesSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
   yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);

@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ConversionRates, IToken, ITokenDetail } from 'models';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ConversionRates, IToken, ITokenBalance, ITokenBalancesRequest, ITokenDetail } from 'models';
 
 type StateType = {
   gettingAvailableTokens: boolean,
@@ -8,7 +8,7 @@ type StateType = {
 
   gettingAccountTokens: boolean,
   gotAccountTokens: boolean,
-  accountTokens: any[],
+  accountTokens: IToken[],
 
   gettingToken2TokenConversion: boolean,
   gotToken2TokenConversion: boolean,
@@ -27,6 +27,10 @@ type StateType = {
   gettingPopularPairings: boolean,
   gotPopularPairings: boolean,
   popularPairings: string[],
+
+  gettingTokenBalances: boolean,
+  gotTokenBalances: boolean,
+  tokenBalances: ITokenBalance[],
 
   error: any,
 };
@@ -48,6 +52,10 @@ const initialState: StateType = {
 
   gettingTopTokensFromDatabase: false,
   gotTopTokensFromDatabase: false,
+
+  gettingTokenBalances: false,
+  gotTokenBalances: false,
+  tokenBalances: [],
 
   tokenDetails: [],
   tokenDetail: {
@@ -242,6 +250,22 @@ const tokenSlice = createSlice({
       state.gotTopTokensFromDatabase = false;
       state.error = action.payload;
     },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getTokenBalances(state, action: PayloadAction<ITokenBalancesRequest>) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
+    },
+    getTokenBalancesSuccess(state, action: PayloadAction<ITokenBalance[]>) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
+      state.tokenBalances = [...action.payload];
+    },
+    getTokenBalancesFailure(state, action) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
+      state.error = action.payload
+    }
   },
 });
 
