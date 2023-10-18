@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
-import { IAccount, ICreatePool, IPool } from 'models';
-import { useEffect, useState } from 'react';
+import { IAccount, ICreatePool, IPool, IToken, ITokenBalance } from 'models';
+import { useEffect, useMemo, useState } from 'react';
 import { PoolViewStyle } from './index.style';
 import { LiskDexLP } from './LiskDexLP';
 import { RemoveLiquidityModal } from './RemoveLiquidityModal';
@@ -17,6 +17,8 @@ export interface IPoolViewProps {
   gotPools: boolean,
   closeTransactionModal: boolean,
   account: IAccount | null,
+  accountTokens: IToken[],
+  tokenBalances: ITokenBalance[],
   createPool: (pool: ICreatePool) => void,
   createPosition: (pool: ICreatePool) => void,
   addLiquidity: (pool: IPool) => void,
@@ -30,6 +32,8 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     gotPools,
     gettingPools,
     closeTransactionModal,
+    accountTokens,
+    tokenBalances,
     createPool,
     createPosition,
     addLiquidity,
@@ -40,7 +44,6 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
   const [pool, setPool] = useState<IPool | ICreatePool>();
   const [moduleCommand, setModuleCommand] = useState<string>('');
-  const { availableTokens } = useSelector((root: RootState) => root.token);
 
   const onPreview = (pool: IPool | ICreatePool) => {
     setOpenSupplyModal(true);
@@ -60,7 +63,6 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   }, [requestingSignature]);
 
   useEffect(() => {
-    console.log('pools length: ', pools.length);
     if (pools.length > 0) {
       setModuleCommand(TransactionCommands.createPosition);
     } else {
@@ -80,12 +82,17 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     }
   };
 
+  const tokens = useMemo(() => {
+    return accountTokens.filter(el => tokenBalances.find(_el => _el.tokenID === el.tokenID));
+  }, [accountTokens, tokenBalances]);
+
   return (
     <PoolViewStyle>
       <Grid container spacing={3}>
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
-            tokens={availableTokens}
+            tokens={tokens}
+            tokenBalances={tokenBalances}
             onPreview={onPreview}
             closeTransactionModal={closeTransactionModal}
           />

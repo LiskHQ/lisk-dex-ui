@@ -15,9 +15,9 @@ export interface IToken {
     svg: string,
   },
   symbol: string,
-  displayDenom?: string,
+  displayDenom: string,
   baseDenom?: string,
-  denomUnits?: DenomUnit[],
+  denomUnits: DenomUnit[],
 }
 
 export interface ITokenDetail {

@@ -6,17 +6,18 @@ import { Box, Grid, IconButton, Typography } from '@mui/material';
 import { SearchInputComponent } from 'components/common';
 import { SelectTokenModalStyle } from './index.style';
 import { useMemo, useState } from 'react';
-import { IToken } from 'models';
-import { tokenSvgs } from 'imgs/icons';
+import { IToken, ITokenBalance } from 'models';
+import { getDispalyTokenAmount } from 'utils';
 
 export interface ISelectTokenModalProps {
   tokens: IToken[],
+  tokenBalances: ITokenBalance[],
   onSelect: (value: IToken) => void,
   onClose: () => void,
 }
 
 export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
-  const { tokens, onSelect, onClose } = props;
+  const { tokens, tokenBalances, onSelect, onClose } = props;
   const [close, setClose] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('');
 
@@ -67,7 +68,9 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
                   key={token.symbol}
                 >
                   <Box className="select-token-chain-box">
-                    <Image src={tokenSvgs[token.symbol]} width={20} height={20} />
+                    <Box className="token-image">
+                      <img src={token.logo.png} width={20} height={20} />
+                    </Box>
                     <Typography variant="body2">{token.symbol}</Typography>
                   </Box>
                 </Grid>
@@ -86,13 +89,15 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
               onClick={() => { onSelect(token); setClose(true); }}
             >
               <Box className="token-wrapper">
-                <Image src={tokenSvgs[token.symbol]} width={40} height={40} />
+                <Box className="token-image">
+                  <img src={token.logo.png} width={40} height={40} />
+                </Box>
                 <Box className="token-name-wrapper">
                   <Typography className="token-short-name" variant="body1">{token.symbol}</Typography>
                   <Typography variant="body2">{token.tokenName}</Typography>
                 </Box>
               </Box>
-              <Typography variant="body1">{0}</Typography>
+              <Typography variant="body1">{getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token.tokenID)?.availableBalance || 0), token)}</Typography>
             </Box>
           ))
         }

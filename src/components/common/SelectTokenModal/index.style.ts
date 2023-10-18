@@ -89,6 +89,16 @@ export const SelectTokenModalStyle = styled('div')(({ theme }: any) => {
 
           p: {
             marginLeft: '0.25rem',
+          },
+
+          '.token-image': {
+            borderRadius: '100%',
+            width: '1.25rem',
+            height: '1.25rem',
+
+            img: {
+              borderRadius: '100%',
+            }
           }
         }
       }
@@ -115,6 +125,14 @@ export const SelectTokenModalStyle = styled('div')(({ theme }: any) => {
 
           '.token-name-wrapper': {
             marginLeft: '1rem',
+          },
+
+          '.token-image': {
+            borderRadius: '100%',
+
+            img: {
+              borderRadius: '100%',
+            }
           }
         },
       }

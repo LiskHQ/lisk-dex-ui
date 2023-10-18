@@ -5,7 +5,7 @@ import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatu
 import { useJsonRpc } from 'contexts';
 import { ICreatePool, IPool } from 'models';
 import { AppActions, RootState } from 'store';
-import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema } from 'utils';
+import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount } from 'utils';
 import { apiGetAuth } from 'apis';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
@@ -14,6 +14,7 @@ export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
+  const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
@@ -28,8 +29,18 @@ export const PoolContainer: React.FC = () => {
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
     dispatch(AppActions.pool.getStastics({}));
-    dispatch(AppActions.token.getAvailableTokens());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (account?.chainId) {
+      dispatch(AppActions.token.getAccountTokens({}));
+    }
+    if (account && account.address) {
+      dispatch(AppActions.token.getTokenBalances({
+        address: account.address,
+      }));
+    }
+  }, [account, dispatch]);
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
@@ -56,7 +67,7 @@ export const PoolContainer: React.FC = () => {
       const rawTx = {
         module: TransactionModule.dex,
         command: TransactionCommands.createPool,
-        fee: BigInt(5000000000000000000),
+        fee: BigInt(10000000),
         nonce: BigInt(data.nonce),
         senderPublicKey: Buffer.from(publicKey, 'hex'),
         signatures: [],
@@ -68,8 +79,8 @@ export const PoolContainer: React.FC = () => {
           initialPosition: {
             tickLower: MIN_TICK,
             tickUpper: MAX_TICK,
-            amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
-            amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
+            amount0Desired: BigInt(getTokenAmount(token1Amount, token1)),
+            amount1Desired: BigInt(getTokenAmount(token2Amount, token2)),
           },
           maxTimestampValid: BigInt(100000000000),
         },
@@ -234,6 +245,8 @@ export const PoolContainer: React.FC = () => {
         account={account}
         requestingSignature={isRpcRequestPending && openTransactionStatusModal}
         closeTransactionModal={closeTransactionModal}
+        accountTokens={accountTokens}
+        tokenBalances={tokenBalances}
         createPool={createPool}
         createPosition={createPosition}
         addLiquidity={addLiquidity}
