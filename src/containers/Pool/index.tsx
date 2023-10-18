@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
 import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
-import { ICreatePool, IPool } from 'models';
+import { IAccount, ICreatePool, IPool, ITransactionObject } from 'models';
 import { AppActions, RootState } from 'store';
-import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount } from 'utils';
+import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount, createTransactionObject } from 'utils';
 import { apiGetAuth } from 'apis';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
@@ -21,7 +21,10 @@ export const PoolContainer: React.FC = () => {
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // states for approvalTransactionModal
+  const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
+  const [feeTokenID, setFeeTokenID] = useState<string>('');
+
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -51,40 +54,29 @@ export const PoolContainer: React.FC = () => {
 
   const createPool = async (pool: ICreatePool) => {
     if (account) {
-      const { chainId, publicKey, address } = account;
-      let data;
-
-      try {
-        const reponse = await apiGetAuth({
-          address: address,
-        });
-        data = reponse.data;
-      } catch (e) {
-        console.log(e);
-      }
+      const { chainId, publicKey } = account;
 
       const { token1, token2, feeTier, tickInitialPrice, token1Amount, token2Amount } = pool;
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.createPool,
-        fee: BigInt(10000000),
-        nonce: BigInt(data.nonce),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          tokenID0: Buffer.from(token1.tokenID, 'hex'),
-          tokenID1: Buffer.from(token2.tokenID, 'hex'),
-          feeTier: feeTier * 100,
-          tickInitialPrice: tickInitialPrice,
-          initialPosition: {
-            tickLower: MIN_TICK,
-            tickUpper: MAX_TICK,
-            amount0Desired: BigInt(getTokenAmount(token1Amount, token1)),
-            amount1Desired: BigInt(getTokenAmount(token2Amount, token2)),
-          },
-          maxTimestampValid: BigInt(100000000000),
+      const params = {
+        tokenID0: token1.tokenID,
+        tokenID1: token2.tokenID,
+        feeTier: feeTier * 100,
+        tickInitialPrice: tickInitialPrice,
+        initialPosition: {
+          tickLower: MIN_TICK,
+          tickUpper: MAX_TICK,
+          amount0Desired: getTokenAmount(token1Amount, token1),
+          amount1Desired: getTokenAmount(token2Amount, token2),
         },
+        maxTimestampValid: 100000000000,
       };
+
+      const {
+        feeTokenID: _feeTokenID,
+        transactionObject: rawTx,
+      } = await createTransactionObject(TransactionModule.dex, TransactionCommands.createPool, account, params);
+      setTransactionObject(rawTx);
+      setFeeTokenID(feeTokenID);
 
       liskRpc.signTransaction(chainId, publicKey, createPoolSchema, rawTx);
       setOpenTransactionStatusModal(true);
@@ -263,11 +255,11 @@ export const PoolContainer: React.FC = () => {
       {
         openApproveTransactionModal &&
         <ApproveTransactionModal
-          expenses={[{
-            title: 'Transaction fee',
-            amount: '0.87',
-          }]}
           approvingTransaction={submitingTransaction}
+          transaction={transactionObject}
+          account={account as IAccount}
+          accountTokens={accountTokens}
+          tokenBalances={tokenBalances}
           onConfirm={onConfirmApproval}
           onClose={onCloseApproveTransactionModal}
         />

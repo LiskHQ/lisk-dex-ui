@@ -1,4 +1,6 @@
+import { StakeProgram } from '@solana/web3.js';
 import { IFilteredTokens, ITokenBalance, ITokenDetail } from './token.model';
+import { ITransaction, ITransactionObject } from './transaction.model';
 
 export interface IResponse {
   data: unknown,
@@ -28,5 +30,42 @@ export interface ITokenBalancesReponse extends IResponse {
     count: number,
     offset: number,
     total: number,
+  }
+}
+
+export interface INetwrokFeeRequestBody {
+  transaction: ITransactionObject
+}
+
+export interface INetwrokFeeResponse extends IResponse {
+  data: {
+    transaction: {
+      fee: {
+        tokenID: string,
+        minimum: string,
+        priority: {
+          low: string,
+          medium: string,
+          high: string,
+        }
+      }
+    }
+  },
+  meta: {
+    breakdown: {
+      fee: {
+        minimum: {
+          byteFee: string,
+          additionalFees: {
+            validatorRegistrationFee: string,
+            userAccountInitializationFee: string,
+            escrowAccountInitializationFee: string,
+            chainRegistrationFee: string,
+            bufferBytes: string,
+          }
+        },
+        params: any,
+      }
+    }
   }
 }
