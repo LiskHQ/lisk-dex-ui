@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, CreateProposalView, TransactionStatusModal } from 'components';
-import { ProposalType, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, ProposalType, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { AppActions, RootState } from 'store';
-import { IProposal } from 'models';
-import { createProposalParamsSchema } from 'utils';
+import { IAccount, IProposal, ITransactionObject } from 'models';
+import { createProposalParamsSchema, createTransactionObject } from 'utils';
 
 export const CreateProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
+  const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
+  // states for approvalTransactionModal
+  const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
+  const [feeTokenID, setFeeTokenID] = useState<string>('');
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -23,38 +29,50 @@ export const CreateProposalContainer: React.FC = () => {
     liskRpc,
   } = useJsonRpc();
 
+  useEffect(() => {
+    if (account?.chainId) {
+      dispatch(AppActions.token.getAccountTokens({}));
+    }
+    if (account && account.address) {
+      dispatch(AppActions.token.getTokenBalances({
+        address: account.address,
+      }));
+    }
+  }, [account, dispatch]);
+
   const onSubmit = (proposal: IProposal) => {
     if (account) {
       const { chainId, publicKey } = account;
 
       const content = {
-        text: Buffer.from(proposal.description, 'hex'),
-        poolID: Buffer.from('0000000000000000000001000000000000c8', 'hex').slice(0, 16),
+        text: proposal.description,
+        poolID: '0000000000000000000001000000000000c8'.slice(0, 16),
         multiplier: proposal.multiplier,
         metadata: {
-          title: Buffer.from(proposal.title, 'hex'),
-          author: Buffer.from(proposal.author, 'hex'),
-          summary: Buffer.from(proposal.summary, 'hex'),
-          discussionsTo: Buffer.from(proposal.link || 'http://lisk.com', 'hex'),
+          title: proposal.title,
+          author: proposal.author,
+          summary: proposal.summary,
+          discussionsTo: proposal.link || 'http://lisk.com',
         },
       };
 
-      const rawTx = {
-        module: TransactionModule.dexGovernance,
-        command: TransactionCommands.createProposal,
-        fee: BigInt(5000000000000000000),
-        nonce: BigInt(10),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          type: proposal.proposalType === ProposalType.PoolIncentivization ? 0 : 1,
-          content,
-        },
+      const params = {
+        type: proposal.proposalType === ProposalType.PoolIncentivization ? 0 : 1,
+        content,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      createTransactionObject(TransactionModule.dexGovernance, TransactionCommands.createProposal, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
@@ -118,11 +136,12 @@ export const CreateProposalContainer: React.FC = () => {
       {
         openApproveTransactionModal &&
         <ApproveTransactionModal
-          expenses={[{
-            title: 'Transaction fee',
-            amount: '0.87',
-          }]}
           approvingTransaction={submitingTransaction}
+          transaction={transactionObject}
+          account={account as IAccount}
+          feeTokenID={feeTokenID}
+          accountTokens={accountTokens}
+          tokenBalances={tokenBalances}
           onConfirm={onConfirmApproval}
           onClose={onCloseApproveTransactionModal}
         />

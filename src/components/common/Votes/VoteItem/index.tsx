@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import { IVote } from 'models';
 import { VoteItemComponentStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
+import WalletVisual from 'components/common/Wallet/WalletVisual';
 
 export interface IVoteItemComponentProps {
   vote: IVote,
@@ -15,7 +16,7 @@ export const VoteItemComponent: React.FC<IVoteItemComponentProps> = (props) => {
   return (
     <VoteItemComponentStyle container>
       <Grid item xs={6} sm={4} md={4} lg={4} className="vote-user">
-        <Image src="/assets/avatars/avatar.png" width={24} height={24} />
+        <WalletVisual address={vote.user} size={24} />
         <Typography variant="body2">{ellipsisAddress(vote.user)}</Typography>
       </Grid >
       <Grid item xs={3} sm={4} md={4} lg={6} className="vote-agreed">

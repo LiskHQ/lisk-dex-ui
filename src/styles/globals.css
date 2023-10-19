@@ -72,3 +72,7 @@ h5.MuiTypography-root,
 h6.MuiTypography-root {
   font-family: 'Gilroy', sans-serif;
 }
+
+nextjs-portal {
+  display: none;
+}

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
-import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { IAccount, ICreatePool, IPool, ITransactionObject } from 'models';
 import { AppActions, RootState } from 'store';
 import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount, createTransactionObject } from 'utils';
 import { apiGetAuth } from 'apis';
+import { AxiosError } from 'axios';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
 export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
@@ -14,6 +16,7 @@ export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
 export const PoolContainer: React.FC = () => {
   const dispatch = useDispatch();
 
+  const { enqueueSnackbar } = useSnackbar();
   const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
@@ -28,6 +31,7 @@ export const PoolContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
+
 
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
@@ -71,17 +75,18 @@ export const PoolContainer: React.FC = () => {
         maxTimestampValid: 100000000000,
       };
 
-      const {
-        feeTokenID: _feeTokenID,
-        transactionObject: rawTx,
-      } = await createTransactionObject(TransactionModule.dex, TransactionCommands.createPool, account, params);
-      console.log('transactionObject: ', rawTx);
-      setTransactionObject(rawTx);
-      setFeeTokenID(_feeTokenID);
+      createTransactionObject(TransactionModule.dex, TransactionCommands.createPool, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
 
-      liskRpc.signTransaction(chainId, publicKey, createPoolSchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+          liskRpc.signTransaction(chainId, publicKey, createPoolSchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 

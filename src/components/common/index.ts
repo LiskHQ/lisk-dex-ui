@@ -32,3 +32,4 @@ export * from './TokensTable';
 export * from './InfoChart';
 export * from './Pagination';
 export * from './Wallet';
+export * from './SnackbarAlert';

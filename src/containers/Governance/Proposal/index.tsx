@@ -1,17 +1,20 @@
-import { useRouter } from 'next/router';
-import { ApproveTransactionModal, ProposalView, TransactionStatusModal } from 'components';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { useRouter } from 'next/router';
 import { AppActions, RootState } from 'store';
-import { TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
-import { apiGetAuth } from 'apis';
+import { ApproveTransactionModal, ProposalView, TransactionStatusModal } from 'components';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
-import { voteOnProposalParamsSchema } from 'utils';
+import { createTransactionObject, voteOnProposalParamsSchema } from 'utils';
+import { IAccount, ITransactionObject } from 'models';
 
 export const ProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
 
+  const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
   const { votes, votesTotal, votesTotalPages, proposal } = useSelector((state: RootState) => state.proposal);
   const [votesPage, setVotesPage] = useState<number>(0);
 
@@ -21,6 +24,10 @@ export const ProposalContainer: React.FC = () => {
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
 
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
+
+  // states for approvalTransactionModal
+  const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
+  const [feeTokenID, setFeeTokenID] = useState<string>('');
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -41,38 +48,38 @@ export const ProposalContainer: React.FC = () => {
     }
   }, [votesPage, dispatch, router.query.id]);
 
+  useEffect(() => {
+    if (account?.chainId) {
+      dispatch(AppActions.token.getAccountTokens({}));
+    }
+    if (account && account.address) {
+      dispatch(AppActions.token.getTokenBalances({
+        address: account.address,
+      }));
+    }
+  }, [account, dispatch]);
+
   const onVote = async (value: string) => {
     if (account && (value === 'yes' || value === 'no')) {
-      const { chainId, publicKey, address } = account;
-      let data;
-
-      try {
-        const reponse = await apiGetAuth({
-          address: address,
-        });
-        data = reponse.data;
-      } catch (e) {
-        console.log(e);
-      }
-
+      const { chainId, publicKey } = account;
       const decision = value === 'yes' ? 1 : 0;
-
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.createPool,
-        fee: BigInt(5000000000000000000),
-        nonce: BigInt(data.nonce),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          proposalIndex: 1,
-          decision: decision,
-        },
+      const params = {
+        proposalIndex: 1,
+        decision,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, voteOnProposalParamsSchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      createTransactionObject(TransactionModule.dexGovernance, TransactionCommands.voteOnProposal, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, voteOnProposalParamsSchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
@@ -138,11 +145,12 @@ export const ProposalContainer: React.FC = () => {
       {
         openApproveTransactionModal &&
         <ApproveTransactionModal
-          expenses={[{
-            title: 'Transaction fee',
-            amount: '0.87',
-          }]}
           approvingTransaction={submitingTransaction}
+          transaction={transactionObject}
+          account={account as IAccount}
+          feeTokenID={feeTokenID}
+          accountTokens={accountTokens}
+          tokenBalances={tokenBalances}
           onConfirm={onConfirmApproval}
           onClose={onCloseApproveTransactionModal}
         />

@@ -23,8 +23,11 @@ export const WalletComponentStyle = styled('div')(({ theme }: any) => {
 
         svg: {
           color: theme.text.primary,
-          fill: theme.text.primary,
           marginRight: '0.25rem',
+
+          path: {
+            fill: theme.lightcurve[0],
+          },
         },
 
         fieldset: {

@@ -1,4 +1,5 @@
 import { apiGetAuth, apiGetEstimationFee } from 'apis';
+import { AxiosError } from 'axios';
 import { TransactionModule } from 'consts';
 import { IAccount, INetwrokFeeResponse, ITransactionObject } from 'models';
 
@@ -35,6 +36,8 @@ export const createTransactionObject = async <T>(module: TransactionModule, comm
       }
     };
   } catch (e: any) {
+    if (e instanceof AxiosError)
+      throw new Error(e.response?.data.message);
     throw new Error(e);
   }
 };
