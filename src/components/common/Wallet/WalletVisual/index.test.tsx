@@ -26,4 +26,9 @@ describe('WalletVisual', () => {
     expect(wrapper.getAllByTestId('circle')[1].getAttribute('cy')).toEqual('15.32');
     expect(wrapper.getAllByTestId('circle')[1].getAttribute('r')).toEqual('4.32');
   });
+
+  it('test placeholder property', () => {
+    const wrapper = render(<WalletVisual address={mockWallets.genesis.summary.address} placeholder='address' />);
+    expect(wrapper.getByTestId('wallet-visual-placeholder')).toBeInTheDocument();
+  });
 });
