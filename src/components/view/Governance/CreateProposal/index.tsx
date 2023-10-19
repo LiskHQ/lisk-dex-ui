@@ -12,16 +12,17 @@ import { CreateProposalViewStyle } from './index.style';
 import { SelectProposalTypeComponent } from './SelectProposalType';
 import { IncentivizationProposal } from './IncentivizationProposal';
 import { ButtonComponent } from 'components/common/Button';
-import { IProposal } from 'models';
+import { IPool, IProposal } from 'models';
 import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
 
 export interface ICreateProposalViewProps {
+  pools: IPool[],
   onSubmit: (proposal: IProposal) => void,
   onCloseProposalSubmitted: () => void,
 }
 
 export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
-  const { onSubmit } = props;
+  const { pools, onSubmit } = props;
 
   const [proposalType, setProposalType] = useState<ProposalType>();
   const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
@@ -38,12 +39,12 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       multiplier?: Yup.NumberSchema,
     }
       = {
-        author: Yup.string().required(),
-        title: Yup.string().required(),
-        summary: Yup.string().required(),
-        description: Yup.string().required(),
-        link: Yup.string().url(),
-      };
+      author: Yup.string().required(),
+      title: Yup.string().required(),
+      summary: Yup.string().required(),
+      description: Yup.string().required(),
+      link: Yup.string().url(),
+    };
     if (proposalType === ProposalType.PoolIncentivization) {
       schemaObject.multiplier = Yup.number().required();
       schemaObject.poolID = Yup.string().required();
@@ -110,6 +111,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
               {
                 proposalType === ProposalType.PoolIncentivization &&
                 <IncentivizationProposal
+                  pools={pools}
                   className="proposal-incentivization"
                   register={register}
                 />

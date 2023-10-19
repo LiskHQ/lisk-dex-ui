@@ -80,7 +80,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   };
 
   const isValid = useMemo(() => {
-    return (token1 && token2 && minPrice && maxPrice && token1Amount && token2Amount && initialPrice && tierValue);
+    return (token1 && token2 && minPrice && maxPrice && +token1Amount && +token2Amount && initialPrice && tierValue);
   }, [token1, token2, minPrice, maxPrice, token1Amount, token2Amount, initialPrice, tierValue]);
 
 

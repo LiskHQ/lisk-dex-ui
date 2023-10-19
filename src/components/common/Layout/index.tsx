@@ -39,10 +39,10 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   // current socket event
   const [socketEvent, setSocketEvent] = useState<string>('');
 
-  useMemo(() => {
-    // todo
-    console.log('socketEvent: ', socketEvent);
-  }, [socketEvent]);
+  // useMemo(() => {
+  //   // todo
+  //   console.log('socketEvent: ', socketEvent);
+  // }, [socketEvent]);
 
   useEffect(() => {
     if (!account) {

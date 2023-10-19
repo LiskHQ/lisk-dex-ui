@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, CreateProposalView, TransactionStatusModal } from 'components';
-import { AlertVariant, ProposalType, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, ProposalType, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { AppActions, RootState } from 'store';
 import { IAccount, IProposal, ITransactionObject } from 'models';
@@ -23,6 +23,7 @@ export const CreateProposalContainer: React.FC = () => {
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
+  const { pools } = useSelector((root: RootState) => root.pool);
 
   const {
     rpcResult,
@@ -40,7 +41,17 @@ export const CreateProposalContainer: React.FC = () => {
     }
   }, [account, dispatch]);
 
+  useEffect(() => {
+    dispatch(AppActions.pool.getPools({}));
+    dispatch(AppActions.transaction.resetTransactionStates());
+  }, [dispatch]);
+
   const onSubmit = (proposal: IProposal) => {
+    if (pools.length === 0) {
+      enqueueSnackbar(`Pool is required to create proposal`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+      return;
+    }
+
     if (account) {
       const { chainId, publicKey } = account;
 
@@ -102,7 +113,7 @@ export const CreateProposalContainer: React.FC = () => {
   };
 
   useEffect(() => {
-    if (rpcResult && rpcResult.valid) {
+    if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
   }, [rpcResult]);
@@ -122,6 +133,7 @@ export const CreateProposalContainer: React.FC = () => {
   return (
     <>
       <CreateProposalView
+        pools={pools}
         onSubmit={onSubmit}
         onCloseProposalSubmitted={onCloseProposalSubmitted}
       />
