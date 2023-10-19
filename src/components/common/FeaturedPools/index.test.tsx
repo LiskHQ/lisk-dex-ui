@@ -3,6 +3,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { IFeaturedPoolsProps, FeaturedPools } from './index';
 import React from 'react';
 import { lightTheme } from 'styles/theme';
+import { mockPoolDetails } from '__mock__';
+import { getPoolToken0 } from 'utils';
 
 function renderComponent(props: IFeaturedPoolsProps) {
   return render(
@@ -14,6 +16,7 @@ function renderComponent(props: IFeaturedPoolsProps) {
 
 describe('FeaturedPools component', () => {
   const mockProps: IFeaturedPoolsProps = {
+    poolDetails: mockPoolDetails,
     onSelectPool: jest.fn(),
   };
   it('checks if the component matches the snapshot', () => {
@@ -26,6 +29,12 @@ describe('FeaturedPools component', () => {
     fireEvent.click(getByTestId('feature-pool-item-0'));
 
     expect(mockProps.onSelectPool).toBeCalledWith('0');
+  });
+
+  it('check click feature pool rednered correctly', () => {
+    const { getAllByText } = renderComponent(mockProps);
+    expect(getAllByText(getPoolToken0(mockProps.poolDetails[0].poolName))[0]).toBeInTheDocument();
+    expect(getAllByText(getPoolToken0(mockProps.poolDetails[1].poolName))[0]).toBeInTheDocument();
   });
 });
 

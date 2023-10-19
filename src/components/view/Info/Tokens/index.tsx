@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -12,7 +12,8 @@ import { createMockChartInfo } from '__mock__';
 import { TokensComponentStyle } from './index.style';
 import { ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 import { getPoolToken0, getPoolToken1 } from 'utils';
-import { PATHS } from 'consts';
+import { PATHS, currencySymbols } from 'consts';
+import { PlatformContext } from 'contexts';
 
 export interface ITokenComponentProps {
   tokenDetails: ITokenDetail[],
@@ -67,6 +68,8 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
   const [isAsc, setAsc] = useState<boolean>();
   const [sortKey, setSortKey] = useState<string>('');
 
+  const { currency } = useContext(PlatformContext);
+
   const pools = useMemo(() => {
     if (tokenDetail.symbol)
       return poolDetails
@@ -115,6 +118,35 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
       setTokenAsc(!isTokenAsc);
     }
   };
+
+  const infoChartSummary = useMemo(() => {
+    return [
+      {
+        title: `${tokenDetails[0].symbol} Price`,
+        value: `${currencySymbols[currency]}${tokenDetails[0].price}`,
+        changePercent: tokenDetails[0].priceChange,
+      },
+      {
+        title: 'Total Liquidity',
+        value: `${currencySymbols[currency]}${tokenDetails[0].liquidity}`,
+        changePercent: 2.32,
+      },
+      {
+        title: 'Volume 24h',
+        value: `${currencySymbols[currency]}${tokenDetails[0].volume24H}`,
+        changePercent: 1.45,
+      },
+      {
+        title: 'Fees 24h',
+        value: '$48.9k',
+        changePercent: 4.86
+      },
+      {
+        title: 'Transactions 24h',
+        value: 216
+      }
+    ];
+  }, [currency, tokenDetails]);
 
   return (
     <TokensComponentStyle>
@@ -207,7 +239,12 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
           <Typography variant="subtitle1">Saved Tokens</Typography>
         </Box>
       }
-      <InfoChart chartData={chartData} />
+      <InfoChart
+        infoChartSummary={infoChartSummary}
+        chartData={chartData}
+        tabs={['Volume', 'Liquidity', 'Price']}
+        onTabChange={() => { }}
+      />
 
       {
         tokenID ?

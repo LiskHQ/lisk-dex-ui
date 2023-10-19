@@ -34,7 +34,7 @@ export const SwapContainer: React.FC = () => {
         address: account.address
       }));
     }
-  }, [account]);
+  }, [account, dispatch]);
 
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, amountIn, minAmountOut } = data;

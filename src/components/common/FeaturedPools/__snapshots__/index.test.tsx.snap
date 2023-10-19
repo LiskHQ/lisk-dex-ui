@@ -381,6 +381,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <p
                 class="MuiTypography-root MuiTypography-body2 pool-detail-value emotion-14"
               >
+                $
                 1.5
               </p>
             </div>
@@ -506,6 +507,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
               <p
                 class="MuiTypography-root MuiTypography-body2 pool-detail-value emotion-14"
               >
+                $
                 2.9
               </p>
             </div>

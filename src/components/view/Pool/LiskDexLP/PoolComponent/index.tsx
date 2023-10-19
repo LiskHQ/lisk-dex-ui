@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
 import { IPool } from 'models';
 import { PoolComponentStyle } from './index.style';
-import { PieChartIcon, tokenSvgs } from 'imgs/icons';
+import { PieChartIcon } from 'imgs/icons';
 import { ButtonComponent } from 'components/common';
 
 export interface IPoolComponentProps {

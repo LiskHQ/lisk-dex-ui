@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import {
   ButtonComponent, InputComponent,
 } from 'components';
-import { CancelIcon, tokenSvgs } from 'imgs/icons';
+import { CancelIcon } from 'imgs/icons';
 import { IncreaseLiquidityModalStyle } from './index.style';
 import { IPool } from 'models';
 import { useState } from 'react';

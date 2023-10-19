@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { IAccount, ICreatePool, IPool, IToken, ITokenBalance } from 'models';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PoolViewStyle } from './index.style';
 import { LiskDexLP } from './LiskDexLP';
 import { RemoveLiquidityModal } from './RemoveLiquidityModal';
