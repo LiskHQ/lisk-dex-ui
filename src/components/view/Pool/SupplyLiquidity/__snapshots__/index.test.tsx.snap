@@ -1849,7 +1849,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus::-ms-input-
                 aria-invalid="false"
                 class="MuiInputBase-input emotion-94"
                 type="number"
-                value="0"
+                value="0.00"
               />
             </div>
           </div>
@@ -1880,7 +1880,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-94:focus::-ms-input-
                 aria-invalid="false"
                 class="MuiInputBase-input emotion-94"
                 type="number"
-                value="0"
+                value="0.00"
               />
             </div>
           </div>

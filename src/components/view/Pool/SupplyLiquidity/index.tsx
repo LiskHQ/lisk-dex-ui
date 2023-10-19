@@ -44,8 +44,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const [token1, setToken1] = useState<IToken | null>(null);
   const [token2, setToken2] = useState<IToken | null>(null);
 
-  const [token1Amount, setToken1Amount] = useState<number>(0);
-  const [token2Amount, setToken2Amount] = useState<number>(0);
+  const [token1Amount, setToken1Amount] = useState<number | string>('0.00');
+  const [token2Amount, setToken2Amount] = useState<number | string>('0.00');
 
   const [initialPrice, setInitialPrice] = useState<number>(0);
   const [tierValue, setTierValue] = useState<number>(0);
@@ -246,8 +246,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
           onPreview({
             token1: token1 as IToken,
             token2: token2 as IToken,
-            token1Amount,
-            token2Amount,
+            token1Amount: +token1Amount,
+            token2Amount: +token2Amount,
             tickInitialPrice: initialPrice,
             tickLower: minPrice,
             tickUpper: maxPrice,

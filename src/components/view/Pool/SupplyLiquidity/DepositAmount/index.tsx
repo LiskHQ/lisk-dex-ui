@@ -7,18 +7,18 @@ import { cryptoDecimalFormat } from 'utils';
 
 export interface IDepositAmountProps {
   balance: number,
-  tokenAmount: number,
+  tokenAmount: number | string,
   token?: IToken,
-  onChange: (amount: number) => void,
+  onChange: (amount: number | string) => void,
 }
 
 export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
   const { balance, token, tokenAmount, onChange } = props;
 
-  const [amount, setAmount] = useState<number | string>(tokenAmount.toPrecision(4));
+  const [amount, setAmount] = useState<number | string>(tokenAmount);
 
   useEffect(() => {
-    onChange(+amount);
+    onChange(amount);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount]);
 
@@ -43,7 +43,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         <InputComponent
           type="number"
           value={amount}
-          onChange={(e) => { setAmount(+e.target.value); }}
+          onChange={(e) => { setAmount(e.target.value); }}
           onBlur={() => { setAmount(cryptoDecimalFormat(+amount)); }}
         />
       </Box>
