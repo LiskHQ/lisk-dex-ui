@@ -368,31 +368,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
       <div
         class="selected-token MuiBox-root emotion-1"
       >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-        >
-          <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-          >
-            <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2728%27%20height=%2728%27/%3e"
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-            />
-          </span>
-          <img
-            data-nimg="intrinsic"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        <img
+          alt="DEX"
+          height="28"
+          src="https://raw.githubusercontent.com/LiskHQ/app-registry/main/devnet/Dex/images/tokens/dex.png"
+          style="border-radius: 100%;"
+          width="28"
+        />
         <h6
           class="MuiTypography-root MuiTypography-subtitle1 emotion-3"
         >
-          LSK
+          DEX
         </h6>
       </div>
       <div
@@ -424,19 +410,19 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
       >
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-8"
-          data-testid="LSK-amount-percent-25"
+          data-testid="DEX-amount-percent-25"
         >
           25%
         </p>
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-8"
-          data-testid="LSK-amount-percent-50"
+          data-testid="DEX-amount-percent-50"
         >
           50%
         </p>
         <p
           class="MuiTypography-root MuiTypography-body2 emotion-8"
-          data-testid="LSK-amount-percent-max"
+          data-testid="DEX-amount-percent-max"
         >
           MAX
         </p>

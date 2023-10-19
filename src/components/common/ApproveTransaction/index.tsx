@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Box, FormLabel, Typography } from '@mui/material';
 import { ButtonComponent } from 'components/common';
 import { CancelIcon, LightcurveIcon } from 'imgs/icons';
@@ -6,7 +5,6 @@ import { ellipsisAddress, getDispalyTokenAmount } from 'utils';
 import { ApproveTransactionModalStyle } from './index.style';
 import { IAccount, IExpense, IToken, ITokenBalance, ITransactionObject } from 'models';
 import { useMemo } from 'react';
-import { mockConversionRate } from '__mock__';
 import WalletVisual from '../Wallet/WalletVisual';
 
 export interface IApproveTransactionModalProps {
@@ -65,16 +63,22 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             <Box className="approve-transaction-account">
               <FormLabel>Account:</FormLabel>
               <Box className="approve-transaction-account-address">
-                <WalletVisual address={account?.address} size={24} />&nbsp;
+                <WalletVisual address={account?.address || ''} size={24} />&nbsp;
                 <Typography variant="body1">{ellipsisAddress(account ? account.address || '' : '')}</Typography>
               </Box>
             </Box>
             <Box className="approve-transaction-balance">
               <FormLabel>Balances:</FormLabel>
               {
-                tokenBalances && tokenBalances.map((tokenBalance: ITokenBalance) =>
-                  <Box className="approve-transaction-balance-amount">
-                    <img src={getTokenDetail(tokenBalance.tokenID)?.logo.png} width={20} height={20} style={{ borderRadius: '100%' }} />&nbsp;
+                accountTokens && tokenBalances && tokenBalances.map((tokenBalance: ITokenBalance) =>
+                  <Box key={tokenBalance.tokenID} className="approve-transaction-balance-amount">
+                    <img
+                      src={getTokenDetail(tokenBalance.tokenID)?.logo.png}
+                      alt={getTokenDetail(tokenBalance.tokenID)?.symbol}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: '100%' }}
+                    />&nbsp;
                     <Typography variant="body1">{getDispalyTokenAmount(+tokenBalance.availableBalance, getTokenDetail(tokenBalance.tokenID) || accountTokens[0])} {getTokenDetail(tokenBalance.tokenID)?.symbol}</Typography>
                   </Box>
                 )

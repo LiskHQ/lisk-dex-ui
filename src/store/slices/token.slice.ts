@@ -264,7 +264,7 @@ const tokenSlice = createSlice({
     getTokenBalancesFailure(state, action) {
       state.gettingTokenBalances = true;
       state.gotTokenBalances = false;
-      state.error = action.payload
+      state.error = action.payload;
     }
   },
 });

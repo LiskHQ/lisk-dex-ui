@@ -21,7 +21,7 @@ describe('TransactionsTable component', () => {
     onChangeCommand: jest.fn,
     transactions: [...mockTransactions],
     availableTokens: mockTokens,
-    limit: 1,
+    limit: 10,
     page: 1,
     totalPages: 1,
   };

@@ -101,6 +101,7 @@ const transactionSlice = createSlice({
     getNetworkFeeFailure(state, action) {
       state.gettingNetworkFee = false;
       state.gotNetworkFee = true;
+      state.error = action.payload;
     },
 
     resetTransactionStates(state) {

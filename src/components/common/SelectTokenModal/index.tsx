@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import cn from 'classnames';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,13 +16,17 @@ export interface ISelectTokenModalProps {
 }
 
 export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
-  const { tokens, tokenBalances, onSelect, onClose } = props;
+  const { tokens: _tokens, tokenBalances, onSelect, onClose } = props;
   const [close, setClose] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('');
 
   const onClickChevronDown = () => {
     setClose(true);
   };
+
+  const tokens = useMemo(() => {
+    return _tokens.filter(el => tokenBalances.find(_el => _el.tokenID === el.tokenID));
+  }, [_tokens, tokenBalances]);
 
   const filteredTokens = useMemo(() => {
     return tokens.filter(el => el.symbol.includes(filter) || el.tokenName.includes(filter));
@@ -69,7 +72,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
                 >
                   <Box className="select-token-chain-box">
                     <Box className="token-image">
-                      <img src={token.logo.png} width={20} height={20} />
+                      <img src={token.logo.png} alt={token.symbol} width={20} height={20} />
                     </Box>
                     <Typography variant="body2">{token.symbol}</Typography>
                   </Box>
@@ -90,7 +93,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
             >
               <Box className="token-wrapper">
                 <Box className="token-image">
-                  <img src={token.logo.png} width={40} height={40} />
+                  <img src={token.logo.png} alt={token.symbol} width={40} height={40} />
                 </Box>
                 <Box className="token-name-wrapper">
                   <Typography className="token-short-name" variant="body1">{token.symbol}</Typography>

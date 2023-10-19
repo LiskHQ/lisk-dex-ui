@@ -45,8 +45,8 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           </Box>
           <Box className="supply-liquidity-modal-description">
             <Box>
-              <Image src={tokenSvgs[pool.token1.symbol]} width={48} height={48} />
-              <Image src={tokenSvgs[pool.token2.symbol]} width={48} height={48} />
+              <img src={pool.token1.logo.png} width={48} height={48} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
+              <img src={pool.token2.logo.png} width={48} height={48} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
             </Box>
             <Typography variant="body1">Supplying {pool.token1Amount} {pool.token1.symbol} and {pool.token2Amount} {pool.token2.symbol}</Typography>
           </Box>
@@ -55,14 +55,14 @@ export const SupplyLiquidityModal: React.FC<ISupplyLiquidityModalProps> = (props
           <Box className="deposit-property">
             <Typography variant="body1">{pool.token1.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
+              <img src={pool.token1.logo.png} width={24} height={24} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
               <Typography variant="body1">{pool.token1Amount}</Typography>
             </Box>
           </Box>
           <Box className="deposit-property">
             <Typography variant="body1">{pool.token2.symbol} Deposited:</Typography>
             <Box className="deposit-property-amount">
-              <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
+              <img src={pool.token2.logo.png} width={24} height={24} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
               <Typography variant="body1">{pool.token2Amount}</Typography>
             </Box>
           </Box>

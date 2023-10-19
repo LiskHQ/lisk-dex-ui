@@ -75,8 +75,9 @@ export const PoolContainer: React.FC = () => {
         feeTokenID: _feeTokenID,
         transactionObject: rawTx,
       } = await createTransactionObject(TransactionModule.dex, TransactionCommands.createPool, account, params);
+      console.log('transactionObject: ', rawTx);
       setTransactionObject(rawTx);
-      setFeeTokenID(feeTokenID);
+      setFeeTokenID(_feeTokenID);
 
       liskRpc.signTransaction(chainId, publicKey, createPoolSchema, rawTx);
       setOpenTransactionStatusModal(true);
@@ -258,6 +259,7 @@ export const PoolContainer: React.FC = () => {
           approvingTransaction={submitingTransaction}
           transaction={transactionObject}
           account={account as IAccount}
+          feeTokenID={feeTokenID}
           accountTokens={accountTokens}
           tokenBalances={tokenBalances}
           onConfirm={onConfirmApproval}

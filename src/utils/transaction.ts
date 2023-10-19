@@ -1,6 +1,6 @@
-import { apiGetAuth, apiGetEstimationFee } from "apis";
-import { TransactionModule } from "consts";
-import { IAccount, INetwrokFeeResponse, ITransactionObject } from "models";
+import { apiGetAuth, apiGetEstimationFee } from 'apis';
+import { TransactionModule } from 'consts';
+import { IAccount, INetwrokFeeResponse, ITransactionObject } from 'models';
 
 export const createTransactionObject = async <T>(module: TransactionModule, command: string, account: IAccount, params: T): Promise<{
   feeTokenID: string,
@@ -37,4 +37,4 @@ export const createTransactionObject = async <T>(module: TransactionModule, comm
   } catch (e: any) {
     throw new Error(e);
   }
-}
+};

@@ -1,4 +1,4 @@
-import { ITransaction } from 'models';
+import { ITransaction, ITransactionObject } from 'models';
 
 export const mockTransactions: ITransaction[] = [
   {
@@ -29,3 +29,25 @@ export const mockTransactions: ITransaction[] = [
     index: 0,
   }
 ];
+
+export const mockTransactionRaw: ITransactionObject = {
+  module: "dex",
+  command: "createPool",
+  fee: "173000",
+  nonce: "6",
+  params: {
+    feeTier: 100,
+    initialPosition: {
+      tickLower: -887272,
+      tickUpper: 887272,
+      amount0Desired: 100000000,
+      amount1Desired: 1
+    },
+    maxTimestampValid: 100000000000,
+    tickInitialPrice: 1,
+    tokenID0: "0400000000000000",
+    tokenID1: "0400001100000000",
+  },
+  senderPublicKey: "c2d2e4b205a3197f13d7e2c5218391a06971437cad06ef51443522ba7c8e8fb5",
+  signatures: []
+}

@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
 import cn from 'classnames';
 import { Box, IconButton, Typography } from '@mui/material';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
-import { PlusCircleIcon, SettingIcon, tokenSvgs } from 'imgs/icons';
+import { PlusCircleIcon, SettingIcon } from 'imgs/icons';
 import { DepositAmount } from './DepositAmount';
 import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
@@ -148,7 +147,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token1 ?
                 <Box>
-                  <img src={token1.logo.png} width={28} height={28} style={{ borderRadius: '100%' }} />
+                  <img src={token1.logo.png} alt={token1.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
                   <Typography variant="subtitle1">{token1.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
@@ -173,7 +172,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token2 ?
                 <Box>
-                  <img src={token2.logo.png} width={28} height={28} style={{ borderRadius: '100%' }} />
+                  <img src={token2.logo.png} alt={token2.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
                   <Typography variant="subtitle1">{token2.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>

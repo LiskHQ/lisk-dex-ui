@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import { IAccount, ICreatePool, IPool, IToken, ITokenBalance } from 'models';
 import { useEffect, useMemo, useState } from 'react';
@@ -8,7 +7,6 @@ import { RemoveLiquidityModal } from './RemoveLiquidityModal';
 import { SupplyLiquidity } from './SupplyLiquidity';
 import { SupplyLiquidityModal } from './SupplyLiquidityModal';
 import { TransactionCommands } from 'consts';
-import { RootState } from 'store';
 
 export interface IPoolViewProps {
   requestingSignature: boolean,
@@ -82,16 +80,12 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     }
   };
 
-  const tokens = useMemo(() => {
-    return accountTokens.filter(el => tokenBalances.find(_el => _el.tokenID === el.tokenID));
-  }, [accountTokens, tokenBalances]);
-
   return (
     <PoolViewStyle>
       <Grid container spacing={3}>
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
-            tokens={tokens}
+            tokens={accountTokens}
             tokenBalances={tokenBalances}
             onPreview={onPreview}
             closeTransactionModal={closeTransactionModal}

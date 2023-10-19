@@ -1,10 +1,8 @@
-import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import { IToken } from 'models';
 import { DepositAmountStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { InputComponent } from 'components/common';
-import { tokenSvgs } from 'imgs/icons';
 import { cryptoDecimalFormat } from 'utils';
 
 export interface IDepositAmountProps {
@@ -34,7 +32,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         {
           token ?
             <Box className="selected-token">
-              <img src={token.logo.png} width={28} height={28} style={{ borderRadius: '100%' }} />
+              <img src={token.logo.png} alt={token.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
               <Typography variant="subtitle1">{token.symbol}</Typography>
             </Box>
             :

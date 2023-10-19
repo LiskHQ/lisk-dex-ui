@@ -1,3 +1,4 @@
+import { INetwrokFeeRequestBody } from 'models';
 import { dexApiInstance, liskApiInstance } from 'utils';
 
 const API_VERSION = 'v3';
@@ -63,7 +64,7 @@ export async function apiGetAuth(data: any) {
   return {};
 }
 
-export async function apiGetEstimationFee(data: any) {
+export async function apiGetEstimationFee(data: INetwrokFeeRequestBody) {
   const response: ResponseGenerator = await dexApiInstance.post('/api/v3/transactions/estimate-fees', data);
   if (response)
     return response.data;

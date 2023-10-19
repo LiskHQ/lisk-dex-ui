@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SwapView, ISwapViewProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockTokens } from '__mock__';
+import { mockTokenBalances, mockTokens } from '__mock__';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 
@@ -25,6 +25,7 @@ describe('Swap', () => {
       address: 'lsk6ccnusyfemspn8pfhgm86wumczqsjbnvdste85',
     },
     tokens: mockTokens,
+    tokenBalances: mockTokenBalances,
     closeTransactionModal: false,
     onConfirmSwap: jest.fn(),
     getToken2FiatConversion: jest.fn(),

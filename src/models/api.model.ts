@@ -1,6 +1,5 @@
-import { StakeProgram } from '@solana/web3.js';
 import { IFilteredTokens, ITokenBalance, ITokenDetail } from './token.model';
-import { ITransaction, ITransactionObject } from './transaction.model';
+import { ITransactionObject } from './transaction.model';
 
 export interface IResponse {
   data: unknown,

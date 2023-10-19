@@ -1,4 +1,4 @@
-import { IToken } from "models";
+import { IToken } from 'models';
 
 export const allowDigitOnly = (event: any) => {
   if (
@@ -45,11 +45,11 @@ export const getDispalyTokenAmount = (amount: number, token: IToken) => {
   const decimals = denomUnits.find(denomUnit => denomUnit.denom === displayDenom)?.decimals || 0;
 
   return cryptoDecimalFormat(amount / Math.pow(10, decimals));
-}
+};
 
 export const getTokenAmount = (amount: number, token: IToken) => {
   const { displayDenom, denomUnits } = token;
   const decimals = denomUnits.find(denomUnit => denomUnit.denom === displayDenom)?.decimals || 0;
 
   return amount * Math.pow(10, decimals);
-}
+};
