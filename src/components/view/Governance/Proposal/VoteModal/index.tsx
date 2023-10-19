@@ -8,13 +8,12 @@ import { ChangeEvent, useState } from 'react';
 import { VoteModalStyle } from './index.style';
 
 export interface IVoteModalProps {
-  openTransactionApproval?: boolean,
   onClose: () => void,
   onVote: (value: string) => void,
 }
 
 export const VoteModal: React.FC<IVoteModalProps> = (props) => {
-  const { openTransactionApproval, onClose, onVote } = props;
+  const { onClose, onVote } = props;
   const [value, setValue] = useState<string>('yes');
 
   const onChange = (event: ChangeEvent<HTMLInputElement>, value: string) => {
@@ -61,7 +60,6 @@ export const VoteModal: React.FC<IVoteModalProps> = (props) => {
           <ButtonComponent
             data-testid={value && 'vote-modal-button-test'}
             className="vote-modal-confirm"
-            loading={openTransactionApproval}
             onClick={() => { onVote(value); }}
             disabled={!value}
           >

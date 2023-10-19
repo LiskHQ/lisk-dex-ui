@@ -7,13 +7,35 @@ import { PoolsComponent } from './Pools';
 import { TokensComponent } from './Tokens';
 import { useRouter } from 'next/router';
 import { SearchComponent } from './Search';
-import { mockPoolDetails, mockTokenDetails } from '__mock__';
 import { PATHS } from 'consts';
+import { ConversionRates, ITokenDetail, IPoolDetail, ITransaction, IToken } from 'models';
 
-export const InfoView: React.FC = () => {
+export interface InfoViewProps {
+  transactions: ITransaction[],
+  tokenDetails: ITokenDetail[],
+  poolDetails: IPoolDetail[],
+  availableTokens: IToken[],
+  conversionRates: ConversionRates,
+  getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
+  onChangeTransactionCommand: (value: string) => void,
+}
+
+export const InfoView: React.FC<InfoViewProps> = (props) => {
+  const {
+    transactions,
+    availableTokens,
+    poolDetails,
+    conversionRates,
+    getToken2FiatConversion,
+    onChangeTransactionCommand,
+  } = props;
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
   const [filter, setFilter] = useState('');
+  const [tokenID, setTokenID] = useState<string>('');
+  const [poolID, setPoolID] = useState('');
+
+  const { tokenDetails } = props;
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -32,13 +54,15 @@ export const InfoView: React.FC = () => {
     if (router) {
       const { query } = router;
       if (query) {
+        setPoolID(query.poolID as string);
+        setTokenID(query.tokenID as string);
         if (query.tabIndex) {
           setTabValue(parseInt(query.tabIndex as string));
         }
-        if (query.poolId !== undefined) {
+        if (query.poolID !== undefined) {
           setTabValue(1);
         }
-        if (query.tokenId !== undefined) {
+        if (query.tokenID !== undefined) {
           setTabValue(2);
         }
       }
@@ -47,30 +71,27 @@ export const InfoView: React.FC = () => {
 
   const searchedPools = useMemo(() => {
     if (filter)
-      return mockPoolDetails.filter(pool =>
-        pool.token1.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token1.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        pool.token2.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return poolDetails.filter(pool =>
+        pool.poolName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, poolDetails]);
 
   const searchedTokens = useMemo(() => {
     if (filter)
-      return mockTokenDetails.filter(token =>
-        token.chainName.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      return tokenDetails.filter(token =>
+        token.symbol.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+        token.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
         .slice(0, 3);
     return [];
-  }, [filter]);
+  }, [filter, tokenDetails]);
 
   const onSelectPool = (id: string) => {
-    router.push(`?poolId=${id}`);
+    router.push(`?poolID=${id}`);
   };
 
   const onSelectToken = (id: string) => {
-    router.push(`?tokenId=${id}`);
+    router.push(`?tokenID=${id}`);
   };
 
   const onGotoSwap = (token1: string, token2?: string) => {
@@ -102,16 +123,24 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={0}>
         <OverviewComponent
+          transactions={transactions}
+          availableTokens={availableTokens}
+          poolDetails={poolDetails}
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
           onSelectToken={onSelectToken}
+          onChangeTransactionCommand={onChangeTransactionCommand}
         />
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
         <PoolsComponent
-          router={router}
+          poolDetails={poolDetails}
+          poolID={poolID}
+          conversionRates={conversionRates}
+          getToken2FiatConversion={getToken2FiatConversion}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
@@ -121,11 +150,16 @@ export const InfoView: React.FC = () => {
 
       <TabPanel value={tabValue} index={2}>
         <TokensComponent
-          router={router}
+          transactions={transactions}
+          availableTokens={availableTokens}
+          poolDetails={poolDetails}
+          tokenID={tokenID}
+          tokenDetails={tokenDetails}
           onSwap={onGotoSwap}
           onAddLiquidity={onGotoAddLiquidity}
           onSelectPool={onSelectPool}
           onSelectToken={onSelectToken}
+          onChangeTransactionCommand={onChangeTransactionCommand}
         />
       </TabPanel>
     </InfoViewStyle >

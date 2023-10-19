@@ -13,6 +13,7 @@ import { ellipsisAddress, getFiatfromToken } from 'utils';
 import { CheckCircleIcon, CopyIcon, tokenSvgs } from 'imgs/icons';
 import { mockConversionRate } from '__mock__';
 import { AppActions, RootState } from 'store';
+import WalletVisual from '../WalletVisual';
 
 enum TABS {
   WALLET = 0,
@@ -143,7 +144,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                       </IconButton>
                     </Box>
                     <Box className="avatar-icon">
-                      <Image src="/assets/avatars/avatar.png" width={40} height={40} />
+                      <WalletVisual address={address} size={40} />
                     </Box>
                     <Typography variant="body2">Total balance</Typography>
                     <Typography variant="h2">${getFiatfromToken(balance, mockConversionRate)}</Typography>

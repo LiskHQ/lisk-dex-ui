@@ -1,12 +1,25 @@
-import { apiGetAccountTokens, apiGetAvailableTokens, apiGetPopularPairings, apiGetPriceImpact, apiGetSlippageBounds, apiGetToken2FiatConversion, apiGetToken2TokenConversion } from 'apis';
+import { PayloadAction } from '@reduxjs/toolkit';
+import {
+  apiGetChainTokens,
+  apiGetAvailableTokens,
+  apiGetPopularPairings,
+  apiGetPriceImpact,
+  apiGetSlippageBounds,
+  apiGetToken2FiatConversion,
+  apiGetToken2TokenConversion,
+  apiGetTopTokensFromDatabase,
+  apiGetTokenBalances
+} from 'apis';
+import {
+  IFilteredTokens,
+  IResponse,
+  ITokenBalancesReponse,
+  ITokenBalancesRequest,
+  ITopTokensFromDatabaseReponse,
+  ITopTokensFromDatabaseRequest
+} from 'models';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
-
-interface IResponse {
-  data: unknown,
-  meta: unknown,
-  links: unknown,
-}
 
 export function* getAvailableTokensSaga() {
   try {
@@ -27,14 +40,14 @@ export function* getAccountTokensSaga(action: any) {
   try {
     const result: IResponse = yield call(
       async () =>
-        await apiGetAccountTokens(action.payload)
+        await apiGetChainTokens(action.payload)
     );
 
     if (result) {
       yield put(AppActions.token.getAccountTokensSuccess(result.data));
     }
   } catch (error) {
-    yield put(AppActions.token.getAccountTokensSuccess(error));
+    yield put(AppActions.token.getAccountTokensFailure(error));
   }
 }
 
@@ -121,5 +134,43 @@ export function* getSlippageBoundsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.token.getSlippageBoundsFailure(error));
+  }
+}
+
+export function* getTopTokensFromDatabaseSaga(action: PayloadAction<ITopTokensFromDatabaseRequest>) {
+  try {
+    const result: ITopTokensFromDatabaseReponse = yield call(
+      async () =>
+        await apiGetTopTokensFromDatabase(action.payload)
+    );
+
+    if (result.data) {
+      const { topTokensFromDatabase } = result.data;
+
+      const { tokenID } = action.payload;
+      if (!tokenID)
+        yield put(AppActions.token.getTopTokensFromDatabaseSuccess(topTokensFromDatabase));
+      else {
+        const { filteredTokens } = topTokensFromDatabase[0] as IFilteredTokens;
+        yield put(AppActions.token.getTokenDetailFromDatabaseSuccess(filteredTokens[0]));
+      }
+    }
+  } catch (error) {
+    yield put(AppActions.token.getTopTokensFromDatabaseFailure(error));
+  }
+}
+
+export function* getTokenBalancesSaga(action: PayloadAction<ITokenBalancesRequest>) {
+  try {
+    const result: ITokenBalancesReponse = yield call(
+      async () =>
+        await apiGetTokenBalances(action.payload)
+    );
+
+    if (result.data) {
+      yield put(AppActions.token.getTokenBalancesSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.token.getTopTokensFromDatabaseFailure(error));
   }
 }

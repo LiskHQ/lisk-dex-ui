@@ -14,12 +14,13 @@ import { SwapViewStyle } from './index.style';
 import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 import { RootState } from 'store';
 import { PlatformContext } from 'contexts';
-import { IAccount, ISwapData, IToken } from 'models';
+import { IAccount, ISwapData, IToken, ITokenBalance } from 'models';
 import { mockTokens } from '__mock__';
 
 export interface ISwapViewProps {
   account: IAccount | null,
   tokens: IToken[],
+  tokenBalances: ITokenBalance[],
   closeTransactionModal: boolean,
   onConfirmSwap: (data: ISwapData) => void,
   getToken2FiatConversion: (tokenSymbol: string, currency: string) => void,
@@ -27,7 +28,7 @@ export interface ISwapViewProps {
 
 export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const router = useRouter();
-  const { account, tokens, closeTransactionModal, onConfirmSwap, getToken2FiatConversion } = props;
+  const { account, tokens, tokenBalances, closeTransactionModal, onConfirmSwap, getToken2FiatConversion } = props;
 
   //flags for open modals
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
@@ -74,7 +75,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   useEffect(() => {
     if (router) {
       const { query } = router;
-      if (query) {
+      if (query && tokens.length) {
         if (query.token1) {
           setToken1(tokens.find(token => token.symbol === query.token1) as IToken);
         }
@@ -275,6 +276,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           (openSelectToken1 || openSelectToken2) &&
           <SelectTokenModal
             tokens={tokens}
+            tokenBalances={tokenBalances}
             onSelect={onSelectToken}
             onClose={onCloseSelectToken}
           />

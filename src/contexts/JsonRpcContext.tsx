@@ -217,11 +217,9 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
 
           // @todo verify the signatures
           const valid = true;
-          console.log('result signature: ', result);
 
           rawTx.signatures = [Buffer.from(JSON.parse(result), 'hex')];
 
-          console.log('rawTx with signatures', rawTx);
           const _tx = await fromTransactionJSON(rawTx, schema);
           const _binary = await encodeTransaction(_tx, schema);
           const _signedTransaction = _binary.toString('hex');

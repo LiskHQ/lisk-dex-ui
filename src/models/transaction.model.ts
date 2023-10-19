@@ -1,12 +1,6 @@
-import { TransactionType } from 'consts';
-
 export interface IExpense {
   title: string,
   amount: string,
-}
-
-export interface ITransaction {
-  type: TransactionType,
 }
 
 export interface ITransaction {
@@ -30,7 +24,17 @@ export interface ITransaction {
   params: any,
   executionStatus: string,
   index: number,
-  meta: any,
+}
+
+export interface ITransactionObject {
+  id?: string,
+  module: string,
+  command: string,
+  nonce: string,
+  fee: string,
+  senderPublicKey: string,
+  signatures: string[],
+  params: unknown,
 }
 
 export interface IAuth {
@@ -38,4 +42,18 @@ export interface IAuth {
   numberOfSignatures: number,
   mandatoryKeys: any[],
   optionalKeys: any[]
+}
+
+export interface ICreatePoolParams {
+  tokenID0: string,
+  tokenID1: string,
+  feeTier: number,
+  tickInitialPrice: number,
+  initialPosition: {
+    tickLower: number,
+    tickUpper: number,
+    amount0Desired: number,
+    amount1Desired: number,
+  },
+  maxTimestampValid: number,
 }

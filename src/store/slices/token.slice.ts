@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ConversionRates, IToken } from 'models';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ConversionRates, IToken, ITokenBalance, ITokenBalancesRequest, ITokenDetail } from 'models';
 
 type StateType = {
   gettingAvailableTokens: boolean,
@@ -8,7 +8,7 @@ type StateType = {
 
   gettingAccountTokens: boolean,
   gotAccountTokens: boolean,
-  accountTokens: any[],
+  accountTokens: IToken[],
 
   gettingToken2TokenConversion: boolean,
   gotToken2TokenConversion: boolean,
@@ -16,11 +16,21 @@ type StateType = {
   gettingToken2FiatConversion: boolean,
   gotToken2FiatConversion: boolean,
 
+  gettingTopTokensFromDatabase: boolean,
+  gotTopTokensFromDatabase: boolean,
+
+  tokenDetails: ITokenDetail[],
+  tokenDetail: ITokenDetail,
+
   conversionRates: ConversionRates,
 
   gettingPopularPairings: boolean,
   gotPopularPairings: boolean,
   popularPairings: string[],
+
+  gettingTokenBalances: boolean,
+  gotTokenBalances: boolean,
+  tokenBalances: ITokenBalance[],
 
   error: any,
 };
@@ -39,6 +49,24 @@ const initialState: StateType = {
 
   gettingToken2FiatConversion: false,
   gotToken2FiatConversion: false,
+
+  gettingTopTokensFromDatabase: false,
+  gotTopTokensFromDatabase: false,
+
+  gettingTokenBalances: false,
+  gotTokenBalances: false,
+  tokenBalances: [],
+
+  tokenDetails: [],
+  tokenDetail: {
+    name: '',
+    price: 0,
+    priceChange: 0,
+    volume24H: 0,
+    liquidity: 0,
+    tokenID: '',
+    symbol: '',
+  },
 
   conversionRates: {
     LSK: {
@@ -199,6 +227,43 @@ const tokenSlice = createSlice({
     getSlippageBoundsFailure(state, action) {
       state.gettingPopularPairings = false;
       state.gotPopularPairings = false;
+      state.error = action.payload;
+    },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getTopTokensFromDatabase(state, action) {
+      state.gettingTopTokensFromDatabase = true;
+      state.gotTopTokensFromDatabase = false;
+    },
+    getTopTokensFromDatabaseSuccess(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = true;
+      state.tokenDetails = [...action.payload];
+    },
+    getTokenDetailFromDatabaseSuccess(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = true;
+      state.tokenDetail = { ...action.payload };
+    },
+    getTopTokensFromDatabaseFailure(state, action) {
+      state.gettingTopTokensFromDatabase = false;
+      state.gotTopTokensFromDatabase = false;
+      state.error = action.payload;
+    },
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getTokenBalances(state, action: PayloadAction<ITokenBalancesRequest>) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
+    },
+    getTokenBalancesSuccess(state, action: PayloadAction<ITokenBalance[]>) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
+      state.tokenBalances = [...action.payload];
+    },
+    getTokenBalancesFailure(state, action) {
+      state.gettingTokenBalances = true;
+      state.gotTokenBalances = false;
       state.error = action.payload;
     }
   },

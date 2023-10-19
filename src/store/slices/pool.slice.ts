@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IPool } from 'models';
-import { mockPools } from '__mock__/pool.mock';
+import { IPool, IPoolDetail } from 'models';
 
 type StateType = {
   pools: IPool[],
   gettingPools: boolean,
   gotPools: boolean,
+
+  poolDetails: IPoolDetail[],
+  gettingPoolDetails: boolean,
+  gotPoolDetails: boolean,
 
   stastics: any,
   gettingStastics: boolean,
@@ -14,9 +17,13 @@ type StateType = {
 };
 
 const initialState: StateType = {
-  pools: [...mockPools],
+  pools: [],
   gettingPools: false,
   gotPools: false,
+
+  poolDetails: [],
+  gettingPoolDetails: false,
+  gotPoolDetails: false,
 
   stastics: {},
   gettingStastics: false,
@@ -66,6 +73,23 @@ const poolSlice = createSlice({
       state.gotStastics = false;
       state.error = action.payload;
     },
+
+    //get stastics
+    //eslint-disable-next-line  @typescript-eslint/no-unused-vars
+    getTopPoolsFromDatabase(state, action) {
+      state.gettingPoolDetails = true;
+      state.gotPoolDetails = false;
+    },
+    getTopPoolsFromDatabaseSuccess(state, action) {
+      state.gettingPoolDetails = false;
+      state.gotPoolDetails = true;
+      state.poolDetails = [...action.payload.topPoolsFromDatabase];
+    },
+    getTopPoolsFromDatabaseFailure(state, action) {
+      state.gettingPoolDetails = false;
+      state.gotPoolDetails = false;
+      state.error = action.payload;
+    }
   },
 });
 

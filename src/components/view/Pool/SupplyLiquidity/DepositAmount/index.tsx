@@ -1,26 +1,24 @@
-import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import { IToken } from 'models';
 import { DepositAmountStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { InputComponent } from 'components/common';
-import { tokenSvgs } from 'imgs/icons';
 import { cryptoDecimalFormat } from 'utils';
 
 export interface IDepositAmountProps {
   balance: number,
-  tokenAmount: number,
+  tokenAmount: number | string,
   token?: IToken,
-  onChange: (amount: number) => void,
+  onChange: (amount: number | string) => void,
 }
 
 export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
   const { balance, token, tokenAmount, onChange } = props;
 
-  const [amount, setAmount] = useState<number | string>(tokenAmount.toPrecision(4));
+  const [amount, setAmount] = useState<number | string>(tokenAmount);
 
   useEffect(() => {
-    onChange(+amount);
+    onChange(amount);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount]);
 
@@ -34,7 +32,7 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         {
           token ?
             <Box className="selected-token">
-              <Image src={tokenSvgs[token.symbol]} width={28} height={28} />
+              <img src={token.logo.png} alt={token.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
               <Typography variant="subtitle1">{token.symbol}</Typography>
             </Box>
             :
@@ -45,14 +43,14 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
         <InputComponent
           type="number"
           value={amount}
-          onChange={(e) => { setAmount(+e.target.value); }}
+          onChange={(e) => { setAmount(e.target.value); }}
           onBlur={() => { setAmount(cryptoDecimalFormat(+amount)); }}
         />
       </Box>
       {
         !!token &&
         <Box className="token-balance-details">
-          <Typography variant="body2">Balance: {balance}</Typography>
+          <Typography variant="body2">Balance: {cryptoDecimalFormat(balance)}</Typography>
           <Box className="token-balance-percent token">
             <Typography data-testid={`${token.symbol}-amount-percent-25`} variant="body2" onClick={() => setAmount(cryptoDecimalFormat(balance / 4))}>25%</Typography>
             <Typography data-testid={`${token.symbol}-amount-percent-50`} variant="body2" onClick={() => setAmount(cryptoDecimalFormat(balance / 2))}>50%</Typography>

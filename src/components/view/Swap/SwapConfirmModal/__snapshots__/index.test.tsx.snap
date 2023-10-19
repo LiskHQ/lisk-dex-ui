@@ -502,7 +502,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
             class="MuiTypography-root MuiTypography-body2 swap-confirm-estimate-amount emotion-8"
           >
             ~
-            $886.30
+            $88.60
           </p>
         </div>
         <svg
@@ -524,7 +524,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
           class="MuiTypography-root MuiTypography-body1 emotion-6"
         >
           for 
-          LSK
+          DEX
         </p>
         <div
           class="swap-confirm-token-amount MuiBox-root emotion-1"
@@ -559,7 +559,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
             class="MuiTypography-root MuiTypography-body2 swap-confirm-estimate-amount emotion-8"
           >
             ~
-            $88.63
+            $8.86
           </p>
         </div>
         <div
@@ -802,7 +802,7 @@ exports[`SwapConfirmModal checks if the component matches the snapshot 1`] = `
             >
               100.00
                
-              LSK
+              DEX
             </p>
           </div>
         </div>

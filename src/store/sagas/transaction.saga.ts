@@ -1,4 +1,6 @@
-import { apiGetTransactions, apiSubmitTransaction } from 'apis';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { apiGetEstimationFee, apiGetTransactions, apiSubmitTransaction } from 'apis';
+import { INetwrokFeeRequestBody, INetwrokFeeResponse } from 'models';
 import { call, put } from 'redux-saga/effects';
 import { AppActions } from 'store';
 
@@ -35,5 +37,20 @@ export function* getTransactionsSaga(action: any) {
     }
   } catch (error) {
     yield put(AppActions.transaction.getTransactionsFailure(error));
+  }
+}
+
+export function* getNetworkFeeSaga(action: PayloadAction<INetwrokFeeRequestBody>) {
+  try {
+    const result: INetwrokFeeResponse = yield call(
+      async () =>
+        await apiGetEstimationFee(action.payload)
+    );
+
+    if (result) {
+      yield put(AppActions.transaction.getNetworkFeeSuccess(+result.data.transaction.fee.minimum));
+    }
+  } catch (error) {
+    yield put(AppActions.transaction.getNetworkFeeFailure(error));
   }
 }

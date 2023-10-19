@@ -7,6 +7,7 @@ import cn from 'classnames';
 import { CancelIcon, DecreaseIcon, IncreaseIcon, SearchIcon, tokenSvgs } from 'imgs/icons';
 import { useEffect, useState } from 'react';
 import { IPoolDetail, ITokenDetail } from 'models';
+import { getPoolToken0, getPoolToken1 } from 'utils';
 
 export interface ISearchComponentProps {
   className?: string,
@@ -72,30 +73,30 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                     <Box className="search-pool-name">
                       <Box className="pool-images">
                         <Box className="pool-image-1">
-                          <Image src={tokenSvgs[pool.token1.symbol]} width={34} height={34} />
+                          <Image src={tokenSvgs[getPoolToken0(pool.poolName)]} width={34} height={34} />
                         </Box>
                         <Box className="pool-image-2">
-                          <Image src={tokenSvgs[pool.token2.symbol]} width={34} height={34} />
+                          <Image src={tokenSvgs[getPoolToken1(pool.poolName)]} width={34} height={34} />
                         </Box>
                       </Box>
                       <Box className="pool-token-names">
-                        <Typography variant="h5">{pool.token1.chainName} & {pool.token2.chainName}</Typography>
-                        <Typography variant="body2">{pool.token1.symbol} / {pool.token2.symbol}</Typography>
+                        <Typography variant="h5">{getPoolToken0(pool.poolName)} & {getPoolToken1(pool.poolName)}</Typography>
+                        <Typography variant="body2">{getPoolToken0(pool.poolName)} / {getPoolToken1(pool.poolName)}</Typography>
                       </Box>
                     </Box>
                     <Box className="search-pool-value">
-                      <Typography variant="h5">$ {pool.tvl}</Typography>
+                      <Typography variant="h5">$ {pool.poolTVL}</Typography>
                       <Typography
                         className={
                           cn({
-                            increasement: pool.APY > 0
+                            increasement: pool.poolAPY > 0
                           })
                         }
                         variant="body2"
                       >
-                        {pool.APY}
+                        {pool.poolAPY}
                         {
-                          pool.APY > 0 ?
+                          pool.poolAPY > 0 ?
                             <IncreaseIcon /> :
                             <DecreaseIcon />
                         }
@@ -124,7 +125,7 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
                         </Box>
                       </Box>
                       <Box className="pool-token-names">
-                        <Typography variant="h5">{token.chainName}</Typography>
+                        <Typography variant="h5">{token.name}</Typography>
                         <Typography variant="body2">{token.symbol}</Typography>
                       </Box>
                     </Box>
@@ -151,7 +152,6 @@ export const SearchComponent: React.FC<ISearchComponentProps> = (props) => {
               <Typography data-testid="tokens-view-more-test" className="view-more" variant="body2" onClick={onClickTpkensViewMore}>View more...</Typography>
             </>
           }
-
         </>
       }
     </SearchComponentStyle >

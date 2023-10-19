@@ -87,7 +87,7 @@ export const PoolsTableStyle = styled('div')(({ theme }: any) => {
       tbody: {
         tr: {
           '&:hover': {
-            background: theme.primary[1],
+            background: theme.primary[2.5],
             cursor: 'pointer',
           },
 

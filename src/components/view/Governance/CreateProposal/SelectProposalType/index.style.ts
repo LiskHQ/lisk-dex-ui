@@ -31,7 +31,7 @@ export const SelectProposalTypeStyle = styled(FormControl)(({ theme }: any) => {
         },
 
         '&.selected': {
-          background: theme.primary[1],
+          background: theme.primary[2.5],
           border: `1px solid ${theme.lightcurve[0]}`,
         },
 

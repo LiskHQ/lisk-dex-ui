@@ -7,6 +7,7 @@ export enum TransactionType {
 
 export enum TransactionModule {
   dex = 'dex',
+  dexGovernance = 'dexGovernance'
 }
 
 export const TransactionCommands = {
@@ -15,6 +16,7 @@ export const TransactionCommands = {
   createPosition: 'createPosition',
   addLiquidity: 'addLiquidity',
   removeLiquidity: 'removeLiquidity',
+  createProposal: 'createProposal',
 };
 
 export enum TransactionStatus {

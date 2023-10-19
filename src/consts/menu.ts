@@ -23,3 +23,10 @@ export enum ThemeType {
   Light = 'Light',
   Dark = 'Dark',
 }
+
+export const currencySymbols: {
+  [key: string]: string,
+} = {
+  USD: '$',
+  EUR: '€',
+};

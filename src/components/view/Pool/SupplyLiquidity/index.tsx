@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
 import cn from 'classnames';
 import { Box, IconButton, Typography } from '@mui/material';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
-import { PlusCircleIcon, SettingIcon, tokenSvgs } from 'imgs/icons';
+import { PlusCircleIcon, SettingIcon } from 'imgs/icons';
 import { DepositAmount } from './DepositAmount';
 import { FeeTiers } from './FeeTiers';
 import { PriceRange } from './PriceRange';
 import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
-import { ICreatePool, IToken } from 'models';
+import { ICreatePool, IToken, ITokenBalance } from 'models';
 import { useRouter } from 'next/dist/client/router';
+import { getDispalyTokenAmount } from 'utils';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -30,12 +30,13 @@ const chartData = [
 export interface ISupplyLiquidityProps {
   closeTransactionModal: boolean,
   tokens: IToken[],
+  tokenBalances: ITokenBalance[],
   onPreview: (pool: ICreatePool) => void,
 }
 
 export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const router = useRouter();
-  const { tokens, closeTransactionModal, onPreview } = props;
+  const { tokens, tokenBalances, closeTransactionModal, onPreview } = props;
 
   const [openSelectToken1, setOpenSelectToken1] = useState<boolean>(false);
   const [openSelectToken2, setOpenSelectToken2] = useState<boolean>(false);
@@ -43,8 +44,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
   const [token1, setToken1] = useState<IToken | null>(null);
   const [token2, setToken2] = useState<IToken | null>(null);
 
-  const [token1Amount, setToken1Amount] = useState<number>(0);
-  const [token2Amount, setToken2Amount] = useState<number>(0);
+  const [token1Amount, setToken1Amount] = useState<number | string>('0.00');
+  const [token2Amount, setToken2Amount] = useState<number | string>('0.00');
 
   const [initialPrice, setInitialPrice] = useState<number>(0);
   const [tierValue, setTierValue] = useState<number>(0);
@@ -146,7 +147,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token1 ?
                 <Box>
-                  <Image src={tokenSvgs[token1.symbol]} width={28} height={28} />
+                  <img src={token1.logo.png} alt={token1.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
                   <Typography variant="subtitle1">{token1.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
@@ -171,7 +172,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
             {
               token2 ?
                 <Box>
-                  <Image src={tokenSvgs[token2.symbol]} width={28} height={28} />
+                  <img src={token2.logo.png} alt={token2.symbol} width={28} height={28} style={{ borderRadius: '100%' }} />
                   <Typography variant="subtitle1">{token2.symbol}</Typography>
                 </Box> :
                 <Typography variant="subtitle1">Select a token</Typography>
@@ -228,13 +229,13 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         <DepositAmount
           token={token1 as IToken}
           tokenAmount={token1Amount}
-          balance={4521.425}
+          balance={token1 ? +getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token1.tokenID)?.availableBalance || 0), token1) : 0}
           onChange={(value) => { setToken1Amount(value); }}
         />
         <DepositAmount
           token={token2 as IToken}
           tokenAmount={token2Amount}
-          balance={7.282}
+          balance={token2 ? +getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : 0}
           onChange={(value) => { setToken2Amount(value); }}
         />
       </Box>
@@ -245,8 +246,8 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
           onPreview({
             token1: token1 as IToken,
             token2: token2 as IToken,
-            token1Amount,
-            token2Amount,
+            token1Amount: +token1Amount,
+            token2Amount: +token2Amount,
             tickInitialPrice: initialPrice,
             tickLower: minPrice,
             tickUpper: maxPrice,
@@ -268,6 +269,7 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         (openSelectToken1 || openSelectToken2) &&
         <SelectTokenModal
           tokens={tokens}
+          tokenBalances={tokenBalances}
           onSelect={onSelectToken}
           onClose={onCloseSelectToken}
         />

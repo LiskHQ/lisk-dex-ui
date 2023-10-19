@@ -31,8 +31,27 @@ describe('InfoChart component', () => {
         time: new Date(2023, 4, 29, 5, 30),
         price: 100,
       },
-    ]
+    ],
+    tabs: ['Liquidity', 'TVL'],
+    infoChartSummary: [
+      {
+        title: 'LSK Price',
+        value: '$1.007',
+        changePercent: 0.05,
+      },
+      {
+        title: 'Total Liquidity',
+        value: '$14.4m',
+        changePercent: 2.32,
+      },
+    ],
+    onTabChange: jest.fn(),
   };
+
+  it('checks if the component matches the snapshot', () => {
+    const { container } = renderComponent(mockProps);
+    expect(container).toMatchSnapshot();
+  });
 
   it('check period button works', () => {
     const { getByTestId } = renderComponent(mockProps);
@@ -55,6 +74,13 @@ describe('InfoChart component', () => {
       chartData: undefined
     });
     expect(getByText('Your favorite pools will be shown here.')).toBeInTheDocument();
+  });
+
+  it('check tab change work', () => {
+    const { getByTestId } = renderComponent(mockProps);
+    expect(getByTestId('tab-test-Liquidity')).toBeInTheDocument();
+    fireEvent.click(getByTestId('tab-test-Liquidity'));
+    expect(mockProps.onTabChange).toBeCalledWith('Liquidity');
   });
 });
 
