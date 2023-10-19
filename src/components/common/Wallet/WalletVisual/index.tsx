@@ -187,7 +187,7 @@ const getBackgroundCircle = (size: number, gradient: any) => ({
 const pickTwo = (chunk: any, options: string) => [
   options[chunk.substr(0, 2) % options.length],
   options[
-  (chunk.substr(0, 2) - 0 + 1 + (chunk.substr(2, 2) % (options.length - 1))) % options.length
+    (chunk.substr(0, 2) - 0 + 1 + (chunk.substr(2, 2) % (options.length - 1))) % options.length
   ],
 ];
 
