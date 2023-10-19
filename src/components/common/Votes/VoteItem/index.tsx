@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Grid, Typography } from '@mui/material';
 import { IVote } from 'models';
 import { VoteItemComponentStyle } from './index.style';

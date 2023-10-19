@@ -8,7 +8,6 @@ import { IAccount, ICreatePool, IPool, ITransactionObject } from 'models';
 import { AppActions, RootState } from 'store';
 import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount, createTransactionObject } from 'utils';
 import { apiGetAuth } from 'apis';
-import { AxiosError } from 'axios';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
 export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.

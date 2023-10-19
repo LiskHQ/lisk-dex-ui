@@ -3,7 +3,7 @@ import { AlertVariant } from 'consts';
 import { CancelIcon, InfoIcon, SuccessIcon, FailureIcon } from 'imgs/icons';
 import Link from 'next/link';
 import { SnackbarAlertComponentStyle } from './index.style';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef } from 'react';
 import { CustomContentProps, useSnackbar } from 'notistack';
 
 export interface ISnackbarAlertComponent extends CustomContentProps {
@@ -12,6 +12,7 @@ export interface ISnackbarAlertComponent extends CustomContentProps {
   link?: string,
 }
 
+// eslint-disable-next-line react/display-name
 export const SnackbarAlertComponent = forwardRef<HTMLDivElement, ISnackbarAlertComponent>(
   (props, ref) => {
     const { id, type, subject, message, link } = props;

@@ -114,7 +114,9 @@ const getShape = (chunk: any, size: number, gradient: any, sizeScale = 1) => {
 
   const coordinates = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((x) => x * (size / 40));
 
-  const shapes = {
+  const shapes: {
+    [key: string]: any
+  } = {
     circle: {
       component: Circle,
       props: {
@@ -234,8 +236,8 @@ class WalletVisual extends React.Component<IWalletVisualProps> {
   computeShapesAndGradients(newSize: number) {
     const { address } = this.props;
 
-    const addressHashChunks = getHashChunks(address);
-    const gradientScheme =
+    const addressHashChunks: any = getHashChunks(address);
+    const gradientScheme: any =
       gradientSchemes[addressHashChunks[0].substring(1, 3) % gradientSchemes.length];
 
     const gradientsSchemesUrlsHashed = {
@@ -271,7 +273,7 @@ class WalletVisual extends React.Component<IWalletVisualProps> {
     if (validateAddress(address) === 1 && !/^[1-9]\d{0,19}L$/.test(address)) {
       return null;
     }
-    const [shapes, gradientsSchemesUrlsHashed] = this.computeShapesAndGradients(size);
+    const [shapes, gradientsSchemesUrlsHashed]: any = this.computeShapesAndGradients(size);
 
     return (
       <div

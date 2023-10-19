@@ -16,7 +16,7 @@ import { socket } from 'utils';
 import { SOCKET_EVENTS } from 'consts';
 
 
-declare module "notistack" {
+declare module 'notistack' {
   interface VariantOverrides {
     alert: {
       type?: AlertVariant;
@@ -41,6 +41,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 
   useMemo(() => {
     // todo
+    console.log('socketEvent: ', socketEvent);
   }, [socketEvent]);
 
   useEffect(() => {

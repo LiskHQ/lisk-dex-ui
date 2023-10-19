@@ -35,7 +35,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   const [menuAddressCopied, setMenuAddressCopied] = useState<boolean>(false);
   const [openWalletMenu, setOpenWalletMenu] = useState<boolean>(false);
   const [address, setAddress] = useState<string>('');
-  const { accountTokens, availableTokens } = useSelector((root: RootState) => root.token);
+  const { tokenBalances, accountTokens } = useSelector((root: RootState) => root.token);
 
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
     setTab(value);
@@ -58,10 +58,10 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   useEffect(() => {
     if (account && account.address) {
       setAddress(account.address);
-      dispatch(AppActions.token.getAccountTokens({
+      dispatch(AppActions.token.getTokenBalances({
         address: account.address,
       }));
-      dispatch(AppActions.token.getAvailableTokens());
+      dispatch(AppActions.token.getAccountTokens({}));
     }
   }, [account, dispatch]);
 
@@ -88,7 +88,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   const balance = 0;
 
   const getTokenDetail = (tokenID: string) => {
-    return availableTokens.find(el => el.tokenID === tokenID);
+    return accountTokens.find(el => el.tokenID === tokenID);
   };
 
   return (
@@ -153,17 +153,17 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                   <Box className="wallet-body">
                     <Typography variant="h4">Tokens</Typography>
                     {
-                      accountTokens.map(token =>
+                      tokenBalances.map(token =>
                         <Box
                           className="token-item"
                           key={token.tokenID}
-                          onClick={() => setToken(token)}
+                          onClick={() => setToken(getTokenDetail(token.tokenID) || null)}
                         >
                           <Image src={tokenSvgs[getTokenDetail(token.tokenID)?.symbol || 'LSK']} width={40} height={40} />
                           <Box className="token-summary">
                             <Box className="token-summary-box top">
                               <Typography variant="body1">{getTokenDetail(token.tokenID)?.tokenName}</Typography>
-                              <Typography variant="body2">{token.avaialbleBalance} {getTokenDetail(token.tokenID)?.symbol}</Typography>
+                              <Typography variant="body2">{token.availableBalance} {getTokenDetail(token.tokenID)?.symbol}</Typography>
                             </Box>
                             <Box className="token-summary-box bottom">
                               <Typography variant="body2">{getTokenDetail(token.tokenID)?.symbol}</Typography>

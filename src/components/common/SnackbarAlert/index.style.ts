@@ -1,6 +1,5 @@
 import { SnackbarContent } from 'notistack';
 import styled from '@emotion/styled';
-import { Box } from '@mui/material';
 
 export const SnackbarAlertComponentStyle = styled(SnackbarContent)(({ theme }: any) => {
   return {
