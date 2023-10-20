@@ -9,12 +9,12 @@ export const HistoryComponentStyle = styled('div')(({ theme }: any) => {
       marginBottom: '1.5rem',
     },
 
-    '.transaction-list': {
+    '.infinite-scroll-component': {
       maxHeight: '34.25rem',
       minHeight: '34.25rem',
 
       '&::-webkit-scrollbar': {
-        width: '0.1rem',
+        width: '0.3rem',
       },
 
       '&::-webkit-scrollbar-track': {

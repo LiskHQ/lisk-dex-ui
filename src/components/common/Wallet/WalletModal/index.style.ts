@@ -192,7 +192,7 @@ export const WalletModalStyle = styled('div')(({ theme }: any) => {
 
           '&:hover': {
             cursor: 'pointer',
-            background: theme.primary[1],
+            background: theme.primary[2.5],
           },
 
           '.token-summary': {

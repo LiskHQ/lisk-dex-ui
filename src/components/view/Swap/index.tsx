@@ -11,7 +11,7 @@ import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
 import { EditIcon, HelpIcon, SettingIcon, SwapIcon, tokenSvgs } from 'imgs/icons';
 import { SwapViewStyle } from './index.style';
-import { cryptoDecimalFormat, currencyDecimalFormat, getDispalyTokenAmount } from 'utils';
+import { cryptoDecimalFormat, currencyDecimalFormat, getDisplayTokenAmount } from 'utils';
 import { RootState } from 'store';
 import { PlatformContext } from 'contexts';
 import { IAccount, ISwapData, IToken, ITokenBalance } from 'models';
@@ -120,7 +120,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
 
   const balance = useMemo(() => {
     if (token1)
-      return +getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token1?.tokenID)?.availableBalance || 0), token1);
+      return +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token1?.tokenID)?.availableBalance || 0), token1);
     return 0;
   }, [token1]);
 
@@ -239,7 +239,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: {
-                token2 ? getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : '-'
+                token2 ? getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : '-'
               }
               </Typography>
               {

@@ -71,3 +71,9 @@ export async function apiGetEstimationFee(data: INetwrokFeeRequestBody) {
   return {};
 }
 
+export async function apiGetMarketPrices() {
+  const response: ResponseGenerator = await dexApiInstance.get('/api/v3/market/prices');
+  if (response)
+    return response.data;
+  return {};
+}

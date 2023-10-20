@@ -1,7 +1,7 @@
 import { Box, FormLabel, Typography } from '@mui/material';
 import { ButtonComponent } from 'components/common';
 import { CancelIcon, LightcurveIcon } from 'imgs/icons';
-import { ellipsisAddress, getDispalyTokenAmount } from 'utils';
+import { ellipsisAddress, getDisplayTokenAmount } from 'utils';
 import { ApproveTransactionModalStyle } from './index.style';
 import { IAccount, IExpense, IToken, ITokenBalance, ITransactionObject } from 'models';
 import { useMemo } from 'react';
@@ -79,7 +79,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
                       height={20}
                       style={{ borderRadius: '100%' }}
                     />&nbsp;
-                    <Typography variant="body1">{getDispalyTokenAmount(+tokenBalance.availableBalance, getTokenDetail(tokenBalance.tokenID) || accountTokens[0])} {getTokenDetail(tokenBalance.tokenID)?.symbol}</Typography>
+                    <Typography variant="body1">{getDisplayTokenAmount(+tokenBalance.availableBalance, getTokenDetail(tokenBalance.tokenID) || accountTokens[0])} {getTokenDetail(tokenBalance.tokenID)?.symbol}</Typography>
                   </Box>
                 )
               }
@@ -119,7 +119,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             <Box className="approve-transaction-proposal-transaction-total">
               <Typography variant="subtitle2">Network Fee: </Typography>
               <Typography variant="subtitle2">
-                {getDispalyTokenAmount(+transaction?.fee, accountTokens?.find(el => el.tokenID === feeTokenID) || accountTokens[0])} {accountTokens?.find(el => el.tokenID === feeTokenID)?.symbol}
+                {getDisplayTokenAmount(+transaction?.fee, accountTokens?.find(el => el.tokenID === feeTokenID) || accountTokens[0])} {accountTokens?.find(el => el.tokenID === feeTokenID)?.symbol}
               </Typography>
             </Box>
           }

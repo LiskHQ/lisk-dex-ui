@@ -6,7 +6,7 @@ import { SearchInputComponent } from 'components/common';
 import { SelectTokenModalStyle } from './index.style';
 import { useMemo, useState } from 'react';
 import { IToken, ITokenBalance } from 'models';
-import { getDispalyTokenAmount } from 'utils';
+import { getDisplayTokenAmount } from 'utils';
 
 export interface ISelectTokenModalProps {
   tokens: IToken[],
@@ -100,7 +100,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
                   <Typography variant="body2">{token.tokenName}</Typography>
                 </Box>
               </Box>
-              <Typography variant="body1">{getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token.tokenID)?.availableBalance || 0), token)}</Typography>
+              <Typography variant="body1">{getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token.tokenID)?.availableBalance || 0), token)}</Typography>
             </Box>
           ))
         }

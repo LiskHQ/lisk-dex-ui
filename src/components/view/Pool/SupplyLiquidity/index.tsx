@@ -12,7 +12,7 @@ import { RangeSelector } from './RangeSelector';
 import { SupplyLiquidityStyle } from './index.style';
 import { ICreatePool, IToken, ITokenBalance } from 'models';
 import { useRouter } from 'next/dist/client/router';
-import { getDispalyTokenAmount } from 'utils';
+import { getDisplayTokenAmount } from 'utils';
 
 const chartData = [
   { x: 1.1, y: 50 },
@@ -229,13 +229,13 @@ export const SupplyLiquidity: React.FC<ISupplyLiquidityProps> = (props) => {
         <DepositAmount
           token={token1 as IToken}
           tokenAmount={token1Amount}
-          balance={token1 ? +getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token1.tokenID)?.availableBalance || 0), token1) : 0}
+          balance={token1 ? +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token1.tokenID)?.availableBalance || 0), token1) : 0}
           onChange={(value) => { setToken1Amount(value); }}
         />
         <DepositAmount
           token={token2 as IToken}
           tokenAmount={token2Amount}
-          balance={token2 ? +getDispalyTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : 0}
+          balance={token2 ? +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : 0}
           onChange={(value) => { setToken2Amount(value); }}
         />
       </Box>

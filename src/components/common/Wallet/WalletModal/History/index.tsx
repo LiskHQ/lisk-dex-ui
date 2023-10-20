@@ -6,18 +6,18 @@ import { HistoryComponentStyle } from './index.style';
 import { SwapIcon } from 'imgs/icons';
 import { LoaderComponent } from 'components';
 import { AppActions, RootState } from 'store';
-import { timestampToString } from 'utils';
-import { TransactionCommands } from 'consts';
-import { ITransaction } from 'models';
+import { getDisplayTokenAmount, timestampToString } from 'utils';
+import { TransactionCommands, TransactionModule } from 'consts';
+import { IToken, ITransaction } from 'models';
 
 interface IHistoryComponentProps {
+  accountTokens: IToken[],
   accountAddress: string,
 }
 
 export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
   const dispatch = useDispatch();
-  const { accountAddress } = props;
-  const { availableTokens } = useSelector((root: RootState) => root.token);
+  const { accountTokens, accountAddress } = props;
   const { transactions, offset, total } = useSelector((root: RootState) => root.transaction);
   const [_transactions, setTransactions] = useState<ITransaction[]>([]);
 
@@ -42,8 +42,8 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
     }));
   };
 
-  const getTokenName = (tokenId: string) => {
-    return availableTokens.find(token => token.tokenID === tokenId)?.tokenName;
+  const getToken = (tokenId: string) => {
+    return accountTokens.find(token => token.tokenID === tokenId) || accountTokens[0];
   };
 
   return (
@@ -62,34 +62,51 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
                 className="transaction-item"
                 key={index}
               >
-                <Typography variant="body2">{timestampToString(transaction.block.timestamp)}</Typography>
+                {
+                  transaction.block.timestamp &&
+                  <Typography variant="body2">{timestampToString(transaction.block.timestamp * 1000)}</Typography>
+                }
                 <Box className="transaction-item-main">
-                  <Box className="transaction-type-icon">
+                  {/* <Box className="transaction-type-icon">
                     <SwapIcon />
-                  </Box>
+                  </Box> */}
                   <Box className="transaction-summary">
                     {
                       {
-                        [TransactionCommands.swapExactIn]:
+                        [`${TransactionModule.dex}:${TransactionCommands.swapExactOut}`]:
                           <Box className="transaction-values">
-                            <Typography variant="body2">Swap {getTokenName(transaction.params.tokenIdIn)} for {getTokenName(transaction.params.tokenIdOut)}</Typography>
-                            <Typography variant="body2">{transaction.params.amountTokenIn} {getTokenName(transaction.params.tokenIdIn)}</Typography>
+                            <Typography variant="body2">Swap {getToken(transaction.params.tokenIdIn)?.symbol} for {getToken(transaction.params.tokenIdOut)?.symbol}</Typography>
+                            <Typography variant="body2">{transaction.params.amountTokenIn} {getToken(transaction.params.tokenIdIn)}</Typography>
                           </Box>,
-                        [TransactionCommands.createPool]:
+                        [`${TransactionModule.dex}:${TransactionCommands.createPool}`]:
                           <Box className="transaction-values">
-                            <Typography variant="body2">Create {getTokenName(transaction.params.tokenID0)} & {getTokenName(transaction.params.tokenID1)}</Typography>
-                            <Typography variant="body2">{transaction.params.initialPosition.amount0Desired} {getTokenName(transaction.params.tokenID0)} & {transaction.params.initialPosition.amount1Desired} {getTokenName(transaction.params.tokenID1)}</Typography>
+                            <Typography variant="body2">Create {getToken(transaction.params.tokenID0)?.symbol} & {getToken(transaction.params.tokenID1)?.symbol}</Typography>
+                            {
+                              transaction.params && transaction.params.tokenID0 &&
+                              <Typography variant="body2">
+                                {getDisplayTokenAmount(transaction.params.initialPosition.amount0Desired, getToken(transaction.params.tokenID0))} {getToken(transaction.params.tokenID0)?.symbol}
+                                &nbsp;&&nbsp;
+                                {getDisplayTokenAmount(transaction.params.initialPosition.amount1Desired, getToken(transaction.params.tokenID1))} {getToken(transaction.params.tokenID1)?.symbol}
+                              </Typography>
+                            }
                           </Box>,
                         [TransactionCommands.addLiquidity]:
                           <Box className="transaction-values">
                             <Typography variant="body2">Add LSK & DEX</Typography>
                             <Typography variant="body2">{transaction.params.amount0Desired} LSK & {transaction.params.amount1Desired} DEX</Typography>
+                          </Box>,
+                        default:
+                          <Box className="transaction-values">
+                            {
+                              transaction.moduleCommand &&
+                              <Typography variant="body2">{transaction.moduleCommand}</Typography>
+                            }
                           </Box>
                       }[transaction.moduleCommand]
                     }
                     <Box className="transaction-status">
-                      <Typography variant="body2">{transaction.executionStatus}</Typography>
-                      <Typography variant="body2">${transaction.fee}</Typography>
+                      <Typography variant="body2" style={{ textTransform: 'capitalize ' }}>{transaction.executionStatus}</Typography>
+                      <Typography variant="body2">{transaction.fee}</Typography>
                     </Box>
                   </Box>
                 </Box>
