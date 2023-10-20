@@ -810,6 +810,14 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
   text-align: right;
 }
 
+.emotion-88 .input-error {
+  color: #FF4557;
+}
+
+.emotion-88 .input-error p {
+  text-align: right;
+}
+
 .emotion-88 .token-balance-details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -922,6 +930,10 @@ exports[`SupplyLiquidity component checks if the component matches the snapshot 
 .emotion-92 .MuiFormHelperText-root {
   color: #FF4557;
   margin: 0.5rem 0 0 0;
+}
+
+.emotion-92 .MuiFormHelperText-root p {
+  text-align: right;
 }
 
 .emotion-92 .input-length-counter {

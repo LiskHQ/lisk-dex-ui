@@ -3,11 +3,12 @@ import { render } from '@testing-library/react';
 import { IncentivizationProposal } from './index';
 import React from 'react';
 import { lightTheme } from 'styles/theme';
+import { mockPools } from '__mock__';
 
 function renderComponent() {
   return render(
     <ThemeProvider theme={lightTheme}>
-      <IncentivizationProposal />
+      <IncentivizationProposal pools={mockPools} />
     </ThemeProvider>
   );
 }

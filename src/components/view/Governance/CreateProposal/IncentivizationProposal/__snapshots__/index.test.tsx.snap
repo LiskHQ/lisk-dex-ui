@@ -529,6 +529,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   margin: 0.5rem 0 0 0;
 }
 
+.emotion-13 .MuiFormHelperText-root p {
+  text-align: right;
+}
+
 .emotion-13 .input-length-counter {
   position: absolute;
   bottom: -1.5rem;
