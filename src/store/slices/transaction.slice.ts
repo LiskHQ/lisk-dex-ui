@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ITransaction } from 'models';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { INetwrokFeeRequestBody, ITransaction } from 'models';
 
 type StateType = {
   submitingTransaction: boolean,
@@ -7,6 +7,10 @@ type StateType = {
 
   gettingTransactions: boolean,
   gotTransactions: boolean,
+
+  gettingNetworkFee: boolean,
+  gotNetworkFee: boolean,
+  networkFee: number,
 
   transactions: ITransaction[],
   count: number,
@@ -24,6 +28,11 @@ const initialState: StateType = {
   //get transactions
   gettingTransactions: false,
   gotTransactions: false,
+
+  //get networkfee
+  gettingNetworkFee: false,
+  gotNetworkFee: false,
+  networkFee: 0,
 
   transactions: [],
   count: 10,
@@ -62,7 +71,6 @@ const transactionSlice = createSlice({
       state.gettingTransactions = true;
       state.gotTransactions = false;
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTransactionsSuccess(state, action) {
       state.gettingTransactions = false;
       state.gotTransactions = true;
@@ -76,6 +84,23 @@ const transactionSlice = createSlice({
     getTransactionsFailure(state, action) {
       state.gettingTransactions = false;
       state.gotTransactions = false;
+      state.error = action.payload;
+    },
+
+    // getting networkFee
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getNetworkFee(state, action: PayloadAction<INetwrokFeeRequestBody>) {
+      state.gettingNetworkFee = true;
+      state.gotNetworkFee = false;
+    },
+    getNetworkFeeSuccess(state, action: PayloadAction<number>) {
+      state.gettingNetworkFee = false;
+      state.gotNetworkFee = true;
+      state.networkFee = action.payload;
+    },
+    getNetworkFeeFailure(state, action) {
+      state.gettingNetworkFee = false;
+      state.gotNetworkFee = true;
       state.error = action.payload;
     },
 

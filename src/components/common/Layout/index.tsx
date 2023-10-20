@@ -1,10 +1,11 @@
-import { Box, Snackbar, useMediaQuery } from '@mui/material';
-import { AlertComponent } from 'components';
+import { useMediaQuery } from '@mui/material';
 import { AlertVariant } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
+import { SnackbarAlertComponent } from 'components';
 import { RootState } from 'store';
 import { darkTheme } from 'styles/theme';
 import { Footer } from './Footer';
@@ -13,6 +14,17 @@ import { LayoutComponentStyle } from './index.style';
 
 import { socket } from 'utils';
 import { SOCKET_EVENTS } from 'consts';
+
+
+declare module 'notistack' {
+  interface VariantOverrides {
+    alert: {
+      type?: AlertVariant;
+      subject?: string;
+      link?: string;
+    };
+  }
+}
 
 interface IProps {
   children?: ReactNode,
@@ -27,44 +39,10 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   // current socket event
   const [socketEvent, setSocketEvent] = useState<string>('');
 
-  //show Snackbar alert
-  const [openAlert, setOpenAlert] = useState<boolean>(false);
-  const alertContent = useMemo(() => {
-    const alertContent = {
-      variant: AlertVariant.info,
-      subject: 'Transaction in progress...',
-      description: '',
-      link: ''
-    };
-    if (socketEvent !== '') {
-      if (socketEvent === SOCKET_EVENTS.SWAPPED) {
-        alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH.';
-      }
-      if (socketEvent === SOCKET_EVENTS.SWAP_FAILED) {
-        alertContent.variant = AlertVariant.fail;
-        alertContent.description = 'Swap 2335.45 LSK to 1.76 ETH failed.';
-      }
-      if (socketEvent === SOCKET_EVENTS.POSITION_CREATED) {
-        alertContent.variant = AlertVariant.success;
-        alertContent.description = 'Pool has been created successfully.';
-      }
-      if (socketEvent === SOCKET_EVENTS.POSITION_CREATION_FAILED) {
-        alertContent.variant = AlertVariant.fail;
-        alertContent.description = 'There is an error ocurried during creating your pool.';
-      }
-
-      setOpenAlert(true);
-    }
-    return alertContent;
+  useMemo(() => {
+    // todo
+    console.log('socketEvent: ', socketEvent);
   }, [socketEvent]);
-
-  const onCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpenAlert(false);
-  };
 
   useEffect(() => {
     if (!account) {
@@ -132,29 +110,24 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   }, []);
 
   return (
-    <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
-      <Head>
-        <title>Lisk Dex</title>
-      </Head>
-      <Header
-        platform={platform}
-      />
-      {children}
-      {
-        isUpMd ? <></> : <Footer />
-      }
-      <Snackbar open={openAlert} autoHideDuration={3000} onClose={onCloseAlert}>
-        <Box>
-          <AlertComponent
-            variant={alertContent.variant}
-            subject={alertContent.subject}
-            link={alertContent.link || ''}
-            description={alertContent.description}
-            onClose={onCloseAlert}
-          />
-        </Box>
-      </Snackbar>
-    </LayoutComponentStyle>
+    <SnackbarProvider
+      Components={{
+        alert: SnackbarAlertComponent
+      }}
+    >
+      <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
+        <Head>
+          <title>Lisk Dex</title>
+        </Head>
+        <Header
+          platform={platform}
+        />
+        {children}
+        {
+          isUpMd ? <></> : <Footer />
+        }
+      </LayoutComponentStyle>
+    </SnackbarProvider >
   );
 };
 

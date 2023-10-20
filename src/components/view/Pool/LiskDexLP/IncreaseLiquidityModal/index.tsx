@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { Box, IconButton, InputAdornment, Typography } from '@mui/material';
 import {
   ButtonComponent, InputComponent,
 } from 'components';
-import { CancelIcon, tokenSvgs } from 'imgs/icons';
+import { CancelIcon } from 'imgs/icons';
 import { IncreaseLiquidityModalStyle } from './index.style';
 import { IPool } from 'models';
 import { useState } from 'react';
@@ -42,9 +41,9 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
         </Box>
 
         <Box className="increase-liquidity-modal-summmary">
-          <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
-          <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
-          <Typography className="summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token1.symbol}</Typography>
+          <img src={pool.token1.logo.png} width={24} height={24} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
+          <img src={pool.token2.logo.png} width={24} height={24} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
+          <Typography className="summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token2.symbol}</Typography>
 
           <Box className="summary-rate">
             <Typography variant="body2">0.05%</Typography>
@@ -57,7 +56,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             data-testid="increase-liquidity-token1-input-test"
             startAdornment={
               <InputAdornment position="start">
-                <Image src={tokenSvgs[pool.token1.symbol]} width={40} height={40} />
+                <img src={pool.token1.logo.png} width={40} height={40} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="subtitle1">{pool.token1.symbol}</Typography>
               </InputAdornment>
             }
@@ -70,7 +69,7 @@ export const IncreaseLiquidityModal: React.FC<IIncreaseLiquidityModalProps> = (p
             data-testid="increase-liquidity-token2-input-test"
             startAdornment={
               <InputAdornment position="start">
-                <Image src={tokenSvgs[pool.token2.symbol]} width={40} height={40} />
+                <img src={pool.token2.logo.png} width={40} height={40} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="subtitle1">{pool.token2.symbol}</Typography>
               </InputAdornment>
             }

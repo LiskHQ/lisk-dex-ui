@@ -15,9 +15,9 @@ export interface IToken {
     svg: string,
   },
   symbol: string,
-  displayDenom?: string,
+  displayDenom: string,
   baseDenom?: string,
-  denomUnits?: DenomUnit[],
+  denomUnits: DenomUnit[],
 }
 
 export interface ITokenDetail {
@@ -45,4 +45,14 @@ export interface ISwapData {
 
 export interface IFilteredTokens {
   filteredTokens: ITokenDetail[],
+}
+
+export interface ILockedBalance {
+  module: string,
+  amount: string,
+}
+export interface ITokenBalance {
+  tokenID: string,
+  availableBalance: string,
+  lockedBalances?: ILockedBalance[],
 }

@@ -1,30 +1,44 @@
-import Image from 'next/image';
 import { Box, FormLabel, Typography } from '@mui/material';
 import { ButtonComponent } from 'components/common';
 import { CancelIcon, LightcurveIcon } from 'imgs/icons';
-import { ellipsisAddress } from 'utils';
+import { ellipsisAddress, getDispalyTokenAmount } from 'utils';
 import { ApproveTransactionModalStyle } from './index.style';
-import { IExpense } from 'models';
+import { IAccount, IExpense, IToken, ITokenBalance, ITransactionObject } from 'models';
 import { useMemo } from 'react';
-import { mockConversionRate } from '__mock__';
+import WalletVisual from '../Wallet/WalletVisual';
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,
-  expenses: IExpense[],
+  expenses?: IExpense[],
+  transaction?: ITransactionObject,
+  account?: IAccount,
+  accountTokens?: IToken[],
+  tokenBalances?: ITokenBalance[],
+  feeTokenID?: string,
   onClose?: () => void,
   onConfirm?: () => void,
 }
 
 export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = (props) => {
-  const { approvingTransaction, expenses, onConfirm, onClose } = props;
-
-  // const totalAmount = useMemo(() => {
-  //   return expenses ? expenses.reduce((sum, el) => sum += el.amount, 0) : 0;
-  // }, [expenses]);
+  const {
+    approvingTransaction,
+    expenses,
+    transaction,
+    account,
+    accountTokens,
+    tokenBalances,
+    feeTokenID,
+    onConfirm,
+    onClose
+  } = props;
 
   const isSendWalletRequest = useMemo(() => {
     return expenses ? !!expenses.find(el => el.title === 'Proposal creation fee') : false;
   }, [expenses]);
+
+  const getTokenDetail = (tokenID: string) => {
+    return accountTokens && accountTokens.find(el => el.tokenID === tokenID);
+  };
 
   return (
     <ApproveTransactionModalStyle>
@@ -49,16 +63,26 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             <Box className="approve-transaction-account">
               <FormLabel>Account:</FormLabel>
               <Box className="approve-transaction-account-address">
-                <Image src="/assets/avatars/avatar.png" width={24} height={24} />
-                <Typography variant="body1">{ellipsisAddress('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')}</Typography>
+                <WalletVisual address={account?.address || ''} size={24} />&nbsp;
+                <Typography variant="body1">{ellipsisAddress(account ? account.address || '' : '')}</Typography>
               </Box>
             </Box>
             <Box className="approve-transaction-balance">
-              <FormLabel>Balance:</FormLabel>
-              <Box className="approve-transaction-balance-amount">
-                <LightcurveIcon />
-                <Typography variant="body1">145,321 LSKDEX (~$136,461)</Typography>
-              </Box>
+              <FormLabel>Balances:</FormLabel>
+              {
+                accountTokens && tokenBalances && tokenBalances.map((tokenBalance: ITokenBalance) =>
+                  <Box key={tokenBalance.tokenID} className="approve-transaction-balance-amount">
+                    <img
+                      src={getTokenDetail(tokenBalance.tokenID)?.logo.png}
+                      alt={getTokenDetail(tokenBalance.tokenID)?.symbol}
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: '100%' }}
+                    />&nbsp;
+                    <Typography variant="body1">{getDispalyTokenAmount(+tokenBalance.availableBalance, getTokenDetail(tokenBalance.tokenID) || accountTokens[0])} {getTokenDetail(tokenBalance.tokenID)?.symbol}</Typography>
+                  </Box>
+                )
+              }
             </Box>
           </Box>
 
@@ -90,10 +114,15 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             ))
           }
 
-          <Box className="approve-transaction-proposal-transaction-total">
-            <Typography variant="subtitle2">Transaction total:</Typography>
-            <Typography variant="subtitle2">{8986.562} LSKDEX (~${(8986.562 * mockConversionRate).toFixed(2)})</Typography>
-          </Box>
+          {
+            feeTokenID && transaction && accountTokens &&
+            <Box className="approve-transaction-proposal-transaction-total">
+              <Typography variant="subtitle2">Network Fee: </Typography>
+              <Typography variant="subtitle2">
+                {getDispalyTokenAmount(+transaction?.fee, accountTokens?.find(el => el.tokenID === feeTokenID) || accountTokens[0])} {accountTokens?.find(el => el.tokenID === feeTokenID)?.symbol}
+              </Typography>
+            </Box>
+          }
         </Box>
 
         <Box className="approve-transaction-modal-footer">
@@ -110,9 +139,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             onClick={() => { onConfirm && onConfirm(); }}
           >
             <Typography variant="body1">
-              {
-                `${isSendWalletRequest ? 'Send wallet request' : 'Approve'}`
-              }
+              Approve
             </Typography>
           </ButtonComponent>
         </Box>

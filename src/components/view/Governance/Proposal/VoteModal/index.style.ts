@@ -51,7 +51,9 @@ export const VoteModalStyle = styled('div')(({ theme }: any) => {
             alignItems: 'center',
 
             svg: {
-              fill: theme.lightcurve[0],
+              path: {
+                fill: theme.lightcurve[0],
+              },
               marginLeft: '0.5rem',
             }
           }

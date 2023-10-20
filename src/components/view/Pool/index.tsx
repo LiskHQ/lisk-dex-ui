@@ -1,6 +1,5 @@
-import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
-import { IAccount, ICreatePool, IPool } from 'models';
+import { IAccount, ICreatePool, IPool, IToken, ITokenBalance } from 'models';
 import { useEffect, useState } from 'react';
 import { PoolViewStyle } from './index.style';
 import { LiskDexLP } from './LiskDexLP';
@@ -8,7 +7,6 @@ import { RemoveLiquidityModal } from './RemoveLiquidityModal';
 import { SupplyLiquidity } from './SupplyLiquidity';
 import { SupplyLiquidityModal } from './SupplyLiquidityModal';
 import { TransactionCommands } from 'consts';
-import { RootState } from 'store';
 
 export interface IPoolViewProps {
   requestingSignature: boolean,
@@ -17,6 +15,8 @@ export interface IPoolViewProps {
   gotPools: boolean,
   closeTransactionModal: boolean,
   account: IAccount | null,
+  accountTokens: IToken[],
+  tokenBalances: ITokenBalance[],
   createPool: (pool: ICreatePool) => void,
   createPosition: (pool: ICreatePool) => void,
   addLiquidity: (pool: IPool) => void,
@@ -30,6 +30,8 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
     gotPools,
     gettingPools,
     closeTransactionModal,
+    accountTokens,
+    tokenBalances,
     createPool,
     createPosition,
     addLiquidity,
@@ -40,7 +42,6 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
   const [openRemoveLiquidityModal, setOpenRemoveLiquidityModal] = useState<boolean>(false);
   const [pool, setPool] = useState<IPool | ICreatePool>();
   const [moduleCommand, setModuleCommand] = useState<string>('');
-  const { availableTokens } = useSelector((root: RootState) => root.token);
 
   const onPreview = (pool: IPool | ICreatePool) => {
     setOpenSupplyModal(true);
@@ -84,7 +85,8 @@ export const PoolView: React.FC<IPoolViewProps> = (props) => {
       <Grid container spacing={3}>
         <Grid item lg={5.5} md={12} sm={12} xs={12}>
           <SupplyLiquidity
-            tokens={availableTokens}
+            tokens={accountTokens}
+            tokenBalances={tokenBalances}
             onPreview={onPreview}
             closeTransactionModal={closeTransactionModal}
           />

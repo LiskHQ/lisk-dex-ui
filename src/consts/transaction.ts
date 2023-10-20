@@ -17,6 +17,7 @@ export const TransactionCommands = {
   addLiquidity: 'addLiquidity',
   removeLiquidity: 'removeLiquidity',
   createProposal: 'createProposal',
+  voteOnProposal: 'voteOnProposal',
 };
 
 export enum TransactionStatus {

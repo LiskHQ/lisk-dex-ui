@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SelectTokenModal, ISelectTokenModalProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockTokens } from '__mock__';
+import { mockTokenBalances, mockTokens } from '__mock__';
 
 function renderComponent(props: ISelectTokenModalProps) {
   return render(
@@ -16,6 +16,7 @@ function renderComponent(props: ISelectTokenModalProps) {
 describe('SelectTokenModal', () => {
   const mockProps: ISelectTokenModalProps = {
     tokens: mockTokens,
+    tokenBalances: mockTokenBalances,
     onClose: jest.fn(),
     onSelect: jest.fn(),
   };

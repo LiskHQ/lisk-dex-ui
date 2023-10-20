@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IVote, IProposal } from 'models';
-import { mockVotes } from '__mock__';
+import { mockVotes, mockProposals } from '__mock__';
 
 type StateType = {
   votesLimit: number,
@@ -24,7 +24,7 @@ const initialState: StateType = {
   votesTotal: 0,
   votesTotalPages: 0,
   votes: [],
-  proposals: [],
+  proposals: [...mockProposals],
   proposal: {} as IProposal,
   openProposalApproval: false,
   gettingProposals: false,
@@ -76,6 +76,7 @@ const proposalSlice = createSlice({
     getCertainProposal(state, action: PayloadAction<any>) {
       state.gettingCertainProposal = true;
       state.gotCertainProposal = false;
+      state.proposal = mockProposals[0];
     },
     getCertainProposalSuccess(state, action) {
       state.gettingCertainProposal = false;

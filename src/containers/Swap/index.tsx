@@ -11,7 +11,7 @@ export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
   const { account } = useSelector((state: RootState) => state.wallet);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
-  const { availableTokens } = useSelector((state: RootState) => state.token);
+  const { accountTokens, tokenBalances } = useSelector((state: RootState) => state.token);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
@@ -25,8 +25,16 @@ export const SwapContainer: React.FC = () => {
   } = useJsonRpc();
 
   useEffect(() => {
-    dispatch(AppActions.token.getAvailableTokens());
+    dispatch(AppActions.token.getAccountTokens({}));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (account && account.address) {
+      dispatch(AppActions.token.getTokenBalances({
+        address: account.address
+      }));
+    }
+  }, [account, dispatch]);
 
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
@@ -113,7 +121,8 @@ export const SwapContainer: React.FC = () => {
     <>
       <SwapView
         account={account}
-        tokens={availableTokens}
+        tokens={accountTokens}
+        tokenBalances={tokenBalances}
         closeTransactionModal={closeTransactionModal}
         onConfirmSwap={onConfirmSwap}
         getToken2FiatConversion={getToken2FiatConversion}

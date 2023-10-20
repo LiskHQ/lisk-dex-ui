@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
 import { IPool } from 'models';
 import { PoolComponentStyle } from './index.style';
-import { PieChartIcon, tokenSvgs } from 'imgs/icons';
+import { PieChartIcon } from 'imgs/icons';
 import { ButtonComponent } from 'components/common';
 
 export interface IPoolComponentProps {
@@ -23,8 +22,9 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
         {...rest}
         expandIcon={<FontAwesomeIcon icon={faChevronDown} />}
       >
-        <Image src={tokenSvgs[pool.token1.symbol]} width={24} height={24} />
-        <Image src={tokenSvgs[pool.token2.symbol]} width={24} height={24} />
+
+        <img src={pool.token1.logo.png} width={24} height={24} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
+        <img src={pool.token2.logo.png} width={24} height={24} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
 
         <Typography className="pool-summary-token-name" variant="body1">{pool.token1.symbol} / {pool.token2.symbol}</Typography>
 
@@ -40,7 +40,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
 
             <Box className="pool-details-token token1">
               <Box className="pool-details-image">
-                <Image src={tokenSvgs[pool.token1.symbol]} width="20" height="20" />
+                <img src={pool.token1.logo.png} width={24} height={24} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="body2">{pool.token1.symbol}</Typography>
               </Box>
               <Box className="pool-details-amount">
@@ -53,7 +53,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
 
             <Box className="pool-details-token token2">
               <Box className="pool-details-image">
-                <Image src={tokenSvgs[pool.token2.symbol]} width="20" height="20" />
+                <img src={pool.token2.logo.png} width={24} height={24} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="body2">{pool.token2.symbol}</Typography>
               </Box>
               <Box className="pool-details-amount">
@@ -71,7 +71,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
 
             <Box className="pool-details-token token1">
               <Box className="pool-details-image">
-                <Image src={tokenSvgs[pool.token1.symbol]} width="20" height="20" />
+                <img src={pool.token1.logo.png} width={20} height={20} alt={pool.token1.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="body2">{pool.token1.symbol}</Typography>
               </Box>
               <Box className="pool-details-amount">
@@ -82,7 +82,7 @@ export const PoolComponent: React.FC<IPoolComponentProps> = (props) => {
 
             <Box className="pool-details-token token2">
               <Box className="pool-details-image">
-                <Image src={tokenSvgs[pool.token2.symbol]} width="20" height="20" />
+                <img src={pool.token2.logo.png} width={20} height={20} alt={pool.token2.symbol} style={{ borderRadius: '100%' }} />
                 <Typography variant="body2">{pool.token2.symbol}</Typography>
               </Box>
               <Box className="pool-details-amount">
