@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { Box, FormHelperText, IconButton, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +8,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { ButtonComponent, InputComponent, SelectTokenModal } from 'components';
 import { TransactionSettingsModal } from './TransactionSettingsModal';
 import { SwapConfirmModal } from './SwapConfirmModal';
-import { EditIcon, HelpIcon, SettingIcon, SwapIcon, tokenSvgs } from 'imgs/icons';
+import { EditIcon, HelpIcon, SettingIcon, SwapIcon } from 'imgs/icons';
 import { SwapViewStyle } from './index.style';
 import { cryptoDecimalFormat, currencyDecimalFormat, getDisplayTokenAmount } from 'utils';
 import { RootState } from 'store';
@@ -122,11 +121,11 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     if (token1)
       return +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token1?.tokenID)?.availableBalance || 0), token1);
     return 0;
-  }, [token1]);
+  }, [token1, tokenBalances]);
 
   useEffect(() => {
     setToken1(tokens.find(el => el.tokenID === tokenBalances[0].tokenID));
-  }, [tokenBalances]);
+  }, [tokenBalances, tokens]);
 
   useEffect(() => {
     if (!account) {

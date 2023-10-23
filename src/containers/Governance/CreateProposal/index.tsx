@@ -48,7 +48,7 @@ export const CreateProposalContainer: React.FC = () => {
 
   const onSubmit = (proposal: IProposal) => {
     if (pools.length === 0) {
-      enqueueSnackbar(`Pool is required to create proposal`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+      enqueueSnackbar('Pool is required to create proposal', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
       return;
     }
 
@@ -116,6 +116,7 @@ export const CreateProposalContainer: React.FC = () => {
     if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {

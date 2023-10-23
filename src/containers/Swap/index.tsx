@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { AlertVariant, LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
 import { createTransactionObject, getTokenAmount, swapExactOutCommandSchema } from 'utils';
@@ -84,6 +84,7 @@ export const SwapContainer: React.FC = () => {
     if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {

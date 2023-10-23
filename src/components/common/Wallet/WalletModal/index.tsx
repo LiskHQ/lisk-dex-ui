@@ -2,7 +2,6 @@ import { useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Box, IconButton, MenuItem, Tab, Tabs, Typography } from '@mui/material';
-import Image from 'next/image';
 import { WalletModalStyle } from './index.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faUpRightFromSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,7 @@ import { HistoryComponent } from './History';
 import { IAccount, IToken, ITokenBalance } from 'models';
 import { TokenComponent } from './Token';
 import { ellipsisAddress, getDisplayTokenAmount, getFiatfromToken } from 'utils';
-import { CheckCircleIcon, CopyIcon, tokenSvgs } from 'imgs/icons';
+import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
 import { mockConversionRate } from '__mock__';
 import { AppActions, RootState } from 'store';
 import WalletVisual from '../WalletVisual';
@@ -100,6 +99,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
       return totalBalance;
     }, 0);
     return balance;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversionRates, tokenBalances, accountTokens, currency]);
 
   return (

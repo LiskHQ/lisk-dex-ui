@@ -198,6 +198,7 @@ export const PoolContainer: React.FC = () => {
     if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {

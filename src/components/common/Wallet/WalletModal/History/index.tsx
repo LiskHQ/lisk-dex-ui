@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { HistoryComponentStyle } from './index.style';
-import { SwapIcon } from 'imgs/icons';
 import { LoaderComponent } from 'components';
 import { AppActions, RootState } from 'store';
 import { getDisplayTokenAmount, timestampToString } from 'utils';

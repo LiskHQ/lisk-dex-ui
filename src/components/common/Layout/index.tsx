@@ -2,7 +2,7 @@ import { useMediaQuery } from '@mui/material';
 import { AlertVariant } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
-import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
 import { SnackbarAlertComponent } from 'components';
@@ -37,6 +37,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const { account } = useSelector((state: RootState) => state.wallet);
 
   // current socket event
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [socketEvent, setSocketEvent] = useState<string>('');
 
   // useMemo(() => {

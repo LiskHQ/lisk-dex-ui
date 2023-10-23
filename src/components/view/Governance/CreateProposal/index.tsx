@@ -39,12 +39,12 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
       multiplier?: Yup.NumberSchema,
     }
       = {
-      author: Yup.string().required(),
-      title: Yup.string().required(),
-      summary: Yup.string().required(),
-      description: Yup.string().required(),
-      link: Yup.string().url(),
-    };
+        author: Yup.string().required(),
+        title: Yup.string().required(),
+        summary: Yup.string().required(),
+        description: Yup.string().required(),
+        link: Yup.string().url(),
+      };
     if (proposalType === ProposalType.PoolIncentivization) {
       schemaObject.multiplier = Yup.number().required();
       schemaObject.poolID = Yup.string().required();
