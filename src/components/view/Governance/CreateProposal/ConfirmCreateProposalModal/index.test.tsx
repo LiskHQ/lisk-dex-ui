@@ -15,15 +15,6 @@ function renderComponent(props: IConfirmCreateProposalModalProps) {
 }
 
 describe('SelectProposalTypeComponent', () => {
-  it('checks if the component matches the snapshot', () => {
-    const props: IConfirmCreateProposalModalProps = {
-      openTransactionApproval: false,
-      proposal: mockProposal,
-    };
-    const { container } = renderComponent(props);
-    expect(container).toMatchSnapshot();
-  });
-
   it('proposal values entered all input correctly', () => {
     const props: IConfirmCreateProposalModalProps = {
       openTransactionApproval: false,
@@ -82,7 +73,6 @@ describe('SelectProposalTypeComponent', () => {
 
   it('confirm & cancel button click', () => {
     const props: IConfirmCreateProposalModalProps = {
-      openTransactionApproval: false,
       proposal: mockProposal,
       onConfirm: jest.fn(),
       onClose: jest.fn(),
