@@ -124,7 +124,8 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   }, [token1, tokenBalances]);
 
   useEffect(() => {
-    setToken1(tokens.find(el => el.tokenID === tokenBalances[0].tokenID));
+    if (tokenBalances.length > 0)
+      setToken1(tokens.find(el => el.tokenID === tokenBalances[0].tokenID));
   }, [tokenBalances, tokens]);
 
   useEffect(() => {
