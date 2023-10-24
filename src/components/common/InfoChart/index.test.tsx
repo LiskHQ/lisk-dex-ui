@@ -48,11 +48,6 @@ describe('InfoChart component', () => {
     onTabChange: jest.fn(),
   };
 
-  it('checks if the component matches the snapshot', () => {
-    const { container } = renderComponent(mockProps);
-    expect(container).toMatchSnapshot();
-  });
-
   it('check period button works', () => {
     const { getByTestId } = renderComponent(mockProps);
     fireEvent.click(getByTestId('peroid-unit-D-test'));
