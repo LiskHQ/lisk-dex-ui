@@ -17,7 +17,7 @@ interface IHistoryComponentProps {
 export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
   const dispatch = useDispatch();
   const { accountTokens, accountAddress } = props;
-  const { transactions, offset, total } = useSelector((root: RootState) => root.transaction);
+  const { offset, total } = useSelector((root: RootState) => root.transaction);
   const [_transactions, setTransactions] = useState<ITransaction[]>([]);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
       offset: 0,
       senderAddress: accountAddress,
       next: (data: ITransaction[]) => {
-        setTransactions(prev => {
-          return [...data]
+        setTransactions(() => {
+          return [...data];
         });
       }
     }));
@@ -41,7 +41,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
       senderAddress: accountAddress,
       next: (data: ITransaction[]) => {
         setTransactions(prev => {
-          return [...prev, ...data]
+          return [...prev, ...data];
         });
       }
     }));
@@ -110,7 +110,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
                     }[transaction.moduleCommand]
                   }
                   <Box className="transaction-status">
-                    <Typography variant="body2" style={{ textTransform: 'capitalize ' }}>{transaction.executionStatus}</Typography>
+                    <Typography variant="body2" style={{ textTransform: 'capitalize' }}>{transaction.executionStatus}</Typography>
                     <Typography variant="body2">{transaction.fee}</Typography>
                   </Box>
                 </Box>

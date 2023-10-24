@@ -13,6 +13,7 @@ interface IProps extends InputBaseProps {
   watch?: UseFormWatch<any>,
   options?: RegisterOptions,
   helperText?: string,
+  variant?: string,
 }
 
 export const InputComponent: React.FC<IProps> = (props) => {
