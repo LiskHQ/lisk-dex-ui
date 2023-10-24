@@ -10,9 +10,6 @@ export const HistoryComponentStyle = styled('div')(({ theme }: any) => {
     },
 
     '.infinite-scroll-component': {
-      maxHeight: '34.25rem',
-      minHeight: '34.25rem',
-
       '&::-webkit-scrollbar': {
         width: '0.3rem',
       },

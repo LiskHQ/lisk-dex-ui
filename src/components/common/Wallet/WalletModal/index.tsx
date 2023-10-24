@@ -93,12 +93,15 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   };
 
   const balance = useMemo(() => {
-    const balance = tokenBalances.reduce((totalBalance: number, tokenBalance: ITokenBalance) => {
-      const token = getTokenDetail(tokenBalance.tokenID) || accountTokens[0];
-      totalBalance += +getDisplayTokenAmount(+tokenBalance.availableBalance, token) * (conversionRates[token.symbol][currency] || 0);
-      return totalBalance;
-    }, 0);
-    return balance;
+    if (tokenBalances.length && accountTokens.length) {
+      const balance = tokenBalances.reduce((totalBalance: number, tokenBalance: ITokenBalance) => {
+        const token = getTokenDetail(tokenBalance.tokenID) || accountTokens[0];
+        totalBalance += +getDisplayTokenAmount(+tokenBalance.availableBalance, token) * (conversionRates[token.symbol][currency] || 0);
+        return totalBalance;
+      }, 0);
+      return balance;
+    }
+    return 0;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversionRates, tokenBalances, accountTokens, currency]);
 
