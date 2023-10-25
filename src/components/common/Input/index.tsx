@@ -1,10 +1,10 @@
 import { InputComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
-import { Box, FormHelperText, InputBase, InputBaseProps, InputLabel, Typography } from '@mui/material';
+import { Box, InputBase, InputBaseProps, InputLabel, Typography } from '@mui/material';
 import { ReactNode } from 'react';
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
-interface IProps extends InputBaseProps {
+export interface InputProps extends InputBaseProps {
   name?: string,
   label?: ReactNode,
   type?: string,
@@ -12,13 +12,12 @@ interface IProps extends InputBaseProps {
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
   options?: RegisterOptions,
-  helperText?: string,
   variant?: string,
 }
 
-export const InputComponent: React.FC<IProps> = (props) => {
+export const InputComponent: React.FC<InputProps> = (props) => {
   const theme: any = useTheme();
-  const { maxLength, register, watch, options, className, name: fieldName, type, label, helperText, ...inputProps } = props;
+  const { maxLength, register, watch, options, className, name: fieldName, type, label, ...inputProps } = props;
   const value = watch && fieldName && watch(fieldName);
 
   return (
@@ -33,6 +32,7 @@ export const InputComponent: React.FC<IProps> = (props) => {
       }
       <InputBase
         type={type}
+        data-testid={'input-component-test'}
         inputProps={{
           sx: {
             '&::placeholder': {
@@ -51,12 +51,6 @@ export const InputComponent: React.FC<IProps> = (props) => {
         <Box className="input-length-counter">
           <Typography variant="caption">{value.length}/{maxLength}</Typography>
         </Box>
-      }
-      {
-        helperText &&
-        <FormHelperText>
-          <Typography variant="body2">{helperText}</Typography>
-        </FormHelperText>
       }
     </InputComponentStyle >
   );

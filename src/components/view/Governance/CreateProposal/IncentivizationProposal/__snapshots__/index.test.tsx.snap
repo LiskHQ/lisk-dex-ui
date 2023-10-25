@@ -929,6 +929,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-16:focus::-ms-input-
           </label>
           <div
             class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-15"
+            data-testid="input-component-test"
           >
             <input
               aria-invalid="false"

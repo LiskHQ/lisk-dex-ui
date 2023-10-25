@@ -9,7 +9,7 @@ import { getDisplayTokenAmount, timestampToString } from 'utils';
 import { TransactionCommands, TransactionModule } from 'consts';
 import { IToken, ITransaction } from 'models';
 
-interface IHistoryComponentProps {
+export interface IHistoryComponentProps {
   accountTokens: IToken[],
   accountAddress: string,
 }

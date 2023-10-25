@@ -22,7 +22,7 @@ export const TokenComponent: React.FC<ITokenComponentProps> = (props) => {
   return (
     <TokenComponentStyle>
       <Box className="token-header">
-        <IconButton onClick={onBack}>
+        <IconButton data-testid={'token-back-test'} onClick={onBack}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </IconButton>
         <Box className="token-name">
