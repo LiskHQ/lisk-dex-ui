@@ -77,7 +77,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
                   </Box> */}
                 <Box className="transaction-summary">
                   {
-                    {
+                    transaction.params && {
                       [`${TransactionModule.dex}:${TransactionCommands.swapExactOut}`]:
                         <Box className="transaction-values">
                           <Typography variant="body2">Swap {getToken(transaction.params.tokenIdIn)?.symbol} for {getToken(transaction.params.tokenIdOut)?.symbol}</Typography>
@@ -87,7 +87,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
                         <Box className="transaction-values">
                           <Typography variant="body2">Create {getToken(transaction.params.tokenID0)?.symbol} & {getToken(transaction.params.tokenID1)?.symbol}</Typography>
                           {
-                            transaction.params && transaction.params.tokenID0 &&
+                            transaction.params.tokenID0 &&
                             <Typography variant="body2">
                               {getDisplayTokenAmount(transaction.params.initialPosition.amount0Desired, getToken(transaction.params.tokenID0))} {getToken(transaction.params.tokenID0)?.symbol}
                               &nbsp;&&nbsp;
