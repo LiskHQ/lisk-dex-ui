@@ -3,13 +3,11 @@ import { ButtonComponent } from 'components/common';
 import { CancelIcon, LightcurveIcon } from 'imgs/icons';
 import { ellipsisAddress, getDisplayTokenAmount } from 'utils';
 import { ApproveTransactionModalStyle } from './index.style';
-import { IAccount, IExpense, IToken, ITokenBalance, ITransactionObject } from 'models';
-import { useMemo } from 'react';
+import { IAccount, IToken, ITokenBalance, ITransactionObject } from 'models';
 import WalletVisual from '../Wallet/WalletVisual';
 
 export interface IApproveTransactionModalProps {
   approvingTransaction: boolean,
-  expenses?: IExpense[],
   transaction?: ITransactionObject,
   account?: IAccount,
   accountTokens?: IToken[],
@@ -22,7 +20,6 @@ export interface IApproveTransactionModalProps {
 export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = (props) => {
   const {
     approvingTransaction,
-    expenses,
     transaction,
     account,
     accountTokens,
@@ -31,10 +28,6 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
     onConfirm,
     onClose
   } = props;
-
-  const isSendWalletRequest = useMemo(() => {
-    return expenses ? !!expenses.find(el => el.title === 'Proposal creation fee') : false;
-  }, [expenses]);
 
   const getTokenDetail = (tokenID: string) => {
     return accountTokens && accountTokens.find(el => el.tokenID === tokenID);
@@ -52,7 +45,7 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
               <Box className="status"></Box>
               <Typography variant="h5">Lisk Testnet</Typography>
             </Box>
-            <CancelIcon onClick={() => { onClose && onClose(); }}></CancelIcon>
+            <CancelIcon data-testid={'close-button-test'} onClick={() => { onClose && onClose(); }} />
           </Box>
         </Box>
 
@@ -86,17 +79,6 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
             </Box>
           </Box>
 
-          {
-            isSendWalletRequest &&
-            <Box className="approve-transaction-estimated-balance-change">
-              <Typography variant="h5">Estimated balance change</Typography>
-              <Box className="approve-transaction-estimated-balance">
-                <Typography variant="h5">LSK:</Typography>
-                <Typography className="estimated-balance" variant="h5">-5000 LSK</Typography>
-              </Box>
-            </Box>
-          }
-
           <Box className="approve-transaction-request">
             <LightcurveIcon />
             <Typography variant="h4">Approve request</Typography>
@@ -104,16 +86,6 @@ export const ApproveTransactionModal: React.FC<IApproveTransactionModalProps> = 
           </Box>
 
           <Typography variant="subtitle1">Transaction Summary</Typography>
-
-          {
-            !!expenses && expenses.map(expense => (
-              <Box key={expense.title} className="approve-transaction-proposal-creation-fee">
-                <Typography variant="body1">{expense.title}:</Typography>
-                <Typography variant="body1">{expense.amount}</Typography>
-              </Box>
-            ))
-          }
-
           {
             feeTokenID && transaction && accountTokens &&
             <Box className="approve-transaction-proposal-transaction-total">

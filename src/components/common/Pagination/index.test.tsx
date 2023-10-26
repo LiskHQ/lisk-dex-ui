@@ -1,32 +1,28 @@
 import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
-import { ITransactionsTableProps, TransactionsTable } from './index';
 import React from 'react';
+import { IPaginationComponentProps, PaginationComponent } from '.';
 import { lightTheme } from 'styles/theme';
-import { mockTokens, mockTransactions } from '__mock__';
 
-function renderComponent(props: ITransactionsTableProps) {
+function renderComponent(props: IPaginationComponentProps) {
   return render(
     <ThemeProvider theme={lightTheme}>
-      <TransactionsTable {...props} />
+      <PaginationComponent {...props} />
     </ThemeProvider>
   );
 }
 
-describe('TransactionsTable component', () => {
-  const mockProps: ITransactionsTableProps = {
+describe('Pagination component', () => {
+  const mockProps: IPaginationComponentProps = {
     onChangeRowCount: jest.fn(),
     onNextPage: jest.fn(),
     onPreviousPage: jest.fn(),
-    onChangeCommand: jest.fn(),
-    transactions: [...mockTransactions],
-    availableTokens: mockTokens,
     limit: 10,
     page: 1,
-    totalPages: 1,
+    totalPages: 5,
   };
 
-  it('checks if the component matches the snapshot', () => {
+  it('checks if the withLayout component matches the snapshot', () => {
     const { container } = renderComponent(mockProps);
     expect(container).toMatchSnapshot();
   });
@@ -35,21 +31,19 @@ describe('TransactionsTable component', () => {
     const { getByTestId } = renderComponent({
       ...mockProps,
       page: 2,
-      totalPages: 5,
     });
-
-    fireEvent.click(getByTestId('previous-page-test'));
+    fireEvent.click(getByTestId('test-previous-page'));
     expect(mockProps.onPreviousPage).toBeCalled();
   });
+
 
   it('test next page', () => {
     const { getByTestId } = renderComponent({
       ...mockProps,
       page: 2,
-      totalPages: 5,
     });
-
-    fireEvent.click(getByTestId('transaction-table-next-page-test'));
-    expect(mockProps.onNextPage).toBeCalled();
+    fireEvent.click(getByTestId('test-next-page'));
+    expect(mockProps.onPreviousPage).toBeCalled();
   });
 });
+

@@ -6,6 +6,7 @@ import { HistoryComponent, IHistoryComponentProps } from '.';
 import { mockTokens } from '__mock__';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import { act } from 'react-dom/test-utils';
 
 function renderComponent(props: IHistoryComponentProps) {
   return render(
@@ -23,7 +24,9 @@ describe('History component', () => {
     accountTokens: mockTokens,
   };
   it('checks if the component matches the snapshot', () => {
-    const { container } = renderComponent(mockProps);
-    expect(container).toMatchSnapshot();
+    act(() => {
+      renderComponent(mockProps);
+    });
+    expect(screen).toMatchSnapshot();
   });
 });

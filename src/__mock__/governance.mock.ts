@@ -1,5 +1,5 @@
 import { ProposalStatus, ProposalType } from 'consts';
-import { IPoolItem, IProposal, IVote } from 'models';
+import { IProposal, IVote } from 'models';
 
 export const mockProposal: Pick<
   IProposal,
@@ -105,35 +105,4 @@ export const mockVotes: IVote[] = [
     agreed: true,
     amount: 16,
   },
-];
-
-export const mockPoolItems: IPoolItem[] = [
-  {
-    id: '1',
-    token1: 'LSK',
-    token2: 'DEU',
-    rate: 0.3,
-    amount: 12.2,
-  },
-  {
-    id: '2',
-    token1: 'KLP',
-    token2: 'RGB',
-    rate: 0.1,
-    amount: 11.4,
-  },
-  {
-    id: '3',
-    token1: 'DEU',
-    token2: 'FAE',
-    rate: 0.3,
-    amount: 17.6,
-  },
-  {
-    id: '4',
-    token1: 'RGB',
-    token2: 'FAE',
-    rate: 0.1,
-    amount: 11.4,
-  }
 ];

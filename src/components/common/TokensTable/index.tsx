@@ -27,7 +27,7 @@ const sortKeys = [
   },
 ];
 
-export interface ITokensTable {
+export interface ITokensTableProps {
   tokens: ITokenDetail[],
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
@@ -44,7 +44,7 @@ export interface ITokensTable {
   totalPages?: number
 }
 
-export const TokensTable: React.FC<ITokensTable> = (props) => {
+export const TokensTable: React.FC<ITokensTableProps> = (props) => {
   const {
     onChangeRowCount,
     onSelectToken,
@@ -152,6 +152,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                 <TableCell align="right">
                   <Box className="actions-td">
                     <ButtonComponent
+                      data-testid={`addLiquidity-test-${row.tokenID}`}
                       variant="outlined"
                       size="small"
                       onClick={e => { onAddLiquidityClick(e, row.symbol); }}
@@ -159,6 +160,7 @@ export const TokensTable: React.FC<ITokensTable> = (props) => {
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
                     <ButtonComponent
+                      data-testid={`swap-test-${row.tokenID}`}
                       size="small"
                       onClick={e => { onSwapClick(e, row.symbol); }}
                     >

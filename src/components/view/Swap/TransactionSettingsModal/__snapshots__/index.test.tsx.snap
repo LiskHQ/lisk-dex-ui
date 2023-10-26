@@ -885,6 +885,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-17:focus::-ms-input-
         >
           <div
             class="switcher-box selected MuiBox-root emotion-1"
+            data-testid="splipageTolerance-test-0.1"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-7"
@@ -895,6 +896,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-17:focus::-ms-input-
           </div>
           <div
             class="switcher-box MuiBox-root emotion-1"
+            data-testid="splipageTolerance-test-0.5"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-7"
@@ -905,6 +907,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-17:focus::-ms-input-
           </div>
           <div
             class="switcher-box MuiBox-root emotion-1"
+            data-testid="splipageTolerance-test-1"
           >
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-7"
@@ -987,7 +990,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-17:focus::-ms-input-
           >
             <div
               class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-16"
-              data-testid="input-component-test"
+              data-testid="transaction-deadline-test"
             >
               <input
                 aria-invalid="false"

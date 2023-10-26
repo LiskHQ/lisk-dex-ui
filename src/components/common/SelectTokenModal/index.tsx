@@ -60,7 +60,7 @@ export const SelectTokenModal: React.FC<ISelectTokenModalProps> = (props) => {
         <SearchInputComponent
           className="search-input-component"
           placeholder="Search name or paste address"
-          onChange={(value) => { setFilter(value); }}
+          onChange={e => { setFilter(e.target.value); }}
         />
         <Box className="select-token-common-tokens">
           <Typography variant="body2">Common tokens</Typography>

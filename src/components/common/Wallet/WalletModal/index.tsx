@@ -8,9 +8,8 @@ import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisV
 import { HistoryComponent } from './History';
 import { IAccount, IToken, ITokenBalance } from 'models';
 import { TokenComponent } from './Token';
-import { ellipsisAddress, getDisplayTokenAmount, getFiatfromToken } from 'utils';
+import { currencyDecimalFormat, ellipsisAddress, getDisplayTokenAmount } from 'utils';
 import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
-import { mockConversionRate } from '__mock__';
 import { AppActions, RootState } from 'store';
 import WalletVisual from '../WalletVisual';
 import { PlatformContext } from 'contexts';
@@ -166,7 +165,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                       <WalletVisual address={address} size={40} />
                     </Box>
                     <Typography variant="body2">Total balance</Typography>
-                    <Typography variant="h2">${getFiatfromToken(balance, mockConversionRate)}</Typography>
+                    <Typography variant="h2">{currencyDecimalFormat(balance, currency)}</Typography>
                   </Box>
 
                   <Box className="wallet-body">

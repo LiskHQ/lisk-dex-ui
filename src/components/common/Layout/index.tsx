@@ -3,10 +3,8 @@ import { AlertVariant } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { ReactNode, useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
 import { SnackbarAlertComponent } from 'components';
-import { RootState } from 'store';
 import { darkTheme } from 'styles/theme';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -14,6 +12,7 @@ import { LayoutComponentStyle } from './index.style';
 
 import { socket } from 'utils';
 import { SOCKET_EVENTS } from 'consts';
+import { NextPage } from 'next';
 
 
 declare module 'notistack' {
@@ -34,8 +33,6 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const isUpMd = useMediaQuery(darkTheme.breakpoints.up(darkTheme.breakpoints.values.lg));
   const platform = useContext(PlatformContext);
 
-  const { account } = useSelector((state: RootState) => state.wallet);
-
   // current socket event
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [socketEvent, setSocketEvent] = useState<string>('');
@@ -44,13 +41,6 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   //   // todo
   //   console.log('socketEvent: ', socketEvent);
   // }, [socketEvent]);
-
-  useEffect(() => {
-    if (!account) {
-      // router.replace(PATHS.SWAP);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account]);
 
   useEffect(() => {
     const onConnect = () => {
@@ -133,7 +123,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 };
 
 export const withLayout =
-  (Page: React.FC): React.FC =>
+  (Page: NextPage): React.FC =>
     // eslint-disable-next-line react/display-name
     () => {
       return (

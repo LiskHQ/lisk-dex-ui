@@ -285,7 +285,7 @@ export const TokensComponent: React.FC<ITokenComponentProps> = (props) => {
               <SearchInputComponent
                 placeholder="Search tokens..."
                 value={searchFilter}
-                onChange={(value) => setSearchFilter(value)}
+                onChange={e => setSearchFilter(e.target.value)}
               />
             </Box>
             <TokensTable
