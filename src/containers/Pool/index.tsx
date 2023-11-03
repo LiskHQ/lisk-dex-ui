@@ -35,6 +35,7 @@ export const PoolContainer: React.FC = () => {
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
     dispatch(AppActions.pool.getStastics({}));
+    dispatch(AppActions.transaction.resetTransactionStates());
   }, [dispatch]);
 
   useEffect(() => {
@@ -194,9 +195,10 @@ export const PoolContainer: React.FC = () => {
   };
 
   useEffect(() => {
-    if (rpcResult && rpcResult.valid) {
+    if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {

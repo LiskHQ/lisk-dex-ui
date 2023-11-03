@@ -91,6 +91,14 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
           }
         },
 
+        '.swap-from-input-error': {
+          color: theme.error.dark,
+
+          p: {
+            textAlign: 'right',
+          }
+        },
+
         '.swap-from-bottom-box': {
           display: 'flex',
           justifyContent: 'space-between',

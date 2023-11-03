@@ -42,6 +42,7 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
           splipageToleranceValues.map(value => (
             <Box
               key={value}
+              data-testid={`splipageTolerance-test-${value}`}
               className={
                 cn({
                   'switcher-box': true,
@@ -65,6 +66,7 @@ export const TransactionSettings: React.FC<ITransactionSettingsProps> = (props) 
       <Box className="transaction-deadline-input">
         <InputComponent
           defaultValue={transactionDeadline}
+          data-testid='transaction-deadline-test'
           type="number"
           onChange={onChangeDeadline}
         />

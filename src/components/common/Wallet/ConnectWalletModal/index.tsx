@@ -131,6 +131,7 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
                     return (
                       <Box
                         key={chainId}
+                        data-testid={'button-connect-test'}
                         className="network-item"
                         onClick={() => onConnect(chainId)}
                       >
@@ -147,7 +148,7 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
                   })
                 }
                 <Box className="close-button">
-                  <Typography variant="body1" onClick={onClose}>Close</Typography>
+                  <Typography variant="body1" data-testid="button-close-test" onClick={onClose}>Close</Typography>
                 </Box>
               </>
           }

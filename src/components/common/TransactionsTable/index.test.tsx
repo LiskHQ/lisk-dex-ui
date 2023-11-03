@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/material';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { ITransactionsTableProps, TransactionsTable } from './index';
 import React from 'react';
 import { lightTheme } from 'styles/theme';
@@ -15,10 +15,10 @@ function renderComponent(props: ITransactionsTableProps) {
 
 describe('TransactionsTable component', () => {
   const mockProps: ITransactionsTableProps = {
-    onChangeRowCount: jest.fn,
-    onNextPage: jest.fn,
-    onPreviousPage: jest.fn,
-    onChangeCommand: jest.fn,
+    onChangeRowCount: jest.fn(),
+    onNextPage: jest.fn(),
+    onPreviousPage: jest.fn(),
+    onChangeCommand: jest.fn(),
     transactions: [...mockTransactions],
     availableTokens: mockTokens,
     limit: 10,
@@ -29,5 +29,27 @@ describe('TransactionsTable component', () => {
   it('checks if the component matches the snapshot', () => {
     const { container } = renderComponent(mockProps);
     expect(container).toMatchSnapshot();
+  });
+
+  it('test previous page', () => {
+    const { getByTestId } = renderComponent({
+      ...mockProps,
+      page: 2,
+      totalPages: 5,
+    });
+
+    fireEvent.click(getByTestId('previous-page-test'));
+    expect(mockProps.onPreviousPage).toBeCalled();
+  });
+
+  it('test next page', () => {
+    const { getByTestId } = renderComponent({
+      ...mockProps,
+      page: 2,
+      totalPages: 5,
+    });
+
+    fireEvent.click(getByTestId('transaction-table-next-page-test'));
+    expect(mockProps.onNextPage).toBeCalled();
   });
 });

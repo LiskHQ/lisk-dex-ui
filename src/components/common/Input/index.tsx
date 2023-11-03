@@ -1,37 +1,21 @@
 import { InputComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
-import { Box, InputBase, InputLabel, Typography } from '@mui/material';
-import { ChangeEventHandler, FocusEventHandler, KeyboardEventHandler, MouseEventHandler, ReactNode } from 'react';
+import { Box, InputBase, InputBaseProps, InputLabel, Typography } from '@mui/material';
+import { ReactNode } from 'react';
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 
-interface IProps {
+export interface InputProps extends InputBaseProps {
   name?: string,
-  className?: string,
   label?: ReactNode,
-  placeholder?: string,
-  helper?: ReactNode,
   type?: string,
-  multiline?: boolean,
-  minRows?: number,
-  maxRows?: number,
   maxLength?: number,
-  value?: string | number,
-  readOnly?: boolean,
-  disabled?: boolean,
-  defaultValue?: string | number,
-  variant?: string,
-  startAdornment?: ReactNode,
-  endAdornment?: ReactNode,
-  onClick?: MouseEventHandler<HTMLDivElement>,
-  onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
-  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   options?: RegisterOptions,
+  variant?: string,
 }
 
-export const InputComponent: React.FC<IProps> = (props) => {
+export const InputComponent: React.FC<InputProps> = (props) => {
   const theme: any = useTheme();
   const { maxLength, register, watch, options, className, name: fieldName, type, label, ...inputProps } = props;
   const value = watch && fieldName && watch(fieldName);
@@ -48,6 +32,7 @@ export const InputComponent: React.FC<IProps> = (props) => {
       }
       <InputBase
         type={type}
+        data-testid={'input-component-test'}
         inputProps={{
           sx: {
             '&::placeholder': {

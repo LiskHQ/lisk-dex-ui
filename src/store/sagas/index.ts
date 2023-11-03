@@ -3,6 +3,7 @@ import { AppActions } from 'store';
 import {
   getAccountTokensSaga,
   getAvailableTokensSaga,
+  getMarketPricesSaga,
   getPopularPairingsSaga,
   getPriceImpactSaga,
   getSlippageBoundsSaga,
@@ -41,6 +42,7 @@ function* rootSaga() {
   yield all([takeLatest(AppActions.token.getTopTokensFromDatabase.type, getTopTokensFromDatabaseSaga)]);
   yield all([takeLatest(AppActions.token.getAccountTokens.type, getAccountTokensSaga)]);
   yield all([takeLatest(AppActions.token.getTokenBalances.type, getTokenBalancesSaga)]);
+  yield all([takeLatest(AppActions.token.getMarketPrices.type, getMarketPricesSaga)]);
 
   yield all([takeLatest(AppActions.pool.getPools.type, getPoolsSaga)]);
   yield all([takeLatest(AppActions.pool.getStastics.type, getStasticsSaga)]);

@@ -39,6 +39,14 @@ export const DepositAmountStyle = styled('div')(({ theme }: any) => {
       }
     },
 
+    '.input-error': {
+      color: theme.error.dark,
+
+      p: {
+        textAlign: 'right',
+      }
+    },
+
     '.token-balance-details': {
       display: 'flex',
       alignItems: 'center',

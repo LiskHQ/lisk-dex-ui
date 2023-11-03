@@ -40,7 +40,7 @@ export const currencyDecimalFormat = (amount: number, currency = 'USD') => {
   return text;
 };
 
-export const getDispalyTokenAmount = (amount: number, token: IToken) => {
+export const getDisplayTokenAmount = (amount: number, token: IToken) => {
   const { displayDenom, denomUnits } = token;
   const decimals = denomUnits.find(denomUnit => denomUnit.denom === displayDenom)?.decimals || 0;
 

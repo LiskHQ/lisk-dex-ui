@@ -8,10 +8,12 @@ import {
   apiGetToken2FiatConversion,
   apiGetToken2TokenConversion,
   apiGetTopTokensFromDatabase,
-  apiGetTokenBalances
+  apiGetTokenBalances,
+  apiGetMarketPrices
 } from 'apis';
 import {
   IFilteredTokens,
+  IMarketPriceResponse,
   IResponse,
   ITokenBalancesReponse,
   ITokenBalancesRequest,
@@ -172,5 +174,21 @@ export function* getTokenBalancesSaga(action: PayloadAction<ITokenBalancesReques
     }
   } catch (error) {
     yield put(AppActions.token.getTopTokensFromDatabaseFailure(error));
+  }
+}
+
+// eslint-disable-next-line
+export function* getMarketPricesSaga(action: any) {
+  try {
+    const result: IMarketPriceResponse = yield call(
+      async () =>
+        await apiGetMarketPrices()
+    );
+
+    if (result.data) {
+      yield put(AppActions.token.getMarketPricesSuccess(result.data));
+    }
+  } catch (error) {
+    yield put(AppActions.token.getMarketPricesFailure(error));
   }
 }

@@ -24,7 +24,7 @@ const sortKeys = [
   },
 ];
 
-export interface IPoolsTable {
+export interface IPoolsTableProps {
   pools: IPoolDetail[],
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
@@ -41,7 +41,7 @@ export interface IPoolsTable {
   totalPages?: number,
 }
 
-export const PoolsTable: React.FC<IPoolsTable> = (props) => {
+export const PoolsTable: React.FC<IPoolsTableProps> = (props) => {
   const {
     onChangeRowCount,
     onSelectPool,
@@ -158,12 +158,14 @@ export const PoolsTable: React.FC<IPoolsTable> = (props) => {
                     <ButtonComponent
                       variant="outlined"
                       size="small"
+                      data-testid={`addLiquidity-test-${row.poolID}`}
                       onClick={e => { onAddLiquidityClick(e, getPoolToken0(row.poolName), getPoolToken1(row.poolName)); }}
                     >
                       <Typography variant="body2">Add Liquidty</Typography>
                     </ButtonComponent>
                     <ButtonComponent
                       size="small"
+                      data-testid={`swap-test-${row.poolID}`}
                       onClick={e => { onSwapClick(e, getPoolToken0(row.poolName), getPoolToken1(row.poolName)); }}
                     >
                       <Typography variant="body2">Swap</Typography>

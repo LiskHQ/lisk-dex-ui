@@ -137,6 +137,14 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
   text-align: right;
 }
 
+.emotion-0 .swap-container .swap-from-box .swap-from-input-error {
+  color: #FF4557;
+}
+
+.emotion-0 .swap-container .swap-from-box .swap-from-input-error p {
+  text-align: right;
+}
+
 .emotion-0 .swap-container .swap-from-box .swap-from-bottom-box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -584,6 +592,10 @@ exports[`Swap checks if the component matches the snapshot 1`] = `
   margin: 0.5rem 0 0 0;
 }
 
+.emotion-17 .MuiFormHelperText-root p {
+  text-align: right;
+}
+
 .emotion-17 .input-length-counter {
   position: absolute;
   bottom: -1.5rem;
@@ -756,7 +768,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
   color: #6B7280;
 }
 
-.emotion-36 {
+.emotion-35 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -809,23 +821,23 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
   text-transform: capitalize;
 }
 
-.emotion-36::-moz-focus-inner {
+.emotion-35::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-36.Mui-disabled {
+.emotion-35.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-36 {
+  .emotion-35 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-36:hover {
+.emotion-35:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   background-color: #1565c0;
@@ -833,39 +845,39 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
 }
 
 @media (hover: none) {
-  .emotion-36:hover {
+  .emotion-35:hover {
     background-color: #1976d2;
   }
 }
 
-.emotion-36:active {
+.emotion-35:active {
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
 }
 
-.emotion-36.Mui-focusVisible {
+.emotion-35.Mui-focusVisible {
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
 }
 
-.emotion-36.Mui-disabled {
+.emotion-35.Mui-disabled {
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.emotion-36.MuiButton-outlined {
+.emotion-35.MuiButton-outlined {
   border-color: #FF4557;
 }
 
-.emotion-36.MuiButton-contained {
+.emotion-35.MuiButton-contained {
   background: #6953F4;
   color: #FFFFFF;
 }
 
-.emotion-36.Mui-disabled {
+.emotion-35.Mui-disabled {
   opacity: 0.7;
 }
 
-.emotion-37 {
+.emotion-36 {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5rem;
@@ -983,32 +995,17 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
           <div
             class="swap-from-select-token MuiBox-root emotion-1"
           >
-            <span
-              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-            >
-              <span
-                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-              >
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2728%27%20height=%2728%27/%3e"
-                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                />
-              </span>
-              <img
-                alt="image"
-                data-nimg="intrinsic"
-                decoding="async"
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-              />
-              <noscript />
-            </span>
+            <img
+              alt="LSK"
+              height="28"
+              src="https://raw.githubusercontent.com/LiskHQ/app-registry/main/devnet/Lisk/images/tokens/lisk.png"
+              style="border-radius: 100%;"
+              width="28"
+            />
             <h6
               class="MuiTypography-root MuiTypography-subtitle2 emotion-16"
             >
-              DEX
+              LSK
             </h6>
             <svg
               aria-hidden="true"
@@ -1031,6 +1028,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
           >
             <div
               class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-18"
+              data-testid="input-component-test"
             >
               <input
                 aria-invalid="false"
@@ -1048,7 +1046,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
             class="MuiTypography-root MuiTypography-body2 emotion-6"
           >
             Balance: 
-            0.00
+            10.00
           </p>
           <p
             class="MuiTypography-root MuiTypography-body2 emotion-6"
@@ -1131,25 +1129,21 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-19:focus::-ms-input-
             <p
               class="MuiTypography-root MuiTypography-body2 emotion-6"
             >
-              Balance: -
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body2 emotion-6"
-            >
-              $0
+              Balance: 
+              -
             </p>
           </div>
         </div>
       </div>
       <button
-        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-36"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium emotion-35"
         data-testid="swap-button"
         disabled=""
         tabindex="-1"
         type="button"
       >
         <h4
-          class="MuiTypography-root MuiTypography-h4 emotion-37"
+          class="MuiTypography-root MuiTypography-h4 emotion-36"
         >
           Select tokens
         </h4>

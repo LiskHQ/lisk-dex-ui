@@ -979,6 +979,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-24:focus::-ms-input-
   margin: 0.5rem 0 0 0;
 }
 
+.emotion-39 .MuiFormHelperText-root p {
+  text-align: right;
+}
+
 .emotion-39 .input-length-counter {
   position: absolute;
   bottom: -1.5rem;
@@ -1624,6 +1628,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-41:focus::-ms-input-
           >
             <div
               class="switcher-box MuiBox-root emotion-1"
+              data-testid="splipageTolerance-test-0.1"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 emotion-10"
@@ -1634,6 +1639,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-41:focus::-ms-input-
             </div>
             <div
               class="switcher-box selected MuiBox-root emotion-1"
+              data-testid="splipageTolerance-test-0.5"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 emotion-10"
@@ -1644,6 +1650,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-41:focus::-ms-input-
             </div>
             <div
               class="switcher-box MuiBox-root emotion-1"
+              data-testid="splipageTolerance-test-1"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 emotion-10"
@@ -1657,6 +1664,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-41:focus::-ms-input-
             >
               <div
                 class="MuiInputBase-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl emotion-40"
+                data-testid="input-component-test"
               >
                 <input
                   aria-invalid="false"
@@ -1725,6 +1733,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-41:focus::-ms-input-
             >
               <div
                 class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-40"
+                data-testid="transaction-deadline-test"
               >
                 <input
                   aria-invalid="false"

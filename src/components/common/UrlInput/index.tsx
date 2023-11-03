@@ -1,31 +1,22 @@
+import { ReactNode } from 'react';
 import { UrlInputComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
-import { Box, InputBase, InputLabel, Typography } from '@mui/material';
-import { KeyboardEventHandler, ReactNode } from 'react';
+import { Box, InputBase, InputBaseProps, InputLabel, Typography } from '@mui/material';
 import { UseFormRegister, RegisterOptions, UseFormWatch } from 'react-hook-form';
 import { LinkIcon } from 'imgs/icons';
 import cn from 'classnames';
 import { isValidURL } from 'utils';
 
-interface IProps {
+export interface IUrlInputProps extends InputBaseProps {
   name?: string,
-  className?: string,
   label?: ReactNode,
-  placeholder?: string,
-  type?: string,
-  multiline?: boolean,
-  minRows?: number,
-  maxRows?: number,
   maxLength?: number,
-  value?: string,
-  readOnly?: boolean,
   register?: UseFormRegister<any>,
   watch?: UseFormWatch<any>,
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>,
   options?: RegisterOptions,
 }
 
-export const UrlInputComponent: React.FC<IProps> = (props) => {
+export const UrlInputComponent: React.FC<IUrlInputProps> = (props) => {
   const theme: any = useTheme();
   const {
     maxLength,

@@ -158,6 +158,7 @@ export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
           <MenuItem value="25">25</MenuItem>
         </DropdownComponent>
         <IconButton
+          data-testid='previous-page-test'
           onClick={() => { onPreviousPage && onPreviousPage(); }}
           disabled={page == 1}
         >

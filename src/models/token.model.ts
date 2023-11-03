@@ -56,3 +56,12 @@ export interface ITokenBalance {
   availableBalance: string,
   lockedBalances?: ILockedBalance[],
 }
+
+export interface IPrice {
+  code: string,
+  from: string,
+  rate: string,
+  to: string,
+  updateTimestamp: number,
+  sources: string[],
+}

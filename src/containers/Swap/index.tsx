@@ -1,14 +1,16 @@
-import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
-import { swapExactInCommandSchema } from 'utils';
+import { createTransactionObject, getTokenAmount, swapExactOutCommandSchema } from 'utils';
 import { useEffect, useState } from 'react';
-import { ISwapData } from 'models';
+import { IAccount, ISwapData, ITransactionObject } from 'models';
 
 export const SwapContainer: React.FC = () => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { account } = useSelector((state: RootState) => state.wallet);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
   const { accountTokens, tokenBalances } = useSelector((state: RootState) => state.token);
@@ -16,6 +18,11 @@ export const SwapContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
+  const { pools } = useSelector((root: RootState) => root.pool);
+
+  // states for approvalTransactionModal
+  const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
+  const [feeTokenID, setFeeTokenID] = useState<string>('');
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
@@ -26,6 +33,8 @@ export const SwapContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(AppActions.token.getAccountTokens({}));
+    dispatch(AppActions.pool.getPools({}));
+    dispatch(AppActions.transaction.resetTransactionStates());
   }, [dispatch]);
 
   useEffect(() => {
@@ -39,36 +48,43 @@ export const SwapContainer: React.FC = () => {
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
 
+    if (pools.length === 0) {
+      enqueueSnackbar(`${tokenIn.symbol}/${tokenOut.symbol} pool is required for swap`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+      return;
+    }
+
     if (account) {
       const { chainId, publicKey } = account;
 
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.swapExactIn,
-        fee: BigInt(5000000),
-        nonce: BigInt(0),
-        senderPublicKey: publicKey,
-        signatures: [],
-        params: {
-          tokenIdIn: tokenIn.tokenID,
-          amountTokenIn: BigInt(amountIn * (10 ** LISK_DECIMALS)),
-          tokenIdOut: tokenOut.tokenID,
-          minAmountTokenOut: BigInt(minAmountOut * (10 ** LISK_DECIMALS)),
-          swapRoute: [Buffer.from('0000000000000000000001000000000000c8', 'hex')],
-          maxTimestampValid: BigInt(100000000000),
-        },
+      const params = {
+        tokenIdIn: tokenIn.tokenID,
+        amountTokenIn: getTokenAmount(amountIn, tokenIn),
+        tokenIdOut: tokenOut.tokenID,
+        minAmountTokenOut: getTokenAmount(minAmountOut, tokenOut),
+        swapRoute: '0000000000000000000001000000000000c8',
+        maxTimestampValid: 100000000000,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, swapExactInCommandSchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      createTransactionObject(TransactionModule.dex, TransactionCommands.swapExactOut, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, swapExactOutCommandSchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
   useEffect(() => {
-    if (rpcResult && rpcResult.valid) {
+    if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {
@@ -138,11 +154,12 @@ export const SwapContainer: React.FC = () => {
       {
         openApproveTransactionModal &&
         <ApproveTransactionModal
-          expenses={[{
-            title: 'Transaction fee',
-            amount: '0.87',
-          }]}
           approvingTransaction={submitingTransaction}
+          transaction={transactionObject}
+          account={account as IAccount}
+          feeTokenID={feeTokenID}
+          accountTokens={accountTokens}
+          tokenBalances={tokenBalances}
           onConfirm={onConfirmApproval}
           onClose={onCloseApproveTransactionModal}
         />

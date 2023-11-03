@@ -12,16 +12,17 @@ import { CreateProposalViewStyle } from './index.style';
 import { SelectProposalTypeComponent } from './SelectProposalType';
 import { IncentivizationProposal } from './IncentivizationProposal';
 import { ButtonComponent } from 'components/common/Button';
-import { IProposal } from 'models';
+import { IPool, IProposal } from 'models';
 import { ConfirmCreateProposalModal } from './ConfirmCreateProposalModal';
 
 export interface ICreateProposalViewProps {
+  pools: IPool[],
   onSubmit: (proposal: IProposal) => void,
   onCloseProposalSubmitted: () => void,
 }
 
 export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) => {
-  const { onSubmit } = props;
+  const { pools, onSubmit } = props;
 
   const [proposalType, setProposalType] = useState<ProposalType>();
   const [openCreateProposalModal, setOpenCreateProposalModal] = useState<boolean>(false);
@@ -110,6 +111,7 @@ export const CreateProposalView: React.FC<ICreateProposalViewProps> = (props) =>
               {
                 proposalType === ProposalType.PoolIncentivization &&
                 <IncentivizationProposal
+                  pools={pools}
                   className="proposal-incentivization"
                   register={register}
                 />

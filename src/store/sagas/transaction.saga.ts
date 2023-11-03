@@ -26,13 +26,16 @@ export function* submitTransactionSaga(action: any) {
 }
 
 export function* getTransactionsSaga(action: any) {
+  const { next, ...params } = action.payload;
   try {
     const result: IResponse = yield call(
       async () =>
-        await apiGetTransactions(action.payload)
+        await apiGetTransactions(params)
     );
 
     if (result) {
+      if (result.data && next)
+        next(result.data);
       yield put(AppActions.transaction.getTransactionsSuccess(result));
     }
   } catch (error) {
