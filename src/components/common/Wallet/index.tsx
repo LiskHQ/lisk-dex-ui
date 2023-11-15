@@ -36,6 +36,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
     client,
     connect,
     disconnect,
+    pairings,
     chains,
     accounts,
     setChains,
@@ -58,13 +59,16 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
       setConnectClicked(false);
       if (typeof client === 'undefined') {
         console.log('WalletConnect is not initialized');
+      }
+      if (pairings.length) {
+        console.log(pairings);
       } else {
         connect(undefined, (uri: string) => {
           setUri(uri);
         });
       }
     }
-  }, [chains, connectClicked, client, connect]);
+  }, [chains, connectClicked, client, pairings, connect]);
 
   const onCloseConnectWalletModal = () => {
     setOpenConnectWalletModal(false);
