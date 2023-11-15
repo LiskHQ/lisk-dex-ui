@@ -113,7 +113,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
                 'open': openWalletModal,
               })
             }
-              onClick={() => setOpenWalletModal(true)}
+            onClick={() => setOpenWalletModal(true)}
             >
               <WalletVisual address={account.address} size={24} />
               <Typography variant="h5">{ellipsisAddress(account.address)}</Typography>
