@@ -1,4 +1,4 @@
-import { IFilteredTokens, ITokenBalance, ITokenDetail } from './token.model';
+import { IFilteredTokens, IPrice, ITokenBalance, ITokenDetail } from './token.model';
 import { ITransactionObject } from './transaction.model';
 
 export interface IResponse {
@@ -66,5 +66,12 @@ export interface INetwrokFeeResponse extends IResponse {
         params: any,
       }
     }
+  }
+}
+
+export interface IMarketPriceResponse extends IResponse {
+  data: IPrice[],
+  meta: {
+    count: number,
   }
 }

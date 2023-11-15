@@ -1,9 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box, FormHelperText, Typography } from '@mui/material';
 import { IToken } from 'models';
 import { DepositAmountStyle } from './index.style';
 import { useEffect, useState } from 'react';
 import { InputComponent } from 'components/common';
 import { cryptoDecimalFormat } from 'utils';
+import { validationErrorMessages } from 'consts';
 
 export interface IDepositAmountProps {
   balance: number,
@@ -47,6 +48,12 @@ export const DepositAmount: React.FC<IDepositAmountProps> = (props) => {
           onBlur={() => { setAmount(cryptoDecimalFormat(+amount)); }}
         />
       </Box>
+      {
+        +tokenAmount > +balance &&
+        <FormHelperText className="input-error">
+          <Typography variant='body2'>{validationErrorMessages.NOT_ENOUGH_BALANCE}</Typography>
+        </FormHelperText>
+      }
       {
         !!token &&
         <Box className="token-balance-details">

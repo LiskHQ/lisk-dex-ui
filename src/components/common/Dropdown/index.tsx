@@ -1,4 +1,4 @@
-import { FormLabel, Select, SelectChangeEvent } from '@mui/material';
+import { FormLabel, Select, SelectProps } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactNode, useState } from 'react';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -6,21 +6,14 @@ import { DropdownComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
 import { RegisterOptions, UseFormRegister } from 'react-hook-form';
 
-interface IProps {
+export interface IDropdownComponentProps extends SelectProps {
   name?: string,
-  className?: string,
   label?: ReactNode,
-  children?: React.ReactNode,
-  defaultValue?: any,
-  value?: any,
-  onChange?: (event: SelectChangeEvent<number>, child: ReactNode) => void;
-  renderValue?: (value: string | number) => ReactNode;
   register?: UseFormRegister<any>,
   options?: RegisterOptions,
-  'data-testid'?: string,
 }
 
-export const DropdownComponent: React.FC<IProps> = (props) => {
+export const DropdownComponent: React.FC<IDropdownComponentProps> = (props) => {
   const { className, label, children, register, name: fieldName, options, ...selectProps } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
 

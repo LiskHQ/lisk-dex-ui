@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ConversionRates, IToken, ITokenBalance, ITokenBalancesRequest, ITokenDetail } from 'models';
+import { ConversionRates, IPrice, IToken, ITokenBalance, ITokenBalancesRequest, ITokenDetail } from 'models';
 
 type StateType = {
   gettingAvailableTokens: boolean,
@@ -32,6 +32,9 @@ type StateType = {
   gotTokenBalances: boolean,
   tokenBalances: ITokenBalance[],
 
+  gettingMarketPrices: boolean,
+  gotMarketPrices: boolean,
+
   error: any,
 };
 
@@ -56,6 +59,9 @@ const initialState: StateType = {
   gettingTokenBalances: false,
   gotTokenBalances: false,
   tokenBalances: [],
+
+  gettingMarketPrices: false,
+  gotMarketPrices: false,
 
   tokenDetails: [],
   tokenDetail: {
@@ -257,13 +263,31 @@ const tokenSlice = createSlice({
       state.gotTokenBalances = false;
     },
     getTokenBalancesSuccess(state, action: PayloadAction<ITokenBalance[]>) {
-      state.gettingTokenBalances = true;
-      state.gotTokenBalances = false;
+      state.gettingTokenBalances = false;
+      state.gotTokenBalances = true;
       state.tokenBalances = [...action.payload];
     },
     getTokenBalancesFailure(state, action) {
-      state.gettingTokenBalances = true;
+      state.gettingTokenBalances = false;
       state.gotTokenBalances = false;
+      state.error = action.payload;
+    },
+
+    getMarketPrices(state) {
+      state.gettingMarketPrices = true;
+      state.gotMarketPrices = false;
+    },
+    getMarketPricesSuccess(state, action: PayloadAction<IPrice[]>) {
+      state.gettingMarketPrices = false;
+      state.gotMarketPrices = true;
+      action.payload.map((el: IPrice) => {
+        state.conversionRates[el.from][el.to] = +el.rate;
+        state.conversionRates[el.to][el.from] = 1 / +el.rate;
+      });
+    },
+    getMarketPricesFailure(state, action) {
+      state.gettingMarketPrices = false;
+      state.gotMarketPrices = false;
       state.error = action.payload;
     }
   },

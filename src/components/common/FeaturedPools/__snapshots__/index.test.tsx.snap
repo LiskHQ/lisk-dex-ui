@@ -237,6 +237,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
   >
     <button
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium scroll-button left emotion-1"
+      data-testid="scroll-left-button-test"
       tabindex="0"
       type="button"
     >
@@ -517,6 +518,7 @@ exports[`FeaturedPools component checks if the component matches the snapshot 1`
     </div>
     <button
       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium scroll-button right emotion-1"
+      data-testid="scroll-right-button-test"
       tabindex="0"
       type="button"
     >

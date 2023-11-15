@@ -63,6 +63,10 @@ export const InputComponentStyle = styled(FormControl)(({ theme }: any) => {
     '.MuiFormHelperText-root': {
       color: theme.error.dark,
       margin: '0.5rem 0 0 0',
+
+      p: {
+        textAlign: 'right',
+      }
     },
 
     '.input-length-counter': {

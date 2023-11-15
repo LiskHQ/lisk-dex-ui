@@ -55,7 +55,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   };
 
   useEffect(() => {
-    if (chains.length && connectClicked) {
+    if (chains && chains.length && connectClicked) {
       setConnectClicked(false);
       if (typeof client === 'undefined') {
         console.log('WalletConnect is not initialized');
@@ -83,7 +83,7 @@ export const WalletComponent: React.FC<IWalletComponentProps> = (props) => {
   };
 
   useEffect(() => {
-    if (accounts.length > 0) {
+    if (accounts && accounts.length > 0) {
       const account = accounts[0];
       if (account) {
         setAccount(account);

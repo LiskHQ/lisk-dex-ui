@@ -6,14 +6,14 @@ import { SnackbarAlertComponentStyle } from './index.style';
 import { forwardRef } from 'react';
 import { CustomContentProps, useSnackbar } from 'notistack';
 
-export interface ISnackbarAlertComponent extends CustomContentProps {
+export interface ISnackbarAlertComponentProps extends CustomContentProps {
   type?: AlertVariant,
   subject?: string,
   link?: string,
 }
 
 // eslint-disable-next-line react/display-name
-export const SnackbarAlertComponent = forwardRef<HTMLDivElement, ISnackbarAlertComponent>(
+export const SnackbarAlertComponent = forwardRef<HTMLDivElement, ISnackbarAlertComponentProps>(
   (props, ref) => {
     const { id, type, subject, message, link } = props;
     const { closeSnackbar } = useSnackbar();

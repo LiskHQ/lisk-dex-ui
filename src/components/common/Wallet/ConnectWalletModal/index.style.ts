@@ -186,7 +186,7 @@ export const ConnectWalletModalStyle = styled('div')(({ theme }: any) => {
               fill: 'transparent',
             },
 
-            'path:nth-child(2)': {
+            'path:nth-of-type(2)': {
               fill: theme.primary[0],
             }
           },

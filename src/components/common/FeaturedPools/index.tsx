@@ -33,7 +33,7 @@ export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
 
   return (
     <FeaturedPoolsStyle className="featured-pools">
-      <IconButton className="scroll-button left" onClick={onClickScrollLeft}>
+      <IconButton className="scroll-button left" data-testid="scroll-left-button-test" onClick={onClickScrollLeft}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </IconButton>
       <Box className="feature-pools-container" ref={poolContainerRef}>
@@ -78,7 +78,7 @@ export const FeaturedPools: React.FC<IFeaturedPoolsProps> = (props) => {
           ))
         }
       </Box>
-      <IconButton className="scroll-button right" onClick={onClickScrollRight}>
+      <IconButton className="scroll-button right" data-testid="scroll-right-button-test" onClick={onClickScrollRight}>
         <FontAwesomeIcon icon={faChevronRight} />
       </IconButton>
     </FeaturedPoolsStyle >

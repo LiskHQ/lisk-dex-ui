@@ -1,4 +1,4 @@
-import { cryptoDecimalFormat, currencyDecimalFormat, getDispalyTokenAmount, getTokenAmount } from './index';
+import { cryptoDecimalFormat, currencyDecimalFormat, getDisplayTokenAmount, getTokenAmount } from './index';
 import { mockTokens } from '__mock__';
 
 describe('test form functions', () => {
@@ -11,7 +11,7 @@ describe('test form functions', () => {
   });
 
   it('getDisplayTokenAmount', () => {
-    expect(getDispalyTokenAmount(100000000, mockTokens[0])).toEqual('100000000.00');
+    expect(getDisplayTokenAmount(100000000, mockTokens[0])).toEqual('100000000.00');
   });
 
   it('getTokenAmount', () => {
