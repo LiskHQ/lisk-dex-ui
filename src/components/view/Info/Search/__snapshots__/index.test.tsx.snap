@@ -192,6 +192,10 @@ exports[`SearchComponent page check if the component matches the snapshot 1`] = 
   margin: 0.5rem 0 0 0;
 }
 
+.emotion-1 .MuiFormHelperText-root p {
+  text-align: right;
+}
+
 .emotion-1 .input-length-counter {
   position: absolute;
   bottom: -1.5rem;

@@ -219,7 +219,7 @@ export const PoolsComponent: React.FC<IPoolsComponentProps> = (props) => {
         <ButtonComponent variant='outlined'><Typography variant="h5">Create a pool</Typography></ButtonComponent>
       </Box>
       <Box className="pools-table-action">
-        <SearchInputComponent placeholder='Search pools...' value={searchFilter} onChange={(value) => setSearchFilter(value)} />
+        <SearchInputComponent placeholder='Search pools...' value={searchFilter} onChange={e => setSearchFilter(e.target.value)} />
       </Box>
       <PoolsTable
         pools={pools}

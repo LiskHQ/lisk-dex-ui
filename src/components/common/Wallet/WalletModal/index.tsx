@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Box, IconButton, MenuItem, Tab, Tabs, Typography } from '@mui/material';
-import Image from 'next/image';
 import { WalletModalStyle } from './index.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faChevronRight, faClockRotateLeft, faEllipsisVertical, faUpRightFromSquare, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { HistoryComponent } from './History';
-import { IAccount, IToken } from 'models';
+import { IAccount, IToken, ITokenBalance } from 'models';
 import { TokenComponent } from './Token';
-import { ellipsisAddress, getFiatfromToken } from 'utils';
-import { CheckCircleIcon, CopyIcon, tokenSvgs } from 'imgs/icons';
-import { mockConversionRate } from '__mock__';
+import { currencyDecimalFormat, ellipsisAddress, getDisplayTokenAmount } from 'utils';
+import { CheckCircleIcon, CopyIcon } from 'imgs/icons';
 import { AppActions, RootState } from 'store';
 import WalletVisual from '../WalletVisual';
+import { PlatformContext } from 'contexts';
+import { currencySymbols } from 'consts';
 
 enum TABS {
   WALLET = 0,
@@ -29,13 +29,14 @@ export interface IWalletModalProps {
 export const WalletModal: React.FC<IWalletModalProps> = (props) => {
   const dispatch = useDispatch();
   const { account, onClose, onDisconnect } = props;
+  const { currency } = useContext(PlatformContext);
   const [tab, setTab] = useState<TABS>(TABS.WALLET);
   const [token, setToken] = useState<IToken | null>(null);
   const [addressCopied, setAddressCopied] = useState<boolean>(false);
   const [menuAddressCopied, setMenuAddressCopied] = useState<boolean>(false);
   const [openWalletMenu, setOpenWalletMenu] = useState<boolean>(false);
   const [address, setAddress] = useState<string>('');
-  const { tokenBalances, accountTokens } = useSelector((root: RootState) => root.token);
+  const { tokenBalances, accountTokens, conversionRates } = useSelector((root: RootState) => root.token);
 
   const onChangeTab = (event: React.SyntheticEvent, value: number) => {
     setTab(value);
@@ -62,6 +63,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
         address: account.address,
       }));
       dispatch(AppActions.token.getAccountTokens({}));
+      dispatch(AppActions.token.getMarketPrices());
     }
   }, [account, dispatch]);
 
@@ -85,11 +87,22 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
     window.open(`https://liskscan.com/account/${address}`, '_blank');
   };
 
-  const balance = 0;
-
   const getTokenDetail = (tokenID: string) => {
-    return accountTokens.find(el => el.tokenID === tokenID);
+    return accountTokens.find((el: IToken) => el.tokenID === tokenID);
   };
+
+  const balance = useMemo(() => {
+    if (tokenBalances.length && accountTokens.length) {
+      const balance = tokenBalances.reduce((totalBalance: number, tokenBalance: ITokenBalance) => {
+        const token = getTokenDetail(tokenBalance.tokenID) || accountTokens[0];
+        totalBalance += +getDisplayTokenAmount(+tokenBalance.availableBalance, token) * (conversionRates[token.symbol][currency] || 0);
+        return totalBalance;
+      }, 0);
+      return balance;
+    }
+    return 0;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversionRates, tokenBalances, accountTokens, currency]);
 
   return (
     <WalletModalStyle>
@@ -102,7 +115,12 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
         {
           {
             [TABS.WALLET]: <>{
-              token ? <TokenComponent token={token} onBack={() => setToken(null)} /> :
+              token ? <TokenComponent
+                token={token}
+                tokenBalance={getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token.tokenID)?.availableBalance || 0), token)}
+                fiatBalance={(+getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token.tokenID)?.availableBalance || 0), token) || 0) * (conversionRates[token.symbol][currency] || 0)}
+                onBack={() => setToken(null)}
+              /> :
                 <>
                   <Box className="wallet-header">
                     <Box className="wallet-header-top-box">
@@ -147,7 +165,7 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                       <WalletVisual address={address} size={40} />
                     </Box>
                     <Typography variant="body2">Total balance</Typography>
-                    <Typography variant="h2">${getFiatfromToken(balance, mockConversionRate)}</Typography>
+                    <Typography variant="h2">{currencyDecimalFormat(balance, currency)}</Typography>
                   </Box>
 
                   <Box className="wallet-body">
@@ -159,15 +177,15 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                           key={token.tokenID}
                           onClick={() => setToken(getTokenDetail(token.tokenID) || null)}
                         >
-                          <Image src={tokenSvgs[getTokenDetail(token.tokenID)?.symbol || 'LSK']} width={40} height={40} />
+                          <img src={getTokenDetail(token.tokenID)?.logo.png} alt={getTokenDetail(token.tokenID)?.symbol} width={40} height={40} style={{ borderRadius: '100%' }} />
                           <Box className="token-summary">
                             <Box className="token-summary-box top">
                               <Typography variant="body1">{getTokenDetail(token.tokenID)?.tokenName}</Typography>
-                              <Typography variant="body2">{token.availableBalance} {getTokenDetail(token.tokenID)?.symbol}</Typography>
+                              <Typography variant="body2">{getDisplayTokenAmount(+token.availableBalance, getTokenDetail(token.tokenID) || accountTokens[0])} {getTokenDetail(token.tokenID)?.symbol}</Typography>
                             </Box>
                             <Box className="token-summary-box bottom">
                               <Typography variant="body2">{getTokenDetail(token.tokenID)?.symbol}</Typography>
-                              <Typography variant="body2">${getFiatfromToken(balance, mockConversionRate)}</Typography>
+                              <Typography variant="body2">{currencySymbols[currency]} {+getDisplayTokenAmount(+token.availableBalance, getTokenDetail(token.tokenID) || accountTokens[0]) * (conversionRates[getTokenDetail(token.tokenID)?.symbol || 'LSK'][currency] || 0)}</Typography>
                             </Box>
                           </Box>
                           <FontAwesomeIcon icon={faChevronRight} />
@@ -177,7 +195,10 @@ export const WalletModal: React.FC<IWalletModalProps> = (props) => {
                 </>
             }</>,
             [TABS.HISTORY]: <>
-              <HistoryComponent accountAddress={address} />
+              <HistoryComponent
+                accountTokens={accountTokens}
+                accountAddress={address}
+              />
             </>
           }[tab]
         }

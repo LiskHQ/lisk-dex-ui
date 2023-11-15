@@ -59,6 +59,10 @@ export const ProposalContainer: React.FC = () => {
     }
   }, [account, dispatch]);
 
+  useEffect(() => {
+    dispatch(AppActions.transaction.resetTransactionStates());
+  }, [dispatch]);
+
   const onVote = async (value: string) => {
     if (account && (value === 'yes' || value === 'no')) {
       const { chainId, publicKey } = account;
@@ -84,9 +88,10 @@ export const ProposalContainer: React.FC = () => {
   };
 
   useEffect(() => {
-    if (rpcResult && rpcResult.valid) {
+    if (rpcResult && rpcResult.valid && openTransactionStatusModal) {
       setOpenApproveTransactionModal(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rpcResult]);
 
   useEffect(() => {

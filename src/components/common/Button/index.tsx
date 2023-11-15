@@ -1,19 +1,11 @@
 import { LoaderComponent } from 'components';
-import { MouseEventHandler, ReactNode } from 'react';
 import { ButtonComponentStyle } from './index.style';
+import { ButtonProps } from '@mui/material';
 
-interface IProps {
-  className?: string,
-  children?: ReactNode,
-  disabled?: boolean,
+export interface IButtonProps extends ButtonProps {
   loading?: boolean,
-  variant?: string,
-  size?: string,
-  type?: string,
-  'data-testid'?: string,
-  onClick?: MouseEventHandler<HTMLButtonElement>,
 }
-export const ButtonComponent: React.FC<IProps> = (props) => {
+export const ButtonComponent: React.FC<IButtonProps> = (props) => {
   const { children, loading, disabled, variant = 'contained', ...buttonProps } = props;
 
   return (

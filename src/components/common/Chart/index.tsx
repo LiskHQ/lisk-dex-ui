@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, useContext, useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { useTheme } from '@mui/styles';
 import { ChartStyle } from './index.style';
@@ -10,14 +10,14 @@ interface DataPoint {
   y: number;
 }
 
-interface Props {
+export interface IChartProps extends HTMLAttributes<HTMLDivElement> {
   className?: string,
   data: DataPoint[],
   dots?: boolean,
   gradient?: boolean,
 }
 
-export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
+export const Chart: React.FC<IChartProps> = ({ className, data, dots, gradient }) => {
   const theme: any = useTheme();
   const { getThemeType } = useContext(PlatformContext);
 
@@ -69,7 +69,7 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
     // Define gradient
     const graidentSvg = svg.append('defs')
       .append('linearGradient')
-      .attr('id', 'myGradient')
+      .attr('id', 'chart-gradient')
       .attr('x1', '0%')
       .attr('y1', '0%')
       .attr('x2', '0%')
@@ -88,7 +88,7 @@ export const Chart: React.FC<Props> = ({ className, data, dots, gradient }) => {
       .append('path')
       .datum(data)
       .attr('d', area)
-      .attr('fill', gradient ? 'url(#myGradient)' : theme.lightcurve[0]);
+      .attr('fill', gradient ? 'url(#chart-gradient)' : theme.lightcurve[0]);
 
     if (gradient) {
       // Set up line generator

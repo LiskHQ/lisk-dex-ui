@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
-import { IPoolItem } from 'models';
+import { IPool } from 'models';
 import { PoolItemStyle } from './index.style';
 import { tokenSvgs } from 'imgs/icons';
 
 interface IProps {
-  data?: IPoolItem,
+  data?: IPool,
 }
 
 export const PoolItem: React.FC<IProps> = (props) => {
@@ -20,15 +20,15 @@ export const PoolItem: React.FC<IProps> = (props) => {
           <>
             <Box className="pool-item-left">
               <Box className="pool-item-token1">
-                <Image src={tokenSvgs[data.token1]} width={32} height={32} />
+                <Image src={tokenSvgs[data.token1.symbol]} width={32} height={32} />
               </Box>
               <Box className="pool-item-token2">
-                <Image src={tokenSvgs[data.token2]} width={32} height={32} />
+                <Image src={tokenSvgs[data.token2.symbol]} width={32} height={32} />
               </Box>
-              <Typography className="pool-item-title" variant="body2">{data.token1}-{data.token2}</Typography>
-              <Box className="pool-item-rate"><Typography variant="body2">{data.rate}%</Typography></Box>
+              <Typography className="pool-item-title" variant="body2">{data.token1.symbol}-{data.token2.symbol}</Typography>
+              <Box className="pool-item-rate"><Typography variant="body2">{10}%</Typography></Box>
             </Box>
-            <Typography className="pool-item-amount" variant="body2">${data.amount}m</Typography>
+            <Typography className="pool-item-amount" variant="body2">${10}m</Typography>
           </>
           :
           <Typography className="pool-item-title" variant="body2">Select a pool ID</Typography>

@@ -4,7 +4,7 @@ import { DropdownComponent } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-interface IPaginationComponentProps {
+export interface IPaginationComponentProps {
   onChangeRowCount?: (count: number) => void,
   onNextPage?: () => void,
   onPreviousPage?: () => void,
@@ -42,14 +42,16 @@ export const PaginationComponent: React.FC<IPaginationComponentProps> = (props) 
         <MenuItem value="100">100</MenuItem>
       </DropdownComponent>
       <IconButton
-        onClick={() => { onNextPage && onNextPage(); }}
+        data-testid='test-previous-page'
+        onClick={() => { onPreviousPage && onPreviousPage(); }}
         disabled={page == 1}
       >
         <FontAwesomeIcon icon={faArrowLeft} />
       </IconButton>
       <Typography variant='body2'>Page {page} of {totalPages && totalPages}</Typography>
       <IconButton
-        onClick={() => { onPreviousPage && onPreviousPage(); }}
+        data-testid='test-next-page'
+        onClick={() => { onNextPage && onNextPage(); }}
         disabled={totalPages == page}
       >
         <FontAwesomeIcon icon={faArrowRight} />

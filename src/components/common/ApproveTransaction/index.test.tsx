@@ -16,7 +16,6 @@ function renderComponent(props: IApproveTransactionModalProps) {
 describe('Button component', () => {
   const mockProps: IApproveTransactionModalProps = {
     approvingTransaction: false,
-    expenses: [],
     transaction: mockTransactionRaw,
     account: mockAccount,
     accountTokens: mockTokens,
@@ -27,13 +26,15 @@ describe('Button component', () => {
   };
 
   it('checks all buttons click work fine', () => {
-    const { getByText } = renderComponent(mockProps);
+    const { getByText, getByTestId } = renderComponent(mockProps);
 
     fireEvent.click(getByText('Cancel'));
     expect(mockProps.onClose).toBeCalled();
 
     fireEvent.click(getByText('Approve'));
     expect(mockProps.onConfirm).toBeCalled();
-  });
 
+    fireEvent.click(getByTestId('close-button-test'));
+    expect(mockProps.onClose).toBeCalled();
+  });
 });

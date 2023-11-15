@@ -9,12 +9,9 @@ export const HistoryComponentStyle = styled('div')(({ theme }: any) => {
       marginBottom: '1.5rem',
     },
 
-    '.transaction-list': {
-      maxHeight: '34.25rem',
-      minHeight: '34.25rem',
-
+    '.infinite-scroll-component': {
       '&::-webkit-scrollbar': {
-        width: '0.1rem',
+        width: '0.3rem',
       },
 
       '&::-webkit-scrollbar-track': {

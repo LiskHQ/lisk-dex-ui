@@ -1,7 +1,5 @@
 import { IToken, ITokenDetail } from 'models';
 
-export const mockBalance = 4521.425;
-
 export const mockTokens: IToken[] = [
   {
     'chainID': '04000011',

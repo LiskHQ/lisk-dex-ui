@@ -58,6 +58,10 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
           position: 'absolute',
           right: '1rem',
           top: '1rem',
+
+          path: {
+            stroke: theme.opacities[20],
+          }
         }
       },
 
@@ -98,7 +102,7 @@ export const ComfirmCreateProposalModalStyle = styled('div')(({ theme }: any) =>
           '.proposal-type-box': {
             display: 'flex',
             alignItems: 'center',
-            background: theme.primary[1],
+            background: theme.primary[2.5],
             borderRadius: '0.375rem',
             border: `1px solid ${theme.lightcurve[0]}`,
             padding: '1rem',

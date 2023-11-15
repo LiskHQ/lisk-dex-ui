@@ -32,7 +32,10 @@ describe('FeaturedPools component', () => {
   });
 
   it('check click feature pool rednered correctly', () => {
-    const { getAllByText } = renderComponent(mockProps);
+    const { getAllByText, getByTestId } = renderComponent(mockProps);
+
+    fireEvent.click(getByTestId('scroll-left-button-test'));
+    fireEvent.click(getByTestId('scroll-right-button-test'));
     expect(getAllByText(getPoolToken0(mockProps.poolDetails[0].poolName))[0]).toBeInTheDocument();
     expect(getAllByText(getPoolToken0(mockProps.poolDetails[1].poolName))[0]).toBeInTheDocument();
   });

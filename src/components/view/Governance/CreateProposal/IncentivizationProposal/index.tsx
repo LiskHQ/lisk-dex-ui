@@ -1,29 +1,25 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Box, Grid, MenuItem, Typography } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { DropdownComponent, InputComponent, PoolItem, PopoverComponent } from 'components';
 import { HelpIcon } from 'imgs/icons';
-import { IPoolItem } from 'models';
 import { allowDigitOnly } from 'utils';
 import { IncentivizationProposalStyle } from './index.style';
 import { UseFormRegister } from 'react-hook-form';
-import { mockPoolItems } from '__mock__';
+import { IPool } from 'models';
 
 interface IProps {
+  pools: IPool[],
   className?: string,
   register?: UseFormRegister<any>,
 }
 
 export const IncentivizationProposal: React.FC<IProps> = (props) => {
-  const { className, register } = props;
+  const { pools, className, register } = props;
   const theme: any = useTheme();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openPoolIdHelp, setOpenPoolIdHelp] = useState<boolean>(false);
   const [openMultiplierHelp, setOpenMultiplierHelp] = useState<boolean>(false);
-
-  const poolItems: IPoolItem[] = useMemo(() => {
-    return mockPoolItems;
-  }, []);
 
   const onClickPoolIDHelp = (event: React.MouseEvent<any>) => {
     setAnchorEl(event.currentTarget);
@@ -51,7 +47,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
               </>
             }
             renderValue={(value) => {
-              const item = poolItems.find(el => el.id == value);
+              const item = pools.find(el => el.id == value);
               if (item)
                 return (<PoolItem data={item} />);
               else
@@ -81,7 +77,7 @@ export const IncentivizationProposal: React.FC<IProps> = (props) => {
               </Box>
             </MenuItem>
             {
-              poolItems.map(item => (
+              pools.map(item => (
                 <MenuItem
                   key={item.id}
                   value={item.id}

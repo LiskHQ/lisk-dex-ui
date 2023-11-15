@@ -54,6 +54,14 @@ exports[`DepositAmount component checks if the component matches the snapshot 1`
   text-align: right;
 }
 
+.emotion-0 .input-error {
+  color: #FF4557;
+}
+
+.emotion-0 .input-error p {
+  text-align: right;
+}
+
 .emotion-0 .token-balance-details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -175,6 +183,10 @@ exports[`DepositAmount component checks if the component matches the snapshot 1`
 .emotion-4 .MuiFormHelperText-root {
   color: #FF4557;
   margin: 0.5rem 0 0 0;
+}
+
+.emotion-4 .MuiFormHelperText-root p {
+  text-align: right;
 }
 
 .emotion-4 .input-length-counter {
@@ -386,6 +398,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
       >
         <div
           class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl emotion-5"
+          data-testid="input-component-test"
         >
           <input
             aria-invalid="false"

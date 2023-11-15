@@ -1,8 +1,24 @@
-import { IAccount } from 'models';
+import { ChainNamespaces, IAccount } from 'models';
 
 export const mockAccount: IAccount = {
   chainId: '04000011',
   publicKey: 'f97c8daab9e9bbcbc6e3dec7399d05b27803fccc20ce75b7576847bde94e6802',
+};
+
+export const mockChainOptions = ['lisk:04000011'];
+
+export const mockChainData: ChainNamespaces = {
+  'lisk': {
+    '04000011': {
+      'id': 'lisk:04000011',
+      'name': 'Lisk Dex',
+      'rpc': [
+        'https://testnet.service.lisk.com'
+      ],
+      'slip44': 501,
+      'testnet': true
+    }
+  }
 };
 
 /* eslint-disable max-lines */

@@ -4,6 +4,7 @@ import { Box, FormControl, FormLabel, Typography } from '@mui/material';
 import { ButtonComponent, InputComponent, UrlInputComponent } from 'components/common';
 import { ProposalType } from 'consts';
 import { CancelIcon, PoolIncentivizationIcon, UniversalIcon } from 'imgs/icons';
+import { timestampToString } from 'utils';
 
 export interface IConfirmCreateProposalModalProps {
   proposal: IProposal,
@@ -83,7 +84,7 @@ export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalPro
           }
           <InputComponent
             label="Voting schedule"
-            value="January 05/2022 12:00 CET - February 05/2023 12:00 CET"
+            value={`${timestampToString(new Date().getTime())} - ${timestampToString(new Date().getTime() + 10000000)}`}
             readOnly
           />
           <InputComponent
@@ -92,10 +93,10 @@ export const ConfirmCreateProposalModal: React.FC<IConfirmCreateProposalModalPro
             multiline
             readOnly
           />
-          <Box className="confirm-proposal-modal-transaction-fee">
+          {/* <Box className="confirm-proposal-modal-transaction-fee">
             <Typography variant="body1" className="transaction-fee-title">Transaction Fee</Typography>
             <Typography variant="body1">5000 LSKDEX (~$4878.23)</Typography>
-          </Box>
+          </Box> */}
         </Box>
         <Box className="confirm-proposal-modal-footer">
           <ButtonComponent

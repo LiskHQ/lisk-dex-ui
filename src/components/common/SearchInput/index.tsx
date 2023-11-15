@@ -1,30 +1,19 @@
 import { SearchInputComponentStyle } from './index.style';
 import { useTheme } from '@mui/styles';
-import { InputBase, InputLabel } from '@mui/material';
+import { InputBase, InputBaseProps, InputLabel } from '@mui/material';
 import { ReactNode } from 'react';
 import { SearchIcon } from 'imgs/icons';
 
-interface IProps {
+export interface ISearchInputProps extends InputBaseProps {
   name?: string,
-  className?: string,
   label?: ReactNode,
-  placeholder?: string,
-  helper?: ReactNode,
-  type?: string,
-  multiline?: boolean,
-  minRows?: number,
-  maxRows?: number,
   maxLength?: number,
-  min?: number,
-  max?: number,
-  value?: string | number,
-  readOnly?: boolean,
-  onChange?: (value: string) => void,
+  helper?: ReactNode,
 }
 
-export const SearchInputComponent: React.FC<IProps> = (props) => {
+export const SearchInputComponent: React.FC<ISearchInputProps> = (props) => {
   const theme: any = useTheme();
-  const { maxLength, onChange, className, type, label, ...inputProps } = props;
+  const { maxLength, className, type, label, ...inputProps } = props;
 
   return (
     <SearchInputComponentStyle
@@ -49,7 +38,6 @@ export const SearchInputComponent: React.FC<IProps> = (props) => {
           },
           maxLength,
         }}
-        onChange={(event) => { onChange && onChange(event.target.value); }}
         {...inputProps}
       />
     </SearchInputComponentStyle >
