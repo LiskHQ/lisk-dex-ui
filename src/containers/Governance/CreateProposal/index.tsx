@@ -7,6 +7,7 @@ import { useJsonRpc } from 'contexts';
 import { AppActions, RootState } from 'store';
 import { IAccount, IProposal, ITransactionObject } from 'models';
 import { createProposalParamsSchema, createTransactionObject } from 'utils';
+import pool from 'pages/pool';
 
 export const CreateProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export const CreateProposalContainer: React.FC = () => {
   }, [dispatch]);
 
   const onSubmit = (proposal: IProposal) => {
-    if (pools.length === 0) {
+    if (pools.length === 0 && proposal.proposalType === ProposalType.PoolIncentivization) {
       enqueueSnackbar('Pool is required to create proposal', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
       return;
     }
@@ -56,14 +57,14 @@ export const CreateProposalContainer: React.FC = () => {
       const { chainId, publicKey } = account;
 
       const content = {
-        text: proposal.description,
+        text: Buffer.from(proposal.description, 'utf8'),
         poolID: '0000000000000000000001000000000000c8'.slice(0, 16),
         multiplier: proposal.multiplier,
         metadata: {
-          title: proposal.title,
-          author: proposal.author,
-          summary: proposal.summary,
-          discussionsTo: proposal.link || 'http://lisk.com',
+          title: Buffer.from(proposal.title, 'utf8'),
+          author: Buffer.from(proposal.author, 'utf8'),
+          summary: Buffer.from(proposal.summary, 'utf8'),
+          discussionsTo: Buffer.from(proposal.link || 'http://lisk.com', 'utf8'),
         },
       };
 
@@ -84,6 +85,8 @@ export const CreateProposalContainer: React.FC = () => {
         .catch(e => {
           enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
         });
+    } else {
+      enqueueSnackbar('', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.CONNECT_YOUR_WALLET });
     }
   };
 
