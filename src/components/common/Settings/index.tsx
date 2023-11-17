@@ -34,7 +34,7 @@ export const SettingsModal: React.FC<ISettingsModalProps> = (props) => {
     onClose && onClose();
   };
 
-  const onChangeCurrency = (event: SelectChangeEvent<number>) => {
+  const onChangeCurrency = (event: SelectChangeEvent<any>) => {
     setCurrency(event.target.value as string);
   };
 
