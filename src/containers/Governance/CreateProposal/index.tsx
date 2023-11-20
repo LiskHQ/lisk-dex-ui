@@ -82,12 +82,13 @@ export const CreateProposalContainer: React.FC = () => {
           senderPublicKey: publicKey,
           signatures: [],
           params: {
-            type: proposal.proposalType === ProposalType.PoolIncentivization ? 0 : 1,
+            type: proposal.proposalType === ProposalType.PoolIncentivization ? 1 : 0,
             content,
           }
         };
 
         setTransactionObject(transaction);
+        console.log('transaction: ', transaction);
 
         liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, transaction);
         setOpenTransactionStatusModal(true);
