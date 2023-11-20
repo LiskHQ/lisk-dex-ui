@@ -6,8 +6,7 @@ import { AlertVariant, ProposalType, TransactionCommands, TransactionModule, Tra
 import { useJsonRpc } from 'contexts';
 import { AppActions, RootState } from 'store';
 import { IAccount, IProposal, ITransactionObject } from 'models';
-import { createProposalParamsSchema, createTransactionObject } from 'utils';
-import pool from 'pages/pool';
+import { createProposalParamsSchema } from 'utils';
 import { apiGetAuth } from 'apis';
 
 export const CreateProposalContainer: React.FC = () => {
@@ -21,7 +20,8 @@ export const CreateProposalContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   // states for approvalTransactionModal
   const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
-  const [feeTokenID, setFeeTokenID] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [feeTokenID, setFeeTokenID] = useState<string>('0400001100000000');
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
