@@ -26,7 +26,7 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
   const { proposals } = props;
   const [proposalStatus, setProposalStatus] = useState<ProposalStatus>(ProposalStatus.All_Proposals);
 
-  const onChangeProposalStatus = (event: SelectChangeEvent<number>) => {
+  const onChangeProposalStatus = (event: SelectChangeEvent<any>) => {
     setProposalStatus(event.target.value as ProposalStatus);
   };
 
@@ -64,7 +64,7 @@ export const GovernanceView: React.FC<IGovernanceViewProposal> = (props) => {
             className="governance-proposals-select"
             value={proposalStatus}
             onChange={onChangeProposalStatus}
-            renderValue={(value) => (
+            renderValue={(value: any) => (
               <Typography variant="h6">{value}</Typography>
             )}
           >

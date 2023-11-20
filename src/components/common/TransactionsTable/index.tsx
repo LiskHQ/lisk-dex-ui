@@ -146,7 +146,7 @@ export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
           className='row-count-dropdown'
           onChange={(e) => { onChangeRowCount && onChangeRowCount(e.target.value as number); }}
           defaultValue={limit}
-          renderValue={(value) => (
+          renderValue={(value: any) => (
             <Box className='show-rows-dropdown'>
               <Typography variant='h6'>Show rows:</Typography>
               <Typography variant='body2'>{value}</Typography>
