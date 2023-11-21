@@ -1,10 +1,9 @@
 import { useMediaQuery } from '@mui/material';
-import { AlertVariant } from 'consts';
+import { AlertVariant, alertMessages } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { ReactNode, useContext, useEffect, useState } from 'react';
-import { SnackbarProvider, useSnackbar } from 'notistack';
-import { SnackbarAlertComponent } from 'components';
+import { useSnackbar } from 'notistack';
 import { darkTheme } from 'styles/theme';
 import { Footer } from './Footer';
 import { Header } from './Header';
@@ -15,7 +14,6 @@ import { SOCKET_EVENTS } from 'consts';
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
-
 
 declare module 'notistack' {
   interface VariantOverrides {
@@ -39,8 +37,11 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const { error: transactionError } = useSelector((root: RootState) => root.transaction);
 
   useEffect(() => {
-    if (transactionError.error)
-      enqueueSnackbar(transactionError.message, { variant: 'alert', type: AlertVariant.fail });
+    if (transactionError.message) {
+      console.log(transactionError);
+      enqueueSnackbar('Pool is required to create proposal', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+      // enqueueSnackbar(transactionError.message, { variant: 'alert', type: AlertVariant.fail });
+    }
   }, [transactionError, enqueueSnackbar]);
 
   // current socket event
@@ -111,24 +112,18 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   }, []);
 
   return (
-    <SnackbarProvider
-      Components={{
-        alert: SnackbarAlertComponent
-      }}
-    >
-      <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
-        <Head>
-          <title>Lisk Dex</title>
-        </Head>
-        <Header
-          platform={platform}
-        />
-        {children}
-        {
-          isUpMd ? <></> : <Footer />
-        }
-      </LayoutComponentStyle>
-    </SnackbarProvider >
+    <LayoutComponentStyle maxWidth="xl" style={{ padding: 0 }}>
+      <Head>
+        <title>Lisk Dex</title>
+      </Head>
+      <Header
+        platform={platform}
+      />
+      {children}
+      {
+        isUpMd ? <></> : <Footer />
+      }
+    </LayoutComponentStyle>
   );
 };
 

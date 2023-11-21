@@ -18,7 +18,7 @@ export const ProposalContainer: React.FC = () => {
   const { votes, votesTotal, votesTotalPages, proposal } = useSelector((state: RootState) => state.proposal);
   const [votesPage, setVotesPage] = useState<number>(0);
 
-  const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
+  const { submitedTransaction, submitingTransaction, submitedTransactionError: transactionError } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);

@@ -16,7 +16,7 @@ export const PoolContainer: React.FC = () => {
 
   const { enqueueSnackbar } = useSnackbar();
   const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
-  const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
+  const { submitedTransaction, submitingTransaction, submitedTransactionError: transactionError } = useSelector((state: RootState) => state.transaction);
   const { pools, poolIDs, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
 
@@ -229,7 +229,7 @@ export const PoolContainer: React.FC = () => {
         closeTransactionModal={closeTransactionModal}
         accountTokens={accountTokens}
         tokenBalances={tokenBalances}
-        createPool={createPosition}
+        createPool={createPool}
         createPosition={createPosition}
         addLiquidity={addLiquidity}
         onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}

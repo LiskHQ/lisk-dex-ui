@@ -26,6 +26,11 @@ export const HistoryComponentStyle = styled('div')(({ theme }: any) => {
         background: theme.bg.slider,
       },
 
+      '.loader-component': {
+        display: 'flex',
+        justifyContent: 'center',
+      },
+
       '.transaction-item': {
         padding: '1.5rem 1rem',
         borderBottom: `0.5px solid ${theme.border.primary}`,
