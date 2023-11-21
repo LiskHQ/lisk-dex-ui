@@ -554,11 +554,11 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             class="MuiTypography-root MuiTypography-body1 emotion-10"
           >
             Supplying 
-            1862
+            100
              
             DEX
              and 
-            0.045
+            10
              
             ENVT
           </p>
@@ -589,7 +589,7 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
-              1862
+              100
             </p>
           </div>
         </div>
@@ -615,13 +615,15 @@ exports[`SupplyLiquidityModal component checks if the component matches the snap
             <p
               class="MuiTypography-root MuiTypography-body1 emotion-10"
             >
-              0.045
+              10
             </p>
           </div>
         </div>
         <p
           class="MuiTypography-root MuiTypography-body1 deposit-description emotion-10"
-        />
+        >
+          When creating a new pool you are the first liquidity provider. The ratio of tokens added will determine the price of the pool.
+        </p>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium supply-liquidity-modal-confirm emotion-21"
           data-testid="supply-liquidity-modal-button-test"

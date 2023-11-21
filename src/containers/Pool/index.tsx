@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, PoolView, TransactionStatusModal } from 'components';
-import { AlertVariant, LISK_DECIMALS, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { useJsonRpc } from 'contexts';
 import { IAccount, ICreatePool, IPool, ITransactionObject } from 'models';
 import { AppActions, RootState } from 'store';
 import { createPoolSchema, createPositionSchema, addLiquiditySchema, removeLiquiditySchema, getTokenAmount, createTransactionObject } from 'utils';
-import { apiGetAuth } from 'apis';
 
 export const MIN_TICK = -887272; // The minimum possible tick value as a sint32.
 export const MAX_TICK = 887272; // The maximum possible tick value as a sint32.
@@ -18,7 +17,7 @@ export const PoolContainer: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
   const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
-  const { pools, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
+  const { pools, poolIDs, gotPools, gettingPools } = useSelector((state: RootState) => state.pool);
   const { account } = useSelector((state: RootState) => state.wallet);
 
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
@@ -30,7 +29,6 @@ export const PoolContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
-
 
   useEffect(() => {
     dispatch(AppActions.pool.getPools({}));
@@ -56,6 +54,7 @@ export const PoolContainer: React.FC = () => {
     liskRpc,
   } = useJsonRpc();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const createPool = async (pool: ICreatePool) => {
     if (account) {
       const { chainId, publicKey } = account;
@@ -90,81 +89,64 @@ export const PoolContainer: React.FC = () => {
     }
   };
 
-  const createPosition = async (pool: ICreatePool) => {
+  const createPosition = (pool: ICreatePool) => {
     if (account) {
-      const { chainId, publicKey, address } = account;
-      let data;
+      const { chainId, publicKey } = account;
 
-      try {
-        const reponse = await apiGetAuth({
-          address: address,
-        });
-        data = reponse.data;
-      } catch (e) {
-        console.log(e);
-      }
-
-      const { token1Amount, token2Amount } = pool;
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.createPosition,
-        fee: BigInt(5000000000000000000),
-        nonce: BigInt(data.nonce),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          poolID: Buffer.from('0000000100000000010164000000', 'hex'),
-          tickLower: MIN_TICK,
-          tickUpper: MAX_TICK,
-          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
-          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
-          amount0Min: BigInt(0),
-          amount1Min: BigInt(0),
-          maxTimestampValid: BigInt(100000000000),
-        },
+      const { token1Amount, token2Amount, token1, token2 } = pool;
+      const params = {
+        poolID: Buffer.from(poolIDs[0]).toString('hex'),
+        tickLower: MIN_TICK,
+        tickUpper: MAX_TICK,
+        amount0Desired: getTokenAmount(token1Amount, token1),
+        amount1Desired: getTokenAmount(token2Amount, token2),
+        amount0Min: 0,
+        amount1Min: 0,
+        maxTimestampValid: 100000000000,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, createPositionSchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      console.log(params);
+
+      createTransactionObject(TransactionModule.dex, TransactionCommands.createPosition, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, createPositionSchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
   const addLiquidity = async (pool: IPool) => {
     if (account) {
-      const { chainId, publicKey, address } = account;
-      let data;
-
-      try {
-        const reponse = await apiGetAuth({
-          address: address,
-        });
-        data = reponse.data;
-      } catch (e) {
-        console.log(e);
-      }
-
-      const { token1Amount, token2Amount } = pool;
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.addLiquidity,
-        fee: BigInt(5000000000000000000),
-        nonce: BigInt(data.nonce),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          positionID: Buffer.from('0000000100', 'hex'),
-          amount0Desired: BigInt(token1Amount * (10 ** LISK_DECIMALS)),
-          amount1Desired: BigInt(token2Amount * (10 ** LISK_DECIMALS)),
-          amount0Min: BigInt(0),
-          amount1Min: BigInt(0),
-          maxTimestampValid: BigInt(100000000000),
-        },
+      const { chainId, publicKey } = account;
+      const { token1Amount, token2Amount, token1, token2 } = pool;
+      const params = {
+        positionID: Buffer.from('0000000100', 'hex'),
+        amount0Desired: getTokenAmount(token1Amount, token1),
+        amount1Desired: getTokenAmount(token2Amount, token2),
+        amount0Min: 0,
+        amount1Min: 0,
+        maxTimestampValid: 100000000000,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, addLiquiditySchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      createTransactionObject(TransactionModule.dex, TransactionCommands.addLiquidity, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, addLiquiditySchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
@@ -172,25 +154,26 @@ export const PoolContainer: React.FC = () => {
   const onConfirmRemoveLiquidity = (pool: IPool) => {
     if (account) {
       const { chainId, publicKey } = account;
-      const rawTx = {
-        module: TransactionModule.dex,
-        command: TransactionCommands.removeLiquidity,
-        fee: BigInt(5000000000000000000),
-        nonce: BigInt(1),
-        senderPublicKey: Buffer.from(publicKey, 'hex'),
-        signatures: [],
-        params: {
-          positionID: Buffer.from('0000000100', 'hex'),
-          liquidityToRemove: BigInt(250),
-          amount0Min: BigInt(1000),
-          amount1Min: BigInt(1000),
-          maxTimestampValid: BigInt(100000000000),
-        },
+      const params = {
+        positionID: Buffer.from('0000000100', 'hex'),
+        liquidityToRemove: 250,
+        amount0Min: 1000,
+        amount1Min: 1000,
+        maxTimestampValid: 100000000000,
       };
 
-      liskRpc.signTransaction(chainId, publicKey, removeLiquiditySchema, rawTx);
-      setOpenTransactionStatusModal(true);
-      setCloseTransactionModal(false);
+      createTransactionObject(TransactionModule.dex, TransactionCommands.removeLiquidity, account, params)
+        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          setTransactionObject(rawTx);
+          setFeeTokenID(_feeTokenID);
+
+          liskRpc.signTransaction(chainId, publicKey, removeLiquiditySchema, rawTx);
+          setOpenTransactionStatusModal(true);
+          setCloseTransactionModal(false);
+        })
+        .catch(e => {
+          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+        });
     }
   };
 
@@ -246,7 +229,7 @@ export const PoolContainer: React.FC = () => {
         closeTransactionModal={closeTransactionModal}
         accountTokens={accountTokens}
         tokenBalances={tokenBalances}
-        createPool={createPool}
+        createPool={createPosition}
         createPosition={createPosition}
         addLiquidity={addLiquidity}
         onConfirmRemoveLiquidity={onConfirmRemoveLiquidity}

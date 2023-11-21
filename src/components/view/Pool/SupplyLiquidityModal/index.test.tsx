@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { fireEvent, render } from '@testing-library/react';
 import { SupplyLiquidityModal, ISupplyLiquidityModalProps } from './index';
 import { lightTheme } from 'styles/theme';
-import { mockPool } from '__mock__/pool.mock';
+import { mockCreatePool } from '__mock__/pool.mock';
 
 function renderComponent(props: ISupplyLiquidityModalProps) {
   return render(
@@ -15,7 +15,8 @@ function renderComponent(props: ISupplyLiquidityModalProps) {
 
 describe('SupplyLiquidityModal component', () => {
   const mockProps: ISupplyLiquidityModalProps = {
-    pool: mockPool,
+    pool: mockCreatePool,
+    moduleCommand: 'createPool',
     onClose: jest.fn(),
     onConfirm: jest.fn(),
   };

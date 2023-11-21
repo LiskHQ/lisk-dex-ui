@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
-import { createTransactionObject, getTokenAmount, swapExactOutCommandSchema } from 'utils';
+import { createTransactionObject, getTokenAmount, swapExactInCommandSchema, swapExactOutCommandSchema } from 'utils';
 import { useEffect, useState } from 'react';
 import { IAccount, ISwapData, ITransactionObject } from 'models';
 
@@ -18,7 +18,9 @@ export const SwapContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
-  const { pools } = useSelector((root: RootState) => root.pool);
+
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  const { pools, poolIDs } = useSelector((root: RootState) => root.pool);
 
   // states for approvalTransactionModal
   const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
@@ -26,7 +28,6 @@ export const SwapContainer: React.FC = () => {
 
   // Use `JsonRpcContext` to provide us with relevant RPC methods and states.
   const {
-    isRpcRequestPending,
     rpcResult,
     liskRpc,
   } = useJsonRpc();
@@ -46,31 +47,38 @@ export const SwapContainer: React.FC = () => {
   }, [account, dispatch]);
 
   const onConfirmSwap = (data: ISwapData) => {
-    const { tokenIn, tokenOut, amountIn, minAmountOut } = data;
+    const { tokenIn, tokenOut, tokenInAmount, tokenOutAmount, swapExactIn } = data;
 
-    if (pools.length === 0) {
-      enqueueSnackbar(`${tokenIn.symbol}/${tokenOut.symbol} pool is required for swap`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
-      return;
-    }
+    // if (pools.length === 0) {
+    //   enqueueSnackbar(`${tokenIn.symbol}/${tokenOut.symbol} pool is required for swap`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+    //   return;
+    // }
 
     if (account) {
       const { chainId, publicKey } = account;
 
-      const params = {
+      const params: any = {
         tokenIdIn: tokenIn.tokenID,
-        amountTokenIn: getTokenAmount(amountIn, tokenIn),
         tokenIdOut: tokenOut.tokenID,
-        minAmountTokenOut: getTokenAmount(minAmountOut, tokenOut),
-        swapRoute: '0000000000000000000001000000000000c8',
+        swapRoute: [Buffer.from(poolIDs[0]).toString('hex')],
         maxTimestampValid: 100000000000,
       };
 
-      createTransactionObject(TransactionModule.dex, TransactionCommands.swapExactOut, account, params)
+      if (swapExactIn) {
+        params.amountTokenIn = getTokenAmount(tokenInAmount, tokenIn);
+        params.minAmountTokenOut = getTokenAmount(tokenOutAmount, tokenOut);
+      } else {
+        params.maxAmountTokenIn = getTokenAmount(tokenInAmount, tokenIn);
+        params.amountTokenOut = getTokenAmount(tokenOutAmount, tokenOut);
+      }
+
+      createTransactionObject(TransactionModule.dex, swapExactIn ? TransactionCommands.swapExactIn : TransactionCommands.swapExactOut, account, params)
         .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
+          console.log('transaction: ', rawTx);
           setTransactionObject(rawTx);
           setFeeTokenID(_feeTokenID);
 
-          liskRpc.signTransaction(chainId, publicKey, swapExactOutCommandSchema, rawTx);
+          liskRpc.signTransaction(chainId, publicKey, swapExactIn ? swapExactInCommandSchema : swapExactOutCommandSchema, rawTx);
           setOpenTransactionStatusModal(true);
           setCloseTransactionModal(false);
         })
@@ -88,26 +96,22 @@ export const SwapContainer: React.FC = () => {
   }, [rpcResult]);
 
   useEffect(() => {
-    if (isRpcRequestPending) {
-      setTransactionStatus(TransactionStatus.PENDING);
-      setOpenTransactionStatusModal(true);
-    }
     if (submitedTransaction) {
       setTransactionStatus(TransactionStatus.SUCCESS);
       setOpenTransactionStatusModal(true);
-      onCloseApproveTransactionModal();
     }
     if (transactionError.error) {
       setTransactionStatus(TransactionStatus.FAILURE);
       setOpenTransactionStatusModal(true);
-      onCloseApproveTransactionModal();
     }
-  }, [isRpcRequestPending, transactionError, submitedTransaction]);
+    setOpenApproveTransactionModal(false);
+  }, [submitedTransaction, transactionError]);
 
   const onCloseTransactionStatusModal = () => {
     setOpenTransactionStatusModal(false);
     if (submitedTransaction || transactionError.error) {
       setCloseTransactionModal(true);
+      setTransactionStatus(TransactionStatus.PENDING);
       dispatch(AppActions.transaction.resetTransactionStates());
     }
   };
@@ -116,21 +120,20 @@ export const SwapContainer: React.FC = () => {
     setOpenApproveTransactionModal(false);
   };
 
+  //submit signed transaction
+  const onConfirmApproval = () => {
+    if (rpcResult?.result) {
+      dispatch(AppActions.transaction.submitTransaction({
+        transaction: rpcResult.result,
+      }));
+    }
+  };
+
   const getToken2FiatConversion = (tokenSymbol: string, currency: string) => {
     dispatch(AppActions.token.getToken2FiatConversion({
       tokenSymbol,
       currency,
     }));
-  };
-
-  //submit signed transaction
-  const onConfirmApproval = () => {
-    if (rpcResult?.result) {
-      const signedTransactions = JSON.parse(rpcResult.result);
-      dispatch(AppActions.transaction.submitTransaction({
-        transaction: signedTransactions[0],
-      }));
-    }
   };
 
   return (

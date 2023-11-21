@@ -1,5 +1,6 @@
-import { IPool, IPoolDetail } from 'models';
+import { ICreatePool, IPool, IPoolDetail } from 'models';
 import { mockTokens } from './swap.mock';
+import { MAX_TICK, MIN_TICK } from 'containers';
 
 export const mockPool: IPool = {
   id: '1001',
@@ -8,6 +9,17 @@ export const mockPool: IPool = {
   token1Amount: 1862,
   token2Amount: 0.045,
   share: 0.085,
+};
+
+export const mockCreatePool: ICreatePool = {
+  token1: mockTokens[0],
+  token2: mockTokens[1],
+  feeTier: 100,
+  tickInitialPrice: 1,
+  tickLower: -MIN_TICK,
+  tickUpper: MAX_TICK,
+  token1Amount: 100,
+  token2Amount: 10,
 };
 
 export const mockPools: IPool[] = [
