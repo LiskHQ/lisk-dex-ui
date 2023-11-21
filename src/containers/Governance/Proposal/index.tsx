@@ -43,10 +43,10 @@ export const ProposalContainer: React.FC = () => {
 
   useEffect(() => {
     dispatch(AppActions.proposal.getVotesByProposal(votesPage));
-    if (router.query.id) {
+    if (router && router.query.id) {
       dispatch(AppActions.proposal.getCertainProposal({ proposalId: router.query.id }));
     }
-  }, [votesPage, dispatch, router.query.id]);
+  }, [votesPage, dispatch, router]);
 
   useEffect(() => {
     if (account?.chainId) {
