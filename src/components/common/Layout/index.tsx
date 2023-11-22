@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import { AlertVariant, alertMessages } from 'consts';
+import { AlertVariant } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { ReactNode, useContext, useEffect, useState } from 'react';
@@ -38,9 +38,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 
   useEffect(() => {
     if (transactionError.message) {
-      console.log(transactionError);
-      enqueueSnackbar('Pool is required to create proposal', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
-      // enqueueSnackbar(transactionError.message, { variant: 'alert', type: AlertVariant.fail });
+      enqueueSnackbar(transactionError.message, { variant: 'alert', type: AlertVariant.fail });
     }
   }, [transactionError, enqueueSnackbar]);
 

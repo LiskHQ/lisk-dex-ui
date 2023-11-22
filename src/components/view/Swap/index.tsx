@@ -221,7 +221,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         </Box>
 
         <Box className="swap-icon">
-          <IconButton onClick={reverseSwap}>
+          <IconButton data-testid="reverse-swap-test" onClick={reverseSwap}>
             <SwapIcon />
           </IconButton>
         </Box>

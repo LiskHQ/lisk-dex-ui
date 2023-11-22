@@ -53,9 +53,15 @@ describe('Swap', () => {
     fireEvent.click(selectTokenButton);
     fireEvent.click(getByTestId('token-item-DEX'));
     fireEvent.click(getByTestId('swap-from-percent-25'));
+    fireEvent.click(getByTestId('swap-from-percent-50'));
+    fireEvent.click(getByTestId('swap-from-percent-max'));
+    fireEvent.click(getByTestId('reverse-swap-test'));
+    fireEvent.click(getByTestId('swap-from-percent-25'));
+    fireEvent.click(getByTestId('swap-from-percent-50'));
+    fireEvent.click(getByTestId('swap-from-percent-max'));
     fireEvent.click(getByTestId('swap-button'));
 
-    // expect(getByText('Review & Confirms')).toBeInTheDocument();
+    expect(getByText('Trade tokens in an instant')).toBeInTheDocument();
 
     // fireEvent.click(getByTestId('swap-confirm-modal-button-test'));
 
@@ -67,5 +73,16 @@ describe('Swap', () => {
 
     fireEvent.click(getByTestId('swap-setting-button'));
     expect(getByText('Transaction Settings')).toBeInTheDocument();
+
+    fireEvent.click(getByTestId('transaction-settings-save-test'));
   });
+
+  it('close transaction modal', () => {
+    const { getByText } = renderComponent({
+      ...mockProps,
+      closeTransactionModal: true,
+    });
+    expect(getByText('Swap')).toBeInTheDocument();
+  });
+
 });
