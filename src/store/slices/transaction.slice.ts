@@ -17,6 +17,7 @@ type StateType = {
   offset: number,
   total: number,
 
+  submitedTransactionError: any
   error: any,
 };
 
@@ -39,6 +40,7 @@ const initialState: StateType = {
   offset: 0,
   total: 0,
 
+  submitedTransactionError: {},
   error: { message: '' },
 };
 
@@ -63,6 +65,7 @@ const transactionSlice = createSlice({
     submitTransactionFailure(state, action) {
       state.submitingTransaction = false;
       state.submitedTransaction = false;
+      state.submitedTransactionError = action.payload;
       state.error = action.payload;
     },
 
@@ -107,6 +110,7 @@ const transactionSlice = createSlice({
     resetTransactionStates(state) {
       state.submitedTransaction = false;
       state.submitingTransaction = false;
+      state.submitedTransactionError = {};
       state.error = { message: '' };
     },
   },

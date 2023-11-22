@@ -39,8 +39,9 @@ export type ConversionRates = {
 export interface ISwapData {
   tokenIn: IToken,
   tokenOut: IToken,
-  amountIn: number,
-  minAmountOut: number,
+  tokenInAmount: number,
+  tokenOutAmount: number,
+  swapExactIn: boolean,
 }
 
 export interface IFilteredTokens {

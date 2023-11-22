@@ -13,26 +13,28 @@ import { cryptoDecimalFormat, currencyDecimalFormat } from 'utils';
 export interface ISwapConfirmModalProps {
   tokenIn: IToken,
   tokenOut: IToken,
-  amountIn: number,
-  estimatedAmount: number,
+  token1Amount: number,
+  token2Amount: number,
   splipageTolerance: number,
   openTransactionApproval?: boolean,
   conversionRates: ConversionRates,
   currency: string,
+  swapExactIn: boolean,
   onClose: () => void,
   onConfirm: (data: ISwapData) => void,
 }
 
 export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
   const {
-    amountIn,
+    token1Amount,
     tokenIn,
     tokenOut,
-    estimatedAmount,
+    token2Amount,
     splipageTolerance,
     openTransactionApproval,
     conversionRates,
     currency,
+    swapExactIn,
     onClose,
     onConfirm,
   } = props;
@@ -41,8 +43,9 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
     onConfirm({
       tokenIn,
       tokenOut,
-      amountIn,
-      minAmountOut: estimatedAmount,
+      tokenInAmount: token1Amount,
+      tokenOutAmount: token2Amount,
+      swapExactIn,
     });
     onClose();
   };
@@ -59,8 +62,8 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
           <Typography variant="body1">Swapping LSK</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={tokenSvgs[tokenIn.symbol]} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{cryptoDecimalFormat(amountIn)}</Typography>
-            <Typography className="swap-confirm-estimate-amount" variant="body2">~{currencyDecimalFormat(amountIn * conversionRates[tokenIn.symbol][currency], currency)}</Typography>
+            <Typography className="swap-confirm-amount" variant="body2">{cryptoDecimalFormat(token1Amount)}</Typography>
+            <Typography className="swap-confirm-estimate-amount" variant="body2">~{currencyDecimalFormat(token1Amount * conversionRates[tokenIn.symbol][currency], currency)}</Typography>
           </Box>
 
           <FontAwesomeIcon
@@ -71,8 +74,8 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
           <Typography variant="body1">for {tokenOut.symbol}</Typography>
           <Box className="swap-confirm-token-amount">
             <Image src={tokenSvgs[tokenOut.symbol]} width={24} height={24} />
-            <Typography className="swap-confirm-amount" variant="body2">{cryptoDecimalFormat(estimatedAmount)}</Typography>
-            <Typography className="swap-confirm-estimate-amount" variant="body2">~{currencyDecimalFormat(estimatedAmount * conversionRates[tokenOut.symbol][currency], currency)}</Typography>
+            <Typography className="swap-confirm-amount" variant="body2">{cryptoDecimalFormat(token2Amount)}</Typography>
+            <Typography className="swap-confirm-estimate-amount" variant="body2">~{currencyDecimalFormat(token2Amount * conversionRates[tokenOut.symbol][currency], currency)}</Typography>
           </Box>
 
           <Box className="transaction-detail">
@@ -91,7 +94,7 @@ export const SwapConfirmModal: React.FC<ISwapConfirmModalProps> = (props) => {
             </Box>
             <Box className="transaction-detail-property minimum-received">
               <Typography className="transaction-detail-property-title" variant="body2">Minimum Received <HelpIcon /></Typography>
-              <Typography className="transaction-detail-property-value" variant="body2">{cryptoDecimalFormat(estimatedAmount)} {tokenOut.symbol}</Typography>
+              <Typography className="transaction-detail-property-value" variant="body2">{cryptoDecimalFormat(token2Amount)} {tokenOut.symbol}</Typography>
             </Box>
           </Box>
         </Box>

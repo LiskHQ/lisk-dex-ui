@@ -38,32 +38,29 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   const [token1, setToken1] = useState<IToken>();
   const [token1Amount, setToken1Amount] = useState<number | string>('0.00');
   const [token2, setToken2] = useState<IToken>();
-  const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
-  const [transactionDeadline, setTransactionDeadline] = useState<number>(20);
+  const [token2Amount, setToken2Amount] = useState<number | string>('0.00');
   const [reverseRate, setReverseRate] = useState<boolean>(false);
+  const [reverse, setReverse] = useState<boolean>(false);
 
   const { conversionRates } = useSelector((root: RootState) => root.token);
-  const { currency } = useContext(PlatformContext);
+  const { currency, splipageTolerance, transactionDeadline, saveSplipageTolerance, saveTransactionDeadline } = useContext(PlatformContext);
 
   const onSaveTransactionSettings = ({ splipageTolerance, transactionDeadline }: { splipageTolerance: number, transactionDeadline: number }) => {
-    setSplipageTolerance(splipageTolerance);
-    setTransactionDeadline(transactionDeadline);
+    saveSplipageTolerance(splipageTolerance);
+    saveTransactionDeadline(transactionDeadline);
     setOpenTransactionSettings(false);
   };
 
   const reverseSwap = () => {
-    if (token2) {
-      const token = token1;
-      setToken1(token2);
-      setToken2(token);
-      setToken1Amount(0);
-    }
+    setReverse(prev => {
+      return !prev;
+    });
   };
 
   const resetSwap = () => {
     setToken1Amount(0);
-    setSplipageTolerance(0.5);
-    setTransactionDeadline(20);
+    saveSplipageTolerance(0.5);
+    saveTransactionDeadline(20);
     setReverseRate(false);
   };
 
@@ -101,10 +98,11 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
   useEffect(() => {
     if (closeTransactionModal) {
       setToken1Amount(0);
-      setSplipageTolerance(0.5);
-      setTransactionDeadline(20);
+      saveSplipageTolerance(0.5);
+      saveSplipageTolerance(20);
       setReverseRate(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closeTransactionModal]);
 
   const onSelectToken = (token: IToken) => {
@@ -117,11 +115,17 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     setOpenSelectToken2(false);
   };
 
-  const balance = useMemo(() => {
+  const token1Balance = useMemo(() => {
     if (token1)
       return +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token1?.tokenID)?.availableBalance || 0), token1);
     return 0;
   }, [token1, tokenBalances]);
+
+  const token2Balance = useMemo(() => {
+    if (token2)
+      return +getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token2?.tokenID)?.availableBalance || 0), token2);
+    return 0;
+  }, [token2, tokenBalances]);
 
   useEffect(() => {
     if (tokenBalances.length > 0)
@@ -132,25 +136,31 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
     if (!account) {
       resetSwap();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
 
   useEffect(() => {
     if (closeTransactionModal) {
       resetSwap();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closeTransactionModal]);
 
-  const estimatedAmount: number = useMemo(() => {
-    if (token2 && token1)
-      return (token1Amount as number) * (conversionRates[token1.symbol][token2.symbol] || 0);
-    return 0;
-  }, [token1Amount, token1, token2, conversionRates]);
+  useEffect(() => {
+    if (token1 && token2 && !reverse)
+      setToken2Amount((token1Amount as number) / (conversionRates[token1.symbol][token2.symbol] || 0));
+  }, [token1Amount, token1, token2, conversionRates, reverse]);
+
+  useEffect(() => {
+    if (token1 && token2 && reverse)
+      setToken1Amount((token2Amount as number) * (conversionRates[token1.symbol][token2.symbol] || 0));
+  }, [token2Amount, token1, token2, conversionRates, reverse]);
 
   const isValidSwap = useMemo(() => {
-    if (+token1Amount > balance || token1?.symbol === token2?.symbol || estimatedAmount === 0)
+    if (+token1Amount > token1Balance || token1?.symbol === token2?.symbol || token2Amount === 0)
       return false;
     return true;
-  }, [balance, token1Amount, token1, token2, estimatedAmount]);
+  }, [token1Balance, token1Amount, token1, token2, token2Amount]);
 
   return (
     <SwapViewStyle>
@@ -166,12 +176,15 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         <Typography className="swap-description" variant="body2">Trade tokens in an instant</Typography>
         <Box className="swap-from-box">
           <Box className="swap-from-top-box">
-            <Typography variant="body1">From:</Typography>
-            <Box className="swap-from-percent">
-              <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance / 4))}>25%</Typography>
-              <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance / 2))}>50%</Typography>
-              <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(balance))}>MAX</Typography>
-            </Box>
+            <Typography variant="body1">From {reverse && '(estimated)'}:</Typography>
+            {
+              !reverse &&
+              <Box className="swap-from-percent">
+                <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(token1Balance / 4))}>25%</Typography>
+                <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(token1Balance / 2))}>50%</Typography>
+                <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => setToken1Amount(cryptoDecimalFormat(token1Balance))}>MAX</Typography>
+              </Box>
+            }
           </Box>
           <Box className="swap-from-mid-box">
             <Box className="swap-from-select-token" onClick={() => { setOpenSelectToken1(true); }}>
@@ -188,17 +201,18 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
               type="number"
               value={token1Amount}
               onChange={e => setToken1Amount(e.target.value)}
+              readOnly={reverse}
               onBlur={() => { setToken1Amount(cryptoDecimalFormat(+token1Amount)); }}
             />
           </Box>
           {
-            +token1Amount > +balance &&
+            +token1Amount > +token1Balance &&
             <FormHelperText className="swap-from-input-error">
               <Typography variant='body2'>{validationErrorMessages.NOT_ENOUGH_BALANCE}</Typography>
             </FormHelperText>
           }
           <Box className="swap-from-bottom-box">
-            <Typography variant="body2">Balance: {cryptoDecimalFormat(balance)}</Typography>
+            <Typography variant="body2">Balance: {cryptoDecimalFormat(token1Balance)}</Typography>
             {
               token1 &&
               <Typography variant="body2">{currencyDecimalFormat((token1Amount as number) * conversionRates[token1.symbol][currency], currency)}</Typography>
@@ -207,7 +221,7 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         </Box>
 
         <Box className="swap-icon">
-          <IconButton onClick={reverseSwap}>
+          <IconButton data-testid="reverse-swap-test" onClick={reverseSwap}>
             <SwapIcon />
           </IconButton>
         </Box>
@@ -215,7 +229,15 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
         <Box className="swap-to-box">
           <Box className="swap-to-main-box">
             <Box className="swap-to-top-box">
-              <Typography variant="body1">To (estimated):</Typography>
+              <Typography variant="body1">To {!reverse && '(estimated)'}:</Typography>
+              {
+                reverse &&
+                <Box className="swap-from-percent">
+                  <Typography data-testid="swap-from-percent-25" variant="body2" onClick={() => setToken2Amount(cryptoDecimalFormat(token2Balance / 4))}>25%</Typography>
+                  <Typography data-testid="swap-from-percent-50" variant="body2" onClick={() => setToken2Amount(cryptoDecimalFormat(token2Balance / 2))}>50%</Typography>
+                  <Typography data-testid="swap-from-percent-max" variant="body2" onClick={() => setToken2Amount(cryptoDecimalFormat(token2Balance))}>MAX</Typography>
+                </Box>
+              }
             </Box>
             <Box className="swap-to-mid-box">
               <Box className="swap-to-select-token" onClick={() => { setOpenSelectToken2(true); }}>
@@ -232,14 +254,17 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
                     </>
                 }
               </Box>
-              {
-                token2 &&
-                <Typography variant="subtitle1">{cryptoDecimalFormat(estimatedAmount)}</Typography>
-              }
+              <InputComponent
+                type="number"
+                value={token2Amount}
+                onChange={e => setToken2Amount(e.target.value)}
+                readOnly={!reverse}
+                onBlur={() => { setToken2Amount(cryptoDecimalFormat(+token2Amount)); }}
+              />
             </Box>
             <Box className="swap-to-bottom-box">
               <Typography variant="body2">Balance: {
-                token2 ? getDisplayTokenAmount(+(tokenBalances.find(el => el.tokenID === token2.tokenID)?.availableBalance || 0), token2) : '-'
+                token2 ? token2Balance : '-'
               }
               </Typography>
               {
@@ -322,11 +347,12 @@ export const SwapView: React.FC<ISwapViewProps> = (props) => {
           <SwapConfirmModal
             tokenIn={token1 as IToken}
             tokenOut={token2 as IToken}
-            amountIn={+token1Amount}
-            estimatedAmount={estimatedAmount}
+            token1Amount={+token1Amount}
+            token2Amount={+token2Amount}
             currency={currency}
             conversionRates={conversionRates}
             splipageTolerance={splipageTolerance}
+            swapExactIn={!reverse}
             onConfirm={onConfirmSwap}
             onClose={() => { setOpenSwapConfirmModal(false); }}
           />

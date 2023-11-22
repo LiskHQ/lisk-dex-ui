@@ -10,6 +10,8 @@ type StateType = {
   gettingPoolDetails: boolean,
   gotPoolDetails: boolean,
 
+  poolIDs: any,
+
   stastics: any,
   gettingStastics: boolean,
   gotStastics: boolean,
@@ -24,6 +26,8 @@ const initialState: StateType = {
   poolDetails: [],
   gettingPoolDetails: false,
   gotPoolDetails: false,
+
+  poolIDs: [],
 
   stastics: {},
   gettingStastics: false,
@@ -49,7 +53,8 @@ const poolSlice = createSlice({
     getPoolsSuccess(state, action) {
       state.gettingPools = false;
       state.gotPools = true;
-      state.pools = [...action.payload.poolsAvailable.poolsAvailable];
+      state.poolIDs = [...action.payload.poolsAvailable.poolsAvailable],
+      state.pools = [];
     },
     getPoolsFailure(state, action: PayloadAction<any>) {
       state.gettingPools = false;

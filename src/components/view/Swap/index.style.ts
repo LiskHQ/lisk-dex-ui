@@ -35,23 +35,23 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
         marginTop: '0.5rem',
       },
 
+      '.swap-from-percent': {
+        display: 'flex',
+        alignItems: 'center',
+
+        p: {
+          cursor: 'pointer',
+          color: theme.lightcurve[0],
+          marginLeft: '0.75rem',
+        }
+      },
+
       '.swap-from-box': {
         padding: '1rem',
         borderRadius: '0.5rem',
         background: theme.primary[60],
         border: `1px solid ${theme.primary[5]}`,
         marginTop: '2.5rem',
-
-        '.swap-from-percent': {
-          display: 'flex',
-          alignItems: 'center',
-
-          p: {
-            cursor: 'pointer',
-            color: theme.lightcurve[0],
-            marginLeft: '0.75rem',
-          }
-        },
 
         '.swap-from-top-box': {
           display: 'flex',
@@ -174,6 +174,16 @@ export const SwapViewStyle = styled('div')(({ theme }: any) => {
               width: '1rem',
               height: '0.5rem',
               marginLeft: '0.25rem',
+            }
+          },
+
+          '.MuiInputBase-root': {
+            border: 'none',
+            paddingRight: 0,
+
+            input: {
+              fontSize: '1.25rem',
+              textAlign: 'right',
             }
           }
         },

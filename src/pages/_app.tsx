@@ -1,11 +1,13 @@
+import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
+import { SnackbarProvider } from 'notistack';
 import { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import '../styles/globals.css';
 import { createEmotionCache } from 'utils';
-import { Provider } from 'react-redux';
+import { SnackbarAlertComponent } from 'components';
 import { store } from 'store';
 import { ChainDataContextProvider, ClientContextProvider, JsonRpcContextProvider, PlatformContextProvider } from 'contexts';
 
@@ -22,7 +24,13 @@ function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }: 
             <ClientContextProvider>
               <JsonRpcContextProvider>
                 <AppStyle className="layout-app">
-                  <Component {...pageProps} />
+                  <SnackbarProvider
+                    Components={{
+                      alert: SnackbarAlertComponent
+                    }}
+                  >
+                    <Component {...pageProps} />
+                  </SnackbarProvider >
                 </AppStyle>
               </JsonRpcContextProvider>
             </ClientContextProvider>

@@ -281,6 +281,7 @@ export const addLiquiditySchema = {
   },
 };
 
+
 export const proposalContentSchema = {
   $id: '/dexGovernance/proposalContentSchema',
   type: 'object',

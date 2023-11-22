@@ -13,7 +13,7 @@ export const CreateProposalContainer: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const { accountTokens, tokenBalances } = useSelector((root: RootState) => root.token);
-  const { submitedTransaction, submitingTransaction, error: transactionError } = useSelector((state: RootState) => state.transaction);
+  const { submitedTransaction, submitingTransaction, submitedTransactionError: transactionError } = useSelector((state: RootState) => state.transaction);
   const { account } = useSelector((state: RootState) => state.wallet);
   const [openTransactionStatusModal, setOpenTransactionStatusModal] = useState<boolean>(false);
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
