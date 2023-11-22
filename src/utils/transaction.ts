@@ -32,7 +32,7 @@ export const createTransactionObject = async <T>(module: TransactionModule, comm
       feeTokenID: networkFeeReponse.data.transaction.fee.tokenID,
       transactionObject: {
         ...transaction,
-        fee: networkFeeReponse.data.transaction.fee.minimum,
+        fee: '2000000000',
       }
     };
   } catch (e: any) {

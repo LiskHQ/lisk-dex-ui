@@ -38,8 +38,8 @@ export function* getTransactionsSaga(action: any) {
         next(result.data);
       yield put(AppActions.transaction.getTransactionsSuccess(result));
     }
-  } catch (error) {
-    yield put(AppActions.transaction.getTransactionsFailure(error));
+  } catch (error: any) {
+    yield put(AppActions.transaction.getTransactionsFailure(error.response.data));
   }
 }
 

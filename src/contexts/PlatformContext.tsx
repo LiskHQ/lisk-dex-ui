@@ -6,25 +6,31 @@ import { darkTheme, lightTheme } from 'styles/theme';
 import { ThemeType } from 'consts';
 
 export type IPlatformContext = {
+  splipageTolerance: number,
+  transactionDeadline: number,
   walletConnection: boolean,
   currency: string,
   getThemeType: () => ThemeType,
   saveTheme: (theme: ThemeType) => void,
   saveCurrency: (currency: string) => void,
   getWalletConnection: () => boolean,
-  saveWalletConnectToken: (tokens: string) => void,
+  saveTransactionDeadline: (transactionDeadline: number) => void,
+  saveSplipageTolerance: (splipageTolerance: number) => void,
   resetSession: () => void
 };
 
 export const PlatformContext = createContext<IPlatformContext>({
+  splipageTolerance: 0.5,
+  transactionDeadline: 20,
   walletConnection: false,
   currency: 'USD',
   getThemeType: () => ThemeType.Dark,
   saveTheme: () => { },
   saveCurrency: () => { },
   getWalletConnection: () => false,
-  saveWalletConnectToken: () => { },
   resetSession: () => { },
+  saveTransactionDeadline: () => { },
+  saveSplipageTolerance: () => { },
 });
 
 type PlatformContextProviderProps = {
@@ -36,6 +42,8 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
   const [theme, setTheme] = useState<Theme>(lightTheme);
   const [currency, setCurrency] = useState<string>('USD');
   const [walletConnection, setWalletConnection] = useState<boolean>(false);
+  const [transactionDeadline, setTransactionDeadline] = useState<number>(10);
+  const [splipageTolerance, setSplipageTolerance] = useState<number>(0.5);
 
   const getThemeType = () => {
     return sessionStorage.getItem('theme') as ThemeType ?? ThemeType.Dark;
@@ -54,16 +62,21 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
     setCurrency(_currency);
     sessionStorage.setItem('currency', _currency);
   };
+
   const getWalletConnection = () => {
     return !!sessionStorage.getItem('wallet-token');
   };
 
-  const saveWalletConnectToken = (token: string) => {
-    sessionStorage.setItem('wallet-token', token);
-  };
-
   const resetSession = () => {
     sessionStorage.removeItem('theme');
+  };
+
+  const saveSplipageTolerance = (_splipageTolerance: number) => {
+    setSplipageTolerance(_splipageTolerance);
+  };
+
+  const saveTransactionDeadline = (_transactionDeadline: number) => {
+    setTransactionDeadline(_transactionDeadline);
   };
 
   useEffect(() => {
@@ -79,14 +92,17 @@ export const PlatformContextProvider: React.FC<PlatformContextProviderProps> = (
 
   return (
     <PlatformContext.Provider value={{
+      splipageTolerance,
+      transactionDeadline,
       walletConnection,
       currency,
       getThemeType,
       saveTheme,
       saveCurrency,
       getWalletConnection,
-      saveWalletConnectToken,
       resetSession,
+      saveSplipageTolerance,
+      saveTransactionDeadline
     }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
