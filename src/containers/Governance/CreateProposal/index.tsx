@@ -6,7 +6,8 @@ import { AlertVariant, ProposalType, TransactionCommands, TransactionModule, Tra
 import { useJsonRpc } from 'contexts';
 import { AppActions, RootState } from 'store';
 import { IAccount, IProposal, ITransactionObject } from 'models';
-import { createProposalParamsSchema, createTransactionObject } from 'utils';
+import { createProposalParamsSchema } from 'utils';
+import { apiGetAuth } from 'apis';
 
 export const CreateProposalContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ export const CreateProposalContainer: React.FC = () => {
   const [transactionStatus, setTransactionStatus] = useState<TransactionStatus>(TransactionStatus.PENDING);
   // states for approvalTransactionModal
   const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
-  const [feeTokenID, setFeeTokenID] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [feeTokenID, setFeeTokenID] = useState<string>('0400001100000000');
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -46,8 +48,8 @@ export const CreateProposalContainer: React.FC = () => {
     dispatch(AppActions.transaction.resetTransactionStates());
   }, [dispatch]);
 
-  const onSubmit = (proposal: IProposal) => {
-    if (pools.length === 0) {
+  const onSubmit = async (proposal: IProposal) => {
+    if (pools.length === 0 && proposal.proposalType === ProposalType.PoolIncentivization) {
       enqueueSnackbar('Pool is required to create proposal', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
       return;
     }
@@ -55,35 +57,47 @@ export const CreateProposalContainer: React.FC = () => {
     if (account) {
       const { chainId, publicKey } = account;
 
-      const content = {
-        text: proposal.description,
-        poolID: '0000000000000000000001000000000000c8'.slice(0, 16),
-        multiplier: proposal.multiplier,
-        metadata: {
-          title: proposal.title,
-          author: proposal.author,
-          summary: proposal.summary,
-          discussionsTo: proposal.link || 'http://lisk.com',
-        },
-      };
-
-      const params = {
-        type: proposal.proposalType === ProposalType.PoolIncentivization ? 0 : 1,
-        content,
-      };
-
-      createTransactionObject(TransactionModule.dexGovernance, TransactionCommands.createProposal, account, params)
-        .then(({ feeTokenID: _feeTokenID, transactionObject: rawTx, }) => {
-          setTransactionObject(rawTx);
-          setFeeTokenID(_feeTokenID);
-
-          liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, rawTx);
-          setOpenTransactionStatusModal(true);
-          setCloseTransactionModal(false);
-        })
-        .catch(e => {
-          enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+      try {
+        const authResponse = await apiGetAuth({
+          address: account.address,
         });
+
+        const content = {
+          text: Buffer.from(proposal.description, 'utf-8'),
+          poolID: '0000000000000000000001000000000000c8'.slice(0, 16),
+          multiplier: proposal.multiplier || 1,
+          metadata: {
+            title: Buffer.from(proposal.title, 'utf-8'),
+            author: Buffer.from(proposal.author, 'utf-8'),
+            summary: Buffer.from(proposal.summary, 'utf-8'),
+            discussionsTo: Buffer.from(proposal.link || 'http://lisk.com', 'utf-8'),
+          },
+        };
+
+        const transaction = {
+          module: TransactionModule.dexGovernance,
+          command: TransactionCommands.createProposal,
+          fee: '20000000',
+          nonce: authResponse.data.nonce || 0,
+          senderPublicKey: publicKey,
+          signatures: [],
+          params: {
+            type: proposal.proposalType === ProposalType.PoolIncentivization ? 1 : 0,
+            content,
+          }
+        };
+
+        setTransactionObject(transaction);
+        console.log('transaction: ', transaction);
+
+        liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, transaction);
+        setOpenTransactionStatusModal(true);
+        setCloseTransactionModal(false);
+      } catch (e) {
+        enqueueSnackbar(String(e), { variant: 'alert', type: AlertVariant.fail });
+      }
+    } else {
+      enqueueSnackbar('', { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.CONNECT_YOUR_WALLET });
     }
   };
 
