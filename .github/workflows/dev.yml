@@ -1,9 +1,8 @@
-name: STG-DEX-UI
+name: DEV-DEX-UI
 on:
   push:
     branches:
       - development
-      - cicdpipeline
   workflow_dispatch:
 jobs:
   build:
@@ -16,6 +15,8 @@ jobs:
       CONTAINER_NAME: LC-STG-TD-LISKDEXUI
       TASK_DEF_NAME: LC-STG-TD-LISKDEXUI
       DISTRIBUTION_ID_FE: E3RBC6XCZ0OJ4Q
+      SSM_PATH: /LC/STG/LISKDEXUI
+      DEPLOY_ENV: STG
 
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +35,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         with:
-          ssm-path: /LC/STG/LISKDEXUI
+          ssm-path: ${{env.SSM_PATH}}
           output: .env
 
       - name: Login to Amazon ECR
@@ -60,6 +61,7 @@ jobs:
         env:
           DEPLOYMENT_NAME: ${{env.CONTAINER_NAME}}
           DOCKER_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPO_NAME }}:${{ github.sha }}
+          DEPLOYMENT_ENV: ${{env.DEPLOY_ENV}}
         with:
           from_file: "ecs-task-definition.json"
           to_file: "${{env.TASK_DEF_NAME}}-task-def_${{ github.run_id }}.json"
