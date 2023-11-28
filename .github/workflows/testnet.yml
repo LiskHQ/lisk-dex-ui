@@ -8,7 +8,7 @@ jobs:
   build:
     name: Build & Deploy
     runs-on: ubuntu-20.04
-    env: ###--> Change all values here <--###
+    env: ###--> Change all values in the below section <--###
       ECR_REPO_NAME: lc/tstnt/lisk-dexui
       SERVICE_NAME:  LC-TSTNT-SERVICE-LISK-DEXUI
       CLUSTER_NAME: LC-ECS-CLUSTER
@@ -17,7 +17,7 @@ jobs:
       DISTRIBUTION_ID_FE: E1Y0S0UZJ97NF3
       SSM_PATH: /LC/TSTNT/LISKDEXUI
       DEPLOY_ENV: TSTNT
-
+      ###--> Change all values here <--###
     steps:
       - uses: actions/checkout@v2
 
