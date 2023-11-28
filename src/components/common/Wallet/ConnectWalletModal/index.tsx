@@ -101,7 +101,7 @@ export const ConnectWalletModal: React.FC<IConnectWalletModalProps> = (props) =>
               <>
                 <Typography variant="h4">Select a wallet</Typography>
                 <Typography variant="body2">By connecting a wallet, you agree
-                  to Lisk DEX’s <Link>Privacy Policy</Link>.</Typography>
+                  to Lisk DEX’s <Link href='https://lisk.com/policies/privacy' target='_blank'>Privacy Policy</Link>.</Typography>
               </>
           }
         </Box>
