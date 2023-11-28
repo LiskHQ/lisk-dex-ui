@@ -6,8 +6,7 @@ export const DEFAULT_MAIN_CHAINS = [
 ];
 
 export const DEFAULT_TEST_CHAINS = [
-  // testnets
-  'lisk:04000011',
+  'lisk:01000011', // testnet
 ];
 
 export const DEFAULT_CHAINS = [...DEFAULT_MAIN_CHAINS, ...DEFAULT_TEST_CHAINS];
