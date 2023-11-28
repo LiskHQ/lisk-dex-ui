@@ -3,8 +3,8 @@ import { ChainMetadata, NamespaceMetadata } from 'models';
 
 // TODO: add `lisk` namespace to `caip-api` package to avoid manual specification here.
 export const LiskChainData: ChainsMap = {
-  '1000011': {
-    id: 'lisk:1000011',
+  '01000011': {
+    id: 'lisk:01000011',
     name: 'Dex Testnet',
     rpc: ['https://testnet.service.lisk.com'],
     slip44: 501,
@@ -14,7 +14,7 @@ export const LiskChainData: ChainsMap = {
 
 export const LiskMetadata: NamespaceMetadata = {
   // Lisk Dex Testnet
-  '1000011': {
+  '01000011': {
     logo: 'https://lisk-qa.ams3.digitaloceanspaces.com/lisk.png',
     rgb: '0, 0, 0',
   },
