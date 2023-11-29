@@ -37,7 +37,7 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
   const { error: transactionError } = useSelector((root: RootState) => root.transaction);
 
   useEffect(() => {
-    if (transactionError.message) {
+    if (transactionError && transactionError.message) {
       enqueueSnackbar(transactionError.message, { variant: 'alert', type: AlertVariant.fail });
     }
   }, [transactionError, enqueueSnackbar]);
