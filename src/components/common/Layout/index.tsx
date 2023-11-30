@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import { AlertVariant } from 'consts';
+import { AlertVariant, alertMessages } from 'consts';
 import { PlatformContext } from 'contexts';
 import Head from 'next/head';
 import { ReactNode, useContext, useEffect, useState } from 'react';
@@ -48,7 +48,9 @@ export const LayoutComponent: React.FC<IProps> = ({ children }) => {
 
   useEffect(() => {
     // todo
-    console.log('socketEvent: ', socketEvent);
+    if (socketEvent)
+      enqueueSnackbar(alertMessages[socketEvent], { variant: 'alert', type: AlertVariant.info });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketEvent]);
 
   useEffect(() => {

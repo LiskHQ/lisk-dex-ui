@@ -21,7 +21,7 @@ export const CreateProposalContainer: React.FC = () => {
   // states for approvalTransactionModal
   const [transactionObject, setTransactionObject] = useState<ITransactionObject>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [feeTokenID, setFeeTokenID] = useState<string>('0400001100000000');
+  const [feeTokenID, setFeeTokenID] = useState<string>('0100001100000000');
   const [openApproveTransactionModal, setOpenApproveTransactionModal] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [closeTransactionModal, setCloseTransactionModal] = useState<boolean>(false);
@@ -88,8 +88,6 @@ export const CreateProposalContainer: React.FC = () => {
         };
 
         setTransactionObject(transaction);
-        console.log('transaction: ', transaction);
-
         liskRpc.signTransaction(chainId, publicKey, createProposalParamsSchema, transaction);
         setOpenTransactionStatusModal(true);
         setCloseTransactionModal(false);

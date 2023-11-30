@@ -208,7 +208,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
               params: {
                 payload,
                 schema,
-                recipientChainID: '04000011',
+                recipientChainID: '01000011',
               },
             },
           });
@@ -218,7 +218,7 @@ export function JsonRpcContextProvider({ children }: { children: ReactNode | Rea
           // @todo verify the signatures
           const valid = true;
 
-          rawTx.signatures = [Buffer.from(JSON.parse(result), 'hex')];
+          rawTx.signatures = [...JSON.parse(result).signatures];
 
           const _tx = await fromTransactionJSON(rawTx, schema);
           const _binary = await encodeTransaction(_tx, schema);

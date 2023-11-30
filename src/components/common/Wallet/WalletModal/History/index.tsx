@@ -57,7 +57,7 @@ export const HistoryComponent: React.FC<IHistoryComponentProps> = (props) => {
       <InfiniteScroll
         dataLength={_transactions.length}
         next={loadMoreTransactions}
-        hasMore={_transactions.length < total || total === 0}
+        hasMore={_transactions.length < total}
         loader={<LoaderComponent />}
         height={548}
       >
