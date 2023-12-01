@@ -21,11 +21,38 @@ If you wish to build the local version of Lisk DEX UI, execute the following com
 git clone https://github.com/LiskHQ/lisk-dex-ui.git
 ```
 
+Create `.env.local` file in the project directoy and put environment variables below.
+```
+NEXT_PUBLIC_PROJECT_ID=[Your WalletConnect Project Id]
+NEXT_PUBLIC_RELAY_URL=wss://relay.walletconnect.com
+NEXT_PUBLIC_TEST_NET=testnet
+NEXT_PUBLIC_LISK_SERVICE_URL=https://testnet-service.lisk.com
+NEXT_PUBLIC_DEX_SERVICE_URL=https://testnet-dex-service.lisk.com
+NEXT_PUBLIC_DEX_SERVICE_WS_URL=wss://testnet-dex-service.lisk.com
+```
+
 Then install all necessary node modules to run the project.
 
 ```bash
 cd [Project]
-npm install
+yarn install
+yarn dev
+```
+
+### Run using docker
+
+```bash
+docker-compose -up
+```
+
+## Tests
+
+### Automated tests
+
+All automated tests will run with the below command.
+
+```bash
+npm test
 ```
 
 ## Technical Stack
@@ -38,11 +65,11 @@ npm install
   - Custom Utility Libraries
   - Styled Components
 - **Third Party Libraries**:
-  - Trading View Light Weight Charts
+  - WalletConnect
   - Matrial UI
   - Axios
 - **Code Formatting and Quality**: ESLint, Prettier, Prettier VSCode Extention and DeepScan
-- **Testing**: Jest and Cypress
+- **Testing**: Jest and React testing library
 - **CI/CD**: Git, Jenkins, Docker, VPS
 - **Database**: AWS S3
 - **Version Control**: Github
