@@ -2,7 +2,7 @@ name: TESTNET-DEX-UI
 on:
   push:
     branches:
-      - dex-testnet
+      - development
   workflow_dispatch:
 jobs:
   build:
