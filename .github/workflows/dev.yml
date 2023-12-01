@@ -2,7 +2,7 @@ name: DEV-DEX-UI
 on:
   push:
     branches:
-      - development
+      - devnet
   workflow_dispatch:
 jobs:
   build:
