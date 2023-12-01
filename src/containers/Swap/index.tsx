@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { ApproveTransactionModal, SwapView, TransactionStatusModal } from 'components';
-import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType } from 'consts';
+import { AlertVariant, TransactionCommands, TransactionModule, TransactionStatus, TransactionType, alertMessages } from 'consts';
 import { AppActions, RootState } from 'store';
 import { useJsonRpc } from 'contexts';
 import { createTransactionObject, getTokenAmount, swapExactInCommandSchema, swapExactOutCommandSchema } from 'utils';
@@ -49,10 +49,10 @@ export const SwapContainer: React.FC = () => {
   const onConfirmSwap = (data: ISwapData) => {
     const { tokenIn, tokenOut, tokenInAmount, tokenOutAmount, swapExactIn } = data;
 
-    // if (pools.length === 0) {
-    //   enqueueSnackbar(`${tokenIn.symbol}/${tokenOut.symbol} pool is required for swap`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
-    //   return;
-    // }
+    if (poolIDs.length === 0) {
+      enqueueSnackbar(`${tokenIn.symbol}/${tokenOut.symbol} pool is required for swap`, { variant: 'alert', type: AlertVariant.fail, subject: alertMessages.POOL_DOES_NOT_EXIST });
+      return;
+    }
 
     if (account) {
       const { chainId, publicKey } = account;

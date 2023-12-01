@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { Box, IconButton, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { faArrowLeft, faArrowRight, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ import { DropdownComponent, SearchInputComponent } from 'components';
 import { IToken, ITransaction } from 'models';
 import { TransactionsTableStyle } from './index.style';
 import { ellipsisAddress } from 'utils';
-import { tokenSvgs } from 'imgs/icons';
+// import { tokenSvgs } from 'imgs/icons';
 import { TransactionCommands } from 'consts';
 
 export interface ITransactionsTableProps {
@@ -25,7 +25,7 @@ export interface ITransactionsTableProps {
 export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
   const {
     transactions: _transactions,
-    availableTokens,
+    // availableTokens,
     onChangeCommand,
     onChangeRowCount,
     onNextPage,
@@ -41,9 +41,9 @@ export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
     return [];
   }, [page, limit, _transactions]);
 
-  const getTokenSymbol = (tokenId: string) => {
-    return availableTokens.find(token => token.tokenID === tokenId)?.symbol || '';
-  };
+  // const getTokenSymbol = (tokenId: string) => {
+  //   return availableTokens.find(token => token.tokenID === tokenId)?.symbol || '';
+  // };
 
   return (
     <TransactionsTableStyle>
@@ -70,10 +70,10 @@ export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell><Typography variant="body2">Name</Typography></TableCell>
-              <TableCell align="right"><Typography variant="body2">Action</Typography></TableCell>
-              <TableCell align="right"><Typography variant="body2">Details</Typography></TableCell>
-              <TableCell align="right"><Typography variant="body2">Account</Typography></TableCell>
+              <TableCell><Typography variant="body2">Type</Typography></TableCell>
+              <TableCell align="right"><Typography variant="body2">ID</Typography></TableCell>
+              <TableCell align="right"><Typography variant="body2">Height</Typography></TableCell>
+              <TableCell align="right"><Typography variant="body2">Sender</Typography></TableCell>
               <TableCell align="right"><Typography variant="body2">Time</Typography></TableCell>
             </TableRow>
           </TableHead>
@@ -86,54 +86,61 @@ export const TransactionsTable: React.FC<ITransactionsTableProps> = (props) => {
               >
                 <TableCell scope="row">
                   <Box className="name-td">
-                    <Typography>{index + 1}</Typography>
+                    <Typography>{index + 1}</Typography>&nbsp;
                     {
-                      {
-                        [TransactionCommands.swapExactIn]: <>
-                          <Box className="token1-image">
-                            <Image className="token1-image" src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={32} height={32}></Image>
-                          </Box>
-                          <Box className="token2-image">
-                            <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={32} height={32}></Image>
-                          </Box>
-                          <Typography>{getTokenSymbol(row.params.tokenIdIn)} - {getTokenSymbol(row.params.tokenIdOut)}</Typography>
-                        </>,
-                      }[row.moduleCommand]
+                      // {
+                      //   [TransactionCommands.swapExactIn]: <>
+                      //     <Box className="token1-image">
+                      //       <Image className="token1-image" src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={32} height={32}></Image>
+                      //     </Box>
+                      //     <Box className="token2-image">
+                      //       <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={32} height={32}></Image>
+                      //     </Box>
+                      //     <Typography>{getTokenSymbol(row.params.tokenIdIn)} - {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                      //   </>,
+                      // }[row.moduleCommand]
+                      <Typography>{row.moduleCommand}</Typography>
                     }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <Box className="action-td">
-                    {
+                  <a href={`https://testnet.liskscan.com/transaction/${row.id}`} target='_blank' rel="noreferrer">
+                    <Box className="action-td">
                       {
-                        [TransactionCommands.swapExactIn]: <>
-                          <Typography variant="body2">Swap {getTokenSymbol(row.params.tokenIdIn)} for {getTokenSymbol(row.params.tokenIdOut)}</Typography>
-                        </>,
-                      }[row.moduleCommand]
-                    }
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                  </Box>
+                        // {
+                        //   [TransactionCommands.swapExactIn]: <>
+                        //     <Typography variant="body2">Swap {getTokenSymbol(row.params.tokenIdIn)} for {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                        //   </>,
+                        // }[row.moduleCommand]
+                        <Typography variant="body2">{ellipsisAddress(row.id)}</Typography>
+                      }
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </Box>
+                  </a>
                 </TableCell>
                 <TableCell align="right">
                   <Box className="details-td">
                     {
-                      {
-                        [TransactionCommands.swapExactIn]: <>
-                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={16} height={16} />
-                          <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenSymbol(row.params.tokenIdIn)}</Typography>
-                          <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
-                          <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={16} height={16} />
-                          <Typography variant="body2">{row.params.amountTokenOut} {getTokenSymbol(row.params.tokenIdOut)}</Typography>
-                        </>
-                      }[row.moduleCommand]
+                      // {
+                      //   [TransactionCommands.swapExactIn]: <>
+                      //     <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdIn)]} width={16} height={16} />
+                      //     <Typography variant="body2">{row.params.maxAmountTokenIn} {getTokenSymbol(row.params.tokenIdIn)}</Typography>
+                      //     <FontAwesomeIcon className="arrow-icon" icon={faArrowRight} />
+                      //     <Image src={tokenSvgs[getTokenSymbol(row.params.tokenIdOut)]} width={16} height={16} />
+                      //     <Typography variant="body2">{row.params.amountTokenOut} {getTokenSymbol(row.params.tokenIdOut)}</Typography>
+                      //   </>
+                      // }[row.moduleCommand]
+                      <Typography>{row.block.height}</Typography>
                     }
                   </Box>
                 </TableCell>
                 <TableCell align="right">
-                  <Box className="action-td">
-                    <Typography variant="body2">{ellipsisAddress(row.sender.address)}</Typography>
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                  </Box>
+                  <a href={`https://testnet.liskscan.com/account/${row.sender.address}`} target='_blank' rel="noreferrer">
+                    <Box className="action-td">
+                      <Typography variant="body2">{ellipsisAddress(row.sender.address)}</Typography>
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </Box>
+                  </a>
                 </TableCell>
                 <TableCell align="right">{new Date(row.block.timestamp).toLocaleString()}</TableCell>
               </TableRow>

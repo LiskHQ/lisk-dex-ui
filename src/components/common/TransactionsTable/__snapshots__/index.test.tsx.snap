@@ -942,7 +942,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
   letter-spacing: 0.00938em;
 }
 
-.emotion-35 {
+.emotion-33 {
   font-size: 0.875rem;
   line-height: 1.125rem;
   font-weight: 400;
@@ -959,7 +959,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
   flex-direction: row-reverse;
 }
 
-.emotion-51 {
+.emotion-48 {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1rem;
@@ -968,7 +968,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
   letter-spacing: 0.0075em;
 }
 
-.emotion-56 {
+.emotion-53 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1014,33 +1014,33 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.emotion-56::-moz-focus-inner {
+.emotion-53::-moz-focus-inner {
   border-style: none;
 }
 
-.emotion-56.Mui-disabled {
+.emotion-53.Mui-disabled {
   pointer-events: none;
   cursor: default;
 }
 
 @media print {
-  .emotion-56 {
+  .emotion-53 {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
   }
 }
 
-.emotion-56:hover {
+.emotion-53:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
 @media (hover: none) {
-  .emotion-56:hover {
+  .emotion-53:hover {
     background-color: transparent;
   }
 }
 
-.emotion-56.Mui-disabled {
+.emotion-53.Mui-disabled {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.26);
 }
@@ -1187,7 +1187,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-9"
               >
-                Name
+                Type
               </p>
             </th>
             <th
@@ -1197,7 +1197,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-9"
               >
-                Action
+                ID
               </p>
             </th>
             <th
@@ -1207,7 +1207,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-9"
               >
-                Details
+                Height
               </p>
             </th>
             <th
@@ -1217,7 +1217,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
               <p
                 class="MuiTypography-root MuiTypography-body2 emotion-9"
               >
-                Account
+                Sender
               </p>
             </th>
             <th
@@ -1250,206 +1250,97 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
                 >
                   1
                 </p>
-                <div
-                  class="token1-image MuiBox-root emotion-1"
-                >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      class="token1-image"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
-                </div>
-                <div
-                  class="token2-image MuiBox-root emotion-1"
-                >
-                  <span
-                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                  >
-                    <span
-                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                    >
-                      <img
-                        alt=""
-                        aria-hidden="true"
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e"
-                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                      />
-                    </span>
-                    <img
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                    />
-                    <noscript />
-                  </span>
-                </div>
+                 
                 <p
                   class="MuiTypography-root MuiTypography-body1 emotion-31"
                 >
-                  DEX
-                   - 
-                  DEX
+                  swapExactIn
                 </p>
               </div>
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-35"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-33"
             >
-              <div
-                class="action-td MuiBox-root emotion-1"
+              <a
+                href="https://testnet.liskscan.com/transaction/f9593f101c4acafc3ede650ab4c10fa2ecb59b225813eddbbb17b47e96932e9b"
+                rel="noreferrer"
+                target="_blank"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body2 emotion-9"
+                <div
+                  class="action-td MuiBox-root emotion-1"
                 >
-                  Swap 
-                  DEX
-                   for 
-                  DEX
-                </p>
-                <svg
-                  aria-hidden="true"
-                  class="svg-inline--fa fa-arrow-up-right-from-square "
-                  data-icon="arrow-up-right-from-square"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-9"
+                  >
+                    f9593f...2e9b
+                  </p>
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-arrow-up-right-from-square "
+                    data-icon="arrow-up-right-from-square"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </a>
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-35"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-33"
             >
               <div
                 class="details-td MuiBox-root emotion-1"
               >
-                <span
-                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                >
-                  <span
-                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                  >
-                    <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
-                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                    />
-                  </span>
-                  <img
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
-                </span>
                 <p
-                  class="MuiTypography-root MuiTypography-body2 emotion-9"
+                  class="MuiTypography-root MuiTypography-body1 emotion-31"
                 >
-                  1000000
-                   
-                  DEX
-                </p>
-                <svg
-                  aria-hidden="true"
-                  class="svg-inline--fa fa-arrow-right arrow-icon"
-                  data-icon="arrow-right"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 448 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span
-                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                >
-                  <span
-                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                  >
-                    <img
-                      alt=""
-                      aria-hidden="true"
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
-                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                    />
-                  </span>
-                  <img
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                  />
-                  <noscript />
-                </span>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 emotion-9"
-                >
-                  1000000
-                   
-                  DEX
+                  8350681
                 </p>
               </div>
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-35"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-33"
             >
-              <div
-                class="action-td MuiBox-root emotion-1"
+              <a
+                href="https://testnet.liskscan.com/account/lskdwsyfmcko6mcd357446yatromr9vzgu7eb8y99"
+                rel="noreferrer"
+                target="_blank"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body2 emotion-9"
+                <div
+                  class="action-td MuiBox-root emotion-1"
                 >
-                  lskdws...8y99
-                </p>
-                <svg
-                  aria-hidden="true"
-                  class="svg-inline--fa fa-arrow-up-right-from-square "
-                  data-icon="arrow-up-right-from-square"
-                  data-prefix="fas"
-                  focusable="false"
-                  role="img"
-                  viewBox="0 0 512 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </div>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-9"
+                  >
+                    lskdws...8y99
+                  </p>
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-arrow-up-right-from-square "
+                    data-icon="arrow-up-right-from-square"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </a>
             </td>
             <td
-              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-35"
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeMedium emotion-33"
             >
               1/19/1970, 4:08:43 PM
             </td>
@@ -1478,7 +1369,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
               class="show-rows-dropdown MuiBox-root emotion-1"
             >
               <h6
-                class="MuiTypography-root MuiTypography-h6 emotion-51"
+                class="MuiTypography-root MuiTypography-h6 emotion-48"
               >
                 Show rows:
               </h6>
@@ -1528,7 +1419,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
         </div>
       </div>
       <button
-        class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium emotion-56"
+        class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium emotion-53"
         data-testid="previous-page-test"
         disabled=""
         tabindex="-1"
@@ -1559,7 +1450,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-8:focus::-ms-input-p
         1
       </p>
       <button
-        class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium emotion-56"
+        class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-sizeMedium emotion-53"
         data-testid="transaction-table-next-page-test"
         disabled=""
         tabindex="-1"
