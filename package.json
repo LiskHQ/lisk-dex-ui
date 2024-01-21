@@ -1,6 +1,28 @@
 {
-  "name": "liskdexui",
+  "name": "lisk-dex-ui",
   "version": "1.0.0-beta.0",
+  "description": "Lisk DEX blockchain user-interface",
+  "author": "Lisk Foundation <admin@lisk.com>, lightcurve GmbH <admin@lightcurve.io>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "lisk",
+    "blockchain",
+    "dex",
+    "middleware",
+    "nextjs",
+    "typescript"
+  ],
+  "homepage": "https://github.com/LiskHQ/lisk-dex-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiskHQ/lisk-dex-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LiskHQ/lisk-dex-ui/issues"
+  },
+  "engines": {
+    "node": ">=16.20 <=16"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002 && webpack serve",
