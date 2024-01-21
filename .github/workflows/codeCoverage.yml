@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.14]
+        node-version: [16.20.2]
     name: Codecov Test
 
     steps:
