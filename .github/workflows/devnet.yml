@@ -17,7 +17,7 @@ jobs:
       DISTRIBUTION_ID_FE: E3RBC6XCZ0OJ4Q
       SSM_PATH: /LC/STG/LISKDEXUI
       DEPLOY_ENV: STG
-
+      ###--> Change all values here <--##
     steps:
       - uses: actions/checkout@v2
 

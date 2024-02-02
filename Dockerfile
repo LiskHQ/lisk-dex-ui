@@ -1,4 +1,4 @@
-FROM node:16.15.0
+FROM node:16.20.2
 
 ARG PROJECT_ID
 ARG RELAY_URL
@@ -21,7 +21,7 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Copy the rest of the application code
 COPY . .
