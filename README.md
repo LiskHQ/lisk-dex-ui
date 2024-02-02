@@ -3,11 +3,11 @@
 # Lisk DEX: UI
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/LiskHQ/lisk-dex-ui)
-![GitHub repo size](https://img.shields.io/github/repo-size/LiskHQ/lisk-dex-ui)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/liskhq/lisk-dex-ui)
+![GitHub repo size](https://img.shields.io/github/repo-size/liskhq/lisk-dex-ui)
 [![DeepScan grade](https://deepscan.io/api/teams/19600/projects/23054/branches/712227/badge/grade.svg?token=a1fa0980263b30233c0ddf1e9c3ed778290db2ee)](https://deepscan.io/dashboard#view=project&tid=19600&pid=23054&bid=712227)
-![GitHub issues](https://img.shields.io/github/issues-raw/LiskHQ/lisk-dex-ui)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/LiskHQ/lisk-dex-ui)
+![GitHub issues](https://img.shields.io/github/issues-raw/liskhq/lisk-dex-ui)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/liskhq/lisk-dex-ui)
 
 Lisk DEX: UI is a frontend user-interface for the [Lisk DEX: Core](https://github.com/LiskHQ/lisk-dex-core?tab=readme-ov-file#index) blockchain application. The project is developed using the [Next.js](https://nextjs.org/) framework and uses [WalletConnect](https://walletconnect.com/) as a remote signing protocol.
 
